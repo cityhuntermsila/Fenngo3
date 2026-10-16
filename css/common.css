@@ -1,0 +1,108 @@
+@import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css");
+@import url("https://fonts.googleapis.com/css2?family=Cairo:wght@600;700;800;900&family=Poppins:wght@600;700;800;900&display=swap");
+
+* { box-sizing: border-box; }
+html, body { height: 100%; margin: 0; }
+body { font-family: "Comic Sans MS", "Poppins", "Trebuchet MS", Arial, sans-serif; }
+img { max-width: 100%; display: block; }
+button { font-family: inherit; }
+.mobile-menu-open { display: block !important; }
+.page-scroll { -webkit-overflow-scrolling: touch; }
+.show { display: flex !important; }
+
+/* Arabic typography and RTL enhancements */
+html[dir="rtl"], body.lang-arabic {
+  font-family: "Cairo", "Segoe UI", Tahoma, Arial, sans-serif;
+}
+
+html[dir="rtl"] .arrow-right { transform: rotate(180deg); }
+html[dir="rtl"] .arrow-left { transform: rotate(180deg); }
+
+/* Header Language Switcher Widget */
+.header-lang-widget {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(255, 255, 255, 0.22);
+  border: 2px solid rgba(255, 255, 255, 0.45);
+  border-radius: 9999px;
+  padding: 4px 10px;
+  color: #ffffff;
+  font-weight: 800;
+  font-size: 14px;
+  cursor: pointer;
+  position: relative;
+  transition: all 0.2s ease;
+  user-select: none;
+}
+.header-lang-widget:hover {
+  background: rgba(255, 255, 255, 0.35);
+  transform: scale(1.03);
+}
+.header-lang-flag {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+.header-lang-dropdown {
+  position: absolute;
+  top: calc(100% + 8px);
+  right: 0;
+  background: #005f11;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-radius: 16px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.35);
+  padding: 6px;
+  display: none;
+  flex-direction: column;
+  gap: 4px;
+  z-index: 1000;
+  min-width: 140px;
+}
+html[dir="rtl"] .header-lang-dropdown {
+  right: auto;
+  left: 0;
+}
+.header-lang-dropdown.open {
+  display: flex !important;
+}
+.header-lang-option {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 10px;
+  border-radius: 10px;
+  color: #ffffff;
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 700;
+  transition: background 0.15s ease;
+  cursor: pointer;
+}
+.header-lang-option:hover, .header-lang-option.active {
+  background: rgba(255, 255, 255, 0.2);
+  color: #ffd86b;
+}
+
+/* Multilingual Card Subtitle Pill for Category Page */
+.category-card-pill {
+  position: absolute;
+  bottom: 8px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(0, 0, 0, 0.65);
+  backdrop-filter: blur(4px);
+  color: #fff;
+  padding: 4px 14px;
+  border-radius: 9999px;
+  font-size: 14px;
+  font-weight: 800;
+  white-space: nowrap;
+  letter-spacing: 0.5px;
+  border: 2px solid rgba(255, 255, 255, 0.7);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
