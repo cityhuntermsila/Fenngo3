@@ -1,4 +1,4 @@
-﻿"use strict";
+"use strict";
 
 /* =========================================
    COLOR DATA
@@ -1108,18 +1108,11 @@ function speakText(text, onComplete = null) {
   const hasNativeVoice = ("speechSynthesis" in window) &&
     window.speechSynthesis.getVoices().some(v => v.lang.toLowerCase().startsWith(langPrefix));
 
-  if (!hasNativeVoice) {
+  if (langPrefix === "ar" || langPrefix === "fr" || !hasNativeVoice) {
     if (window.AppLang) {
       window.AppLang.speak(text, langCode, 0.8, 1.35, finishSpeech);
     } else {
-      const encoded = encodeURIComponent(text);
-      const url = `https://translate.google.com/translate_tts?ie=UTF-8&tl=${langPrefix}&client=tw-ob&q=${encoded}`;
-      if (!window._colorsAudio) window._colorsAudio = new Audio();
-      window._colorsAudio.pause();
-      window._colorsAudio.src = url;
-      window._colorsAudio.onended = finishSpeech;
-      window._colorsAudio.onerror = finishSpeech;
-      window._colorsAudio.play().catch(finishSpeech);
+      finishSpeech();
     }
     return;
   }
@@ -2262,9 +2255,11 @@ soundBtn.addEventListener(
 
     const color =
       colors[currentIndex];
+    const lang = getActiveLangId();
+    const locCol = getLocalizedColorName(color.name);
 
     speakText(
-      `${color.name} color`
+      lang === "Arabic" ? `اللون ${locCol}` : (lang === "French" ? `Couleur ${locCol}` : `${color.name} color`)
     );
   }
 );

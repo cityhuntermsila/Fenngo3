@@ -1,4 +1,4 @@
-﻿/**
+/**
  * AppLang - Central Language Manager for Fenncky
  * Supports: English, French (Français), Arabic (العربية)
  */
@@ -120,7 +120,7 @@
     if (!LANGUAGES[langId]) return;
     localStorage.setItem(STORAGE_KEY, langId);
     applyPageDirection();
-    updateHeaderNav();
+    updateBackButtonLabel();
     if (reload) {
       window.location.reload();
     } else {
@@ -139,12 +139,29 @@
     }
   }
 
-  // Shared audio element for Google TTS fallback (reused across calls)
+  // Shared audio element for local MP3 / TTS playback
   let _ttsAudio = null;
 
   /**
+   * Same deterministic FNV-1a 32-bit hash used in download-sounds.js
+   */
+  function hashText(str) {
+    const normalized = String(str).trim();
+    let h = 2166136261;
+    for (let i = 0; i < normalized.length; i++) {
+      h ^= normalized.charCodeAt(i);
+      h = Math.imul(h, 16777619);
+    }
+    return (h >>> 0).toString(16).padStart(8, "0");
+  }
+
+  function getLocalAudioPath(text, langPrefix) {
+    const hash = hashText(text);
+    return `assets/audio/${langPrefix}/${hash}.mp3`;
+  }
+
+  /**
    * Detect whether the browser has a voice installed for a given language prefix (e.g. "ar", "fr", "en").
-   * Returns true only when at least one matching voice is loaded.
    */
   function _hasVoiceForLang(prefix) {
     if (!("speechSynthesis" in window)) return false;
@@ -153,55 +170,74 @@
   }
 
   /**
-   * Play audio via Google Translate TTS (used as fallback when no OS voice matches).
-   * `onEnded` callback is called when playback ends (or fails).
+   * Play local pre-downloaded MP3 file in assets/audio/<langPrefix>/<hash>.mp3,
+   * with fallback to Google TTS or SpeechSynthesis if the local file is not found.
    */
-  function _playGoogleTTS(text, langPrefix, onEnded) {
-    const encoded = encodeURIComponent(text);
-    const url = `https://translate.google.com/translate_tts?ie=UTF-8&tl=${langPrefix}&client=tw-ob&q=${encoded}`;
+  function _playLocalOrRemoteTTS(text, langPrefix, onEnded) {
+    const localUrl = getLocalAudioPath(text, langPrefix);
+    const encoded = encodeURIComponent(text.trim());
+    const remoteUrl = `https://translate.google.com/translate_tts?ie=UTF-8&tl=${langPrefix}&client=tw-ob&q=${encoded}`;
+
     if (!_ttsAudio) {
       _ttsAudio = new Audio();
     }
     _ttsAudio.pause();
-    _ttsAudio.src = url;
-    if (typeof onEnded === "function") {
-      _ttsAudio.onended = onEnded;
-      _ttsAudio.onerror = onEnded;
-    } else {
-      _ttsAudio.onended = null;
-      _ttsAudio.onerror = null;
-    }
-    _ttsAudio.play().catch(() => {
+
+    let finished = false;
+    const done = () => {
+      if (finished) return;
+      finished = true;
       if (typeof onEnded === "function") onEnded();
+    };
+
+    _ttsAudio.onended = done;
+    _ttsAudio.onerror = () => {
+      // If local file failed, try remote URL once
+      if (_ttsAudio.src && !_ttsAudio.src.includes("translate.google.com")) {
+        _ttsAudio.onerror = done;
+        _ttsAudio.src = remoteUrl;
+        _ttsAudio.play().catch(done);
+      } else {
+        done();
+      }
+    };
+
+    _ttsAudio.src = localUrl;
+    _ttsAudio.play().catch(() => {
+      done();
     });
   }
 
   /**
    * Voice speech synthesis helper.
-   * Tries SpeechSynthesis first; if no matching OS voice exists for the language,
-   * falls back to Google Translate TTS played via an <audio> element.
-   *
-   * @param {string}   text      - Text to speak
-   * @param {string}   langCode  - BCP-47 language tag (e.g. "ar-SA", "fr-FR"). Defaults to current language.
-   * @param {number}   rate      - Speech rate (SpeechSynthesis only)
-   * @param {number}   pitch     - Speech pitch (SpeechSynthesis only)
-   * @param {Function} onEnded   - Optional callback fired when speech ends (Google TTS path only)
+   * For Arabic ("ar") and French ("fr"), plays pre-downloaded local MP3 files first
+   * so that voice works reliably offline and without browser certificate blocks.
    */
   function speak(text, langCode = null, rate = 0.85, pitch = 1.1, onEnded = null) {
-    if (!text) return;
+    if (!text) {
+      if (typeof onEnded === "function") onEnded();
+      return;
+    }
 
     const targetLangCode = langCode || getCurrentLang().speechLang;
     const langPrefix = targetLangCode.slice(0, 2).toLowerCase();
 
-    // If no matching OS voice, use Google TTS fallback
-    if (!_hasVoiceForLang(langPrefix)) {
-      _playGoogleTTS(text, langPrefix, onEnded);
+    // Always prefer pre-downloaded local MP3s for Arabic and French
+    if (langPrefix === "ar" || langPrefix === "fr" || !_hasVoiceForLang(langPrefix)) {
+      window.speechSynthesis?.cancel?.();
+      _playLocalOrRemoteTTS(text, langPrefix, onEnded);
       return;
     }
 
-    // Native SpeechSynthesis path
-    if (!("speechSynthesis" in window)) return;
+    // Native SpeechSynthesis path (English)
+    if (!("speechSynthesis" in window)) {
+      if (typeof onEnded === "function") onEnded();
+      return;
+    }
 
+    if (_ttsAudio) {
+      _ttsAudio.pause();
+    }
     window.speechSynthesis.cancel();
 
     const utterance = new SpeechSynthesisUtterance(text);
@@ -222,93 +258,99 @@
     window.speechSynthesis.speak(utterance);
   }
 
-  // Header language switcher widget
-  function setupHeaderLanguageWidget() {
-    const nav = document.querySelector("#header nav");
-    const mobileMenu = document.getElementById("mobileMenu");
-    const headerContainer = document.querySelector("#header header");
-    if (!headerContainer) return;
+  function stopSpeech() {
+    if (_ttsAudio) {
+      _ttsAudio.pause();
+      _ttsAudio.currentTime = 0;
+    }
+    window.speechSynthesis?.cancel?.();
+  }
 
-    // Check if widget already exists
-    if (document.getElementById("headerLangWidget")) return;
+  /**
+   * Determine the back navigation target based on current page.
+   */
+  function getBackTargetUrl() {
+    const path = (window.location.pathname || "").toLowerCase();
+    if (path.endsWith("category.html") || path.endsWith("kindergarten.html")) {
+      return "language.html";
+    }
+    if (
+      path.endsWith("alphabet.html") ||
+      path.endsWith("numbers.html") ||
+      path.endsWith("colors.html") ||
+      path.endsWith("geometry.html") ||
+      path.endsWith("geometric.html")
+    ) {
+      return "category.html";
+    }
+    if (path.endsWith("language.html")) {
+      return "category.html";
+    }
+    return "category.html";
+  }
+
+  /**
+   * Creates and injects the universal Back button on all pages except language.html.
+   */
+  function setupBackButton() {
+    const path = (window.location.pathname || "").toLowerCase();
+    if (
+      path.endsWith("language.html") ||
+      document.getElementById("languageScreen") ||
+      document.body.classList.contains("language-page")
+    ) {
+      const existing = document.getElementById("globalBackBtn");
+      if (existing) existing.remove();
+      return;
+    }
+
+    if (document.getElementById("globalBackBtn")) {
+      updateBackButtonLabel();
+      return;
+    }
 
     const current = getCurrentLang();
+    const targetUrl = getBackTargetUrl();
 
-    const widget = document.createElement("div");
-    widget.id = "headerLangWidget";
-    widget.className = "header-lang-widget";
-    widget.setAttribute("role", "button");
-    widget.setAttribute("tabindex", "0");
-    widget.setAttribute("aria-label", "Switch language");
+    const backBtn = document.createElement("a");
+    backBtn.id = "globalBackBtn";
+    backBtn.href = targetUrl;
+    backBtn.className = "global-back-btn";
+    backBtn.setAttribute("aria-label", current.nav.back);
 
-    widget.innerHTML = `
-      <img src="${current.flag}" alt="${current.name}" class="header-lang-flag">
-      <span>${current.nativeName}</span>
-      <i class="fa-solid fa-chevron-down text-xs ml-1 opacity-80" aria-hidden="true"></i>
-      <div class="header-lang-dropdown" id="headerLangDropdown">
-        <div class="header-lang-option ${current.id === 'English' ? 'active' : ''}" data-lang="English">
-          <img src="${LANGUAGES.English.flag}" class="header-lang-flag" alt="">
-          <span>English</span>
-        </div>
-        <div class="header-lang-option ${current.id === 'French' ? 'active' : ''}" data-lang="French">
-          <img src="${LANGUAGES.French.flag}" class="header-lang-flag" alt="">
-          <span>Français</span>
-        </div>
-        <div class="header-lang-option ${current.id === 'Arabic' ? 'active' : ''}" data-lang="Arabic">
-          <img src="${LANGUAGES.Arabic.flag}" class="header-lang-flag" alt="">
-          <span>العربية</span>
-        </div>
-      </div>
+    backBtn.innerHTML = `
+      <i class="fa-solid fa-arrow-left back-btn-icon" aria-hidden="true"></i>
+      <span id="globalBackBtnText">${current.nav.back}</span>
     `;
 
-    // Insert before menuBtn or at end of header
-    const menuBtn = document.getElementById("menuBtn");
-    if (menuBtn) {
-      headerContainer.insertBefore(widget, menuBtn);
-    } else {
-      headerContainer.appendChild(widget);
-    }
+    const appContainer =
+      document.querySelector(".alphabet-app, .numbers-app, .colors-app, .geometry-app, .category-app, .kindergarten-app") ||
+      document.body;
 
-    const dropdown = widget.querySelector("#headerLangDropdown");
-
-    widget.addEventListener("click", (e) => {
-      const option = e.target.closest(".header-lang-option");
-      if (option) {
-        const selectedId = option.getAttribute("data-lang");
-        dropdown.classList.remove("open");
-        setLang(selectedId, true);
-        return;
-      }
-      dropdown.classList.toggle("open");
-    });
-
-    document.addEventListener("click", (e) => {
-      if (!widget.contains(e.target)) {
-        dropdown.classList.remove("open");
-      }
-    });
-
-    updateHeaderNav();
+    appContainer.appendChild(backBtn);
   }
 
+  function updateBackButtonLabel() {
+    const textEl = document.getElementById("globalBackBtnText");
+    const btnEl = document.getElementById("globalBackBtn");
+    if (!textEl || !btnEl) return;
+    const current = getCurrentLang();
+    textEl.textContent = current.nav.back;
+    btnEl.setAttribute("aria-label", current.nav.back);
+  }
+
+  function setupHeaderLanguageWidget() {
+    setupBackButton();
+  }
   function updateHeaderNav() {
-    const lang = getCurrentLang();
-    const navLinks = document.querySelectorAll("#header nav a, #mobileMenu a");
-    if (navLinks.length >= 1) {
-      navLinks[0].textContent = lang.nav.apps;
-      if (navLinks.length >= 2) navLinks[1].textContent = lang.nav.store;
-      if (navLinks.length >= 3) navLinks[2].textContent = lang.nav.parents;
-      if (navLinks.length >= 4) navLinks[3].textContent = lang.nav.join;
-      if (navLinks.length >= 5) navLinks[4].textContent = lang.nav.signIn;
-    }
+    updateBackButtonLabel();
   }
 
-  // Auto initialize on DOMContentLoaded
   document.addEventListener("DOMContentLoaded", () => {
     applyPageDirection();
+    setupBackButton();
   });
 
-  // Pre-load speech voices
   if ("speechSynthesis" in window) {
     window.speechSynthesis.getVoices();
     window.speechSynthesis.addEventListener("voiceschanged", () => {
@@ -316,7 +358,6 @@
     });
   }
 
-  // Export to global scope
   global.AppLang = {
     LANGUAGES,
     getCurrentLangId,
@@ -324,6 +365,10 @@
     setLang,
     applyPageDirection,
     speak,
+    stopSpeech,
+    hashText,
+    getLocalAudioPath,
+    setupBackButton,
     setupHeaderLanguageWidget,
     updateHeaderNav
   };

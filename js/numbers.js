@@ -1,4 +1,4 @@
-﻿const numbersData = [
+const numbersData = [
   {
     number: 1,
     arabicNum: "١",
@@ -1287,30 +1287,21 @@ async function speakText(
   const langCode = lang === "Arabic" ? "ar-SA" : (lang === "French" ? "fr-FR" : "en-US");
   const langPrefix = langCode.slice(0, 2).toLowerCase();
 
-  // Check whether a native OS voice exists for this language
+  // For Arabic & French (or when no native voice exists), play pre-downloaded local MP3 via AppLang
   const hasNativeVoice = ("speechSynthesis" in window) &&
     window.speechSynthesis.getVoices().some(v => v.lang.toLowerCase().startsWith(langPrefix));
 
-  // --- Google TTS fallback path ---
-  if (!hasNativeVoice) {
+  if (langPrefix === "ar" || langPrefix === "fr" || !hasNativeVoice) {
     return new Promise((resolve) => {
       if (window.AppLang) {
         window.AppLang.speak(text, langCode, rate, pitch, resolve);
       } else {
-        // Direct Google TTS if AppLang not loaded yet
-        const encoded = encodeURIComponent(text);
-        const url = `https://translate.google.com/translate_tts?ie=UTF-8&tl=${langPrefix}&client=tw-ob&q=${encoded}`;
-        if (!window._numbersAudio) window._numbersAudio = new Audio();
-        window._numbersAudio.pause();
-        window._numbersAudio.src = url;
-        window._numbersAudio.onended = resolve;
-        window._numbersAudio.onerror = resolve;
-        window._numbersAudio.play().catch(resolve);
+        resolve();
       }
     });
   }
 
-  // --- Native SpeechSynthesis path ---
+  // --- Native SpeechSynthesis path (English) ---
   if (!("speechSynthesis" in window)) {
     await wait(700);
     return;
@@ -1358,9 +1349,9 @@ async function speakText(
 }
 
 function cancelSpeech() {
-  if (
-    "speechSynthesis" in window
-  ) {
+  if (window.AppLang && window.AppLang.stopSpeech) {
+    window.AppLang.stopSpeech();
+  } else if ("speechSynthesis" in window) {
     window.speechSynthesis.cancel();
   }
 }

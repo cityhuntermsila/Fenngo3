@@ -13,8 +13,7 @@ const languages = [
             image: "assets/images/language-images/teddy.png",
         },
         bubble: "Let's Learn English!",
-        lionBubble: "Great Choice!",
-        btnText: "Continue &rarr;"
+        lionBubble: "Great Choice!"
     },
     {
         id: "French",
@@ -28,8 +27,7 @@ const languages = [
             image: "assets/images/language-images/elephant.png",
         },
         bubble: "Apprenons le Français !",
-        lionBubble: "Super Choix !",
-        btnText: "Continuer &rarr;"
+        lionBubble: "Super Choix !"
     },
     {
         id: "Arabic",
@@ -43,16 +41,14 @@ const languages = [
             image: "assets/images/language-images/rabbit.png",
         },
         bubble: "!هيا نتعلم العربية",
-        lionBubble: "!اختيار رائع",
-        btnText: "&larr; متابعة"
+        lionBubble: "!اختيار رائع"
     }
 ];
 
 let selectedLanguage = null;
+let navigating = false;
 
 const cardsWrapper = document.getElementById("cardsWrapper");
-const continueBtn = document.getElementById("continueBtn");
-const continueText = document.getElementById("continueText");
 
 const lionBox = document.getElementById("lionBox");
 const lionImg = document.getElementById("lionImg");
@@ -152,6 +148,12 @@ function renderCards() {
     }
 }
 
+function goToActivities() {
+    if (navigating) return;
+    navigating = true;
+    window.location.href = "category.html";
+}
+
 function selectLanguage(language, card) {
     selectedLanguage = language;
 
@@ -163,19 +165,24 @@ function selectLanguage(language, card) {
     applySelectionUI(language);
     playSelectionAnimations(card);
 
-    // Speak cheerful phrase in the selected language
+    // Save selected language immediately
     if (window.AppLang) {
-        window.AppLang.speak(language.speechText, language.speechLang);
+        window.AppLang.setLang(language.id, false);
+    } else {
+        localStorage.setItem("selectedLanguage", language.id);
+    }
+
+    // Play cheerful phrase and then navigate directly to activities
+    const fallbackTimer = setTimeout(goToActivities, 1600);
+    if (window.AppLang) {
+        window.AppLang.speak(language.speechText, language.speechLang, 0.85, 1.1, () => {
+            clearTimeout(fallbackTimer);
+            goToActivities();
+        });
     }
 }
 
 function applySelectionUI(language) {
-    continueBtn.disabled = false;
-    continueBtn.classList.add("active");
-    if (continueText) {
-        continueText.innerHTML = language.btnText;
-    }
-
     if (animalBubble) animalBubble.textContent = language.bubble;
     if (lionBubble) lionBubble.textContent = language.lionBubble;
     if (selectedAnimalImg) selectedAnimalImg.src = language.animal.image;
@@ -218,18 +225,6 @@ function createSparkles(card) {
         }, 900);
     }
 }
-
-continueBtn.addEventListener("click", () => {
-    if (!selectedLanguage) return;
-
-    if (window.AppLang) {
-        window.AppLang.setLang(selectedLanguage.id, false);
-    } else {
-        localStorage.setItem("selectedLanguage", selectedLanguage.id);
-    }
-
-    window.location.href = "category.html";
-});
 
 window.addEventListener("resize", updateMobileLayout);
 window.addEventListener("orientationchange", updateMobileLayout);

@@ -1,4 +1,4 @@
-﻿(() => {
+(() => {
   "use strict";
 
   const BASE = "assets/images/geometry/";
@@ -137,22 +137,9 @@
     if (!text) return;
     const lang = getActiveLangId();
     const langCode = lang === "Arabic" ? "ar-SA" : (lang === "French" ? "fr-FR" : "en-US");
-    const langPrefix = langCode.slice(0, 2).toLowerCase();
 
-    const hasNativeVoice = ("speechSynthesis" in window) &&
-      window.speechSynthesis.getVoices().some(v => v.lang.toLowerCase().startsWith(langPrefix));
-
-    if (!hasNativeVoice) {
-      if (window.AppLang) {
-        window.AppLang.speak(text, langCode, 0.82, 1.25);
-      } else {
-        const encoded = encodeURIComponent(text);
-        const url = `https://translate.google.com/translate_tts?ie=UTF-8&tl=${langPrefix}&client=tw-ob&q=${encoded}`;
-        if (!window._geometryAudio) window._geometryAudio = new Audio();
-        window._geometryAudio.pause();
-        window._geometryAudio.src = url;
-        window._geometryAudio.play().catch(() => {});
-      }
+    if (window.AppLang) {
+      window.AppLang.speak(text, langCode, 0.82, 1.25);
       return;
     }
 

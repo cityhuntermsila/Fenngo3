@@ -1,0 +1,1318 @@
+{
+  "ar": {
+    "28745798": {
+      "text": "شمس باللون أصفر",
+      "file": "assets/audio/ar/28745798.mp3"
+    },
+    "32274642": {
+      "text": "بلاطة سداسية على شكل سداسي الأضلاع.",
+      "file": "assets/audio/ar/32274642.mp3"
+    },
+    "38007584": {
+      "text": "ع - عِنَب",
+      "file": "assets/audio/ar/38007584.mp3"
+    },
+    "61176497": {
+      "text": "و - وَرْدَة",
+      "file": "assets/audio/ar/61176497.mp3"
+    },
+    "82344608": {
+      "text": "ظ - ظَرْف",
+      "file": "assets/audio/ar/82344608.mp3"
+    },
+    "2ba4c5bf": {
+      "text": "العربية! هيا نتعلم اللغة العربية!",
+      "file": "assets/audio/ar/2ba4c5bf.mp3"
+    },
+    "8b853d10": {
+      "text": "أ - أَسَد",
+      "file": "assets/audio/ar/8b853d10.mp3"
+    },
+    "dd649095": {
+      "text": "ب - بَطَّة",
+      "file": "assets/audio/ar/dd649095.mp3"
+    },
+    "fa5181f4": {
+      "text": "ت - تُفَّاحَة",
+      "file": "assets/audio/ar/fa5181f4.mp3"
+    },
+    "95982bec": {
+      "text": "ث - ثَلْج",
+      "file": "assets/audio/ar/95982bec.mp3"
+    },
+    "5aaf29e9": {
+      "text": "ج - جَزَر",
+      "file": "assets/audio/ar/5aaf29e9.mp3"
+    },
+    "009a4d9f": {
+      "text": "ح - حُوت",
+      "file": "assets/audio/ar/009a4d9f.mp3"
+    },
+    "58ff01b5": {
+      "text": "خ - خَرُوف",
+      "file": "assets/audio/ar/58ff01b5.mp3"
+    },
+    "f0664d72": {
+      "text": "د - دُلْفِين",
+      "file": "assets/audio/ar/f0664d72.mp3"
+    },
+    "32868dd5": {
+      "text": "ذ - ذُرَة",
+      "file": "assets/audio/ar/32868dd5.mp3"
+    },
+    "8301748b": {
+      "text": "ر - قَوْسُ قُزَح",
+      "file": "assets/audio/ar/8301748b.mp3"
+    },
+    "d656f7ff": {
+      "text": "ز - زَهْرَة",
+      "file": "assets/audio/ar/d656f7ff.mp3"
+    },
+    "4a13a36b": {
+      "text": "س - سَمَكَة",
+      "file": "assets/audio/ar/4a13a36b.mp3"
+    },
+    "29b90fca": {
+      "text": "ش - شَمْس",
+      "file": "assets/audio/ar/29b90fca.mp3"
+    },
+    "bc4a43bd": {
+      "text": "ص - صُنْدُوق",
+      "file": "assets/audio/ar/bc4a43bd.mp3"
+    },
+    "5c03d2c7": {
+      "text": "ض - ضَوْء",
+      "file": "assets/audio/ar/5c03d2c7.mp3"
+    },
+    "177b4558": {
+      "text": "ط - طَائِر",
+      "file": "assets/audio/ar/177b4558.mp3"
+    },
+    "a6b9db41": {
+      "text": "غ - غَزَال",
+      "file": "assets/audio/ar/a6b9db41.mp3"
+    },
+    "014a5bce": {
+      "text": "ف - فِيل",
+      "file": "assets/audio/ar/014a5bce.mp3"
+    },
+    "f2ec4d8b": {
+      "text": "ق - قِطَّة",
+      "file": "assets/audio/ar/f2ec4d8b.mp3"
+    },
+    "6047d845": {
+      "text": "ك - كُرَة",
+      "file": "assets/audio/ar/6047d845.mp3"
+    },
+    "84f25c33": {
+      "text": "ل - لُعْبَة",
+      "file": "assets/audio/ar/84f25c33.mp3"
+    },
+    "661dfcaa": {
+      "text": "م - مَانْجُو",
+      "file": "assets/audio/ar/661dfcaa.mp3"
+    },
+    "26d96cde": {
+      "text": "ن - نَجْمَة",
+      "file": "assets/audio/ar/26d96cde.mp3"
+    },
+    "587edc57": {
+      "text": "هـ - هَدِيَّة",
+      "file": "assets/audio/ar/587edc57.mp3"
+    },
+    "88bc6078": {
+      "text": "ي - يُويُو",
+      "file": "assets/audio/ar/88bc6078.mp3"
+    },
+    "3cc0d47a": {
+      "text": "وَاحِد",
+      "file": "assets/audio/ar/3cc0d47a.mp3"
+    },
+    "b7e31d28": {
+      "text": "أحسنت ممتاز! لقد عددت تُفَّاحَة وَاحِدَة.",
+      "file": "assets/audio/ar/b7e31d28.mp3"
+    },
+    "e3cde8d2": {
+      "text": "وَاحِد. تُفَّاحَة وَاحِدَة.",
+      "file": "assets/audio/ar/e3cde8d2.mp3"
+    },
+    "d9f15946": {
+      "text": "اِثْنَان",
+      "file": "assets/audio/ar/d9f15946.mp3"
+    },
+    "c209f261": {
+      "text": "أحسنت ممتاز! لقد عددت عُصْفُورَان.",
+      "file": "assets/audio/ar/c209f261.mp3"
+    },
+    "76f0388f": {
+      "text": "اِثْنَان. عُصْفُورَان.",
+      "file": "assets/audio/ar/76f0388f.mp3"
+    },
+    "3aa1634d": {
+      "text": "ثَلَاثَة",
+      "file": "assets/audio/ar/3aa1634d.mp3"
+    },
+    "107d3466": {
+      "text": "أحسنت ممتاز! لقد عددت ثَلَاث نُجُوم.",
+      "file": "assets/audio/ar/107d3466.mp3"
+    },
+    "ede38c03": {
+      "text": "ثَلَاثَة. ثَلَاث نُجُوم.",
+      "file": "assets/audio/ar/ede38c03.mp3"
+    },
+    "7ce84a79": {
+      "text": "أَرْبَعَة",
+      "file": "assets/audio/ar/7ce84a79.mp3"
+    },
+    "3705074a": {
+      "text": "أحسنت ممتاز! لقد عددت أَرْبَع سَيَّارَات.",
+      "file": "assets/audio/ar/3705074a.mp3"
+    },
+    "3219f451": {
+      "text": "أَرْبَعَة. أَرْبَع سَيَّارَات.",
+      "file": "assets/audio/ar/3219f451.mp3"
+    },
+    "970218b6": {
+      "text": "خَمْسَة",
+      "file": "assets/audio/ar/970218b6.mp3"
+    },
+    "6aa78f0e": {
+      "text": "أحسنت ممتاز! لقد عددت خَمْس فَرَاشَات.",
+      "file": "assets/audio/ar/6aa78f0e.mp3"
+    },
+    "21f89b3c": {
+      "text": "خَمْسَة. خَمْس فَرَاشَات.",
+      "file": "assets/audio/ar/21f89b3c.mp3"
+    },
+    "beba602c": {
+      "text": "سِتَّة",
+      "file": "assets/audio/ar/beba602c.mp3"
+    },
+    "dce19eb0": {
+      "text": "أحسنت ممتاز! لقد عددت سِتّ زُهُور عَبَّاد شَمْس.",
+      "file": "assets/audio/ar/dce19eb0.mp3"
+    },
+    "906953b4": {
+      "text": "سِتَّة. سِتّ زُهُور عَبَّاد شَمْس.",
+      "file": "assets/audio/ar/906953b4.mp3"
+    },
+    "dcb3b3fc": {
+      "text": "سَبْعَة",
+      "file": "assets/audio/ar/dcb3b3fc.mp3"
+    },
+    "87642bcb": {
+      "text": "أحسنت ممتاز! لقد عددت سَبْع بَالُونَات.",
+      "file": "assets/audio/ar/87642bcb.mp3"
+    },
+    "c0aa16a7": {
+      "text": "سَبْعَة. سَبْع بَالُونَات.",
+      "file": "assets/audio/ar/c0aa16a7.mp3"
+    },
+    "fb9d5a5d": {
+      "text": "ثَمَانِيَة",
+      "file": "assets/audio/ar/fb9d5a5d.mp3"
+    },
+    "f3d48e1f": {
+      "text": "أحسنت ممتاز! لقد عددت ثَمَانِي كَعْكَات.",
+      "file": "assets/audio/ar/f3d48e1f.mp3"
+    },
+    "fcd375d2": {
+      "text": "ثَمَانِيَة. ثَمَانِي كَعْكَات.",
+      "file": "assets/audio/ar/fcd375d2.mp3"
+    },
+    "ef2f0194": {
+      "text": "تِسْعَة",
+      "file": "assets/audio/ar/ef2f0194.mp3"
+    },
+    "2276261a": {
+      "text": "أحسنت ممتاز! لقد عددت تِسْع كُرَات.",
+      "file": "assets/audio/ar/2276261a.mp3"
+    },
+    "84a28bd6": {
+      "text": "تِسْعَة. تِسْع كُرَات.",
+      "file": "assets/audio/ar/84a28bd6.mp3"
+    },
+    "32f0a99a": {
+      "text": "عَشَرَة",
+      "file": "assets/audio/ar/32f0a99a.mp3"
+    },
+    "ab0f77a8": {
+      "text": "أحسنت ممتاز! لقد عددت عَشَرَة أَقْلَام.",
+      "file": "assets/audio/ar/ab0f77a8.mp3"
+    },
+    "03f7ee9a": {
+      "text": "عَشَرَة. عَشَرَة أَقْلَام.",
+      "file": "assets/audio/ar/03f7ee9a.mp3"
+    },
+    "36c7acba": {
+      "text": "اللون أحمر",
+      "file": "assets/audio/ar/36c7acba.mp3"
+    },
+    "f4ba3be0": {
+      "text": "تفاحة باللون أحمر",
+      "file": "assets/audio/ar/f4ba3be0.mp3"
+    },
+    "f1002958": {
+      "text": "فراولة باللون أحمر",
+      "file": "assets/audio/ar/f1002958.mp3"
+    },
+    "77892c7d": {
+      "text": "وردة باللون أحمر",
+      "file": "assets/audio/ar/77892c7d.mp3"
+    },
+    "0dba848c": {
+      "text": "أحسنت ممتاز! تفاحة باللون أحمر!",
+      "file": "assets/audio/ar/0dba848c.mp3"
+    },
+    "fd0fa03c": {
+      "text": "حاول مرة أخرى. ابحث عن الشيء باللون أحمر.",
+      "file": "assets/audio/ar/fd0fa03c.mp3"
+    },
+    "c65ae072": {
+      "text": "اللون أزرق",
+      "file": "assets/audio/ar/c65ae072.mp3"
+    },
+    "6be162f1": {
+      "text": "حوت باللون أزرق",
+      "file": "assets/audio/ar/6be162f1.mp3"
+    },
+    "698b0f58": {
+      "text": "قطرة ماء باللون أزرق",
+      "file": "assets/audio/ar/698b0f58.mp3"
+    },
+    "2b95baf8": {
+      "text": "توت باللون أزرق",
+      "file": "assets/audio/ar/2b95baf8.mp3"
+    },
+    "6860e604": {
+      "text": "أحسنت ممتاز! توت باللون أزرق!",
+      "file": "assets/audio/ar/6860e604.mp3"
+    },
+    "2a8db614": {
+      "text": "حاول مرة أخرى. ابحث عن الشيء باللون أزرق.",
+      "file": "assets/audio/ar/2a8db614.mp3"
+    },
+    "82a854f4": {
+      "text": "اللون أخضر",
+      "file": "assets/audio/ar/82a854f4.mp3"
+    },
+    "fee94379": {
+      "text": "ورقة شجر باللون أخضر",
+      "file": "assets/audio/ar/fee94379.mp3"
+    },
+    "833fa995": {
+      "text": "ضفدع باللون أخضر",
+      "file": "assets/audio/ar/833fa995.mp3"
+    },
+    "828efd78": {
+      "text": "بروكلي باللون أخضر",
+      "file": "assets/audio/ar/828efd78.mp3"
+    },
+    "7ca04475": {
+      "text": "أحسنت ممتاز! ورقة شجر باللون أخضر!",
+      "file": "assets/audio/ar/7ca04475.mp3"
+    },
+    "153ee3ee": {
+      "text": "حاول مرة أخرى. ابحث عن الشيء باللون أخضر.",
+      "file": "assets/audio/ar/153ee3ee.mp3"
+    },
+    "db61ef1e": {
+      "text": "اللون أصفر",
+      "file": "assets/audio/ar/db61ef1e.mp3"
+    },
+    "f099c785": {
+      "text": "موز باللون أصفر",
+      "file": "assets/audio/ar/f099c785.mp3"
+    },
+    "83552fbe": {
+      "text": "نجمة باللون أصفر",
+      "file": "assets/audio/ar/83552fbe.mp3"
+    },
+    "d47d3a8b": {
+      "text": "أحسنت ممتاز! موز باللون أصفر!",
+      "file": "assets/audio/ar/d47d3a8b.mp3"
+    },
+    "42c827d0": {
+      "text": "حاول مرة أخرى. ابحث عن الشيء باللون أصفر.",
+      "file": "assets/audio/ar/42c827d0.mp3"
+    },
+    "6e0bfa3a": {
+      "text": "اللون برتقالي",
+      "file": "assets/audio/ar/6e0bfa3a.mp3"
+    },
+    "c530ac52": {
+      "text": "برتقال باللون برتقالي",
+      "file": "assets/audio/ar/c530ac52.mp3"
+    },
+    "f0fb7e2b": {
+      "text": "جزر باللون برتقالي",
+      "file": "assets/audio/ar/f0fb7e2b.mp3"
+    },
+    "71b1f928": {
+      "text": "قرع باللون برتقالي",
+      "file": "assets/audio/ar/71b1f928.mp3"
+    },
+    "9b19449a": {
+      "text": "أحسنت ممتاز! قرع باللون برتقالي!",
+      "file": "assets/audio/ar/9b19449a.mp3"
+    },
+    "3a1b8f3c": {
+      "text": "حاول مرة أخرى. ابحث عن الشيء باللون برتقالي.",
+      "file": "assets/audio/ar/3a1b8f3c.mp3"
+    },
+    "b1ed7458": {
+      "text": "اللون بنفسجي",
+      "file": "assets/audio/ar/b1ed7458.mp3"
+    },
+    "604f4942": {
+      "text": "باذنجان باللون بنفسجي",
+      "file": "assets/audio/ar/604f4942.mp3"
+    },
+    "f87a0669": {
+      "text": "زهرة باللون بنفسجي",
+      "file": "assets/audio/ar/f87a0669.mp3"
+    },
+    "6d1098b9": {
+      "text": "صندوق هدية باللون بنفسجي",
+      "file": "assets/audio/ar/6d1098b9.mp3"
+    },
+    "ce822cc1": {
+      "text": "أحسنت ممتاز! عنب باللون بنفسجي!",
+      "file": "assets/audio/ar/ce822cc1.mp3"
+    },
+    "da85db02": {
+      "text": "حاول مرة أخرى. ابحث عن الشيء باللون بنفسجي.",
+      "file": "assets/audio/ar/da85db02.mp3"
+    },
+    "b5c30d76": {
+      "text": "اللون وردي",
+      "file": "assets/audio/ar/b5c30d76.mp3"
+    },
+    "f014c879": {
+      "text": "بالون باللون وردي",
+      "file": "assets/audio/ar/f014c879.mp3"
+    },
+    "bfc3bf53": {
+      "text": "فلامنغو باللون وردي",
+      "file": "assets/audio/ar/bfc3bf53.mp3"
+    },
+    "09ccbea6": {
+      "text": "غزل البنات باللون وردي",
+      "file": "assets/audio/ar/09ccbea6.mp3"
+    },
+    "b7ecca3d": {
+      "text": "أحسنت ممتاز! فلامنغو باللون وردي!",
+      "file": "assets/audio/ar/b7ecca3d.mp3"
+    },
+    "f3832b48": {
+      "text": "حاول مرة أخرى. ابحث عن الشيء باللون وردي.",
+      "file": "assets/audio/ar/f3832b48.mp3"
+    },
+    "c8bd53eb": {
+      "text": "اللون أسود",
+      "file": "assets/audio/ar/c8bd53eb.mp3"
+    },
+    "5979f461": {
+      "text": "سيارة باللون أسود",
+      "file": "assets/audio/ar/5979f461.mp3"
+    },
+    "f51cde63": {
+      "text": "قطة باللون أسود",
+      "file": "assets/audio/ar/f51cde63.mp3"
+    },
+    "556ee197": {
+      "text": "قبعة باللون أسود",
+      "file": "assets/audio/ar/556ee197.mp3"
+    },
+    "ddc261f3": {
+      "text": "أحسنت ممتاز! سيارة باللون أسود!",
+      "file": "assets/audio/ar/ddc261f3.mp3"
+    },
+    "e9dc2e5f": {
+      "text": "حاول مرة أخرى. ابحث عن الشيء باللون أسود.",
+      "file": "assets/audio/ar/e9dc2e5f.mp3"
+    },
+    "5217938b": {
+      "text": "اللون أبيض",
+      "file": "assets/audio/ar/5217938b.mp3"
+    },
+    "a246bcaf": {
+      "text": "سحابة باللون أبيض",
+      "file": "assets/audio/ar/a246bcaf.mp3"
+    },
+    "1584f6a9": {
+      "text": "أرنب باللون أبيض",
+      "file": "assets/audio/ar/1584f6a9.mp3"
+    },
+    "7ab66862": {
+      "text": "فطر باللون أبيض",
+      "file": "assets/audio/ar/7ab66862.mp3"
+    },
+    "289a7d51": {
+      "text": "أحسنت ممتاز! سحابة باللون أبيض!",
+      "file": "assets/audio/ar/289a7d51.mp3"
+    },
+    "2a954bff": {
+      "text": "حاول مرة أخرى. ابحث عن الشيء باللون أبيض.",
+      "file": "assets/audio/ar/2a954bff.mp3"
+    },
+    "1707703c": {
+      "text": "اللون بني",
+      "file": "assets/audio/ar/1707703c.mp3"
+    },
+    "92672a82": {
+      "text": "دبدوب باللون بني",
+      "file": "assets/audio/ar/92672a82.mp3"
+    },
+    "5e8f1cc6": {
+      "text": "بومة باللون بني",
+      "file": "assets/audio/ar/5e8f1cc6.mp3"
+    },
+    "a85b1500": {
+      "text": "قرد باللون بني",
+      "file": "assets/audio/ar/a85b1500.mp3"
+    },
+    "947d7d47": {
+      "text": "أحسنت ممتاز! حصان باللون بني!",
+      "file": "assets/audio/ar/947d7d47.mp3"
+    },
+    "85d73d96": {
+      "text": "حاول مرة أخرى. ابحث عن الشيء باللون بني.",
+      "file": "assets/audio/ar/85d73d96.mp3"
+    },
+    "69826ee2": {
+      "text": "اختر شكلاً. اضغط على شكل لاكتشافه.",
+      "file": "assets/audio/ar/69826ee2.mp3"
+    },
+    "86e25ed7": {
+      "text": "الدائرة ليس لها أضلاع مستقيمة ولا زوايا.",
+      "file": "assets/audio/ar/86e25ed7.mp3"
+    },
+    "6b9cc70a": {
+      "text": "ساعة على شكل دائرة.",
+      "file": "assets/audio/ar/6b9cc70a.mp3"
+    },
+    "5d84aa4d": {
+      "text": "كرة على شكل دائرة.",
+      "file": "assets/audio/ar/5d84aa4d.mp3"
+    },
+    "8b535ff4": {
+      "text": "صحن على شكل دائرة.",
+      "file": "assets/audio/ar/8b535ff4.mp3"
+    },
+    "c007a176": {
+      "text": "المربع له أربعة أضلاع متساوية وأربع زوايا.",
+      "file": "assets/audio/ar/c007a176.mp3"
+    },
+    "8e58fb58": {
+      "text": "نافذة على شكل مربع.",
+      "file": "assets/audio/ar/8e58fb58.mp3"
+    },
+    "af21897e": {
+      "text": "صندوق هدية على شكل مربع.",
+      "file": "assets/audio/ar/af21897e.mp3"
+    },
+    "abf3c86c": {
+      "text": "بلاطة على شكل مربع.",
+      "file": "assets/audio/ar/abf3c86c.mp3"
+    },
+    "ee427260": {
+      "text": "المثلث له ثلاثة أضلاع وثلاث زوايا.",
+      "file": "assets/audio/ar/ee427260.mp3"
+    },
+    "42d66a92": {
+      "text": "مثلث على شكل مثلث.",
+      "file": "assets/audio/ar/42d66a92.mp3"
+    },
+    "0e546619": {
+      "text": "زوايا على شكل مثلث.",
+      "file": "assets/audio/ar/0e546619.mp3"
+    },
+    "efb9fa03": {
+      "text": "شكل مثلث على شكل مثلث.",
+      "file": "assets/audio/ar/efb9fa03.mp3"
+    },
+    "90881f48": {
+      "text": "المستطيل له أربعة أضلاع وأربع زوايا.",
+      "file": "assets/audio/ar/90881f48.mp3"
+    },
+    "2346694e": {
+      "text": "باب على شكل مستطيل.",
+      "file": "assets/audio/ar/2346694e.mp3"
+    },
+    "0ef75d3d": {
+      "text": "كتاب على شكل مستطيل.",
+      "file": "assets/audio/ar/0ef75d3d.mp3"
+    },
+    "f1797171": {
+      "text": "تلفاز على شكل مستطيل.",
+      "file": "assets/audio/ar/f1797171.mp3"
+    },
+    "48cdc596": {
+      "text": "الشكل الخماسي له خمسة أضلاع وخمس زوايا.",
+      "file": "assets/audio/ar/48cdc596.mp3"
+    },
+    "9e2fc8e1": {
+      "text": "لوحة على شكل خماسي الأضلاع.",
+      "file": "assets/audio/ar/9e2fc8e1.mp3"
+    },
+    "e922eae6": {
+      "text": "شارة على شكل خماسي الأضلاع.",
+      "file": "assets/audio/ar/e922eae6.mp3"
+    },
+    "8ebf02f8": {
+      "text": "لافتة خماسية على شكل خماسي الأضلاع.",
+      "file": "assets/audio/ar/8ebf02f8.mp3"
+    },
+    "1bc8121d": {
+      "text": "الشكل السداسي له ستة أضلاع وست زوايا.",
+      "file": "assets/audio/ar/1bc8121d.mp3"
+    },
+    "3e46b465": {
+      "text": "خلية عسل على شكل سداسي الأضلاع.",
+      "file": "assets/audio/ar/3e46b465.mp3"
+    },
+    "7f6bccbe": {
+      "text": "صامولة على شكل سداسي الأضلاع.",
+      "file": "assets/audio/ar/7f6bccbe.mp3"
+    },
+    "c9e8046f": {
+      "text": "الشكل البيضاوي ليس له أضلاع مستقيمة ولا زوايا.",
+      "file": "assets/audio/ar/c9e8046f.mp3"
+    },
+    "99c2a972": {
+      "text": "بيضة على شكل بيضاوي.",
+      "file": "assets/audio/ar/99c2a972.mp3"
+    },
+    "dc759bf4": {
+      "text": "بطيخ على شكل بيضاوي.",
+      "file": "assets/audio/ar/dc759bf4.mp3"
+    },
+    "20552da2": {
+      "text": "بالون على شكل بيضاوي.",
+      "file": "assets/audio/ar/20552da2.mp3"
+    },
+    "e1e8fb71": {
+      "text": "النجمة لها عشرة أضلاع وعشرة رؤوس.",
+      "file": "assets/audio/ar/e1e8fb71.mp3"
+    },
+    "beb44d3e": {
+      "text": "بسكويت على شكل نجمة.",
+      "file": "assets/audio/ar/beb44d3e.mp3"
+    },
+    "54b16479": {
+      "text": "عصا نجمية على شكل نجمة.",
+      "file": "assets/audio/ar/54b16479.mp3"
+    },
+    "db92c084": {
+      "text": "نجم البحر على شكل نجمة.",
+      "file": "assets/audio/ar/db92c084.mp3"
+    },
+    "52b7e553": {
+      "text": "المعين له أربعة أضلاع وأربع زوايا.",
+      "file": "assets/audio/ar/52b7e553.mp3"
+    },
+    "abd0f8a4": {
+      "text": "طائرة ورقية على شكل معين.",
+      "file": "assets/audio/ar/abd0f8a4.mp3"
+    },
+    "2c08b9eb": {
+      "text": "جوهرة على شكل معين.",
+      "file": "assets/audio/ar/2c08b9eb.mp3"
+    },
+    "97e36f55": {
+      "text": "لافتة طريق على شكل معين.",
+      "file": "assets/audio/ar/97e36f55.mp3"
+    },
+    "9fa43731": {
+      "text": "المكعب له ستة أوجه واثنا عشر ضلعاً وثماني زوايا.",
+      "file": "assets/audio/ar/9fa43731.mp3"
+    },
+    "64053e4b": {
+      "text": "نرد على شكل مكعب.",
+      "file": "assets/audio/ar/64053e4b.mp3"
+    },
+    "6a02a2bf": {
+      "text": "مكعب ثلج على شكل مكعب.",
+      "file": "assets/audio/ar/6a02a2bf.mp3"
+    },
+    "a087f14b": {
+      "text": "مكعب ألعاب على شكل مكعب.",
+      "file": "assets/audio/ar/a087f14b.mp3"
+    }
+  },
+  "fr": {
+    "22001965": {
+      "text": "Réessaie. Trouve l'objet Jaune.",
+      "file": "assets/audio/fr/22001965.mp3"
+    },
+    "50261242": {
+      "text": "T comme Arbre",
+      "file": "assets/audio/fr/50261242.mp3"
+    },
+    "68618762": {
+      "text": "Vert",
+      "file": "assets/audio/fr/68618762.mp3"
+    },
+    "78739184": {
+      "text": "Aubergine est Violet",
+      "file": "assets/audio/fr/78739184.mp3"
+    },
+    "f2f0e76a": {
+      "text": "Français ! Apprenons le français !",
+      "file": "assets/audio/fr/f2f0e76a.mp3"
+    },
+    "900eaf6c": {
+      "text": "A comme Avion",
+      "file": "assets/audio/fr/900eaf6c.mp3"
+    },
+    "cde1a5ca": {
+      "text": "B comme Ballon",
+      "file": "assets/audio/fr/cde1a5ca.mp3"
+    },
+    "a8aa3fbd": {
+      "text": "C comme Chat",
+      "file": "assets/audio/fr/a8aa3fbd.mp3"
+    },
+    "7a016a81": {
+      "text": "D comme Dauphin",
+      "file": "assets/audio/fr/7a016a81.mp3"
+    },
+    "e9677efc": {
+      "text": "E comme Éléphant",
+      "file": "assets/audio/fr/e9677efc.mp3"
+    },
+    "cfe07635": {
+      "text": "F comme Poisson",
+      "file": "assets/audio/fr/cfe07635.mp3"
+    },
+    "c059123f": {
+      "text": "G comme Gâteau",
+      "file": "assets/audio/fr/c059123f.mp3"
+    },
+    "4632b603": {
+      "text": "H comme Maison",
+      "file": "assets/audio/fr/4632b603.mp3"
+    },
+    "9be350a3": {
+      "text": "I comme Glaçon",
+      "file": "assets/audio/fr/9be350a3.mp3"
+    },
+    "63ce001f": {
+      "text": "J comme Méduse",
+      "file": "assets/audio/fr/63ce001f.mp3"
+    },
+    "31fb4778": {
+      "text": "K comme Cerf-volant",
+      "file": "assets/audio/fr/31fb4778.mp3"
+    },
+    "feb85f6a": {
+      "text": "L comme Lion",
+      "file": "assets/audio/fr/feb85f6a.mp3"
+    },
+    "9ff4c5a6": {
+      "text": "M comme Mangue",
+      "file": "assets/audio/fr/9ff4c5a6.mp3"
+    },
+    "70b28ab9": {
+      "text": "N comme Nid",
+      "file": "assets/audio/fr/70b28ab9.mp3"
+    },
+    "c189712d": {
+      "text": "O comme Orange",
+      "file": "assets/audio/fr/c189712d.mp3"
+    },
+    "18c84da5": {
+      "text": "P comme Papillon",
+      "file": "assets/audio/fr/18c84da5.mp3"
+    },
+    "9ea5e0da": {
+      "text": "Q comme Reine",
+      "file": "assets/audio/fr/9ea5e0da.mp3"
+    },
+    "94ea54b0": {
+      "text": "R comme Arc-en-ciel",
+      "file": "assets/audio/fr/94ea54b0.mp3"
+    },
+    "5be22eb7": {
+      "text": "S comme Soleil",
+      "file": "assets/audio/fr/5be22eb7.mp3"
+    },
+    "9c6ab3a0": {
+      "text": "U comme Parapluie",
+      "file": "assets/audio/fr/9c6ab3a0.mp3"
+    },
+    "606c290b": {
+      "text": "V comme Volcan",
+      "file": "assets/audio/fr/606c290b.mp3"
+    },
+    "e78141fe": {
+      "text": "W comme Pastèque",
+      "file": "assets/audio/fr/e78141fe.mp3"
+    },
+    "5acae792": {
+      "text": "X comme Xylophone",
+      "file": "assets/audio/fr/5acae792.mp3"
+    },
+    "de510aac": {
+      "text": "Y comme Yo-Yo",
+      "file": "assets/audio/fr/de510aac.mp3"
+    },
+    "fb639f4f": {
+      "text": "Z comme Zèbre",
+      "file": "assets/audio/fr/fb639f4f.mp3"
+    },
+    "60f3887a": {
+      "text": "Un",
+      "file": "assets/audio/fr/60f3887a.mp3"
+    },
+    "e13faade": {
+      "text": "Bravo ! Tu as compté Un pomme.",
+      "file": "assets/audio/fr/e13faade.mp3"
+    },
+    "328ca6ad": {
+      "text": "Un. Un pomme.",
+      "file": "assets/audio/fr/328ca6ad.mp3"
+    },
+    "08f1d297": {
+      "text": "Deux",
+      "file": "assets/audio/fr/08f1d297.mp3"
+    },
+    "f2882add": {
+      "text": "Bravo ! Tu as compté Deux oiseaux.",
+      "file": "assets/audio/fr/f2882add.mp3"
+    },
+    "da5f0701": {
+      "text": "Deux. Deux oiseaux.",
+      "file": "assets/audio/fr/da5f0701.mp3"
+    },
+    "4b52338c": {
+      "text": "Trois",
+      "file": "assets/audio/fr/4b52338c.mp3"
+    },
+    "8f5e346b": {
+      "text": "Bravo ! Tu as compté Trois étoiles.",
+      "file": "assets/audio/fr/8f5e346b.mp3"
+    },
+    "fa62417c": {
+      "text": "Trois. Trois étoiles.",
+      "file": "assets/audio/fr/fa62417c.mp3"
+    },
+    "dbd318d3": {
+      "text": "Quatre",
+      "file": "assets/audio/fr/dbd318d3.mp3"
+    },
+    "88a1ae2e": {
+      "text": "Bravo ! Tu as compté Quatre voitures.",
+      "file": "assets/audio/fr/88a1ae2e.mp3"
+    },
+    "1d666376": {
+      "text": "Quatre. Quatre voitures.",
+      "file": "assets/audio/fr/1d666376.mp3"
+    },
+    "945c3224": {
+      "text": "Cinq",
+      "file": "assets/audio/fr/945c3224.mp3"
+    },
+    "dbb507d4": {
+      "text": "Bravo ! Tu as compté Cinq papillons.",
+      "file": "assets/audio/fr/dbb507d4.mp3"
+    },
+    "c7b1c169": {
+      "text": "Cinq. Cinq papillons.",
+      "file": "assets/audio/fr/c7b1c169.mp3"
+    },
+    "2cbc324b": {
+      "text": "Six",
+      "file": "assets/audio/fr/2cbc324b.mp3"
+    },
+    "eb71128d": {
+      "text": "Bravo ! Tu as compté Six tournesols.",
+      "file": "assets/audio/fr/eb71128d.mp3"
+    },
+    "8c2939ed": {
+      "text": "Six. Six tournesols.",
+      "file": "assets/audio/fr/8c2939ed.mp3"
+    },
+    "f6a62001": {
+      "text": "Sept",
+      "file": "assets/audio/fr/f6a62001.mp3"
+    },
+    "7d742796": {
+      "text": "Bravo ! Tu as compté Sept ballons.",
+      "file": "assets/audio/fr/7d742796.mp3"
+    },
+    "c47d9c74": {
+      "text": "Sept. Sept ballons.",
+      "file": "assets/audio/fr/c47d9c74.mp3"
+    },
+    "e4dd810b": {
+      "text": "Huit",
+      "file": "assets/audio/fr/e4dd810b.mp3"
+    },
+    "d24d0027": {
+      "text": "Bravo ! Tu as compté Huit gâteaux.",
+      "file": "assets/audio/fr/d24d0027.mp3"
+    },
+    "33972dc7": {
+      "text": "Huit. Huit gâteaux.",
+      "file": "assets/audio/fr/33972dc7.mp3"
+    },
+    "d0ef9317": {
+      "text": "Neuf",
+      "file": "assets/audio/fr/d0ef9317.mp3"
+    },
+    "48a5e542": {
+      "text": "Bravo ! Tu as compté Neuf balles.",
+      "file": "assets/audio/fr/48a5e542.mp3"
+    },
+    "c7ab0346": {
+      "text": "Neuf. Neuf balles.",
+      "file": "assets/audio/fr/c7ab0346.mp3"
+    },
+    "48693bc2": {
+      "text": "Dix",
+      "file": "assets/audio/fr/48693bc2.mp3"
+    },
+    "3d332081": {
+      "text": "Bravo ! Tu as compté Dix crayons.",
+      "file": "assets/audio/fr/3d332081.mp3"
+    },
+    "4cb7604c": {
+      "text": "Dix. Dix crayons.",
+      "file": "assets/audio/fr/4cb7604c.mp3"
+    },
+    "e7b17915": {
+      "text": "Rouge",
+      "file": "assets/audio/fr/e7b17915.mp3"
+    },
+    "e08ab5ac": {
+      "text": "Couleur Rouge",
+      "file": "assets/audio/fr/e08ab5ac.mp3"
+    },
+    "3041e25f": {
+      "text": "Pomme est Rouge",
+      "file": "assets/audio/fr/3041e25f.mp3"
+    },
+    "91a361b5": {
+      "text": "Fraise est Rouge",
+      "file": "assets/audio/fr/91a361b5.mp3"
+    },
+    "dd0d44f4": {
+      "text": "Rose est Rouge",
+      "file": "assets/audio/fr/dd0d44f4.mp3"
+    },
+    "b1a72c5f": {
+      "text": "Bravo ! Pomme est Rouge !",
+      "file": "assets/audio/fr/b1a72c5f.mp3"
+    },
+    "287d29b4": {
+      "text": "Réessaie. Trouve l'objet Rouge.",
+      "file": "assets/audio/fr/287d29b4.mp3"
+    },
+    "d9b4644d": {
+      "text": "Bleu",
+      "file": "assets/audio/fr/d9b4644d.mp3"
+    },
+    "690ac2b6": {
+      "text": "Couleur Bleu",
+      "file": "assets/audio/fr/690ac2b6.mp3"
+    },
+    "4e849be9": {
+      "text": "Baleine est Bleu",
+      "file": "assets/audio/fr/4e849be9.mp3"
+    },
+    "2a2ed5c9": {
+      "text": "Goutte d'eau est Bleu",
+      "file": "assets/audio/fr/2a2ed5c9.mp3"
+    },
+    "a89fc071": {
+      "text": "Myrtille est Bleu",
+      "file": "assets/audio/fr/a89fc071.mp3"
+    },
+    "dd08b1d9": {
+      "text": "Bravo ! Myrtille est Bleu !",
+      "file": "assets/audio/fr/dd08b1d9.mp3"
+    },
+    "29ae38e2": {
+      "text": "Réessaie. Trouve l'objet Bleu.",
+      "file": "assets/audio/fr/29ae38e2.mp3"
+    },
+    "d93b3d91": {
+      "text": "Couleur Vert",
+      "file": "assets/audio/fr/d93b3d91.mp3"
+    },
+    "30aa27c4": {
+      "text": "Feuille est Vert",
+      "file": "assets/audio/fr/30aa27c4.mp3"
+    },
+    "44a897f8": {
+      "text": "Grenouille est Vert",
+      "file": "assets/audio/fr/44a897f8.mp3"
+    },
+    "f3ea748a": {
+      "text": "Brocoli est Vert",
+      "file": "assets/audio/fr/f3ea748a.mp3"
+    },
+    "576ac6da": {
+      "text": "Bravo ! Feuille est Vert !",
+      "file": "assets/audio/fr/576ac6da.mp3"
+    },
+    "97ee0423": {
+      "text": "Réessaie. Trouve l'objet Vert.",
+      "file": "assets/audio/fr/97ee0423.mp3"
+    },
+    "33b43946": {
+      "text": "Jaune",
+      "file": "assets/audio/fr/33b43946.mp3"
+    },
+    "f0a09367": {
+      "text": "Couleur Jaune",
+      "file": "assets/audio/fr/f0a09367.mp3"
+    },
+    "c325318c": {
+      "text": "Soleil est Jaune",
+      "file": "assets/audio/fr/c325318c.mp3"
+    },
+    "1a877959": {
+      "text": "Banane est Jaune",
+      "file": "assets/audio/fr/1a877959.mp3"
+    },
+    "e779e7fe": {
+      "text": "Étoile est Jaune",
+      "file": "assets/audio/fr/e779e7fe.mp3"
+    },
+    "569bc1c3": {
+      "text": "Bravo ! Banane est Jaune !",
+      "file": "assets/audio/fr/569bc1c3.mp3"
+    },
+    "727b390b": {
+      "text": "Orange",
+      "file": "assets/audio/fr/727b390b.mp3"
+    },
+    "484cb268": {
+      "text": "Couleur Orange",
+      "file": "assets/audio/fr/484cb268.mp3"
+    },
+    "ab114247": {
+      "text": "Orange est Orange",
+      "file": "assets/audio/fr/ab114247.mp3"
+    },
+    "cfdff5f9": {
+      "text": "Carotte est Orange",
+      "file": "assets/audio/fr/cfdff5f9.mp3"
+    },
+    "0cc370d9": {
+      "text": "Citrouille est Orange",
+      "file": "assets/audio/fr/0cc370d9.mp3"
+    },
+    "ad751295": {
+      "text": "Bravo ! Citrouille est Orange !",
+      "file": "assets/audio/fr/ad751295.mp3"
+    },
+    "e9267680": {
+      "text": "Réessaie. Trouve l'objet Orange.",
+      "file": "assets/audio/fr/e9267680.mp3"
+    },
+    "f03bdf12": {
+      "text": "Violet",
+      "file": "assets/audio/fr/f03bdf12.mp3"
+    },
+    "17f447b9": {
+      "text": "Couleur Violet",
+      "file": "assets/audio/fr/17f447b9.mp3"
+    },
+    "a8620c04": {
+      "text": "Fleur est Violet",
+      "file": "assets/audio/fr/a8620c04.mp3"
+    },
+    "6ca65db3": {
+      "text": "Cadeau est Violet",
+      "file": "assets/audio/fr/6ca65db3.mp3"
+    },
+    "fab4db06": {
+      "text": "Bravo ! Raisin est Violet !",
+      "file": "assets/audio/fr/fab4db06.mp3"
+    },
+    "cf0c7c63": {
+      "text": "Réessaie. Trouve l'objet Violet.",
+      "file": "assets/audio/fr/cf0c7c63.mp3"
+    },
+    "906e6426": {
+      "text": "Rose",
+      "file": "assets/audio/fr/906e6426.mp3"
+    },
+    "0f091c09": {
+      "text": "Couleur Rose",
+      "file": "assets/audio/fr/0f091c09.mp3"
+    },
+    "1e820750": {
+      "text": "Ballon est Rose",
+      "file": "assets/audio/fr/1e820750.mp3"
+    },
+    "16cdcbd0": {
+      "text": "Flamant rose est Rose",
+      "file": "assets/audio/fr/16cdcbd0.mp3"
+    },
+    "86fb6678": {
+      "text": "Barbe à papa est Rose",
+      "file": "assets/audio/fr/86fb6678.mp3"
+    },
+    "4a681e28": {
+      "text": "Bravo ! Flamant rose est Rose !",
+      "file": "assets/audio/fr/4a681e28.mp3"
+    },
+    "b33a2bcf": {
+      "text": "Réessaie. Trouve l'objet Rose.",
+      "file": "assets/audio/fr/b33a2bcf.mp3"
+    },
+    "1f4d9ea1": {
+      "text": "Noir",
+      "file": "assets/audio/fr/1f4d9ea1.mp3"
+    },
+    "1a26ebca": {
+      "text": "Couleur Noir",
+      "file": "assets/audio/fr/1a26ebca.mp3"
+    },
+    "fdd2df15": {
+      "text": "Voiture est Noir",
+      "file": "assets/audio/fr/fdd2df15.mp3"
+    },
+    "da98e2bd": {
+      "text": "Chat est Noir",
+      "file": "assets/audio/fr/da98e2bd.mp3"
+    },
+    "69e93f60": {
+      "text": "Chapeau est Noir",
+      "file": "assets/audio/fr/69e93f60.mp3"
+    },
+    "5bc59e33": {
+      "text": "Bravo ! Voiture est Noir !",
+      "file": "assets/audio/fr/5bc59e33.mp3"
+    },
+    "5e05fb4e": {
+      "text": "Réessaie. Trouve l'objet Noir.",
+      "file": "assets/audio/fr/5e05fb4e.mp3"
+    },
+    "3ae3fcc9": {
+      "text": "Blanc",
+      "file": "assets/audio/fr/3ae3fcc9.mp3"
+    },
+    "6c8d8e84": {
+      "text": "Couleur Blanc",
+      "file": "assets/audio/fr/6c8d8e84.mp3"
+    },
+    "c82e3df1": {
+      "text": "Nuage est Blanc",
+      "file": "assets/audio/fr/c82e3df1.mp3"
+    },
+    "c244e1cf": {
+      "text": "Lapin est Blanc",
+      "file": "assets/audio/fr/c244e1cf.mp3"
+    },
+    "fb27dcf9": {
+      "text": "Champignon est Blanc",
+      "file": "assets/audio/fr/fb27dcf9.mp3"
+    },
+    "272e496d": {
+      "text": "Bravo ! Nuage est Blanc !",
+      "file": "assets/audio/fr/272e496d.mp3"
+    },
+    "56dfb62c": {
+      "text": "Réessaie. Trouve l'objet Blanc.",
+      "file": "assets/audio/fr/56dfb62c.mp3"
+    },
+    "4afad9f6": {
+      "text": "Marron",
+      "file": "assets/audio/fr/4afad9f6.mp3"
+    },
+    "cda7d87d": {
+      "text": "Couleur Marron",
+      "file": "assets/audio/fr/cda7d87d.mp3"
+    },
+    "e735e822": {
+      "text": "Ours en peluche est Marron",
+      "file": "assets/audio/fr/e735e822.mp3"
+    },
+    "f77ce2cf": {
+      "text": "Chouette est Marron",
+      "file": "assets/audio/fr/f77ce2cf.mp3"
+    },
+    "bc102a90": {
+      "text": "Singe est Marron",
+      "file": "assets/audio/fr/bc102a90.mp3"
+    },
+    "570d1c5b": {
+      "text": "Bravo ! Cheval est Marron !",
+      "file": "assets/audio/fr/570d1c5b.mp3"
+    },
+    "5a3ae8ff": {
+      "text": "Réessaie. Trouve l'objet Marron.",
+      "file": "assets/audio/fr/5a3ae8ff.mp3"
+    },
+    "f548eb25": {
+      "text": "Choisis une forme. Touche pour découvrir.",
+      "file": "assets/audio/fr/f548eb25.mp3"
+    },
+    "609f5962": {
+      "text": "Un cercle n'a aucun côté droit et aucun coin.",
+      "file": "assets/audio/fr/609f5962.mp3"
+    },
+    "8adf2292": {
+      "text": "Horloge a la forme d'un Cercle.",
+      "file": "assets/audio/fr/8adf2292.mp3"
+    },
+    "3d9740b8": {
+      "text": "Ballon a la forme d'un Cercle.",
+      "file": "assets/audio/fr/3d9740b8.mp3"
+    },
+    "46d7480a": {
+      "text": "Assiette a la forme d'un Cercle.",
+      "file": "assets/audio/fr/46d7480a.mp3"
+    },
+    "c66e10ba": {
+      "text": "Un carré a quatre côtés égaux et quatre coins.",
+      "file": "assets/audio/fr/c66e10ba.mp3"
+    },
+    "6cdaf7e9": {
+      "text": "Fenêtre a la forme d'un Carré.",
+      "file": "assets/audio/fr/6cdaf7e9.mp3"
+    },
+    "6c21f752": {
+      "text": "Cadeau a la forme d'un Carré.",
+      "file": "assets/audio/fr/6c21f752.mp3"
+    },
+    "248df6fb": {
+      "text": "Carrelage a la forme d'un Carré.",
+      "file": "assets/audio/fr/248df6fb.mp3"
+    },
+    "0db63375": {
+      "text": "Un triangle a trois côtés et trois coins.",
+      "file": "assets/audio/fr/0db63375.mp3"
+    },
+    "0a519b7c": {
+      "text": "Triangle a la forme d'un Triangle.",
+      "file": "assets/audio/fr/0a519b7c.mp3"
+    },
+    "8c4c6a84": {
+      "text": "Coins a la forme d'un Triangle.",
+      "file": "assets/audio/fr/8c4c6a84.mp3"
+    },
+    "1820e12f": {
+      "text": "Forme Triangle a la forme d'un Triangle.",
+      "file": "assets/audio/fr/1820e12f.mp3"
+    },
+    "c5be0032": {
+      "text": "Un rectangle a quatre côtés et quatre coins.",
+      "file": "assets/audio/fr/c5be0032.mp3"
+    },
+    "eb035df3": {
+      "text": "Porte a la forme d'un Rectangle.",
+      "file": "assets/audio/fr/eb035df3.mp3"
+    },
+    "7f673b53": {
+      "text": "Livre a la forme d'un Rectangle.",
+      "file": "assets/audio/fr/7f673b53.mp3"
+    },
+    "9d18f5eb": {
+      "text": "Télévision a la forme d'un Rectangle.",
+      "file": "assets/audio/fr/9d18f5eb.mp3"
+    },
+    "94b4a524": {
+      "text": "Un pentagone a cinq côtés et cinq coins.",
+      "file": "assets/audio/fr/94b4a524.mp3"
+    },
+    "06ff1125": {
+      "text": "Plaque a la forme d'un Pentagone.",
+      "file": "assets/audio/fr/06ff1125.mp3"
+    },
+    "81908dde": {
+      "text": "Badge a la forme d'un Pentagone.",
+      "file": "assets/audio/fr/81908dde.mp3"
+    },
+    "b05945c3": {
+      "text": "Panneau a la forme d'un Pentagone.",
+      "file": "assets/audio/fr/b05945c3.mp3"
+    },
+    "2c37df08": {
+      "text": "Un hexagone a six côtés et six coins.",
+      "file": "assets/audio/fr/2c37df08.mp3"
+    },
+    "b16c1eef": {
+      "text": "Nid d'abeille a la forme d'un Hexagone.",
+      "file": "assets/audio/fr/b16c1eef.mp3"
+    },
+    "47bfdea9": {
+      "text": "Écrou a la forme d'un Hexagone.",
+      "file": "assets/audio/fr/47bfdea9.mp3"
+    },
+    "7f1c2db6": {
+      "text": "Carreau a la forme d'un Hexagone.",
+      "file": "assets/audio/fr/7f1c2db6.mp3"
+    },
+    "c393bb91": {
+      "text": "Un ovale n'a aucun côté droit et aucun coin.",
+      "file": "assets/audio/fr/c393bb91.mp3"
+    },
+    "a2824190": {
+      "text": "Œuf a la forme d'un Ovale.",
+      "file": "assets/audio/fr/a2824190.mp3"
+    },
+    "f78c1cfa": {
+      "text": "Pastèque a la forme d'un Ovale.",
+      "file": "assets/audio/fr/f78c1cfa.mp3"
+    },
+    "a2b330c5": {
+      "text": "Ballon a la forme d'un Ovale.",
+      "file": "assets/audio/fr/a2b330c5.mp3"
+    },
+    "8f5dd0f2": {
+      "text": "Une étoile a dix côtés et dix pointes.",
+      "file": "assets/audio/fr/8f5dd0f2.mp3"
+    },
+    "3f3a196b": {
+      "text": "Biscuit a la forme d'un Étoile.",
+      "file": "assets/audio/fr/3f3a196b.mp3"
+    },
+    "bd43b859": {
+      "text": "Baguette a la forme d'un Étoile.",
+      "file": "assets/audio/fr/bd43b859.mp3"
+    },
+    "db070971": {
+      "text": "Étoile de mer a la forme d'un Étoile.",
+      "file": "assets/audio/fr/db070971.mp3"
+    },
+    "c4f3af02": {
+      "text": "Un losange a quatre côtés et quatre coins.",
+      "file": "assets/audio/fr/c4f3af02.mp3"
+    },
+    "0304011e": {
+      "text": "Cerf-volant a la forme d'un Losange.",
+      "file": "assets/audio/fr/0304011e.mp3"
+    },
+    "1130b3ed": {
+      "text": "Pierre précieuse a la forme d'un Losange.",
+      "file": "assets/audio/fr/1130b3ed.mp3"
+    },
+    "49c1a245": {
+      "text": "Panneau a la forme d'un Losange.",
+      "file": "assets/audio/fr/49c1a245.mp3"
+    },
+    "87a90faf": {
+      "text": "Un cube a six faces, douze arêtes et huit coins.",
+      "file": "assets/audio/fr/87a90faf.mp3"
+    },
+    "80dcc160": {
+      "text": "Dé a la forme d'un Cube.",
+      "file": "assets/audio/fr/80dcc160.mp3"
+    },
+    "e3241465": {
+      "text": "Glaçon a la forme d'un Cube.",
+      "file": "assets/audio/fr/e3241465.mp3"
+    },
+    "40f91ee2": {
+      "text": "Bloc de jeu a la forme d'un Cube.",
+      "file": "assets/audio/fr/40f91ee2.mp3"
+    }
+  }
+}

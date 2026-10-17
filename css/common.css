@@ -2,13 +2,20 @@
 @import url("https://fonts.googleapis.com/css2?family=Cairo:wght@600;700;800;900&family=Poppins:wght@600;700;800;900&display=swap");
 
 * { box-sizing: border-box; }
-html, body { height: 100%; margin: 0; }
+html, body { height: 100%; margin: 0; overflow: hidden; }
 body { font-family: "Comic Sans MS", "Poppins", "Trebuchet MS", Arial, sans-serif; }
 img { max-width: 100%; display: block; }
 button { font-family: inherit; }
 .mobile-menu-open { display: block !important; }
-.page-scroll { -webkit-overflow-scrolling: touch; }
+.page-scroll { -webkit-overflow-scrolling: touch; overflow: hidden !important; }
 .show { display: flex !important; }
+
+/* Hide any legacy #header and #footer containers so the full screen is dedicated to content */
+#header,
+#footer,
+body.language-page .global-back-btn {
+  display: none !important;
+}
 
 /* Arabic typography and RTL enhancements */
 html[dir="rtl"], body.lang-arabic {
@@ -18,73 +25,67 @@ html[dir="rtl"], body.lang-arabic {
 html[dir="rtl"] .arrow-right { transform: rotate(180deg); }
 html[dir="rtl"] .arrow-left { transform: rotate(180deg); }
 
-/* Header Language Switcher Widget */
-.header-lang-widget {
+/* Universal Back Button */
+.global-back-btn {
+  position: absolute;
+  top: 14px;
+  left: 16px;
+  z-index: 45;
   display: inline-flex;
   align-items: center;
-  gap: 6px;
-  background: rgba(255, 255, 255, 0.22);
-  border: 2px solid rgba(255, 255, 255, 0.45);
-  border-radius: 9999px;
-  padding: 4px 10px;
+  gap: 8px;
+  background: linear-gradient(135deg, #ff7b00 0%, #ff4500 100%);
   color: #ffffff;
   font-weight: 800;
-  font-size: 14px;
-  cursor: pointer;
-  position: relative;
-  transition: all 0.2s ease;
-  user-select: none;
-}
-.header-lang-widget:hover {
-  background: rgba(255, 255, 255, 0.35);
-  transform: scale(1.03);
-}
-.header-lang-flag {
-  width: 22px;
-  height: 22px;
-  border-radius: 50%;
-  object-fit: cover;
-  border: 1px solid rgba(255, 255, 255, 0.8);
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-}
-.header-lang-dropdown {
-  position: absolute;
-  top: calc(100% + 8px);
-  right: 0;
-  background: #005f11;
-  border: 2px solid rgba(255, 255, 255, 0.3);
-  border-radius: 16px;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.35);
-  padding: 6px;
-  display: none;
-  flex-direction: column;
-  gap: 4px;
-  z-index: 1000;
-  min-width: 140px;
-}
-html[dir="rtl"] .header-lang-dropdown {
-  right: auto;
-  left: 0;
-}
-.header-lang-dropdown.open {
-  display: flex !important;
-}
-.header-lang-option {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  padding: 6px 10px;
-  border-radius: 10px;
-  color: #ffffff;
+  font-size: 16px;
+  padding: 9px 18px;
+  border-radius: 9999px;
+  border: 3px solid #ffffff;
+  box-shadow: 0 5px 0 #b82d00, 0 8px 18px rgba(0, 0, 0, 0.28);
   text-decoration: none;
-  font-size: 13px;
-  font-weight: 700;
-  transition: background 0.15s ease;
   cursor: pointer;
+  user-select: none;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, filter 0.2s ease;
 }
-.header-lang-option:hover, .header-lang-option.active {
-  background: rgba(255, 255, 255, 0.2);
-  color: #ffd86b;
+
+.global-back-btn:hover {
+  transform: translateY(-2px) scale(1.04);
+  filter: brightness(1.06);
+  box-shadow: 0 7px 0 #b82d00, 0 10px 22px rgba(0, 0, 0, 0.32);
+}
+
+.global-back-btn:active {
+  transform: translateY(3px);
+  box-shadow: 0 2px 0 #b82d00, 0 4px 10px rgba(0, 0, 0, 0.22);
+}
+
+.global-back-btn .back-btn-icon {
+  font-size: 16px;
+  transition: transform 0.2s ease;
+}
+
+/* RTL positioning and arrow flip for Arabic */
+html[dir="rtl"] .global-back-btn {
+  left: auto;
+  right: 16px;
+}
+
+html[dir="rtl"] .global-back-btn .back-btn-icon {
+  transform: rotate(180deg);
+}
+
+@media (max-width: 640px) {
+  .global-back-btn {
+    top: 8px;
+    left: 10px;
+    padding: 6px 13px;
+    font-size: 13px;
+    border-width: 2.5px;
+  }
+  html[dir="rtl"] .global-back-btn {
+    left: auto;
+    right: 10px;
+  }
 }
 
 /* Multilingual Card Subtitle Pill for Category Page */
@@ -106,3 +107,397 @@ html[dir="rtl"] .header-lang-dropdown {
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
 }
 
+/* =========================================================
+   NO-SCROLL FULL-VIEWPORT ADAPTATIONS FOR ALL PAGES
+   ========================================================= */
+
+/* 1. Language Page */
+body.language-page #languageScreen {
+  height: 100dvh !important;
+  overflow: hidden !important;
+  padding: 12px !important;
+}
+body.language-page .title-banner {
+  top: clamp(10px, 2.5vh, 28px) !important;
+}
+body.language-page .title-image {
+  max-height: 16vh !important;
+  width: auto !important;
+}
+body.language-page .cards-wrapper {
+  margin-top: clamp(32px, 6vh, 60px) !important;
+  gap: clamp(14px, 2.5vw, 34px) !important;
+}
+body.language-page .language-card {
+  width: clamp(150px, 18vw, 210px) !important;
+  height: clamp(220px, 48vh, 305px) !important;
+}
+body.language-page .card-animal {
+  width: clamp(95px, 18vh, 145px) !important;
+  height: clamp(95px, 18vh, 145px) !important;
+}
+
+/* 2. Category Page */
+body.category .category-main {
+  overflow: hidden !important;
+  padding: clamp(8px, 1.5vh, 18px) clamp(12px, 2vw, 24px) !important;
+  justify-content: center !important;
+}
+body.category .category-logo {
+  max-height: min(16vh, 140px) !important;
+  margin-bottom: clamp(6px, 1.5vh, 14px) !important;
+}
+body.category .category-grid {
+  gap: clamp(8px, 1.5vh, 16px) clamp(10px, 1.8vw, 20px) !important;
+}
+body.category .category-card img {
+  max-height: min(33vh, 215px) !important;
+}
+
+/* 3. Alphabet Page (26 or 28 letters in 7x4 grid) */
+body.alphabet .alphabet-main {
+  overflow: hidden !important;
+  padding: clamp(46px, 7vh, 62px) clamp(10px, 2vw, 28px) clamp(10px, 2vh, 20px) !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+body.alphabet .alphabet-grid {
+  grid-template-columns: repeat(7, minmax(0, 1fr)) !important;
+  gap: clamp(6px, 1.2vh, 16px) clamp(6px, 1.2vw, 18px) !important;
+  width: min(96vw, 1060px) !important;
+  max-height: calc(100dvh - 75px) !important;
+}
+body.alphabet .letter-card {
+  width: min(clamp(54px, 11vw, 112px), 18.5vh) !important;
+  height: min(clamp(54px, 11vw, 112px), 18.5vh) !important;
+}
+body.alphabet .letter-card:before {
+  inset: clamp(6px, 1.1vh, 11px) !important;
+}
+body.alphabet .letter-card span {
+  font-size: min(clamp(26px, 4.8vw, 60px), 10vh) !important;
+}
+
+/* =========================================================
+   4. NUMBERS PAGE - MAIN GRID + POPUP MODAL (100% FIT)
+   ========================================================= */
+body.numbers-page .numbers-main {
+  height: 100dvh !important;
+  overflow: hidden !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+  padding: clamp(8px, 1.5vh, 18px) clamp(12px, 2vw, 24px) !important;
+}
+body.numbers-page .page-title {
+  font-size: clamp(22px, 4vh, 42px) !important;
+  margin-bottom: 2px !important;
+  flex: 0 0 auto !important;
+}
+body.numbers-page .numbers-subtitle {
+  font-size: clamp(13px, 2vh, 19px) !important;
+  margin-bottom: clamp(6px, 1.4vh, 14px) !important;
+  flex: 0 0 auto !important;
+}
+body.numbers-page .numbers-grid {
+  display: grid !important;
+  grid-template-columns: repeat(5, minmax(0, 1fr)) !important;
+  grid-template-rows: repeat(2, minmax(0, 1fr)) !important;
+  gap: clamp(8px, 1.4vh, 14px) clamp(8px, 1.3vw, 16px) !important;
+  width: min(95vw, 1180px) !important;
+  height: min(76dvh, 520px) !important;
+  margin: 0 auto !important;
+}
+body.numbers-page .number-card {
+  min-height: 0 !important;
+  height: 100% !important;
+  padding: clamp(6px, 1vh, 12px) 8px !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  border-width: clamp(3px, 0.5vh, 5px) !important;
+  border-radius: clamp(18px, 2.5vh, 26px) !important;
+}
+body.numbers-page .number-star {
+  width: clamp(26px, 4.2vh, 38px) !important;
+  top: -10px !important;
+  right: -8px !important;
+}
+body.numbers-page .number-img {
+  height: clamp(44px, 11.5vh, 92px) !important;
+  max-width: clamp(44px, 11.5vh, 92px) !important;
+  margin: 0 auto !important;
+  flex: 0 0 auto !important;
+}
+body.numbers-page .object-grid {
+  min-height: 0 !important;
+  margin-top: 2px !important;
+  gap: clamp(2px, 0.5vh, 5px) !important;
+  flex: 1 1 auto !important;
+  align-content: center !important;
+}
+body.numbers-page .object-img {
+  width: clamp(15px, 2.7vh, 24px) !important;
+  height: clamp(15px, 2.7vh, 24px) !important;
+}
+body.numbers-page .number-word {
+  font-size: clamp(13px, 2.2vh, 20px) !important;
+  padding: 2px 12px !important;
+  margin-top: 2px !important;
+  flex: 0 0 auto !important;
+}
+
+/* Numbers Popup Modal - Fit 100% in viewport without scrolling */
+body.numbers-page .number-modal {
+  padding: clamp(8px, 1.5vh, 16px) !important;
+  overflow: hidden !important;
+}
+body.numbers-page .number-detail {
+  width: min(95vw, 1040px) !important;
+  max-height: 94dvh !important;
+  overflow: hidden !important;
+  padding: clamp(42px, 6.5vh, 56px) clamp(58px, 6.5vw, 78px) clamp(12px, 2vh, 20px) !important;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: space-between !important;
+}
+body.numbers-page .modal-content {
+  gap: clamp(12px, 1.8vw, 22px) !important;
+  flex: 1 1 auto !important;
+  min-height: 0 !important;
+}
+body.numbers-page .number-showcase,
+body.numbers-page .count-activity {
+  min-height: 0 !important;
+  height: clamp(260px, 62dvh, 420px) !important;
+  padding: clamp(10px, 1.8vh, 16px) !important;
+}
+body.numbers-page .number-glow {
+  min-height: 0 !important;
+  height: clamp(110px, 28dvh, 210px) !important;
+}
+body.numbers-page .number-glow::before {
+  width: clamp(110px, 25dvh, 190px) !important;
+  height: clamp(110px, 25dvh, 190px) !important;
+}
+body.numbers-page .modal-number-img {
+  height: clamp(105px, 26dvh, 200px) !important;
+  width: auto !important;
+}
+body.numbers-page .modal-number-word {
+  font-size: clamp(26px, 4.5vh, 48px) !important;
+  margin: 4px 0 8px !important;
+}
+body.numbers-page .say-number-bubble {
+  padding: 5px 14px !important;
+  font-size: clamp(13px, 2vh, 16px) !important;
+}
+body.numbers-page .activity-title {
+  padding: 6px 14px !important;
+  font-size: clamp(15px, 2.3vh, 22px) !important;
+}
+body.numbers-page .live-counter {
+  padding: 4px 10px !important;
+  font-size: clamp(16px, 2.5vh, 21px) !important;
+}
+body.numbers-page .activity-instruction {
+  margin: 6px 0 !important;
+  font-size: clamp(13px, 2vh, 17px) !important;
+}
+body.numbers-page .animated-object-stage {
+  min-height: 0 !important;
+  flex: 1 1 auto !important;
+  padding: 10px 12px 24px !important;
+}
+body.numbers-page .count-word-display {
+  margin-top: 6px !important;
+  padding: 4px 16px !important;
+  font-size: clamp(15px, 2.3vh, 20px) !important;
+}
+body.numbers-page .modal-footer-controls {
+  margin-top: clamp(8px, 1.5vh, 16px) !important;
+  gap: 14px !important;
+}
+body.numbers-page .modal-action-btn {
+  padding: 8px 20px !important;
+  font-size: clamp(14px, 2vh, 18px) !important;
+  min-width: 135px !important;
+}
+
+/* =========================================================
+   5. COLORS PAGE - MAIN GRID + POPUP MODAL (100% FIT)
+   ========================================================= */
+body.colors-page .colors-hero {
+  height: 100dvh !important;
+  overflow: hidden !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+  padding: clamp(8px, 1.5vh, 18px) clamp(12px, 2vw, 24px) !important;
+}
+body.colors-page .page-title {
+  font-size: clamp(22px, 4vh, 42px) !important;
+  margin-bottom: 2px !important;
+  flex: 0 0 auto !important;
+}
+body.colors-page .page-subtitle {
+  font-size: clamp(13px, 2vh, 19px) !important;
+  margin-bottom: clamp(6px, 1.4vh, 14px) !important;
+  flex: 0 0 auto !important;
+}
+body.colors-page .colors-grid {
+  display: grid !important;
+  grid-template-columns: repeat(5, minmax(0, 1fr)) !important;
+  grid-template-rows: repeat(2, minmax(0, 1fr)) !important;
+  gap: clamp(8px, 1.5vh, 16px) clamp(8px, 1.4vw, 18px) !important;
+  width: min(95vw, 1120px) !important;
+  height: min(74dvh, 480px) !important;
+  margin: 0 auto !important;
+}
+body.colors-page .color-card {
+  min-height: 0 !important;
+  height: 100% !important;
+  padding: clamp(6px, 1vh, 12px) 8px clamp(26px, 4.2vh, 38px) !important;
+  border-width: clamp(3px, 0.5vh, 5px) !important;
+  border-radius: clamp(18px, 2.5vh, 26px) !important;
+}
+body.colors-page .paint-blob-wrap {
+  width: clamp(58px, 15vh, 108px) !important;
+  height: clamp(58px, 15vh, 108px) !important;
+}
+body.colors-page .paint-blob {
+  width: clamp(50px, 13vh, 92px) !important;
+  height: clamp(50px, 13vh, 92px) !important;
+}
+body.colors-page .card-object-image {
+  width: clamp(26px, 5vh, 40px) !important;
+  height: clamp(26px, 5vh, 40px) !important;
+  top: 6px !important;
+  left: 6px !important;
+}
+body.colors-page .color-name {
+  font-size: clamp(12px, 2vh, 17px) !important;
+  padding: 2px 10px !important;
+  bottom: clamp(5px, 1vh, 9px) !important;
+  min-width: 84px !important;
+}
+
+/* Colors Popup Modal - Fit 100% in viewport without scrolling */
+body.colors-page .color-modal {
+  padding: clamp(8px, 1.5vh, 16px) clamp(48px, 5vw, 72px) !important;
+  overflow: hidden !important;
+}
+body.colors-page .color-detail {
+  width: min(1080px, 94vw) !important;
+  max-height: 94dvh !important;
+  overflow: hidden !important;
+  padding: clamp(10px, 1.8vh, 18px) clamp(14px, 2vw, 22px) !important;
+}
+body.colors-page .modal-top-row {
+  min-height: 0 !important;
+  margin-bottom: clamp(6px, 1.2vh, 12px) !important;
+}
+body.colors-page .modal-small-label {
+  padding: 2px 12px !important;
+  font-size: clamp(11px, 1.6vh, 13px) !important;
+}
+body.colors-page .detail-title {
+  margin-top: 4px !important;
+  font-size: clamp(22px, 3.6vh, 36px) !important;
+}
+body.colors-page .modal-content-grid {
+  gap: clamp(10px, 1.5vw, 18px) !important;
+  align-items: stretch !important;
+}
+body.colors-page .selected-color-panel {
+  min-height: 0 !important;
+  height: clamp(320px, 74dvh, 520px) !important;
+  padding: clamp(10px, 1.8vh, 16px) !important;
+}
+body.colors-page .big-splash-wrap {
+  width: clamp(110px, 24dvh, 185px) !important;
+  height: clamp(110px, 24dvh, 185px) !important;
+}
+body.colors-page .big-splash-image {
+  width: clamp(100px, 22dvh, 175px) !important;
+  height: clamp(100px, 22dvh, 175px) !important;
+}
+body.colors-page .big-splash-fallback {
+  width: clamp(95px, 20dvh, 155px) !important;
+  height: clamp(95px, 20dvh, 155px) !important;
+}
+body.colors-page .detail-color-name {
+  font-size: clamp(22px, 3.6vh, 38px) !important;
+}
+body.colors-page .say-color-message {
+  margin-top: clamp(6px, 1.2vh, 10px) !important;
+  padding: 4px 14px !important;
+  font-size: clamp(13px, 2vh, 16px) !important;
+}
+body.colors-page .sound-btn {
+  margin-top: clamp(8px, 1.5vh, 14px) !important;
+  padding: 7px 16px !important;
+  min-width: 135px !important;
+}
+body.colors-page .learning-panel {
+  gap: clamp(8px, 1.4vh, 12px) !important;
+  height: clamp(320px, 74dvh, 520px) !important;
+  justify-content: space-between !important;
+}
+body.colors-page .examples-section,
+body.colors-page .quiz-section {
+  padding: clamp(8px, 1.4vh, 12px) clamp(10px, 1.5vw, 14px) !important;
+  flex: 1 1 0 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: space-between !important;
+  min-height: 0 !important;
+}
+body.colors-page .section-heading,
+body.colors-page .quiz-heading {
+  font-size: clamp(14px, 2.2vh, 19px) !important;
+}
+body.colors-page .section-instruction {
+  margin: 2px 0 6px !important;
+  font-size: clamp(11px, 1.6vh, 13px) !important;
+}
+body.colors-page .examples-grid,
+body.colors-page .quiz-options {
+  gap: clamp(6px, 1vw, 10px) !important;
+  flex: 1 1 auto !important;
+  min-height: 0 !important;
+}
+body.colors-page .example-card,
+body.colors-page .quiz-option {
+  min-height: 0 !important;
+  height: 100% !important;
+  padding: clamp(4px, 0.8vh, 8px) 6px !important;
+}
+body.colors-page .example-image,
+body.colors-page .quiz-option-image {
+  width: clamp(42px, 9.5dvh, 76px) !important;
+  height: clamp(42px, 9.5dvh, 76px) !important;
+}
+body.colors-page .example-name,
+body.colors-page .quiz-label {
+  margin-top: 4px !important;
+  padding: 2px 8px !important;
+  font-size: clamp(11px, 1.7vh, 14px) !important;
+  min-width: 70px !important;
+}
+body.colors-page .object-feedback,
+body.colors-page .quiz-feedback {
+  min-height: 0 !important;
+  margin-top: 5px !important;
+  padding: 4px 10px !important;
+  font-size: clamp(11px, 1.7vh, 14px) !important;
+}
+
+/* 6. Geometry Page */
+body.geometry-page .geometry-main,
+body.geometry-page .geometry-screen {
+  overflow: hidden !important;
+}
