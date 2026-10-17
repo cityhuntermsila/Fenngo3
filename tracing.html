@@ -131,7 +131,7 @@
       width: 100%;
       min-height: 0;
       touch-action: none;
-      cursor: crosshair;
+      cursor: none;
     }
 
     #tracingCanvas {
@@ -201,7 +201,7 @@
 <body class="games-page">
   <div id="tracingApp" class="games-app">
     <main class="games-hub">
-      <!-- En-tête Novakid avec onglets : Tracer les Lettres | Tracer des Mots -->
+      <!-- En-tête Novakid avec 3 onglets : Majuscules | Mots | Minuscules -->
       <header class="nk-hero">
         <div class="nk-hero-top">
           <div class="nk-hero-text">
@@ -221,10 +221,13 @@
           <span id="tracingModeLabel" class="nk-quiz-label">Choisis un mode :</span>
           <div class="nk-skills-pills">
             <button type="button" id="modeLettersBtn" class="nk-skill-pill active">
-              🔤 <span id="modeLettersText">Tracer les lettres</span>
+              🔤 <span id="modeLettersText">Tracer les lettres (A-Z)</span>
             </button>
             <button type="button" id="modeWordsBtn" class="nk-skill-pill">
               📝 <span id="modeWordsText">Tracer des mots</span>
+            </button>
+            <button type="button" id="modeLowerBtn" class="nk-skill-pill">
+              🔡 <span id="modeLowerText">Lettres minuscules (a-z)</span>
             </button>
           </div>
         </div>

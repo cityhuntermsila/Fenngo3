@@ -12,8 +12,9 @@
         title: "✏️ Traçage & Écriture",
         subtitle: "Suis les pointillés avec ton doigt ou ta souris pour écrire les lettres et les mots !",
         modeLabel: "Choisis un mode :",
-        modeLetters: "Tracer les lettres (A-Z)",
+        modeLetters: "Lettres majuscules (A-Z)",
         modeWords: "Tracer des mots",
+        modeLower: "Lettres minuscules (a-z)",
         listen: "Écouter",
         colorLabel: "Couleur du crayon :",
         clear: "Effacer",
@@ -96,6 +97,7 @@
         modeLabel: "اخْتَرِ الوَضْعَ :",
         modeLetters: "تَخْطِيطُ الحُرُوفِ (أ-ي)",
         modeWords: "تَخْطِيطُ الكَلِمَاتِ",
+        modeLower: "أَشْكَالُ الحُرُوفِ (بـ - يـ)",
         listen: "اسْتَمِعْ",
         colorLabel: "لَوْنُ القَلَمِ :",
         clear: "مَسْحٌ",
@@ -132,6 +134,28 @@
         { text: "هـ", label: "هـ - هَدِيَّة", emoji: "🎁", speech: "هـ - هَدِيَّة" },
         { text: "و", label: "و - وَرْدَة", emoji: "🌹", speech: "و - وَرْدَة" },
         { text: "ي", label: "ي - يُويُو", emoji: "🪀", speech: "ي - يُويُو" }
+      ],
+      lowercase: [
+        { text: "بـ", label: "بـ - بَطَّة", emoji: "🦆", speech: "ب - بَطَّة" },
+        { text: "تـ", label: "تـ - تُفَّاحَة", emoji: "🍎", speech: "ت - تُفَّاحَة" },
+        { text: "ثـ", label: "ثـ - ثَلْج", emoji: "❄️", speech: "ث - ثَلْج" },
+        { text: "جـ", label: "جـ - جَزَر", emoji: "🥕", speech: "ج - جَزَر" },
+        { text: "حـ", label: "حـ - حُوت", emoji: "🐋", speech: "ح - حُوت" },
+        { text: "خـ", label: "خـ - خَرُوف", emoji: "🐑", speech: "خ - خَرُوف" },
+        { text: "سـ", label: "سـ - سَمَكَة", emoji: "🐟", speech: "س - سَمَكَة" },
+        { text: "شـ", label: "شـ - شَمْس", emoji: "☀️", speech: "ش - شَمْس" },
+        { text: "صـ", label: "صـ - صُنْدُوق", emoji: "📦", speech: "ص - صُنْدُوق" },
+        { text: "ضـ", label: "ضـ - ضَوْء", emoji: "💡", speech: "ض - ضَوْء" },
+        { text: "عـ", label: "عـ - عِنَب", emoji: "🍇", speech: "ع - عِنَب" },
+        { text: "غـ", label: "غـ - غَزَال", emoji: "🦌", speech: "غ - غَزَال" },
+        { text: "فـ", label: "فـ - فِيل", emoji: "🐘", speech: "ف - فِيل" },
+        { text: "قـ", label: "قـ - قِطَّة", emoji: "🐱", speech: "ق - قِطَّة" },
+        { text: "كـ", label: "كـ - كُرَة", emoji: "⚽", speech: "ك - كُرَة" },
+        { text: "لـ", label: "لـ - لُعْبَة", emoji: "🧸", speech: "ل - لُعْبَة" },
+        { text: "مـ", label: "مـ - مَانْجُو", emoji: "🥭", speech: "م - مَانْجُو" },
+        { text: "نـ", label: "نـ - نَجْمَة", emoji: "⭐", speech: "ن - نَجْمَة" },
+        { text: "هـ", label: "هـ - هَدِيَّة", emoji: "🎁", speech: "هـ - هَدِيَّة" },
+        { text: "يـ", label: "يـ - يُويُو", emoji: "🪀", speech: "ي - يُويُو" }
       ],
       words: [
         // الكلمات الموجودة في الموقع
@@ -176,8 +200,9 @@
         title: "✏️ Tracing & Writing",
         subtitle: "Follow the dotted lines with your finger or mouse to write letters and words!",
         modeLabel: "Choose mode:",
-        modeLetters: "Trace Letters (A-Z)",
+        modeLetters: "Uppercase Letters (A-Z)",
         modeWords: "Trace Words",
+        modeLower: "Lowercase Letters (a-z)",
         listen: "Listen",
         colorLabel: "Pencil Color:",
         clear: "Clear",
@@ -239,6 +264,19 @@
     }
   };
 
+  // Génère automatiquement la liste des lettres minuscules (a-z) pour le Français et l'Anglais
+  ["French", "English"].forEach((langKey) => {
+    TRACING_DB[langKey].lowercase = TRACING_DB[langKey].letters.map((item) => {
+      const lowerChar = item.text.toLowerCase();
+      return {
+        text: lowerChar,
+        label: lowerChar + item.label.slice(1),
+        emoji: item.emoji,
+        speech: item.speech
+      };
+    });
+  });
+
   const PENCIL_COLORS = [
     "#4221b8", // Novakid Purple
     "#31c838", // Novakid Green
@@ -254,11 +292,13 @@
   const STORAGE_STARS = "fenncky_games_stars";
   let totalStars = parseInt(localStorage.getItem(STORAGE_STARS) || "0", 10);
 
-  let currentMode = "letters"; // "letters" | "words"
+  let currentMode = "letters"; // "letters" | "words" | "lowercase"
   let currentIndex = 0;
   let currentColor = PENCIL_COLORS[0];
   let isDrawing = false;
   let lastPt = null;
+  let hoverPt = null; // Position actuelle du curseur pour afficher le rond à la largeur de la lettre
+  let currentBrushRadius = 18; // Rayon exact adapté à la demi-largeur du trait de la lettre
   let isCompleted = false;
   let pulsePhase = 0;
   let sparkles = [];
@@ -286,7 +326,9 @@
 
   function getActiveList() {
     const db = getDB();
-    return currentMode === "words" ? db.words : db.letters;
+    if (currentMode === "words") return db.words;
+    if (currentMode === "lowercase") return db.lowercase || db.letters;
+    return db.letters;
   }
 
   function getCurrentItem() {
@@ -403,6 +445,8 @@
     return { font: `900 ${Math.round(fontSize)}px ${fontFamily}`, fontSize };
   }
 
+  let guideCells = []; // Spatial cells of checkpoints to ensure every part of the letter is traced
+
   function buildMaskAndCheckpoints() {
     const stage = document.getElementById("tracingStage");
     if (!stage) return;
@@ -429,31 +473,100 @@
     maskCtx.lineJoin = "round";
     maskCtx.lineCap = "round";
 
-    // Draw solid shape onto maskCanvas
+    // Draw the full letter track onto maskCanvas
     maskCtx.fillStyle = "#000000";
     maskCtx.strokeStyle = "#000000";
-    maskCtx.lineWidth = Math.max(12, fontSize * 0.08);
+    maskCtx.lineWidth = Math.max(8, fontSize * 0.055);
     maskCtx.strokeText(item.text, W / 2, H * 0.52);
     maskCtx.fillText(item.text, W / 2, H * 0.52);
 
-    // Sample checkpoints across the glyph area on a grid
-    guideCheckpoints = [];
     const imgData = maskCtx.getImageData(0, 0, W, H).data;
-    const step = Math.max(14, Math.round(Math.min(W, H) / 22));
+    const isOpaque = (px, py) => {
+      if (px < 0 || px >= W || py < 0 || py >= H) return false;
+      return imgData[(py * W + px) * 4 + 3] > 140;
+    };
+
+    // 1. Measure the exact stroke width (thickness) of the rendered letter
+    const sampleStep = Math.max(6, Math.round(Math.min(W, H) / 42));
+    const candidates = [];
+    const widths = [];
 
     const isRTL = getActiveLangId() === "Arabic";
-    const xStart = isRTL ? W - step : step;
-    const xEnd = isRTL ? step : W - step;
-    const xDir = isRTL ? -step : step;
+    const xStart = isRTL ? W - sampleStep : sampleStep;
+    const xEnd = isRTL ? sampleStep : W - sampleStep;
+    const xDir = isRTL ? -sampleStep : sampleStep;
 
     for (let x = xStart; isRTL ? x >= xEnd : x <= xEnd; x += xDir) {
-      for (let y = step; y <= H - step; y += step) {
-        const idx = (y * W + x) * 4 + 3;
-        if (imgData[idx] > 128) {
-          guideCheckpoints.push({ x, y, hit: false });
-        }
+      for (let y = sampleStep; y <= H - sampleStep; y += sampleStep) {
+        if (!isOpaque(x, y)) continue;
+
+        let left = 0;
+        while (left < 120 && isOpaque(x - left - 1, y)) left++;
+        let right = 0;
+        while (right < 120 && isOpaque(x + right + 1, y)) right++;
+        let up = 0;
+        while (up < 120 && isOpaque(x, y - up - 1)) up++;
+        let down = 0;
+        while (down < 120 && isOpaque(x, y + down + 1)) down++;
+
+        const hSpan = left + right + 1;
+        const vSpan = up + down + 1;
+        const localWidth = Math.min(hSpan, vSpan);
+        const edgeDist = Math.min(left, right, up, down);
+
+        widths.push(localWidth);
+        candidates.push({ x, y, left, right, up, down, localWidth, edgeDist });
       }
     }
+
+    if (widths.length > 0) {
+      widths.sort((a, b) => a - b);
+      const medianWidth = widths[Math.floor(widths.length * 0.52)];
+      // Adapt cursor diameter (currentBrushRadius * 2) to the exact width of the letter stroke
+      currentBrushRadius = Math.max(10, Math.min(48, Math.round(medianWidth * 0.5)));
+    } else {
+      currentBrushRadius = Math.max(12, Math.round(fontSize * 0.1));
+    }
+
+    // 2. Keep checkpoints near the centerline of the letter so one pass with the letter-width cursor validates that stroke cleanly
+    guideCheckpoints = [];
+    const cellSize = Math.max(22, Math.round(currentBrushRadius * 1.6));
+    const cellMap = new Map();
+    const minCenterDist = Math.max(2, Math.floor(currentBrushRadius * 0.38));
+
+    for (let i = 0; i < candidates.length; i++) {
+      const c = candidates[i];
+      const isNearCenter =
+        Math.min(c.left, c.right) >= minCenterDist ||
+        Math.min(c.up, c.down) >= minCenterDist ||
+        c.localWidth <= currentBrushRadius * 1.1;
+
+      if (isNearCenter) {
+        const cellKey = `${Math.floor(c.x / cellSize)}_${Math.floor(c.y / cellSize)}`;
+        const cp = { x: c.x, y: c.y, hit: false, cellKey };
+        guideCheckpoints.push(cp);
+        if (!cellMap.has(cellKey)) {
+          cellMap.set(cellKey, []);
+        }
+        cellMap.get(cellKey).push(cp);
+      }
+    }
+
+    // Fallback if a very thin glyph filtered everything
+    if (guideCheckpoints.length === 0) {
+      for (let i = 0; i < candidates.length; i++) {
+        const c = candidates[i];
+        const cellKey = `${Math.floor(c.x / cellSize)}_${Math.floor(c.y / cellSize)}`;
+        const cp = { x: c.x, y: c.y, hit: false, cellKey };
+        guideCheckpoints.push(cp);
+        if (!cellMap.has(cellKey)) {
+          cellMap.set(cellKey, []);
+        }
+        cellMap.get(cellKey).push(cp);
+      }
+    }
+
+    guideCells = Array.from(cellMap.values());
 
     isCompleted = false;
     updateProgressUI(0);
@@ -465,18 +578,47 @@
     document.getElementById("tracePercentBadge").textContent = `${clamped}%`;
   }
 
-  function checkTracingCoverage() {
+  function checkTracingCoverage(onStrokeEnd = false) {
     if (isCompleted || guideCheckpoints.length === 0) return;
+
     let hits = 0;
     for (let i = 0; i < guideCheckpoints.length; i++) {
       if (guideCheckpoints[i].hit) hits++;
     }
-    const ratio = hits / guideCheckpoints.length;
-    const displayPct = Math.min(100, Math.round((ratio / 0.68) * 100));
-    updateProgressUI(displayPct);
+    const pointRatio = hits / guideCheckpoints.length;
 
-    if (ratio >= 0.68) {
+    // Verify coverage across all spatial segments/extremities of the letter
+    let coveredCells = 0;
+    let untouchedMajorCells = 0;
+    for (let c = 0; c < guideCells.length; c++) {
+      const cell = guideCells[c];
+      let cellHits = 0;
+      for (let k = 0; k < cell.length; k++) {
+        if (cell[k].hit) cellHits++;
+      }
+      const cRatio = cellHits / cell.length;
+      if (cRatio >= 0.65) {
+        coveredCells++;
+      }
+      if (cell.length >= 2 && cellHits === 0) {
+        untouchedMajorCells++;
+      }
+    }
+
+    const cellRatio = guideCells.length > 0 ? coveredCells / guideCells.length : pointRatio;
+    const effectiveRatio = pointRatio * 0.6 + cellRatio * 0.4;
+
+    // Target threshold: 93% while actively drawing, 88% when lifting the pencil at the end
+    const targetRatio = onStrokeEnd ? 0.88 : 0.93;
+    const allPartsVisited = untouchedMajorCells === 0;
+
+    if (pointRatio >= targetRatio && cellRatio >= (onStrokeEnd ? 0.85 : 0.91) && allPartsVisited) {
       completeTracing();
+    } else {
+      // Cap displayed percentage at 99% until every part of the letter is genuinely completed
+      const rawPct = Math.round((effectiveRatio / 0.93) * 100);
+      const displayPct = Math.min(99, rawPct);
+      updateProgressUI(displayPct);
     }
   }
 
@@ -496,7 +638,7 @@
     strokeCtx.textBaseline = "middle";
     strokeCtx.fillStyle = currentColor;
     strokeCtx.strokeStyle = currentColor;
-    strokeCtx.lineWidth = Math.max(12, fontSize * 0.08);
+    strokeCtx.lineWidth = Math.max(8, fontSize * 0.055);
     strokeCtx.strokeText(item.text, W / 2, H * 0.52);
     strokeCtx.fillText(item.text, W / 2, H * 0.52);
     strokeCtx.restore();
@@ -574,20 +716,13 @@
       // 2. Piste intérieure lavande douce de la lettre / du mot
       ctx.fillStyle = "#ede9fe";
       ctx.strokeStyle = "#ddd6fe";
-      ctx.lineWidth = Math.max(12, fontSize * 0.08);
+      ctx.lineWidth = Math.max(8, fontSize * 0.055);
       ctx.setLineDash([]);
       ctx.strokeText(item.text, W / 2, H * 0.52);
       ctx.fillText(item.text, W / 2, H * 0.52);
 
-      // 3. Tracé de l'enfant (masqué proprement dans la lettre + léger halo libre)
+      // 3. Tracé de l'enfant (masqué proprement dans la lettre)
       ctx.save();
-      ctx.globalAlpha = 0.25;
-      ctx.drawImage(strokeCanvas, 0, 0);
-      ctx.restore();
-
-      // Composite clipped inside mask
-      ctx.save();
-      // Create temporary composite on mask
       ctx.drawImage(strokeCanvas, 0, 0);
       ctx.restore();
 
@@ -604,13 +739,13 @@
       ctx.strokeText(item.text, W / 2, H * 0.52);
       ctx.restore();
 
-      // 5. Point guide lumineux animé sur le prochain point à tracer
+      // 5. Point guide lumineux animé (adapté à la largeur de la lettre)
       if (!isCompleted && guideCheckpoints.length > 0) {
         const nextPt = guideCheckpoints.find((p) => !p.hit);
         if (nextPt) {
-          const r = 9 + Math.sin(pulsePhase) * 3;
+          const r = Math.max(8, currentBrushRadius * 0.72) + Math.sin(pulsePhase) * 2.5;
           ctx.save();
-          ctx.fillStyle = "#facc15";
+          ctx.fillStyle = "rgba(250, 204, 21, 0.85)";
           ctx.strokeStyle = "#4221b8";
           ctx.lineWidth = 3;
           ctx.beginPath();
@@ -636,6 +771,40 @@
       ctx.restore();
     });
     sparkles = sparkles.filter((sp) => sp.life > 0);
+
+    // 7. Curseur circulaire adapté exactement à la largeur du trait de la lettre
+    if (hoverPt) {
+      ctx.save();
+      // Halo intérieur de la couleur du crayon
+      ctx.globalAlpha = isDrawing ? 0.38 : 0.24;
+      ctx.fillStyle = currentColor;
+      ctx.beginPath();
+      ctx.arc(hoverPt.x, hoverPt.y, currentBrushRadius, 0, Math.PI * 2);
+      ctx.fill();
+
+      // Anneau blanc de contraste
+      ctx.globalAlpha = 0.9;
+      ctx.strokeStyle = "#ffffff";
+      ctx.lineWidth = 4;
+      ctx.beginPath();
+      ctx.arc(hoverPt.x, hoverPt.y, currentBrushRadius, 0, Math.PI * 2);
+      ctx.stroke();
+
+      // Contour net de la couleur choisie (diamètre = largeur exacte de la lettre)
+      ctx.globalAlpha = 1;
+      ctx.strokeStyle = currentColor;
+      ctx.lineWidth = 2.5;
+      ctx.beginPath();
+      ctx.arc(hoverPt.x, hoverPt.y, currentBrushRadius, 0, Math.PI * 2);
+      ctx.stroke();
+
+      // Point central de visée
+      ctx.fillStyle = currentColor;
+      ctx.beginPath();
+      ctx.arc(hoverPt.x, hoverPt.y, 3.5, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.restore();
+    }
 
     rafId = requestAnimationFrame(renderLoop);
   }
@@ -666,11 +835,9 @@
   }
 
   function drawStrokeSegment(fromPt, toPt) {
-    const W = canvas.width;
-    const H = canvas.height;
-    const item = getCurrentItem();
-    const { fontSize } = getFontSpec(item ? item.text : "A", W, H);
-    const brushRadius = Math.max(18, fontSize * 0.13);
+    // Le diamètre du pinceau correspond exactement à la largeur mesurée du trait de la lettre
+    const brushRadius = currentBrushRadius;
+    const hitRadius = currentBrushRadius * 0.92;
 
     strokeCtx.save();
     strokeCtx.strokeStyle = currentColor;
@@ -689,14 +856,14 @@
     strokeCtx.drawImage(maskCanvas, 0, 0);
     strokeCtx.restore();
 
-    // Mark checkpoints along the segment
+    // Mark centerline checkpoints strictly along the drawn stroke path
     const dist = Math.hypot(toPt.x - fromPt.x, toPt.y - fromPt.y);
-    const steps = Math.max(1, Math.ceil(dist / 8));
+    const steps = Math.max(1, Math.ceil(dist / 5));
     for (let s = 0; s <= steps; s++) {
       const t = s / steps;
       const sx = fromPt.x + (toPt.x - fromPt.x) * t;
       const sy = fromPt.y + (toPt.y - fromPt.y) * t;
-      markCheckpointsNear(sx, sy, brushRadius * 1.25);
+      markCheckpointsNear(sx, sy, hitRadius);
     }
 
     // Add magic sparkles
@@ -712,7 +879,7 @@
       });
     }
 
-    checkTracingCoverage();
+    checkTracingCoverage(false);
   }
 
   canvas.addEventListener("pointerdown", (e) => {
@@ -720,25 +887,36 @@
     canvas.setPointerCapture(e.pointerId);
     isDrawing = true;
     const pt = getCanvasCoords(e);
+    hoverPt = pt;
     lastPt = pt;
     drawStrokeSegment(pt, pt);
   });
 
   canvas.addEventListener("pointermove", (e) => {
+    const pt = getCanvasCoords(e);
+    hoverPt = pt;
     if (!isDrawing || !lastPt) return;
     e.preventDefault();
-    const pt = getCanvasCoords(e);
     drawStrokeSegment(lastPt, pt);
     lastPt = pt;
   });
 
   const stopDrawing = () => {
-    isDrawing = false;
-    lastPt = null;
+    if (isDrawing) {
+      isDrawing = false;
+      lastPt = null;
+      checkTracingCoverage(true);
+    }
   };
   canvas.addEventListener("pointerup", stopDrawing);
-  canvas.addEventListener("pointercancel", stopDrawing);
-  canvas.addEventListener("pointerleave", stopDrawing);
+  canvas.addEventListener("pointercancel", () => {
+    hoverPt = null;
+    stopDrawing();
+  });
+  canvas.addEventListener("pointerleave", () => {
+    hoverPt = null;
+    stopDrawing();
+  });
 
   /* =========================================================
      7. INTERFACE & NAVIGATION
@@ -809,6 +987,8 @@
     document.getElementById("tracingModeLabel").textContent = db.ui.modeLabel;
     document.getElementById("modeLettersText").textContent = db.ui.modeLetters;
     document.getElementById("modeWordsText").textContent = db.ui.modeWords;
+    const modeLowerTextEl = document.getElementById("modeLowerText");
+    if (modeLowerTextEl) modeLowerTextEl.textContent = db.ui.modeLower;
     document.getElementById("listenTargetText").textContent = db.ui.listen;
     document.getElementById("colorPickerLabel").textContent = db.ui.colorLabel;
     document.getElementById("clearBtnText").textContent = db.ui.clear;
@@ -817,6 +997,8 @@
 
     document.getElementById("modeLettersBtn").classList.toggle("active", currentMode === "letters");
     document.getElementById("modeWordsBtn").classList.toggle("active", currentMode === "words");
+    const modeLowerBtn = document.getElementById("modeLowerBtn");
+    if (modeLowerBtn) modeLowerBtn.classList.toggle("active", currentMode === "lowercase");
 
     renderColorSwatches();
     loadCurrentItem();
@@ -837,6 +1019,15 @@
       currentIndex = 0;
       applyUI();
     });
+
+    const modeLowerBtn = document.getElementById("modeLowerBtn");
+    if (modeLowerBtn) {
+      modeLowerBtn.addEventListener("click", () => {
+        currentMode = "lowercase";
+        currentIndex = 0;
+        applyUI();
+      });
+    }
 
     document.getElementById("speakTargetBtn").addEventListener("click", speakCurrentItem);
 
