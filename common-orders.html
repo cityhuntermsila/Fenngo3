@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, viewport-fit=cover">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <title>Common Classroom Orders</title>
+  <link rel="stylesheet" href="css/common.css?v=8">
+  <link rel="stylesheet" href="css/topics.css?v=8">
+</head>
+
+<body class="topic-page common-orders-page">
+  <div id="topicApp" class="topic-app common-orders-app">
+    <main class="topic-main page-scroll">
+      <header class="topic-heading">
+        <h1 class="page-title">
+          <span id="topicTitle" class="topic-title-gradient">Classroom Orders</span>
+        </h1>
+        <p id="topicSubtitle" class="topic-subtitle">Tap any command to hear and practice!</p>
+      </header>
+
+      <section class="topic-grid-20" id="topicGrid" aria-label="Common Classroom Orders"></section>
+    </main>
+
+    <div id="footer" class="topic-footer"></div>
+  </div>
+
+  <!-- Detail Popup Modal -->
+  <div class="topic-modal" id="topicModal" aria-hidden="true">
+    <div class="topic-modal-card" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+      <button type="button" class="modal-close-btn" id="modalCloseBtn" aria-label="Close">&times;</button>
+      <button type="button" class="modal-nav-btn modal-prev-btn" id="modalPrevBtn" aria-label="Previous">&lsaquo;</button>
+      <button type="button" class="modal-nav-btn modal-next-btn" id="modalNextBtn" aria-label="Next">&rsaquo;</button>
+
+      <div class="modal-badge" id="modalCategoryBadge">Classroom Command</div>
+      <div class="modal-avatar-stage" id="modalAvatarStage"></div>
+      <h2 class="modal-title" id="modalTitle">Stand up.</h2>
+      <p class="modal-phrase" id="modalPhrase">Please stand up!</p>
+
+      <div class="modal-controls">
+        <button type="button" class="modal-sound-btn" id="modalSoundBtn" aria-label="Listen">
+          <i class="fa-solid fa-volume-high" aria-hidden="true"></i>
+          <span id="modalListenText">Listen</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/app-lang.js?v=8"></script>
+  <script src="js/include.js?v=8"></script>
+  <script src="js/common-orders.js?v=8"></script>
+</body>
+
+</html>

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, viewport-fit=cover">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <title>Learn Family</title>
+  <link rel="stylesheet" href="css/common.css?v=8">
+  <link rel="stylesheet" href="css/family.css?v=8">
+</head>
+
+<body class="family-page">
+  <div id="familyApp" class="family-app">
+    <main class="family-main page-scroll">
+      <!-- Header area -->
+      <header class="family-heading">
+        <h1 class="page-title">
+          <span id="familyTitle" class="family-title-gradient">Meet the Family</span>
+        </h1>
+        <p id="familySubtitle" class="family-subtitle">Tap any card to hear and learn!</p>
+      </header>
+
+      <!-- Section 1: Family Members (6 cards) -->
+      <section class="family-section" aria-labelledby="membersSectionTitle">
+        <div class="section-badge-wrap">
+          <span class="section-badge members-badge" id="membersSectionTitle">
+            <i class="fa-solid fa-users" aria-hidden="true"></i>
+            <span id="membersSectionText">Family Members</span>
+          </span>
+        </div>
+        <div class="members-grid" id="membersGrid"></div>
+      </section>
+
+      <!-- Section 2: Family Relations (4 cards: My Mother, My Father, My Brother, My Sister) -->
+      <section class="family-section relations-section" aria-labelledby="relationsSectionTitle">
+        <div class="section-badge-wrap">
+          <span class="section-badge relations-badge" id="relationsSectionTitle">
+            <i class="fa-solid fa-heart" aria-hidden="true"></i>
+            <span id="relationsSectionText">My Family Relations</span>
+          </span>
+        </div>
+        <div class="relations-grid" id="relationsGrid"></div>
+      </section>
+    </main>
+
+    <div id="footer" class="family-footer"></div>
+  </div>
+
+  <!-- Detail Popup Modal -->
+  <div class="family-modal" id="familyModal" aria-hidden="true">
+    <div class="family-modal-card" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+      <button type="button" class="modal-close-btn" id="modalCloseBtn" aria-label="Close">&times;</button>
+
+      <button type="button" class="modal-nav-btn modal-prev-btn" id="modalPrevBtn" aria-label="Previous">&lsaquo;</button>
+      <button type="button" class="modal-nav-btn modal-next-btn" id="modalNextBtn" aria-label="Next">&rsaquo;</button>
+
+      <div class="modal-badge" id="modalCategoryBadge">Family Member</div>
+
+      <div class="modal-avatar-stage" id="modalAvatarStage"></div>
+
+      <h2 class="modal-title" id="modalTitle">Grandfather</h2>
+      <p class="modal-phrase" id="modalPhrase">This is the grandfather.</p>
+
+      <div class="modal-controls">
+        <button type="button" class="modal-sound-btn" id="modalSoundBtn" aria-label="Listen">
+          <i class="fa-solid fa-volume-high" aria-hidden="true"></i>
+          <span id="modalListenText">Listen</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/app-lang.js?v=8"></script>
+  <script src="js/include.js?v=8"></script>
+  <script src="js/family.js?v=8"></script>
+</body>
+
+</html>

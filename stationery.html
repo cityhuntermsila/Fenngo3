@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, viewport-fit=cover">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <title>School Stationery</title>
+  <link rel="stylesheet" href="css/common.css?v=8">
+  <link rel="stylesheet" href="css/topics.css?v=8">
+</head>
+
+<body class="topic-page stationery-page">
+  <div id="topicApp" class="topic-app stationery-app">
+    <main class="topic-main page-scroll">
+      <header class="topic-heading">
+        <h1 class="page-title">
+          <span id="topicTitle" class="topic-title-gradient">School Stationery</span>
+        </h1>
+        <p id="topicSubtitle" class="topic-subtitle">Tap any school item to hear and learn!</p>
+      </header>
+
+      <section class="topic-grid-10" id="topicGrid" aria-label="School Stationery"></section>
+    </main>
+
+    <div id="footer" class="topic-footer"></div>
+  </div>
+
+  <!-- Detail Popup Modal -->
+  <div class="topic-modal" id="topicModal" aria-hidden="true">
+    <div class="topic-modal-card" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+      <button type="button" class="modal-close-btn" id="modalCloseBtn" aria-label="Close">&times;</button>
+      <button type="button" class="modal-nav-btn modal-prev-btn" id="modalPrevBtn" aria-label="Previous">&lsaquo;</button>
+      <button type="button" class="modal-nav-btn modal-next-btn" id="modalNextBtn" aria-label="Next">&rsaquo;</button>
+
+      <div class="modal-badge" id="modalCategoryBadge">School Stationery</div>
+      <div class="modal-avatar-stage" id="modalAvatarStage"></div>
+      <h2 class="modal-title" id="modalTitle">Pencil</h2>
+      <p class="modal-phrase" id="modalPhrase">This is a pencil.</p>
+
+      <div class="modal-controls">
+        <button type="button" class="modal-sound-btn" id="modalSoundBtn" aria-label="Listen">
+          <i class="fa-solid fa-volume-high" aria-hidden="true"></i>
+          <span id="modalListenText">Listen</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/app-lang.js?v=8"></script>
+  <script src="js/include.js?v=8"></script>
+  <script src="js/stationery.js?v=8"></script>
+</body>
+
+</html>

@@ -1,0 +1,78 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 310" width="420" height="310">
+  <defs>
+    <linearGradient id="drBg" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#f59e0b"/>
+      <stop offset="100%" stop-color="#d97706"/>
+    </linearGradient>
+    <radialGradient id="drRay" cx="50%" cy="45%" r="60%">
+      <stop offset="0%" stop-color="#fef3c7" stop-opacity="0.5"/>
+      <stop offset="100%" stop-color="#d97706" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="drPill" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#2563eb"/>
+      <stop offset="100%" stop-color="#1d4ed8"/>
+    </linearGradient>
+    <filter id="drCardSh" x="-8%" y="-8%" width="116%" height="120%">
+      <feDropShadow dx="0" dy="8" stdDeviation="6" flood-color="#78350f" flood-opacity="0.42"/>
+    </filter>
+    <filter id="drSoftSh" x="-10%" y="-10%" width="120%" height="125%">
+      <feDropShadow dx="0" dy="4" stdDeviation="3" flood-color="#451a03" flood-opacity="0.32"/>
+    </filter>
+  </defs>
+
+  <!-- Card Frame -->
+  <rect x="14" y="10" width="392" height="262" rx="48" fill="#ffffff" filter="url(#drCardSh)"/>
+  <rect x="22" y="18" width="376" height="246" rx="42" fill="url(#drBg)"/>
+  <rect x="22" y="18" width="376" height="246" rx="42" fill="url(#drRay)"/>
+
+  <g filter="url(#drSoftSh)">
+    <!-- Smiling Morning Sun (Top Left) -->
+    <g transform="translate(86, 78)">
+      <g stroke="#fde047" stroke-width="5" stroke-linecap="round">
+        <line x1="0" y1="-42" x2="0" y2="-32"/>
+        <line x1="0" y1="32" x2="0" y2="42"/>
+        <line x1="-42" y1="0" x2="-32" y2="0"/>
+        <line x1="32" y1="0" x2="42" y2="0"/>
+        <line x1="-30" y1="-30" x2="-22" y2="-22"/>
+        <line x1="22" y1="22" x2="30" y2="30"/>
+        <line x1="30" y1="-30" x2="22" y2="-22"/>
+        <line x1="-22" y1="22" x2="-30" y2="30"/>
+      </g>
+      <circle cx="0" cy="0" r="26" fill="#facc15" stroke="#ffffff" stroke-width="4"/>
+      <circle cx="-8" cy="-4" r="3" fill="#78350f"/>
+      <circle cx="8" cy="-4" r="3" fill="#78350f"/>
+      <path d="M-8 6 Q0 14 8 6" fill="none" stroke="#78350f" stroke-width="3" stroke-linecap="round"/>
+    </g>
+
+    <!-- Alarm Clock (Center) -->
+    <g transform="translate(210, 114)">
+      <!-- Bells -->
+      <path d="M-46 -46 A18 18 0 0 1 -18 -58 Z" fill="#ef4444" stroke="#ffffff" stroke-width="3.5"/>
+      <path d="M46 -46 A18 18 0 0 0 18 -58 Z" fill="#ef4444" stroke="#ffffff" stroke-width="3.5"/>
+      <!-- Legs -->
+      <line x1="-32" y1="44" x2="-42" y2="58" stroke="#ffffff" stroke-width="6" stroke-linecap="round"/>
+      <line x1="32" y1="44" x2="42" y2="58" stroke="#ffffff" stroke-width="6" stroke-linecap="round"/>
+      <!-- Clock Body -->
+      <circle cx="0" cy="0" r="54" fill="#38bdf8" stroke="#ffffff" stroke-width="5"/>
+      <circle cx="0" cy="0" r="42" fill="#ffffff"/>
+      <!-- Clock Hands -->
+      <line x1="0" y1="0" x2="0" y2="-26" stroke="#1e293b" stroke-width="5" stroke-linecap="round"/>
+      <line x1="0" y1="0" x2="20" y2="8" stroke="#ef4444" stroke-width="5" stroke-linecap="round"/>
+      <circle cx="0" cy="0" r="5" fill="#1e293b"/>
+    </g>
+
+    <!-- Toothbrush & Moon (Right) -->
+    <g transform="translate(330, 88)">
+      <path d="M8 -32 A26 26 0 1 0 32 10 A20 20 0 1 1 8 -32 Z" fill="#fef08a" stroke="#ffffff" stroke-width="3"/>
+      <g transform="translate(-14, 18) rotate(28)">
+        <rect x="0" y="0" width="12" height="68" rx="6" fill="#ec4899" stroke="#ffffff" stroke-width="3"/>
+        <rect x="12" y="2" width="14" height="22" rx="4" fill="#ffffff" stroke="#cbd5e1" stroke-width="2"/>
+      </g>
+    </g>
+  </g>
+
+  <!-- Label Banner -->
+  <rect x="44" y="218" width="332" height="68" rx="24" fill="#ffffff" filter="url(#drSoftSh)"/>
+  <rect x="49" y="223" width="322" height="58" rx="20" fill="url(#drPill)"/>
+  <text x="210" y="261" text-anchor="middle" fill="#ffffff" font-family="'Comic Sans MS', 'Poppins', sans-serif" font-size="29" font-weight="900">Daily Routine</text>
+</svg>

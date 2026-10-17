@@ -12,13 +12,25 @@
       "text": "ع - عِنَب",
       "file": "assets/audio/ar/38007584.mp3"
     },
+    "40109109": {
+      "text": "ضَعْ عَلَامَةَ صَحّ.",
+      "file": "assets/audio/ar/40109109.mp3"
+    },
     "61176497": {
       "text": "و - وَرْدَة",
       "file": "assets/audio/ar/61176497.mp3"
     },
+    "81547760": {
+      "text": "اِسْتَمِعْ إِلَى القُرْصِ مِنْ فَضْلِكَ.",
+      "file": "assets/audio/ar/81547760.mp3"
+    },
     "82344608": {
       "text": "ظ - ظَرْف",
       "file": "assets/audio/ar/82344608.mp3"
+    },
+    "88995329": {
+      "text": "اِجْلِسْ.",
+      "file": "assets/audio/ar/88995329.mp3"
     },
     "2ba4c5bf": {
       "text": "العربية! هيا نتعلم اللغة العربية!",
@@ -639,6 +651,234 @@
     "a087f14b": {
       "text": "مكعب ألعاب على شكل مكعب.",
       "file": "assets/audio/ar/a087f14b.mp3"
+    },
+    "7b7b1eef": {
+      "text": "الجَدّ. هَذَا هُوَ الجَدّ.",
+      "file": "assets/audio/ar/7b7b1eef.mp3"
+    },
+    "ca750072": {
+      "text": "الجَدَّة. هَذِهِ هِيَ الجَدَّة.",
+      "file": "assets/audio/ar/ca750072.mp3"
+    },
+    "cd2cc0d9": {
+      "text": "الأَب. هَذَا هُوَ الأَب.",
+      "file": "assets/audio/ar/cd2cc0d9.mp3"
+    },
+    "ea9e66b2": {
+      "text": "الأُمّ. هَذِهِ هِيَ الأُمّ.",
+      "file": "assets/audio/ar/ea9e66b2.mp3"
+    },
+    "0dee9245": {
+      "text": "الاِبْن. هَذَا هُوَ الاِبْن.",
+      "file": "assets/audio/ar/0dee9245.mp3"
+    },
+    "1431423e": {
+      "text": "الاِبْنَة. هَذِهِ هِيَ الاِبْنَة.",
+      "file": "assets/audio/ar/1431423e.mp3"
+    },
+    "fab08ec8": {
+      "text": "أُمِّي! هَذِهِ أُمِّي.",
+      "file": "assets/audio/ar/fab08ec8.mp3"
+    },
+    "14d349a2": {
+      "text": "أَبِي! هَذَا أَبِي.",
+      "file": "assets/audio/ar/14d349a2.mp3"
+    },
+    "3fb3990e": {
+      "text": "أَخِي! هَذَا أَخِي.",
+      "file": "assets/audio/ar/3fb3990e.mp3"
+    },
+    "a6473946": {
+      "text": "أُخْتِي! هَذِهِ أُخْتِي.",
+      "file": "assets/audio/ar/a6473946.mp3"
+    },
+    "26ba71cf": {
+      "text": "قَلَمُ رَصَاص. هَذَا قَلَمُ رَصَاص.",
+      "file": "assets/audio/ar/26ba71cf.mp3"
+    },
+    "cddbac93": {
+      "text": "قَلَمُ حِبْر. هَذَا قَلَمُ حِبْر.",
+      "file": "assets/audio/ar/cddbac93.mp3"
+    },
+    "6ad6954f": {
+      "text": "كِتَاب. هَذَا كِتَاب.",
+      "file": "assets/audio/ar/6ad6954f.mp3"
+    },
+    "ed71fd27": {
+      "text": "كُرَّاس. هَذَا كُرَّاس.",
+      "file": "assets/audio/ar/ed71fd27.mp3"
+    },
+    "8054201d": {
+      "text": "مِمْحَاة. هَذِهِ مِمْحَاة.",
+      "file": "assets/audio/ar/8054201d.mp3"
+    },
+    "90b9d12f": {
+      "text": "مِسْطَرَة. هَذِهِ مِسْطَرَة.",
+      "file": "assets/audio/ar/90b9d12f.mp3"
+    },
+    "13847e8f": {
+      "text": "مِحْفَظَة. هَذِهِ مِحْفَظَة.",
+      "file": "assets/audio/ar/13847e8f.mp3"
+    },
+    "444f7537": {
+      "text": "مِقَصّ. هَذَا مِقَصّ.",
+      "file": "assets/audio/ar/444f7537.mp3"
+    },
+    "022d05f3": {
+      "text": "مِبْرَاة. هَذِهِ مِبْرَاة.",
+      "file": "assets/audio/ar/022d05f3.mp3"
+    },
+    "41be66e7": {
+      "text": "مِقْلَمَة. هَذِهِ مِقْلَمَة.",
+      "file": "assets/audio/ar/41be66e7.mp3"
+    },
+    "ba580937": {
+      "text": "الرَّأْس. هَذَا هُوَ الرَّأْس.",
+      "file": "assets/audio/ar/ba580937.mp3"
+    },
+    "da8f1bfd": {
+      "text": "الشَّعْر. هَذَا هُوَ الشَّعْر.",
+      "file": "assets/audio/ar/da8f1bfd.mp3"
+    },
+    "ca2eaa4c": {
+      "text": "العَيْن. هَذِهِ هِيَ العَيْن.",
+      "file": "assets/audio/ar/ca2eaa4c.mp3"
+    },
+    "8d392ba4": {
+      "text": "الأُذُن. هَذِهِ هِيَ الأُذُن.",
+      "file": "assets/audio/ar/8d392ba4.mp3"
+    },
+    "8ca472fd": {
+      "text": "الأَنْف. هَذَا هُوَ الأَنْف.",
+      "file": "assets/audio/ar/8ca472fd.mp3"
+    },
+    "69038e25": {
+      "text": "الفَم. هَذَا هُوَ الفَم.",
+      "file": "assets/audio/ar/69038e25.mp3"
+    },
+    "4241a4d4": {
+      "text": "اليَد. هَذِهِ هِيَ اليَد.",
+      "file": "assets/audio/ar/4241a4d4.mp3"
+    },
+    "e564af79": {
+      "text": "الذِّرَاع. هَذَا هُوَ الذِّرَاع.",
+      "file": "assets/audio/ar/e564af79.mp3"
+    },
+    "2c67b3c0": {
+      "text": "السَّاق. هَذِهِ هِيَ السَّاق.",
+      "file": "assets/audio/ar/2c67b3c0.mp3"
+    },
+    "2d8c5d56": {
+      "text": "القَدَم. هَذِهِ هِيَ القَدَم.",
+      "file": "assets/audio/ar/2d8c5d56.mp3"
+    },
+    "4582a0cf": {
+      "text": "أَسْتَيْقِظُ. أَسْتَيْقِظُ فِي الصَّبَاح.",
+      "file": "assets/audio/ar/4582a0cf.mp3"
+    },
+    "f8f0836d": {
+      "text": "أَغْسِلُ وَجْهِي. أَغْسِلُ وَجْهِي بِالمَاء.",
+      "file": "assets/audio/ar/f8f0836d.mp3"
+    },
+    "91f66093": {
+      "text": "أُنَظِّفُ أَسْنَانِي. أُنَظِّفُ أَسْنَانِي بِالفُرْشَاة.",
+      "file": "assets/audio/ar/91f66093.mp3"
+    },
+    "d1b31187": {
+      "text": "أَرْتَدِي مَلَابِسِي.",
+      "file": "assets/audio/ar/d1b31187.mp3"
+    },
+    "4612def6": {
+      "text": "أَتَنَاوَلُ الفَطُور. أَتَنَاوَلُ وَجْبَةَ الفَطُور.",
+      "file": "assets/audio/ar/4612def6.mp3"
+    },
+    "906daebc": {
+      "text": "أَذْهَبُ إِلَى المَدْرَسَة.",
+      "file": "assets/audio/ar/906daebc.mp3"
+    },
+    "e9884fad": {
+      "text": "أَدْرُسُ. أَدْرُسُ فِي القِسْم.",
+      "file": "assets/audio/ar/e9884fad.mp3"
+    },
+    "5122425d": {
+      "text": "أَلْعَبُ. أَلْعَبُ مَعَ أَصْدِقَائِي.",
+      "file": "assets/audio/ar/5122425d.mp3"
+    },
+    "b4d2a5ac": {
+      "text": "أُنْجِزُ وَاجِبَاتِي. أُنْجِزُ وَاجِبَاتِي المَدْرَسِيَّة.",
+      "file": "assets/audio/ar/b4d2a5ac.mp3"
+    },
+    "4964dca0": {
+      "text": "أَنَامُ. أَنَامُ فِي اللَّيْل.",
+      "file": "assets/audio/ar/4964dca0.mp3"
+    },
+    "8d93a952": {
+      "text": "قِفْ.",
+      "file": "assets/audio/ar/8d93a952.mp3"
+    },
+    "1c0a7a63": {
+      "text": "اِرْفَعْ يَدَكَ.",
+      "file": "assets/audio/ar/1c0a7a63.mp3"
+    },
+    "9859ecbf": {
+      "text": "اِمْسَحْ.",
+      "file": "assets/audio/ar/9859ecbf.mp3"
+    },
+    "8459983f": {
+      "text": "أَرِنِي. أَشِرْ.",
+      "file": "assets/audio/ar/8459983f.mp3"
+    },
+    "c39690ad": {
+      "text": "اِسْتَمِعْ.",
+      "file": "assets/audio/ar/c39690ad.mp3"
+    },
+    "1a36e529": {
+      "text": "اُنْظُرْ.",
+      "file": "assets/audio/ar/1a36e529.mp3"
+    },
+    "4ed64826": {
+      "text": "اِقْرَأْ.",
+      "file": "assets/audio/ar/4ed64826.mp3"
+    },
+    "31c9cee5": {
+      "text": "اُرْسُمْ.",
+      "file": "assets/audio/ar/31c9cee5.mp3"
+    },
+    "9223902c": {
+      "text": "لَوِّنْ.",
+      "file": "assets/audio/ar/9223902c.mp3"
+    },
+    "e1d2fdc7": {
+      "text": "اُكْتُبْ.",
+      "file": "assets/audio/ar/e1d2fdc7.mp3"
+    },
+    "008486a7": {
+      "text": "أَعِدْ. قُلْ.",
+      "file": "assets/audio/ar/008486a7.mp3"
+    },
+    "81100ab8": {
+      "text": "ضَعْ عَلَامَةَ خَطَأ.",
+      "file": "assets/audio/ar/81100ab8.mp3"
+    },
+    "5f410c5a": {
+      "text": "حَوِّطْ.",
+      "file": "assets/audio/ar/5f410c5a.mp3"
+    },
+    "79ea541a": {
+      "text": "اِرْبِطْ.",
+      "file": "assets/audio/ar/79ea541a.mp3"
+    },
+    "5fe579b5": {
+      "text": "أَعِدْ بَعْدِي مِنْ فَضْلِكَ.",
+      "file": "assets/audio/ar/5fe579b5.mp3"
+    },
+    "3e5f3e4e": {
+      "text": "اُنْظُرْ إِلَى الصُّورَةِ مِنْ فَضْلِكَ.",
+      "file": "assets/audio/ar/3e5f3e4e.mp3"
+    },
+    "f421928e": {
+      "text": "اِفْتَحْ كِتَابَكَ مِنْ فَضْلِكَ.",
+      "file": "assets/audio/ar/f421928e.mp3"
     }
   },
   "fr": {
@@ -1313,6 +1553,246 @@
     "40f91ee2": {
       "text": "Bloc de jeu a la forme d'un Cube.",
       "file": "assets/audio/fr/40f91ee2.mp3"
+    },
+    "5fb478b3": {
+      "text": "Le grand-père. Voici le grand-père.",
+      "file": "assets/audio/fr/5fb478b3.mp3"
+    },
+    "f4c05ecd": {
+      "text": "La grand-mère. Voici la grand-mère.",
+      "file": "assets/audio/fr/f4c05ecd.mp3"
+    },
+    "3fa78411": {
+      "text": "Le père. Voici le père.",
+      "file": "assets/audio/fr/3fa78411.mp3"
+    },
+    "dd117f3f": {
+      "text": "La mère. Voici la mère.",
+      "file": "assets/audio/fr/dd117f3f.mp3"
+    },
+    "dbb7fd1f": {
+      "text": "Le fils. Voici le fils.",
+      "file": "assets/audio/fr/dbb7fd1f.mp3"
+    },
+    "75000bb9": {
+      "text": "La fille. Voici la fille.",
+      "file": "assets/audio/fr/75000bb9.mp3"
+    },
+    "cd5f5a6c": {
+      "text": "Ma mère ! C'est ma mère.",
+      "file": "assets/audio/fr/cd5f5a6c.mp3"
+    },
+    "25104e78": {
+      "text": "Mon père ! C'est mon père.",
+      "file": "assets/audio/fr/25104e78.mp3"
+    },
+    "ac1c88b4": {
+      "text": "Mon frère ! C'est mon frère.",
+      "file": "assets/audio/fr/ac1c88b4.mp3"
+    },
+    "6d2488ec": {
+      "text": "Ma sœur ! C'est ma sœur.",
+      "file": "assets/audio/fr/6d2488ec.mp3"
+    },
+    "a4a3c39b": {
+      "text": "Le crayon. C'est un crayon.",
+      "file": "assets/audio/fr/a4a3c39b.mp3"
+    },
+    "f9bfb3e1": {
+      "text": "Le stylo. C'est un stylo.",
+      "file": "assets/audio/fr/f9bfb3e1.mp3"
+    },
+    "eefd9085": {
+      "text": "Le livre. C'est un livre.",
+      "file": "assets/audio/fr/eefd9085.mp3"
+    },
+    "e6361077": {
+      "text": "Le cahier. C'est un cahier.",
+      "file": "assets/audio/fr/e6361077.mp3"
+    },
+    "440c02c4": {
+      "text": "La gomme. C'est une gomme.",
+      "file": "assets/audio/fr/440c02c4.mp3"
+    },
+    "a77171a2": {
+      "text": "La règle. C'est une règle.",
+      "file": "assets/audio/fr/a77171a2.mp3"
+    },
+    "7af30eff": {
+      "text": "Le cartable. C'est un cartable.",
+      "file": "assets/audio/fr/7af30eff.mp3"
+    },
+    "853b72e3": {
+      "text": "Les ciseaux. Ce sont des ciseaux.",
+      "file": "assets/audio/fr/853b72e3.mp3"
+    },
+    "6cae3429": {
+      "text": "Le taille-crayon. C'est un taille-crayon.",
+      "file": "assets/audio/fr/6cae3429.mp3"
+    },
+    "43a35208": {
+      "text": "La trousse. C'est une trousse.",
+      "file": "assets/audio/fr/43a35208.mp3"
+    },
+    "a3901e39": {
+      "text": "La tête. Voici la tête.",
+      "file": "assets/audio/fr/a3901e39.mp3"
+    },
+    "7af4d1e5": {
+      "text": "Les cheveux. Voici les cheveux.",
+      "file": "assets/audio/fr/7af4d1e5.mp3"
+    },
+    "19caeb23": {
+      "text": "L'œil. Voici l'œil.",
+      "file": "assets/audio/fr/19caeb23.mp3"
+    },
+    "de5c7f7b": {
+      "text": "L'oreille. Voici l'oreille.",
+      "file": "assets/audio/fr/de5c7f7b.mp3"
+    },
+    "70fdd4f1": {
+      "text": "Le nez. Voici le nez.",
+      "file": "assets/audio/fr/70fdd4f1.mp3"
+    },
+    "74d1620f": {
+      "text": "La bouche. Voici la bouche.",
+      "file": "assets/audio/fr/74d1620f.mp3"
+    },
+    "2f858449": {
+      "text": "La main. Voici la main.",
+      "file": "assets/audio/fr/2f858449.mp3"
+    },
+    "3def15d7": {
+      "text": "Le bras. Voici le bras.",
+      "file": "assets/audio/fr/3def15d7.mp3"
+    },
+    "46560b99": {
+      "text": "La jambe. Voici la jambe.",
+      "file": "assets/audio/fr/46560b99.mp3"
+    },
+    "b9ac318f": {
+      "text": "Le pied. Voici le pied.",
+      "file": "assets/audio/fr/b9ac318f.mp3"
+    },
+    "91c83dea": {
+      "text": "Se réveiller. Je me réveille le matin.",
+      "file": "assets/audio/fr/91c83dea.mp3"
+    },
+    "15e1fa78": {
+      "text": "Se laver le visage. Je me lave le visage.",
+      "file": "assets/audio/fr/15e1fa78.mp3"
+    },
+    "0af3cf6c": {
+      "text": "Se brosser les dents. Je me brosse les dents.",
+      "file": "assets/audio/fr/0af3cf6c.mp3"
+    },
+    "341571f2": {
+      "text": "S'habiller. Je m'habille.",
+      "file": "assets/audio/fr/341571f2.mp3"
+    },
+    "f9dbf771": {
+      "text": "Prendre le petit-déjeuner. Je prends mon petit-déjeuner.",
+      "file": "assets/audio/fr/f9dbf771.mp3"
+    },
+    "85a1382f": {
+      "text": "Aller à l'école. Je vais à l'école.",
+      "file": "assets/audio/fr/85a1382f.mp3"
+    },
+    "5b07ccac": {
+      "text": "Étudier. J'étudie en classe.",
+      "file": "assets/audio/fr/5b07ccac.mp3"
+    },
+    "2c8350aa": {
+      "text": "Jouer. Je joue avec mes amis.",
+      "file": "assets/audio/fr/2c8350aa.mp3"
+    },
+    "a05f2e50": {
+      "text": "Faire ses devoirs. Je fais mes devoirs.",
+      "file": "assets/audio/fr/a05f2e50.mp3"
+    },
+    "a47111c6": {
+      "text": "Dormir. Je vais dormir la nuit.",
+      "file": "assets/audio/fr/a47111c6.mp3"
+    },
+    "73a244d0": {
+      "text": "Debout. Lève-toi.",
+      "file": "assets/audio/fr/73a244d0.mp3"
+    },
+    "45fe955f": {
+      "text": "Assis. Assieds-toi.",
+      "file": "assets/audio/fr/45fe955f.mp3"
+    },
+    "1a0a230a": {
+      "text": "Lève ta main.",
+      "file": "assets/audio/fr/1a0a230a.mp3"
+    },
+    "b0f3b69f": {
+      "text": "Efface.",
+      "file": "assets/audio/fr/b0f3b69f.mp3"
+    },
+    "87307fbd": {
+      "text": "Montre. Pointe.",
+      "file": "assets/audio/fr/87307fbd.mp3"
+    },
+    "2f559660": {
+      "text": "Écoute.",
+      "file": "assets/audio/fr/2f559660.mp3"
+    },
+    "82c11549": {
+      "text": "Regarde.",
+      "file": "assets/audio/fr/82c11549.mp3"
+    },
+    "3328a9f3": {
+      "text": "Lis.",
+      "file": "assets/audio/fr/3328a9f3.mp3"
+    },
+    "f276a7b0": {
+      "text": "Dessine.",
+      "file": "assets/audio/fr/f276a7b0.mp3"
+    },
+    "b62585b4": {
+      "text": "Colorie.",
+      "file": "assets/audio/fr/b62585b4.mp3"
+    },
+    "00b0f331": {
+      "text": "Écris.",
+      "file": "assets/audio/fr/00b0f331.mp3"
+    },
+    "e25fe497": {
+      "text": "Répète. Dis.",
+      "file": "assets/audio/fr/e25fe497.mp3"
+    },
+    "cc1fe1df": {
+      "text": "Coche.",
+      "file": "assets/audio/fr/cc1fe1df.mp3"
+    },
+    "d6ae0843": {
+      "text": "Mets une croix.",
+      "file": "assets/audio/fr/d6ae0843.mp3"
+    },
+    "50af5657": {
+      "text": "Entoure.",
+      "file": "assets/audio/fr/50af5657.mp3"
+    },
+    "bd68e6f8": {
+      "text": "Relie.",
+      "file": "assets/audio/fr/bd68e6f8.mp3"
+    },
+    "a762402f": {
+      "text": "Répète après moi, s'il te plaît.",
+      "file": "assets/audio/fr/a762402f.mp3"
+    },
+    "3c92c258": {
+      "text": "Regarde l'image, s'il te plaît.",
+      "file": "assets/audio/fr/3c92c258.mp3"
+    },
+    "ece16a53": {
+      "text": "Écoute le CD, s'il te plaît.",
+      "file": "assets/audio/fr/ece16a53.mp3"
+    },
+    "24f622f0": {
+      "text": "Ouvre ton livre, s'il te plaît.",
+      "file": "assets/audio/fr/24f622f0.mp3"
     }
   }
 }

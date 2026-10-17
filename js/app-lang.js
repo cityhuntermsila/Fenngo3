@@ -279,7 +279,12 @@
       path.endsWith("numbers.html") ||
       path.endsWith("colors.html") ||
       path.endsWith("geometry.html") ||
-      path.endsWith("geometric.html")
+      path.endsWith("geometric.html") ||
+      path.endsWith("family.html") ||
+      path.endsWith("stationery.html") ||
+      path.endsWith("body-parts.html") ||
+      path.endsWith("daily-routine.html") ||
+      path.endsWith("common-orders.html")
     ) {
       return "category.html";
     }
@@ -324,7 +329,7 @@
     `;
 
     const appContainer =
-      document.querySelector(".alphabet-app, .numbers-app, .colors-app, .geometry-app, .category-app, .kindergarten-app") ||
+      document.querySelector(".alphabet-app, .numbers-app, .colors-app, .geometry-app, .family-app, .topic-app, .category-app, .kindergarten-app") ||
       document.body;
 
     appContainer.appendChild(backBtn);

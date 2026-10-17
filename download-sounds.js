@@ -290,6 +290,163 @@ function collectPhrases() {
     });
   });
 
+  // 6. Family (Members + Relations)
+  const familyArabic = [
+    "الجَدّ. هَذَا هُوَ الجَدّ.",
+    "الجَدَّة. هَذِهِ هِيَ الجَدَّة.",
+    "الأَب. هَذَا هُوَ الأَب.",
+    "الأُمّ. هَذِهِ هِيَ الأُمّ.",
+    "الاِبْن. هَذَا هُوَ الاِبْن.",
+    "الاِبْنَة. هَذِهِ هِيَ الاِبْنَة.",
+    "أُمِّي! هَذِهِ أُمِّي.",
+    "أَبِي! هَذَا أَبِي.",
+    "أَخِي! هَذَا أَخِي.",
+    "أُخْتِي! هَذِهِ أُخْتِي."
+  ];
+  familyArabic.forEach((p) => ar.add(p));
+
+  const familyFrench = [
+    "Le grand-père. Voici le grand-père.",
+    "La grand-mère. Voici la grand-mère.",
+    "Le père. Voici le père.",
+    "La mère. Voici la mère.",
+    "Le fils. Voici le fils.",
+    "La fille. Voici la fille.",
+    "Ma mère ! C'est ma mère.",
+    "Mon père ! C'est mon père.",
+    "Mon frère ! C'est mon frère.",
+    "Ma sœur ! C'est ma sœur."
+  ];
+  familyFrench.forEach((p) => fr.add(p));
+
+  // 7. School Stationery
+  [
+    "قَلَمُ رَصَاص. هَذَا قَلَمُ رَصَاص.",
+    "قَلَمُ حِبْر. هَذَا قَلَمُ حِبْر.",
+    "كِتَاب. هَذَا كِتَاب.",
+    "كُرَّاس. هَذَا كُرَّاس.",
+    "مِمْحَاة. هَذِهِ مِمْحَاة.",
+    "مِسْطَرَة. هَذِهِ مِسْطَرَة.",
+    "مِحْفَظَة. هَذِهِ مِحْفَظَة.",
+    "مِقَصّ. هَذَا مِقَصّ.",
+    "مِبْرَاة. هَذِهِ مِبْرَاة.",
+    "مِقْلَمَة. هَذِهِ مِقْلَمَة."
+  ].forEach((p) => ar.add(p));
+
+  [
+    "Le crayon. C'est un crayon.",
+    "Le stylo. C'est un stylo.",
+    "Le livre. C'est un livre.",
+    "Le cahier. C'est un cahier.",
+    "La gomme. C'est une gomme.",
+    "La règle. C'est une règle.",
+    "Le cartable. C'est un cartable.",
+    "Les ciseaux. Ce sont des ciseaux.",
+    "Le taille-crayon. C'est un taille-crayon.",
+    "La trousse. C'est une trousse."
+  ].forEach((p) => fr.add(p));
+
+  // 8. Body Parts
+  [
+    "الرَّأْس. هَذَا هُوَ الرَّأْس.",
+    "الشَّعْر. هَذَا هُوَ الشَّعْر.",
+    "العَيْن. هَذِهِ هِيَ العَيْن.",
+    "الأُذُن. هَذِهِ هِيَ الأُذُن.",
+    "الأَنْف. هَذَا هُوَ الأَنْف.",
+    "الفَم. هَذَا هُوَ الفَم.",
+    "اليَد. هَذِهِ هِيَ اليَد.",
+    "الذِّرَاع. هَذَا هُوَ الذِّرَاع.",
+    "السَّاق. هَذِهِ هِيَ السَّاق.",
+    "القَدَم. هَذِهِ هِيَ القَدَم."
+  ].forEach((p) => ar.add(p));
+
+  [
+    "La tête. Voici la tête.",
+    "Les cheveux. Voici les cheveux.",
+    "L'œil. Voici l'œil.",
+    "L'oreille. Voici l'oreille.",
+    "Le nez. Voici le nez.",
+    "La bouche. Voici la bouche.",
+    "La main. Voici la main.",
+    "Le bras. Voici le bras.",
+    "La jambe. Voici la jambe.",
+    "Le pied. Voici le pied."
+  ].forEach((p) => fr.add(p));
+
+  // 9. Daily Routine Activities
+  [
+    "أَسْتَيْقِظُ. أَسْتَيْقِظُ فِي الصَّبَاح.",
+    "أَغْسِلُ وَجْهِي. أَغْسِلُ وَجْهِي بِالمَاء.",
+    "أُنَظِّفُ أَسْنَانِي. أُنَظِّفُ أَسْنَانِي بِالفُرْشَاة.",
+    "أَرْتَدِي مَلَابِسِي.",
+    "أَتَنَاوَلُ الفَطُور. أَتَنَاوَلُ وَجْبَةَ الفَطُور.",
+    "أَذْهَبُ إِلَى المَدْرَسَة.",
+    "أَدْرُسُ. أَدْرُسُ فِي القِسْم.",
+    "أَلْعَبُ. أَلْعَبُ مَعَ أَصْدِقَائِي.",
+    "أُنْجِزُ وَاجِبَاتِي. أُنْجِزُ وَاجِبَاتِي المَدْرَسِيَّة.",
+    "أَنَامُ. أَنَامُ فِي اللَّيْل."
+  ].forEach((p) => ar.add(p));
+
+  [
+    "Se réveiller. Je me réveille le matin.",
+    "Se laver le visage. Je me lave le visage.",
+    "Se brosser les dents. Je me brosse les dents.",
+    "S'habiller. Je m'habille.",
+    "Prendre le petit-déjeuner. Je prends mon petit-déjeuner.",
+    "Aller à l'école. Je vais à l'école.",
+    "Étudier. J'étudie en classe.",
+    "Jouer. Je joue avec mes amis.",
+    "Faire ses devoirs. Je fais mes devoirs.",
+    "Dormir. Je vais dormir la nuit."
+  ].forEach((p) => fr.add(p));
+
+  // 10. Common Classroom Orders
+  [
+    "قِفْ.",
+    "اِجْلِسْ.",
+    "اِرْفَعْ يَدَكَ.",
+    "اِمْسَحْ.",
+    "أَرِنِي. أَشِرْ.",
+    "اِسْتَمِعْ.",
+    "اُنْظُرْ.",
+    "اِقْرَأْ.",
+    "اُرْسُمْ.",
+    "لَوِّنْ.",
+    "اُكْتُبْ.",
+    "أَعِدْ. قُلْ.",
+    "ضَعْ عَلَامَةَ صَحّ.",
+    "ضَعْ عَلَامَةَ خَطَأ.",
+    "حَوِّطْ.",
+    "اِرْبِطْ.",
+    "أَعِدْ بَعْدِي مِنْ فَضْلِكَ.",
+    "اُنْظُرْ إِلَى الصُّورَةِ مِنْ فَضْلِكَ.",
+    "اِسْتَمِعْ إِلَى القُرْصِ مِنْ فَضْلِكَ.",
+    "اِفْتَحْ كِتَابَكَ مِنْ فَضْلِكَ."
+  ].forEach((p) => ar.add(p));
+
+  [
+    "Debout. Lève-toi.",
+    "Assis. Assieds-toi.",
+    "Lève ta main.",
+    "Efface.",
+    "Montre. Pointe.",
+    "Écoute.",
+    "Regarde.",
+    "Lis.",
+    "Dessine.",
+    "Colorie.",
+    "Écris.",
+    "Répète. Dis.",
+    "Coche.",
+    "Mets une croix.",
+    "Entoure.",
+    "Relie.",
+    "Répète après moi, s'il te plaît.",
+    "Regarde l'image, s'il te plaît.",
+    "Écoute le CD, s'il te plaît.",
+    "Ouvre ton livre, s'il te plaît."
+  ].forEach((p) => fr.add(p));
+
   return {
     ar: Array.from(ar),
     fr: Array.from(fr)

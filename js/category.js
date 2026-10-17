@@ -9,19 +9,34 @@
       alphabet: "Alphabet",
       numbers: "Numbers",
       colors: "Colors",
-      geometry: "Geometry"
+      geometry: "Geometry",
+      family: "Family",
+      stationery: "School Stationery",
+      bodyParts: "Body Parts",
+      dailyRoutine: "Daily Routine",
+      commonOrders: "Common Orders"
     },
     French: {
       alphabet: "Alphabet",
       numbers: "Nombres",
       colors: "Couleurs",
-      geometry: "Géométrie"
+      geometry: "Géométrie",
+      family: "Famille",
+      stationery: "Fournitures Scolaires",
+      bodyParts: "Parties du Corps",
+      dailyRoutine: "Routine Quotidienne",
+      commonOrders: "Ordres Courants"
     },
     Arabic: {
       alphabet: "الأبجدية",
       numbers: "الأرقام",
       colors: "الألوان",
-      geometry: "الأشكال"
+      geometry: "الأشكال",
+      family: "العائلة",
+      stationery: "الأدوات المدرسية",
+      bodyParts: "أجزاء الجسم",
+      dailyRoutine: "الروتين اليومي",
+      commonOrders: "الأوامر المدرسية"
     }
   };
 
@@ -59,7 +74,12 @@
       { key: "alphabet", label: labels.alphabet },
       { key: "numbers", label: labels.numbers },
       { key: "colors", label: labels.colors },
-      { key: "geometry", label: labels.geometry }
+      { key: "geometry", label: labels.geometry },
+      { key: "family", label: labels.family },
+      { key: "stationery", label: labels.stationery },
+      { key: "bodyParts", label: labels.bodyParts },
+      { key: "dailyRoutine", label: labels.dailyRoutine },
+      { key: "commonOrders", label: labels.commonOrders }
     ];
 
     cards.forEach((card, i) => {

@@ -137,21 +137,35 @@ body.language-page .card-animal {
   height: clamp(95px, 18vh, 145px) !important;
 }
 
-/* 2. Category Page */
+/* 2. Category Page (9 cards in 3x3 grid on 1 screen without scrolling) */
 body.category .category-main {
   overflow: hidden !important;
-  padding: clamp(8px, 1.5vh, 18px) clamp(12px, 2vw, 24px) !important;
+  padding: clamp(4px, 1vh, 12px) clamp(10px, 2vw, 24px) !important;
   justify-content: center !important;
 }
 body.category .category-logo {
-  max-height: min(16vh, 140px) !important;
-  margin-bottom: clamp(6px, 1.5vh, 14px) !important;
+  max-height: min(12vh, 100px) !important;
+  margin-bottom: clamp(4px, 1vh, 10px) !important;
 }
 body.category .category-grid {
-  gap: clamp(8px, 1.5vh, 16px) clamp(10px, 1.8vw, 20px) !important;
+  display: grid !important;
+  grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+  grid-template-rows: repeat(3, minmax(0, 1fr)) !important;
+  gap: clamp(6px, 1.2vh, 14px) clamp(10px, 1.8vw, 22px) !important;
+  width: min(94vw, 960px) !important;
+  height: min(80dvh, 580px) !important;
+  margin: 0 auto !important;
+}
+body.category .category-card {
+  width: 100% !important;
+  max-width: 100% !important;
+  min-width: 0 !important;
+  height: 100% !important;
 }
 body.category .category-card img {
-  max-height: min(33vh, 215px) !important;
+  max-height: min(24dvh, 175px) !important;
+  height: 100% !important;
+  width: auto !important;
 }
 
 /* 3. Alphabet Page (26 or 28 letters in 7x4 grid) */

@@ -1,0 +1,98 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 310" width="420" height="310">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#a855f7"/>
+      <stop offset="100%" stop-color="#6d28d9"/>
+    </linearGradient>
+    <radialGradient id="rayGrad" cx="50%" cy="45%" r="60%">
+      <stop offset="0%" stop-color="#f3e8ff" stop-opacity="0.45"/>
+      <stop offset="100%" stop-color="#6d28d9" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="pillGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#ff6b9d"/>
+      <stop offset="100%" stop-color="#e11d74"/>
+    </linearGradient>
+    <filter id="cardShadow" x="-8%" y="-8%" width="116%" height="120%">
+      <feDropShadow dx="0" dy="8" stdDeviation="6" flood-color="#2e1065" flood-opacity="0.42"/>
+    </filter>
+    <filter id="softShadow" x="-10%" y="-10%" width="120%" height="125%">
+      <feDropShadow dx="0" dy="4" stdDeviation="3" flood-color="#1e1b4b" flood-opacity="0.32"/>
+    </filter>
+  </defs>
+
+  <!-- Outer Card Frame -->
+  <rect x="14" y="10" width="392" height="262" rx="48" fill="#ffffff" filter="url(#cardShadow)"/>
+  <rect x="22" y="18" width="376" height="246" rx="42" fill="url(#bgGrad)"/>
+  <rect x="22" y="18" width="376" height="246" rx="42" fill="url(#rayGrad)"/>
+
+  <!-- Decorative Stars & Hearts -->
+  <g fill="#fde047" filter="url(#softShadow)">
+    <polygon points="62,48 67,58 78,60 70,68 72,79 62,73 52,79 54,68 46,60 57,58"/>
+    <polygon points="354,44 358,52 367,54 360,60 362,69 354,64 346,69 348,60 341,54 350,52"/>
+  </g>
+  <path d="M210 34 C205 25, 191 26, 191 37 C191 46, 210 55, 210 61 C210 55, 229 46, 229 37 C229 26, 215 25, 210 34 Z" fill="#ff4d79" stroke="#ffffff" stroke-width="3" filter="url(#softShadow)"/>
+
+  <!-- Family Characters Group -->
+  <g filter="url(#softShadow)">
+    <!-- Father (Left-Center) -->
+    <g transform="translate(88, 66)">
+      <path d="M12 135 Q45 95 78 135 Z" fill="#3b82f6" stroke="#ffffff" stroke-width="4"/>
+      <circle cx="45" cy="64" r="34" fill="#fcd3b6" stroke="#ffffff" stroke-width="4"/>
+      <!-- Hair -->
+      <path d="M13 56 Q16 24 45 26 Q74 24 77 56 Q62 40 45 43 Q28 40 13 56 Z" fill="#451a03"/>
+      <!-- Eyes & Smile -->
+      <circle cx="33" cy="64" r="4.5" fill="#1e293b"/>
+      <circle cx="57" cy="64" r="4.5" fill="#1e293b"/>
+      <circle cx="34.5" cy="62.5" r="1.5" fill="#ffffff"/>
+      <circle cx="58.5" cy="62.5" r="1.5" fill="#ffffff"/>
+      <path d="M34 77 Q45 87 56 77" fill="none" stroke="#b45309" stroke-width="3.5" stroke-linecap="round"/>
+      <circle cx="24" cy="72" r="5" fill="#f43f5e" opacity="0.35"/>
+      <circle cx="66" cy="72" r="5" fill="#f43f5e" opacity="0.35"/>
+    </g>
+
+    <!-- Mother (Right-Center) -->
+    <g transform="translate(232, 68)">
+      <!-- Long Hair Back -->
+      <ellipse cx="48" cy="72" rx="40" ry="42" fill="#7c2d12" stroke="#ffffff" stroke-width="4"/>
+      <path d="M14 135 Q48 95 82 135 Z" fill="#ec4899" stroke="#ffffff" stroke-width="4"/>
+      <circle cx="48" cy="64" r="33" fill="#fde2cc" stroke="#ffffff" stroke-width="3"/>
+      <!-- Hair Bangs -->
+      <path d="M16 56 Q25 26 48 28 Q71 26 80 56 Q62 42 48 46 Q34 42 16 56 Z" fill="#7c2d12"/>
+      <!-- Eyes & Smile -->
+      <circle cx="36" cy="64" r="4.5" fill="#1e293b"/>
+      <circle cx="60" cy="64" r="4.5" fill="#1e293b"/>
+      <circle cx="37.5" cy="62.5" r="1.5" fill="#ffffff"/>
+      <circle cx="61.5" cy="62.5" r="1.5" fill="#ffffff"/>
+      <path d="M37 76 Q48 86 59 76" fill="none" stroke="#be123c" stroke-width="3.5" stroke-linecap="round"/>
+      <circle cx="27" cy="72" r="5" fill="#f43f5e" opacity="0.4"/>
+      <circle cx="69" cy="72" r="5" fill="#f43f5e" opacity="0.4"/>
+    </g>
+
+    <!-- Son (Front Left) -->
+    <g transform="translate(136, 108)">
+      <path d="M10 102 Q36 70 62 102 Z" fill="#22c55e" stroke="#ffffff" stroke-width="3.5"/>
+      <circle cx="36" cy="48" r="26" fill="#fcd3b6" stroke="#ffffff" stroke-width="3.5"/>
+      <path d="M12 42 Q20 18 36 20 Q52 18 60 42 Q46 31 36 33 Q26 31 12 42 Z" fill="#78350f"/>
+      <circle cx="27" cy="49" r="3.8" fill="#1e293b"/>
+      <circle cx="45" cy="49" r="3.8" fill="#1e293b"/>
+      <path d="M28 59 Q36 67 44 59" fill="none" stroke="#b45309" stroke-width="3" stroke-linecap="round"/>
+    </g>
+
+    <!-- Daughter (Front Right) -->
+    <g transform="translate(208, 110)">
+      <circle cx="14" cy="36" r="10" fill="#9a3412" stroke="#ffffff" stroke-width="2.5"/>
+      <circle cx="58" cy="36" r="10" fill="#9a3412" stroke="#ffffff" stroke-width="2.5"/>
+      <path d="M10 100 Q36 70 62 100 Z" fill="#facc15" stroke="#ffffff" stroke-width="3.5"/>
+      <circle cx="36" cy="48" r="25" fill="#fde2cc" stroke="#ffffff" stroke-width="3.5"/>
+      <path d="M13 42 Q22 20 36 22 Q50 20 59 42 Q46 32 36 34 Q26 32 13 42 Z" fill="#9a3412"/>
+      <circle cx="27" cy="49" r="3.8" fill="#1e293b"/>
+      <circle cx="45" cy="49" r="3.8" fill="#1e293b"/>
+      <path d="M28 59 Q36 67 44 59" fill="none" stroke="#be123c" stroke-width="3" stroke-linecap="round"/>
+    </g>
+  </g>
+
+  <!-- Bottom Label Banner -->
+  <rect x="68" y="218" width="284" height="68" rx="24" fill="#ffffff" filter="url(#softShadow)"/>
+  <rect x="73" y="223" width="274" height="58" rx="20" fill="url(#pillGrad)"/>
+  <text x="210" y="262" text-anchor="middle" fill="#ffffff" font-family="'Comic Sans MS', 'Poppins', sans-serif" font-size="34" font-weight="900">Family</text>
+</svg>

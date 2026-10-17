@@ -1,0 +1,80 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 310" width="420" height="310">
+  <defs>
+    <linearGradient id="stBg" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#0ea5e9"/>
+      <stop offset="100%" stop-color="#0369a1"/>
+    </linearGradient>
+    <radialGradient id="stRay" cx="50%" cy="45%" r="60%">
+      <stop offset="0%" stop-color="#e0f2fe" stop-opacity="0.45"/>
+      <stop offset="100%" stop-color="#0369a1" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="stPill" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#f97316"/>
+      <stop offset="100%" stop-color="#c2410c"/>
+    </linearGradient>
+    <filter id="stCardSh" x="-8%" y="-8%" width="116%" height="120%">
+      <feDropShadow dx="0" dy="8" stdDeviation="6" flood-color="#082f49" flood-opacity="0.42"/>
+    </filter>
+    <filter id="stSoftSh" x="-10%" y="-10%" width="120%" height="125%">
+      <feDropShadow dx="0" dy="4" stdDeviation="3" flood-color="#0f172a" flood-opacity="0.32"/>
+    </filter>
+  </defs>
+
+  <!-- Card Frame -->
+  <rect x="14" y="10" width="392" height="262" rx="48" fill="#ffffff" filter="url(#stCardSh)"/>
+  <rect x="22" y="18" width="376" height="246" rx="42" fill="url(#stBg)"/>
+  <rect x="22" y="18" width="376" height="246" rx="42" fill="url(#stRay)"/>
+
+  <!-- Stars -->
+  <g fill="#fde047" filter="url(#stSoftSh)">
+    <polygon points="58,48 63,58 74,60 66,68 68,79 58,73 48,79 50,68 42,60 53,58"/>
+    <polygon points="356,44 360,52 369,54 362,60 364,69 356,64 348,69 350,60 343,54 352,52"/>
+  </g>
+
+  <!-- Stationery Illustrations -->
+  <g filter="url(#stSoftSh)">
+    <!-- Open Book (Center Back) -->
+    <g transform="translate(132, 48)">
+      <path d="M10 22 Q44 10 78 24 L78 124 Q44 110 10 122 Z" fill="#fef3c7" stroke="#ffffff" stroke-width="4"/>
+      <path d="M146 22 Q112 10 78 24 L78 124 Q112 110 146 122 Z" fill="#fde68a" stroke="#ffffff" stroke-width="4"/>
+      <line x1="78" y1="24" x2="78" y2="124" stroke="#d97706" stroke-width="4"/>
+      <line x1="24" y1="46" x2="64" y2="42" stroke="#92400e" stroke-width="3" stroke-linecap="round"/>
+      <line x1="24" y1="64" x2="64" y2="60" stroke="#92400e" stroke-width="3" stroke-linecap="round"/>
+      <line x1="24" y1="82" x2="56" y2="79" stroke="#92400e" stroke-width="3" stroke-linecap="round"/>
+      <line x1="92" y1="42" x2="132" y2="46" stroke="#92400e" stroke-width="3" stroke-linecap="round"/>
+      <line x1="92" y1="60" x2="132" y2="64" stroke="#92400e" stroke-width="3" stroke-linecap="round"/>
+    </g>
+
+    <!-- Ruler (Left Tilted) -->
+    <g transform="translate(76, 62) rotate(-22)">
+      <rect x="0" y="0" width="38" height="132" rx="8" fill="#facc15" stroke="#ffffff" stroke-width="4"/>
+      <line x1="0" y1="22" x2="14" y2="22" stroke="#854d0e" stroke-width="3"/>
+      <line x1="0" y1="42" x2="18" y2="42" stroke="#854d0e" stroke-width="3"/>
+      <line x1="0" y1="62" x2="14" y2="62" stroke="#854d0e" stroke-width="3"/>
+      <line x1="0" y1="82" x2="18" y2="82" stroke="#854d0e" stroke-width="3"/>
+      <line x1="0" y1="102" x2="14" y2="102" stroke="#854d0e" stroke-width="3"/>
+    </g>
+
+    <!-- Pencil (Right Tilted) -->
+    <g transform="translate(310, 52) rotate(24)">
+      <rect x="0" y="24" width="28" height="96" fill="#ef4444" stroke="#ffffff" stroke-width="3.5"/>
+      <rect x="0" y="6" width="28" height="20" rx="6" fill="#f472b6" stroke="#ffffff" stroke-width="3.5"/>
+      <polygon points="0,120 28,120 14,150" fill="#fde68a" stroke="#ffffff" stroke-width="3.5"/>
+      <polygon points="9,138 19,138 14,150" fill="#1e293b"/>
+    </g>
+
+    <!-- School Bag (Front Center) -->
+    <g transform="translate(166, 98)">
+      <path d="M26 12 Q44 -6 62 12" fill="none" stroke="#b91c1c" stroke-width="7" stroke-linecap="round"/>
+      <rect x="8" y="12" width="72" height="84" rx="22" fill="#22c55e" stroke="#ffffff" stroke-width="4"/>
+      <path d="M12 42 Q44 56 76 42 L76 28 Q76 14 60 14 L28 14 Q12 14 12 28 Z" fill="#16a34a" stroke="#ffffff" stroke-width="3"/>
+      <rect x="22" y="54" width="44" height="30" rx="10" fill="#facc15" stroke="#ffffff" stroke-width="3"/>
+      <rect x="38" y="38" width="12" height="14" rx="4" fill="#fde047" stroke="#b45309" stroke-width="2"/>
+    </g>
+  </g>
+
+  <!-- Label Banner -->
+  <rect x="54" y="218" width="312" height="68" rx="24" fill="#ffffff" filter="url(#stSoftSh)"/>
+  <rect x="59" y="223" width="302" height="58" rx="20" fill="url(#stPill)"/>
+  <text x="210" y="261" text-anchor="middle" fill="#ffffff" font-family="'Comic Sans MS', 'Poppins', sans-serif" font-size="30" font-weight="900">Stationery</text>
+</svg>
