@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 310" width="420" height="310">
+  <defs>
+    <linearGradient id="crBg" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#38bdf8"/>
+      <stop offset="100%" stop-color="#0284c7"/>
+    </linearGradient>
+    <radialGradient id="crRay" cx="50%" cy="42%" r="60%">
+      <stop offset="0%" stop-color="#e0f2fe" stop-opacity="0.5"/>
+      <stop offset="100%" stop-color="#0284c7" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="crPill" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#f97316"/>
+      <stop offset="100%" stop-color="#ea580c"/>
+    </linearGradient>
+    <filter id="crCardSh" x="-8%" y="-8%" width="116%" height="120%">
+      <feDropShadow dx="0" dy="8" stdDeviation="6" flood-color="#0c4a6e" flood-opacity="0.42"/>
+    </filter>
+    <filter id="crSoftSh" x="-10%" y="-10%" width="120%" height="125%">
+      <feDropShadow dx="0" dy="4" stdDeviation="3" flood-color="#0f172a" flood-opacity="0.3"/>
+    </filter>
+  </defs>
+
+  <!-- Card Frame -->
+  <rect x="14" y="10" width="392" height="262" rx="48" fill="#ffffff" filter="url(#crCardSh)"/>
+  <rect x="22" y="18" width="376" height="246" rx="42" fill="url(#crBg)"/>
+  <rect x="22" y="18" width="376" height="246" rx="42" fill="url(#crRay)"/>
+
+  <!-- Stars -->
+  <g fill="#fde047" filter="url(#crSoftSh)">
+    <polygon points="58,48 63,58 74,60 66,68 68,79 58,73 48,79 50,68 42,60 53,58"/>
+    <polygon points="362,48 367,58 378,60 370,68 372,79 362,73 352,79 354,68 346,60 357,58"/>
+  </g>
+
+  <!-- Blackboard & Open Book Illustration -->
+  <g filter="url(#crSoftSh)">
+    <!-- Green Chalkboard -->
+    <rect x="96" y="34" width="228" height="122" rx="18" fill="#14532d" stroke="#f59e0b" stroke-width="8"/>
+    <text x="146" y="88" text-anchor="middle" fill="#fde047" font-family="'Nunito', 'Comic Sans MS', sans-serif" font-size="32" font-weight="900">ABC</text>
+    <text x="214" y="88" text-anchor="middle" fill="#ffffff" font-family="'Cairo', sans-serif" font-size="32" font-weight="900">أ ب</text>
+    <text x="276" y="88" text-anchor="middle" fill="#4ade80" font-family="'Nunito', sans-serif" font-size="30" font-weight="900">123</text>
+
+    <!-- Geometric Shapes on Board -->
+    <circle cx="150" cy="122" r="12" fill="#f43f5e"/>
+    <rect x="198" y="110" width="24" height="24" rx="4" fill="#38bdf8"/>
+    <polygon points="270,108 285,134 255,134" fill="#facc15"/>
+
+    <!-- Open Book in Front -->
+    <path d="M126 196 Q168 182 210 198 Q252 182 294 196 L294 146 Q252 132 210 148 Q168 132 126 146 Z" fill="#ffffff" stroke="#e2e8f0" stroke-width="4" stroke-linejoin="round"/>
+    <line x1="210" y1="148" x2="210" y2="198" stroke="#94a3b8" stroke-width="4"/>
+  </g>
+
+  <!-- Label Banner -->
+  <rect x="54" y="218" width="312" height="68" rx="24" fill="#ffffff" filter="url(#crSoftSh)"/>
+  <rect x="59" y="223" width="302" height="58" rx="20" fill="url(#crPill)"/>
+  <text x="210" y="261" text-anchor="middle" fill="#ffffff" font-family="'Nunito', 'Cairo', sans-serif" font-size="31" font-weight="900">Cours / الدروس</text>
+</svg>

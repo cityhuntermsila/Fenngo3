@@ -125,6 +125,8 @@ body.language-page .title-image {
   width: auto !important;
 }
 body.language-page .cards-wrapper {
+  direction: ltr !important;
+  flex-direction: row !important;
   margin-top: clamp(32px, 6vh, 60px) !important;
   gap: clamp(14px, 2.5vw, 34px) !important;
 }
@@ -137,23 +139,23 @@ body.language-page .card-animal {
   height: clamp(95px, 18vh, 145px) !important;
 }
 
-/* 2. Category Page (9 cards in 3x3 grid on 1 screen without scrolling) */
+/* 2. Category Page (10 cards in 5x2 grid on 1 screen without scrolling) */
 body.category .category-main {
   overflow: hidden !important;
-  padding: clamp(4px, 1vh, 12px) clamp(10px, 2vw, 24px) !important;
+  padding: clamp(6px, 1.2vh, 14px) clamp(10px, 2vw, 24px) !important;
   justify-content: center !important;
 }
 body.category .category-logo {
-  max-height: min(12vh, 100px) !important;
-  margin-bottom: clamp(4px, 1vh, 10px) !important;
+  max-height: min(14vh, 120px) !important;
+  margin-bottom: clamp(6px, 1.4vh, 14px) !important;
 }
 body.category .category-grid {
   display: grid !important;
-  grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
-  grid-template-rows: repeat(3, minmax(0, 1fr)) !important;
-  gap: clamp(6px, 1.2vh, 14px) clamp(10px, 1.8vw, 22px) !important;
-  width: min(94vw, 960px) !important;
-  height: min(80dvh, 580px) !important;
+  grid-template-columns: repeat(5, minmax(0, 1fr)) !important;
+  grid-template-rows: repeat(2, minmax(0, 1fr)) !important;
+  gap: clamp(8px, 1.6vh, 18px) clamp(8px, 1.4vw, 20px) !important;
+  width: min(96vw, 1220px) !important;
+  height: min(74dvh, 500px) !important;
   margin: 0 auto !important;
 }
 body.category .category-card {
@@ -163,7 +165,7 @@ body.category .category-card {
   height: 100% !important;
 }
 body.category .category-card img {
-  max-height: min(24dvh, 175px) !important;
+  max-height: min(32dvh, 210px) !important;
   height: 100% !important;
   width: auto !important;
 }

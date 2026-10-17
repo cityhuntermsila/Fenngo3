@@ -8,6 +8,10 @@
       "text": "بلاطة سداسية على شكل سداسي الأضلاع.",
       "file": "assets/audio/ar/32274642.mp3"
     },
+    "36098442": {
+      "text": "س",
+      "file": "assets/audio/ar/36098442.mp3"
+    },
     "38007584": {
       "text": "ع - عِنَب",
       "file": "assets/audio/ar/38007584.mp3"
@@ -879,6 +883,522 @@
     "f421928e": {
       "text": "اِفْتَحْ كِتَابَكَ مِنْ فَضْلِكَ.",
       "file": "assets/audio/ar/f421928e.mp3"
+    },
+    "26096b12": {
+      "text": "أ",
+      "file": "assets/audio/ar/26096b12.mp3"
+    },
+    "a36a7f33": {
+      "text": "أَلِف",
+      "file": "assets/audio/ar/a36a7f33.mp3"
+    },
+    "3cd727d4": {
+      "text": "أَ",
+      "file": "assets/audio/ar/3cd727d4.mp3"
+    },
+    "3dd72967": {
+      "text": "أُ",
+      "file": "assets/audio/ar/3dd72967.mp3"
+    },
+    "5ece9ed0": {
+      "text": "إِ",
+      "file": "assets/audio/ar/5ece9ed0.mp3"
+    },
+    "2d097617": {
+      "text": "ب",
+      "file": "assets/audio/ar/2d097617.mp3"
+    },
+    "0ba1c3cf": {
+      "text": "بَاء",
+      "file": "assets/audio/ar/0ba1c3cf.mp3"
+    },
+    "3edbdc1b": {
+      "text": "بَ",
+      "file": "assets/audio/ar/3edbdc1b.mp3"
+    },
+    "3ddbda88": {
+      "text": "بُ",
+      "file": "assets/audio/ar/3ddbda88.mp3"
+    },
+    "2cdbbfc5": {
+      "text": "بِ",
+      "file": "assets/audio/ar/2cdbbfc5.mp3"
+    },
+    "2f09793d": {
+      "text": "ت",
+      "file": "assets/audio/ar/2f09793d.mp3"
+    },
+    "2b84ec11": {
+      "text": "تَاء",
+      "file": "assets/audio/ar/2b84ec11.mp3"
+    },
+    "7ef3a209": {
+      "text": "تَ",
+      "file": "assets/audio/ar/7ef3a209.mp3"
+    },
+    "7df3a076": {
+      "text": "تُ",
+      "file": "assets/audio/ar/7df3a076.mp3"
+    },
+    "78f39897": {
+      "text": "تِ",
+      "file": "assets/audio/ar/78f39897.mp3"
+    },
+    "2e0977aa": {
+      "text": "ث",
+      "file": "assets/audio/ar/2e0977aa.mp3"
+    },
+    "e9c88310": {
+      "text": "ثَاء",
+      "file": "assets/audio/ar/e9c88310.mp3"
+    },
+    "5cde49ec": {
+      "text": "ثَ",
+      "file": "assets/audio/ar/5cde49ec.mp3"
+    },
+    "5dde4b7f": {
+      "text": "ثُ",
+      "file": "assets/audio/ar/5dde4b7f.mp3"
+    },
+    "72de6c8e": {
+      "text": "ثِ",
+      "file": "assets/audio/ar/72de6c8e.mp3"
+    },
+    "29096fcb": {
+      "text": "ج",
+      "file": "assets/audio/ar/29096fcb.mp3"
+    },
+    "36be193c": {
+      "text": "جِيم",
+      "file": "assets/audio/ar/36be193c.mp3"
+    },
+    "1ed11c5f": {
+      "text": "جَ",
+      "file": "assets/audio/ar/1ed11c5f.mp3"
+    },
+    "1dd11acc": {
+      "text": "جُ",
+      "file": "assets/audio/ar/1dd11acc.mp3"
+    },
+    "34d13f01": {
+      "text": "جِ",
+      "file": "assets/audio/ar/34d13f01.mp3"
+    },
+    "28096e38": {
+      "text": "ح",
+      "file": "assets/audio/ar/28096e38.mp3"
+    },
+    "dd01f4fa": {
+      "text": "حَاء",
+      "file": "assets/audio/ar/dd01f4fa.mp3"
+    },
+    "7ccf71c2": {
+      "text": "حَ",
+      "file": "assets/audio/ar/7ccf71c2.mp3"
+    },
+    "7dcf7355": {
+      "text": "حُ",
+      "file": "assets/audio/ar/7dcf7355.mp3"
+    },
+    "6ecf5bb8": {
+      "text": "حِ",
+      "file": "assets/audio/ar/6ecf5bb8.mp3"
+    },
+    "2b0972f1": {
+      "text": "خ",
+      "file": "assets/audio/ar/2b0972f1.mp3"
+    },
+    "1b8b6fcd": {
+      "text": "خَاء",
+      "file": "assets/audio/ar/1b8b6fcd.mp3"
+    },
+    "7ee2c8ad": {
+      "text": "خَ",
+      "file": "assets/audio/ar/7ee2c8ad.mp3"
+    },
+    "7de2c71a": {
+      "text": "خُ",
+      "file": "assets/audio/ar/7de2c71a.mp3"
+    },
+    "60e29973": {
+      "text": "خِ",
+      "file": "assets/audio/ar/60e29973.mp3"
+    },
+    "2a09715e": {
+      "text": "د",
+      "file": "assets/audio/ar/2a09715e.mp3"
+    },
+    "3e46dfe3": {
+      "text": "دَال",
+      "file": "assets/audio/ar/3e46dfe3.mp3"
+    },
+    "3ce66e30": {
+      "text": "دَ",
+      "file": "assets/audio/ar/3ce66e30.mp3"
+    },
+    "3de66fc3": {
+      "text": "دُ",
+      "file": "assets/audio/ar/3de66fc3.mp3"
+    },
+    "3ae66b0a": {
+      "text": "دِ",
+      "file": "assets/audio/ar/3ae66b0a.mp3"
+    },
+    "3409811c": {
+      "text": "ر",
+      "file": "assets/audio/ar/3409811c.mp3"
+    },
+    "2a761426": {
+      "text": "رَاء",
+      "file": "assets/audio/ar/2a761426.mp3"
+    },
+    "3d000616": {
+      "text": "رَ",
+      "file": "assets/audio/ar/3d000616.mp3"
+    },
+    "3e0007a9": {
+      "text": "رُ",
+      "file": "assets/audio/ar/3e0007a9.mp3"
+    },
+    "36fffca4": {
+      "text": "رِ",
+      "file": "assets/audio/ar/36fffca4.mp3"
+    },
+    "370985d5": {
+      "text": "ز",
+      "file": "assets/audio/ar/370985d5.mp3"
+    },
+    "cd744d48": {
+      "text": "زَاي",
+      "file": "assets/audio/ar/cd744d48.mp3"
+    },
+    "3efa2d01": {
+      "text": "زَ",
+      "file": "assets/audio/ar/3efa2d01.mp3"
+    },
+    "3dfa2b6e": {
+      "text": "زُ",
+      "file": "assets/audio/ar/3dfa2b6e.mp3"
+    },
+    "28fa0a5f": {
+      "text": "زِ",
+      "file": "assets/audio/ar/28fa0a5f.mp3"
+    },
+    "59569b16": {
+      "text": "سِين",
+      "file": "assets/audio/ar/59569b16.mp3"
+    },
+    "1cf7b8e4": {
+      "text": "سَ",
+      "file": "assets/audio/ar/1cf7b8e4.mp3"
+    },
+    "1df7ba77": {
+      "text": "سُ",
+      "file": "assets/audio/ar/1df7ba77.mp3"
+    },
+    "22f7c256": {
+      "text": "سِ",
+      "file": "assets/audio/ar/22f7c256.mp3"
+    },
+    "31097c63": {
+      "text": "ش",
+      "file": "assets/audio/ar/31097c63.mp3"
+    },
+    "f47bcf6d": {
+      "text": "شِين",
+      "file": "assets/audio/ar/f47bcf6d.mp3"
+    },
+    "5eeb54d7": {
+      "text": "شَ",
+      "file": "assets/audio/ar/5eeb54d7.mp3"
+    },
+    "5deb5344": {
+      "text": "شُ",
+      "file": "assets/audio/ar/5deb5344.mp3"
+    },
+    "64eb5e49": {
+      "text": "شِ",
+      "file": "assets/audio/ar/64eb5e49.mp3"
+    },
+    "30097ad0": {
+      "text": "ص",
+      "file": "assets/audio/ar/30097ad0.mp3"
+    },
+    "7c9df598": {
+      "text": "صَاد",
+      "file": "assets/audio/ar/7c9df598.mp3"
+    },
+    "3cef2cba": {
+      "text": "صَ",
+      "file": "assets/audio/ar/3cef2cba.mp3"
+    },
+    "3def2e4d": {
+      "text": "صُ",
+      "file": "assets/audio/ar/3def2e4d.mp3"
+    },
+    "1eeefd80": {
+      "text": "صِ",
+      "file": "assets/audio/ar/1eeefd80.mp3"
+    },
+    "32097df6": {
+      "text": "ط",
+      "file": "assets/audio/ar/32097df6.mp3"
+    },
+    "6f4ccf74": {
+      "text": "طَاء",
+      "file": "assets/audio/ar/6f4ccf74.mp3"
+    },
+    "7cedc2a8": {
+      "text": "طَ",
+      "file": "assets/audio/ar/7cedc2a8.mp3"
+    },
+    "7dedc43b": {
+      "text": "طُ",
+      "file": "assets/audio/ar/7dedc43b.mp3"
+    },
+    "6aeda652": {
+      "text": "طِ",
+      "file": "assets/audio/ar/6aeda652.mp3"
+    },
+    "3c098db4": {
+      "text": "ع",
+      "file": "assets/audio/ar/3c098db4.mp3"
+    },
+    "94bd1174": {
+      "text": "عَيْن",
+      "file": "assets/audio/ar/94bd1174.mp3"
+    },
+    "7d075a8e": {
+      "text": "عَ",
+      "file": "assets/audio/ar/7d075a8e.mp3"
+    },
+    "7e075c21": {
+      "text": "عُ",
+      "file": "assets/audio/ar/7e075c21.mp3"
+    },
+    "670737ec": {
+      "text": "عِ",
+      "file": "assets/audio/ar/670737ec.mp3"
+    },
+    "c408d0cc": {
+      "text": "ف",
+      "file": "assets/audio/ar/c408d0cc.mp3"
+    },
+    "6328edb6": {
+      "text": "فَاء",
+      "file": "assets/audio/ar/6328edb6.mp3"
+    },
+    "1be9aea6": {
+      "text": "فَ",
+      "file": "assets/audio/ar/1be9aea6.mp3"
+    },
+    "1ce9b039": {
+      "text": "فُ",
+      "file": "assets/audio/ar/1ce9b039.mp3"
+    },
+    "35e9d794": {
+      "text": "فِ",
+      "file": "assets/audio/ar/35e9d794.mp3"
+    },
+    "c708d585": {
+      "text": "ق",
+      "file": "assets/audio/ar/c708d585.mp3"
+    },
+    "bc52fcf9": {
+      "text": "قَاف",
+      "file": "assets/audio/ar/bc52fcf9.mp3"
+    },
+    "1de56891": {
+      "text": "قَ",
+      "file": "assets/audio/ar/1de56891.mp3"
+    },
+    "1ce566fe": {
+      "text": "قُ",
+      "file": "assets/audio/ar/1ce566fe.mp3"
+    },
+    "27e5784f": {
+      "text": "قِ",
+      "file": "assets/audio/ar/27e5784f.mp3"
+    },
+    "c608d3f2": {
+      "text": "ك",
+      "file": "assets/audio/ar/c608d3f2.mp3"
+    },
+    "0abe11b8": {
+      "text": "كَاف",
+      "file": "assets/audio/ar/0abe11b8.mp3"
+    },
+    "7be876f4": {
+      "text": "كَ",
+      "file": "assets/audio/ar/7be876f4.mp3"
+    },
+    "7ce87887": {
+      "text": "كُ",
+      "file": "assets/audio/ar/7ce87887.mp3"
+    },
+    "61e84e06": {
+      "text": "كِ",
+      "file": "assets/audio/ar/61e84e06.mp3"
+    },
+    "c108cc13": {
+      "text": "ل",
+      "file": "assets/audio/ar/c108cc13.mp3"
+    },
+    "1214515f": {
+      "text": "لَام",
+      "file": "assets/audio/ar/1214515f.mp3"
+    },
+    "3dd69067": {
+      "text": "لَ",
+      "file": "assets/audio/ar/3dd69067.mp3"
+    },
+    "3cd68ed4": {
+      "text": "لُ",
+      "file": "assets/audio/ar/3cd68ed4.mp3"
+    },
+    "23d66779": {
+      "text": "لِ",
+      "file": "assets/audio/ar/23d66779.mp3"
+    },
+    "c008ca80": {
+      "text": "م",
+      "file": "assets/audio/ar/c008ca80.mp3"
+    },
+    "8a1b2d51": {
+      "text": "مِيم",
+      "file": "assets/audio/ar/8a1b2d51.mp3"
+    },
+    "1bda684a": {
+      "text": "مَ",
+      "file": "assets/audio/ar/1bda684a.mp3"
+    },
+    "1cda69dd": {
+      "text": "مُ",
+      "file": "assets/audio/ar/1cda69dd.mp3"
+    },
+    "1dda6b70": {
+      "text": "مِ",
+      "file": "assets/audio/ar/1dda6b70.mp3"
+    },
+    "c308cf39": {
+      "text": "ن",
+      "file": "assets/audio/ar/c308cf39.mp3"
+    },
+    "c0ebd7e8": {
+      "text": "نُون",
+      "file": "assets/audio/ar/c0ebd7e8.mp3"
+    },
+    "7dd52655": {
+      "text": "نَ",
+      "file": "assets/audio/ar/7dd52655.mp3"
+    },
+    "7cd524c2": {
+      "text": "نُ",
+      "file": "assets/audio/ar/7cd524c2.mp3"
+    },
+    "6fd5104b": {
+      "text": "نِ",
+      "file": "assets/audio/ar/6fd5104b.mp3"
+    },
+    "cd08def7": {
+      "text": "و",
+      "file": "assets/audio/ar/cd08def7.mp3"
+    },
+    "78026fd4": {
+      "text": "وَاو",
+      "file": "assets/audio/ar/78026fd4.mp3"
+    },
+    "7ded2b3b": {
+      "text": "وَ",
+      "file": "assets/audio/ar/7ded2b3b.mp3"
+    },
+    "7ced29a8": {
+      "text": "وُ",
+      "file": "assets/audio/ar/7ced29a8.mp3"
+    },
+    "6bed0ee5": {
+      "text": "وِ",
+      "file": "assets/audio/ar/6bed0ee5.mp3"
+    },
+    "cf08e21d": {
+      "text": "ي",
+      "file": "assets/audio/ar/cf08e21d.mp3"
+    },
+    "2ba85031": {
+      "text": "يَاء",
+      "file": "assets/audio/ar/2ba85031.mp3"
+    },
+    "3dff6ea9": {
+      "text": "يَ",
+      "file": "assets/audio/ar/3dff6ea9.mp3"
+    },
+    "3cff6d16": {
+      "text": "يُ",
+      "file": "assets/audio/ar/3cff6d16.mp3"
+    },
+    "37ff6537": {
+      "text": "يِ",
+      "file": "assets/audio/ar/37ff6537.mp3"
+    },
+    "220964c6": {
+      "text": "ا",
+      "file": "assets/audio/ar/220964c6.mp3"
+    },
+    "2c097484": {
+      "text": "ة",
+      "file": "assets/audio/ar/2c097484.mp3"
+    },
+    "90eb66e5": {
+      "text": "لَيْمُون",
+      "file": "assets/audio/ar/90eb66e5.mp3"
+    },
+    "ea1dca7a": {
+      "text": "أَسَد",
+      "file": "assets/audio/ar/ea1dca7a.mp3"
+    },
+    "152888e2": {
+      "text": "قَلَم",
+      "file": "assets/audio/ar/152888e2.mp3"
+    },
+    "eff9c16d": {
+      "text": "شَمْس",
+      "file": "assets/audio/ar/eff9c16d.mp3"
+    },
+    "1c41d92c": {
+      "text": "جَمَل",
+      "file": "assets/audio/ar/1c41d92c.mp3"
+    },
+    "2324aa0c": {
+      "text": "سَمَك",
+      "file": "assets/audio/ar/2324aa0c.mp3"
+    },
+    "6c9a7a89": {
+      "text": "كِتَاب",
+      "file": "assets/audio/ar/6c9a7a89.mp3"
+    },
+    "4500b68d": {
+      "text": "أَرْنَب",
+      "file": "assets/audio/ar/4500b68d.mp3"
+    },
+    "22a0717c": {
+      "text": "بَطَّة",
+      "file": "assets/audio/ar/22a0717c.mp3"
+    },
+    "d2440848": {
+      "text": "تُفَّاح",
+      "file": "assets/audio/ar/d2440848.mp3"
+    },
+    "bb80b32e": {
+      "text": "كم العدد؟",
+      "file": "assets/audio/ar/bb80b32e.mp3"
+    },
+    "07dd195e": {
+      "text": "عد النقاط الحمراء",
+      "file": "assets/audio/ar/07dd195e.mp3"
+    },
+    "1014572c": {
+      "text": "أحسنت يا بطل! لقد أكملت الجولة بنجاح!",
+      "file": "assets/audio/ar/1014572c.mp3"
     }
   },
   "fr": {
@@ -886,9 +1406,29 @@
       "text": "Réessaie. Trouve l'objet Jaune.",
       "file": "assets/audio/fr/22001965.mp3"
     },
+    "46336066": {
+      "text": "La lettre B",
+      "file": "assets/audio/fr/46336066.mp3"
+    },
     "50261242": {
       "text": "T comme Arbre",
       "file": "assets/audio/fr/50261242.mp3"
+    },
+    "50337024": {
+      "text": "La lettre L",
+      "file": "assets/audio/fr/50337024.mp3"
+    },
+    "54337670": {
+      "text": "La lettre P",
+      "file": "assets/audio/fr/54337670.mp3"
+    },
+    "55337803": {
+      "text": "La lettre Q",
+      "file": "assets/audio/fr/55337803.mp3"
+    },
+    "56337996": {
+      "text": "La lettre R",
+      "file": "assets/audio/fr/56337996.mp3"
     },
     "68618762": {
       "text": "Vert",
@@ -1793,6 +2333,142 @@
     "24f622f0": {
       "text": "Ouvre ton livre, s'il te plaît.",
       "file": "assets/audio/fr/24f622f0.mp3"
+    },
+    "45335ed3": {
+      "text": "La lettre A",
+      "file": "assets/audio/fr/45335ed3.mp3"
+    },
+    "473361f9": {
+      "text": "La lettre C",
+      "file": "assets/audio/fr/473361f9.mp3"
+    },
+    "4833638c": {
+      "text": "La lettre D",
+      "file": "assets/audio/fr/4833638c.mp3"
+    },
+    "4933651f": {
+      "text": "La lettre E",
+      "file": "assets/audio/fr/4933651f.mp3"
+    },
+    "4a3366b2": {
+      "text": "La lettre F",
+      "file": "assets/audio/fr/4a3366b2.mp3"
+    },
+    "4b336845": {
+      "text": "La lettre G",
+      "file": "assets/audio/fr/4b336845.mp3"
+    },
+    "4c3369d8": {
+      "text": "La lettre H",
+      "file": "assets/audio/fr/4c3369d8.mp3"
+    },
+    "4d336b6b": {
+      "text": "La lettre I",
+      "file": "assets/audio/fr/4d336b6b.mp3"
+    },
+    "4e336cfe": {
+      "text": "La lettre J",
+      "file": "assets/audio/fr/4e336cfe.mp3"
+    },
+    "4f336e91": {
+      "text": "La lettre K",
+      "file": "assets/audio/fr/4f336e91.mp3"
+    },
+    "513371b7": {
+      "text": "La lettre M",
+      "file": "assets/audio/fr/513371b7.mp3"
+    },
+    "5233734a": {
+      "text": "La lettre N",
+      "file": "assets/audio/fr/5233734a.mp3"
+    },
+    "533374dd": {
+      "text": "La lettre O",
+      "file": "assets/audio/fr/533374dd.mp3"
+    },
+    "57337b29": {
+      "text": "La lettre S",
+      "file": "assets/audio/fr/57337b29.mp3"
+    },
+    "58337cbc": {
+      "text": "La lettre T",
+      "file": "assets/audio/fr/58337cbc.mp3"
+    },
+    "59337e4f": {
+      "text": "La lettre U",
+      "file": "assets/audio/fr/59337e4f.mp3"
+    },
+    "5a337fe2": {
+      "text": "La lettre V",
+      "file": "assets/audio/fr/5a337fe2.mp3"
+    },
+    "5b338175": {
+      "text": "La lettre W",
+      "file": "assets/audio/fr/5b338175.mp3"
+    },
+    "5c338308": {
+      "text": "La lettre X",
+      "file": "assets/audio/fr/5c338308.mp3"
+    },
+    "5d33849b": {
+      "text": "La lettre Y",
+      "file": "assets/audio/fr/5d33849b.mp3"
+    },
+    "5e33862e": {
+      "text": "La lettre Z",
+      "file": "assets/audio/fr/5e33862e.mp3"
+    },
+    "9f9f5ceb": {
+      "text": "CHAT",
+      "file": "assets/audio/fr/9f9f5ceb.mp3"
+    },
+    "3030e27f": {
+      "text": "LION",
+      "file": "assets/audio/fr/3030e27f.mp3"
+    },
+    "519e2151": {
+      "text": "POMME",
+      "file": "assets/audio/fr/519e2151.mp3"
+    },
+    "3e556c3b": {
+      "text": "LUNE",
+      "file": "assets/audio/fr/3e556c3b.mp3"
+    },
+    "7c2ff17e": {
+      "text": "OURS",
+      "file": "assets/audio/fr/7c2ff17e.mp3"
+    },
+    "a12f3839": {
+      "text": "LIVRE",
+      "file": "assets/audio/fr/a12f3839.mp3"
+    },
+    "83ac3f39": {
+      "text": "FLEUR",
+      "file": "assets/audio/fr/83ac3f39.mp3"
+    },
+    "2393a209": {
+      "text": "TRAIN",
+      "file": "assets/audio/fr/2393a209.mp3"
+    },
+    "15ebcd74": {
+      "text": "POULE",
+      "file": "assets/audio/fr/15ebcd74.mp3"
+    },
+    "fc649d75": {
+      "text": "VELO",
+      "file": "assets/audio/fr/fc649d75.mp3"
+    },
+    "ba2a20fb": {
+      "text": "Combien y en a-t-il ?",
+      "file": "assets/audio/fr/ba2a20fb.mp3"
+    },
+    "f0a47c6b": {
+      "text": "Compte les points rouges",
+      "file": "assets/audio/fr/f0a47c6b.mp3"
+    },
+    "e90f9602": {
+      "text": "Bravo champion ! Tu as terminé la manche avec succès !",
+      "file": "assets/audio/fr/e90f9602.mp3"
     }
   }
 }

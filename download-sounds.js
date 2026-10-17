@@ -447,6 +447,57 @@ function collectPhrases() {
     "Ouvre ton livre, s'il te plaît."
   ].forEach((p) => fr.add(p));
 
+  // 11. Educational Mini-Games (Harakat, Letters, Words, Numbers, Prompts)
+  const gameLetters = [
+    { base: "أ", name: "أَلِف", fatha: "أَ", damma: "أُ", kasra: "إِ" },
+    { base: "ب", name: "بَاء", fatha: "بَ", damma: "بُ", kasra: "بِ" },
+    { base: "ت", name: "تَاء", fatha: "تَ", damma: "تُ", kasra: "تِ" },
+    { base: "ث", name: "ثَاء", fatha: "ثَ", damma: "ثُ", kasra: "ثِ" },
+    { base: "ج", name: "جِيم", fatha: "جَ", damma: "جُ", kasra: "جِ" },
+    { base: "ح", name: "حَاء", fatha: "حَ", damma: "حُ", kasra: "حِ" },
+    { base: "خ", name: "خَاء", fatha: "خَ", damma: "خُ", kasra: "خِ" },
+    { base: "د", name: "دَال", fatha: "دَ", damma: "دُ", kasra: "دِ" },
+    { base: "ر", name: "رَاء", fatha: "رَ", damma: "رُ", kasra: "رِ" },
+    { base: "ز", name: "زَاي", fatha: "زَ", damma: "زُ", kasra: "زِ" },
+    { base: "س", name: "سِين", fatha: "سَ", damma: "سُ", kasra: "سِ" },
+    { base: "ش", name: "شِين", fatha: "شَ", damma: "شُ", kasra: "شِ" },
+    { base: "ص", name: "صَاد", fatha: "صَ", damma: "صُ", kasra: "صِ" },
+    { base: "ط", name: "طَاء", fatha: "طَ", damma: "طُ", kasra: "طِ" },
+    { base: "ع", name: "عَيْن", fatha: "عَ", damma: "عُ", kasra: "عِ" },
+    { base: "ف", name: "فَاء", fatha: "فَ", damma: "فُ", kasra: "فِ" },
+    { base: "ق", name: "قَاف", fatha: "قَ", damma: "قُ", kasra: "قِ" },
+    { base: "ك", name: "كَاف", fatha: "كَ", damma: "كُ", kasra: "كِ" },
+    { base: "ل", name: "لَام", fatha: "لَ", damma: "لُ", kasra: "لِ" },
+    { base: "م", name: "مِيم", fatha: "مَ", damma: "مُ", kasra: "مِ" },
+    { base: "ن", name: "نُون", fatha: "نَ", damma: "نُ", kasra: "نِ" },
+    { base: "و", name: "وَاو", fatha: "وَ", damma: "وُ", kasra: "وِ" },
+    { base: "ي", name: "يَاء", fatha: "يَ", damma: "يُ", kasra: "يِ" }
+  ];
+  gameLetters.forEach((l) => {
+    ar.add(l.base);
+    ar.add(l.name);
+    ar.add(l.fatha);
+    ar.add(l.damma);
+    ar.add(l.kasra);
+  });
+
+  [
+    "ا", "ة",
+    "لَيْمُون", "أَسَد", "قَلَم", "شَمْس", "جَمَل", "سَمَك", "كِتَاب", "أَرْنَب", "بَطَّة", "تُفَّاح",
+    "وَاحِد", "اِثْنَان", "ثَلَاثَة", "أَرْبَعَة", "خَمْسَة", "سِتَّة", "سَبْعَة", "ثَمَانِيَة", "تِسْعَة", "عَشَرَة",
+    "كم العدد؟", "عد النقاط الحمراء", "أحسنت يا بطل! لقد أكملت الجولة بنجاح!"
+  ].forEach((p) => ar.add(p));
+
+  "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("").forEach((l) => {
+    fr.add(`La lettre ${l}`);
+  });
+
+  [
+    "CHAT", "LION", "POMME", "LUNE", "OURS", "LIVRE", "FLEUR", "TRAIN", "POULE", "VELO",
+    "Un", "Deux", "Trois", "Quatre", "Cinq", "Six", "Sept", "Huit", "Neuf", "Dix",
+    "Combien y en a-t-il ?", "Compte les points rouges", "Bravo champion ! Tu as terminé la manche avec succès !"
+  ].forEach((p) => fr.add(p));
+
   return {
     ar: Array.from(ar),
     fr: Array.from(fr)

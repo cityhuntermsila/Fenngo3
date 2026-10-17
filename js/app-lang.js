@@ -286,6 +286,15 @@
       path.endsWith("daily-routine.html") ||
       path.endsWith("common-orders.html")
     ) {
+      return "cours.html";
+    }
+    if (
+      path.endsWith("cours.html") ||
+      path.endsWith("games.html") ||
+      path.endsWith("tracing.html") ||
+      path.endsWith("test.html") ||
+      path.endsWith("stories.html")
+    ) {
       return "category.html";
     }
     if (path.endsWith("language.html")) {
@@ -329,7 +338,7 @@
     `;
 
     const appContainer =
-      document.querySelector(".alphabet-app, .numbers-app, .colors-app, .geometry-app, .family-app, .topic-app, .category-app, .kindergarten-app") ||
+      document.querySelector(".alphabet-app, .numbers-app, .colors-app, .geometry-app, .family-app, .topic-app, .games-app, .category-app, .kindergarten-app") ||
       document.body;
 
     appContainer.appendChild(backBtn);

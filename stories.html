@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, viewport-fit=cover">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <title>Kids Learner - Histoires Courtes</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@600;700;800;900&family=Nunito:wght@600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/common.css?v=12">
+  <link rel="stylesheet" href="css/games.css?v=12">
+  <style>
+    .stories-stage {
+      width: min(96vw, 1180px);
+      flex: 1 1 auto;
+      min-height: 0;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: clamp(12px, 1.8vw, 22px);
+      align-items: stretch;
+    }
+    .story-reader-modal {
+      position: fixed;
+      inset: 0;
+      z-index: 80;
+      background: rgba(23, 7, 81, 0.72);
+      backdrop-filter: blur(8px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+    }
+    .story-reader-card {
+      width: min(820px, 94vw);
+      background: #ffffff;
+      border: 3px solid #917ed6;
+      border-bottom: 8px solid #4221b8;
+      border-radius: 40px;
+      padding: clamp(18px, 3vh, 32px);
+      box-shadow: 2px 10px 60px 0 rgba(66, 33, 184, 0.45);
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      text-align: center;
+    }
+    .story-scene-box {
+      background: linear-gradient(180deg, #f2f5ff 0%, #dee5ff 100%);
+      border: 2.5px solid #c6d2ff;
+      border-radius: 28px;
+      padding: clamp(16px, 2.8vh, 28px);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+    }
+    .story-text-line {
+      font-size: clamp(18px, 2.8vh, 26px);
+      font-weight: 800;
+      color: #2c2a33;
+      line-height: 1.45;
+      margin: 0;
+    }
+    .story-moral-pill {
+      background: #dcfce7;
+      color: #15803d;
+      border: 2px solid #19aa20;
+      border-radius: 18px;
+      padding: 8px 16px;
+      font-size: clamp(14px, 2vh, 18px);
+      font-weight: 900;
+    }
+  </style>
+</head>
+
+<body class="games-page">
+  <div id="storiesApp" class="games-app">
+    <main class="games-hub">
+      <header class="nk-hero">
+        <div class="nk-hero-top">
+          <div class="nk-hero-text">
+            <h1 id="storiesMainTitle" class="nk-hero-title">Histoires courtes pour enfants</h1>
+            <p id="storiesMainSubtitle" class="nk-hero-subtitle">Découvre et écoute de belles histoires illustrées !</p>
+          </div>
+          <div class="nk-counters">
+            <div class="nk-stat-pill">
+              <span>📖</span>
+              <span id="storiesCountBadge">3</span>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <section id="storiesGrid" class="stories-stage" aria-label="Short Stories List"></section>
+    </main>
+
+    <!-- Lecteur d'histoire interactif -->
+    <div id="storyReaderModal" class="story-reader-modal hidden" role="dialog" aria-modal="true">
+      <div class="story-reader-card">
+        <div class="flex items-center justify-between gap-4">
+          <button type="button" id="closeStoryBtn" class="exit-game-btn" aria-label="Close">
+            <i class="fa-solid fa-xmark"></i>
+          </button>
+          <h2 id="readerStoryTitle" class="nk-hero-title" style="font-size: clamp(20px, 3.2vh, 30px);">Histoire</h2>
+          <button type="button" id="listenStoryBtn" class="speaker-btn">
+            <i class="fa-solid fa-volume-high"></i>
+            <span id="listenStoryLabel">Écouter</span>
+          </button>
+        </div>
+
+        <div class="story-scene-box">
+          <div id="readerStoryEmoji" style="font-size: clamp(52px, 9vh, 84px); line-height: 1.1;">🦁🐰</div>
+          <p id="readerStoryText" class="story-text-line"></p>
+          <div id="readerStoryMoral" class="story-moral-pill"></div>
+        </div>
+
+        <div class="flex items-center justify-between gap-4">
+          <button type="button" id="prevPageBtn" class="nk-btn-purple" style="max-width: 180px;">◀</button>
+          <span id="storyPageIndicator" class="nk-tag" style="font-size: 14px; padding: 6px 16px;">1 / 3</span>
+          <button type="button" id="nextPageBtn" class="nk-btn-green" style="max-width: 180px;">▶</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/app-lang.js?v=12"></script>
+  <script>
+    (() => {
+      const STORIES_DB = {
+        French: {
+          title: "Histoires courtes pour enfants",
+          subtitle: "Découvre et écoute de belles histoires illustrées !",
+          readBtn: "Lire l'histoire !",
+          listen: "Écouter",
+          speechLang: "fr-FR",
+          stories: [
+            {
+              title: "Le Petit Lion Courageux",
+              tag: "Courage & Amitié",
+              bg: "radial-gradient(circle at 50% 0%, #fde68a 0%, #f59e0b 100%)",
+              emoji: "🦁☀️",
+              desc: "Un petit lion apprend à partager et à aider ses amis de la forêt.",
+              pages: [
+                { emoji: "🦁☀️", text: "Sous le grand soleil, le petit lion joue dans la savane.", speech: "LION" },
+                { emoji: "🦁🍎🐰", text: "Il trouve une belle pomme rouge et la partage avec son ami le lapin.", speech: "POMME" },
+                { emoji: "🦁🤝🐰", text: "Ensemble, ils rentrent joyeusement à la maison avant la lune.", speech: "LUNE" }
+              ],
+              moral: "✨ Morale : Le partage rend l'amitié plus forte !"
+            },
+            {
+              title: "Le Chat et le Livre Magique",
+              tag: "Curiosité & Lecture",
+              bg: "radial-gradient(circle at 50% 0%, #c6d2ff 0%, #7c65e0 100%)",
+              emoji: "🐱📖",
+              desc: "Un petit chat curieux découvre les lettres et les étoiles dans un livre.",
+              pages: [
+                { emoji: "🐱📖", text: "Le petit chat ouvre un grand livre coloré dans sa chambre.", speech: "LIVRE" },
+                { emoji: "🐱🌸🚂", text: "Dans le livre, il voit une jolie fleur et un petit train.", speech: "FLEUR" },
+                { emoji: "🐱🌙⭐", text: "Le soir venu, il s'endort heureux en regardant la lune.", speech: "CHAT" }
+              ],
+              moral: "✨ Morale : Chaque livre est une merveilleuse aventure !"
+            },
+            {
+              title: "La Journée en Famille",
+              tag: "Famille & Amour",
+              bg: "radial-gradient(circle at 50% 0%, #a7f3d0 0%, #34d399 100%)",
+              emoji: "👨‍👩‍👧‍👦❤️",
+              desc: "Une belle journée ensoleillée avec papa, maman, grand-père et grand-mère.",
+              pages: [
+                { emoji: "👨👩🌅", text: "Le matin, mon père et ma mère préparent un bon petit-déjeuner.", speech: "Mon père" },
+                { emoji: "👴👵🌳", text: "Dans le jardin, grand-père et grand-mère racontent de belles histoires.", speech: "Grand-père" },
+                { emoji: "👦👧🚲", text: "Mon frère et ma sœur jouent ensemble avec leur vélo.", speech: "Mon frère" }
+              ],
+              moral: "✨ Morale : La famille est notre plus grand trésor !"
+            }
+          ]
+        },
+        Arabic: {
+          title: "قِصَصٌ قَصِيرَةٌ لِلأَطْفَالِ",
+          subtitle: "اكْتَشِفْ وَاسْتَمِعْ إِلَى أَجْمَلِ القِصَصِ المُصَوَّرَةِ!",
+          readBtn: "اقْرَأِ القِصَّةَ !",
+          listen: "اسْتَمِعْ",
+          speechLang: "ar-SA",
+          stories: [
+            {
+              title: "الأَسَدُ الصَّغِيرُ الشُّجَاعُ",
+              tag: "المُشَارَكَةُ وَالصَّدَاقَةُ",
+              bg: "radial-gradient(circle at 50% 0%, #fde68a 0%, #f59e0b 100%)",
+              emoji: "🦁☀️",
+              desc: "أَسَدٌ صَغِيرٌ يَتَعَلَّمُ المُشَارَكَةَ وَمُسَاعَدَةَ أَصْدِقَائِهِ فِي الغَابَةِ.",
+              pages: [
+                { emoji: "🦁☀️", text: "تَحْتَ الشَّمْسِ المُشْرِقَةِ، يَلْعَبُ الأَسَدُ الصَّغِيرُ فِي الغَابَةِ.", speech: "أَسَد" },
+                { emoji: "🦁🍎🐰", text: "وَجَدَ تُفَّاحَةً حَمْرَاءَ جَمِيلَةً وَشَارَكَهَا مَعَ صَدِيقِهِ الأَرْنَبِ.", speech: "تُفَّاح" },
+                { emoji: "🦁🤝🐰", text: "عَادَ الصَّدِيقَانِ مَعًا بِسَعَادَةٍ وَفَرَحٍ.", speech: "أَرْنَب" }
+              ],
+              moral: "✨ العِبْرَةُ : المُشَارَكَةُ تَجْعَلُ الصَّدَاقَةَ أَجْمَلَ!"
+            },
+            {
+              title: "الكِتَابُ العَجِيبُ",
+              tag: "القِرَاءَةُ وَالمَعْرِفَةُ",
+              bg: "radial-gradient(circle at 50% 0%, #c6d2ff 0%, #7c65e0 100%)",
+              emoji: "📖✏️",
+              desc: "طِفْلٌ ذَكِيٌّ يَكْتَشِفُ الحُرُوفَ وَالكَلِمَاتِ دَاخِلَ كِتَابِهِ المُلَوَّنِ.",
+              pages: [
+                { emoji: "📖✏️", text: "فَتَحَ الطِّفْلُ كِتَابَهُ الجَمِيلَ وَأَمْسَكَ القَلَمَ.", speech: "كِتَاب" },
+                { emoji: "🐟🦆", text: "شَاهَدَ فِي الصُّوَرِ سَمَكَةً فِي المَاءِ وَبَطَّةً صَفْرَاءَ.", speech: "سَمَك" },
+                { emoji: "☀️🌟", text: "فَرِحَ كَثِيرًا بِتَعَلُّمِ الحُرُوفِ وَالكَلِمَاتِ الجَدِيدَةِ.", speech: "شَمْس" }
+              ],
+              moral: "✨ العِبْرَةُ : القِرَاءَةُ تَفْتَحُ لَنَا أَبْوَابَ العِلْمِ!"
+            },
+            {
+              title: "يَوْمٌ جَمِيلٌ مَعَ العَائِلَةِ",
+              tag: "العَائِلَةُ وَالمَحَبَّةُ",
+              bg: "radial-gradient(circle at 50% 0%, #a7f3d0 0%, #34d399 100%)",
+              emoji: "👨‍👩‍👧‍👦❤️",
+              desc: "يَوْمٌ سَعِيدٌ مَعَ الأَبِ وَالأُمِّ وَالجَدِّ وَالجَدَّةِ.",
+              pages: [
+                { emoji: "👨👩🌅", text: "فِي الصَّبَاحِ، يَجْتَمِعُ أَبِي وَأُمِّي بِابْتِسَامَةٍ جَمِيلَةٍ.", speech: "أَبِي" },
+                { emoji: "👴👵🌳", text: "فِي الحَدِيقَةِ، يَحْكِي الجَدُّ وَالجَدَّةُ قِصَصًا مُفِيدَةً.", speech: "الجَدُّ" },
+                { emoji: "👦👧💖", text: "يَلْعَبُ أَخِي وَأُخْتِي مَعًا فِي مَحَبَّةٍ وَسُرُورٍ.", speech: "أَخِي" }
+              ],
+              moral: "✨ العِبْرَةُ : العَائِلَةُ هِيَ أَجْمَلُ نِعْمَةٍ!"
+            }
+          ]
+        },
+        English: {
+          title: "Short Stories for Kids",
+          subtitle: "Read and listen to wonderful illustrated stories!",
+          readBtn: "Read story!",
+          listen: "Listen",
+          speechLang: "en-US",
+          stories: [
+            {
+              title: "The Brave Little Lion",
+              tag: "Sharing & Friendship",
+              bg: "radial-gradient(circle at 50% 0%, #fde68a 0%, #f59e0b 100%)",
+              emoji: "🦁☀️",
+              desc: "A little lion learns how to share and help his forest friends.",
+              pages: [
+                { emoji: "🦁☀️", text: "Under the bright sun, the little lion plays in the meadow.", speech: "Under the bright sun, the little lion plays in the meadow." },
+                { emoji: "🦁🍎🐰", text: "He finds a sweet red apple and shares it with his friend.", speech: "He finds a sweet red apple and shares it with his friend." },
+                { emoji: "🦁⭐", text: "Together they smile under the shining star.", speech: "Together they smile under the shining star." }
+              ],
+              moral: "✨ Moral: Sharing makes every friendship stronger!"
+            },
+            {
+              title: "The Cat and the Magic Book",
+              tag: "Reading & Discovery",
+              bg: "radial-gradient(circle at 50% 0%, #c6d2ff 0%, #7c65e0 100%)",
+              emoji: "🐱📖",
+              desc: "A curious cat discovers letters, animals, and stars inside a book.",
+              pages: [
+                { emoji: "🐱📖", text: "The little cat opens a big colorful book.", speech: "The little cat opens a big colorful book." },
+                { emoji: "🐟🦆", text: "Inside the pages, he sees a swimming fish and a happy duck.", speech: "Inside the pages, he sees a swimming fish and a happy duck." },
+                { emoji: "🐱⭐", text: "At night, he dreams of new words and bright stars.", speech: "At night, he dreams of new words and bright stars." }
+              ],
+              moral: "✨ Moral: Every book is a wonderful new adventure!"
+            },
+            {
+              title: "A Happy Family Day",
+              tag: "Family & Love",
+              bg: "radial-gradient(circle at 50% 0%, #a7f3d0 0%, #34d399 100%)",
+              emoji: "👨‍👩‍👧‍👦❤️",
+              desc: "A sunny day full of love with Mom, Dad, Grandma, and Grandpa.",
+              pages: [
+                { emoji: "👨👩🌅", text: "In the morning, my father and my mother smile warmly.", speech: "In the morning, my father and my mother smile warmly." },
+                { emoji: "👴👵🌳", text: "In the garden, grandfather and grandmother tell wonderful stories.", speech: "In the garden, grandfather and grandmother tell wonderful stories." },
+                { emoji: "👦👧💖", text: "My brother and my sister play together happily.", speech: "My brother and my sister play together happily." }
+              ],
+              moral: "✨ Moral: Family is our greatest treasure!"
+            }
+          ]
+        }
+      };
+
+      let activeStory = null;
+      let pageIdx = 0;
+
+      function getLangData() {
+        const langId = window.AppLang ? window.AppLang.getCurrentLangId() : (localStorage.getItem("selectedLanguage") || "English");
+        return STORIES_DB[langId] || STORIES_DB.English;
+      }
+
+      function renderStoriesHub() {
+        const data = getLangData();
+        document.getElementById("storiesMainTitle").textContent = data.title;
+        document.getElementById("storiesMainSubtitle").textContent = data.subtitle;
+        document.getElementById("listenStoryLabel").textContent = data.listen;
+
+        const grid = document.getElementById("storiesGrid");
+        grid.innerHTML = "";
+
+        data.stories.forEach((st, idx) => {
+          const card = document.createElement("article");
+          card.className = "hub-game-card";
+          card.style.width = "100%";
+          card.style.height = "100%";
+          card.style.setProperty("--card-visual-bg", st.bg);
+
+          card.innerHTML = `
+            <div class="nk-card-visual">
+              <span class="nk-card-step">${idx + 1}</span>
+              <div style="font-size: clamp(54px, 9.5vh, 84px); filter: drop-shadow(0 6px 10px rgba(0,0,0,0.18));">${st.emoji}</div>
+            </div>
+            <div class="nk-card-body">
+              <ul class="nk-card-tags"><li class="nk-tag">${st.tag}</li></ul>
+              <div class="nk-card-info">
+                <h2 class="nk-card-title" style="font-size: clamp(16px, 2.4vh, 22px);">${st.title}</h2>
+                <p class="nk-card-desc" style="-webkit-line-clamp: 2;">${st.desc}</p>
+              </div>
+              <div class="nk-card-actions">
+                <button type="button" class="nk-btn-purple">${data.readBtn}</button>
+              </div>
+            </div>
+          `;
+          card.addEventListener("click", () => openStory(st));
+          grid.appendChild(card);
+        });
+      }
+
+      function openStory(story) {
+        activeStory = story;
+        pageIdx = 0;
+        document.getElementById("storyReaderModal").classList.remove("hidden");
+        renderStoryPage();
+      }
+
+      function renderStoryPage() {
+        if (!activeStory) return;
+        const data = getLangData();
+        const p = activeStory.pages[pageIdx];
+        document.getElementById("readerStoryTitle").textContent = activeStory.title;
+        document.getElementById("readerStoryEmoji").textContent = p.emoji;
+        document.getElementById("readerStoryText").textContent = p.text;
+        document.getElementById("readerStoryMoral").textContent = activeStory.moral;
+        document.getElementById("storyPageIndicator").textContent = `${pageIdx + 1} / ${activeStory.pages.length}`;
+
+        if (window.AppLang) {
+          window.AppLang.speak(p.speech, data.speechLang);
+        }
+      }
+
+      document.getElementById("closeStoryBtn").addEventListener("click", () => {
+        if (window.AppLang) window.AppLang.stopSpeech();
+        document.getElementById("storyReaderModal").classList.add("hidden");
+      });
+
+      document.getElementById("prevPageBtn").addEventListener("click", () => {
+        if (!activeStory) return;
+        pageIdx = (pageIdx - 1 + activeStory.pages.length) % activeStory.pages.length;
+        renderStoryPage();
+      });
+
+      document.getElementById("nextPageBtn").addEventListener("click", () => {
+        if (!activeStory) return;
+        pageIdx = (pageIdx + 1) % activeStory.pages.length;
+        renderStoryPage();
+      });
+
+      document.getElementById("listenStoryBtn").addEventListener("click", () => {
+        if (!activeStory) return;
+        const data = getLangData();
+        const p = activeStory.pages[pageIdx];
+        if (window.AppLang) window.AppLang.speak(p.speech, data.speechLang);
+      });
+
+      window.addEventListener("DOMContentLoaded", renderStoriesHub);
+      window.addEventListener("appLanguageChanged", renderStoriesHub);
+    })();
+  </script>
+</body>
+
+</html>

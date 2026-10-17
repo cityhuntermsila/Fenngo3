@@ -1,0 +1,60 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 310" width="420" height="310">
+  <defs>
+    <linearGradient id="stBg" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#f43f5e"/>
+      <stop offset="100%" stop-color="#be123c"/>
+    </linearGradient>
+    <radialGradient id="stRay" cx="50%" cy="42%" r="60%">
+      <stop offset="0%" stop-color="#ffe4e6" stop-opacity="0.5"/>
+      <stop offset="100%" stop-color="#be123c" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="stPill" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#eab308"/>
+      <stop offset="100%" stop-color="#ca8a04"/>
+    </linearGradient>
+    <filter id="stCardSh" x="-8%" y="-8%" width="116%" height="120%">
+      <feDropShadow dx="0" dy="8" stdDeviation="6" flood-color="#881337" flood-opacity="0.42"/>
+    </filter>
+    <filter id="stSoftSh" x="-10%" y="-10%" width="120%" height="125%">
+      <feDropShadow dx="0" dy="4" stdDeviation="3" flood-color="#0f172a" flood-opacity="0.3"/>
+    </filter>
+  </defs>
+
+  <!-- Card Frame -->
+  <rect x="14" y="10" width="392" height="262" rx="48" fill="#ffffff" filter="url(#stCardSh)"/>
+  <rect x="22" y="18" width="376" height="246" rx="42" fill="url(#stBg)"/>
+  <rect x="22" y="18" width="376" height="246" rx="42" fill="url(#stRay)"/>
+
+  <!-- Magical Stars & Crescent Moon -->
+  <g fill="#fde047" filter="url(#stSoftSh)">
+    <polygon points="64,54 69,64 80,66 72,74 74,85 64,79 54,85 56,74 48,66 59,64"/>
+    <polygon points="354,50 359,60 370,62 362,70 364,81 354,75 344,81 346,70 338,62 349,60"/>
+    <path d="M130 34 A22 22 0 1 0 156 64 A18 18 0 1 1 130 34 Z"/>
+  </g>
+
+  <!-- Magical Open Storybook with Castle & Rainbow -->
+  <g filter="url(#stSoftSh)">
+    <!-- Rainbow Arc emerging from book -->
+    <path d="M132 140 A78 78 0 0 1 288 140" fill="none" stroke="#38bdf8" stroke-width="10" stroke-linecap="round"/>
+    <path d="M142 140 A68 68 0 0 1 278 140" fill="none" stroke="#fde047" stroke-width="10" stroke-linecap="round"/>
+    <path d="M152 140 A58 58 0 0 1 268 140" fill="none" stroke="#4ade80" stroke-width="10" stroke-linecap="round"/>
+
+    <!-- Little Castle on Book -->
+    <rect x="182" y="78" width="56" height="58" rx="6" fill="#fef3c7" stroke="#ffffff" stroke-width="3"/>
+    <polygon points="176,78 210,44 244,78" fill="#8b5cf6" stroke="#ffffff" stroke-width="3" stroke-linejoin="round"/>
+    <rect x="198" y="104" width="24" height="32" rx="12" fill="#d97706"/>
+
+    <!-- Open Storybook Pages -->
+    <path d="M88 192 Q149 172 210 194 Q271 172 332 192 L332 128 Q271 108 210 130 Q149 108 88 128 Z" fill="#ffffff" stroke="#fde047" stroke-width="6" stroke-linejoin="round"/>
+    <line x1="210" y1="130" x2="210" y2="194" stroke="#f59e0b" stroke-width="5"/>
+    <line x1="114" y1="148" x2="184" y2="144" stroke="#cbd5e1" stroke-width="5" stroke-linecap="round"/>
+    <line x1="114" y1="166" x2="176" y2="162" stroke="#cbd5e1" stroke-width="5" stroke-linecap="round"/>
+    <line x1="236" y1="144" x2="306" y2="148" stroke="#cbd5e1" stroke-width="5" stroke-linecap="round"/>
+    <line x1="244" y1="162" x2="306" y2="166" stroke="#cbd5e1" stroke-width="5" stroke-linecap="round"/>
+  </g>
+
+  <!-- Label Banner -->
+  <rect x="54" y="218" width="312" height="68" rx="24" fill="#ffffff" filter="url(#stSoftSh)"/>
+  <rect x="59" y="223" width="302" height="58" rx="20" fill="url(#stPill)"/>
+  <text x="210" y="261" text-anchor="middle" fill="#ffffff" font-family="'Nunito', 'Cairo', sans-serif" font-size="29" font-weight="900">Histoires / قصص</text>
+</svg>

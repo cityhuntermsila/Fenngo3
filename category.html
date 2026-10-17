@@ -10,9 +10,8 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <title>Kids Learner - Dashboard</title>
 
-  <!-- Existing project paths are preserved -->
-  <link rel="stylesheet" href="css/common.css?v=8">
-  <link rel="stylesheet" href="css/category.css?v=8">
+  <link rel="stylesheet" href="css/common.css?v=13">
+  <link rel="stylesheet" href="css/category.css?v=13">
 </head>
 
 <body class="category">
@@ -25,41 +24,26 @@
         alt="Kids Learner"
       >
 
-      <section class="category-grid" aria-label="Learning categories">
-        <a href="alphabet.html" class="category-card" aria-label="Learn Alphabet">
-          <img src="assets/images/category-images/alphabet.png" alt="Alphabet">
+      <!-- Catégories principales : Cours, Jeux, Traçage/Écriture, Test, Histoire courte -->
+      <section class="category-grid main-category-grid" aria-label="Main learning sections">
+        <a href="cours.html" class="category-card" data-cat-key="cours" aria-label="Cours">
+          <img src="assets/images/category-images/cours.svg" alt="Cours">
         </a>
 
-        <a href="numbers.html" class="category-card" aria-label="Learn Numbers">
-          <img src="assets/images/category-images/numbeer.png" alt="Numbers">
+        <a href="games.html" class="category-card" data-cat-key="games" aria-label="Jeux">
+          <img src="assets/images/category-images/games.svg" alt="Jeux">
         </a>
 
-        <a href="colors.html" class="category-card" aria-label="Learn Colors">
-          <img src="assets/images/category-images/color.png" alt="Colors">
+        <a href="tracing.html" class="category-card" data-cat-key="tracing" aria-label="Traçage / Écriture">
+          <img src="assets/images/category-images/tracing.svg" alt="Traçage / Écriture">
         </a>
 
-        <a href="geometry.html" class="category-card" aria-label="Learn Geometry">
-          <img src="assets/images/category-images/geometric.png" alt="Geometry">
+        <a href="test.html" class="category-card" data-cat-key="test" aria-label="Test">
+          <img src="assets/images/category-images/test.svg" alt="Test">
         </a>
 
-        <a href="family.html" class="category-card" aria-label="Learn Family">
-          <img src="assets/images/category-images/family.svg" alt="Family">
-        </a>
-
-        <a href="stationery.html" class="category-card" aria-label="Learn School Stationery">
-          <img src="assets/images/category-images/stationery.svg" alt="School Stationery">
-        </a>
-
-        <a href="body-parts.html" class="category-card" aria-label="Learn Body Parts">
-          <img src="assets/images/category-images/body-parts.svg" alt="Body Parts">
-        </a>
-
-        <a href="daily-routine.html" class="category-card" aria-label="Learn Daily Routine">
-          <img src="assets/images/category-images/daily-routine.svg" alt="Daily Routine">
-        </a>
-
-        <a href="common-orders.html" class="category-card" aria-label="Learn Common Orders">
-          <img src="assets/images/category-images/common-orders.svg" alt="Common Orders">
+        <a href="stories.html" class="category-card" data-cat-key="stories" aria-label="Histoire courte">
+          <img src="assets/images/category-images/stories.svg" alt="Histoire courte">
         </a>
       </section>
     </main>
@@ -67,9 +51,9 @@
     <div id="footer" class="category-footer"></div>
   </div>
 
-  <script src="js/app-lang.js?v=8"></script>
-  <script src="js/include.js?v=8"></script>
-  <script src="js/category.js?v=8"></script>
+  <script src="js/app-lang.js?v=13"></script>
+  <script src="js/include.js?v=13"></script>
+  <script src="js/category.js?v=13"></script>
 </body>
 
 </html>

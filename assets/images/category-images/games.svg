@@ -1,0 +1,59 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 310" width="420" height="310">
+  <defs>
+    <linearGradient id="gmBg" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#6366f1"/>
+      <stop offset="100%" stop-color="#3730a3"/>
+    </linearGradient>
+    <radialGradient id="gmRay" cx="50%" cy="45%" r="60%">
+      <stop offset="0%" stop-color="#e0e7ff" stop-opacity="0.45"/>
+      <stop offset="100%" stop-color="#3730a3" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="gmPill" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#22c55e"/>
+      <stop offset="100%" stop-color="#15803d"/>
+    </linearGradient>
+    <filter id="gmCardSh" x="-8%" y="-8%" width="116%" height="120%">
+      <feDropShadow dx="0" dy="8" stdDeviation="6" flood-color="#1e1b4b" flood-opacity="0.42"/>
+    </filter>
+    <filter id="gmSoftSh" x="-10%" y="-10%" width="120%" height="125%">
+      <feDropShadow dx="0" dy="4" stdDeviation="3" flood-color="#0f172a" flood-opacity="0.32"/>
+    </filter>
+  </defs>
+
+  <!-- Card Frame -->
+  <rect x="14" y="10" width="392" height="262" rx="48" fill="#ffffff" filter="url(#gmCardSh)"/>
+  <rect x="22" y="18" width="376" height="246" rx="42" fill="url(#gmBg)"/>
+  <rect x="22" y="18" width="376" height="246" rx="42" fill="url(#gmRay)"/>
+
+  <!-- Stars & Trophy Crown -->
+  <g fill="#fde047" filter="url(#gmSoftSh)">
+    <polygon points="62,52 67,62 78,64 70,72 72,83 62,77 52,83 54,72 46,64 57,62"/>
+    <polygon points="358,48 363,58 374,60 366,68 368,79 358,73 348,79 350,68 342,60 353,58"/>
+    <polygon points="210,26 216,38 230,40 220,50 222,63 210,56 198,63 200,50 190,40 204,38"/>
+  </g>
+
+  <!-- Gamepad Illustration -->
+  <g transform="translate(95, 58)" filter="url(#gmSoftSh)">
+    <!-- Controller Body -->
+    <path d="M48 28 L182 28 C212 28, 232 54, 224 94 L214 134 C208 156, 182 158, 168 138 L152 114 L78 114 L62 138 C48 158, 22 156, 16 134 L6 94 C-2 54, 18 28, 48 28 Z" fill="#facc15" stroke="#ffffff" stroke-width="6" stroke-linejoin="round"/>
+    
+    <!-- D-Pad Left -->
+    <rect x="46" y="56" width="16" height="44" rx="5" fill="#1e293b"/>
+    <rect x="32" y="70" width="44" height="16" rx="5" fill="#1e293b"/>
+
+    <!-- Center Arabic Letter & Star -->
+    <rect x="94" y="54" width="42" height="36" rx="10" fill="#ffffff" stroke="#eab308" stroke-width="3"/>
+    <text x="115" y="81" text-anchor="middle" fill="#dc2626" font-family="'Cairo', sans-serif" font-size="26" font-weight="900">أ ب</text>
+
+    <!-- Action Buttons Right -->
+    <circle cx="176" cy="58" r="10" fill="#ef4444" stroke="#ffffff" stroke-width="2.5"/>
+    <circle cx="196" cy="76" r="10" fill="#3b82f6" stroke="#ffffff" stroke-width="2.5"/>
+    <circle cx="156" cy="76" r="10" fill="#22c55e" stroke="#ffffff" stroke-width="2.5"/>
+    <circle cx="176" cy="94" r="10" fill="#a855f7" stroke="#ffffff" stroke-width="2.5"/>
+  </g>
+
+  <!-- Label Banner -->
+  <rect x="54" y="218" width="312" height="68" rx="24" fill="#ffffff" filter="url(#gmSoftSh)"/>
+  <rect x="59" y="223" width="302" height="58" rx="20" fill="url(#gmPill)"/>
+  <text x="210" y="261" text-anchor="middle" fill="#ffffff" font-family="'Comic Sans MS', 'Poppins', sans-serif" font-size="31" font-weight="900">Games / ألعاب</text>
+</svg>

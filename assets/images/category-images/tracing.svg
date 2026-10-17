@@ -1,0 +1,65 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 310" width="420" height="310">
+  <defs>
+    <linearGradient id="trBg" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#a855f7"/>
+      <stop offset="100%" stop-color="#4221b8"/>
+    </linearGradient>
+    <radialGradient id="trRay" cx="50%" cy="42%" r="60%">
+      <stop offset="0%" stop-color="#f3e8ff" stop-opacity="0.5"/>
+      <stop offset="100%" stop-color="#4221b8" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="trPill" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#ec4899"/>
+      <stop offset="100%" stop-color="#be185d"/>
+    </linearGradient>
+    <filter id="trCardSh" x="-8%" y="-8%" width="116%" height="120%">
+      <feDropShadow dx="0" dy="8" stdDeviation="6" flood-color="#2e1065" flood-opacity="0.42"/>
+    </filter>
+    <filter id="trSoftSh" x="-10%" y="-10%" width="120%" height="125%">
+      <feDropShadow dx="0" dy="4" stdDeviation="3" flood-color="#0f172a" flood-opacity="0.3"/>
+    </filter>
+  </defs>
+
+  <!-- Card Frame -->
+  <rect x="14" y="10" width="392" height="262" rx="48" fill="#ffffff" filter="url(#trCardSh)"/>
+  <rect x="22" y="18" width="376" height="246" rx="42" fill="url(#trBg)"/>
+  <rect x="22" y="18" width="376" height="246" rx="42" fill="url(#trRay)"/>
+
+  <!-- Stars -->
+  <g fill="#fde047" filter="url(#trSoftSh)">
+    <polygon points="56,48 61,58 72,60 64,68 66,79 56,73 46,79 48,68 40,60 51,58"/>
+    <polygon points="364,48 369,58 380,60 372,68 374,79 364,73 354,79 356,68 348,60 359,58"/>
+  </g>
+
+  <!-- Notebook Sheet with Dotted Letters & Pencil -->
+  <g filter="url(#trSoftSh)">
+    <rect x="86" y="34" width="248" height="162" rx="22" fill="#ffffff" stroke="#c6d2ff" stroke-width="5"/>
+    <!-- Ruled Notebook Lines -->
+    <line x1="106" y1="74" x2="314" y2="74" stroke="#bae6fd" stroke-width="2.5"/>
+    <line x1="106" y1="115" x2="314" y2="115" stroke="#93c5fd" stroke-width="2.5" stroke-dasharray="7 6"/>
+    <line x1="106" y1="156" x2="314" y2="156" stroke="#fca5a5" stroke-width="3"/>
+
+    <!-- Dotted Letter A (Left) -->
+    <path d="M132 154 L158 76 L184 154 M140 128 L176 128" fill="none" stroke="#4221b8" stroke-width="9" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="2 14"/>
+    <!-- Partially Traced Solid Stroke on A -->
+    <path d="M132 154 L158 76 L171 115" fill="none" stroke="#31c838" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/>
+    <circle cx="132" cy="154" r="7" fill="#31c838" stroke="#ffffff" stroke-width="2"/>
+
+    <!-- Dotted Arabic Letter ب (Right) -->
+    <path d="M286 116 C286 152, 218 152, 218 116" fill="none" stroke="#f97316" stroke-width="9" stroke-linecap="round" stroke-dasharray="2 14"/>
+    <circle cx="252" cy="172" r="7" fill="#f97316"/>
+
+    <!-- Cute Cartoon Pencil Tracing -->
+    <g transform="translate(174, 96) rotate(-35)">
+      <rect x="0" y="-10" width="68" height="20" rx="4" fill="#facc15" stroke="#ffffff" stroke-width="2.5"/>
+      <rect x="54" y="-10" width="16" height="20" rx="3" fill="#f472b6" stroke="#ffffff" stroke-width="2"/>
+      <polygon points="-18,0 0,-10 0,10" fill="#fde68a" stroke="#ffffff" stroke-width="2"/>
+      <polygon points="-18,0 -10,-4 -10,4" fill="#31c838"/>
+    </g>
+  </g>
+
+  <!-- Label Banner -->
+  <rect x="54" y="218" width="312" height="68" rx="24" fill="#ffffff" filter="url(#trSoftSh)"/>
+  <rect x="59" y="223" width="302" height="58" rx="20" fill="url(#trPill)"/>
+  <text x="210" y="261" text-anchor="middle" fill="#ffffff" font-family="'Nunito', 'Cairo', sans-serif" font-size="28" font-weight="900">Écriture / الكتابة</text>
+</svg>

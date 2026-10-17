@@ -6,6 +6,11 @@
 
   const categoryLabels = {
     English: {
+      cours: "Courses",
+      games: "Games",
+      tracing: "Tracing & Writing",
+      test: "Test",
+      stories: "Short Stories",
       alphabet: "Alphabet",
       numbers: "Numbers",
       colors: "Colors",
@@ -17,6 +22,11 @@
       commonOrders: "Common Orders"
     },
     French: {
+      cours: "Cours",
+      games: "Jeux",
+      tracing: "Traçage / Écriture",
+      test: "Test",
+      stories: "Histoire courte",
       alphabet: "Alphabet",
       numbers: "Nombres",
       colors: "Couleurs",
@@ -28,6 +38,11 @@
       commonOrders: "Ordres Courants"
     },
     Arabic: {
+      cours: "الدروس",
+      games: "الألعاب",
+      tracing: "التخطيط والكتابة",
+      test: "الاختبار",
+      stories: "قصص قصيرة",
       alphabet: "الأبجدية",
       numbers: "الأرقام",
       colors: "الألوان",
@@ -70,23 +85,12 @@
     const labels = categoryLabels[langId] || categoryLabels.English;
 
     const cards = document.querySelectorAll(".category-card");
-    const map = [
-      { key: "alphabet", label: labels.alphabet },
-      { key: "numbers", label: labels.numbers },
-      { key: "colors", label: labels.colors },
-      { key: "geometry", label: labels.geometry },
-      { key: "family", label: labels.family },
-      { key: "stationery", label: labels.stationery },
-      { key: "bodyParts", label: labels.bodyParts },
-      { key: "dailyRoutine", label: labels.dailyRoutine },
-      { key: "commonOrders", label: labels.commonOrders }
-    ];
+    cards.forEach((card) => {
+      const key = card.getAttribute("data-cat-key");
+      const label = key && labels[key] ? labels[key] : card.getAttribute("aria-label");
+      if (!label) return;
+      card.setAttribute("aria-label", label);
 
-    cards.forEach((card, i) => {
-      if (!map[i]) return;
-      card.setAttribute("aria-label", map[i].label);
-
-      // Add or update subtitle pill
       let pill = card.querySelector(".category-card-pill");
       if (!pill) {
         pill = document.createElement("span");
@@ -94,7 +98,7 @@
         card.style.position = "relative";
         card.appendChild(pill);
       }
-      pill.textContent = map[i].label;
+      pill.textContent = label;
     });
   }
 

@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, viewport-fit=cover">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <title>Educational Mini-Games - Kids Learner</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@600;700;800;900&family=Nunito:wght@600;700;800;900&family=Tajawal:wght@700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/common.css?v=11">
+  <link rel="stylesheet" href="css/games.css?v=11">
+</head>
+
+<body class="games-page">
+  <div id="gamesApp" class="games-app">
+
+    <!-- =========================================================
+         1. ÉCRAN D'ACCUEIL (DESIGN NOVAKID : HERO + FILTRES + CARTES 40PX)
+         ========================================================= -->
+    <main id="gamesHub" class="games-hub">
+      <!-- Section Hero Novakid avec dégradé lavande & filtres de compétences -->
+      <header class="nk-hero">
+        <div class="nk-hero-top">
+          <div class="nk-hero-text">
+            <h1 id="hubMainTitle" class="nk-hero-title">Jeux éducatifs pour les enfants</h1>
+            <p id="hubMainSubtitle" class="nk-hero-subtitle">Des jeux ludiques et interactifs pour faire progresser votre enfant !</p>
+          </div>
+
+          <div class="nk-counters">
+            <div class="nk-stat-pill nk-star-pill" title="Stars">
+              <span class="nk-stat-icon">⭐</span>
+              <span id="hubStarsCount">0</span>
+            </div>
+            <div class="nk-stat-pill nk-diamond-pill" title="Diamonds">
+              <span class="nk-stat-icon">💎</span>
+              <span id="hubDiamondsCount">0</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Barre de filtres par compétence style Novakid (.gamesArchive__quizPill) -->
+        <div class="nk-quiz-bar">
+          <span id="hubFilterLabel" class="nk-quiz-label">Sélectionnez les compétences :</span>
+          <div id="hubSkillsFilter" class="nk-skills-pills" role="tablist" aria-label="Skills filter"></div>
+        </div>
+      </header>
+
+      <!-- Grille Ludothèque des 7 Mini-Jeux style Novakid (.gamesArchive__card) -->
+      <section id="hubGrid" class="hub-grid" aria-label="Educational Games List"></section>
+    </main>
+
+    <!-- =========================================================
+         2. ÉCRAN DE JEU ACTIF (CONTENEUR UNIVERSEL DES 7 JEUX)
+         ========================================================= -->
+    <section id="gameScreen" class="game-screen hidden" aria-live="polite">
+      <!-- Barre supérieure commune style Novakid -->
+      <header class="game-topbar" dir="ltr">
+        <!-- En haut à gauche : Bouton X + Compteurs -->
+        <div class="topbar-left">
+          <button type="button" id="exitGameBtn" class="exit-game-btn" aria-label="Exit to Hub">
+            <i class="fa-solid fa-xmark"></i>
+          </button>
+          <div class="nk-stat-pill nk-star-pill">
+            <span class="nk-stat-icon">⭐</span>
+            <span id="gameStarsCount">0</span>
+          </div>
+          <div class="nk-stat-pill nk-diamond-pill">
+            <span class="nk-stat-icon">💎</span>
+            <span id="gameDiamondsCount">0</span>
+          </div>
+        </div>
+
+        <!-- En haut au centre : Titre du jeu + Barre de progression -->
+        <div class="topbar-center">
+          <div class="progress-header">
+            <span id="activeGameTitle" class="active-game-title">Game</span>
+            <span id="progressLabel" class="progress-label">0 / 5</span>
+          </div>
+          <div class="progress-track">
+            <div id="progressFill" class="progress-fill" style="width: 0%"></div>
+          </div>
+        </div>
+
+        <!-- Bouton Haut-parleur pour réécouter la consigne ou le son cible -->
+        <div class="topbar-right">
+          <button type="button" id="replaySoundBtn" class="speaker-btn" aria-label="Listen again">
+            <i class="fa-solid fa-volume-high"></i>
+            <span id="targetPromptBadge" class="target-prompt-badge">Listen</span>
+          </button>
+        </div>
+      </header>
+
+      <!-- Zone de rendu interactive (Canvas 60FPS + UI superposée spécifique au jeu) -->
+      <div id="gameStage" class="game-stage">
+        <canvas id="gameCanvas" class="game-canvas"></canvas>
+        <div id="gameOverlayUI" class="game-overlay-ui"></div>
+      </div>
+
+      <!-- Canvas de confettis global -->
+      <canvas id="confettiCanvas" class="confetti-canvas"></canvas>
+
+      <!-- Modal de Victoire de la Manche style Novakid -->
+      <div id="victoryModal" class="victory-modal hidden" role="dialog" aria-modal="true">
+        <div class="victory-card">
+          <div class="victory-trophy">🏆</div>
+          <h2 id="victoryTitle" class="victory-title">Great Job Champion!</h2>
+          <p id="victoryMessage" class="victory-subtitle">You completed the round successfully!</p>
+          <div class="victory-rewards">
+            <span class="reward-badge">⭐ +5</span>
+            <span class="reward-badge">💎 +3</span>
+          </div>
+          <div class="victory-actions">
+            <button type="button" id="playAgainBtn" class="nk-btn-green">
+              <i class="fa-solid fa-rotate-right"></i>
+              <span id="playAgainText">Play Again</span>
+            </button>
+            <button type="button" id="backToHubBtn" class="nk-btn-purple">
+              <i class="fa-solid fa-grip"></i>
+              <span id="backToHubText">Games Menu</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </div>
+
+  <script src="js/app-lang.js?v=11"></script>
+  <script src="js/games.js?v=11"></script>
+</body>
+
+</html>

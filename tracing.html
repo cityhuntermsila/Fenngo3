@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, viewport-fit=cover">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <title>Kids Learner - Traçage & Écriture</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@600;700;800;900&family=Nunito:wght@600;700;800;900&family=Tajawal:wght@700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/common.css?v=13">
+  <link rel="stylesheet" href="css/games.css?v=13">
+  <style>
+    .tracing-workspace {
+      width: min(96vw, 1280px);
+      flex: 1 1 auto;
+      min-height: 0;
+      display: flex;
+      flex-direction: column;
+      gap: clamp(6px, 1.1vh, 12px);
+    }
+
+    .tracing-board-wrap {
+      flex: 1 1 auto;
+      min-height: 0;
+      display: grid;
+      grid-template-columns: 240px 1fr;
+      gap: clamp(10px, 1.5vw, 18px);
+      align-items: stretch;
+    }
+
+    @media (max-width: 820px) {
+      .tracing-board-wrap {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto 1fr;
+      }
+    }
+
+    /* Carte latérale d'aperçu (Mot/Lettre + Image + Outils) */
+    .tracing-side-card {
+      background: #ffffff;
+      border: 2.5px solid #917ed6;
+      border-bottom: 6px solid #4221b8;
+      border-radius: 30px;
+      padding: clamp(10px, 1.6vh, 18px);
+      box-shadow: 0 8px 24px rgba(66, 33, 184, 0.14);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-between;
+      text-align: center;
+      gap: 8px;
+    }
+
+    .tracing-preview-box {
+      width: 100%;
+      background: linear-gradient(180deg, #f2f5ff 0%, #dee5ff 100%);
+      border: 2px solid #c6d2ff;
+      border-radius: 22px;
+      padding: clamp(8px, 1.4vh, 14px);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .tracing-emoji {
+      font-size: clamp(38px, 6.8vh, 62px);
+      line-height: 1.05;
+      filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.14));
+    }
+
+    .tracing-word-label {
+      margin: 0;
+      font-size: clamp(17px, 2.6vh, 24px);
+      font-weight: 900;
+      color: #4221b8;
+    }
+
+    /* Palette de crayons colorés */
+    .color-swatches {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 8px;
+    }
+
+    .color-swatch-btn {
+      width: clamp(28px, 4.2vh, 36px);
+      height: clamp(28px, 4.2vh, 36px);
+      border-radius: 50%;
+      border: 3px solid #ffffff;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.22);
+      cursor: pointer;
+      transition: transform 0.16s ease, box-shadow 0.16s ease;
+    }
+
+    .color-swatch-btn.active {
+      transform: scale(1.22);
+      box-shadow: 0 0 0 3px #4221b8, 0 4px 10px rgba(66, 33, 184, 0.35);
+    }
+
+    /* Zone d'écriture Ardoise / Cahier avec pointillés */
+    .tracing-canvas-card {
+      position: relative;
+      background: #ffffff;
+      border: 3px solid #917ed6;
+      border-bottom: 7px solid #4221b8;
+      border-radius: 32px;
+      box-shadow: 0 10px 30px rgba(66, 33, 184, 0.16);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .tracing-canvas-topbar {
+      padding: 8px 18px;
+      background: #f7f5ff;
+      border-bottom: 2px solid #dee5ff;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      flex: 0 0 auto;
+    }
+
+    .tracing-canvas-stage {
+      position: relative;
+      flex: 1 1 auto;
+      width: 100%;
+      min-height: 0;
+      touch-action: none;
+      cursor: crosshair;
+    }
+
+    #tracingCanvas {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      display: block;
+      touch-action: none;
+    }
+
+    /* Barre inférieure de sélection rapide des lettres / mots */
+    .tracing-bottom-bar {
+      background: #ffffff;
+      border: 2px solid #c6d2ff;
+      border-radius: 24px;
+      padding: 6px 12px;
+      box-shadow: 0 4px 16px rgba(66, 33, 184, 0.1);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex: 0 0 auto;
+    }
+
+    .tracing-items-strip {
+      flex: 1 1 auto;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      overflow-x: auto;
+      scrollbar-width: none;
+      padding: 2px 4px;
+    }
+
+    .tracing-items-strip::-webkit-scrollbar {
+      display: none;
+    }
+
+    .trace-item-pill {
+      flex: 0 0 auto;
+      padding: 5px 13px;
+      border-radius: 14px;
+      border: 2px solid #dee5ff;
+      background: #f7f5ff;
+      color: #2c2a33;
+      font-size: clamp(13px, 2vh, 17px);
+      font-weight: 900;
+      cursor: pointer;
+      transition: all 0.15s ease;
+      white-space: nowrap;
+    }
+
+    .trace-item-pill:hover {
+      border-color: #917ed6;
+      color: #4221b8;
+    }
+
+    .trace-item-pill.active {
+      background: #4221b8;
+      border-color: #4221b8;
+      color: #ffffff;
+      box-shadow: 1.5px 3px 0 #261073;
+    }
+  </style>
+</head>
+
+<body class="games-page">
+  <div id="tracingApp" class="games-app">
+    <main class="games-hub">
+      <!-- En-tête Novakid avec onglets : Tracer les Lettres | Tracer des Mots -->
+      <header class="nk-hero">
+        <div class="nk-hero-top">
+          <div class="nk-hero-text">
+            <h1 id="tracingTitle" class="nk-hero-title">✏️ Traçage & Écriture</h1>
+            <p id="tracingSubtitle" class="nk-hero-subtitle">Suis les pointillés avec ton doigt ou ta souris pour écrire les lettres et les mots !</p>
+          </div>
+
+          <div class="nk-counters">
+            <div class="nk-stat-pill" title="Stars">
+              <span class="nk-stat-icon">⭐</span>
+              <span id="tracingStarsCount">0</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="nk-quiz-bar">
+          <span id="tracingModeLabel" class="nk-quiz-label">Choisis un mode :</span>
+          <div class="nk-skills-pills">
+            <button type="button" id="modeLettersBtn" class="nk-skill-pill active">
+              🔤 <span id="modeLettersText">Tracer les lettres</span>
+            </button>
+            <button type="button" id="modeWordsBtn" class="nk-skill-pill">
+              📝 <span id="modeWordsText">Tracer des mots</span>
+            </button>
+          </div>
+        </div>
+      </header>
+
+      <!-- Espace de travail principal -->
+      <section class="tracing-workspace">
+        <div class="tracing-board-wrap">
+          <!-- Colonne gauche : Modèle illustré + Couleurs du crayon + Boutons -->
+          <aside class="tracing-side-card">
+            <div class="tracing-preview-box">
+              <div id="previewEmoji" class="tracing-emoji">✈️</div>
+              <h2 id="previewWord" class="tracing-word-label">A - Avion</h2>
+            </div>
+
+            <button type="button" id="speakTargetBtn" class="speaker-btn w-full justify-center">
+              <i class="fa-solid fa-volume-high"></i>
+              <span id="listenTargetText">Écouter</span>
+            </button>
+
+            <div class="w-full">
+              <div id="colorPickerLabel" class="nk-quiz-label mb-1" style="display:block;">Couleur du crayon :</div>
+              <div id="colorSwatches" class="color-swatches"></div>
+            </div>
+
+            <div class="w-full flex flex-col gap-2">
+              <button type="button" id="clearCanvasBtn" class="nk-btn-purple">
+                <i class="fa-solid fa-eraser"></i>
+                <span id="clearBtnText">Effacer</span>
+              </button>
+              <button type="button" id="nextItemMainBtn" class="nk-btn-green">
+                <span id="nextBtnText">Suivant</span>
+                <i class="fa-solid fa-arrow-right"></i>
+              </button>
+            </div>
+          </aside>
+
+          <!-- Zone centrale : Cahier d'écriture à pointillés -->
+          <div class="tracing-canvas-card">
+            <div class="tracing-canvas-topbar" dir="ltr">
+              <span id="traceInstructionBadge" class="nk-tag" style="font-size: 12px; padding: 4px 12px;">Suis les pointillés</span>
+              <div class="flex items-center gap-3 flex-1 max-w-xs">
+                <div class="progress-track">
+                  <div id="traceProgressFill" class="progress-fill" style="width: 0%"></div>
+                </div>
+                <span id="tracePercentBadge" class="font-black text-sm" style="color:#4221b8; min-width: 42px;">0%</span>
+              </div>
+              <span id="itemPositionBadge" class="nk-tag" style="font-size: 12px; padding: 4px 10px;">1 / 26</span>
+            </div>
+
+            <div id="tracingStage" class="tracing-canvas-stage">
+              <canvas id="tracingCanvas"></canvas>
+            </div>
+          </div>
+        </div>
+
+        <!-- Barre inférieure : Navigation rapide entre toutes les lettres ou tous les mots -->
+        <div class="tracing-bottom-bar" dir="ltr">
+          <button type="button" id="prevTraceBtn" class="exit-game-btn" style="width:38px;height:38px;" aria-label="Previous">◀</button>
+          <div id="tracingItemsStrip" class="tracing-items-strip"></div>
+          <button type="button" id="nextTraceBtn" class="exit-game-btn" style="width:38px;height:38px;" aria-label="Next">▶</button>
+        </div>
+      </section>
+    </main>
+
+    <canvas id="confettiCanvas" class="confetti-canvas"></canvas>
+  </div>
+
+  <script src="js/app-lang.js?v=13"></script>
+  <script src="js/tracing.js?v=13"></script>
+</body>
+
+</html>

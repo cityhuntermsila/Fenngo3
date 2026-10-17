@@ -1,0 +1,65 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 310" width="420" height="310">
+  <defs>
+    <linearGradient id="tsBg" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#10b981"/>
+      <stop offset="100%" stop-color="#047857"/>
+    </linearGradient>
+    <radialGradient id="tsRay" cx="50%" cy="42%" r="60%">
+      <stop offset="0%" stop-color="#d1fae5" stop-opacity="0.5"/>
+      <stop offset="100%" stop-color="#047857" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="tsPill" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#8b5cf6"/>
+      <stop offset="100%" stop-color="#6d28d9"/>
+    </linearGradient>
+    <filter id="tsCardSh" x="-8%" y="-8%" width="116%" height="120%">
+      <feDropShadow dx="0" dy="8" stdDeviation="6" flood-color="#064e3b" flood-opacity="0.42"/>
+    </filter>
+    <filter id="tsSoftSh" x="-10%" y="-10%" width="120%" height="125%">
+      <feDropShadow dx="0" dy="4" stdDeviation="3" flood-color="#0f172a" flood-opacity="0.3"/>
+    </filter>
+  </defs>
+
+  <!-- Card Frame -->
+  <rect x="14" y="10" width="392" height="262" rx="48" fill="#ffffff" filter="url(#tsCardSh)"/>
+  <rect x="22" y="18" width="376" height="246" rx="42" fill="url(#tsBg)"/>
+  <rect x="22" y="18" width="376" height="246" rx="42" fill="url(#tsRay)"/>
+
+  <!-- Stars -->
+  <g fill="#fde047" filter="url(#tsSoftSh)">
+    <polygon points="62,50 67,60 78,62 70,70 72,81 62,75 52,81 54,70 46,62 57,60"/>
+    <polygon points="358,50 363,60 374,62 366,70 368,81 358,75 348,81 350,70 342,62 353,60"/>
+  </g>
+
+  <!-- Quiz Clipboard + Gold Trophy -->
+  <g filter="url(#tsSoftSh)">
+    <!-- Clipboard -->
+    <rect x="112" y="38" width="136" height="162" rx="18" fill="#ffffff" stroke="#fde047" stroke-width="5"/>
+    <rect x="150" y="26" width="60" height="22" rx="8" fill="#f59e0b" stroke="#ffffff" stroke-width="3"/>
+
+    <!-- Checkmarks & Lines -->
+    <circle cx="142" cy="80" r="12" fill="#dcfce7"/>
+    <path d="M136 80 L141 85 L150 75" fill="none" stroke="#16a34a" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+    <rect x="164" y="74" width="62" height="12" rx="6" fill="#cbd5e1"/>
+
+    <circle cx="142" cy="116" r="12" fill="#dcfce7"/>
+    <path d="M136 116 L141 121 L150 111" fill="none" stroke="#16a34a" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+    <rect x="164" y="110" width="62" height="12" rx="6" fill="#cbd5e1"/>
+
+    <circle cx="142" cy="152" r="12" fill="#fef3c7"/>
+    <text x="142" y="158" text-anchor="middle" fill="#d97706" font-size="18" font-weight="900">?</text>
+    <rect x="164" y="146" width="50" height="12" rx="6" fill="#cbd5e1"/>
+
+    <!-- Gold Trophy Badge on Right -->
+    <circle cx="276" cy="126" r="46" fill="#fef3c7" stroke="#ffffff" stroke-width="5"/>
+    <path d="M254 102 L298 102 L292 134 C290 146 262 146 260 134 Z" fill="#f59e0b"/>
+    <rect x="270" y="142" width="12" height="14" fill="#d97706"/>
+    <rect x="258" y="154" width="36" height="8" rx="4" fill="#b45309"/>
+    <text x="276" y="127" text-anchor="middle" fill="#ffffff" font-size="20" font-weight="900">★</text>
+  </g>
+
+  <!-- Label Banner -->
+  <rect x="54" y="218" width="312" height="68" rx="24" fill="#ffffff" filter="url(#tsSoftSh)"/>
+  <rect x="59" y="223" width="302" height="58" rx="20" fill="url(#tsPill)"/>
+  <text x="210" y="261" text-anchor="middle" fill="#ffffff" font-family="'Nunito', 'Cairo', sans-serif" font-size="31" font-weight="900">Test / اختبار</text>
+</svg>

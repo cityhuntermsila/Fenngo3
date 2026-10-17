@@ -1,5 +1,5 @@
 /* =========================================================
-   CATEGORY PAGE
+   CATEGORY PAGE (4 MAIN CATEGORIES) & COURS PAGE (9 COURSES)
    - Desktop/tablet: normal layout
    - Physical mobile landscape: normal landscape layout
    - Mobile portrait up to 767px: complete app rotates 90deg
@@ -73,29 +73,53 @@ body.category {
   width: 100%;
   min-width: 0;
   min-height: 0;
-  padding: clamp(12px, 2.2vh, 26px) clamp(12px, 2.2vw, 28px);
-  overflow-x: hidden;
-  overflow-y: auto;
-  -webkit-overflow-scrolling: touch;
+  padding: clamp(8px, 1.8vh, 20px) clamp(12px, 2.2vw, 28px);
+  overflow: hidden;
 }
 
 .category-logo {
   display: block;
-  width: min(92%, 600px);
-  max-height: min(18vh, 185px);
-  margin: 0 0 clamp(10px, 2vh, 22px);
+  width: min(88%, 540px);
+  max-height: min(17vh, 165px);
+  margin: 0 0 clamp(8px, 1.8vh, 18px);
   object-fit: contain;
   user-select: none;
   -webkit-user-drag: none;
   animation: bounceLogo 2s ease-in-out infinite;
 }
 
+.cours-logo {
+  max-height: min(13vh, 125px);
+  margin: 0 0 clamp(6px, 1.2vh, 12px);
+}
+
+/* Flex centered 3+2 Grid for the 5 Main Categories on category.html */
 .category-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: clamp(10px, 1.8vw, 20px);
-  width: min(100%, 680px);
+  gap: clamp(12px, 2vw, 24px);
+  width: min(100%, 740px);
   margin: 0 auto;
+}
+
+.category-grid.main-category-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: clamp(10px, 1.6vh, 18px) clamp(12px, 1.8vw, 22px);
+  width: min(96%, 940px);
+}
+
+.main-category-grid .category-card {
+  width: calc(33.333% - 16px);
+  min-width: 170px;
+}
+
+/* 3x3 Grid for the 9 Courses on cours.html */
+.category-grid.cours-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(8px, 1.4vh, 16px) clamp(10px, 1.6vw, 20px);
+  width: min(96%, 920px);
 }
 
 .category-card {
@@ -114,10 +138,14 @@ body.category {
   display: block;
   width: 100%;
   max-width: 100%;
-  max-height: min(25vh, 220px);
+  max-height: min(29vh, 225px);
   object-fit: contain;
   user-select: none;
   -webkit-user-drag: none;
+}
+
+.cours-grid .category-card img {
+  max-height: min(21.5vh, 175px);
 }
 
 .category-card:hover,
@@ -150,18 +178,27 @@ body.category {
   }
 
   .category-logo {
-    width: min(48%, 390px);
-    max-height: 16vh;
+    width: min(46%, 360px);
+    max-height: 14vh;
     margin-bottom: 3px;
   }
 
   .category-grid {
-    width: min(72vw, 650px);
-    gap: 4px 12px;
+    width: min(74vw, 660px);
+    gap: 6px 14px;
+  }
+
+  .category-grid.cours-grid {
+    width: min(88vw, 780px);
+    gap: 4px 10px;
   }
 
   .category-card img {
-    max-height: 26vh;
+    max-height: 30vh;
+  }
+
+  .cours-grid .category-card img {
+    max-height: 21vh;
   }
 }
 
@@ -229,19 +266,28 @@ body.mobile-landscape-layout:not(.mobile-portrait-rotate) .category-app {
   }
 
   .category-logo {
-    width: min(48%, 390px);
-    max-height: 15vw;
+    width: min(46%, 360px);
+    max-height: 14vw;
     margin-bottom: 2px;
     animation-name: bounceLogoMobile;
   }
 
   .category-grid {
-    width: min(72vh, 650px);
-    gap: 4px 12px;
+    width: min(74vh, 660px);
+    gap: 6px 12px;
+  }
+
+  .category-grid.cours-grid {
+    width: min(88vh, 780px);
+    gap: 4px 10px;
   }
 
   .category-card img {
-    max-height: 24vw;
+    max-height: 28vw;
+  }
+
+  .cours-grid .category-card img {
+    max-height: 20vw;
   }
 }
 
@@ -252,19 +298,28 @@ body:is(.mobile-portrait-rotate, .mobile-landscape-layout) .category-main {
 }
 
 body:is(.mobile-portrait-rotate, .mobile-landscape-layout) .category-logo {
-  width: min(48%, 390px);
-  max-height: calc(var(--visible-width) * 0.15);
+  width: min(46%, 360px);
+  max-height: calc(var(--visible-width) * 0.14);
   margin-bottom: 2px;
   animation-name: bounceLogoMobile;
 }
 
 body:is(.mobile-portrait-rotate, .mobile-landscape-layout) .category-grid {
-  width: min(calc(var(--visible-height) * 0.72), 650px);
-  gap: 4px 12px;
+  width: min(calc(var(--visible-height) * 0.74), 660px);
+  gap: 6px 12px;
+}
+
+body:is(.mobile-portrait-rotate, .mobile-landscape-layout) .category-grid.cours-grid {
+  width: min(calc(var(--visible-height) * 0.88), 780px);
+  gap: 4px 10px;
 }
 
 body:is(.mobile-portrait-rotate, .mobile-landscape-layout) .category-card img {
-  max-height: calc(var(--visible-width) * 0.24);
+  max-height: calc(var(--visible-width) * 0.28);
+}
+
+body:is(.mobile-portrait-rotate, .mobile-landscape-layout) .cours-grid .category-card img {
+  max-height: calc(var(--visible-width) * 0.2);
 }
 
 @keyframes bounceLogoMobile {
@@ -281,11 +336,15 @@ body:is(.mobile-portrait-rotate, .mobile-landscape-layout) .category-card img {
 /* Tablet */
 @media screen and (min-width: 768px) and (max-width: 1023px) {
   .category-logo {
-    width: min(78%, 590px);
+    width: min(76%, 560px);
   }
 
   .category-grid {
     width: min(86%, 720px);
+  }
+
+  .category-grid.cours-grid {
+    width: min(94%, 860px);
   }
 }
 

@@ -104,6 +104,7 @@ function updateMobileLayout() {
 
 function renderCards() {
     cardsWrapper.innerHTML = "";
+    cardsWrapper.setAttribute("dir", "ltr");
 
     const savedLang = localStorage.getItem("selectedLanguage") || "French";
 
@@ -172,12 +173,12 @@ function selectLanguage(language, card) {
         localStorage.setItem("selectedLanguage", language.id);
     }
 
-    // Play cheerful phrase and then navigate directly to activities
-    const fallbackTimer = setTimeout(goToActivities, 1600);
+    // Play cheerful phrase completely before navigating to activities
+    const fallbackTimer = setTimeout(goToActivities, 5500);
     if (window.AppLang) {
         window.AppLang.speak(language.speechText, language.speechLang, 0.85, 1.1, () => {
             clearTimeout(fallbackTimer);
-            goToActivities();
+            setTimeout(goToActivities, 250);
         });
     }
 }

@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, viewport-fit=cover">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <title>Kids Learner - Test & Quiz</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@600;700;800;900&family=Nunito:wght@600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/common.css?v=12">
+  <link rel="stylesheet" href="css/games.css?v=12">
+  <style>
+    .test-container {
+      width: min(94vw, 880px);
+      height: min(82dvh, 560px);
+      margin: auto;
+      background: #ffffff;
+      border: 3px solid #917ed6;
+      border-bottom: 8px solid #4221b8;
+      border-radius: 36px;
+      box-shadow: 2px 10px 50px 0 rgba(66, 33, 184, 0.2);
+      padding: clamp(16px, 2.8vh, 30px);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: center;
+      text-align: center;
+    }
+    .test-question-card {
+      width: 100%;
+      background: linear-gradient(180deg, #f2f5ff 0%, #dee5ff 100%);
+      border: 2.5px solid #c6d2ff;
+      border-radius: 26px;
+      padding: clamp(14px, 2.2vh, 24px);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+    }
+    .test-options-grid {
+      width: 100%;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: clamp(10px, 1.8vh, 18px);
+    }
+    .test-option-btn {
+      background: #ffffff;
+      border: 2.5px solid #917ed6;
+      border-radius: 22px;
+      box-shadow: 2px 4px 0 #4221b8;
+      padding: clamp(12px, 2vh, 20px);
+      font-size: clamp(18px, 3vh, 28px);
+      font-weight: 900;
+      color: #2c2a33;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      transition: all 0.18s ease;
+    }
+    .test-option-btn:hover {
+      border-color: #4221b8;
+      background: #f7f5ff;
+      transform: translateY(-2px);
+    }
+  </style>
+</head>
+
+<body class="games-page">
+  <div id="testApp" class="games-app">
+    <main class="games-hub" style="justify-content: center;">
+      <header class="nk-hero">
+        <div class="nk-hero-top">
+          <div class="nk-hero-text">
+            <h1 id="testTitle" class="nk-hero-title">Test des connaissances</h1>
+            <p id="testSubtitle" class="nk-hero-subtitle">Écoute la question et choisis la bonne réponse !</p>
+          </div>
+          <div class="nk-counters">
+            <div class="nk-stat-pill">
+              <span>🏆</span>
+              <span id="testScoreLabel">0 / 10</span>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <section class="test-container">
+        <div class="w-full flex items-center justify-between gap-4">
+          <span id="qCounterBadge" class="nk-tag" style="font-size: 13px; padding: 5px 14px;">Question 1 / 10</span>
+          <div class="progress-track" style="max-width: 340px;">
+            <div id="testProgressFill" class="progress-fill" style="width: 10%"></div>
+          </div>
+          <button type="button" id="listenQuestionBtn" class="speaker-btn">
+            <i class="fa-solid fa-volume-high"></i>
+            <span id="listenBtnLabel">Écouter</span>
+          </button>
+        </div>
+
+        <div class="test-question-card">
+          <div id="questionEmoji" style="font-size: clamp(46px, 8vh, 72px); line-height: 1.1;">❓</div>
+          <h2 id="questionPrompt" class="nk-hero-title" style="font-size: clamp(20px, 3.4vh, 32px);">Trouve la bonne réponse :</h2>
+        </div>
+
+        <div id="testOptionsGrid" class="test-options-grid"></div>
+      </section>
+    </main>
+  </div>
+
+  <script src="js/app-lang.js?v=12"></script>
+  <script>
+    (() => {
+      const QUIZ_DATA = {
+        French: {
+          title: "Test des connaissances",
+          subtitle: "Écoute le mot et choisis la bonne réponse !",
+          listen: "Écouter",
+          questionWord: "Question",
+          promptPrefix: "Où est : ",
+          doneTitle: "Bravo ! Score final : ",
+          restart: "Recommencer le test",
+          speechLang: "fr-FR",
+          items: [
+            { speech: "Grand-père", label: "Grand-père", emoji: "👴" },
+            { speech: "Grand-mère", label: "Grand-mère", emoji: "👵" },
+            { speech: "Père", label: "Père", emoji: "👨" },
+            { speech: "Mère", label: "Mère", emoji: "👩" },
+            { speech: "Un", label: "1 - Un", emoji: "1️⃣" },
+            { speech: "Trois", label: "3 - Trois", emoji: "3️⃣" },
+            { speech: "Cinq", label: "5 - Cinq", emoji: "5️⃣" },
+            { speech: "Dix", label: "10 - Dix", emoji: "🔟" },
+            { speech: "POMME", label: "Pomme", emoji: "🍎" },
+            { speech: "LION", label: "Lion", emoji: "🦁" },
+            { speech: "LIVRE", label: "Livre", emoji: "📖" },
+            { speech: "CHAT", label: "Chat", emoji: "🐱" }
+          ]
+        },
+        Arabic: {
+          title: "اخْتِبَارُ المَعْلُومَاتِ",
+          subtitle: "اسْتَمِعْ إِلَى الكَلِمَةِ وَاخْتَرِ الإِجَابَةَ الصَّحِيحَةَ!",
+          listen: "اسْتَمِعْ",
+          questionWord: "السُّؤَالُ",
+          promptPrefix: "أَيْنَ : ",
+          doneTitle: "أَحْسَنْتَ! النَّتِيجَةُ : ",
+          restart: "إِعَادَةُ الاخْتِبَارِ",
+          speechLang: "ar-SA",
+          items: [
+            { speech: "الجَدُّ", label: "الجَدُّ", emoji: "👴" },
+            { speech: "الجَدَّةُ", label: "الجَدَّةُ", emoji: "👵" },
+            { speech: "الأَبُ", label: "الأَبُ", emoji: "👨" },
+            { speech: "الأُمُّ", label: "الأُمُّ", emoji: "👩" },
+            { speech: "وَاحِد", label: "١ - وَاحِد", emoji: "1️⃣" },
+            { speech: "ثَلَاثَة", label: "٣ - ثَلَاثَة", emoji: "3️⃣" },
+            { speech: "خَمْسَة", label: "٥ - خَمْسَة", emoji: "5️⃣" },
+            { speech: "عَشَرَة", label: "١٠ - عَشَرَة", emoji: "🔟" },
+            { speech: "تُفَّاح", label: "تُفَّاح", emoji: "🍎" },
+            { speech: "أَسَد", label: "أَسَد", emoji: "🦁" },
+            { speech: "كِتَاب", label: "كِتَاب", emoji: "📖" },
+            { speech: "سَمَك", label: "سَمَك", emoji: "🐟" }
+          ]
+        },
+        English: {
+          title: "Knowledge Test",
+          subtitle: "Listen to the word and pick the right answer!",
+          listen: "Listen",
+          questionWord: "Question",
+          promptPrefix: "Find: ",
+          doneTitle: "Great Job! Final Score: ",
+          restart: "Restart Test",
+          speechLang: "en-US",
+          items: [
+            { speech: "Grandfather", label: "Grandfather", emoji: "👴" },
+            { speech: "Grandmother", label: "Grandmother", emoji: "👵" },
+            { speech: "Father", label: "Father", emoji: "👨" },
+            { speech: "Mother", label: "Mother", emoji: "👩" },
+            { speech: "One", label: "1 - One", emoji: "1️⃣" },
+            { speech: "Three", label: "3 - Three", emoji: "3️⃣" },
+            { speech: "Five", label: "5 - Five", emoji: "5️⃣" },
+            { speech: "Ten", label: "10 - Ten", emoji: "🔟" },
+            { speech: "APPLE", label: "Apple", emoji: "🍎" },
+            { speech: "LION", label: "Lion", emoji: "🦁" },
+            { speech: "BOOK", label: "Book", emoji: "📖" },
+            { speech: "CAT", label: "Cat", emoji: "🐱" }
+          ]
+        }
+      };
+
+      let qIndex = 0;
+      let score = 0;
+      let questions = [];
+      let currentTarget = null;
+
+      function getLangData() {
+        const langId = window.AppLang ? window.AppLang.getCurrentLangId() : (localStorage.getItem("selectedLanguage") || "English");
+        return QUIZ_DATA[langId] || QUIZ_DATA.English;
+      }
+
+      function shuffle(arr) {
+        const a = [...arr];
+        for (let i = a.length - 1; i > 0; i--) {
+          const j = Math.floor(Math.random() * (i + 1));
+          [a[i], a[j]] = [a[j], a[i]];
+        }
+        return a;
+      }
+
+      function startQuiz() {
+        const data = getLangData();
+        document.getElementById("testTitle").textContent = data.title;
+        document.getElementById("testSubtitle").textContent = data.subtitle;
+        document.getElementById("listenBtnLabel").textContent = data.listen;
+        qIndex = 0;
+        score = 0;
+        questions = shuffle(data.items).slice(0, 10);
+        renderQuestion();
+      }
+
+      function renderQuestion() {
+        const data = getLangData();
+        document.getElementById("testScoreLabel").textContent = `${score} / 10`;
+
+        if (qIndex >= questions.length) {
+          document.getElementById("questionEmoji").textContent = "🏆";
+          document.getElementById("questionPrompt").textContent = `${data.doneTitle}${score} / 10`;
+          const grid = document.getElementById("testOptionsGrid");
+          grid.innerHTML = `<button type="button" class="nk-btn-green" style="grid-column: 1 / -1; padding: 16px; font-size: 20px;" id="restartTestBtn">${data.restart}</button>`;
+          document.getElementById("restartTestBtn").addEventListener("click", startQuiz);
+          return;
+        }
+
+        currentTarget = questions[qIndex];
+        document.getElementById("qCounterBadge").textContent = `${data.questionWord} ${qIndex + 1} / 10`;
+        document.getElementById("testProgressFill").style.width = `${((qIndex + 1) / 10) * 100}%`;
+        document.getElementById("questionEmoji").textContent = "🎧";
+        document.getElementById("questionPrompt").textContent = `${data.promptPrefix}${currentTarget.label}`;
+
+        const distractors = shuffle(data.items.filter(i => i.label !== currentTarget.label)).slice(0, 3);
+        const choices = shuffle([currentTarget, ...distractors]);
+
+        const grid = document.getElementById("testOptionsGrid");
+        grid.innerHTML = "";
+        choices.forEach(ch => {
+          const btn = document.createElement("button");
+          btn.type = "button";
+          btn.className = "test-option-btn";
+          btn.innerHTML = `<span style="font-size: 1.35em">${ch.emoji}</span><span>${ch.label}</span>`;
+          btn.addEventListener("click", () => {
+            if (ch.label === currentTarget.label) {
+              btn.classList.add("correct-flash");
+              score++;
+              if (window.AppLang) window.AppLang.speak(currentTarget.speech, data.speechLang);
+              setTimeout(() => {
+                qIndex++;
+                renderQuestion();
+              }, 700);
+            } else {
+              btn.classList.add("shake-error");
+              setTimeout(() => btn.classList.remove("shake-error"), 450);
+            }
+          });
+          grid.appendChild(btn);
+        });
+
+        if (window.AppLang) window.AppLang.speak(currentTarget.speech, data.speechLang);
+      }
+
+      document.getElementById("listenQuestionBtn").addEventListener("click", () => {
+        const data = getLangData();
+        if (currentTarget && window.AppLang) {
+          window.AppLang.speak(currentTarget.speech, data.speechLang);
+        }
+      });
+
+      window.addEventListener("DOMContentLoaded", startQuiz);
+      window.addEventListener("appLanguageChanged", startQuiz);
+    })();
+  </script>
+</body>
+
+</html>
