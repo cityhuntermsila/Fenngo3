@@ -10,8 +10,8 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@600;700;800;900&family=Nunito:wght@600;700;800;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-  <link rel="stylesheet" href="css/common.css?v=46">
-  <link rel="stylesheet" href="css/fennygo.css?v=46">
+  <link rel="stylesheet" href="css/common.css?v=47">
+  <link rel="stylesheet" href="css/fennygo.css?v=47">
   <style>
     :root {
       --voc-amber-glow: #fdeebc;
@@ -150,7 +150,9 @@
         font-size: 7.5px !important;
       }
       #currentObjectImg {
-        max-height: clamp(75px, 13vh, 105px) !important;
+        max-height: clamp(140px, 22vh, 195px) !important;
+        max-width: 100% !important;
+        object-fit: contain !important;
         width: auto !important;
       }
       #liveStatusBanner {
@@ -158,6 +160,13 @@
         padding: 2px 8px !important;
         font-size: 10.5px !important;
       }
+    }
+
+    #currentObjectImg {
+      max-height: clamp(160px, 26vh, 260px);
+      width: auto;
+      max-width: 100%;
+      object-fit: contain;
     }
 
     /* Header Bar Card */
@@ -553,7 +562,7 @@
         <!-- Center Column: 3D Object Image + Dynamic Status Banner -->
         <div class="col-span-6 flex flex-col items-center justify-center text-center">
           <div class="relative group cursor-pointer" id="objectClickArea">
-            <img id="currentObjectImg" src="assets/images/fennygo/school-bag-3d.png" alt="3D Vocabulary Object" class="w-28 h-28 sm:w-36 sm:h-36 md:w-40 md:h-40 object-contain drop-shadow-[0_12px_24px_rgba(0,0,0,0.25)] transition-transform duration-300 group-hover:scale-105 active:scale-95">
+            <img id="currentObjectImg" src="assets/images/fennygo/school-bag-3d.png" alt="3D Vocabulary Object" class="w-36 h-36 sm:w-48 sm:h-48 md:w-56 md:h-56 object-contain drop-shadow-[0_14px_28px_rgba(0,0,0,0.25)] transition-transform duration-300 group-hover:scale-105 active:scale-95">
             <span class="absolute bottom-1 right-1 bg-slate-900/80 text-white text-[10px] font-black px-2 py-0.5 rounded-full border border-white">
               🔊 3D
             </span>
@@ -608,7 +617,7 @@
       </div>
 
       <div class="my-auto flex flex-col items-center gap-1.5 sm:gap-2">
-        <img id="spellObjectImg" src="assets/images/fennygo/school-bag-3d.png" alt="Quiz Object" class="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 object-contain drop-shadow-md">
+        <img id="spellObjectImg" src="assets/images/fennygo/school-bag-3d.png" alt="Quiz Object" class="w-24 h-24 sm:w-32 sm:h-32 md:w-36 md:h-36 object-contain drop-shadow-md">
 
         <!-- Target Solved Slots -->
         <div id="spellSlotsRow" class="flex flex-wrap items-center justify-center gap-1 sm:gap-1.5" dir="ltr"></div>
@@ -1584,7 +1593,7 @@
           card.type = "button";
           card.className = "p-2 sm:p-2.5 rounded-2xl bg-white/95 border-2 border-[#E7D1AE] hover:border-[#6E94D1] hover:shadow-[0_8px_20px_rgba(110,148,209,0.3)] shadow flex flex-col items-center gap-1 transition hover:scale-105 active:scale-95";
           card.innerHTML = `
-            <img src="${opt.img}" alt="${opt.word}" class="w-16 h-16 sm:w-20 sm:h-20 object-contain drop-shadow-sm">
+            <img src="${opt.img}" alt="${opt.word}" class="w-20 h-20 sm:w-24 sm:h-24 md:w-28 md:h-28 object-contain drop-shadow-sm">
             <span class="text-[10.5px] sm:text-xs font-black text-slate-800">${opt.word}</span>
           `;
           card.addEventListener("click", () => {
