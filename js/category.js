@@ -42,25 +42,6 @@
       bodyParts: "Parties du Corps",
       dailyRoutine: "Routine Quotidienne",
       commonOrders: "Ordres Courants"
-    },
-    Arabic: {
-      cours: "الدروس",
-      practice: "تدريب وألعاب",
-      vocabulary: "المفردات متعددة الحواس",
-      games: "الألعاب",
-      tracing: "التخطيط والكتابة",
-      test: "الاختبار",
-      stories: "قصص قصيرة",
-      progression: "تتبع التقدم",
-      alphabet: "الأبجدية",
-      numbers: "الأرقام",
-      colors: "الألوان",
-      geometry: "الأشكال",
-      family: "العائلة",
-      stationery: "الأدوات المدرسية",
-      bodyParts: "أجزاء الجسم",
-      dailyRoutine: "الروتين اليومي",
-      commonOrders: "الأوامر المدرسية"
     }
   };
 

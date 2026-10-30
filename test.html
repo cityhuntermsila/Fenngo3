@@ -9,8 +9,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@600;700;800;900&family=Nunito:wght@600;700;800;900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/common.css?v=71">
-  <link rel="stylesheet" href="css/games.css?v=71">
+  <link rel="stylesheet" href="css/common.css?v=72">
+  <link rel="stylesheet" href="css/games.css?v=72">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
   <style>
     .test-container {
@@ -149,7 +149,7 @@
     <canvas id="testConfettiCanvas" style="position:fixed;inset:0;pointer-events:none;z-index:9999;width:100%;height:100%;"></canvas>
   </div>
 
-  <script src="js/app-lang.js?v=71"></script>
+  <script src="js/app-lang.js?v=72"></script>
   <script>
     (() => {
       const QUIZ_ITEMS = {
@@ -177,30 +177,6 @@
             { speech: "La mère", label: "La Mère", emoji: "👩", img: "assets/images/family/mother.png" },
             { speech: "Le vélo", label: "Le Vélo", emoji: "🚲", img: "assets/images/games/words/bike.png" },
             { speech: "La fleur", label: "La Fleur", emoji: "🌸", img: "assets/images/games/words/flower.png" }
-          ]
-        },
-        Arabic: {
-          title: "اخْتِبَارُ المَعْلُومَاتِ ٣AP",
-          subtitle: "اسْتَمِعْ إِلَى فِينِي وَاخْتَرِ الصُّورَةَ الصَّحِيحَةَ!",
-          listen: "اسْتَمِعْ",
-          questionWord: "السُّؤَالُ",
-          promptPrefix: "أَيْنَ : ",
-          doneTitle: "مُمْتَازٌ! النَّتِيجَةُ : ",
-          restart: "إِعَادَةُ الاخْتِبَارِ",
-          speechLang: "ar-SA",
-          items: [
-            { speech: "قِطّ", label: "قِطّ", emoji: "🐱", img: "assets/images/games/words/cat.png" },
-            { speech: "أَسَد", label: "أَسَد", emoji: "🦁", img: "assets/images/games/words/lion.png" },
-            { speech: "تُفَّاحَة", label: "تُفَّاحَة", emoji: "🍎", img: "assets/images/games/words/apple.png" },
-            { speech: "كِتَاب", label: "كِتَاب", emoji: "📖", img: "assets/images/stationery/book.png" },
-            { speech: "قَلَم", label: "قَلَم", emoji: "✏️", img: "assets/images/stationery/pencil.png" },
-            { speech: "بَطَّة", label: "بَطَّة", emoji: "🦆", img: "assets/images/games/words/duck.png" },
-            { speech: "دُبّ", label: "دُبّ", emoji: "🐻", img: "assets/images/games/words/bear.png" },
-            { speech: "سَمَكَة", label: "سَمَكَة", emoji: "🐟", img: "assets/images/games/words/fish.png" },
-            { speech: "شَمْس", label: "شَمْس", emoji: "☀️", img: "assets/images/games/words/sun.png" },
-            { speech: "قِطَار", label: "قِطَار", emoji: "🚂", img: "assets/images/games/words/train.png" },
-            { speech: "أَب", label: "أَب", emoji: "👨", img: "assets/images/family/father.png" },
-            { speech: "أُمّ", label: "أُمّ", emoji: "👩", img: "assets/images/family/mother.png" }
           ]
         },
         English: {
@@ -334,7 +310,7 @@
 
       function startQuiz() {
         const data = getLangData();
-        document.documentElement.dir = (window.AppLang && window.AppLang.getCurrentLangId() === "Arabic") ? "rtl" : "ltr";
+        document.documentElement.dir = "ltr";
         document.getElementById("testTitle").textContent = data.title;
         document.getElementById("testSubtitle").textContent = data.subtitle;
         document.getElementById("listenBtnLabel").textContent = data.listen;

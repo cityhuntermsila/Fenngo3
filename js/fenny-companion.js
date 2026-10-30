@@ -95,45 +95,6 @@
           options: ["Lettre b (b_ag) 🎒", "Lettre h (h_at) 🎩", "Lettre k (k_ite) 🪁"]
         }
       ]
-    },
-    Arabic: {
-      hello: "!Hello",
-      companionTitle: "رَفِيقُكَ الِافْتِرَاضِيُّ فِينِي",
-      companionDesc:
-        "يُقَدِّمُ فِينِي نُطْقًا صَوْتِيًّا مُسْتَمِرًّا، وَدَعْمًا تَشْجِيعِيًّا، وَيَحْتَفِلُ بِكُلِّ إِجَابَةٍ صَحِيحَةٍ لِإِزَالَةِ الخَوْفِ مِنَ الخَطَأِ.",
-      bubbleDefault: "مَرْحَبًا! أَنَا فِينِي 🦊 اضْغَطْ هُنَا لِسُؤَالِ اليَوْمِ وَالتَّحِيَّةِ الصَّوْتِيَّةِ!",
-      bubbleGreet: "أَهْلًا بِكَ يَا بَطَل! هَلْ أَنْتَ مُسْتَعِدٌّ لِمُغَامَرَةِ اليَوْمِ مَعَ فِينِي؟",
-      btnCheckin: "✨ سُؤَالُ اليَوْمِ",
-      btnProgress: "📊 تَتَبُّعُ التَّقَدُّمِ",
-      btnShowcase: "🌟 عَرْضُ FennyGo3",
-      modalTitle: "تَعَرَّفْ عَلَى فِينِي! — النَّشَاطُ اليَوْمِيُّ",
-      step1Title: "1. التَّحِيَّةُ الصَّوْتِيَّةُ (Login & Greet)",
-      step1Desc: "يُرَحِّبُ بِكَ فِينِي بِصَوْتٍ وَاضِحٍ لِتَبْدَأَ التَّعَلُّمَ بِحَمَاسٍ.",
-      step1Btn: "🔊 اسْتَمِعْ إِلَى تَحِيَّةِ فِينِي",
-      step2Title: "2. سُؤَالُ اليَوْمِ (Daily Check-in)",
-      step2Desc: "يَطْرَحُ فِينِي سُؤَالًا بَسِيطًا مُتَوَافِقًا مَعَ المِنْهَاجِ الدِّرَاسِيِّ:",
-      step3Title: "3. المَرْكَزُ الرَّئِيسِيُّ (The Hub)",
-      step3Desc: "انْطَلِقْ إِلَى القَائِمَةِ الرَّئِيسِيَّةِ لِاخْتِيَارِ الدُّرُوسِ وَالأَلْعَابِ التَّفَاعُلِيَّةِ.",
-      step3Btn: "🚀 الذَّهَابُ إِلَى القَائِمَةِ الرَّئِيسِيَّةِ",
-      slidePreviewBtn: "🖼️ عَرْضُ بِطَاقَةِ فِينِي الكَامِلَةِ",
-      checkinSuccess: "أَحْسَنْتَ يَا بَطَل! رَبِحْتَ +5 ⭐ نُجُومٍ إِضَافِيَّةٍ!",
-      cheers: [
-        "رَائِعٌ جِدًّا! أَنْتَ نَجْمٌ مُتَأَلِّقٌ! ⭐",
-        "أَحْسَنْتَ! فِينِي فَخُورٌ بِكَ! 🦊",
-        "إِجَابَةٌ مُمْتَازَةٌ! وَاصِلِ التَّقَدُّمَ! 🏆"
-      ],
-      questions: [
-        {
-          q: "How old are you? (كَمْ عُمْرُكَ؟)",
-          speech: "Hello! How old are you?",
-          options: ["I am 8 years old! 🎂", "I am 9 years old! 🌟", "I am 7 years old! 🎈"]
-        },
-        {
-          q: "How are you today? (كَيْفَ حَالُكَ اليَوْمَ؟)",
-          speech: "How are you today?",
-          options: ["I am fine, thank you! 😊", "I am happy! 🤩", "Ready to learn! 🚀"]
-        }
-      ]
     }
   };
 
@@ -264,7 +225,6 @@
           <div style="display:flex;gap:4px;">
             <button type="button" data-fenny-lang="English" style="padding:2px 8px;border-radius:99px;font-size:10.5px;font-weight:900;border:1.5px solid #cbd5e1;background:#fff;cursor:pointer;">🇬🇧 EN</button>
             <button type="button" data-fenny-lang="French" style="padding:2px 8px;border-radius:99px;font-size:10.5px;font-weight:900;border:1.5px solid #cbd5e1;background:#fff;cursor:pointer;">🇫🇷 FR</button>
-            <button type="button" data-fenny-lang="Arabic" style="padding:2px 8px;border-radius:99px;font-size:10.5px;font-weight:900;border:1.5px solid #cbd5e1;background:#fff;cursor:pointer;">🇩🇿 AR</button>
           </div>
         </div>
       </div>

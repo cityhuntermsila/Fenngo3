@@ -9,8 +9,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@600;700;800;900&family=Nunito:wght@600;700;800;900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/common.css?v=71">
-  <link rel="stylesheet" href="css/fennygo.css?v=71">
+  <link rel="stylesheet" href="css/common.css?v=72">
+  <link rel="stylesheet" href="css/fennygo.css?v=72">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
   <style>
     /* Reset & Base */
@@ -481,7 +481,7 @@
         <div class="flex items-center bg-slate-100 p-0.5 rounded-full border border-slate-300 text-[10px] sm:text-[11px] font-black">
           <button type="button" class="lang-btn px-2 py-0.5 rounded-full transition" data-lang="French">FR</button>
           <button type="button" class="lang-btn px-2 py-0.5 rounded-full transition" data-lang="English">EN</button>
-          <button type="button" class="lang-btn px-2 py-0.5 rounded-full transition" data-lang="Arabic">عربي</button>
+          
         </div>
       </div>
     </header>
@@ -604,8 +604,8 @@
   <audio id="audioCheering" src="assets/images/music/cheering.mp3" preload="auto"></audio>
   <audio id="audioWrong" src="assets/images/music/wrong- sound.mp3" preload="auto"></audio>
 
-  <script src="js/app-lang.js?v=71"></script>
-  <script src="js/fenny-companion.js?v=71"></script>
+  <script src="js/app-lang.js?v=72"></script>
+  <script src="js/fenny-companion.js?v=72"></script>
   <script>
     (() => {
       "use strict";
@@ -687,156 +687,118 @@
             dailyRoutine: { title: "Daily Routine", sub: "Everyday" },
             commonOrders: { title: "Orders", sub: "Actions" }
           }
-        },
-        Arabic: {
-          headerTitle: "تدريب 3AP",
-          playBtn: "العب",
-          backToHub: "الدروس",
-          vocabTitle: "🖼️ جميع عناصر الدرس ثلاثية الأبعاد (10):",
-          backToGames: "الألعاب",
-          step: "السؤال",
-          pairsFound: "الأزواج",
-          listenPrompt: "استمع والمس الصورة المطابقة:",
-          replayAudio: "استماع",
-          spellingPrompt: "رتب حروف الكلمة:",
-          speedPrompt: "هل هذا العنصر مطابق؟",
-          yes: "صحيح 👍",
-          no: "خطأ 👎",
-          correctMsg: "🎉 أحسنت يا بطل!",
-          wrongMsg: "❌ حاول مرة أخرى!",
-          victoryTitle: "بطل ممتاز!",
-          replayGame: "إعادة",
-          switchGame: "لعبة أخرى",
-          allThemes: "الدروس",
-          modes: {
-            listen: { title: "استمع واختر", badge: "🎧 استماع" },
-            memory: { title: "الذاكرة 3D", badge: "🃏 ذاكرة" },
-            spelling: { title: "التهجئة", badge: "🔠 كتابة" },
-            speed: { title: "صح أم خطأ", badge: "⚡ سريع" }
-          },
-          categories: {
-            alphabet: { title: "الحروف", sub: "الأبجدية A-Z" },
-            numbers: { title: "الأرقام", sub: "العد 1-10" },
-            colors: { title: "الألوان", sub: "الألوان 3D" },
-            geometry: { title: "الأشكال", sub: "الهندسة" },
-            family: { title: "العائلة", sub: "أفراد الأسرة" },
-            stationery: { title: "الأدوات", sub: "المحفظة والقسم" },
-            bodyParts: { title: "الجسم", sub: "أعضاء الجسم" },
-            dailyRoutine: { title: "الروتين", sub: "أنشطة اليوم" },
-            commonOrders: { title: "الأوامر", sub: "التعليمات" }
-          }
         }
       };
 
       // 2. Verified 10-Item Dataset per Category with verified local 3D images
       const DATASET = {
         alphabet: [
-          { id: "astronaut", word: "Astronaut", fr: "Astronaute", ar: "رائد فضاء", img: "assets/images/alphabet/A/astronaut.png" },
-          { id: "ball", word: "Ball", fr: "Ballon", ar: "كرة", img: "assets/images/alphabet/B/ball.png" },
-          { id: "cat", word: "Cat", fr: "Chat", ar: "قط", img: "assets/images/alphabet/C/cat.png" },
-          { id: "dolphin", word: "Dolphin", fr: "Dauphin", ar: "دلفين", img: "assets/images/alphabet/D/Dolphin.png" },
-          { id: "elephant", word: "Elephant", fr: "Éléphant", ar: "فيل", img: "assets/images/alphabet/E/elephant.png" },
-          { id: "fraise", word: "Strawberry", fr: "Fraise", ar: "فراولة", img: "assets/images/alphabet/F/fraise.png" },
-          { id: "cake", word: "Cake", fr: "Gâteau", ar: "كعكة", img: "assets/images/alphabet/C/Cake.png" },
-          { id: "hibou", word: "Owl", fr: "Hibou", ar: "بومة", img: "assets/images/alphabet/H/hibou.png" },
-          { id: "lion", word: "Lion", fr: "Lion", ar: "أسد", img: "assets/images/language-images/lion.png" },
-          { id: "mango", word: "Mango", fr: "Mangue", ar: "مانجو", img: "assets/images/alphabet/M/mango.png" }
+          { id: "astronaut", word: "Astronaut", fr: "Astronaute", img: "assets/images/alphabet/A/astronaut.png" },
+          { id: "ball", word: "Ball", fr: "Ballon", img: "assets/images/alphabet/B/ball.png" },
+          { id: "cat", word: "Cat", fr: "Chat", img: "assets/images/alphabet/C/cat.png" },
+          { id: "dolphin", word: "Dolphin", fr: "Dauphin", img: "assets/images/alphabet/D/Dolphin.png" },
+          { id: "elephant", word: "Elephant", fr: "Éléphant", img: "assets/images/alphabet/E/elephant.png" },
+          { id: "fraise", word: "Strawberry", fr: "Fraise", img: "assets/images/alphabet/F/fraise.png" },
+          { id: "cake", word: "Cake", fr: "Gâteau", img: "assets/images/alphabet/C/Cake.png" },
+          { id: "hibou", word: "Owl", fr: "Hibou", img: "assets/images/alphabet/H/hibou.png" },
+          { id: "lion", word: "Lion", fr: "Lion", img: "assets/images/language-images/lion.png" },
+          { id: "mango", word: "Mango", fr: "Mangue", img: "assets/images/alphabet/M/mango.png" }
         ],
         numbers: [
-          { id: "one", word: "One", fr: "Un", ar: "واحد", img: "assets/images/number/one.png" },
-          { id: "two", word: "Two", fr: "Deux", ar: "اثنان", img: "assets/images/number/two.png" },
-          { id: "three", word: "Three", fr: "Trois", ar: "ثلاثة", img: "assets/images/number/three.png" },
-          { id: "four", word: "Four", fr: "Quatre", ar: "أربعة", img: "assets/images/number/four.png" },
-          { id: "five", word: "Five", fr: "Cinq", ar: "خمسة", img: "assets/images/number/five.png" },
-          { id: "six", word: "Six", fr: "Six", ar: "ستة", img: "assets/images/number/six.png" },
-          { id: "seven", word: "Seven", fr: "Sept", ar: "سبعة", img: "assets/images/number/seven.png" },
-          { id: "eight", word: "Eight", fr: "Huit", ar: "ثمانية", img: "assets/images/number/eight.png" },
-          { id: "nine", word: "Nine", fr: "Neuf", ar: "تسعة", img: "assets/images/number/nine.png" },
-          { id: "ten", word: "Ten", fr: "Dix", ar: "عشرة", img: "assets/images/number/ten.png" }
+          { id: "one", word: "One", fr: "Un", img: "assets/images/number/one.png" },
+          { id: "two", word: "Two", fr: "Deux", img: "assets/images/number/two.png" },
+          { id: "three", word: "Three", fr: "Trois", img: "assets/images/number/three.png" },
+          { id: "four", word: "Four", fr: "Quatre", img: "assets/images/number/four.png" },
+          { id: "five", word: "Five", fr: "Cinq", img: "assets/images/number/five.png" },
+          { id: "six", word: "Six", fr: "Six", img: "assets/images/number/six.png" },
+          { id: "seven", word: "Seven", fr: "Sept", img: "assets/images/number/seven.png" },
+          { id: "eight", word: "Eight", fr: "Huit", img: "assets/images/number/eight.png" },
+          { id: "nine", word: "Nine", fr: "Neuf", img: "assets/images/number/nine.png" },
+          { id: "ten", word: "Ten", fr: "Dix", img: "assets/images/number/ten.png" }
         ],
         colors: [
-          { id: "red", word: "Red", fr: "Rouge", ar: "أحمر", img: "assets/images/color/red/apple.png" },
-          { id: "blue", word: "Blue", fr: "Bleu", ar: "أزرق", img: "assets/images/color/blue/butterfly.png" },
-          { id: "green", word: "Green", fr: "Vert", ar: "أخضر", img: "assets/images/color/green/frog.png" },
-          { id: "yellow", word: "Yellow", fr: "Jaune", ar: "أصفر", img: "assets/images/color/yellow/banana.png" },
-          { id: "orange", word: "Orange", fr: "Orange", ar: "برتقالي", img: "assets/images/color/orange/orange.png" },
-          { id: "purple", word: "Purple", fr: "Violet", ar: "بنفسجي", img: "assets/images/color/purple/brinjal.png" },
-          { id: "pink", word: "Pink", fr: "Rose", ar: "وردي", img: "assets/images/color/pink/flamingo.png" },
-          { id: "black", word: "Black", fr: "Noir", ar: "أسود", img: "assets/images/color/black/cat.png" },
-          { id: "white", word: "White", fr: "Blanc", ar: "أبيض", img: "assets/images/color/white/rabbit.png" },
-          { id: "brown", word: "Brown", fr: "Marron", ar: "بني", img: "assets/images/color/brown/monkey.png" }
+          { id: "red", word: "Red", fr: "Rouge", img: "assets/images/color/red/apple.png" },
+          { id: "blue", word: "Blue", fr: "Bleu", img: "assets/images/color/blue/butterfly.png" },
+          { id: "green", word: "Green", fr: "Vert", img: "assets/images/color/green/frog.png" },
+          { id: "yellow", word: "Yellow", fr: "Jaune", img: "assets/images/color/yellow/banana.png" },
+          { id: "orange", word: "Orange", fr: "Orange", img: "assets/images/color/orange/orange.png" },
+          { id: "purple", word: "Purple", fr: "Violet", img: "assets/images/color/purple/brinjal.png" },
+          { id: "pink", word: "Pink", fr: "Rose", img: "assets/images/color/pink/flamingo.png" },
+          { id: "black", word: "Black", fr: "Noir", img: "assets/images/color/black/cat.png" },
+          { id: "white", word: "White", fr: "Blanc", img: "assets/images/color/white/rabbit.png" },
+          { id: "brown", word: "Brown", fr: "Marron", img: "assets/images/color/brown/monkey.png" }
         ],
         geometry: [
-          { id: "circle", word: "Circle", fr: "Cercle", ar: "دائرة", img: "assets/images/geometry/circle.png" },
-          { id: "square", word: "Square", fr: "Carré", ar: "مربع", img: "assets/images/geometry/square.png" },
-          { id: "triangle", word: "Triangle", fr: "Triangle", ar: "مثلث", img: "assets/images/geometry/triangle.png" },
-          { id: "rectangle", word: "Rectangle", fr: "Rectangle", ar: "مستطيل", img: "assets/images/geometry/rectangle.png" },
-          { id: "diamond", word: "Diamond", fr: "Losange", ar: "معين", img: "assets/images/geometry/diamond.png" },
-          { id: "oval", word: "Oval", fr: "Ovale", ar: "بيضاوي", img: "assets/images/geometry/oval.png" },
-          { id: "star", word: "Star", fr: "Étoile", ar: "نجمة", img: "assets/images/geometry/star.png" },
-          { id: "heart", word: "Heart", fr: "Cœur", ar: "قلب", img: "assets/images/geometry/heart.png" },
-          { id: "cube", word: "Cube", fr: "Cube", ar: "مكعب", img: "assets/images/geometry/cube.png" },
-          { id: "hexagon", word: "Hexagon", fr: "Hexagone", ar: "سداسي", img: "assets/images/geometry/hexagon.png" }
+          { id: "circle", word: "Circle", fr: "Cercle", img: "assets/images/geometry/circle.png" },
+          { id: "square", word: "Square", fr: "Carré", img: "assets/images/geometry/square.png" },
+          { id: "triangle", word: "Triangle", fr: "Triangle", img: "assets/images/geometry/triangle.png" },
+          { id: "rectangle", word: "Rectangle", fr: "Rectangle", img: "assets/images/geometry/rectangle.png" },
+          { id: "diamond", word: "Diamond", fr: "Losange", img: "assets/images/geometry/diamond.png" },
+          { id: "oval", word: "Oval", fr: "Ovale", img: "assets/images/geometry/oval.png" },
+          { id: "star", word: "Star", fr: "Étoile", img: "assets/images/geometry/star.png" },
+          { id: "heart", word: "Heart", fr: "Cœur", img: "assets/images/geometry/heart.png" },
+          { id: "cube", word: "Cube", fr: "Cube", img: "assets/images/geometry/cube.png" },
+          { id: "hexagon", word: "Hexagon", fr: "Hexagone", img: "assets/images/geometry/hexagon.png" }
         ],
         family: [
-          { id: "father", word: "Father", fr: "Père", ar: "أب", img: "assets/images/family/father.png" },
-          { id: "mother", word: "Mother", fr: "Mère", ar: "أم", img: "assets/images/family/mother.png" },
-          { id: "grandfather", word: "Grandfather", fr: "Grand-père", ar: "جد", img: "assets/images/family/grandfather.png" },
-          { id: "grandmother", word: "Grandmother", fr: "Grand-mère", ar: "جدة", img: "assets/images/family/grandmother.png" },
-          { id: "brother", word: "Brother", fr: "Frère", ar: "أخ", img: "assets/images/family/myBrother.png" },
-          { id: "sister", word: "Sister", fr: "Sœur", ar: "أخت", img: "assets/images/family/mySister.png" },
-          { id: "son", word: "Son", fr: "Fils", ar: "ابن", img: "assets/images/family/son.png" },
-          { id: "daughter", word: "Daughter", fr: "Fille", ar: "ابنة", img: "assets/images/family/daughter.png" },
-          { id: "myfather", word: "My Dad", fr: "Mon Papa", ar: "أبي", img: "assets/images/family/myFather.png" },
-          { id: "mymother", word: "My Mom", fr: "Ma Maman", ar: "أمي", img: "assets/images/family/myMother.png" }
+          { id: "father", word: "Father", fr: "Père", img: "assets/images/family/father.png" },
+          { id: "mother", word: "Mother", fr: "Mère", img: "assets/images/family/mother.png" },
+          { id: "grandfather", word: "Grandfather", fr: "Grand-père", img: "assets/images/family/grandfather.png" },
+          { id: "grandmother", word: "Grandmother", fr: "Grand-mère", img: "assets/images/family/grandmother.png" },
+          { id: "brother", word: "Brother", fr: "Frère", img: "assets/images/family/myBrother.png" },
+          { id: "sister", word: "Sister", fr: "Sœur", img: "assets/images/family/mySister.png" },
+          { id: "son", word: "Son", fr: "Fils", img: "assets/images/family/son.png" },
+          { id: "daughter", word: "Daughter", fr: "Fille", img: "assets/images/family/daughter.png" },
+          { id: "myfather", word: "My Dad", fr: "Mon Papa", img: "assets/images/family/myFather.png" },
+          { id: "mymother", word: "My Mom", fr: "Ma Maman", img: "assets/images/family/myMother.png" }
         ],
         stationery: [
-          { id: "schoolbag", word: "School bag", fr: "Cartable", ar: "محفظة", img: "assets/images/stationery/schoolbag.png" },
-          { id: "book", word: "Book", fr: "Livre", ar: "كتاب", img: "assets/images/stationery/book.png" },
-          { id: "notebook", word: "Notebook", fr: "Cahier", ar: "كراس", img: "assets/images/stationery/notebook.png" },
-          { id: "pencil", word: "Pencil", fr: "Crayon", ar: "قلم رصاص", img: "assets/images/stationery/pencil.png" },
-          { id: "pen", word: "Pen", fr: "Stylo", ar: "قلم جاف", img: "assets/images/stationery/pen.png" },
-          { id: "eraser", word: "Eraser", fr: "Gomme", ar: "ممحاة", img: "assets/images/stationery/eraser.png" },
-          { id: "ruler", word: "Ruler", fr: "Règle", ar: "مسطرة", img: "assets/images/stationery/ruler.png" },
-          { id: "scissors", word: "Scissors", fr: "Ciseaux", ar: "مقص", img: "assets/images/stationery/scissors.png" },
-          { id: "sharpener", word: "Sharpener", fr: "Taille-crayon", ar: "مبراة", img: "assets/images/stationery/sharpener.png" },
-          { id: "pencilcase", word: "Pencil case", fr: "Trousse", ar: "مقلمة", img: "assets/images/stationery/pencilcase.png" }
+          { id: "schoolbag", word: "School bag", fr: "Cartable", img: "assets/images/stationery/schoolbag.png" },
+          { id: "book", word: "Book", fr: "Livre", img: "assets/images/stationery/book.png" },
+          { id: "notebook", word: "Notebook", fr: "Cahier", img: "assets/images/stationery/notebook.png" },
+          { id: "pencil", word: "Pencil", fr: "Crayon", img: "assets/images/stationery/pencil.png" },
+          { id: "pen", word: "Pen", fr: "Stylo", img: "assets/images/stationery/pen.png" },
+          { id: "eraser", word: "Eraser", fr: "Gomme", img: "assets/images/stationery/eraser.png" },
+          { id: "ruler", word: "Ruler", fr: "Règle", img: "assets/images/stationery/ruler.png" },
+          { id: "scissors", word: "Scissors", fr: "Ciseaux", img: "assets/images/stationery/scissors.png" },
+          { id: "sharpener", word: "Sharpener", fr: "Taille-crayon", img: "assets/images/stationery/sharpener.png" },
+          { id: "pencilcase", word: "Pencil case", fr: "Trousse", img: "assets/images/stationery/pencilcase.png" }
         ],
         bodyParts: [
-          { id: "head", word: "Head", fr: "Tête", ar: "رأس", img: "assets/images/body-parts/head.png" },
-          { id: "hair", word: "Hair", fr: "Cheveux", ar: "شعر", img: "assets/images/body-parts/hair.png" },
-          { id: "eye", word: "Eye", fr: "Œil", ar: "عين", img: "assets/images/body-parts/eye.png" },
-          { id: "ear", word: "Ear", fr: "Oreille", ar: "أذن", img: "assets/images/body-parts/ear.png" },
-          { id: "nose", word: "Nose", fr: "Nez", ar: "أنف", img: "assets/images/body-parts/nose.png" },
-          { id: "mouth", word: "Mouth", fr: "Bouche", ar: "فم", img: "assets/images/body-parts/mouth.png" },
-          { id: "hand", word: "Hand", fr: "Main", ar: "يد", img: "assets/images/body-parts/hand.png" },
-          { id: "arm", word: "Arm", fr: "Bras", ar: "ذراع", img: "assets/images/body-parts/arm.png" },
-          { id: "leg", word: "Leg", fr: "Jambe", ar: "ساق", img: "assets/images/body-parts/leg.png" },
-          { id: "foot", word: "Foot", fr: "Pied", ar: "قدم", img: "assets/images/body-parts/foot.png" }
+          { id: "head", word: "Head", fr: "Tête", img: "assets/images/body-parts/head.png" },
+          { id: "hair", word: "Hair", fr: "Cheveux", img: "assets/images/body-parts/hair.png" },
+          { id: "eye", word: "Eye", fr: "Œil", img: "assets/images/body-parts/eye.png" },
+          { id: "ear", word: "Ear", fr: "Oreille", img: "assets/images/body-parts/ear.png" },
+          { id: "nose", word: "Nose", fr: "Nez", img: "assets/images/body-parts/nose.png" },
+          { id: "mouth", word: "Mouth", fr: "Bouche", img: "assets/images/body-parts/mouth.png" },
+          { id: "hand", word: "Hand", fr: "Main", img: "assets/images/body-parts/hand.png" },
+          { id: "arm", word: "Arm", fr: "Bras", img: "assets/images/body-parts/arm.png" },
+          { id: "leg", word: "Leg", fr: "Jambe", img: "assets/images/body-parts/leg.png" },
+          { id: "foot", word: "Foot", fr: "Pied", img: "assets/images/body-parts/foot.png" }
         ],
         dailyRoutine: [
-          { id: "wakeup", word: "Wake up", fr: "Se réveiller", ar: "يستيقظ", img: "assets/images/daily-routine/wakeup.png" },
-          { id: "washface", word: "Wash face", fr: "Se laver le visage", ar: "يغسل وجهه", img: "assets/images/daily-routine/washface.png" },
-          { id: "brushteeth", word: "Brush teeth", fr: "Se brosser les dents", ar: "ينظف أسنانه", img: "assets/images/daily-routine/brushteeth.png" },
-          { id: "getdressed", word: "Get dressed", fr: "S'habiller", ar: "يرتدي ملابسه", img: "assets/images/daily-routine/getdressed.png" },
-          { id: "breakfast", word: "Breakfast", fr: "Petit déjeuner", ar: "يتناول الفطور", img: "assets/images/daily-routine/breakfast.png" },
-          { id: "goschool", word: "Go to school", fr: "Aller à l'école", ar: "يذهب إلى المدرسة", img: "assets/images/daily-routine/goschool.png" },
-          { id: "study", word: "Study", fr: "Étudier", ar: "يدرس", img: "assets/images/daily-routine/study.png" },
-          { id: "play", word: "Play", fr: "Jouer", ar: "يلعب", img: "assets/images/daily-routine/play.png" },
-          { id: "homework", word: "Homework", fr: "Devoirs", ar: "يحل واجباته", img: "assets/images/daily-routine/homework.png" },
-          { id: "sleep", word: "Sleep", fr: "Dormir", ar: "ينام", img: "assets/images/daily-routine/sleep.png" }
+          { id: "wakeup", word: "Wake up", fr: "Se réveiller", img: "assets/images/daily-routine/wakeup.png" },
+          { id: "washface", word: "Wash face", fr: "Se laver le visage", img: "assets/images/daily-routine/washface.png" },
+          { id: "brushteeth", word: "Brush teeth", fr: "Se brosser les dents", img: "assets/images/daily-routine/brushteeth.png" },
+          { id: "getdressed", word: "Get dressed", fr: "S'habiller", img: "assets/images/daily-routine/getdressed.png" },
+          { id: "breakfast", word: "Breakfast", fr: "Petit déjeuner", img: "assets/images/daily-routine/breakfast.png" },
+          { id: "goschool", word: "Go to school", fr: "Aller à l'école", img: "assets/images/daily-routine/goschool.png" },
+          { id: "study", word: "Study", fr: "Étudier", img: "assets/images/daily-routine/study.png" },
+          { id: "play", word: "Play", fr: "Jouer", img: "assets/images/daily-routine/play.png" },
+          { id: "homework", word: "Homework", fr: "Devoirs", img: "assets/images/daily-routine/homework.png" },
+          { id: "sleep", word: "Sleep", fr: "Dormir", img: "assets/images/daily-routine/sleep.png" }
         ],
         commonOrders: [
-          { id: "standup", word: "Stand up", fr: "Levez-vous", ar: "قف", img: "assets/images/common-orders/standup.png" },
-          { id: "sitdown", word: "Sit down", fr: "Asseyez-vous", ar: "اجلس", img: "assets/images/common-orders/sitdown.png" },
-          { id: "raisehand", word: "Raise hand", fr: "Levez la main", ar: "ارفع يدك", img: "assets/images/common-orders/raisehand.png" },
-          { id: "listen", word: "Listen", fr: "Écoutez", ar: "استمع", img: "assets/images/common-orders/listen.png" },
-          { id: "look", word: "Look", fr: "Regardez", ar: "انظر", img: "assets/images/common-orders/look.png" },
-          { id: "erase", word: "Erase", fr: "Effacez", ar: "امسح", img: "assets/images/common-orders/erase.png" },
-          { id: "showpoint", word: "Show and point", fr: "Montrez", ar: "أشر", img: "assets/images/common-orders/showpoint.png" },
-          { id: "match", word: "Match", fr: "Reliez", ar: "صل / طابق", img: "assets/images/common-orders/match.png" },
-          { id: "read", word: "Read", fr: "Lisez", ar: "اقرأ", img: "assets/images/common-orders/read.png" },
-          { id: "write", word: "Write", fr: "Écrivez", ar: "اكتب", img: "assets/images/common-orders/write.png" }
+          { id: "standup", word: "Stand up", fr: "Levez-vous", img: "assets/images/common-orders/standup.png" },
+          { id: "sitdown", word: "Sit down", fr: "Asseyez-vous", img: "assets/images/common-orders/sitdown.png" },
+          { id: "raisehand", word: "Raise hand", fr: "Levez la main", img: "assets/images/common-orders/raisehand.png" },
+          { id: "listen", word: "Listen", fr: "Écoutez", img: "assets/images/common-orders/listen.png" },
+          { id: "look", word: "Look", fr: "Regardez", img: "assets/images/common-orders/look.png" },
+          { id: "erase", word: "Erase", fr: "Effacez", img: "assets/images/common-orders/erase.png" },
+          { id: "showpoint", word: "Show and point", fr: "Montrez", img: "assets/images/common-orders/showpoint.png" },
+          { id: "match", word: "Match", fr: "Reliez", img: "assets/images/common-orders/match.png" },
+          { id: "read", word: "Read", fr: "Lisez", img: "assets/images/common-orders/read.png" },
+          { id: "write", word: "Write", fr: "Écrivez", img: "assets/images/common-orders/write.png" }
         ]
       };
 
@@ -904,8 +866,7 @@
       function getItemWord(item) {
         if (!item) return "";
         if (currentLang === "French" && item.fr) return item.fr;
-        if (currentLang === "Arabic" && item.ar) return item.ar;
-        return item.word;
+                return item.word;
       }
 
       function getItemSpeech(item) {
@@ -914,7 +875,7 @@
 
       function speak(text, onEnded = null) {
         if (window.AppLang && typeof window.AppLang.speak === "function") {
-          const langCode = currentLang === "Arabic" ? "ar-SA" : (currentLang === "French" ? "fr-FR" : "en-US");
+          const langCode = currentLang === "French" ? "fr-FR" : "en-US";
           window.AppLang.speak(text, langCode, 0.85, 1.1, onEnded);
         } else if ("speechSynthesis" in window) {
           const u = new SpeechSynthesisUtterance(text);
@@ -937,8 +898,8 @@
         localStorage.setItem("selectedLanguage", lang);
         const t = I18N[lang];
 
-        document.documentElement.dir = lang === "Arabic" ? "rtl" : "ltr";
-        document.documentElement.lang = lang === "Arabic" ? "ar" : (lang === "French" ? "fr" : "en");
+        document.documentElement.dir = "ltr";
+        document.documentElement.lang = lang === "French" ? "fr" : "en";
 
         document.getElementById("headerTitle").textContent = t.headerTitle;
         document.getElementById("backToHubText").textContent = t.backToHub;
@@ -1085,7 +1046,7 @@
         items.forEach(it => {
           const vCard = document.createElement("div");
           vCard.className = "vocab-card-2col";
-          const subText = currentLang === "Arabic" ? it.ar : (currentLang === "French" ? it.fr : "");
+          const subText = currentLang === "French" ? it.fr : "";
 
           vCard.innerHTML = `
             <div class="vocab-thumb-sm">

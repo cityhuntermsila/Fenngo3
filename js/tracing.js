@@ -86,181 +86,6 @@
         { text: "VERT", label: "Vert", emoji: "🟢", speech: "Vert" },
         { text: "JAUNE", label: "Jaune", emoji: "🟡", speech: "Jaune" }
       ]
-    },
-
-    Arabic: {
-      dir: "rtl",
-      speechLang: "ar-SA",
-      ui: {
-        title: "✏️ التَّخْطِيطُ وَالكِتَابَةُ",
-        subtitle: "اتَّبِعِ النِّقَاطَ بِإِصْبَعِكَ أَوْ بِالفَأْرَةِ لِكِتَابَةِ الحُرُوفِ وَالكَلِمَاتِ!",
-        modeLabel: "اخْتَرِ الوَضْعَ :",
-        modeLetters: "تَخْطِيطُ الحُرُوفِ (أ-ي)",
-        modeWords: "تَخْطِيطُ الكَلِمَاتِ",
-        modeLower: "أَشْكَالُ الحُرُوفِ (بـ - يـ)",
-        listen: "اسْتَمِعْ",
-        colorLabel: "لَوْنُ القَلَمِ :",
-        clear: "مَسْحٌ",
-        next: "التَّالِي",
-        instruction: "اتَّبِعِ النِّقَاطَ ✨",
-        completedMsg: "أَحْسَنْتَ ! خَطٌّ رَائِعٌ ! 🎉"
-      },
-      letters: [
-        { text: "أ", label: "أ - أَسَد", emoji: "🦁", speech: "أ - أَسَد" },
-        { text: "ب", label: "ب - بَطَّة", emoji: "🦆", speech: "ب - بَطَّة" },
-        { text: "ت", label: "ت - تُفَّاحَة", emoji: "🍎", speech: "ت - تُفَّاحَة" },
-        { text: "ث", label: "ث - ثَلْج", emoji: "❄️", speech: "ث - ثَلْج" },
-        { text: "ج", label: "ج - جَزَر", emoji: "🥕", speech: "ج - جَزَر" },
-        { text: "ح", label: "ح - حُوت", emoji: "🐋", speech: "ح - حُوت" },
-        { text: "خ", label: "خ - خَرُوف", emoji: "🐑", speech: "خ - خَرُوف" },
-        { text: "د", label: "د - دُلْفِين", emoji: "🐬", speech: "د - دُلْفِين" },
-        { text: "ذ", label: "ذ - ذُرَة", emoji: "🌽", speech: "ذ - ذُرَة" },
-        { text: "ر", label: "ر - قَوْسُ قُزَح", emoji: "🌈", speech: "ر - قَوْسُ قُزَح" },
-        { text: "ز", label: "ز - زَهْرَة", emoji: "🌸", speech: "ز - زَهْرَة" },
-        { text: "س", label: "س - سَمَكَة", emoji: "🐟", speech: "س - سَمَكَة" },
-        { text: "ش", label: "ش - شَمْس", emoji: "☀️", speech: "ش - شَمْس" },
-        { text: "ص", label: "ص - صُنْدُوق", emoji: "📦", speech: "ص - صُنْدُوق" },
-        { text: "ض", label: "ض - ضَوْء", emoji: "💡", speech: "ض - ضَوْء" },
-        { text: "ط", label: "ط - طَائِر", emoji: "🐦", speech: "ط - طَائِر" },
-        { text: "ظ", label: "ظ - ظَرْف", emoji: "✉️", speech: "ظ - ظَرْف" },
-        { text: "ع", label: "ع - عِنَب", emoji: "🍇", speech: "ع - عِنَب" },
-        { text: "غ", label: "غ - غَزَال", emoji: "🦌", speech: "غ - غَزَال" },
-        { text: "ف", label: "ف - فِيل", emoji: "🐘", speech: "ف - فِيل" },
-        { text: "ق", label: "ق - قِطَّة", emoji: "🐱", speech: "ق - قِطَّة" },
-        { text: "ك", label: "ك - كُرَة", emoji: "⚽", speech: "ك - كُرَة" },
-        { text: "ل", label: "ل - لُعْبَة", emoji: "🧸", speech: "ل - لُعْبَة" },
-        { text: "م", label: "م - مَانْجُو", emoji: "🥭", speech: "م - مَانْجُو" },
-        { text: "ن", label: "ن - نَجْمَة", emoji: "⭐", speech: "ن - نَجْمَة" },
-        { text: "هـ", label: "هـ - هَدِيَّة", emoji: "🎁", speech: "هـ - هَدِيَّة" },
-        { text: "و", label: "و - وَرْدَة", emoji: "🌹", speech: "و - وَرْدَة" },
-        { text: "ي", label: "ي - يُويُو", emoji: "🪀", speech: "ي - يُويُو" }
-      ],
-      lowercase: [
-        { text: "بـ", label: "بـ - بَطَّة", emoji: "🦆", speech: "ب - بَطَّة" },
-        { text: "تـ", label: "تـ - تُفَّاحَة", emoji: "🍎", speech: "ت - تُفَّاحَة" },
-        { text: "ثـ", label: "ثـ - ثَلْج", emoji: "❄️", speech: "ث - ثَلْج" },
-        { text: "جـ", label: "جـ - جَزَر", emoji: "🥕", speech: "ج - جَزَر" },
-        { text: "حـ", label: "حـ - حُوت", emoji: "🐋", speech: "ح - حُوت" },
-        { text: "خـ", label: "خـ - خَرُوف", emoji: "🐑", speech: "خ - خَرُوف" },
-        { text: "سـ", label: "سـ - سَمَكَة", emoji: "🐟", speech: "س - سَمَكَة" },
-        { text: "شـ", label: "شـ - شَمْس", emoji: "☀️", speech: "ش - شَمْس" },
-        { text: "صـ", label: "صـ - صُنْدُوق", emoji: "📦", speech: "ص - صُنْدُوق" },
-        { text: "ضـ", label: "ضـ - ضَوْء", emoji: "💡", speech: "ض - ضَوْء" },
-        { text: "عـ", label: "عـ - عِنَب", emoji: "🍇", speech: "ع - عِنَب" },
-        { text: "غـ", label: "غـ - غَزَال", emoji: "🦌", speech: "غ - غَزَال" },
-        { text: "فـ", label: "فـ - فِيل", emoji: "🐘", speech: "ف - فِيل" },
-        { text: "قـ", label: "قـ - قِطَّة", emoji: "🐱", speech: "ق - قِطَّة" },
-        { text: "كـ", label: "كـ - كُرَة", emoji: "⚽", speech: "ك - كُرَة" },
-        { text: "لـ", label: "لـ - لُعْبَة", emoji: "🧸", speech: "ل - لُعْبَة" },
-        { text: "مـ", label: "مـ - مَانْجُو", emoji: "🥭", speech: "م - مَانْجُو" },
-        { text: "نـ", label: "نـ - نَجْمَة", emoji: "⭐", speech: "ن - نَجْمَة" },
-        { text: "هـ", label: "هـ - هَدِيَّة", emoji: "🎁", speech: "هـ - هَدِيَّة" },
-        { text: "يـ", label: "يـ - يُويُو", emoji: "🪀", speech: "ي - يُويُو" }
-      ],
-      words: [
-        // الكلمات الموجودة في الموقع
-        { text: "أَسَد", label: "أَسَد", emoji: "🦁", speech: "أَسَد" },
-        { text: "بَطَّة", label: "بَطَّة", emoji: "🦆", speech: "بَطَّة" },
-        { text: "تُفَّاح", label: "تُفَّاح", emoji: "🍎", speech: "تُفَّاح" },
-        { text: "شَمْس", label: "شَمْس", emoji: "☀️", speech: "شَمْس" },
-        { text: "سَمَك", label: "سَمَك", emoji: "🐟", speech: "سَمَك" },
-        { text: "كِتَاب", label: "كِتَاب", emoji: "📖", speech: "كِتَاب" },
-        { text: "قَلَم", label: "قَلَم", emoji: "✏️", speech: "قَلَم" },
-        { text: "جَمَل", label: "جَمَل", emoji: "🐪", speech: "جَمَل" },
-        { text: "أَرْنَب", label: "أَرْنَب", emoji: "🐰", speech: "أَرْنَب" },
-        { text: "لَيْمُون", label: "لَيْمُون", emoji: "🍋", speech: "لَيْمُون" },
-        { text: "زَهْرَة", label: "زَهْرَة", emoji: "🌸", speech: "ز - زَهْرَة" },
-        { text: "نَجْمَة", label: "نَجْمَة", emoji: "⭐", speech: "ن - نَجْمَة" },
-        { text: "وَرْدَة", label: "وَرْدَة", emoji: "🌹", speech: "و - وَرْدَة" },
-        { text: "فِيل", label: "فِيل", emoji: "🐘", speech: "ف - فِيل" },
-        { text: "قِطَّة", label: "قِطَّة", emoji: "🐱", speech: "ق - قِطَّة" },
-        { text: "كُرَة", label: "كُرَة", emoji: "⚽", speech: "ك - كُرَة" },
-        // العائلة
-        { text: "الأَب", label: "الأَب", emoji: "👨", speech: "الأَب. هَذَا هُوَ الأَب." },
-        { text: "الأُمّ", label: "الأُمّ", emoji: "👩", speech: "الأُمّ. هَذِهِ هِيَ الأُمّ." },
-        { text: "الجَدّ", label: "الجَدّ", emoji: "👴", speech: "الجَدّ. هَذَا هُوَ الجَدّ." },
-        { text: "الجَدَّة", label: "الجَدَّة", emoji: "👵", speech: "الجَدَّة. هَذِهِ هِيَ الجَدَّة." },
-        { text: "أَخِي", label: "أَخِي", emoji: "👦", speech: "أَخِي! هَذَا أَخِي." },
-        { text: "أُخْتِي", label: "أُخْتِي", emoji: "👧", speech: "أُخْتِي! هَذِهِ أُخْتِي." },
-        // الأدوات المدرسية وأجزاء الجسم
-        { text: "كُرَّاس", label: "كُرَّاس", emoji: "📓", speech: "كُرَّاس. هَذَا كُرَّاس." },
-        { text: "مِمْحَاة", label: "مِمْحَاة", emoji: "🧼", speech: "مِمْحَاة. هَذِهِ مِمْحَاة." },
-        { text: "مِسْطَرَة", label: "مِسْطَرَة", emoji: "📏", speech: "مِسْطَرَة. هَذِهِ مِسْطَرَة." },
-        { text: "الرَّأْس", label: "الرَّأْس", emoji: "🧑", speech: "الرَّأْس. هَذَا هُوَ الرَّأْس." },
-        { text: "العَيْن", label: "العَيْن", emoji: "👁️", speech: "العَيْن. هَذِهِ هِيَ العَيْن." },
-        { text: "اليَد", label: "اليَد", emoji: "✋", speech: "اليَد. هَذِهِ هِيَ اليَد." },
-        { text: "القَدَم", label: "القَدَم", emoji: "🦶", speech: "القَدَم. هَذِهِ هِيَ القَدَم." }
-      ]
-    },
-
-    English: {
-      dir: "ltr",
-      speechLang: "en-US",
-      ui: {
-        title: "✏️ Tracing & Writing",
-        subtitle: "Follow the dotted lines with your finger or mouse to write letters and words!",
-        modeLabel: "Choose mode:",
-        modeLetters: "Uppercase Letters (A-Z)",
-        modeWords: "Trace Words",
-        modeLower: "Lowercase Letters (a-z)",
-        listen: "Listen",
-        colorLabel: "Pencil Color:",
-        clear: "Clear",
-        next: "Next",
-        instruction: "Follow the dotted lines ✨",
-        completedMsg: "Awesome! Great handwriting! 🎉"
-      },
-      letters: [
-        { text: "A", label: "A - Apple", emoji: "🍎", speech: "A is for Apple" },
-        { text: "B", label: "B - Ball", emoji: "🎈", speech: "B is for Ball" },
-        { text: "C", label: "C - Cat", emoji: "🐱", speech: "C is for Cat" },
-        { text: "D", label: "D - Dolphin", emoji: "🐬", speech: "D is for Dolphin" },
-        { text: "E", label: "E - Elephant", emoji: "🐘", speech: "E is for Elephant" },
-        { text: "F", label: "F - Fish", emoji: "🐟", speech: "F is for Fish" },
-        { text: "G", label: "G - Gift", emoji: "🎁", speech: "G is for Gift" },
-        { text: "H", label: "H - House", emoji: "🏠", speech: "H is for House" },
-        { text: "I", label: "I - Ice cream", emoji: "🍦", speech: "I is for Ice cream" },
-        { text: "J", label: "J - Juice", emoji: "🧃", speech: "J is for Juice" },
-        { text: "K", label: "K - Kite", emoji: "🪁", speech: "K is for Kite" },
-        { text: "L", label: "L - Lion", emoji: "🦁", speech: "L is for Lion" },
-        { text: "M", label: "M - Mango", emoji: "🥭", speech: "M is for Mango" },
-        { text: "N", label: "N - Nest", emoji: "🪺", speech: "N is for Nest" },
-        { text: "O", label: "O - Orange", emoji: "🍊", speech: "O is for Orange" },
-        { text: "P", label: "P - Pencil", emoji: "✏️", speech: "P is for Pencil" },
-        { text: "Q", label: "Q - Queen", emoji: "👑", speech: "Q is for Queen" },
-        { text: "R", label: "R - Rainbow", emoji: "🌈", speech: "R is for Rainbow" },
-        { text: "S", label: "S - Sun", emoji: "☀️", speech: "S is for Sun" },
-        { text: "T", label: "T - Tree", emoji: "🌳", speech: "T is for Tree" },
-        { text: "U", label: "U - Umbrella", emoji: "☂️", speech: "U is for Umbrella" },
-        { text: "V", label: "V - Volcano", emoji: "🌋", speech: "V is for Volcano" },
-        { text: "W", label: "W - Watermelon", emoji: "🍉", speech: "W is for Watermelon" },
-        { text: "X", label: "X - Xylophone", emoji: "🎼", speech: "X is for Xylophone" },
-        { text: "Y", label: "Y - Yo-Yo", emoji: "🪀", speech: "Y is for Yo-Yo" },
-        { text: "Z", label: "Z - Zebra", emoji: "🦓", speech: "Z is for Zebra" }
-      ],
-      words: [
-        { text: "APPLE", label: "Apple", emoji: "🍎", speech: "Apple" },
-        { text: "BALL", label: "Ball", emoji: "🎈", speech: "Ball" },
-        { text: "CAT", label: "Cat", emoji: "🐱", speech: "Cat" },
-        { text: "FISH", label: "Fish", emoji: "🐟", speech: "Fish" },
-        { text: "LION", label: "Lion", emoji: "🦁", speech: "Lion" },
-        { text: "SUN", label: "Sun", emoji: "☀️", speech: "Sun" },
-        { text: "TREE", label: "Tree", emoji: "🌳", speech: "Tree" },
-        { text: "BOOK", label: "Book", emoji: "📖", speech: "Book" },
-        { text: "DUCK", label: "Duck", emoji: "🦆", speech: "Duck" },
-        { text: "BEAR", label: "Bear", emoji: "🐻", speech: "Bear" },
-        { text: "STAR", label: "Star", emoji: "⭐", speech: "Star" },
-        { text: "LEMON", label: "Lemon", emoji: "🍋", speech: "Lemon" },
-        { text: "FATHER", label: "Father", emoji: "👨", speech: "Father" },
-        { text: "MOTHER", label: "Mother", emoji: "👩", speech: "Mother" },
-        { text: "BROTHER", label: "Brother", emoji: "👦", speech: "Brother" },
-        { text: "SISTER", label: "Sister", emoji: "👧", speech: "Sister" },
-        { text: "PENCIL", label: "Pencil", emoji: "✏️", speech: "Pencil" },
-        { text: "RULER", label: "Ruler", emoji: "📏", speech: "Ruler" },
-        { text: "HEAD", label: "Head", emoji: "🧑", speech: "Head" },
-        { text: "HAND", label: "Hand", emoji: "✋", speech: "Hand" },
-        { text: "FOOT", label: "Foot", emoji: "🦶", speech: "Foot" }
-      ]
     }
   };
 
@@ -430,7 +255,7 @@
      4. PRÉPARATION DU MODÈLE POINTILLÉ & POINTS DE CONTRÔLE
      ========================================================= */
   function getFontSpec(text, W, H) {
-    const isAr = getActiveLangId() === "Arabic";
+    const isAr = false;
     const fontFamily = isAr ? "'Cairo', 'Tajawal', sans-serif" : "'Nunito', sans-serif";
     const len = text.length;
     let fontSize;
@@ -491,7 +316,7 @@
     const candidates = [];
     const widths = [];
 
-    const isRTL = getActiveLangId() === "Arabic";
+    const isRTL = false;
     const xStart = isRTL ? W - sampleStep : sampleStep;
     const xEnd = isRTL ? sampleStep : W - sampleStep;
     const xDir = isRTL ? -sampleStep : sampleStep;

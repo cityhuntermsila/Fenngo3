@@ -229,112 +229,6 @@
           accent: "#d97706"
         }
       ]
-    },
-
-    Arabic: {
-      ui: {
-        title: "تعرف على العائلة",
-        subtitle: "اضغط على أي بطاقة للاستماع والتعلم!",
-        membersBadge: "أفراد العائلة",
-        relationsBadge: "علاقاتي العائلية",
-        memberModalBadge: "فرد من العائلة",
-        relationModalBadge: "علاقة عائلية",
-        listen: "استمع"
-      },
-      members: [
-        {
-          id: "grandfather",
-          title: "الجَدّ",
-          sub: "جَدِّي",
-          speech: "الجَدّ. هَذَا هُوَ الجَدّ.",
-          bg: "linear-gradient(145deg, #ffffff, #e0e7ff)",
-          shadow: "#4338ca",
-          accent: "#4f46e5"
-        },
-        {
-          id: "grandmother",
-          title: "الجَدَّة",
-          sub: "جَدَّتِي",
-          speech: "الجَدَّة. هَذِهِ هِيَ الجَدَّة.",
-          bg: "linear-gradient(145deg, #ffffff, #fce7f3)",
-          shadow: "#be185d",
-          accent: "#db2777"
-        },
-        {
-          id: "father",
-          title: "الأَب",
-          sub: "بَابَا",
-          speech: "الأَب. هَذَا هُوَ الأَب.",
-          bg: "linear-gradient(145deg, #ffffff, #dbeafe)",
-          shadow: "#1d4ed8",
-          accent: "#2563eb"
-        },
-        {
-          id: "mother",
-          title: "الأُمّ",
-          sub: "مَامَا",
-          speech: "الأُمّ. هَذِهِ هِيَ الأُمّ.",
-          bg: "linear-gradient(145deg, #ffffff, #ffe4e6)",
-          shadow: "#be123c",
-          accent: "#e11d48"
-        },
-        {
-          id: "son",
-          title: "الاِبْن",
-          sub: "وَلَد",
-          speech: "الاِبْن. هَذَا هُوَ الاِبْن.",
-          bg: "linear-gradient(145deg, #ffffff, #dcfce7)",
-          shadow: "#15803d",
-          accent: "#16a34a"
-        },
-        {
-          id: "daughter",
-          title: "الاِبْنَة",
-          sub: "بِنْت",
-          speech: "الاِبْنَة. هَذِهِ هِيَ الاِبْنَة.",
-          bg: "linear-gradient(145deg, #ffffff, #fef9c3)",
-          shadow: "#b45309",
-          accent: "#d97706"
-        }
-      ],
-      relations: [
-        {
-          id: "myMother",
-          title: "أُمِّي",
-          sub: "أُحِبُّ أُمِّي",
-          speech: "أُمِّي! هَذِهِ أُمِّي.",
-          bg: "linear-gradient(145deg, #ffffff, #fce7f3)",
-          shadow: "#be123c",
-          accent: "#e11d48"
-        },
-        {
-          id: "myFather",
-          title: "أَبِي",
-          sub: "أُحِبُّ أَبِي",
-          speech: "أَبِي! هَذَا أَبِي.",
-          bg: "linear-gradient(145deg, #ffffff, #dbeafe)",
-          shadow: "#1d4ed8",
-          accent: "#2563eb"
-        },
-        {
-          id: "myBrother",
-          title: "أَخِي",
-          sub: "أُحِبُّ أَخِي",
-          speech: "أَخِي! هَذَا أَخِي.",
-          bg: "linear-gradient(145deg, #ffffff, #d1fae5)",
-          shadow: "#047857",
-          accent: "#059669"
-        },
-        {
-          id: "mySister",
-          title: "أُخْتِي",
-          sub: "أُحِبُّ أُخْتِي",
-          speech: "أُخْتِي! هَذِهِ أُخْتِي.",
-          bg: "linear-gradient(145deg, #ffffff, #fef3c7)",
-          shadow: "#b45309",
-          accent: "#d97706"
-        }
-      ]
     }
   };
 
@@ -367,7 +261,7 @@
   function speakPhrase(text) {
     if (!text) return;
     const lang = getActiveLangId();
-    const langCode = lang === "Arabic" ? "ar-SA" : (lang === "French" ? "fr-FR" : "en-US");
+    const langCode = lang === "French" ? "fr-FR" : "en-US";
     if (window.AppLang) {
       window.AppLang.speak(text, langCode, 0.85, 1.15);
     }
@@ -466,7 +360,7 @@
   function navigateModal(dir) {
     if (!activeList.length) return;
     const lang = getActiveLangId();
-    const step = lang === "Arabic" ? -dir : dir;
+    const step = dir;
     activeIndex = (activeIndex + step + activeList.length) % activeList.length;
     openModal(activeIndex, activeIsRelation);
   }

@@ -27,18 +27,6 @@
       { name: "Étoile", file: "star.png", detail: "star/corner.png", cardColor: "#8f53e5", cardShadow: "#6234ad", speech: "Une étoile a dix côtés et dix pointes.", examples: [["star/star-cookie.png", "Biscuit"], ["star/star-wand.png", "Baguette"], ["star/starfish.png", "Étoile de mer"]] },
       { name: "Losange", file: "diamond.png", detail: "diamond/corner.png", cardColor: "#2fc090", cardShadow: "#168561", speech: "Un losange a quatre côtés et quatre coins.", examples: [["diamond/kite.png", "Cerf-volant"], ["diamond/gem.png", "Pierre précieuse"], ["diamond/road-sign.png", "Panneau"]] },
       { name: "Cube", file: "cube.png", detail: "cube/corner.png", cardColor: "#6fc63c", cardShadow: "#3c8d18", speech: "Un cube a six faces, douze arêtes et huit coins.", examples: [["cube/dice.png", "Dé"], ["cube/ice-cube.png", "Glaçon"], ["cube/toy-block.png", "Bloc de jeu"]] }
-    ],
-    Arabic: [
-      { name: "دائرة", file: "circle.png", detail: "circle/corner.png", cardColor: "#9edb24", cardShadow: "#55a716", speech: "الدائرة ليس لها أضلاع مستقيمة ولا زوايا.", examples: [["circle/clock.png", "ساعة"], ["circle/ball.png", "كرة"], ["circle/plate.png", "صحن"]] },
-      { name: "مربع", file: "square.png", detail: "square/corner.png", cardColor: "#338fe6", cardShadow: "#1761aa", speech: "المربع له أربعة أضلاع متساوية وأربع زوايا.", examples: [["square/window.png", "نافذة"], ["square/gift-box.png", "صندوق هدية"], ["square/tile.png", "بلاطة"]] },
-      { name: "مثلث", file: "triangle.png", detail: "triangle/corner.png", cardColor: "#f05f93", cardShadow: "#bd3768", speech: "المثلث له ثلاثة أضلاع وثلاث زوايا.", examples: [["triangle/triangle.png", "مثلث"], ["triangle/corner.png", "زوايا"], ["triangle.png", "شكل مثلث"]] },
-      { name: "مستطيل", file: "rectangle.png", detail: "rectangle/corner.png", cardColor: "#ff9a25", cardShadow: "#d56c0c", speech: "المستطيل له أربعة أضلاع وأربع زوايا.", examples: [["rectangle/door.png", "باب"], ["rectangle/book.png", "كتاب"], ["rectangle/television.png", "تلفاز"]] },
-      { name: "خماسي الأضلاع", file: "pentagon.png", detail: "pentagon/corner.png", cardColor: "#f48a26", cardShadow: "#be5e09", speech: "الشكل الخماسي له خمسة أضلاع وخمس زوايا.", examples: [["pentagon/home-plate.png", "لوحة"], ["pentagon/badge.png", "شارة"], ["pentagon/pentagon-sign.png", "لافتة خماسية"]] },
-      { name: "سداسي الأضلاع", file: "hexagon.png", detail: "hexagon/corner.png", cardColor: "#ffd52b", cardShadow: "#d59e00", speech: "الشكل السداسي له ستة أضلاع وست زوايا.", examples: [["hexagon/honeycomb.png", "خلية عسل"], ["hexagon/nut.png", "صامولة"], ["hexagon/hexagon-tile.png", "بلاطة سداسية"]] },
-      { name: "بيضاوي", file: "oval.png", detail: "oval/corner.png", cardColor: "#35c8b6", cardShadow: "#159486", speech: "الشكل البيضاوي ليس له أضلاع مستقيمة ولا زوايا.", examples: [["oval/egg.png", "بيضة"], ["oval/watermelon.png", "بطيخ"], ["oval/balloon.png", "بالون"]] },
-      { name: "نجمة", file: "star.png", detail: "star/corner.png", cardColor: "#8f53e5", cardShadow: "#6234ad", speech: "النجمة لها عشرة أضلاع وعشرة رؤوس.", examples: [["star/star-cookie.png", "بسكويت"], ["star/star-wand.png", "عصا نجمية"], ["star/starfish.png", "نجم البحر"]] },
-      { name: "معين", file: "diamond.png", detail: "diamond/corner.png", cardColor: "#2fc090", cardShadow: "#168561", speech: "المعين له أربعة أضلاع وأربع زوايا.", examples: [["diamond/kite.png", "طائرة ورقية"], ["diamond/gem.png", "جوهرة"], ["diamond/road-sign.png", "لافتة طريق"]] },
-      { name: "مكعب", file: "cube.png", detail: "cube/corner.png", cardColor: "#6fc63c", cardShadow: "#3c8d18", speech: "المكعب له ستة أوجه واثنا عشر ضلعاً وثماني زوايا.", examples: [["cube/dice.png", "نرد"], ["cube/ice-cube.png", "مكعب ثلج"], ["cube/toy-block.png", "مكعب ألعاب"]] }
     ]
   };
 
@@ -62,16 +50,6 @@
       objectsSubtitle: "Touche un objet pour entendre son nom.",
       instructionPrompt: "Choisis une forme. Touche pour découvrir.",
       objectSentence: (name, shape) => `${name} a la forme d'un ${shape}.`
-    },
-    Arabic: {
-      title: "تعلم الأشكال الهندسية",
-      subtitle: "اضغط على شكل لاكتشافه!",
-      mascot: "!هيا نستكشف<br>الأشكال",
-      detailSubtitle: "انظر، استمع وتعلم!",
-      objectsTitle: (s) => `أشياء على شكل ${s}`,
-      objectsSubtitle: "اضغط على أي شيء لسماع اسمه.",
-      instructionPrompt: "اختر شكلاً. اضغط على شكل لاكتشافه.",
-      objectSentence: (name, shape) => `${name} على شكل ${shape}.`
     }
   };
 
@@ -120,7 +98,7 @@
     if (!("speechSynthesis" in window)) return;
     const voices = window.speechSynthesis.getVoices();
     const lang = getActiveLangId();
-    const prefix = lang === "Arabic" ? "ar" : (lang === "French" ? "fr" : "en");
+    const prefix = lang === "French" ? "fr" : "en";
 
     preferredVoice = voices.find((v) => v.lang.toLowerCase().startsWith(prefix))
       || voices[0]
@@ -130,7 +108,7 @@
   function speak(text) {
     if (!text) return;
     const lang = getActiveLangId();
-    const langCode = lang === "Arabic" ? "ar-SA" : (lang === "French" ? "fr-FR" : "en-US");
+    const langCode = lang === "French" ? "fr-FR" : "en-US";
 
     if (window.AppLang) {
       window.AppLang.speak(text, langCode, 0.82, 1.25);
@@ -288,12 +266,12 @@
 
   document.getElementById("previousShapeButton").addEventListener("click", () => {
     const lang = getActiveLangId();
-    changeShape(lang === "Arabic" ? 1 : -1);
+    changeShape(-1);
   });
 
   document.getElementById("nextShapeButton").addEventListener("click", () => {
     const lang = getActiveLangId();
-    changeShape(lang === "Arabic" ? -1 : 1);
+    changeShape(1);
   });
 
   window.addEventListener("appLanguageChanged", () => {

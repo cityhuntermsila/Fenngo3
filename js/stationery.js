@@ -65,24 +65,6 @@
         { id: "sharpener", label: "Le taille-crayon", phrase: "C'est un taille-crayon.", speech: "Le taille-crayon. C'est un taille-crayon." },
         { id: "pencilcase", label: "La trousse", phrase: "C'est une trousse.", speech: "La trousse. C'est une trousse." }
       ]
-    },
-    Arabic: {
-      title: "الأدوات المدرسية",
-      subtitle: "اضغط على أي أداة مدرسية للاستماع والتعلم!",
-      badge: "الأدوات المدرسية",
-      listen: "استمع",
-      items: [
-        { id: "pencil", label: "قَلَمُ رَصَاص", phrase: "هَذَا قَلَمُ رَصَاص.", speech: "قَلَمُ رَصَاص. هَذَا قَلَمُ رَصَاص." },
-        { id: "pen", label: "قَلَمُ حِبْر", phrase: "هَذَا قَلَمُ حِبْر.", speech: "قَلَمُ حِبْر. هَذَا قَلَمُ حِبْر." },
-        { id: "book", label: "كِتَاب", phrase: "هَذَا كِتَاب.", speech: "كِتَاب. هَذَا كِتَاب." },
-        { id: "notebook", label: "كُرَّاس", phrase: "هَذَا كُرَّاس.", speech: "كُرَّاس. هَذَا كُرَّاس." },
-        { id: "eraser", label: "مِمْحَاة", phrase: "هَذِهِ مِمْحَاة.", speech: "مِمْحَاة. هَذِهِ مِمْحَاة." },
-        { id: "ruler", label: "مِسْطَرَة", phrase: "هَذِهِ مِسْطَرَة.", speech: "مِسْطَرَة. هَذِهِ مِسْطَرَة." },
-        { id: "schoolbag", label: "مِحْفَظَة", phrase: "هَذِهِ مِحْفَظَة.", speech: "مِحْفَظَة. هَذِهِ مِحْفَظَة." },
-        { id: "scissors", label: "مِقَصّ", phrase: "هَذَا مِقَصّ.", speech: "مِقَصّ. هَذَا مِقَصّ." },
-        { id: "sharpener", label: "مِبْرَاة", phrase: "هَذِهِ مِبْرَاة.", speech: "مِبْرَاة. هَذِهِ مِبْرَاة." },
-        { id: "pencilcase", label: "مِقْلَمَة", phrase: "هَذِهِ مِقْلَمَة.", speech: "مِقْلَمَة. هَذِهِ مِقْلَمَة." }
-      ]
     }
   };
 

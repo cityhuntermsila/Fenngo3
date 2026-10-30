@@ -1,6 +1,6 @@
 /**
  * AppLang - Central Language Manager for Fenncky
- * Supports: English, French (Français), Arabic (العربية)
+ * Supports: English (Main) and French (Français)
  */
 (function (global) {
   "use strict";
@@ -65,36 +65,6 @@
         exploreAlt: "Explorer",
         cardAria: "Ouvrir les catégories d'apprentissage"
       }
-    },
-    Arabic: {
-      id: "Arabic",
-      code: "ar",
-      name: "العربية",
-      nativeName: "العربية",
-      flag: "assets/images/flags/saudi-arabia.png",
-      speechLang: "ar-SA",
-      dir: "rtl",
-      nav: {
-        apps: "التطبيقات",
-        store: "المتجر",
-        parents: "الآباء والمعلمون",
-        join: "كيفية الانضمام",
-        signIn: "تسجيل الدخول",
-        back: "رجوع",
-        home: "الرئيسية",
-        changeLanguage: "تغيير اللغة"
-      },
-      categoryPage: {
-        title: "تعليم الأطفال",
-        alphabet: "الحروف الأبجدية",
-        numbers: "الأرقام",
-        colors: "الألوان",
-        geometry: "الأشكال الهندسية"
-      },
-      kindergartenPage: {
-        exploreAlt: "استكشف",
-        cardAria: "فتح أقسام تعليم الروضة"
-      }
     }
   };
 
@@ -102,22 +72,18 @@
 
   function getCurrentLangId() {
     const saved = localStorage.getItem(STORAGE_KEY);
-    if (saved && LANGUAGES[saved]) {
-      return saved;
+    if (saved && (saved === "French" || saved === "fr" || saved === "francais" || saved === "français")) {
+      return "French";
     }
-    // Normalize aliases
-    if (saved === "fr" || saved === "francais" || saved === "français") return "French";
-    if (saved === "ar" || saved === "arabic" || saved === "arabe") return "Arabic";
-    if (saved === "en" || saved === "english" || saved === "anglais") return "English";
     return "English";
   }
 
   function getCurrentLang() {
-    return LANGUAGES[getCurrentLangId()];
+    return LANGUAGES[getCurrentLangId()] || LANGUAGES.English;
   }
 
   function setLang(langId, reload = false) {
-    if (!LANGUAGES[langId]) return;
+    if (!LANGUAGES[langId]) langId = "English";
     localStorage.setItem(STORAGE_KEY, langId);
     applyPageDirection();
     updateBackButtonLabel();
@@ -130,13 +96,9 @@
 
   function applyPageDirection() {
     const lang = getCurrentLang();
-    document.documentElement.dir = lang.dir;
+    document.documentElement.dir = "ltr";
     document.documentElement.lang = lang.code;
-    if (lang.dir === "rtl") {
-      document.body.classList.add("lang-arabic");
-    } else {
-      document.body.classList.remove("lang-arabic");
-    }
+    document.body.classList.remove("lang-arabic");
   }
 
   // Shared audio element for local MP3 / TTS playback
@@ -210,7 +172,7 @@
 
   /**
    * Voice speech synthesis helper.
-   * For Arabic ("ar") and French ("fr"), plays pre-downloaded local MP3 files first
+   * For French ("fr"), plays pre-downloaded local MP3 files first
    * so that voice works reliably offline and without browser certificate blocks.
    */
   function speak(text, langCode = null, rate = 0.85, pitch = 1.1, onEnded = null) {
@@ -222,8 +184,8 @@
     const targetLangCode = langCode || getCurrentLang().speechLang;
     const langPrefix = targetLangCode.slice(0, 2).toLowerCase();
 
-    // Always prefer pre-downloaded local MP3s for Arabic and French
-    if (langPrefix === "ar" || langPrefix === "fr" || !_hasVoiceForLang(langPrefix)) {
+    // Always prefer pre-downloaded local MP3s for French
+    if (langPrefix === "fr" || !_hasVoiceForLang(langPrefix)) {
       window.speechSynthesis?.cancel?.();
       _playLocalOrRemoteTTS(text, langPrefix, onEnded);
       return;

@@ -58,37 +58,6 @@ const alphabetDataFrench = {
     Z: { word: "Zèbre", phrase: "Z comme Zèbre", capital: "Z", small: "z", frontImage: "assets/images/alphabet/Z/zebra.png" }
 };
 
-const alphabetDataArabic = {
-    "أ": { word: "أَسَد", phrase: "أ - أَسَد", capital: "أ", small: "ـأ", frontImage: "assets/images/language-images/lion.png" },
-    "ب": { word: "بَطَّة", phrase: "ب - بَطَّة", capital: "ب", small: "ـب", frontImage: "assets/images/alphabet/D/Duck.png" },
-    "ت": { word: "تُفَّاحَة", phrase: "ت - تُفَّاحَة", capital: "ت", small: "ـت", frontImage: "assets/images/alphabet/A/apple.png" },
-    "ث": { word: "ثَلْج", phrase: "ث - ثَلْج", capital: "ث", small: "ـث", frontImage: "assets/images/geometry/cube/ice-cube.png" },
-    "ج": { word: "جَزَر", phrase: "ج - جَزَر", capital: "ج", small: "ـج", frontImage: "assets/images/alphabet/C/Carrot.png" },
-    "ح": { word: "حُوت", phrase: "ح - حُوت", capital: "ح", small: "ـح", frontImage: "assets/images/color/blue/whale.png" },
-    "خ": { word: "خَرُوف", phrase: "خ - خَرُوف", capital: "خ", small: "ـخ", frontImage: "assets/images/color/white/rabbit.png" },
-    "د": { word: "دُلْفِين", phrase: "د - دُلْفِين", capital: "د", small: "ـد", frontImage: "assets/images/alphabet/D/Dolphin.png" },
-    "ذ": { word: "ذُرَة", phrase: "ذ - ذُرَة", capital: "ذ", small: "ـذ", frontImage: "assets/images/color/yellow/banana.png" },
-    "ر": { word: "قَوْسُ قُزَح", phrase: "ر - قَوْسُ قُزَح", capital: "ر", small: "ـر", frontImage: "assets/images/alphabet/R/rainbow.png" },
-    "ز": { word: "زَهْرَة", phrase: "ز - زَهْرَة", capital: "ز", small: "ـز", frontImage: "assets/images/number/sunflowers.png" },
-    "س": { word: "سَمَكَة", phrase: "س - سَمَكَة", capital: "س", small: "ـس", frontImage: "assets/images/alphabet/F/fish.png" },
-    "ش": { word: "شَمْس", phrase: "ش - شَمْس", capital: "ش", small: "ـش", frontImage: "assets/images/color/yellow/sun.png" },
-    "ص": { word: "صُنْدُوق", phrase: "ص - صُنْدُوق", capital: "ص", small: "ـص", frontImage: "assets/images/geometry/square/gift-box.png" },
-    "ض": { word: "ضَوْء", phrase: "ض - ضَوْء", capital: "ض", small: "ـض", frontImage: "assets/images/color/yellow/sun.png" },
-    "ط": { word: "طَائِر", phrase: "ط - طَائِر", capital: "ط", small: "ـط", frontImage: "assets/images/number/bird.png" },
-    "ظ": { word: "ظَرْف", phrase: "ظ - ظَرْف", capital: "ظ", small: "ـظ", frontImage: "assets/images/geometry/rectangle/book.png" },
-    "ع": { word: "عِنَب", phrase: "ع - عِنَب", capital: "ع", small: "ـع", frontImage: "assets/images/color/green/grapes.png" },
-    "غ": { word: "غَزَال", phrase: "غ - غَزَال", capital: "غ", small: "ـغ", frontImage: "assets/images/alphabet/D/Deer.png" },
-    "ف": { word: "فِيل", phrase: "ف - فِيل", capital: "ف", small: "ـف", frontImage: "assets/images/alphabet/E/elephant.png" },
-    "ق": { word: "قِطَّة", phrase: "ق - قِطَّة", capital: "ق", small: "ـق", frontImage: "assets/images/alphabet/C/cat.png" },
-    "ك": { word: "كُرَة", phrase: "ك - كُرَة", capital: "ك", small: "ـك", frontImage: "assets/images/alphabet/B/ball.png" },
-    "ل": { word: "لُعْبَة", phrase: "ل - لُعْبَة", capital: "ل", small: "ـل", frontImage: "assets/images/geometry/cube/toy-block.png" },
-    "م": { word: "مَانْجُو", phrase: "م - مَانْجُو", capital: "م", small: "ـم", frontImage: "assets/images/alphabet/M/mango.png" },
-    "ن": { word: "نَجْمَة", phrase: "ن - نَجْمَة", capital: "ن", small: "ـن", frontImage: "assets/images/number/star.png" },
-    "هـ": { word: "هَدِيَّة", phrase: "هـ - هَدِيَّة", capital: "هـ", small: "ـه", frontImage: "assets/images/geometry/square/gift-box.png" },
-    "و": { word: "وَرْدَة", phrase: "و - وَرْدَة", capital: "و", small: "ـو", frontImage: "assets/images/color/red/rose.png" },
-    "ي": { word: "يُويُو", phrase: "ي - يُويُو", capital: "ي", small: "ـي", frontImage: "assets/images/alphabet/Y/yo-yo.png" }
-};
-
 const alphabetGrid = document.getElementById("alphabetGrid");
 const cubeModal = document.getElementById("cubeModal");
 const closeBtn = document.getElementById("closeBtn");
@@ -117,9 +86,7 @@ function getActiveDataset() {
     const langId = window.AppLang ? window.AppLang.getCurrentLangId() : (localStorage.getItem("selectedLanguage") || "English");
     currentLangId = langId;
 
-    if (langId === "Arabic") {
-        return alphabetDataArabic;
-    } else if (langId === "French") {
+    if (langId === "French") {
         return alphabetDataFrench;
     }
     return alphabetDataEnglish;
@@ -127,12 +94,12 @@ function getActiveDataset() {
 
 function updateNavLabels() {
     if (prevLetterBtn) {
-        prevLetterBtn.innerHTML = currentLangId === "Arabic" ? "&#10095;" : "&#10094;";
-        prevLetterBtn.setAttribute("aria-label", currentLangId === "Arabic" ? "التالي" : (currentLangId === "French" ? "Précédent" : "Previous"));
+        prevLetterBtn.innerHTML = "&#10094;";
+        prevLetterBtn.setAttribute("aria-label", currentLangId === "French" ? "Précédent" : "Previous");
     }
     if (nextLetterBtn) {
-        nextLetterBtn.innerHTML = currentLangId === "Arabic" ? "&#10094;" : "&#10095;";
-        nextLetterBtn.setAttribute("aria-label", currentLangId === "Arabic" ? "السابق" : (currentLangId === "French" ? "Suivant" : "Next"));
+        nextLetterBtn.innerHTML = "&#10095;";
+        nextLetterBtn.setAttribute("aria-label", currentLangId === "French" ? "Suivant" : "Next");
     }
 }
 
@@ -219,11 +186,11 @@ function navigateLetter(direction) {
 }
 
 prevLetterBtn.addEventListener("click", () => {
-    navigateLetter(currentLangId === "Arabic" ? "next" : "prev");
+    navigateLetter("prev");
 });
 
 nextLetterBtn.addEventListener("click", () => {
-    navigateLetter(currentLangId === "Arabic" ? "prev" : "next");
+    navigateLetter("next");
 });
 
 function closeCube() {
@@ -241,7 +208,7 @@ cubeModal.addEventListener("click", function (e) {
 
 function speakCurrentLetter(data) {
     const text = data.phrase || `${data.capital} for ${data.word}`;
-    const langCode = currentLangId === "Arabic" ? "ar-SA" : (currentLangId === "French" ? "fr-FR" : "en-US");
+    const langCode = currentLangId === "French" ? "fr-FR" : "en-US";
 
     if (window.AppLang) {
         window.AppLang.speak(text, langCode);

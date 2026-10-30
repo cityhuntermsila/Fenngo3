@@ -664,68 +664,6 @@ const colorTranslations = {
       "Monkey": "Singe",
       "Horse": "Cheval"
     }
-  },
-  Arabic: {
-    Red: "أحمر",
-    Blue: "أزرق",
-    Green: "أخضر",
-    Yellow: "أصفر",
-    Orange: "برتقالي",
-    Purple: "بنفسجي",
-    Pink: "وردي",
-    Black: "أسود",
-    White: "أبيض",
-    Brown: "بني",
-    titles: {
-      learnColors: "تعلم الألوان",
-      tapSplash: "اضغط على بقعة اللون للاستماع!",
-      letsLearn: "هيا نتعلم",
-      colorSuffix: "اللون",
-      sayIt: "ردد معي:",
-      thingsThatAre: (c) => `أشياء باللون ${c}`,
-      tapToHear: "اضغط على أي صورة لسماع اسمها.",
-      colorChallenge: "تحدي الألوان",
-      tapTheObject: (c) => `اضغط على الشيء باللون ${c}!`,
-      lookCarefully: "انظر جيداً واختر الصورة الصحيحة.",
-      chooseCorrect: "اختر الشيء الصحيح.",
-      greatJob: (obj, col) => `أحسنت ممتاز! ${obj} باللون ${col}!`,
-      tryAgain: (col) => `حاول مرة أخرى. ابحث عن الشيء باللون ${col}.`
-    },
-    items: {
-      "Apple": "تفاحة",
-      "Strawberry": "فراولة",
-      "Rose": "وردة",
-      "Leaf": "ورقة شجر",
-      "Banana": "موز",
-      "Whale": "حوت",
-      "Water Drop": "قطرة ماء",
-      "Blueberry": "توت",
-      "Frog": "ضفدع",
-      "Broccoli": "بروكلي",
-      "Carrot": "جزر",
-      "Grapes": "عنب",
-      "Sun": "شمس",
-      "Star": "نجمة",
-      "Orange": "برتقال",
-      "Pumpkin": "قرع",
-      "Cloud": "سحابة",
-      "Brinjal": "باذنجان",
-      "Flower": "زهرة",
-      "Gift Box": "صندوق هدية",
-      "Balloon": "بالون",
-      "Flamingo": "فلامنغو",
-      "Cotton Candy": "غزل البنات",
-      "Cat": "قطة",
-      "Car": "سيارة",
-      "Top Hat": "قبعة",
-      "Rabbit": "أرنب",
-      "Mushroom": "فطر",
-      "Chocolate Cupcake": "كعكة",
-      "Teddy Wear": "دبدوب",
-      "Owl": "بومة",
-      "Monkey": "قرد",
-      "Horse": "حصان"
-    }
   }
 };
 
@@ -1046,7 +984,7 @@ if ("speechSynthesis" in window) {
 
 function getPreferredVoice() {
   const lang = getActiveLangId();
-  const prefix = lang === "Arabic" ? "ar" : (lang === "French" ? "fr" : "en");
+  const prefix = lang === "French" ? "fr" : "en";
   return (
     voices.find((voice) =>
       voice.lang.toLowerCase().startsWith(prefix)
@@ -1071,7 +1009,7 @@ function speakText(text, onComplete = null) {
   };
 
   const lang = getActiveLangId();
-  const langCode = lang === "Arabic" ? "ar-SA" : (lang === "French" ? "fr-FR" : "en-US");
+  const langCode = lang === "French" ? "fr-FR" : "en-US";
   const langPrefix = langCode.slice(0, 2).toLowerCase();
 
   const hasNativeVoice = ("speechSynthesis" in window) &&
@@ -1429,10 +1367,10 @@ function openColor(index) {
   updateSplashImage(color);
 
   modalProgress.textContent =
-    `${lang === "Arabic" ? "اللون" : (lang === "French" ? "Couleur" : "Color")} ${currentIndex + 1} / ${colors.length}`;
+    `${lang === "French" ? "Couleur" : "Color"} ${currentIndex + 1} / ${colors.length}`;
 
   colorTitle.textContent =
-    lang === "Arabic" ? `اللون ${locCol}` : `${locCol} (${t.colorSuffix})`;
+    `${locCol} (${t.colorSuffix})`;
 
   detailColorName.textContent =
     locCol.toUpperCase();
@@ -1457,7 +1395,7 @@ function openColor(index) {
     "modal-open"
   );
 
-  speakText(lang === "Arabic" ? `اللون ${locCol}` : locCol);
+  speakText(locCol);
 }
 
 
@@ -1678,7 +1616,7 @@ function handleExampleClick(
 
   let sentence = `${locItem} is ${locCol}`;
   if (lang === "French") sentence = `${locItem} est ${locCol}`;
-  if (lang === "Arabic") sentence = `${locItem} باللون ${locCol}`;
+  
 
   objectFeedback.textContent = `${sentence}!`;
 
@@ -2228,7 +2166,7 @@ soundBtn.addEventListener(
     const locCol = getLocalizedColorName(color.name);
 
     speakText(
-      lang === "Arabic" ? `اللون ${locCol}` : (lang === "French" ? `Couleur ${locCol}` : `${color.name} color`)
+      (lang === "French" ? `Couleur ${locCol}` : `${color.name} color`)
     );
   }
 );
@@ -2326,7 +2264,7 @@ function applyStaticLabels() {
   if (examplesInstruction) examplesInstruction.textContent = t.tapToHear;
   const greatJobTitle = document.getElementById("greatJobTitle");
   if (greatJobTitle) {
-    greatJobTitle.textContent = getActiveLangId() === "Arabic" ? "أحسنت!" : (getActiveLangId() === "French" ? "Bravo !" : "Great Job!");
+    greatJobTitle.textContent = getActiveLangId() === "French" ? "Bravo !" : "Great Job!";
   }
 
   buildColorCards();

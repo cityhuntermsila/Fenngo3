@@ -95,34 +95,6 @@
         { id: "listencd", label: "Écoute le CD, s'il te plaît.", phrase: "Écoute le CD, s'il te plaît.", speech: "Écoute le CD, s'il te plaît." },
         { id: "openbook", label: "Ouvre ton livre, s'il te plaît.", phrase: "Ouvre ton livre, s'il te plaît.", speech: "Ouvre ton livre, s'il te plaît." }
       ]
-    },
-    Arabic: {
-      title: "الأوامر المدرسية الشائعة",
-      subtitle: "اضغط على أي تعليمة للاستماع والتدرب عليها!",
-      badge: "تعليمة مدرسية",
-      listen: "استمع",
-      items: [
-        { id: "standup", label: "قِفْ.", phrase: "قِفْ مِنْ فَضْلِكَ.", speech: "قِفْ." },
-        { id: "sitdown", label: "اِجْلِسْ.", phrase: "اِجْلِسْ مِنْ فَضْلِكَ.", speech: "اِجْلِسْ." },
-        { id: "raisehand", label: "اِرْفَعْ يَدَكَ.", phrase: "اِرْفَعْ يَدَكَ مِنْ فَضْلِكَ.", speech: "اِرْفَعْ يَدَكَ." },
-        { id: "erase", label: "اِمْسَحْ.", phrase: "اِمْسَحِ السَّبُّورَة.", speech: "اِمْسَحْ." },
-        { id: "showpoint", label: "أَرِنِي. / أَشِرْ.", phrase: "أَرِنِي وَأَشِرْ بِإِصْبَعِكَ!", speech: "أَرِنِي. أَشِرْ." },
-        { id: "listen", label: "اِسْتَمِعْ.", phrase: "اِسْتَمِعْ جَيِّدًا!", speech: "اِسْتَمِعْ." },
-        { id: "look", label: "اُنْظُرْ.", phrase: "اُنْظُرْ إِلَى هُنَا!", speech: "اُنْظُرْ." },
-        { id: "read", label: "اِقْرَأْ.", phrase: "اِقْرَأِ النَّصَّ!", speech: "اِقْرَأْ." },
-        { id: "draw", label: "اُرْسُمْ.", phrase: "اُرْسُمْ صُورَةً!", speech: "اُرْسُمْ." },
-        { id: "colour", label: "لَوِّنْ.", phrase: "لَوِّنِ الرَّسْمَ!", speech: "لَوِّنْ." },
-        { id: "write", label: "اُكْتُبْ.", phrase: "اُكْتُبْ عَلَى كُرَّاسِكَ!", speech: "اُكْتُبْ." },
-        { id: "repeatsay", label: "أَعِدْ. / قُلْ.", phrase: "أَعِدْ وَقُلْ!", speech: "أَعِدْ. قُلْ." },
-        { id: "tick", label: "ضَعْ عَلَامَةَ صَحّ.", phrase: "ضَعْ عَلَامَةَ صَحّ! (✓)", speech: "ضَعْ عَلَامَةَ صَحّ." },
-        { id: "cross", label: "ضَعْ عَلَامَةَ خَطَأ.", phrase: "ضَعْ عَلَامَةَ خَطَأ! (✗)", speech: "ضَعْ عَلَامَةَ خَطَأ." },
-        { id: "circle", label: "حَوِّطْ.", phrase: "حَوِّطِ الإِجَابَةَ الصَّحِيحَة!", speech: "حَوِّطْ." },
-        { id: "match", label: "اِرْبِطْ.", phrase: "اِرْبِطْ بَيْنَ العَنَاصِر!", speech: "اِرْبِطْ." },
-        { id: "repeatafterme", label: "أَعِدْ بَعْدِي مِنْ فَضْلِكَ.", phrase: "أَعِدْ بَعْدِي مِنْ فَضْلِكَ.", speech: "أَعِدْ بَعْدِي مِنْ فَضْلِكَ." },
-        { id: "lookpicture", label: "اُنْظُرْ إِلَى الصُّورَةِ مِنْ فَضْلِكَ.", phrase: "اُنْظُرْ إِلَى الصُّورَةِ مِنْ فَضْلِكَ.", speech: "اُنْظُرْ إِلَى الصُّورَةِ مِنْ فَضْلِكَ." },
-        { id: "listencd", label: "اِسْتَمِعْ إِلَى القُرْصِ مِنْ فَضْلِكَ.", phrase: "اِسْتَمِعْ إِلَى القُرْصِ مِنْ فَضْلِكَ.", speech: "اِسْتَمِعْ إِلَى القُرْصِ مِنْ فَضْلِكَ." },
-        { id: "openbook", label: "اِفْتَحْ كِتَابَكَ مِنْ فَضْلِكَ.", phrase: "اِفْتَحْ كِتَابَكَ مِنْ فَضْلِكَ.", speech: "اِفْتَحْ كِتَابَكَ مِنْ فَضْلِكَ." }
-      ]
     }
   };
 

@@ -65,24 +65,6 @@
         { id: "leg", label: "La jambe", phrase: "Voici la jambe.", speech: "La jambe. Voici la jambe." },
         { id: "foot", label: "Le pied", phrase: "Voici le pied.", speech: "Le pied. Voici le pied." }
       ]
-    },
-    Arabic: {
-      title: "أجزاء الجسم",
-      subtitle: "اضغط على أي جزء من الجسم للاستماع والتعلم!",
-      badge: "أجزاء الجسم",
-      listen: "استمع",
-      items: [
-        { id: "head", label: "الرَّأْس", phrase: "هَذَا هُوَ الرَّأْس.", speech: "الرَّأْس. هَذَا هُوَ الرَّأْس." },
-        { id: "hair", label: "الشَّعْر", phrase: "هَذَا هُوَ الشَّعْر.", speech: "الشَّعْر. هَذَا هُوَ الشَّعْر." },
-        { id: "eye", label: "العَيْن", phrase: "هَذِهِ هِيَ العَيْن.", speech: "العَيْن. هَذِهِ هِيَ العَيْن." },
-        { id: "ear", label: "الأُذُن", phrase: "هَذِهِ هِيَ الأُذُن.", speech: "الأُذُن. هَذِهِ هِيَ الأُذُن." },
-        { id: "nose", label: "الأَنْف", phrase: "هَذَا هُوَ الأَنْف.", speech: "الأَنْف. هَذَا هُوَ الأَنْف." },
-        { id: "mouth", label: "الفَم", phrase: "هَذَا هُوَ الفَم.", speech: "الفَم. هَذَا هُوَ الفَم." },
-        { id: "hand", label: "اليَد", phrase: "هَذِهِ هِيَ اليَد.", speech: "اليَد. هَذِهِ هِيَ اليَد." },
-        { id: "arm", label: "الذِّرَاع", phrase: "هَذَا هُوَ الذِّرَاع.", speech: "الذِّرَاع. هَذَا هُوَ الذِّرَاع." },
-        { id: "leg", label: "السَّاق", phrase: "هَذِهِ هِيَ السَّاق.", speech: "السَّاق. هَذِهِ هِيَ السَّاق." },
-        { id: "foot", label: "القَدَم", phrase: "هَذِهِ هِيَ القَدَم.", speech: "القَدَم. هَذِهِ هِيَ القَدَم." }
-      ]
     }
   };
 

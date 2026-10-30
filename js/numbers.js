@@ -1,8 +1,7 @@
 const numbersData = [
   {
     number: 1,
-    arabicNum: "١",
-    words: { English: "One", French: "Un", Arabic: "وَاحِد" },
+    words: { English: "One", French: "Un" },
     word: "One",
     color: "red",
     numberImg: "one.png",
@@ -11,15 +10,13 @@ const numbersData = [
     objectPlural: "apples",
     objects: {
       English: { singular: "apple", plural: "apples", phrase: "apple" },
-      French: { singular: "pomme", plural: "pommes", phrase: "une pomme" },
-      Arabic: { singular: "تفاحة", plural: "تفاح", phrase: "تُفَّاحَة وَاحِدَة" }
+      French: { singular: "pomme", plural: "pommes", phrase: "une pomme" }
     },
     count: 1
   },
   {
     number: 2,
-    arabicNum: "٢",
-    words: { English: "Two", French: "Deux", Arabic: "اِثْنَان" },
+    words: { English: "Two", French: "Deux" },
     word: "Two",
     color: "orange",
     numberImg: "two.png",
@@ -28,15 +25,13 @@ const numbersData = [
     objectPlural: "birds",
     objects: {
       English: { singular: "bird", plural: "birds", phrase: "birds" },
-      French: { singular: "oiseau", plural: "oiseaux", phrase: "deux oiseaux" },
-      Arabic: { singular: "عصفور", plural: "عصافير", phrase: "عُصْفُورَان" }
+      French: { singular: "oiseau", plural: "oiseaux", phrase: "deux oiseaux" }
     },
     count: 2
   },
   {
     number: 3,
-    arabicNum: "٣",
-    words: { English: "Three", French: "Trois", Arabic: "ثَلَاثَة" },
+    words: { English: "Three", French: "Trois" },
     word: "Three",
     color: "yellow",
     numberImg: "three.png",
@@ -45,15 +40,13 @@ const numbersData = [
     objectPlural: "stars",
     objects: {
       English: { singular: "star", plural: "stars", phrase: "stars" },
-      French: { singular: "étoile", plural: "étoiles", phrase: "trois étoiles" },
-      Arabic: { singular: "نجمة", plural: "نجوم", phrase: "ثَلَاث نُجُوم" }
+      French: { singular: "étoile", plural: "étoiles", phrase: "trois étoiles" }
     },
     count: 3
   },
   {
     number: 4,
-    arabicNum: "٤",
-    words: { English: "Four", French: "Quatre", Arabic: "أَرْبَعَة" },
+    words: { English: "Four", French: "Quatre" },
     word: "Four",
     color: "green",
     numberImg: "four.png",
@@ -62,15 +55,13 @@ const numbersData = [
     objectPlural: "cars",
     objects: {
       English: { singular: "car", plural: "cars", phrase: "cars" },
-      French: { singular: "voiture", plural: "voitures", phrase: "quatre voitures" },
-      Arabic: { singular: "سيارة", plural: "سيارات", phrase: "أَرْبَع سَيَّارَات" }
+      French: { singular: "voiture", plural: "voitures", phrase: "quatre voitures" }
     },
     count: 4
   },
   {
     number: 5,
-    arabicNum: "٥",
-    words: { English: "Five", French: "Cinq", Arabic: "خَمْسَة" },
+    words: { English: "Five", French: "Cinq" },
     word: "Five",
     color: "blue",
     numberImg: "five.png",
@@ -79,15 +70,13 @@ const numbersData = [
     objectPlural: "butterflies",
     objects: {
       English: { singular: "butterfly", plural: "butterflies", phrase: "butterflies" },
-      French: { singular: "papillon", plural: "papillons", phrase: "cinq papillons" },
-      Arabic: { singular: "فراشة", plural: "فراشات", phrase: "خَمْس فَرَاشَات" }
+      French: { singular: "papillon", plural: "papillons", phrase: "cinq papillons" }
     },
     count: 5
   },
   {
     number: 6,
-    arabicNum: "٦",
-    words: { English: "Six", French: "Six", Arabic: "سِتَّة" },
+    words: { English: "Six", French: "Six" },
     word: "Six",
     color: "purple",
     numberImg: "six.png",
@@ -96,15 +85,13 @@ const numbersData = [
     objectPlural: "sunflowers",
     objects: {
       English: { singular: "sunflower", plural: "sunflowers", phrase: "sunflowers" },
-      French: { singular: "tournesol", plural: "tournesols", phrase: "six tournesols" },
-      Arabic: { singular: "زهرة", plural: "زهور", phrase: "سِتّ زُهُور عَبَّاد شَمْس" }
+      French: { singular: "tournesol", plural: "tournesols", phrase: "six tournesols" }
     },
     count: 6
   },
   {
     number: 7,
-    arabicNum: "٧",
-    words: { English: "Seven", French: "Sept", Arabic: "سَبْعَة" },
+    words: { English: "Seven", French: "Sept" },
     word: "Seven",
     color: "red",
     numberImg: "seven.png",
@@ -113,15 +100,13 @@ const numbersData = [
     objectPlural: "balloons",
     objects: {
       English: { singular: "balloon", plural: "balloons", phrase: "balloons" },
-      French: { singular: "ballon", plural: "ballons", phrase: "sept ballons" },
-      Arabic: { singular: "بالون", plural: "بالونات", phrase: "سَبْع بَالُونَات" }
+      French: { singular: "ballon", plural: "ballons", phrase: "sept ballons" }
     },
     count: 7
   },
   {
     number: 8,
-    arabicNum: "٨",
-    words: { English: "Eight", French: "Huit", Arabic: "ثَمَانِيَة" },
+    words: { English: "Eight", French: "Huit" },
     word: "Eight",
     color: "green",
     numberImg: "eight.png",
@@ -130,15 +115,13 @@ const numbersData = [
     objectPlural: "cupcakes",
     objects: {
       English: { singular: "cupcake", plural: "cupcakes", phrase: "cupcakes" },
-      French: { singular: "gâteau", plural: "gâteaux", phrase: "huit gâteaux" },
-      Arabic: { singular: "كعكة", plural: "كعكات", phrase: "ثَمَانِي كَعْكَات" }
+      French: { singular: "gâteau", plural: "gâteaux", phrase: "huit gâteaux" }
     },
     count: 8
   },
   {
     number: 9,
-    arabicNum: "٩",
-    words: { English: "Nine", French: "Neuf", Arabic: "تِسْعَة" },
+    words: { English: "Nine", French: "Neuf" },
     word: "Nine",
     color: "blue",
     numberImg: "nine.png",
@@ -147,15 +130,13 @@ const numbersData = [
     objectPlural: "balls",
     objects: {
       English: { singular: "ball", plural: "balls", phrase: "balls" },
-      French: { singular: "balle", plural: "balles", phrase: "neuf balles" },
-      Arabic: { singular: "كرة", plural: "كرات", phrase: "تِسْع كُرَات" }
+      French: { singular: "balle", plural: "balles", phrase: "neuf balles" }
     },
     count: 9
   },
   {
     number: 10,
-    arabicNum: "١٠",
-    words: { English: "Ten", French: "Dix", Arabic: "عَشَرَة" },
+    words: { English: "Ten", French: "Dix" },
     word: "Ten",
     color: "purple",
     numberImg: "ten.png",
@@ -164,8 +145,7 @@ const numbersData = [
     objectPlural: "pencils",
     objects: {
       English: { singular: "pencil", plural: "pencils", phrase: "pencils" },
-      French: { singular: "crayon", plural: "crayons", phrase: "dix crayons" },
-      Arabic: { singular: "قلم", plural: "أقلام", phrase: "عَشَرَة أَقْلَام" }
+      French: { singular: "crayon", plural: "crayons", phrase: "dix crayons" }
     },
     count: 10
   }
@@ -173,8 +153,7 @@ const numbersData = [
 
 const countingWordsByLang = {
   English: ["", "One", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine", "Ten"],
-  French: ["", "Un", "Deux", "Trois", "Quatre", "Cinq", "Six", "Sept", "Huit", "Neuf", "Dix"],
-  Arabic: ["", "وَاحِد", "اِثْنَان", "ثَلَاثَة", "أَرْبَعَة", "خَمْسَة", "سِتَّة", "سَبْعَة", "ثَمَانِيَة", "تِسْعَة", "عَشَرَة"]
+  French: ["", "Un", "Deux", "Trois", "Quatre", "Cinq", "Six", "Sept", "Huit", "Neuf", "Dix"]
 };
 
 function getActiveLangId() {
@@ -486,15 +465,9 @@ function openNumber(index) {
   modalNumberImg.alt =
     `Number ${item.number}`;
 
-  if (lang === "Arabic") {
-    numberWord.textContent = `${item.arabicNum} - ${word}`;
-    sayNumberWord.textContent = `${word}!`;
-    targetCount.textContent = `${item.arabicNum} (${item.number})`;
-  } else {
-    numberWord.textContent = word;
-    sayNumberWord.textContent = `${word}!`;
-    targetCount.textContent = item.number;
-  }
+  numberWord.textContent = word;
+  sayNumberWord.textContent = `${word}!`;
+  targetCount.textContent = item.number;
 
   activityInstruction.textContent =
     createInstruction(item);
@@ -720,9 +693,7 @@ async function finishCounting(
   }
 
   let praiseText = "";
-  if (lang === "Arabic") {
-    praiseText = `أحسنت ممتاز! لقد عددت ${item.objects.Arabic.phrase}.`;
-  } else if (lang === "French") {
+   else if (lang === "French") {
     const label = item.count === 1 ? item.objects.French.singular : item.objects.French.plural;
     praiseText = `Bravo ! Tu as compté ${word} ${label}.`;
   } else {
@@ -1203,7 +1174,7 @@ function createGoldenStreamers(
 
 function getPreferredVoice(voices) {
   const lang = getActiveLangId();
-  const prefix = lang === "Arabic" ? "ar" : (lang === "French" ? "fr" : "en");
+  const prefix = lang === "French" ? "fr" : "en";
   return (
     voices.find((v) => v.lang.toLowerCase().startsWith(prefix)) ||
     voices[0] ||
@@ -1276,10 +1247,10 @@ async function speakText(
   } = options;
 
   const lang = getActiveLangId();
-  const langCode = lang === "Arabic" ? "ar-SA" : (lang === "French" ? "fr-FR" : "en-US");
+  const langCode = lang === "French" ? "fr-FR" : "en-US";
   const langPrefix = langCode.slice(0, 2).toLowerCase();
 
-  // For Arabic & French (or when no native voice exists), play pre-downloaded local MP3 via AppLang
+  // For French (or when no native voice exists), play pre-downloaded local MP3 via AppLang
   const hasNativeVoice = ("speechSynthesis" in window) &&
     window.speechSynthesis.getVoices().some(v => v.lang.toLowerCase().startsWith(langPrefix));
 
@@ -1363,9 +1334,7 @@ async function playNumberLesson() {
   const word = item.words[lang] || item.words.English;
 
   let phrase = "";
-  if (lang === "Arabic") {
-    phrase = `${word}. ${item.objects.Arabic.phrase}.`;
-  } else if (lang === "French") {
+   else if (lang === "French") {
     const label = item.count === 1 ? item.objects.French.singular : item.objects.French.plural;
     phrase = `${word}. ${word} ${label}.`;
   } else {
@@ -1398,9 +1367,7 @@ function wait(milliseconds) {
 
 function createInstruction(item) {
   const lang = getActiveLangId();
-  if (lang === "Arabic") {
-    return `شاهد ظهور ${item.objects.Arabic.phrase}!`;
-  }
+  
   if (lang === "French") {
     return `Regarde ${item.objects.French.phrase} apparaître !`;
   }
@@ -1410,9 +1377,7 @@ function createInstruction(item) {
 
 function createSuccessSentence(item) {
   const lang = getActiveLangId();
-  if (lang === "Arabic") {
-    return `لقد عددت ${item.arabicNum} (${item.objects.Arabic.phrase})!`;
-  }
+  
   if (lang === "French") {
     const label = item.count === 1 ? item.objects.French.singular : item.objects.French.plural;
     return `Tu as compté ${item.number} ${label} !`;
@@ -1441,15 +1406,6 @@ function applyStaticLabels() {
       ready: "Prêt ?",
       greatJob: "Bravo !",
       replay: "Rejouer"
-    },
-    Arabic: {
-      title: "اختر رقماً",
-      subtitle: "هيا نتعلم الأرقام من ١ إلى ١٠ !",
-      say: "ردد معي:",
-      activity: "شاهد وعُدّ!",
-      ready: "مستعد؟",
-      greatJob: "أحسنت!",
-      replay: "إعادة"
     }
   };
   const t = titles[lang] || titles.English;
@@ -1478,19 +1434,7 @@ function applyStaticLabels() {
     const w = itm.words[lang] || itm.words.English;
     card.setAttribute("aria-label", `${itm.number} - ${w}`);
 
-    let arabicBadge = card.querySelector(".arabic-badge");
-    if (lang === "Arabic") {
-      if (!arabicBadge) {
-        arabicBadge = document.createElement("span");
-        arabicBadge.className = "arabic-badge";
-        arabicBadge.style.cssText = "position:absolute; top:8px; left:12px; font-size:22px; font-weight:900; color:#fff; text-shadow:0 2px 4px rgba(0,0,0,0.5);";
-        card.appendChild(arabicBadge);
-      }
-      arabicBadge.textContent = itm.arabicNum;
-      arabicBadge.style.display = "block";
-    } else if (arabicBadge) {
-      arabicBadge.style.display = "none";
-    }
+    
   });
 }
 

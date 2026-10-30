@@ -7,91 +7,6 @@
   const LATIN_LETTERS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
 
   const LANG_DB = {
-    Arabic: {
-      dir: "rtl",
-      speechLang: "ar-SA",
-      ui: {
-        hubTitle: "أَلْعَابٌ تَعْلِيمِيَّةٌ لِلأَطْفَالِ",
-        hubSubtitle: "أَلْعَابٌ تَفَاعُلِيَّةٌ وَمُمْتِعَةٌ لِتَطْوِيرِ مَهَارَاتِ طِفْلِكَ فِي الحُرُوفِ وَالأَرْقَامِ!",
-        filterLabel: "اخْتَرِ المَهَارَاتِ:",
-        playNowBtn: "الْعَبِ الآنَ !",
-        skills: [
-          { key: "all", label: "كُلُّ الأَلْعَابِ" },
-          { key: "letters", label: "الحُرُوفُ وَالحَرَكَاتُ" },
-          { key: "words", label: "المُفْرَدَاتُ وَالتَّهْجِئَةُ" },
-          { key: "listening", label: "الاسْتِمَاعُ" },
-          { key: "numbers", label: "العَدُّ وَالأَرْقَامُ" }
-        ],
-        listenDefault: "اسْتَمِعْ",
-        slicePrompt: "اقْطَعِ الفَاكِهَةَ:",
-        howMany: "كَمِ العَدَدُ؟",
-        countRedDots: "عُدَّ النِّقَاطَ الحَمْرَاء",
-        victoryTitle: "أَحْسَنْتَ يَا بَطَلُ!",
-        victoryMsg: "لَقَدْ أَكْمَلْتَ الجَوْلَةَ بِنَجَاحٍ!",
-        victorySpeech: "أحسنت يا بطل! لقد أكملت الجولة بنجاح!",
-        playAgain: "الْعَبْ مَرَّةً أُخْرَى",
-        gamesMenu: "قَائِمَةُ الأَلْعَابِ"
-      },
-      gamesMeta: [
-        { id: "runner", title: "السِّبَاق", sub: "سِبَاقُ الحُرُوفِ وَالحَرَكَات", category: "الحروف والحركات", skillKeys: ["letters", "listening"], tags: ["٣-٨ سنوات", "الاستماع", "الحروف"], rounds: 5 },
-        { id: "maze", title: "مَتَاهَةُ الكَلِمَات", sub: "سَاعِدِ الكَتْكُوتَ لِتَكْوِينِ الكَلِمَة", category: "الحروف والكلمات", skillKeys: ["words", "letters"], tags: ["المفردات", "التهجئة"], rounds: 5 },
-        { id: "ninja", title: "نِينْجَا الفَوَاكِه", sub: "اقْطَعِ الفَاكِهَةَ الَّتِي تَحْمِلُ الحَرْف", category: "الحروف والحركات", skillKeys: ["letters", "listening"], tags: ["الاستماع", "الحركات"], rounds: 5 },
-        { id: "basketball", title: "كُرَةُ السَّلَّة", sub: "عُدَّ الأَشْيَاءَ وَسَدِّدْ فِي السَّلَّة", category: "العدّ والأرقام", skillKeys: ["numbers"], tags: ["العدّ", "الأرقام ١-١٠"], rounds: 5 },
-        { id: "whack", title: "صَائِدُ الحُرُوف", sub: "اسْتَمِعْ وَامْسِكِ الخُلْدَ الصَّحِيح", category: "الحروف", skillKeys: ["listening", "letters"], tags: ["الاستماع", "الحروف"], rounds: 5 },
-        { id: "tower", title: "البُرْج", sub: "رَتِّبِ الطَّوَابِقَ مِنْ ١ إِلَى ١٠", category: "العدّ والأرقام", skillKeys: ["numbers"], tags: ["الترتيب", "الأرقام ١-١٠"], rounds: 9 },
-        { id: "castle", title: "الدِّفَاعُ عَنِ القَلْعَة", sub: "عُدَّ النِّقَاطَ الحَمْرَاءَ وَأَطْلِقِ المِدْفَع", category: "العدّ والأرقام", skillKeys: ["numbers"], tags: ["العدّ السريع", "الأرقام"], rounds: 5 }
-      ],
-      letters: [
-        { base: "أ", name: "أَلِف", variants: [{ label: "أَ", speech: "أَ" }, { label: "أُ", speech: "أُ" }, { label: "إِ", speech: "إِ" }] },
-        { base: "ب", name: "بَاء", variants: [{ label: "بَ", speech: "بَ" }, { label: "بُ", speech: "بُ" }, { label: "بِ", speech: "بِ" }] },
-        { base: "ت", name: "تَاء", variants: [{ label: "تَ", speech: "تَ" }, { label: "تُ", speech: "تُ" }, { label: "تِ", speech: "تِ" }] },
-        { base: "ث", name: "ثَاء", variants: [{ label: "ثَ", speech: "ثَ" }, { label: "ثُ", speech: "ثُ" }, { label: "ثِ", speech: "ثِ" }] },
-        { base: "ج", name: "جِيم", variants: [{ label: "جَ", speech: "جَ" }, { label: "جُ", speech: "جُ" }, { label: "جِ", speech: "جِ" }] },
-        { base: "ح", name: "حَاء", variants: [{ label: "حَ", speech: "حَ" }, { label: "حُ", speech: "حُ" }, { label: "حِ", speech: "حِ" }] },
-        { base: "خ", name: "خَاء", variants: [{ label: "خَ", speech: "خَ" }, { label: "خُ", speech: "خُ" }, { label: "خِ", speech: "خِ" }] },
-        { base: "د", name: "دَال", variants: [{ label: "دَ", speech: "دَ" }, { label: "دُ", speech: "دُ" }, { label: "دِ", speech: "دِ" }] },
-        { base: "ر", name: "رَاء", variants: [{ label: "رَ", speech: "رَ" }, { label: "رُ", speech: "رُ" }, { label: "رِ", speech: "رِ" }] },
-        { base: "ز", name: "زَاي", variants: [{ label: "زَ", speech: "زَ" }, { label: "زُ", speech: "زُ" }, { label: "زِ", speech: "زِ" }] },
-        { base: "س", name: "سِين", variants: [{ label: "سَ", speech: "سَ" }, { label: "سُ", speech: "سُ" }, { label: "سِ", speech: "سِ" }] },
-        { base: "ش", name: "شِين", variants: [{ label: "شَ", speech: "شَ" }, { label: "شُ", speech: "شُ" }, { label: "شِ", speech: "شِ" }] },
-        { base: "ص", name: "صَاد", variants: [{ label: "صَ", speech: "صَ" }, { label: "صُ", speech: "صُ" }, { label: "صِ", speech: "صِ" }] },
-        { base: "ط", name: "طَاء", variants: [{ label: "طَ", speech: "طَ" }, { label: "طُ", speech: "طُ" }, { label: "طِ", speech: "طِ" }] },
-        { base: "ع", name: "عَيْن", variants: [{ label: "عَ", speech: "عَ" }, { label: "عُ", speech: "عُ" }, { label: "عِ", speech: "عِ" }] },
-        { base: "ف", name: "فَاء", variants: [{ label: "فَ", speech: "فَ" }, { label: "فُ", speech: "فُ" }, { label: "فِ", speech: "فِ" }] },
-        { base: "ق", name: "قَاف", variants: [{ label: "قَ", speech: "قَ" }, { label: "قُ", speech: "قُ" }, { label: "قِ", speech: "قِ" }] },
-        { base: "ك", name: "كَاف", variants: [{ label: "كَ", speech: "كَ" }, { label: "كُ", speech: "كُ" }, { label: "كِ", speech: "كِ" }] },
-        { base: "ل", name: "لَام", variants: [{ label: "لَ", speech: "لَ" }, { label: "لُ", speech: "لُ" }, { label: "لِ", speech: "لِ" }] },
-        { base: "م", name: "مِيم", variants: [{ label: "مَ", speech: "مَ" }, { label: "مُ", speech: "مُ" }, { label: "مِ", speech: "مِ" }] },
-        { base: "ن", name: "نُون", variants: [{ label: "نَ", speech: "نَ" }, { label: "نُ", speech: "نُ" }, { label: "نِ", speech: "نِ" }] },
-        { base: "و", name: "وَاو", variants: [{ label: "وَ", speech: "وَ" }, { label: "وُ", speech: "وُ" }, { label: "وِ", speech: "وِ" }] },
-        { base: "ي", name: "يَاء", variants: [{ label: "يَ", speech: "يَ" }, { label: "يُ", speech: "يُ" }, { label: "يِ", speech: "يِ" }] }
-      ],
-      words: [
-        { word: "لَيْمُون", letters: ["ل", "ي", "م", "و", "ن"], emoji: "🍋", img: "assets/images/games/words/lemon.png" },
-        { word: "أَسَد", letters: ["أ", "س", "د"], emoji: "🦁", img: "assets/images/games/words/lion.png" },
-        { word: "قَلَم", letters: ["ق", "ل", "م"], emoji: "✏️", img: "assets/images/stationery/pencil.png" },
-        { word: "شَمْس", letters: ["ش", "م", "س"], emoji: "☀️", img: "assets/images/games/words/sun.png" },
-        { word: "جَمَل", letters: ["ج", "م", "ل"], emoji: "🐪", img: "assets/images/games/words/camel.png" },
-        { word: "سَمَك", letters: ["س", "م", "ك"], emoji: "🐟", img: "assets/images/games/words/fish.png" },
-        { word: "كِتَاب", letters: ["ك", "ت", "ا", "ب"], emoji: "📖", img: "assets/images/stationery/book.png" },
-        { word: "أَرْنَب", letters: ["أ", "ر", "ن", "ب"], emoji: "🐰", img: "assets/images/games/words/rabbit.png" },
-        { word: "بَطَّة", letters: ["ب", "ط", "ة"], emoji: "🦆", img: "assets/images/games/words/duck.png" },
-        { word: "تُفَّاح", letters: ["ت", "ف", "ا", "ح"], emoji: "🍎", img: "assets/images/games/words/apple.png" }
-      ],
-      numbers: [
-        { value: 1, display: "١", word: "وَاحِد" },
-        { value: 2, display: "٢", word: "اِثْنَان" },
-        { value: 3, display: "٣", word: "ثَلَاثَة" },
-        { value: 4, display: "٤", word: "أَرْبَعَة" },
-        { value: 5, display: "٥", word: "خَمْسَة" },
-        { value: 6, display: "٦", word: "سِتَّة" },
-        { value: 7, display: "٧", word: "سَبْعَة" },
-        { value: 8, display: "٨", word: "ثَمَانِيَة" },
-        { value: 9, display: "٩", word: "تِسْعَة" },
-        { value: 10, display: "١٠", word: "عَشَرَة" }
-      ]
-    },
-
     French: {
       dir: "ltr",
       speechLang: "fr-FR",
@@ -272,12 +187,7 @@
   }
 
   function pickThreeLetterChoices(db) {
-    if (getActiveLangId() === "Arabic") {
-      const letterObj = db.letters[Math.floor(Math.random() * db.letters.length)];
-      const shuffled = shuffle(letterObj.variants);
-      const winnerIdx = Math.floor(Math.random() * 3);
-      return { options: shuffled, winnerIdx, target: shuffled[winnerIdx] };
-    } else {
+    if (getActiveLangId() === 'French') {
       const picked = shuffle(db.letters).slice(0, 3).map((l) => ({ label: l.base, speech: l.name }));
       const winnerIdx = Math.floor(Math.random() * 3);
       return { options: picked, winnerIdx, target: picked[winnerIdx] };
@@ -467,7 +377,7 @@
 
   function formatNumberForLang(num) {
     const db = getDB();
-    if (num === 0) return getActiveLangId() === "Arabic" ? "٠" : "0";
+    if (num === 0) return "0";
     return db.numbers[num - 1]?.display || String(num);
   }
 
@@ -503,7 +413,7 @@
 
   function renderHub() {
     const db = getDB();
-    const isAr = getActiveLangId() === "Arabic";
+    const isAr = false;
 
     document.documentElement.dir = db.dir;
     document.body.dir = db.dir;

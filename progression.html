@@ -9,8 +9,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@600;700;800;900&family=Nunito:wght@600;700;800;900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/common.css?v=71">
-  <link rel="stylesheet" href="css/fennygo.css?v=71">
+  <link rel="stylesheet" href="css/common.css?v=72">
+  <link rel="stylesheet" href="css/fennygo.css?v=72">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
   <style>
     html, body {
@@ -284,11 +284,10 @@
           <span id="starsLabelText" class="hidden sm:inline">Étoiles</span>
         </div>
 
-        <!-- Trilingual Switcher -->
+        <!-- Language Switcher -->
         <div class="flex items-center bg-white/95 border-2 border-[#DEB979] rounded-full p-0.5 shadow-sm text-[10.5px] sm:text-xs font-black" id="progLangSwitcher">
           <button type="button" class="prog-lang-btn px-2 py-0.5 rounded-full transition active-lang" data-lang="French">FR</button>
           <button type="button" class="prog-lang-btn px-2 py-0.5 rounded-full transition" data-lang="English">EN</button>
-          <button type="button" class="prog-lang-btn px-2 py-0.5 rounded-full transition" data-lang="Arabic">عربي</button>
         </div>
       </div>
     </header>
@@ -652,8 +651,8 @@
     </div>
   </div>
 
-  <script src="js/app-lang.js?v=71"></script>
-  <script src="js/fenny-companion.js?v=71"></script>
+  <script src="js/app-lang.js?v=72"></script>
+  <script src="js/fenny-companion.js?v=72"></script>
   <script>
     (() => {
       "use strict";
@@ -723,38 +722,6 @@
             "Unit 5 • Alphabet & Tracing",
             "Unit 6 • Short Stories"
           ]
-        },
-        Arabic: {
-          badge: "🦊 المتابعة والتحليل التربوي 3AP",
-          title: "متابعة التقدم الدراسي",
-          starsLabel: "نجوم",
-          unitTrackerTitle: "تقدم الوحدات التعليمية 3AP",
-          unitClickHint: "💡 اضغط على أي وحدة لبدء الدرس التفاعلي مباشرة.",
-          skillMatrixTitle: "مصفوفة المهارات",
-          pencilLabels: ["المفردات", "النطق", "الاستماع", "الكتابة"],
-          soundMastery: "إتقان التمييز الصوتي للإنجليزية",
-          pieBadges: ["35% مكتسب", "40% قيد التعلم", "25% جديد"],
-          remedTitle: "تنبيه المعالجة البيداغوجية",
-          remedDesc1: "يحتاج إلى تدريب على الأصوات <strong class='underline text-red-800'>p & b</strong> (وكذلك <strong class='underline text-blue-900'>b, h, k, m</strong>).",
-          remedDesc2: "المقترح: ألعاب المنزل التفاعلية والمسح التكتيلي للكاميرا.",
-          remedBtnScan: "تدريب على b, h, k, m (فحص الذكاء الاصطناعي)",
-          remedBtnGames: "تشغيل الألعاب التعليمية",
-          educatorBanner: "تخلق FennyGo3 مغامرة تفاعلية وممتعة للتلميذ، مع توفير مؤشرات دقيقة للأستاذ والولي لضمان إتقان برنامج السنة الثالثة ابتدائي.",
-          gamifiedTitle: "🎁 التقييم التفاعلي والأوسمة",
-          openChest: "🎁 فتح صندوق المكافآت (+5 ⭐)",
-          openedChest: "🎉 تم فتح الصندوق (+5 ⭐)!",
-          quote: "«لم يعد التقييم امتحاناً مقلقاً؛ بل أصبح نتاجاً طبيعياً وممتعاً لتجربة اللعب الهادف.»",
-          cycleTitle: "🔄 دورة التعلم والمعالجة 3AP",
-          cycleFooter: "كل مرحلة تعزز مهارات التلميذ بشكل تلقائي وممتع!",
-          galleryTitle: "🖼️ معرض اللوحات البيداغوجية لـ FennyGo3 (اضغط للتكبير)",
-          units: [
-            "الوحدة 1 • العائلة والأصدقاء",
-            "الوحدة 2 • الأدوات المدرسية",
-            "الوحدة 3 • الألوان والأشكال",
-            "الوحدة 4 • أعضاء الجسم والروتين",
-            "الوحدة 5 • الحروف والكتابة",
-            "الوحدة 6 • القصص المصورة"
-          ]
         }
       };
 
@@ -763,10 +730,9 @@
       function applyTranslations(lang) {
         activeLang = lang;
         const dict = PROG_I18N[lang] || PROG_I18N.French;
-        const isAr = (lang === "Arabic");
 
-        document.documentElement.dir = isAr ? "rtl" : "ltr";
-        document.documentElement.lang = isAr ? "ar" : (lang === "English" ? "en" : "fr");
+        document.documentElement.dir = "ltr";
+        document.documentElement.lang = lang === "English" ? "en" : "fr";
 
         const setTxt = (id, txt) => {
           const el = document.getElementById(id);

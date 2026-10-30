@@ -10,8 +10,8 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@600;700;800;900&family=Nunito:wght@600;700;800;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-  <link rel="stylesheet" href="css/common.css?v=71">
-  <link rel="stylesheet" href="css/fennygo.css?v=71">
+  <link rel="stylesheet" href="css/common.css?v=72">
+  <link rel="stylesheet" href="css/fennygo.css?v=72">
   <style>
     :root {
       --voc-amber-glow: #fdeebc;
@@ -473,7 +473,7 @@
         <div class="flex items-center gap-0.5 bg-[#F5E6CC] p-0.5 rounded-full border border-[#E0CEB0]">
           <button type="button" class="lang-pill-btn active" data-set-lang="French">FR</button>
           <button type="button" class="lang-pill-btn" data-set-lang="English">EN</button>
-          <button type="button" class="lang-pill-btn" data-set-lang="Arabic">عربي</button>
+          
         </div>
       </div>
     </header>
@@ -505,11 +505,10 @@
             <span>•</span>
             <span id="wordCounter">1 / 8</span>
           </div>
-          <!-- Bilingue Hint (French / Arabic translation) -->
+          <!-- Bilingue Hint (French translation) -->
           <div id="wordTranslationPill" class="mt-1 text-xs sm:text-sm font-black text-[#5B4537] flex items-center justify-center gap-2">
             <span id="transFr">🇫🇷 Cartable scolaire</span>
-            <span class="text-[#D3BCA0]">|</span>
-            <span id="transAr" dir="rtl">🇩🇿 محفظة مدرسية</span>
+            
             <button type="button" id="speakTransBtn" class="text-[#4E76C4] hover:text-[#284988] ml-1 transition" title="Écouter la traduction">
               <i class="fa-solid fa-volume-low"></i>
             </button>
@@ -683,8 +682,8 @@
   <audio id="audioCheer" src="assets/images/music/cheering.mp3" preload="auto"></audio>
 
   <!-- Core Scripts -->
-  <script src="js/app-lang.js?v=71"></script>
-  <script src="js/fenny-companion.js?v=71"></script>
+  <script src="js/app-lang.js?v=72"></script>
+  <script src="js/fenny-companion.js?v=72"></script>
   <script>
     (() => {
       "use strict";
@@ -698,7 +697,6 @@
             word: "SCHOOL BAG",
             phonetics: ["s", "k", "h", "oo", "o", "l", " ", "b", "a", "g"],
             transFr: "Cartable scolaire",
-            transAr: "محفظة مدرسية",
             speechEn: "School bag! This is a school bag.",
             img: "assets/images/fennygo/school-bag-3d.png"
           },
@@ -706,7 +704,6 @@
             word: "PENCIL CASE",
             phonetics: ["p", "e", "n", "c", "i", "l", " ", "c", "a", "s", "e"],
             transFr: "Trousse à crayons",
-            transAr: "مقلمة",
             speechEn: "Pencil case! A pencil case.",
             img: "assets/images/stationery/pencilcase.png"
           },
@@ -714,7 +711,6 @@
             word: "BOOK",
             phonetics: ["b", "oo", "k"],
             transFr: "Livre scolaire",
-            transAr: "كتاب",
             speechEn: "Book! Open your book.",
             img: "assets/images/stationery/book.png"
           },
@@ -722,7 +718,6 @@
             word: "ERASER",
             phonetics: ["e", "r", "a", "s", "e", "r"],
             transFr: "Gomme",
-            transAr: "ممحاة",
             speechEn: "Eraser! A soft eraser.",
             img: "assets/images/stationery/eraser.png"
           },
@@ -730,7 +725,6 @@
             word: "RULER",
             phonetics: ["r", "u", "l", "e", "r"],
             transFr: "Règle",
-            transAr: "مسطرة",
             speechEn: "Ruler! A straight ruler.",
             img: "assets/images/stationery/ruler.png"
           },
@@ -738,7 +732,6 @@
             word: "SCISSORS",
             phonetics: ["s", "c", "i", "s", "s", "o", "r", "s"],
             transFr: "Ciseaux",
-            transAr: "مقص",
             speechEn: "Scissors! Be careful with scissors.",
             img: "assets/images/stationery/scissors.png"
           },
@@ -746,7 +739,6 @@
             word: "PEN",
             phonetics: ["p", "e", "n"],
             transFr: "Stylo",
-            transAr: "قلم جاف",
             speechEn: "Pen! Write with your blue pen.",
             img: "assets/images/stationery/pen.png"
           },
@@ -754,7 +746,6 @@
             word: "PENCIL",
             phonetics: ["p", "e", "n", "c", "i", "l"],
             transFr: "Crayon",
-            transAr: "قلم رصاص",
             speechEn: "Pencil! Draw with your pencil.",
             img: "assets/images/stationery/pencil.png"
           },
@@ -762,7 +753,6 @@
             word: "NOTEBOOK",
             phonetics: ["n", "o", "t", "e", "b", "oo", "k"],
             transFr: "Cahier",
-            transAr: "كراس",
             speechEn: "Notebook! Write in your notebook.",
             img: "assets/images/stationery/notebook.png"
           },
@@ -770,7 +760,6 @@
             word: "SHARPENER",
             phonetics: ["s", "h", "a", "r", "p", "e", "n", "e", "r"],
             transFr: "Taille-crayon",
-            transAr: "مبراة",
             speechEn: "Sharpener! Sharpen your pencil.",
             img: "assets/images/stationery/sharpener.png"
           }
@@ -780,7 +769,6 @@
             word: "FATHER",
             phonetics: ["f", "a", "t", "h", "e", "r"],
             transFr: "Le père / Papa",
-            transAr: "الأب",
             speechEn: "Father! This is my father.",
             img: "assets/images/family/father.png"
           },
@@ -788,7 +776,6 @@
             word: "MOTHER",
             phonetics: ["m", "o", "t", "h", "e", "r"],
             transFr: "La mère / Maman",
-            transAr: "الأم",
             speechEn: "Mother! I love my mother.",
             img: "assets/images/family/mother.png"
           },
@@ -796,7 +783,6 @@
             word: "BROTHER",
             phonetics: ["b", "r", "o", "t", "h", "e", "r"],
             transFr: "Le frère",
-            transAr: "الأخ",
             speechEn: "Brother! My little brother.",
             img: "assets/images/family/myBrother.png"
           },
@@ -804,7 +790,6 @@
             word: "SISTER",
             phonetics: ["s", "i", "s", "t", "e", "r"],
             transFr: "La sœur",
-            transAr: "الأخت",
             speechEn: "Sister! My big sister.",
             img: "assets/images/family/mySister.png"
           },
@@ -812,7 +797,6 @@
             word: "GRANDFATHER",
             phonetics: ["g", "r", "a", "n", "d", "f", "a", "t", "h", "e", "r"],
             transFr: "Le grand-père",
-            transAr: "الجد",
             speechEn: "Grandfather! My kind grandfather.",
             img: "assets/images/family/grandfather.png"
           },
@@ -820,7 +804,6 @@
             word: "GRANDMOTHER",
             phonetics: ["g", "r", "a", "n", "d", "m", "o", "t", "h", "e", "r"],
             transFr: "La grand-mère",
-            transAr: "الجدة",
             speechEn: "Grandmother! My sweet grandmother.",
             img: "assets/images/family/grandmother.png"
           },
@@ -828,7 +811,6 @@
             word: "BABY",
             phonetics: ["b", "a", "b", "y"],
             transFr: "Le bébé",
-            transAr: "الرضيع",
             speechEn: "Baby! A cute smiling baby.",
             img: "assets/images/family/son.png"
           }
@@ -838,7 +820,6 @@
             word: "RED",
             phonetics: ["r", "e", "d"],
             transFr: "Rouge",
-            transAr: "أحمر",
             speechEn: "Red! The color red.",
             img: "assets/images/color/red/strawberry.png"
           },
@@ -846,7 +827,6 @@
             word: "BLUE",
             phonetics: ["b", "l", "u", "e"],
             transFr: "Bleu",
-            transAr: "أزرق",
             speechEn: "Blue! The sky is blue.",
             img: "assets/images/color/blue/butterfly.png"
           },
@@ -854,7 +834,6 @@
             word: "YELLOW",
             phonetics: ["y", "e", "l", "l", "o", "w"],
             transFr: "Jaune",
-            transAr: "أصفر",
             speechEn: "Yellow! A bright yellow sun.",
             img: "assets/images/color/yellow/sun.png"
           },
@@ -862,7 +841,6 @@
             word: "GREEN",
             phonetics: ["g", "r", "e", "e", "n"],
             transFr: "Vert",
-            transAr: "أخضر",
             speechEn: "Green! Green leaves.",
             img: "assets/images/color/green/leaf.png"
           },
@@ -870,7 +848,6 @@
             word: "ORANGE",
             phonetics: ["o", "r", "a", "n", "g", "e"],
             transFr: "Orange",
-            transAr: "برتقالي",
             speechEn: "Orange! The color orange.",
             img: "assets/images/color/orange/orange.png"
           },
@@ -878,7 +855,6 @@
             word: "PURPLE",
             phonetics: ["p", "u", "r", "p", "l", "e"],
             transFr: "Violet",
-            transAr: "بنفسجي",
             speechEn: "Purple! The color purple.",
             img: "assets/images/color/purple/flower.png"
           },
@@ -886,7 +862,6 @@
             word: "CIRCLE",
             phonetics: ["c", "i", "r", "c", "l", "e"],
             transFr: "Cercle / Rond",
-            transAr: "دائرة",
             speechEn: "Circle! A round circle.",
             img: "assets/images/geometry/circle.png"
           },
@@ -894,7 +869,6 @@
             word: "TRIANGLE",
             phonetics: ["t", "r", "i", "a", "n", "g", "l", "e"],
             transFr: "Triangle",
-            transAr: "مثلث",
             speechEn: "Triangle! Three sharp angles.",
             img: "assets/images/geometry/triangle.png"
           },
@@ -902,7 +876,6 @@
             word: "SQUARE",
             phonetics: ["s", "q", "u", "a", "r", "e"],
             transFr: "Carré",
-            transAr: "مربع",
             speechEn: "Square! Four equal sides.",
             img: "assets/images/geometry/square.png"
           }
@@ -912,7 +885,6 @@
             word: "ONE",
             phonetics: ["o", "n", "e"],
             transFr: "Un (1)",
-            transAr: "واحد (١)",
             speechEn: "One! Number one.",
             img: "assets/images/number/one.png"
           },
@@ -920,7 +892,6 @@
             word: "TWO",
             phonetics: ["t", "w", "o"],
             transFr: "Deux (2)",
-            transAr: "اثنان (٢)",
             speechEn: "Two! Number two.",
             img: "assets/images/number/two.png"
           },
@@ -928,7 +899,6 @@
             word: "THREE",
             phonetics: ["t", "h", "r", "e", "e"],
             transFr: "Trois (3)",
-            transAr: "ثلاثة (٣)",
             speechEn: "Three! Number three.",
             img: "assets/images/number/three.png"
           },
@@ -936,7 +906,6 @@
             word: "FOUR",
             phonetics: ["f", "o", "u", "r"],
             transFr: "Quatre (4)",
-            transAr: "أربعة (٤)",
             speechEn: "Four! Number four.",
             img: "assets/images/number/four.png"
           },
@@ -944,7 +913,6 @@
             word: "FIVE",
             phonetics: ["f", "i", "v", "e"],
             transFr: "Cinq (5)",
-            transAr: "خمسة (٥)",
             speechEn: "Five! High five!",
             img: "assets/images/number/five.png"
           },
@@ -952,7 +920,6 @@
             word: "SIX",
             phonetics: ["s", "i", "x"],
             transFr: "Six (6)",
-            transAr: "ستة (٦)",
             speechEn: "Six! Number six.",
             img: "assets/images/number/six.png"
           },
@@ -960,7 +927,6 @@
             word: "SEVEN",
             phonetics: ["s", "e", "v", "e", "n"],
             transFr: "Sept (7)",
-            transAr: "سبعة (٧)",
             speechEn: "Seven! Seven days in a week.",
             img: "assets/images/number/seven.png"
           },
@@ -968,7 +934,6 @@
             word: "EIGHT",
             phonetics: ["e", "i", "g", "h", "t"],
             transFr: "Huit (8)",
-            transAr: "ثمانية (٨)",
             speechEn: "Eight! Number eight.",
             img: "assets/images/number/eight.png"
           },
@@ -976,7 +941,6 @@
             word: "NINE",
             phonetics: ["n", "i", "n", "e"],
             transFr: "Neuf (9)",
-            transAr: "تسعة (٩)",
             speechEn: "Nine! Number nine.",
             img: "assets/images/number/nine.png"
           },
@@ -984,7 +948,6 @@
             word: "TEN",
             phonetics: ["t", "e", "n"],
             transFr: "Dix (10)",
-            transAr: "عشرة (١٠)",
             speechEn: "Ten! Ten shining stars.",
             img: "assets/images/number/ten.png"
           }
@@ -994,7 +957,6 @@
             word: "HEAD",
             phonetics: ["h", "e", "a", "d"],
             transFr: "La tête",
-            transAr: "الرأس",
             speechEn: "Head! Touch your head.",
             img: "assets/images/body-parts/head.png"
           },
@@ -1002,7 +964,6 @@
             word: "NOSE",
             phonetics: ["n", "o", "s", "e"],
             transFr: "Le nez",
-            transAr: "الأنف",
             speechEn: "Nose! Point to your nose.",
             img: "assets/images/body-parts/nose.png"
           },
@@ -1010,7 +971,6 @@
             word: "HAND",
             phonetics: ["h", "a", "n", "d"],
             transFr: "La main",
-            transAr: "اليد",
             speechEn: "Hand! Clap your hands.",
             img: "assets/images/body-parts/hand.png"
           },
@@ -1018,7 +978,6 @@
             word: "EYE",
             phonetics: ["e", "y", "e"],
             transFr: "L'œil",
-            transAr: "العين",
             speechEn: "Eye! Look with your eyes.",
             img: "assets/images/body-parts/eye.png"
           },
@@ -1026,7 +985,6 @@
             word: "EAR",
             phonetics: ["e", "a", "r"],
             transFr: "L'oreille",
-            transAr: "الأذن",
             speechEn: "Ear! Listen with your ears.",
             img: "assets/images/body-parts/ear.png"
           },
@@ -1034,7 +992,6 @@
             word: "MOUTH",
             phonetics: ["m", "o", "u", "t", "h"],
             transFr: "La bouche",
-            transAr: "الفم",
             speechEn: "Mouth! Smile with your mouth.",
             img: "assets/images/body-parts/mouth.png"
           },
@@ -1042,7 +999,6 @@
             word: "ARM",
             phonetics: ["a", "r", "m"],
             transFr: "Le bras",
-            transAr: "الذراع",
             speechEn: "Arm! Raise your arm.",
             img: "assets/images/body-parts/arm.png"
           },
@@ -1050,7 +1006,6 @@
             word: "FOOT",
             phonetics: ["f", "oo", "t"],
             transFr: "Le pied",
-            transAr: "القدم",
             speechEn: "Foot! Stamp your feet.",
             img: "assets/images/body-parts/foot.png"
           },
@@ -1058,7 +1013,6 @@
             word: "LEG",
             phonetics: ["l", "e", "g"],
             transFr: "La jambe",
-            transAr: "الساق",
             speechEn: "Leg! Run with your legs.",
             img: "assets/images/body-parts/leg.png"
           }
@@ -1068,7 +1022,6 @@
             word: "APPLE",
             phonetics: ["a", "p", "p", "l", "e"],
             transFr: "Pomme rouge",
-            transAr: "تفاحة",
             speechEn: "Apple! A delicious red apple.",
             img: "assets/images/alphabet/A/apple.png"
           },
@@ -1076,7 +1029,6 @@
             word: "BANANA",
             phonetics: ["b", "a", "n", "a", "n", "a"],
             transFr: "Banane jaune",
-            transAr: "موز",
             speechEn: "Banana! A sweet yellow banana.",
             img: "assets/images/alphabet/B/banana.png"
           },
@@ -1084,7 +1036,6 @@
             word: "CARROT",
             phonetics: ["c", "a", "r", "r", "o", "t"],
             transFr: "Carotte",
-            transAr: "جزر",
             speechEn: "Carrot! Fresh orange carrot.",
             img: "assets/images/alphabet/C/Carrot.png"
           },
@@ -1092,7 +1043,6 @@
             word: "EGG",
             phonetics: ["e", "g", "g"],
             transFr: "Œuf",
-            transAr: "بيضة",
             speechEn: "Egg! A fresh white egg.",
             img: "assets/images/alphabet/E/egg.png"
           },
@@ -1100,7 +1050,6 @@
             word: "FISH",
             phonetics: ["f", "i", "s", "h"],
             transFr: "Poisson",
-            transAr: "سمكة",
             speechEn: "Fish! Fresh fish.",
             img: "assets/images/alphabet/F/fish.png"
           },
@@ -1108,7 +1057,6 @@
             word: "CAKE",
             phonetics: ["c", "a", "k", "e"],
             transFr: "Gâteau",
-            transAr: "كعكة",
             speechEn: "Cake! A sweet birthday cake.",
             img: "assets/images/number/cake.png"
           }
@@ -1203,9 +1151,7 @@
         if (counterEl) counterEl.textContent = `${(currentWordIndex % list.length) + 1} / ${list.length}`;
 
         const transFrEl = document.getElementById("transFr");
-        const transArEl = document.getElementById("transAr");
-        if (transFrEl) transFrEl.textContent = `🇫🇷 ${item.transFr}`;
-        if (transArEl) transArEl.textContent = `🇩🇿 ${item.transAr}`;
+        
 
         // Image
         const imgEl = document.getElementById("currentObjectImg");
@@ -1583,7 +1529,7 @@
             if (listenBtnText) listenBtnText.textContent = `🔊 Prononcer "${target.word}"`;
           }
         } else {
-          if (headingEl) headingEl.textContent = `🌍 Trouve l'image pour : ${target.transFr} (🇩🇿 ${target.transAr})`;
+          if (headingEl) headingEl.textContent = `🌍 Trouve l'image pour : ${target.transFr}`;
           if (subPrompt) subPrompt.textContent = `Question ${quizQuestionCount} / 10 • Défi Traduction Bilingue`;
           if (listenBtn) {
             listenBtn.classList.remove("hidden");
