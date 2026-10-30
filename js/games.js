@@ -453,11 +453,12 @@
       return Array.isArray(g.skillKeys) && g.skillKeys.includes(activeSkillFilter);
     });
 
-    filteredGames.forEach((g) => {
+    filteredGames.forEach((g, fIdx) => {
       const idx = db.gamesMeta.findIndex((item) => item.id === g.id);
       const theme = GAME_THEMES[g.id] || GAME_THEMES.runner;
       const card = document.createElement("article");
-      card.className = "hub-game-card";
+      const isLastOdd = (fIdx === filteredGames.length - 1 && filteredGames.length % 2 === 1);
+      card.className = isLastOdd ? "hub-game-card card-span-2" : "hub-game-card";
       card.style.setProperty("--card-visual-bg", theme.bg);
 
       const gameNum = db.numbers[idx]?.display || (idx + 1);
