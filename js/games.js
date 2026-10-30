@@ -1036,7 +1036,6 @@
       gateTransitionProg = 0;
       gateOpenLane = -1;
       gateDoorAngle = 0;
-      chickZ = 0.82;
       const targetLetter = currentWordObj.letters[letterStep];
 
       const pool = db.letters.map((x) => x.base).filter((b) => b !== targetLetter);
@@ -1205,8 +1204,8 @@
         return { x: curX, y: curY, p, laneW, curW };
       }
 
-      // Vitesse de défilement : sensation de marche permanente + accélération en franchissement
-      const travelSpeed = transitioning ? 0.038 : 0.003;
+      // Vitesse de défilement : marche permanente dynamique + accélération en franchissement
+      const travelSpeed = transitioning ? 0.038 : 0.016;
       mazeScrollZ = (mazeScrollZ + travelSpeed) % 1;
 
       if (transitioning) {
@@ -1214,7 +1213,7 @@
         gateDoorAngle = Math.min(Math.PI * 0.48, gateDoorAngle + 0.085);
         chickZ = Math.max(0.62, chickZ - 0.008);
       } else {
-        chickZ += (0.82 - chickZ) * 0.1;
+        chickZ += (0.80 - chickZ) * 0.08;
       }
 
       if (shakeTimer > 0) {
@@ -1729,16 +1728,17 @@
       }
 
       // ---------------------------------------------------------
-      // 5. POUSSIN MASCOTTE 3D (ANIMATION DE MARCHE & SAUT DE GLOIRE)
+      // 5. POUSSIN MASCOTTE 3D (ANIMATION DE MARCHE PERMANENTE & SAUT DE GLOIRE)
       // ---------------------------------------------------------
       const chickPt = proj(chickZ, chickLaneSmooth - 1);
-      const hopSpeed = transitioning ? 8.5 : 4.5;
-      const hopMax = transitioning ? 22 : 9;
+      const hopSpeed = transitioning ? 8.8 : 6.8;
+      const hopMax = transitioning ? 22 : 14;
       const hop = -Math.abs(Math.sin(animTick * hopSpeed)) * hopMax;
+      const walkWaddle = Math.sin(animTick * hopSpeed) * 0.07;
 
-      // Émission de poussière lors de la course
-      if (transitioning && Math.random() < 0.45) {
-        spawnDust(chickPt.x + (Math.random() - 0.5) * 20, chickPt.y + 10, 2);
+      // Émission de poussière régulière lors de la marche et boost lors de la traversée
+      if ((transitioning && Math.random() < 0.45) || (!transitioning && Math.random() < 0.22)) {
+        spawnDust(chickPt.x + (Math.random() - 0.5) * 18, chickPt.y + 10, transitioning ? 2 : 1);
       }
       if (transitioning && gateTransitionProg > 0.45 && gateTransitionProg < 0.8 && Math.random() < 0.35) {
         spawnVictorySparkles(chickPt.x, chickPt.y - 20, 3);
@@ -1746,7 +1746,7 @@
 
       ctx.save();
       ctx.translate(chickPt.x, chickPt.y + hop);
-      ctx.rotate(chickLean);
+      ctx.rotate(chickLean + walkWaddle);
 
       // Ombre portée au sol en 3D (s'écrase et grandit au sol)
       const shadowScale = (1 - Math.abs(hop) / (hopMax * 2.2)) * (0.6 + chickPt.p * 0.55);
