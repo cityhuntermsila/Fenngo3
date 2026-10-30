@@ -9,19 +9,31 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@600;700;800;900&family=Nunito:wght@600;700;800;900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/common.css?v=83">
-  <link rel="stylesheet" href="css/fennygo.css?v=83">
+  <link rel="stylesheet" href="css/common.css?v=85">
+  <link rel="stylesheet" href="css/fennygo.css?v=85">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
   <style>
-    /* Reset & Base */
+    :root {
+      --voc-amber-glow: #fdeebc;
+      --voc-amber-main: #f7cf68;
+      --voc-amber-deep: #f2bc40;
+      --voc-blue-bevel: #5a82c4;
+      --voc-blue-light: #96b7e8;
+      --voc-blue-dark: #1e355b;
+      --voc-peach-light: #fde7d5;
+      --voc-peach-dark: #8c3821;
+      --voc-cream-stage: #fdf4e1;
+    }
+
+    /* Reset & Base - Exact Vocabulary Color Theme */
     html, body {
       height: auto !important;
       min-height: 100%;
       overflow-x: hidden !important;
       overflow-y: auto !important;
       font-family: "Nunito", "Cairo", sans-serif;
-      background: radial-gradient(circle at 50% 10%, #e0f2fe 0%, #bae6fd 45%, #7dd3fc 100%);
-      color: #0f172a;
+      background: radial-gradient(circle at 50% 20%, #fdeebc 0%, #f7cf68 50%, #f1bb3d 100%);
+      color: #2b241f;
       -webkit-tap-highlight-color: transparent;
       user-select: none;
     }
@@ -31,29 +43,29 @@
       display: none !important;
     }
 
-    /* Top Compact Header */
+    /* Top Compact Header - Warm Vocabulary Studio Card Style */
     .compact-header {
-      background: #ffffff;
-      border: 2.5px solid #7dd3fc;
-      border-bottom: 4.5px solid #0284c7;
+      background: #fffcf6;
+      border: 2px solid #dec28f;
+      border-bottom: 5px solid #c59f5f;
       border-radius: 20px;
-      box-shadow: 0 6px 18px rgba(2, 132, 199, 0.12);
+      box-shadow: 0 8px 24px rgba(95, 70, 30, 0.12);
     }
 
     /* Claymorphic 3D Card */
     .clay-card {
-      background: #ffffff;
-      border: 2.5px solid #e0f2fe;
-      border-bottom: 5px solid #38bdf8;
+      background: #fffcf6;
+      border: 2px solid #dec28f;
+      border-bottom: 5px solid #c59f5f;
       border-radius: 20px;
-      box-shadow: 0 6px 18px rgba(2, 132, 199, 0.1);
+      box-shadow: 0 8px 24px rgba(95, 70, 30, 0.12);
       transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease;
     }
 
     .clay-card:hover {
       transform: translateY(-3px) scale(1.01);
-      box-shadow: 0 12px 24px rgba(2, 132, 199, 0.18);
-      border-color: #0284c7;
+      box-shadow: 0 12px 28px rgba(95, 70, 30, 0.2);
+      border-color: #c59f5f;
     }
 
     .clay-btn {
@@ -64,22 +76,22 @@
       font-weight: 900;
       border-radius: 9999px;
       border: 2px solid rgba(255, 255, 255, 0.7);
-      box-shadow: 0 4px 10px rgba(2, 132, 199, 0.2), inset 0 2px 2px rgba(255, 255, 255, 0.5);
+      box-shadow: 0 4px 10px rgba(95, 70, 30, 0.18), inset 0 2px 2px rgba(255, 255, 255, 0.5);
       transition: all 0.15s ease;
       cursor: pointer;
     }
 
     .clay-btn:active {
       transform: scale(0.96) translateY(2px);
-      box-shadow: 0 2px 5px rgba(2, 132, 199, 0.25);
+      box-shadow: 0 2px 5px rgba(95, 70, 30, 0.22);
     }
 
     /* 2-Column Category Card */
     .cat-card-2col {
       position: relative;
-      background: #ffffff;
-      border: 2.5px solid #e0f2fe;
-      border-bottom: 5px solid #38bdf8;
+      background: #fffcf6;
+      border: 2px solid #dec28f;
+      border-bottom: 5px solid #c59f5f;
       border-radius: 20px;
       padding: clamp(10px, 1.8vh, 14px);
       display: flex;
@@ -87,15 +99,15 @@
       align-items: center;
       text-align: center;
       cursor: pointer;
-      box-shadow: 0 6px 16px rgba(2, 132, 199, 0.1);
+      box-shadow: 0 8px 20px rgba(95, 70, 30, 0.12);
       transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease;
       overflow: hidden;
     }
 
     .cat-card-2col:hover {
       transform: translateY(-4px) scale(1.015);
-      box-shadow: 0 12px 24px rgba(2, 132, 199, 0.2);
-      border-color: #0284c7;
+      box-shadow: 0 14px 28px rgba(95, 70, 30, 0.22);
+      border-color: #5a82c4;
     }
 
     .cat-card-2col:active {
@@ -131,7 +143,8 @@
       justify-content: center;
       gap: 6px;
       margin: 6px 0;
-      background: #f0f9ff;
+      background: #fdf4e1;
+      border: 1.5px solid #ebd09e;
       border-radius: 12px;
       padding: 4px 8px;
       width: 100%;
@@ -146,9 +159,9 @@
 
     /* 2-Column Game Mode Card */
     .game-mode-2col {
-      background: #ffffff;
-      border: 2.5px solid #e0f2fe;
-      border-bottom: 5px solid #38bdf8;
+      background: #fffcf6;
+      border: 2px solid #dec28f;
+      border-bottom: 5px solid #c59f5f;
       border-radius: 18px;
       padding: 10px 12px;
       display: flex;
@@ -156,14 +169,14 @@
       align-items: center;
       text-align: center;
       cursor: pointer;
-      box-shadow: 0 5px 14px rgba(2, 132, 199, 0.1);
+      box-shadow: 0 5px 14px rgba(95, 70, 30, 0.1);
       transition: all 0.18s ease;
     }
 
     .game-mode-2col:hover {
       transform: translateY(-3px) scale(1.02);
-      border-color: #0284c7;
-      box-shadow: 0 10px 20px rgba(2, 132, 199, 0.18);
+      border-color: #5a82c4;
+      box-shadow: 0 10px 20px rgba(90, 130, 196, 0.2);
     }
 
     .mode-icon-sm {
@@ -175,24 +188,24 @@
 
     /* Visual Vocabulary Card (2 Columns) */
     .vocab-card-2col {
-      background: #ffffff;
-      border: 2px solid #e2e8f0;
-      border-bottom: 4px solid #cbd5e1;
+      background: #fffdf9;
+      border: 2px solid #ebd6b3;
+      border-bottom: 4px solid #d4b584;
       border-radius: 16px;
       padding: 8px 10px;
       display: flex;
       align-items: center;
       gap: 10px;
       cursor: pointer;
-      box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+      box-shadow: 0 3px 10px rgba(95, 70, 30, 0.06);
       transition: all 0.18s ease;
     }
 
     .vocab-card-2col:hover {
       transform: translateY(-2px);
-      border-color: #38bdf8;
-      border-bottom-color: #0284c7;
-      box-shadow: 0 6px 14px rgba(2, 132, 199, 0.15);
+      border-color: #749bd8;
+      border-bottom-color: #466cae;
+      box-shadow: 0 6px 14px rgba(70, 108, 174, 0.18);
     }
 
     .vocab-thumb-sm {
@@ -213,9 +226,9 @@
 
     /* Game 1 Sound Choice Card (2 Columns) */
     .sound-choice-2col {
-      background: #ffffff;
-      border: 2.5px solid #e2e8f0;
-      border-bottom: 5px solid #cbd5e1;
+      background: #fffdf9;
+      border: 2.5px solid #ebd6b3;
+      border-bottom: 5px solid #d4b584;
       border-radius: 18px;
       padding: 10px;
       display: flex;
@@ -224,14 +237,14 @@
       justify-content: center;
       text-align: center;
       cursor: pointer;
-      box-shadow: 0 5px 14px rgba(0,0,0,0.06);
+      box-shadow: 0 5px 14px rgba(95, 70, 30, 0.08);
       transition: all 0.18s ease;
     }
 
     .sound-choice-2col:hover {
       transform: translateY(-3px) scale(1.02);
-      border-color: #38bdf8;
-      border-bottom-color: #0284c7;
+      border-color: #749bd8;
+      border-bottom-color: #466cae;
     }
 
     .sound-choice-2col.correct {
@@ -320,15 +333,15 @@
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      box-shadow: 0 3px 8px rgba(2, 132, 199, 0.12);
-      border: 2px solid #bae6fd;
-      border-bottom: 3.5px solid #0284c7;
+      box-shadow: 0 3px 8px rgba(95, 70, 30, 0.12);
+      border: 2px solid #dec28f;
+      border-bottom: 3.5px solid #c59f5f;
       overflow: hidden;
       padding: 3px;
     }
 
     .memory-back {
-      background: linear-gradient(135deg, #0284c7, #0369a1);
+      background: linear-gradient(135deg, #96b7e8, #5a82c4);
       padding: 0;
     }
 
@@ -339,7 +352,7 @@
     }
 
     .memory-front {
-      background: #ffffff;
+      background: #fffdf9;
       transform: rotateY(180deg);
       -webkit-transform: rotateY(180deg);
       padding: 2px 3px;
@@ -357,7 +370,7 @@
     .memory-front span {
       font-size: clamp(8px, 2.4vw, 11px);
       font-weight: 900;
-      color: #0f172a;
+      color: #2b241f;
       line-height: 1;
       margin-top: 2px;
       max-width: 100%;
@@ -370,23 +383,24 @@
     .word-slot {
       width: clamp(36px, 8vw, 48px);
       height: clamp(42px, 9vw, 54px);
-      border: 2.5px dashed #94a3b8;
+      border: 2.5px dashed #c59f5f;
       border-radius: 12px;
       display: flex;
       align-items: center;
       justify-content: center;
       font-size: clamp(18px, 4.5vw, 24px);
       font-weight: 900;
-      background: #f8fafc;
-      color: #0369a1;
+      background: #fdf6e7;
+      color: #554133;
       cursor: pointer;
     }
 
     .word-slot.filled {
-      border: 2.5px solid #38bdf8;
-      border-bottom: 4px solid #0284c7;
+      border: 2.5px solid #749bd8;
+      border-bottom: 4px solid #466cae;
       background: #ffffff;
-      box-shadow: 0 4px 8px rgba(2, 132, 199, 0.15);
+      box-shadow: 0 4px 8px rgba(70, 108, 174, 0.18);
+      color: #1e355b;
     }
 
     .letter-bubble {
@@ -458,7 +472,7 @@
     <header class="compact-header px-3 py-2 sm:px-4 sm:py-2.5 flex items-center justify-between gap-2">
       <!-- Back + Compact Title -->
       <div class="flex items-center gap-2">
-        <a href="category.html" id="topNavBackBtn" class="w-9 h-9 rounded-full bg-slate-100 border-2 border-slate-300 flex items-center justify-center text-slate-700 hover:bg-slate-200 active:scale-95 transition" aria-label="Retour au menu principal">
+        <a href="category.html" id="topNavBackBtn" class="w-9 h-9 rounded-full bg-[#fff9ee] border-2 border-[#dec28f] flex items-center justify-center text-[#554133] hover:bg-[#faecd0] active:scale-95 transition shadow-xs" aria-label="Retour au menu principal">
           <i class="fa-solid fa-arrow-left text-sm"></i>
         </a>
         <div class="flex items-center gap-1.5">
@@ -478,7 +492,7 @@
           <span id="statDiamonds">0</span>
         </div>
         <!-- Language Switcher -->
-        <div class="flex items-center bg-slate-100 p-0.5 rounded-full border border-slate-300 text-[10px] sm:text-[11px] font-black">
+        <div class="flex items-center bg-[#fff9ee] p-0.5 rounded-full border border-[#dec28f] text-[10px] sm:text-[11px] font-black shadow-2xs">
           <button type="button" class="lang-btn px-2 py-0.5 rounded-full transition" data-lang="French">FR</button>
           <button type="button" class="lang-btn px-2 py-0.5 rounded-full transition" data-lang="English">EN</button>
           
@@ -499,15 +513,15 @@
          ========================================================= -->
     <section id="categoryDetailView" class="clay-card p-3 sm:p-4 hidden space-y-3">
       <!-- Top Action Bar -->
-      <div class="flex items-center justify-between border-b border-sky-100 pb-2">
-        <button type="button" id="backToHubBtn" class="px-3 py-1 rounded-full bg-slate-100 border border-slate-300 text-slate-700 font-black text-xs hover:bg-slate-200 active:scale-95 transition flex items-center gap-1.5">
+      <div class="flex items-center justify-between border-b border-[#ebd09e] pb-2">
+        <button type="button" id="backToHubBtn" class="px-3 py-1 rounded-full bg-[#fff9ee] border border-[#dec28f] text-[#554133] font-black text-xs hover:bg-[#faecd0] active:scale-95 transition flex items-center gap-1.5 shadow-xs">
           <i class="fa-solid fa-arrow-left"></i>
           <span id="backToHubText">Thèmes</span>
         </button>
 
         <div class="flex items-center gap-2">
           <h2 id="catDetailTitle" class="text-sm sm:text-base font-black text-slate-900"></h2>
-          <button type="button" id="catDetailPronounceBtn" class="w-7 h-7 rounded-full bg-sky-500 hover:bg-sky-600 text-white flex items-center justify-center text-xs active:scale-95 transition shadow-sm" title="Écouter">
+          <button type="button" id="catDetailPronounceBtn" class="w-7 h-7 rounded-full bg-gradient-to-b from-[#7ea2df] to-[#5e86cf] hover:brightness-105 text-white flex items-center justify-center text-xs active:scale-95 transition shadow-sm border border-[#4870b8]" title="Écouter">
             <i class="fa-solid fa-volume-high"></i>
           </button>
         </div>
@@ -519,12 +533,12 @@
       </div>
 
       <!-- All 10 Elements in 2 Columns -->
-      <div class="border-t border-sky-100 pt-2.5">
+      <div class="border-t border-[#ebd09e] pt-2.5">
         <div class="flex items-center justify-between mb-2">
           <span class="text-xs font-black text-slate-700" id="vocabSectionTitle">
             🖼️ Éléments 3D du thème (10) :
           </span>
-          <span class="text-[10px] font-bold text-sky-700">Touche pour écouter 🔊</span>
+          <span class="text-[10px] font-bold text-[#554133]">Touche pour écouter 🔊</span>
         </div>
         <div class="grid grid-cols-2 gap-2" id="catVocabGrid"></div>
       </div>
@@ -535,28 +549,28 @@
          ========================================================= -->
     <section id="arenaView" class="clay-card p-3 sm:p-4 hidden space-y-3">
       <!-- Arena Top Bar -->
-      <div class="flex items-center justify-between border-b border-sky-100 pb-2 gap-2">
-        <button type="button" id="backToCatDetailBtn" class="px-2.5 py-1 rounded-full bg-slate-100 border border-slate-300 text-slate-700 font-black text-xs hover:bg-slate-200 active:scale-95 transition flex items-center gap-1">
+      <div class="flex items-center justify-between border-b border-[#ebd09e] pb-2 gap-2">
+        <button type="button" id="backToCatDetailBtn" class="px-2.5 py-1 rounded-full bg-[#fff9ee] border border-[#dec28f] text-[#554133] font-black text-xs hover:bg-[#faecd0] active:scale-95 transition flex items-center gap-1 shadow-xs">
           <i class="fa-solid fa-arrow-left"></i>
           <span id="backToCatDetailText">Jeux</span>
         </button>
 
-        <span id="arenaActiveModePill" class="text-[11px] sm:text-xs font-black text-sky-900 bg-sky-100 px-2.5 py-0.5 rounded-full border border-sky-300 truncate max-w-[130px] sm:max-w-xs">
+        <span id="arenaActiveModePill" class="text-[11px] sm:text-xs font-black text-[#1e355b] bg-[#fdf4e1] px-2.5 py-0.5 rounded-full border border-[#ebd09e] truncate max-w-[130px] sm:max-w-xs shadow-2xs">
           Jeu
         </span>
 
         <div class="flex items-center gap-1.5">
           <span id="arenaProgressLabel" class="text-xs font-black text-slate-600">1 / 5</span>
-          <div class="px-2 py-0.5 rounded-full bg-sky-50 border border-sky-300 font-black text-xs text-sky-950">
+          <div class="px-2 py-0.5 rounded-full bg-[#fff9ee] border border-[#dec28f] font-black text-xs text-[#554133]">
             Score: <span id="arenaScoreVal">0</span>
           </div>
         </div>
       </div>
 
       <!-- Sound Match Levels Bar (5 Niveaux) -->
-      <div id="arenaLevelsBar" class="hidden flex flex-wrap items-center justify-between gap-1 py-1.5 px-2.5 bg-sky-50/90 rounded-xl border border-sky-200">
-        <span class="text-[11px] font-black text-sky-900 flex items-center gap-1">
-          <i class="fa-solid fa-layer-group text-sky-600"></i>
+      <div id="arenaLevelsBar" class="hidden flex flex-wrap items-center justify-between gap-1 py-1.5 px-2.5 bg-[#fdf4e1]/95 rounded-xl border border-[#ebd09e] shadow-2xs">
+        <span class="text-[11px] font-black text-[#1e355b] flex items-center gap-1">
+          <i class="fa-solid fa-layer-group text-[#5a82c4]"></i>
           <span id="levelsLabelText">Niveaux (5) :</span>
         </span>
         <div id="arenaLevelButtons" class="flex flex-wrap items-center gap-1"></div>
@@ -597,7 +611,7 @@
           <i class="fa-solid fa-forward-step"></i>
           <span id="nextLevelBtnText">Niveau Suivant ➔</span>
         </button>
-        <button type="button" id="replayCurrentGameBtn" class="clay-btn px-4 py-2 bg-gradient-to-b from-sky-400 to-sky-600 text-white text-xs sm:text-sm shadow">
+        <button type="button" id="replayCurrentGameBtn" class="clay-btn px-4 py-2 bg-gradient-to-b from-[#7ea2df] to-[#5e86cf] text-white text-xs sm:text-sm shadow">
           <i class="fa-solid fa-rotate-right"></i>
           <span id="replayBtnText">Rejouer</span>
         </button>
@@ -617,8 +631,8 @@
   <audio id="audioCheering" src="assets/images/music/cheering.mp3" preload="auto"></audio>
   <audio id="audioWrong" src="assets/images/music/wrong- sound.mp3" preload="auto"></audio>
 
-  <script src="js/app-lang.js?v=83"></script>
-  <script src="js/fenny-companion.js?v=83"></script>
+  <script src="js/app-lang.js?v=85"></script>
+  <script src="js/fenny-companion.js?v=85"></script>
   <script>
     (() => {
       "use strict";
@@ -953,9 +967,9 @@
 
         document.querySelectorAll(".lang-btn").forEach(btn => {
           if (btn.dataset.lang === lang) {
-            btn.className = "lang-btn px-2 py-0.5 rounded-full transition bg-sky-500 text-white shadow-sm";
+            btn.className = "lang-btn px-2 py-0.5 rounded-full transition bg-[#5e86cf] text-white shadow-xs font-black";
           } else {
-            btn.className = "lang-btn px-2 py-0.5 rounded-full transition text-slate-600 hover:text-slate-900";
+            btn.className = "lang-btn px-2 py-0.5 rounded-full transition text-[#634d3d] hover:text-[#1e355b]";
           }
         });
 
@@ -999,7 +1013,7 @@
               ${thumbsHtml}
             </div>
 
-            <button type="button" class="clay-btn w-full mt-1 py-1 px-2.5 bg-gradient-to-b from-sky-400 to-sky-600 text-white text-[11px] font-black shadow-sm">
+            <button type="button" class="clay-btn w-full mt-1 py-1 px-2.5 bg-gradient-to-b from-[#7ea2df] to-[#5e86cf] text-white text-[11px] font-black shadow-sm">
               <span>🎮 ${t.playBtn}</span>
             </button>
           `;
@@ -1042,22 +1056,22 @@
           {
             id: "listen",
             icon: "assets/images/practice/mode-listen.svg",
-            color: "from-sky-400 to-sky-600"
+            color: "from-[#7ea2df] to-[#5e86cf]"
           },
           {
             id: "memory",
             icon: "assets/images/practice/mode-memory.svg",
-            color: "from-purple-500 to-indigo-600"
+            color: "from-[#96b7e8] to-[#5a82c4]"
           },
           {
             id: "spelling",
             icon: "assets/images/practice/mode-spelling.svg",
-            color: "from-emerald-400 to-teal-600"
+            color: "from-[#f89b66] to-[#e8783a]"
           },
           {
             id: "speed",
             icon: "assets/images/practice/mode-speed.svg",
-            color: "from-rose-400 to-red-600"
+            color: "from-[#f2bc40] to-[#e8783a]"
           }
         ];
 
@@ -1101,7 +1115,7 @@
               <span class="block text-xs font-black text-slate-900 truncate">${it.word}</span>
               <span class="block text-[10px] font-bold text-slate-500 truncate">${subText}</span>
             </div>
-            <i class="fa-solid fa-volume-high text-xs text-sky-500"></i>
+            <i class="fa-solid fa-volume-high text-xs text-[#5a82c4]"></i>
           `;
 
           vCard.addEventListener("click", () => {
@@ -1141,10 +1155,10 @@
           }
 
           if (isActive) {
-            btn.className = "px-2.5 py-1 rounded-lg bg-gradient-to-b from-sky-500 to-sky-600 text-white font-black text-xs shadow-sm ring-2 ring-sky-300 transition scale-105 flex items-center gap-1";
+            btn.className = "px-2.5 py-1 rounded-lg bg-gradient-to-b from-[#7ea2df] to-[#5e86cf] text-white font-black text-xs shadow-sm ring-2 ring-[#4870b8] border border-[#395d9f] transition scale-105 flex items-center gap-1";
             btn.innerHTML = `<i class="fa-solid fa-star text-[10px] text-amber-300"></i><span>${label}</span>`;
           } else {
-            btn.className = "px-2 py-1 rounded-lg bg-white border border-slate-300 text-slate-700 hover:bg-sky-50 font-bold text-xs shadow-xs transition active:scale-95";
+            btn.className = "px-2 py-1 rounded-lg bg-[#fffdf9] border border-[#dec28f] text-[#554133] hover:bg-[#faecd0] font-bold text-xs shadow-xs transition active:scale-95";
             btn.textContent = label;
           }
 
@@ -1261,7 +1275,7 @@
           : getItemSpeech(target);
 
         const targetPill = target.letter
-          ? `<div class="inline-flex items-center gap-1.5 px-3 py-1 bg-white rounded-full border-2 border-sky-200 shadow-sm">
+          ? `<div class="inline-flex items-center gap-1.5 px-3 py-1 bg-white rounded-full border-2 border-[#dec28f] shadow-sm">
                <span class="w-7 h-7 rounded-full bg-gradient-to-br from-amber-400 via-amber-500 to-orange-500 text-white font-black text-sm flex items-center justify-center shadow-sm">${target.letter}</span>
                <span class="text-xs sm:text-sm font-black text-slate-800">${target.letter} • ${getItemWord(target)}</span>
              </div>`
@@ -1269,7 +1283,7 @@
 
         container.innerHTML = `
           <div class="flex items-center justify-center gap-2 flex-wrap">
-            <button type="button" id="replaySoundBtn" class="clay-btn px-4 py-1.5 bg-gradient-to-b from-sky-400 to-sky-600 text-white text-xs font-black shadow-sm flex items-center gap-1.5">
+            <button type="button" id="replaySoundBtn" class="clay-btn px-4 py-1.5 bg-gradient-to-b from-[#7ea2df] to-[#5e86cf] text-white text-xs font-black shadow-sm flex items-center gap-1.5">
               <i class="fa-solid fa-volume-high"></i>
               <span>${t.replayAudio}</span>
             </button>
@@ -1359,8 +1373,8 @@
         container.className = "w-full max-w-xs mx-auto space-y-2 text-center";
         container.innerHTML = `
           <div class="text-xs font-black text-slate-700 flex items-center justify-between px-2">
-            <span>${t.pairsFound} : <strong id="memoryPairsFound" class="text-sky-700 text-sm">0</strong> / 6</span>
-            <span class="px-2 py-0.5 rounded-full bg-sky-100 text-sky-900 text-[10px] font-black border border-sky-300">3x4 (6 Paires)</span>
+            <span>${t.pairsFound} : <strong id="memoryPairsFound" class="text-[#554133] text-sm">0</strong> / 6</span>
+            <span class="px-2 py-0.5 rounded-full bg-[#fdf4e1] text-[#1e355b] text-[10px] font-black border border-[#c59f5f]">3x4 (6 Paires)</span>
           </div>
           <div class="memory-grid" id="memoryCardsDeck"></div>
         `;
@@ -1491,7 +1505,7 @@
 
         container.innerHTML = `
           ${letterHeader}
-          <div class="w-20 h-20 sm:w-24 sm:h-24 mx-auto p-1.5 bg-white rounded-2xl border-2 border-sky-200 shadow-sm flex items-center justify-center">
+          <div class="w-20 h-20 sm:w-24 sm:h-24 mx-auto p-1.5 bg-white rounded-2xl border-2 border-[#dec28f] shadow-sm flex items-center justify-center">
             <img src="${target.img}" alt="${target.word}" class="w-full h-full object-contain filter drop-shadow">
           </div>
 
@@ -1594,7 +1608,7 @@
             <div id="speedTimerFill" class="h-full bg-gradient-to-r from-emerald-400 via-amber-400 to-rose-500 w-full transition-all duration-100 linear"></div>
           </div>
 
-          <div class="w-24 h-24 mx-auto p-1.5 bg-white rounded-2xl border-2 border-sky-200 shadow-sm flex items-center justify-center relative">
+          <div class="w-24 h-24 mx-auto p-1.5 bg-white rounded-2xl border-2 border-[#dec28f] shadow-sm flex items-center justify-center relative">
             ${dispBadge}
             <img src="${displayedItem.img}" alt="${displayedItem.word}" class="w-full h-full object-contain filter drop-shadow">
           </div>
