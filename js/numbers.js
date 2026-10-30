@@ -611,42 +611,52 @@ function addAnimatedObject(item, objectIndex) {
 ========================================= */
 
 function setAnimatedObjectSize(count) {
+  const isMobile = (window.innerWidth <= 600 && window.matchMedia("(orientation: portrait)").matches) || window.innerWidth <= 480;
+  const isTabletOrLandscape = (window.innerWidth <= 960 || window.innerHeight <= 600) && !isMobile;
+
   let objectSize = 82;
 
-  if (count === 1) {
-    objectSize = 145;
-  } else if (count === 2) {
-    objectSize = 110;
-  } else if (count <= 4) {
-    objectSize = 83;
-  } else if (count <= 6) {
-    objectSize = 67;
-  } else if (count <= 8) {
-    objectSize = 57;
-  } else {
-    objectSize = 49;
-  }
-
-  const isLandscapeMobile =
-    (
-      window.innerWidth <= 950 &&
-      window.matchMedia(
-        "(orientation: landscape)"
-      ).matches
-    ) ||
-    document.body.classList.contains(
-      "mobile-landscape-layout"
-    );
-
-  if (isLandscapeMobile) {
+  if (isMobile) {
     if (count === 1) {
-      objectSize = 85;
+      objectSize = 65;
     } else if (count === 2) {
-      objectSize = 68;
+      objectSize = 50;
     } else if (count <= 4) {
-      objectSize = 56;
+      objectSize = 38;
+    } else if (count <= 6) {
+      objectSize = 32;
+    } else if (count <= 8) {
+      objectSize = 27;
     } else {
-      objectSize = 42;
+      objectSize = 23;
+    }
+  } else if (isTabletOrLandscape) {
+    if (count === 1) {
+      objectSize = 95;
+    } else if (count === 2) {
+      objectSize = 75;
+    } else if (count <= 4) {
+      objectSize = 60;
+    } else if (count <= 6) {
+      objectSize = 48;
+    } else if (count <= 8) {
+      objectSize = 40;
+    } else {
+      objectSize = 34;
+    }
+  } else {
+    if (count === 1) {
+      objectSize = 145;
+    } else if (count === 2) {
+      objectSize = 110;
+    } else if (count <= 4) {
+      objectSize = 83;
+    } else if (count <= 6) {
+      objectSize = 67;
+    } else if (count <= 8) {
+      objectSize = 57;
+    } else {
+      objectSize = 49;
     }
   }
 
@@ -1696,9 +1706,10 @@ if (window.visualViewport) {
   );
 }
 
-enableRotatedTouchScroll(numbersMain);
-enableRotatedTouchScroll(modal);
-enableGlobalRotatedScroll();
+// Rotated touch scroll hooks disabled to allow native smooth scrolling
+// enableRotatedTouchScroll(numbersMain);
+// enableRotatedTouchScroll(modal);
+// enableGlobalRotatedScroll();
 
 window.addEventListener(
   "pagehide",

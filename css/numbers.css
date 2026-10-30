@@ -2151,77 +2151,8 @@ body.modal-open {
   }
 }
 
-@media (max-width: 600px) {
-  body:not(.mobile-portrait-rotate) .numbers-main {
-    align-items: stretch;
-    padding: 10px 10px 22px;
-  }
-
-  body:not(.mobile-portrait-rotate) .numbers-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 12px;
-    padding-bottom: 16px;
-  }
-
-  body:not(.mobile-portrait-rotate) .number-modal {
-    align-items: flex-start;
-    padding: 10px;
-    overflow-y: scroll;
-    -webkit-overflow-scrolling: touch;
-  }
-
-  body:not(.mobile-portrait-rotate) .number-detail {
-    width: 100%;
-    max-height: none;
-    padding: 58px 14px 18px;
-    border-width: 5px;
-    border-radius: 24px;
-  }
-
-  body:not(.mobile-portrait-rotate) .modal-content {
-    grid-template-columns: 1fr;
-    gap: 14px;
-  }
-
-  body:not(.mobile-portrait-rotate) .modal-nav {
-    top: 52px;
-    width: 40px;
-    height: 40px;
-    font-size: 30px;
-    border-width: 3px;
-  }
-
-  body:not(.mobile-portrait-rotate) .modal-prev {
-    left: auto;
-    right: 62px;
-  }
-
-  body:not(.mobile-portrait-rotate) .modal-next {
-    right: 14px;
-  }
-
-  body:not(.mobile-portrait-rotate) .number-showcase,
-  body:not(.mobile-portrait-rotate) .count-activity {
-    min-height: auto;
-  }
-
-  body:not(.mobile-portrait-rotate) .number-glow {
-    min-height: 150px;
-  }
-
-  body:not(.mobile-portrait-rotate) .modal-number-img {
-    width: 130px;
-    height: 150px;
-  }
-
-  body:not(.mobile-portrait-rotate) .animated-object-stage {
-    min-height: 150px;
-  }
-}
-
 /* =========================================
-   MOBILE PORTRAIT:
-   ONLY ROTATE SCREEN WILL SHOW
+   MOBILE & TABLET RESPONSIVE SYSTEM
 ========================================= */
 
 @media (max-width: 950px) and (orientation: portrait) {
@@ -2230,9 +2161,7 @@ body.modal-open {
   }
 }
 
-/* =========================================
-   RESPONSIVE LAYOUT FOR MOBILE & TABLETS (< 768px)
-========================================= */
+/* Base responsive layout for mobile and tablet screens */
 @media (max-width: 960px), (max-height: 600px) {
   html,
   body.numbers-page {
@@ -2291,40 +2220,370 @@ body.modal-open {
   .number-word {
     font-size: 14px !important;
   }
-
-  /* Modal responsive */
-  .number-modal {
-    padding: 12px !important;
-  }
-
-  .number-detail {
-    width: min(94vw, 440px) !important;
-    max-height: 90dvh !important;
-    overflow-y: auto !important;
-    padding: 24px 14px 18px !important;
-  }
-
-  .modal-content {
-    flex-direction: column !important;
-    gap: 12px !important;
-  }
-
-  .number-showcase,
-  .count-activity {
-    width: 100% !important;
-    height: auto !important;
-    min-height: 200px !important;
-  }
-
-  .modal-nav {
-    display: none !important;
-  }
 }
 
 @media screen and (min-width: 480px) and (max-width: 767px) {
   .numbers-grid {
     grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
     max-width: 600px !important;
+  }
+}
+
+/* =========================================
+   TABLETS & LANDSCAPE MODAL LAYOUT (Two-column)
+========================================= */
+@media screen and (min-width: 601px) and (max-width: 960px),
+       screen and (max-height: 600px) and (orientation: landscape) {
+  .number-modal {
+    padding: 10px !important;
+    align-items: center !important;
+    justify-content: center !important;
+  }
+
+  .number-detail {
+    width: min(96vw, 860px) !important;
+    max-height: 94dvh !important;
+    padding: 48px 20px 14px !important;
+    border-radius: 26px !important;
+    border-width: 5px !important;
+    overflow-y: auto !important;
+    overflow-x: hidden !important;
+    -webkit-overflow-scrolling: touch !important;
+    overscroll-behavior-y: contain !important;
+    touch-action: pan-y !important;
+  }
+
+  .modal-content {
+    display: grid !important;
+    grid-template-columns: minmax(180px, 0.82fr) minmax(260px, 1.18fr) !important;
+    gap: 14px !important;
+    align-items: stretch !important;
+  }
+
+  .number-showcase {
+    width: 100% !important;
+    min-height: 0 !important;
+    height: auto !important;
+    padding: 10px !important;
+    border-radius: 20px !important;
+  }
+
+  .number-glow {
+    min-height: 0 !important;
+    height: clamp(80px, 16vh, 120px) !important;
+  }
+
+  .number-glow::before {
+    width: 110px !important;
+    height: 110px !important;
+  }
+
+  .modal-number-img {
+    height: 100% !important;
+    max-height: clamp(80px, 16vh, 120px) !important;
+    width: auto !important;
+  }
+
+  .modal-number-word {
+    font-size: clamp(26px, 4.2vh, 36px) !important;
+    margin: 2px 0 4px !important;
+  }
+
+  .say-number-bubble {
+    font-size: 13px !important;
+    padding: 4px 12px !important;
+  }
+
+  .say-number-bubble strong {
+    font-size: 16px !important;
+  }
+
+  .count-activity {
+    width: 100% !important;
+    min-height: 0 !important;
+    height: auto !important;
+    padding: 10px 12px 12px !important;
+    border-radius: 20px !important;
+  }
+
+  .activity-title {
+    font-size: 15px !important;
+    padding: 5px 12px !important;
+  }
+
+  .live-counter {
+    font-size: 17px !important;
+    min-width: 68px !important;
+    padding: 3px 9px !important;
+  }
+
+  .activity-instruction {
+    font-size: 13px !important;
+    margin: 5px 0 !important;
+  }
+
+  .animated-object-stage {
+    min-height: 120px !important;
+    max-height: 170px !important;
+    padding: 8px 10px 24px !important;
+    border-radius: 18px !important;
+  }
+
+  .count-word-display {
+    font-size: 14px !important;
+    padding: 4px 14px !important;
+    margin-top: 6px !important;
+  }
+
+  .modal-footer-controls {
+    margin-top: 10px !important;
+    gap: 12px !important;
+  }
+
+  .modal-action-btn {
+    padding: 8px 16px !important;
+    font-size: 13px !important;
+    min-width: 110px !important;
+  }
+
+  .modal-nav {
+    display: flex !important;
+    width: 42px !important;
+    height: 42px !important;
+    font-size: 28px !important;
+    border-width: 3px !important;
+  }
+
+  .modal-prev {
+    left: 8px !important;
+  }
+
+  .modal-next {
+    right: 8px !important;
+  }
+
+  .modal-progress {
+    top: 10px !important;
+    left: 14px !important;
+    padding: 4px 10px !important;
+    font-size: 13px !important;
+  }
+
+  .number-close {
+    top: 10px !important;
+    right: 14px !important;
+    width: 38px !important;
+    height: 38px !important;
+    font-size: 22px !important;
+  }
+}
+
+/* =========================================
+   MOBILE PORTRAIT MODAL LAYOUT (Clean compact fit)
+========================================= */
+@media screen and (max-width: 600px) and (orientation: portrait),
+       screen and (max-width: 480px) {
+  .number-modal {
+    padding: 6px !important;
+    align-items: center !important;
+    justify-content: center !important;
+  }
+
+  .number-detail {
+    width: min(96vw, 420px) !important;
+    max-height: 94dvh !important;
+    padding: 42px 10px 10px !important;
+    border-radius: 20px !important;
+    border-width: 4px !important;
+    overflow-y: auto !important;
+    overflow-x: hidden !important;
+    -webkit-overflow-scrolling: touch !important;
+    overscroll-behavior-y: contain !important;
+    touch-action: pan-y !important;
+  }
+
+  .modal-progress {
+    top: 7px !important;
+    left: 9px !important;
+    padding: 2px 8px !important;
+    font-size: 12px !important;
+    border-width: 2px !important;
+  }
+
+  .modal-progress img {
+    width: 18px !important;
+    height: 18px !important;
+  }
+
+  .number-close {
+    top: 7px !important;
+    right: 9px !important;
+    width: 32px !important;
+    height: 32px !important;
+    font-size: 18px !important;
+    border-width: 2px !important;
+  }
+
+  .modal-content {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 6px !important;
+    width: 100% !important;
+  }
+
+  .number-showcase {
+    width: 100% !important;
+    min-height: 0 !important;
+    height: auto !important;
+    padding: 4px 8px 6px !important;
+    border-radius: 16px !important;
+  }
+
+  .number-glow {
+    min-height: 0 !important;
+    height: clamp(65px, 11vh, 90px) !important;
+  }
+
+  .number-glow::before {
+    width: 80px !important;
+    height: 80px !important;
+  }
+
+  .number-sparkle {
+    display: none !important;
+  }
+
+  .modal-number-img {
+    height: 100% !important;
+    max-height: clamp(65px, 11vh, 90px) !important;
+    width: auto !important;
+    margin: 0 auto !important;
+  }
+
+  .modal-number-word {
+    font-size: clamp(20px, 4vh, 26px) !important;
+    margin: 1px 0 3px !important;
+  }
+
+  .say-number-bubble {
+    font-size: 11px !important;
+    padding: 2px 8px !important;
+    gap: 4px !important;
+    border-width: 2px !important;
+  }
+
+  .say-number-bubble strong {
+    font-size: 13px !important;
+  }
+
+  .count-activity {
+    width: 100% !important;
+    min-height: 0 !important;
+    height: auto !important;
+    padding: 6px 8px 8px !important;
+    border-radius: 16px !important;
+    border-width: 3px !important;
+  }
+
+  .activity-heading {
+    width: 100% !important;
+    margin-bottom: 2px !important;
+  }
+
+  .activity-title {
+    font-size: 12px !important;
+    padding: 3px 8px !important;
+    border-radius: 8px !important;
+    box-shadow: 0 3px 0 #3b1c9c !important;
+  }
+
+  .live-counter {
+    font-size: 14px !important;
+    min-width: 55px !important;
+    padding: 2px 6px !important;
+    border-width: 2px !important;
+    box-shadow: 0 3px 0 rgba(0, 0, 0, 0.08) !important;
+  }
+
+  .live-counter small {
+    font-size: 11px !important;
+    margin: 0 2px !important;
+  }
+
+  .activity-instruction {
+    font-size: 11px !important;
+    margin: 3px 0 !important;
+    line-height: 1.2 !important;
+  }
+
+  .animated-object-stage {
+    min-height: 80px !important;
+    max-height: 115px !important;
+    padding: 4px 6px 20px !important;
+    border-radius: 14px !important;
+    border-width: 2px !important;
+    gap: 4px !important;
+  }
+
+  .animated-object-stage::after {
+    height: 28px !important;
+    bottom: -10px !important;
+  }
+
+  .animated-object-stage::before {
+    width: 50px !important;
+    height: 50px !important;
+    top: -15px !important;
+    right: -15px !important;
+  }
+
+  .count-word-display {
+    min-width: 70px !important;
+    padding: 2px 10px !important;
+    font-size: 12px !important;
+    margin-top: 3px !important;
+    border-radius: 12px !important;
+  }
+
+  .success-message {
+    padding: 3px 8px !important;
+    border-radius: 12px !important;
+    font-size: 11px !important;
+  }
+
+  .success-message img {
+    width: 22px !important;
+    height: 22px !important;
+  }
+
+  .success-message strong {
+    font-size: 12px !important;
+  }
+
+  .success-message span {
+    font-size: 10px !important;
+  }
+
+  .modal-footer-controls {
+    margin-top: 6px !important;
+    gap: 8px !important;
+  }
+
+  .modal-action-btn {
+    padding: 6px 12px !important;
+    font-size: 12px !important;
+    min-width: 90px !important;
+    border-radius: 18px !important;
+  }
+
+  .sound-btn {
+    min-width: 38px !important;
+    padding: 6px 10px !important;
+    font-size: 13px !important;
+  }
+
+  .modal-nav {
+    display: none !important;
   }
 }
 

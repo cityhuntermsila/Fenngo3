@@ -4558,18 +4558,25 @@ body:is(.mobile-portrait-rotate, .mobile-landscape-layout) .color-mobile-flex-ro
 
   /* Modal responsive */
   .color-modal {
-    padding: 12px !important;
+    padding: 10px !important;
+    align-items: center !important;
+    justify-content: center !important;
   }
 
   .color-detail {
-    width: min(94vw, 440px) !important;
-    max-height: 90dvh !important;
+    width: min(96vw, 860px) !important;
+    max-height: 94dvh !important;
     overflow-y: auto !important;
-    padding: 24px 14px 18px !important;
+    overflow-x: hidden !important;
+    -webkit-overflow-scrolling: touch !important;
+    overscroll-behavior-y: contain !important;
+    touch-action: pan-y !important;
+    padding: 42px 18px 16px !important;
   }
 
   .modal-content-grid {
-    flex-direction: column !important;
+    display: grid !important;
+    grid-template-columns: minmax(180px, 0.85fr) minmax(260px, 1.15fr) !important;
     gap: 12px !important;
   }
 
@@ -4577,7 +4584,28 @@ body:is(.mobile-portrait-rotate, .mobile-landscape-layout) .color-mobile-flex-ro
   .learning-panel {
     width: 100% !important;
     height: auto !important;
-    min-height: 200px !important;
+    min-height: 0 !important;
+  }
+
+  .modal-nav {
+    display: flex !important;
+    width: 38px !important;
+    height: 38px !important;
+    font-size: 24px !important;
+  }
+}
+
+@media screen and (max-width: 600px) and (orientation: portrait),
+       screen and (max-width: 480px) {
+  .color-detail {
+    width: min(96vw, 440px) !important;
+    padding: 40px 12px 14px !important;
+  }
+
+  .modal-content-grid {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 10px !important;
   }
 
   .modal-nav {

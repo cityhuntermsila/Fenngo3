@@ -493,8 +493,12 @@ body.alphabet {
 
   .alphabet-detail-card {
     width: min(94vw, 420px) !important;
-    max-height: 90dvh !important;
+    min-height: 0 !important;
+    max-height: 92dvh !important;
     overflow-y: auto !important;
+    -webkit-overflow-scrolling: touch !important;
+    overscroll-behavior-y: contain !important;
+    touch-action: pan-y !important;
     padding: 24px 14px 18px !important;
   }
 

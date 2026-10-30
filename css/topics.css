@@ -436,13 +436,17 @@ body.topic-page {
   }
 
   .topic-modal {
-    padding: 14px !important;
+    padding: 12px !important;
   }
 
+  .topic-modal-card,
   .topic-detail {
-    width: min(94vw, 420px) !important;
-    max-height: 90dvh !important;
+    width: min(94vw, 480px) !important;
+    max-height: 92dvh !important;
     overflow-y: auto !important;
+    -webkit-overflow-scrolling: touch !important;
+    overscroll-behavior-y: contain !important;
+    touch-action: pan-y !important;
     padding: 24px 16px 20px !important;
   }
 }
