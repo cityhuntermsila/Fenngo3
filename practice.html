@@ -9,8 +9,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@600;700;800;900&family=Nunito:wght@600;700;800;900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/common.css?v=78">
-  <link rel="stylesheet" href="css/fennygo.css?v=78">
+  <link rel="stylesheet" href="css/common.css?v=79">
+  <link rel="stylesheet" href="css/fennygo.css?v=79">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
   <style>
     /* Reset & Base */
@@ -604,8 +604,8 @@
   <audio id="audioCheering" src="assets/images/music/cheering.mp3" preload="auto"></audio>
   <audio id="audioWrong" src="assets/images/music/wrong- sound.mp3" preload="auto"></audio>
 
-  <script src="js/app-lang.js?v=78"></script>
-  <script src="js/fenny-companion.js?v=78"></script>
+  <script src="js/app-lang.js?v=79"></script>
+  <script src="js/fenny-companion.js?v=79"></script>
   <script>
     (() => {
       "use strict";
@@ -1115,6 +1115,8 @@
       // ---------------------------------------------------------
       // GAME 1: SOUND MATCH (2 COLUMNS)
       // ---------------------------------------------------------
+      let lastSoundMatchSlot = -1;
+
       function renderSoundMatchQuestion(stage) {
         const t = I18N[currentLang];
         const target = gameQuestions[currentQIndex];
@@ -1122,8 +1124,21 @@
 
         const others = allItems.filter(it => it.id !== target.id);
         shuffleArray(others);
-        const choices = [target, others[0], others[1], others[2]].filter(Boolean);
-        shuffleArray(choices);
+
+        // Assurer que la carte correcte change de position par rapport à la question précédente
+        const count = Math.min(4, allItems.length);
+        const allowedSlots = [0, 1, 2, 3].slice(0, count).filter(idx => idx !== lastSoundMatchSlot);
+        const targetSlot = (allowedSlots.length > 0) ? allowedSlots[Math.floor(Math.random() * allowedSlots.length)] : 0;
+        lastSoundMatchSlot = targetSlot;
+
+        const choices = new Array(count).fill(null);
+        choices[targetSlot] = target;
+        let oIdx = 0;
+        for (let i = 0; i < count; i++) {
+          if (choices[i] === null) {
+            choices[i] = others[oIdx++];
+          }
+        }
 
         const container = document.createElement("div");
         container.className = "w-full max-w-md mx-auto space-y-3 text-center";

@@ -188,11 +188,29 @@
     return LANG_DB[id] || LANG_DB.English;
   }
 
-  function pickThreeLetterChoices(db) {
+  function pickThreeLetterChoices(db, lastWinnerIdx = -1, lastTargetBase = "") {
     const letters = (db && db.letters && db.letters.length) ? db.letters : LATIN_LETTERS.map(l => ({ base: l, name: `Letter ${l}`, variants: null }));
-    const picked = shuffle(letters).slice(0, 3).map((l) => ({ label: l.base, speech: l.name }));
-    const winnerIdx = Math.floor(Math.random() * 3);
-    return { options: picked, winnerIdx, target: picked[winnerIdx] };
+    const available = letters.filter(l => l.base !== lastTargetBase);
+    const targetPool = available.length > 0 ? available : letters;
+    const target = targetPool[Math.floor(Math.random() * targetPool.length)];
+
+    const distractors = shuffle(letters.filter(l => l.base !== target.base)).slice(0, 2);
+
+    // Position aléatoire mais garantie différente de la manche précédente
+    const allowedLanes = [0, 1, 2].filter(idx => idx !== lastWinnerIdx);
+    const winnerIdx = allowedLanes[Math.floor(Math.random() * allowedLanes.length)];
+
+    const options = [null, null, null];
+    options[winnerIdx] = { label: target.base, speech: target.name };
+    let dIdx = 0;
+    for (let i = 0; i < 3; i++) {
+      if (options[i] === null) {
+        const d = distractors[dIdx++];
+        options[i] = { label: d.base, speech: d.name };
+      }
+    }
+
+    return { options, winnerIdx, target: options[winnerIdx] };
   }
 
   /* =========================================================
@@ -595,6 +613,8 @@
     let resolvedWave = false;
     let diamonds = [];
     let starsBurst = [];
+    let lastWinnerLane = -1;
+    let lastTargetLetter = "";
 
     overlayUI.innerHTML = `
       <div></div>
@@ -623,7 +643,9 @@
     }
 
     function spawnWave() {
-      const choiceSet = pickThreeLetterChoices(db);
+      const choiceSet = pickThreeLetterChoices(db, lastWinnerLane, lastTargetLetter);
+      lastWinnerLane = choiceSet.winnerIdx;
+      lastTargetLetter = choiceSet.target.label;
       currentOptions = choiceSet.options.map((v) => v.label);
       correctLane = choiceSet.winnerIdx;
       targetSound = choiceSet.target.speech;
@@ -961,9 +983,12 @@
     let running = true;
     let rafId = null;
     let currentWordObj = null;
+    let lastWord = "";
     let letterStep = 0;
     let gateChoices = [];
     let nextGateChoices = [];
+    let lastGateLane = -1;
+    let nextTargetLane = -1;
 
     // Navigation & positionnement 3D
     let chickLane = 1;              // 0: Gauche, 1: Centre, 2: Droite
@@ -1007,8 +1032,13 @@
     const gatesBarEl = document.getElementById("mazeGatesBar");
 
     function pickNewWord() {
-      currentWordObj = db.words[Math.floor(Math.random() * db.words.length)];
+      const candidates = db.words.filter(w => w.word !== lastWord);
+      currentWordObj = (candidates.length > 0 ? candidates : db.words)[Math.floor(Math.random() * (candidates.length || db.words.length))];
+      lastWord = currentWordObj.word;
       letterStep = 0;
+      lastGateLane = -1;
+      nextGateChoices = [];
+      nextTargetLane = -1;
       setupLetterStep();
     }
 
@@ -1032,10 +1062,23 @@
       `;
     }
 
-    function generateChoicesFor(target) {
+    function generateChoicesFor(target, forbiddenLane = -1) {
       const pool = db.letters.map((x) => x.base).filter((b) => b !== target);
       const distractors = shuffle(pool).slice(0, 2);
-      return shuffle([target, ...distractors]);
+
+      // Garantir que la bonne porte change de voie (lane) à chaque apparition
+      const allowedLanes = [0, 1, 2].filter((l) => l !== forbiddenLane);
+      const targetLane = allowedLanes[Math.floor(Math.random() * allowedLanes.length)];
+
+      const res = [null, null, null];
+      res[targetLane] = target;
+      let dIdx = 0;
+      for (let i = 0; i < 3; i++) {
+        if (res[i] === null) {
+          res[i] = distractors[dIdx++];
+        }
+      }
+      return { choices: res, targetLane };
     }
 
     function setupLetterStep() {
@@ -1047,16 +1090,22 @@
 
       if (nextGateChoices && nextGateChoices.length === 3 && nextGateChoices.includes(targetLetter)) {
         gateChoices = nextGateChoices;
+        lastGateLane = nextTargetLane;
       } else {
-        gateChoices = generateChoicesFor(targetLetter);
+        const gen = generateChoicesFor(targetLetter, lastGateLane);
+        gateChoices = gen.choices;
+        lastGateLane = gen.targetLane;
       }
 
-      // Préparation immédiate de la porte suivante pour qu'elle ne soit JAMAIS vide
+      // Préparation immédiate de la porte suivante avec position différente garantie
       const nextIdx = letterStep + 1;
       if (nextIdx < currentWordObj.letters.length) {
-        nextGateChoices = generateChoicesFor(currentWordObj.letters[nextIdx]);
+        const genNext = generateChoicesFor(currentWordObj.letters[nextIdx], lastGateLane);
+        nextGateChoices = genNext.choices;
+        nextTargetLane = genNext.targetLane;
       } else {
         nextGateChoices = ["⭐", "⭐", "⭐"];
+        nextTargetLane = -1;
       }
 
       renderWordBanner();
@@ -1868,12 +1917,16 @@
     let splashes = [];
     let bladeTrail = [];
     let isPointerDown = false;
+    let lastNinjaWinnerIdx = -1;
+    let lastNinjaTarget = "";
 
     overlayUI.innerHTML = `<div class="word-maze-banner" id="ninjaBanner" dir="${db.dir}"></div><div></div>`;
     const ninjaBanner = document.getElementById("ninjaBanner");
 
     function pickTargetAndLaunchWave() {
-      choiceSet = pickThreeLetterChoices(db);
+      choiceSet = pickThreeLetterChoices(db, lastNinjaWinnerIdx, lastNinjaTarget);
+      lastNinjaWinnerIdx = choiceSet.winnerIdx;
+      lastNinjaTarget = choiceSet.target.label;
       ninjaBanner.innerHTML = `<span style="font-size:20px;font-weight:900;color:#7c2d12;">${db.ui.slicePrompt}</span> <div class="word-letter-box current-target">${choiceSet.target.label}</div>`;
       speakPrompt(choiceSet.target.speech, choiceSet.target.label);
       launchFruitsWave();
@@ -1889,13 +1942,15 @@
         { body: "#dc2626", rind: "#991b1b" }  // Pomme rouge
       ];
 
+      // Décalage aléatoire des points de projection des fruits
       fruits = choiceSet.options.map((opt, idx) => {
-        const startX = W * (0.22 + idx * 0.28);
+        const jitter = (Math.random() - 0.5) * (W * 0.05);
+        const startX = W * (0.22 + idx * 0.28) + jitter;
         const st = fruitStyles[idx % fruitStyles.length];
         return {
           x: startX,
           y: H + 40,
-          vx: (W / 2 - startX) * 0.008 + (Math.random() - 0.5) * 2,
+          vx: (W / 2 - startX) * 0.008 + (Math.random() - 0.5) * 2.2,
           vy: -(Math.sqrt(H) * 0.56 + Math.random() * 2.2),
           r: Math.min(56, Math.max(42, W * 0.056)),
           label: opt.label,
@@ -2112,6 +2167,8 @@
     let running = true;
     let rafId = null;
     let targetNumObj = null;
+    let lastNumber = -1;
+    let lastHoopIdx = -1;
     let currentSpriteKey = "apple";
     let hoopOptions = [];
     let ball = { x: 0, y: 0, startX: 0, startY: 0, targetX: 0, targetY: 0, t: 0, state: "idle", hoopIdx: -1 };
@@ -2120,11 +2177,27 @@
     const countSpriteKeys = ["apple", "star", "lemon", "duck", "fish", "flower"];
 
     function setupRound() {
-      targetNumObj = db.numbers[Math.floor(Math.random() * db.numbers.length)];
+      const candidates = db.numbers.filter(n => n.value !== lastNumber);
+      targetNumObj = (candidates.length > 0 ? candidates : db.numbers)[Math.floor(Math.random() * (candidates.length || db.numbers.length))];
+      lastNumber = targetNumObj.value;
       currentSpriteKey = countSpriteKeys[Math.floor(Math.random() * countSpriteKeys.length)];
 
       const distractors = shuffle(db.numbers.filter((n) => n.value !== targetNumObj.value)).slice(0, 2);
-      hoopOptions = shuffle([targetNumObj, ...distractors]);
+
+      // Panier gagnant garanti à une position différente de la manche précédente
+      const allowedHoops = [0, 1, 2].filter(idx => idx !== lastHoopIdx);
+      const targetHoop = allowedHoops[Math.floor(Math.random() * allowedHoops.length)];
+      lastHoopIdx = targetHoop;
+
+      hoopOptions = [null, null, null];
+      hoopOptions[targetHoop] = targetNumObj;
+      let dIdx = 0;
+      for (let i = 0; i < 3; i++) {
+        if (hoopOptions[i] === null) {
+          hoopOptions[i] = distractors[dIdx++];
+        }
+      }
+
       ball.state = "idle";
       ball.t = 0;
 
@@ -2360,24 +2433,36 @@
     let running = true;
     let rafId = null;
     let targetLetterObj = null;
+    let lastWhackLetter = "";
+    let lastTargetHole = -1;
     let activeMoles = [];
     let waveTimer = null;
 
     function spawnMoleWave() {
       if (!running) return;
       if (!targetLetterObj) {
-        targetLetterObj = db.letters[Math.floor(Math.random() * db.letters.length)];
+        const candidates = db.letters.filter(l => l.base !== lastWhackLetter);
+        targetLetterObj = (candidates.length > 0 ? candidates : db.letters)[Math.floor(Math.random() * (candidates.length || db.letters.length))];
+        lastWhackLetter = targetLetterObj.base;
         speakPrompt(targetLetterObj.name, targetLetterObj.base);
       }
 
-      const holeIndices = shuffle([0, 1, 2, 3, 4, 5, 6, 7, 8]).slice(0, 4);
+      // La taupe cible change obligatoirement de trou à chaque vague
+      const allHoles = [0, 1, 2, 3, 4, 5, 6, 7, 8];
+      const allowedTargetHoles = allHoles.filter(h => h !== lastTargetHole);
+      const targetHole = allowedTargetHoles[Math.floor(Math.random() * allowedTargetHoles.length)];
+      lastTargetHole = targetHole;
+
+      const otherHoles = shuffle(allHoles.filter(h => h !== targetHole)).slice(0, 3);
+      const chosenHoles = [targetHole, ...otherHoles];
+
       const distractors = shuffle(db.letters.filter((l) => l.base !== targetLetterObj.base)).slice(0, 3);
-      const waveLetters = shuffle([
+      const waveLetters = [
         { letter: targetLetterObj.base, isTarget: true },
         ...distractors.map((d) => ({ letter: d.base, isTarget: false }))
-      ]);
+      ];
 
-      activeMoles = holeIndices.map((hIdx, i) => ({
+      activeMoles = chosenHoles.map((hIdx, i) => ({
         holeIdx: hIdx,
         letter: waveLetters[i].letter,
         isTarget: waveLetters[i].isTarget,
@@ -2734,6 +2819,7 @@
     let running = true;
     let rafId = null;
     let currentTop = 1;
+    let lastCorrectSide = -1;
     let balloons = [];
     let droppingBlock = null;
     let floatTick = 0;
@@ -2744,10 +2830,13 @@
       const pool = db.numbers.filter((n) => n.value !== nextVal);
       const distractor = pool[Math.floor(Math.random() * pool.length)];
 
-      const pair = shuffle([
-        { numObj: nextObj, isCorrect: true },
-        { numObj: distractor, isCorrect: false }
-      ]);
+      // Alterner le côté (gauche / droite) à chaque nouvel étage
+      const correctSide = lastCorrectSide === 0 ? 1 : (lastCorrectSide === 1 ? 0 : Math.floor(Math.random() * 2));
+      lastCorrectSide = correctSide;
+
+      const pair = [null, null];
+      pair[correctSide] = { numObj: nextObj, isCorrect: true };
+      pair[1 - correctSide] = { numObj: distractor, isCorrect: false };
 
       balloons = pair.map((item, idx) => ({
         side: idx,
@@ -2924,6 +3013,8 @@
     let running = true;
     let rafId = null;
     let targetNumObj = null;
+    let lastCastleVal = -1;
+    let lastCorrectCardIdx = -1;
     let monsterY = 0.2;
     let projectile = null;
     let explosionStars = [];
@@ -2936,12 +3027,27 @@
     const cardsBar = document.getElementById("castleCardsBar");
 
     function spawnMonster() {
-      targetNumObj = db.numbers[Math.floor(Math.random() * db.numbers.length)];
+      const candidates = db.numbers.filter(n => n.value !== lastCastleVal);
+      targetNumObj = (candidates.length > 0 ? candidates : db.numbers)[Math.floor(Math.random() * (candidates.length || db.numbers.length))];
+      lastCastleVal = targetNumObj.value;
       monsterY = 0.22;
       projectile = null;
 
       const distractors = shuffle(db.numbers.filter((n) => n.value !== targetNumObj.value)).slice(0, 3);
-      const choices = shuffle([targetNumObj, ...distractors]);
+
+      // La bonne carte change obligatoirement de position à chaque monstre
+      const allowedCardIndices = [0, 1, 2, 3].filter(idx => idx !== lastCorrectCardIdx);
+      const targetCardIdx = allowedCardIndices[Math.floor(Math.random() * allowedCardIndices.length)];
+      lastCorrectCardIdx = targetCardIdx;
+
+      const choices = [null, null, null, null];
+      choices[targetCardIdx] = targetNumObj;
+      let dIdx = 0;
+      for (let i = 0; i < 4; i++) {
+        if (choices[i] === null) {
+          choices[i] = distractors[dIdx++];
+        }
+      }
 
       speakPrompt(db.ui.countRedDots, targetNumObj.display);
 
