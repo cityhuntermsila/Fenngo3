@@ -264,7 +264,6 @@
           <div style="display:flex;gap:4px;">
             <button type="button" data-fenny-lang="English" style="padding:2px 8px;border-radius:99px;font-size:10.5px;font-weight:900;border:1.5px solid #cbd5e1;background:#fff;cursor:pointer;">🇬🇧 EN</button>
             <button type="button" data-fenny-lang="French" style="padding:2px 8px;border-radius:99px;font-size:10.5px;font-weight:900;border:1.5px solid #cbd5e1;background:#fff;cursor:pointer;">🇫🇷 FR</button>
-            <button type="button" data-fenny-lang="Arabic" style="padding:2px 8px;border-radius:99px;font-size:10.5px;font-weight:900;border:1.5px solid #cbd5e1;background:#fff;cursor:pointer;">🇩🇿 AR</button>
           </div>
         </div>
       </div>

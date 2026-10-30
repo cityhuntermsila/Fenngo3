@@ -115,11 +115,9 @@ let currentLangId = "English";
 
 function getActiveDataset() {
     const langId = window.AppLang ? window.AppLang.getCurrentLangId() : (localStorage.getItem("selectedLanguage") || "English");
-    currentLangId = langId;
+    currentLangId = langId === "French" ? "French" : "English";
 
-    if (langId === "Arabic") {
-        return alphabetDataArabic;
-    } else if (langId === "French") {
+    if (currentLangId === "French") {
         return alphabetDataFrench;
     }
     return alphabetDataEnglish;
@@ -127,12 +125,12 @@ function getActiveDataset() {
 
 function updateNavLabels() {
     if (prevLetterBtn) {
-        prevLetterBtn.innerHTML = currentLangId === "Arabic" ? "&#10095;" : "&#10094;";
-        prevLetterBtn.setAttribute("aria-label", currentLangId === "Arabic" ? "التالي" : (currentLangId === "French" ? "Précédent" : "Previous"));
+        prevLetterBtn.innerHTML = "&#10094;";
+        prevLetterBtn.setAttribute("aria-label", currentLangId === "French" ? "Précédent" : "Previous");
     }
     if (nextLetterBtn) {
-        nextLetterBtn.innerHTML = currentLangId === "Arabic" ? "&#10094;" : "&#10095;";
-        nextLetterBtn.setAttribute("aria-label", currentLangId === "Arabic" ? "السابق" : (currentLangId === "French" ? "Suivant" : "Next"));
+        nextLetterBtn.innerHTML = "&#10095;";
+        nextLetterBtn.setAttribute("aria-label", currentLangId === "French" ? "Suivant" : "Next");
     }
 }
 
@@ -222,11 +220,11 @@ function navigateLetter(direction) {
 }
 
 prevLetterBtn.addEventListener("click", () => {
-    navigateLetter(currentLangId === "Arabic" ? "next" : "prev");
+    navigateLetter("prev");
 });
 
 nextLetterBtn.addEventListener("click", () => {
-    navigateLetter(currentLangId === "Arabic" ? "prev" : "next");
+    navigateLetter("next");
 });
 
 function closeCube() {
@@ -248,7 +246,7 @@ cubeModal.addEventListener("click", function (e) {
 
 function speakCurrentLetter(data) {
     const text = data.phrase || `${data.capital} for ${data.word}`;
-    const langCode = currentLangId === "Arabic" ? "ar-SA" : (currentLangId === "French" ? "fr-FR" : "en-US");
+    const langCode = currentLangId === "French" ? "fr-FR" : "en-US";
 
     if (window.AppLang) {
         window.AppLang.speak(text, langCode);

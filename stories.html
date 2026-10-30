@@ -9,8 +9,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@600;700;800;900&family=Nunito:wght@600;700;800;900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/common.css?v=68">
-  <link rel="stylesheet" href="css/games.css?v=68">
+  <link rel="stylesheet" href="css/common.css?v=69">
+  <link rel="stylesheet" href="css/games.css?v=69">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
   <style>
     .stories-stage {
@@ -197,11 +197,11 @@
         <div class="nk-hero-top">
           <div class="nk-hero-text">
             <h1 id="storiesMainTitle" class="nk-hero-title">Histoires courtes pour enfants 3AP</h1>
-            <p id="storiesMainSubtitle" class="nk-hero-subtitle">Ã‰coute, lis mot Ã  mot et rÃ©ponds aux Ã©nigmes de Fenny !</p>
+            <p id="storiesMainSubtitle" class="nk-hero-subtitle">Ãƒâ€°coute, lis mot ÃƒÂ  mot et rÃƒÂ©ponds aux ÃƒÂ©nigmes de Fenny !</p>
           </div>
           <div class="nk-counters">
             <div class="nk-stat-pill">
-              <span class="text-xl">ðŸ“š</span>
+              <span class="text-xl">Ã°Å¸â€œÅ¡</span>
               <span id="storiesCountBadge">3 Histoires</span>
             </div>
           </div>
@@ -214,10 +214,10 @@
     <!-- Lecteur d'histoire interactif enrichi -->
     <div id="storyReaderModal" class="story-reader-modal hidden" role="dialog" aria-modal="true">
       <div class="story-reader-card">
-        <!-- Barre d'en-tÃªte du lecteur -->
+        <!-- Barre d'en-tÃƒÂªte du lecteur -->
         <div class="flex items-center justify-between gap-3 border-b-2 border-amber-200 pb-3">
           <div class="flex items-center gap-2">
-            <span class="w-8 h-8 rounded-full bg-amber-400 text-amber-950 font-black flex items-center justify-center">ðŸ“–</span>
+            <span class="w-8 h-8 rounded-full bg-amber-400 text-amber-950 font-black flex items-center justify-center">Ã°Å¸â€œâ€“</span>
             <h2 id="readerStoryTitle" class="text-lg sm:text-xl font-black text-amber-950">Histoire</h2>
           </div>
           <div class="flex items-center gap-3">
@@ -228,11 +228,11 @@
           </div>
         </div>
 
-        <!-- ScÃ¨ne illustrÃ©e avec animations 3D -->
+        <!-- ScÃƒÂ¨ne illustrÃƒÂ©e avec animations 3D -->
         <div class="story-scene-box">
           <div id="readerSceneIllustrations" class="story-scene-illustrations"></div>
 
-          <!-- Texte interactif mot Ã  mot -->
+          <!-- Texte interactif mot ÃƒÂ  mot -->
           <div id="readerStoryText" class="story-text-container" aria-live="polite"></div>
 
           <!-- Bouton de lecture vocale karaoke -->
@@ -241,15 +241,15 @@
               <i class="fa-solid fa-volume-high"></i>
               <span id="listenStoryLabel">Lire avec Fenny</span>
             </button>
-            <span class="text-xs font-bold text-amber-900/70">ðŸ‘ˆ Touche n'importe quel mot pour l'Ã©couter !</span>
+            <span class="text-xs font-bold text-amber-900/70">Ã°Å¸â€˜Ë† Touche n'importe quel mot pour l'ÃƒÂ©couter !</span>
           </div>
 
           <div id="readerStoryMoral" class="story-moral-pill"></div>
         </div>
 
-        <!-- Mini DÃ©fi ComprÃ©hension interactif -->
+        <!-- Mini DÃƒÂ©fi ComprÃƒÂ©hension interactif -->
         <div id="storyQuizBox" class="story-quiz-panel hidden">
-          <span class="text-xs font-black text-blue-900 uppercase">ðŸ¦Š Ã‰nigme de Fenny :</span>
+          <span class="text-xs font-black text-blue-900 uppercase">Ã°Å¸Â¦Å  Ãƒâ€°nigme de Fenny :</span>
           <p id="storyQuizQuestion" class="text-sm sm:text-base font-bold text-slate-900"></p>
           <div id="storyQuizOptions" class="flex flex-wrap justify-center gap-2 mt-1"></div>
         </div>
@@ -258,9 +258,9 @@
         <div class="flex items-center justify-between gap-4 mt-2">
           <button type="button" id="prevPageBtn" class="nk-btn-purple px-4 py-2 text-sm font-black flex items-center gap-2">
             <i class="fa-solid fa-arrow-left"></i>
-            <span id="prevPageLabel">PrÃ©cÃ©dent</span>
+            <span id="prevPageLabel">PrÃƒÂ©cÃƒÂ©dent</span>
           </button>
-          <span class="text-xs font-black text-amber-800">ðŸ¦Š FENNY STORYTELLER</span>
+          <span class="text-xs font-black text-amber-800">Ã°Å¸Â¦Å  FENNY STORYTELLER</span>
           <button type="button" id="nextPageBtn" class="nk-btn-green px-4 py-2 text-sm font-black flex items-center gap-2">
             <span id="nextPageLabel">Suivant</span>
             <i class="fa-solid fa-arrow-right"></i>
@@ -270,228 +270,228 @@
     </div>
   </div>
 
-  <script src="js/app-lang.js?v=68"></script>
+  <script src="js/app-lang.js?v=69"></script>
   <script>
     (() => {
       const STORIES_DATA = {
         French: {
           title: "Histoires courtes pour enfants 3AP",
-          subtitle: "Ã‰coute, lis mot Ã  mot et rÃ©ponds aux Ã©nigmes de Fenny !",
+          subtitle: "Ãƒâ€°coute, lis mot ÃƒÂ  mot et rÃƒÂ©ponds aux ÃƒÂ©nigmes de Fenny !",
           readBtn: "Lire l'histoire !",
           listen: "Lire avec Fenny",
-          prev: "PrÃ©cÃ©dent",
+          prev: "PrÃƒÂ©cÃƒÂ©dent",
           next: "Suivant",
           speechLang: "fr-FR",
           stories: [
             {
               id: "lion",
               title: "Le Petit Lion et la Pomme",
-              tag: "Partage & AmitiÃ©",
+              tag: "Partage & AmitiÃƒÂ©",
               bg: "radial-gradient(circle at 50% 0%, #fde68a 0%, #f59e0b 100%)",
               thumb: "assets/images/games/words/lion.png",
               desc: "Un lionceau apprend le plaisir de partager une pomme rouge avec son ami le lapin.",
               pages: [
                 {
                   images: ["assets/images/games/words/lion.png", "assets/images/games/words/sun.png"],
-                  text: "Sous le soleil chaud de la savane, le petit lion cherche de l'eau fraÃ®che.",
-                  speech: "Sous le soleil chaud de la savane, le petit lion cherche de l'eau fraÃ®che."
+                  text: "Sous le soleil chaud de la savane, le petit lion cherche de l'eau fraÃƒÂ®che.",
+                  speech: "Sous le soleil chaud de la savane, le petit lion cherche de l'eau fraÃƒÂ®che."
                 },
                 {
                   images: ["assets/images/games/words/apple.png", "assets/images/games/words/rabbit.png"],
-                  text: "Il trouve une belle pomme rouge et dÃ©cide de la partager avec son ami le lapin.",
-                  speech: "Il trouve une belle pomme rouge et dÃ©cide de la partager avec son ami le lapin."
+                  text: "Il trouve une belle pomme rouge et dÃƒÂ©cide de la partager avec son ami le lapin.",
+                  speech: "Il trouve une belle pomme rouge et dÃƒÂ©cide de la partager avec son ami le lapin."
                 },
                 {
                   images: ["assets/images/games/words/moon.png", "assets/images/fennygo/fenny-avatar.png"],
-                  text: "Le soir, sous la lune brillante, les deux amis s'endorment le cÅ“ur joyeux.",
-                  speech: "Le soir, sous la lune brillante, les deux amis s'endorment le cÅ“ur joyeux."
+                  text: "Le soir, sous la lune brillante, les deux amis s'endorment le cÃ…â€œur joyeux.",
+                  speech: "Le soir, sous la lune brillante, les deux amis s'endorment le cÃ…â€œur joyeux."
                 }
               ],
-              moral: "âœ¨ Morale : Le partage rend l'amitiÃ© beaucoup plus douce !",
+              moral: "Ã¢Å“Â¨ Morale : Le partage rend l'amitiÃƒÂ© beaucoup plus douce !",
               quiz: {
-                question: "Avec qui le petit lion a-t-il partagÃ© sa pomme ?",
+                question: "Avec qui le petit lion a-t-il partagÃƒÂ© sa pomme ?",
                 options: [
-                  { text: "ðŸ° Le lapin", correct: true },
-                  { text: "ðŸ» L'ours", correct: false },
-                  { text: "ðŸ¦† Le canard", correct: false }
+                  { text: "Ã°Å¸ÂÂ° Le lapin", correct: true },
+                  { text: "Ã°Å¸ÂÂ» L'ours", correct: false },
+                  { text: "Ã°Å¸Â¦â€  Le canard", correct: false }
                 ]
               }
             },
             {
               id: "chat",
               title: "Le Chat et le Livre Magique",
-              tag: "CuriositÃ© & Lecture",
+              tag: "CuriositÃƒÂ© & Lecture",
               bg: "radial-gradient(circle at 50% 0%, #c6d2ff 0%, #7c65e0 100%)",
               thumb: "assets/images/games/words/cat.png",
-              desc: "Un chaton curieux ouvre un livre et voit dÃ©filer des animaux et des Ã©toiles.",
+              desc: "Un chaton curieux ouvre un livre et voit dÃƒÂ©filer des animaux et des ÃƒÂ©toiles.",
               pages: [
                 {
                   images: ["assets/images/games/words/cat.png", "assets/images/stationery/book.png"],
-                  text: "Le petit chat curieux ouvre un grand livre colorÃ© sur la table.",
-                  speech: "Le petit chat curieux ouvre un grand livre colorÃ© sur la table."
+                  text: "Le petit chat curieux ouvre un grand livre colorÃƒÂ© sur la table.",
+                  speech: "Le petit chat curieux ouvre un grand livre colorÃƒÂ© sur la table."
                 },
                 {
                   images: ["assets/images/games/words/flower.png", "assets/images/games/words/train.png"],
-                  text: "Sur les pages illustrÃ©es, il admire une jolie fleur et un petit train rouge.",
-                  speech: "Sur les pages illustrÃ©es, il admire une jolie fleur et un petit train rouge."
+                  text: "Sur les pages illustrÃƒÂ©es, il admire une jolie fleur et un petit train rouge.",
+                  speech: "Sur les pages illustrÃƒÂ©es, il admire une jolie fleur et un petit train rouge."
                 },
                 {
                   images: ["assets/images/games/words/star.png", "assets/images/games/words/moon.png"],
-                  text: "Il apprend de nouveaux mots chaque jour et rÃªve d'Ã©toiles scintillantes.",
-                  speech: "Il apprend de nouveaux mots chaque jour et rÃªve d'Ã©toiles scintillantes."
+                  text: "Il apprend de nouveaux mots chaque jour et rÃƒÂªve d'ÃƒÂ©toiles scintillantes.",
+                  speech: "Il apprend de nouveaux mots chaque jour et rÃƒÂªve d'ÃƒÂ©toiles scintillantes."
                 }
               ],
-              moral: "âœ¨ Morale : Chaque livre est une merveilleuse porte ouverte sur le monde !",
+              moral: "Ã¢Å“Â¨ Morale : Chaque livre est une merveilleuse porte ouverte sur le monde !",
               quiz: {
-                question: "Qu'a dÃ©couvert le chat dans son livre ?",
+                question: "Qu'a dÃƒÂ©couvert le chat dans son livre ?",
                 options: [
-                  { text: "ðŸŒ¸ Une fleur et un train", correct: true },
-                  { text: "ðŸš² Un vÃ©lo", correct: false },
-                  { text: "ðŸ‹ Un citron", correct: false }
+                  { text: "Ã°Å¸Å’Â¸ Une fleur et un train", correct: true },
+                  { text: "Ã°Å¸Å¡Â² Un vÃƒÂ©lo", correct: false },
+                  { text: "Ã°Å¸Ââ€¹ Un citron", correct: false }
                 ]
               }
             },
             {
               id: "famille",
-              title: "Une Belle JournÃ©e en Famille",
+              title: "Une Belle JournÃƒÂ©e en Famille",
               tag: "Famille & Bonheur",
               bg: "radial-gradient(circle at 50% 0%, #a7f3d0 0%, #34d399 100%)",
               thumb: "assets/images/family/father.png",
-              desc: "Une journÃ©e joyeuse avec papa, maman, le frÃ¨re et la petite sÅ“ur.",
+              desc: "Une journÃƒÂ©e joyeuse avec papa, maman, le frÃƒÂ¨re et la petite sÃ…â€œur.",
               pages: [
                 {
                   images: ["assets/images/family/father.png", "assets/images/family/mother.png"],
-                  text: "Le matin, mon pÃ¨re et ma mÃ¨re prÃ©parent un panier plein de fruits dÃ©licieux.",
-                  speech: "Le matin, mon pÃ¨re et ma mÃ¨re prÃ©parent un panier plein de fruits dÃ©licieux."
+                  text: "Le matin, mon pÃƒÂ¨re et ma mÃƒÂ¨re prÃƒÂ©parent un panier plein de fruits dÃƒÂ©licieux.",
+                  speech: "Le matin, mon pÃƒÂ¨re et ma mÃƒÂ¨re prÃƒÂ©parent un panier plein de fruits dÃƒÂ©licieux."
                 },
                 {
                   images: ["assets/images/games/words/bike.png", "assets/images/family/brother.png"],
-                  text: "Dans le parc, mon frÃ¨re fait du vÃ©lo pendant que le soleil brille.",
-                  speech: "Dans le parc, mon frÃ¨re fait du vÃ©lo pendant que le soleil brille."
+                  text: "Dans le parc, mon frÃƒÂ¨re fait du vÃƒÂ©lo pendant que le soleil brille.",
+                  speech: "Dans le parc, mon frÃƒÂ¨re fait du vÃƒÂ©lo pendant que le soleil brille."
                 },
                 {
                   images: ["assets/images/family/sister.png", "assets/images/fennygo/badge-explorer.png"],
-                  text: "Tous ensemble, nous passons une journÃ©e inoubliable pleine d'amour.",
-                  speech: "Tous ensemble, nous passons une journÃ©e inoubliable pleine d'amour."
+                  text: "Tous ensemble, nous passons une journÃƒÂ©e inoubliable pleine d'amour.",
+                  speech: "Tous ensemble, nous passons une journÃƒÂ©e inoubliable pleine d'amour."
                 }
               ],
-              moral: "âœ¨ Morale : La famille rÃ©unie est le plus beau des trÃ©sors !",
+              moral: "Ã¢Å“Â¨ Morale : La famille rÃƒÂ©unie est le plus beau des trÃƒÂ©sors !",
               quiz: {
-                question: "Que fait le frÃ¨re dans le parc ?",
+                question: "Que fait le frÃƒÂ¨re dans le parc ?",
                 options: [
-                  { text: "ðŸš² Il fait du vÃ©lo", correct: true },
-                  { text: "ðŸŠ Il nage", correct: false },
-                  { text: "ðŸ˜´ Il dort", correct: false }
+                  { text: "Ã°Å¸Å¡Â² Il fait du vÃƒÂ©lo", correct: true },
+                  { text: "Ã°Å¸ÂÅ  Il nage", correct: false },
+                  { text: "Ã°Å¸ËœÂ´ Il dort", correct: false }
                 ]
               }
             }
           ]
         },
         Arabic: {
-          title: "Ù‚ÙØµÙŽØµÙŒ Ù‚ÙŽØµÙÙŠØ±ÙŽØ©ÙŒ Ù„ÙÙ„Ø£ÙŽØ·Ù’ÙÙŽØ§Ù„Ù Ù£AP",
-          subtitle: "Ø§Ø³Ù’ØªÙŽÙ…ÙØ¹Ù’ØŒ Ø§Ù‚Ù’Ø±ÙŽØ£Ù’ ÙƒÙŽÙ„ÙÙ…ÙŽØ©Ù‹ Ø¨ÙÙƒÙŽÙ„ÙÙ…ÙŽØ©Ù ÙˆÙŽØ£ÙŽØ¬ÙØ¨Ù’ Ø¹ÙŽÙ†Ù’ Ø£ÙŽÙ„Ù’ØºÙŽØ§Ø²Ù ÙÙÙŠÙ†ÙÙŠ!",
-          readBtn: "Ø§Ù‚Ù’Ø±ÙŽØ£Ù Ø§Ù„Ù‚ÙØµÙŽÙ‘Ø©ÙŽ !",
-          listen: "Ø§Ù‚Ù’Ø±ÙŽØ£Ù’ Ù…ÙŽØ¹ÙŽ ÙÙÙŠÙ†ÙÙŠ",
-          prev: "Ø§Ù„Ø³ÙŽÙ‘Ø§Ø¨ÙÙ‚Ù",
-          next: "Ø§Ù„ØªÙŽÙ‘Ø§Ù„ÙÙŠ",
+          title: "Ã™â€šÃ™ÂÃ˜ÂµÃ™Å½Ã˜ÂµÃ™Å’ Ã™â€šÃ™Å½Ã˜ÂµÃ™ÂÃ™Å Ã˜Â±Ã™Å½Ã˜Â©Ã™Å’ Ã™â€žÃ™ÂÃ™â€žÃ˜Â£Ã™Å½Ã˜Â·Ã™â€™Ã™ÂÃ™Å½Ã˜Â§Ã™â€žÃ™Â Ã™Â£AP",
+          subtitle: "Ã˜Â§Ã˜Â³Ã™â€™Ã˜ÂªÃ™Å½Ã™â€¦Ã™ÂÃ˜Â¹Ã™â€™Ã˜Å’ Ã˜Â§Ã™â€šÃ™â€™Ã˜Â±Ã™Å½Ã˜Â£Ã™â€™ Ã™Æ’Ã™Å½Ã™â€žÃ™ÂÃ™â€¦Ã™Å½Ã˜Â©Ã™â€¹ Ã˜Â¨Ã™ÂÃ™Æ’Ã™Å½Ã™â€žÃ™ÂÃ™â€¦Ã™Å½Ã˜Â©Ã™Â Ã™Ë†Ã™Å½Ã˜Â£Ã™Å½Ã˜Â¬Ã™ÂÃ˜Â¨Ã™â€™ Ã˜Â¹Ã™Å½Ã™â€ Ã™â€™ Ã˜Â£Ã™Å½Ã™â€žÃ™â€™Ã˜ÂºÃ™Å½Ã˜Â§Ã˜Â²Ã™Â Ã™ÂÃ™ÂÃ™Å Ã™â€ Ã™ÂÃ™Å !",
+          readBtn: "Ã˜Â§Ã™â€šÃ™â€™Ã˜Â±Ã™Å½Ã˜Â£Ã™Â Ã˜Â§Ã™â€žÃ™â€šÃ™ÂÃ˜ÂµÃ™Å½Ã™â€˜Ã˜Â©Ã™Å½ !",
+          listen: "Ã˜Â§Ã™â€šÃ™â€™Ã˜Â±Ã™Å½Ã˜Â£Ã™â€™ Ã™â€¦Ã™Å½Ã˜Â¹Ã™Å½ Ã™ÂÃ™ÂÃ™Å Ã™â€ Ã™ÂÃ™Å ",
+          prev: "Ã˜Â§Ã™â€žÃ˜Â³Ã™Å½Ã™â€˜Ã˜Â§Ã˜Â¨Ã™ÂÃ™â€šÃ™Â",
+          next: "Ã˜Â§Ã™â€žÃ˜ÂªÃ™Å½Ã™â€˜Ã˜Â§Ã™â€žÃ™ÂÃ™Å ",
           speechLang: "ar-SA",
           stories: [
             {
               id: "lion",
-              title: "Ø§Ù„Ø£ÙŽØ³ÙŽØ¯Ù Ø§Ù„ØµÙŽÙ‘ØºÙÙŠØ±Ù ÙˆÙŽØ§Ù„ØªÙÙ‘ÙÙŽÙ‘Ø§Ø­ÙŽØ©Ù",
-              tag: "Ø§Ù„Ù…ÙØ´ÙŽØ§Ø±ÙŽÙƒÙŽØ©Ù ÙˆÙŽØ§Ù„ØµÙŽÙ‘Ø¯ÙŽØ§Ù‚ÙŽØ©Ù",
+              title: "Ã˜Â§Ã™â€žÃ˜Â£Ã™Å½Ã˜Â³Ã™Å½Ã˜Â¯Ã™Â Ã˜Â§Ã™â€žÃ˜ÂµÃ™Å½Ã™â€˜Ã˜ÂºÃ™ÂÃ™Å Ã˜Â±Ã™Â Ã™Ë†Ã™Å½Ã˜Â§Ã™â€žÃ˜ÂªÃ™ÂÃ™â€˜Ã™ÂÃ™Å½Ã™â€˜Ã˜Â§Ã˜Â­Ã™Å½Ã˜Â©Ã™Â",
+              tag: "Ã˜Â§Ã™â€žÃ™â€¦Ã™ÂÃ˜Â´Ã™Å½Ã˜Â§Ã˜Â±Ã™Å½Ã™Æ’Ã™Å½Ã˜Â©Ã™Â Ã™Ë†Ã™Å½Ã˜Â§Ã™â€žÃ˜ÂµÃ™Å½Ã™â€˜Ã˜Â¯Ã™Å½Ã˜Â§Ã™â€šÃ™Å½Ã˜Â©Ã™Â",
               bg: "radial-gradient(circle at 50% 0%, #fde68a 0%, #f59e0b 100%)",
               thumb: "assets/images/games/words/lion.png",
-              desc: "Ø£ÙŽØ³ÙŽØ¯ÙŒ ØµÙŽØºÙÙŠØ±ÙŒ ÙŠÙŽØªÙŽØ¹ÙŽÙ„ÙŽÙ‘Ù…Ù Ù…ÙØªÙ’Ø¹ÙŽØ©ÙŽ Ø§Ù„Ù…ÙØ´ÙŽØ§Ø±ÙŽÙƒÙŽØ©Ù Ù…ÙŽØ¹ÙŽ ØµÙŽØ¯ÙÙŠÙ‚ÙÙ‡Ù Ø§Ù„Ø£ÙŽØ±Ù’Ù†ÙŽØ¨Ù.",
+              desc: "Ã˜Â£Ã™Å½Ã˜Â³Ã™Å½Ã˜Â¯Ã™Å’ Ã˜ÂµÃ™Å½Ã˜ÂºÃ™ÂÃ™Å Ã˜Â±Ã™Å’ Ã™Å Ã™Å½Ã˜ÂªÃ™Å½Ã˜Â¹Ã™Å½Ã™â€žÃ™Å½Ã™â€˜Ã™â€¦Ã™Â Ã™â€¦Ã™ÂÃ˜ÂªÃ™â€™Ã˜Â¹Ã™Å½Ã˜Â©Ã™Å½ Ã˜Â§Ã™â€žÃ™â€¦Ã™ÂÃ˜Â´Ã™Å½Ã˜Â§Ã˜Â±Ã™Å½Ã™Æ’Ã™Å½Ã˜Â©Ã™Â Ã™â€¦Ã™Å½Ã˜Â¹Ã™Å½ Ã˜ÂµÃ™Å½Ã˜Â¯Ã™ÂÃ™Å Ã™â€šÃ™ÂÃ™â€¡Ã™Â Ã˜Â§Ã™â€žÃ˜Â£Ã™Å½Ã˜Â±Ã™â€™Ã™â€ Ã™Å½Ã˜Â¨Ã™Â.",
               pages: [
                 {
                   images: ["assets/images/games/words/lion.png", "assets/images/games/words/sun.png"],
-                  text: "ØªÙŽØ­Ù’ØªÙŽ Ø§Ù„Ø´ÙŽÙ‘Ù…Ù’Ø³Ù Ø§Ù„Ø°ÙŽÙ‘Ù‡ÙŽØ¨ÙÙŠÙŽÙ‘Ø©ÙØŒ ÙŠÙŽØ¨Ù’Ø­ÙŽØ«Ù Ø§Ù„Ø£ÙŽØ³ÙŽØ¯Ù Ø§Ù„ØµÙŽÙ‘ØºÙÙŠØ±Ù Ø¹ÙŽÙ†Ù’ Ù…ÙŽØ§Ø¡Ù Ø¹ÙŽØ°Ù’Ø¨Ù.",
-                  speech: "ØªÙŽØ­Ù’ØªÙŽ Ø§Ù„Ø´ÙŽÙ‘Ù…Ù’Ø³Ù Ø§Ù„Ø°ÙŽÙ‘Ù‡ÙŽØ¨ÙÙŠÙŽÙ‘Ø©ÙØŒ ÙŠÙŽØ¨Ù’Ø­ÙŽØ«Ù Ø§Ù„Ø£ÙŽØ³ÙŽØ¯Ù Ø§Ù„ØµÙŽÙ‘ØºÙÙŠØ±Ù Ø¹ÙŽÙ†Ù’ Ù…ÙŽØ§Ø¡Ù Ø¹ÙŽØ°Ù’Ø¨Ù."
+                  text: "Ã˜ÂªÃ™Å½Ã˜Â­Ã™â€™Ã˜ÂªÃ™Å½ Ã˜Â§Ã™â€žÃ˜Â´Ã™Å½Ã™â€˜Ã™â€¦Ã™â€™Ã˜Â³Ã™Â Ã˜Â§Ã™â€žÃ˜Â°Ã™Å½Ã™â€˜Ã™â€¡Ã™Å½Ã˜Â¨Ã™ÂÃ™Å Ã™Å½Ã™â€˜Ã˜Â©Ã™ÂÃ˜Å’ Ã™Å Ã™Å½Ã˜Â¨Ã™â€™Ã˜Â­Ã™Å½Ã˜Â«Ã™Â Ã˜Â§Ã™â€žÃ˜Â£Ã™Å½Ã˜Â³Ã™Å½Ã˜Â¯Ã™Â Ã˜Â§Ã™â€žÃ˜ÂµÃ™Å½Ã™â€˜Ã˜ÂºÃ™ÂÃ™Å Ã˜Â±Ã™Â Ã˜Â¹Ã™Å½Ã™â€ Ã™â€™ Ã™â€¦Ã™Å½Ã˜Â§Ã˜Â¡Ã™Â Ã˜Â¹Ã™Å½Ã˜Â°Ã™â€™Ã˜Â¨Ã™Â.",
+                  speech: "Ã˜ÂªÃ™Å½Ã˜Â­Ã™â€™Ã˜ÂªÃ™Å½ Ã˜Â§Ã™â€žÃ˜Â´Ã™Å½Ã™â€˜Ã™â€¦Ã™â€™Ã˜Â³Ã™Â Ã˜Â§Ã™â€žÃ˜Â°Ã™Å½Ã™â€˜Ã™â€¡Ã™Å½Ã˜Â¨Ã™ÂÃ™Å Ã™Å½Ã™â€˜Ã˜Â©Ã™ÂÃ˜Å’ Ã™Å Ã™Å½Ã˜Â¨Ã™â€™Ã˜Â­Ã™Å½Ã˜Â«Ã™Â Ã˜Â§Ã™â€žÃ˜Â£Ã™Å½Ã˜Â³Ã™Å½Ã˜Â¯Ã™Â Ã˜Â§Ã™â€žÃ˜ÂµÃ™Å½Ã™â€˜Ã˜ÂºÃ™ÂÃ™Å Ã˜Â±Ã™Â Ã˜Â¹Ã™Å½Ã™â€ Ã™â€™ Ã™â€¦Ã™Å½Ã˜Â§Ã˜Â¡Ã™Â Ã˜Â¹Ã™Å½Ã˜Â°Ã™â€™Ã˜Â¨Ã™Â."
                 },
                 {
                   images: ["assets/images/games/words/apple.png", "assets/images/games/words/rabbit.png"],
-                  text: "ÙˆÙŽØ¬ÙŽØ¯ÙŽ ØªÙÙÙŽÙ‘Ø§Ø­ÙŽØ©Ù‹ Ø­ÙŽÙ…Ù’Ø±ÙŽØ§Ø¡ÙŽ Ø¬ÙŽÙ…ÙÙŠÙ„ÙŽØ©Ù‹ ÙˆÙŽÙ‚ÙŽØ±ÙŽÙ‘Ø±ÙŽ Ø£ÙŽÙ†Ù’ ÙŠÙÙ‚ÙŽØ§Ø³ÙÙ…ÙŽÙ‡ÙŽØ§ ØµÙŽØ¯ÙÙŠÙ‚ÙŽÙ‡Ù Ø§Ù„Ø£ÙŽØ±Ù’Ù†ÙŽØ¨ÙŽ.",
-                  speech: "ÙˆÙŽØ¬ÙŽØ¯ÙŽ ØªÙÙÙŽÙ‘Ø§Ø­ÙŽØ©Ù‹ Ø­ÙŽÙ…Ù’Ø±ÙŽØ§Ø¡ÙŽ Ø¬ÙŽÙ…ÙÙŠÙ„ÙŽØ©Ù‹ ÙˆÙŽÙ‚ÙŽØ±ÙŽÙ‘Ø±ÙŽ Ø£ÙŽÙ†Ù’ ÙŠÙÙ‚ÙŽØ§Ø³ÙÙ…ÙŽÙ‡ÙŽØ§ ØµÙŽØ¯ÙÙŠÙ‚ÙŽÙ‡Ù Ø§Ù„Ø£ÙŽØ±Ù’Ù†ÙŽØ¨ÙŽ."
+                  text: "Ã™Ë†Ã™Å½Ã˜Â¬Ã™Å½Ã˜Â¯Ã™Å½ Ã˜ÂªÃ™ÂÃ™ÂÃ™Å½Ã™â€˜Ã˜Â§Ã˜Â­Ã™Å½Ã˜Â©Ã™â€¹ Ã˜Â­Ã™Å½Ã™â€¦Ã™â€™Ã˜Â±Ã™Å½Ã˜Â§Ã˜Â¡Ã™Å½ Ã˜Â¬Ã™Å½Ã™â€¦Ã™ÂÃ™Å Ã™â€žÃ™Å½Ã˜Â©Ã™â€¹ Ã™Ë†Ã™Å½Ã™â€šÃ™Å½Ã˜Â±Ã™Å½Ã™â€˜Ã˜Â±Ã™Å½ Ã˜Â£Ã™Å½Ã™â€ Ã™â€™ Ã™Å Ã™ÂÃ™â€šÃ™Å½Ã˜Â§Ã˜Â³Ã™ÂÃ™â€¦Ã™Å½Ã™â€¡Ã™Å½Ã˜Â§ Ã˜ÂµÃ™Å½Ã˜Â¯Ã™ÂÃ™Å Ã™â€šÃ™Å½Ã™â€¡Ã™Â Ã˜Â§Ã™â€žÃ˜Â£Ã™Å½Ã˜Â±Ã™â€™Ã™â€ Ã™Å½Ã˜Â¨Ã™Å½.",
+                  speech: "Ã™Ë†Ã™Å½Ã˜Â¬Ã™Å½Ã˜Â¯Ã™Å½ Ã˜ÂªÃ™ÂÃ™ÂÃ™Å½Ã™â€˜Ã˜Â§Ã˜Â­Ã™Å½Ã˜Â©Ã™â€¹ Ã˜Â­Ã™Å½Ã™â€¦Ã™â€™Ã˜Â±Ã™Å½Ã˜Â§Ã˜Â¡Ã™Å½ Ã˜Â¬Ã™Å½Ã™â€¦Ã™ÂÃ™Å Ã™â€žÃ™Å½Ã˜Â©Ã™â€¹ Ã™Ë†Ã™Å½Ã™â€šÃ™Å½Ã˜Â±Ã™Å½Ã™â€˜Ã˜Â±Ã™Å½ Ã˜Â£Ã™Å½Ã™â€ Ã™â€™ Ã™Å Ã™ÂÃ™â€šÃ™Å½Ã˜Â§Ã˜Â³Ã™ÂÃ™â€¦Ã™Å½Ã™â€¡Ã™Å½Ã˜Â§ Ã˜ÂµÃ™Å½Ã˜Â¯Ã™ÂÃ™Å Ã™â€šÃ™Å½Ã™â€¡Ã™Â Ã˜Â§Ã™â€žÃ˜Â£Ã™Å½Ã˜Â±Ã™â€™Ã™â€ Ã™Å½Ã˜Â¨Ã™Å½."
                 },
                 {
                   images: ["assets/images/games/words/moon.png", "assets/images/fennygo/fenny-avatar.png"],
-                  text: "ÙÙÙŠ Ø§Ù„Ù…ÙŽØ³ÙŽØ§Ø¡Ù ØªÙŽØ­Ù’ØªÙŽ Ø¶ÙŽÙˆÙ’Ø¡Ù Ø§Ù„Ù‚ÙŽÙ…ÙŽØ±ÙØŒ Ù†ÙŽØ§Ù…ÙŽ Ø§Ù„ØµÙŽÙ‘Ø¯ÙÙŠÙ‚ÙŽØ§Ù†Ù Ø¨ÙØ³ÙŽØ¹ÙŽØ§Ø¯ÙŽØ©Ù ÙˆÙŽÙÙŽØ±ÙŽØ­Ù.",
-                  speech: "ÙÙÙŠ Ø§Ù„Ù…ÙŽØ³ÙŽØ§Ø¡Ù ØªÙŽØ­Ù’ØªÙŽ Ø¶ÙŽÙˆÙ’Ø¡Ù Ø§Ù„Ù‚ÙŽÙ…ÙŽØ±ÙØŒ Ù†ÙŽØ§Ù…ÙŽ Ø§Ù„ØµÙŽÙ‘Ø¯ÙÙŠÙ‚ÙŽØ§Ù†Ù Ø¨ÙØ³ÙŽØ¹ÙŽØ§Ø¯ÙŽØ©Ù ÙˆÙŽÙÙŽØ±ÙŽØ­Ù."
+                  text: "Ã™ÂÃ™ÂÃ™Å  Ã˜Â§Ã™â€žÃ™â€¦Ã™Å½Ã˜Â³Ã™Å½Ã˜Â§Ã˜Â¡Ã™Â Ã˜ÂªÃ™Å½Ã˜Â­Ã™â€™Ã˜ÂªÃ™Å½ Ã˜Â¶Ã™Å½Ã™Ë†Ã™â€™Ã˜Â¡Ã™Â Ã˜Â§Ã™â€žÃ™â€šÃ™Å½Ã™â€¦Ã™Å½Ã˜Â±Ã™ÂÃ˜Å’ Ã™â€ Ã™Å½Ã˜Â§Ã™â€¦Ã™Å½ Ã˜Â§Ã™â€žÃ˜ÂµÃ™Å½Ã™â€˜Ã˜Â¯Ã™ÂÃ™Å Ã™â€šÃ™Å½Ã˜Â§Ã™â€ Ã™Â Ã˜Â¨Ã™ÂÃ˜Â³Ã™Å½Ã˜Â¹Ã™Å½Ã˜Â§Ã˜Â¯Ã™Å½Ã˜Â©Ã™Â Ã™Ë†Ã™Å½Ã™ÂÃ™Å½Ã˜Â±Ã™Å½Ã˜Â­Ã™Â.",
+                  speech: "Ã™ÂÃ™ÂÃ™Å  Ã˜Â§Ã™â€žÃ™â€¦Ã™Å½Ã˜Â³Ã™Å½Ã˜Â§Ã˜Â¡Ã™Â Ã˜ÂªÃ™Å½Ã˜Â­Ã™â€™Ã˜ÂªÃ™Å½ Ã˜Â¶Ã™Å½Ã™Ë†Ã™â€™Ã˜Â¡Ã™Â Ã˜Â§Ã™â€žÃ™â€šÃ™Å½Ã™â€¦Ã™Å½Ã˜Â±Ã™ÂÃ˜Å’ Ã™â€ Ã™Å½Ã˜Â§Ã™â€¦Ã™Å½ Ã˜Â§Ã™â€žÃ˜ÂµÃ™Å½Ã™â€˜Ã˜Â¯Ã™ÂÃ™Å Ã™â€šÃ™Å½Ã˜Â§Ã™â€ Ã™Â Ã˜Â¨Ã™ÂÃ˜Â³Ã™Å½Ã˜Â¹Ã™Å½Ã˜Â§Ã˜Â¯Ã™Å½Ã˜Â©Ã™Â Ã™Ë†Ã™Å½Ã™ÂÃ™Å½Ã˜Â±Ã™Å½Ã˜Â­Ã™Â."
                 }
               ],
-              moral: "âœ¨ Ø§Ù„Ø¹ÙØ¨Ù’Ø±ÙŽØ©Ù : Ø§Ù„Ù…ÙØ´ÙŽØ§Ø±ÙŽÙƒÙŽØ©Ù ØªÙŽØ¬Ù’Ø¹ÙŽÙ„Ù Ø§Ù„ØµÙŽÙ‘Ø¯ÙŽØ§Ù‚ÙŽØ©ÙŽ Ø£ÙŽÙ‚Ù’ÙˆÙŽÙ‰ ÙˆÙŽØ£ÙŽØ¬Ù’Ù…ÙŽÙ„ÙŽ!",
+              moral: "Ã¢Å“Â¨ Ã˜Â§Ã™â€žÃ˜Â¹Ã™ÂÃ˜Â¨Ã™â€™Ã˜Â±Ã™Å½Ã˜Â©Ã™Â : Ã˜Â§Ã™â€žÃ™â€¦Ã™ÂÃ˜Â´Ã™Å½Ã˜Â§Ã˜Â±Ã™Å½Ã™Æ’Ã™Å½Ã˜Â©Ã™Â Ã˜ÂªÃ™Å½Ã˜Â¬Ã™â€™Ã˜Â¹Ã™Å½Ã™â€žÃ™Â Ã˜Â§Ã™â€žÃ˜ÂµÃ™Å½Ã™â€˜Ã˜Â¯Ã™Å½Ã˜Â§Ã™â€šÃ™Å½Ã˜Â©Ã™Å½ Ã˜Â£Ã™Å½Ã™â€šÃ™â€™Ã™Ë†Ã™Å½Ã™â€° Ã™Ë†Ã™Å½Ã˜Â£Ã™Å½Ã˜Â¬Ã™â€™Ã™â€¦Ã™Å½Ã™â€žÃ™Å½!",
               quiz: {
-                question: "Ù…ÙŽØ¹ÙŽ Ù…ÙŽÙ†Ù’ ØªÙŽØ´ÙŽØ§Ø±ÙŽÙƒÙŽ Ø§Ù„Ø£ÙŽØ³ÙŽØ¯Ù Ø§Ù„ØªÙÙ‘ÙÙŽÙ‘Ø§Ø­ÙŽØ©ÙŽØŸ",
+                question: "Ã™â€¦Ã™Å½Ã˜Â¹Ã™Å½ Ã™â€¦Ã™Å½Ã™â€ Ã™â€™ Ã˜ÂªÃ™Å½Ã˜Â´Ã™Å½Ã˜Â§Ã˜Â±Ã™Å½Ã™Æ’Ã™Å½ Ã˜Â§Ã™â€žÃ˜Â£Ã™Å½Ã˜Â³Ã™Å½Ã˜Â¯Ã™Â Ã˜Â§Ã™â€žÃ˜ÂªÃ™ÂÃ™â€˜Ã™ÂÃ™Å½Ã™â€˜Ã˜Â§Ã˜Â­Ã™Å½Ã˜Â©Ã™Å½Ã˜Å¸",
                 options: [
-                  { text: "ðŸ° Ø§Ù„Ø£ÙŽØ±Ù’Ù†ÙŽØ¨Ù", correct: true },
-                  { text: "ðŸ» Ø§Ù„Ø¯ÙÙ‘Ø¨ÙÙ‘", correct: false }
+                  { text: "Ã°Å¸ÂÂ° Ã˜Â§Ã™â€žÃ˜Â£Ã™Å½Ã˜Â±Ã™â€™Ã™â€ Ã™Å½Ã˜Â¨Ã™Â", correct: true },
+                  { text: "Ã°Å¸ÂÂ» Ã˜Â§Ã™â€žÃ˜Â¯Ã™ÂÃ™â€˜Ã˜Â¨Ã™ÂÃ™â€˜", correct: false }
                 ]
               }
             },
             {
               id: "chat",
-              title: "Ø§Ù„Ù‚ÙØ·ÙÙ‘ ÙˆÙŽØ§Ù„ÙƒÙØªÙŽØ§Ø¨Ù Ø§Ù„Ø¹ÙŽØ¬ÙÙŠØ¨Ù",
-              tag: "Ø­ÙØ¨ÙÙ‘ Ø§Ù„Ù‚ÙØ±ÙŽØ§Ø¡ÙŽØ©Ù",
+              title: "Ã˜Â§Ã™â€žÃ™â€šÃ™ÂÃ˜Â·Ã™ÂÃ™â€˜ Ã™Ë†Ã™Å½Ã˜Â§Ã™â€žÃ™Æ’Ã™ÂÃ˜ÂªÃ™Å½Ã˜Â§Ã˜Â¨Ã™Â Ã˜Â§Ã™â€žÃ˜Â¹Ã™Å½Ã˜Â¬Ã™ÂÃ™Å Ã˜Â¨Ã™Â",
+              tag: "Ã˜Â­Ã™ÂÃ˜Â¨Ã™ÂÃ™â€˜ Ã˜Â§Ã™â€žÃ™â€šÃ™ÂÃ˜Â±Ã™Å½Ã˜Â§Ã˜Â¡Ã™Å½Ã˜Â©Ã™Â",
               bg: "radial-gradient(circle at 50% 0%, #c6d2ff 0%, #7c65e0 100%)",
               thumb: "assets/images/games/words/cat.png",
-              desc: "Ù‚ÙØ·ÙŒÙ‘ Ù„ÙŽØ·ÙÙŠÙÙŒ ÙŠÙŽÙÙ’ØªÙŽØ­Ù ÙƒÙØªÙŽØ§Ø¨Ù‹Ø§ ÙˆÙŽÙŠÙŽØªÙŽØ¹ÙŽÙ„ÙŽÙ‘Ù…Ù Ø§Ù„Ø­ÙØ±ÙÙˆÙÙŽ Ø§Ù„Ø¬ÙŽÙ…ÙÙŠÙ„ÙŽØ©ÙŽ.",
+              desc: "Ã™â€šÃ™ÂÃ˜Â·Ã™Å’Ã™â€˜ Ã™â€žÃ™Å½Ã˜Â·Ã™ÂÃ™Å Ã™ÂÃ™Å’ Ã™Å Ã™Å½Ã™ÂÃ™â€™Ã˜ÂªÃ™Å½Ã˜Â­Ã™Â Ã™Æ’Ã™ÂÃ˜ÂªÃ™Å½Ã˜Â§Ã˜Â¨Ã™â€¹Ã˜Â§ Ã™Ë†Ã™Å½Ã™Å Ã™Å½Ã˜ÂªÃ™Å½Ã˜Â¹Ã™Å½Ã™â€žÃ™Å½Ã™â€˜Ã™â€¦Ã™Â Ã˜Â§Ã™â€žÃ˜Â­Ã™ÂÃ˜Â±Ã™ÂÃ™Ë†Ã™ÂÃ™Å½ Ã˜Â§Ã™â€žÃ˜Â¬Ã™Å½Ã™â€¦Ã™ÂÃ™Å Ã™â€žÃ™Å½Ã˜Â©Ã™Å½.",
               pages: [
                 {
                   images: ["assets/images/games/words/cat.png", "assets/images/stationery/book.png"],
-                  text: "ÙÙŽØªÙŽØ­ÙŽ Ø§Ù„Ù‚ÙØ·ÙÙ‘ ÙƒÙØªÙŽØ§Ø¨Ù‹Ø§ Ù…ÙÙ„ÙŽÙˆÙŽÙ‘Ù†Ù‹Ø§ Ù…ÙŽÙ„ÙÙŠØ¦Ù‹Ø§ Ø¨ÙØ§Ù„ØµÙÙ‘ÙˆÙŽØ±Ù Ø§Ù„Ø±ÙŽÙ‘Ø§Ø¦ÙØ¹ÙŽØ©Ù.",
-                  speech: "ÙÙŽØªÙŽØ­ÙŽ Ø§Ù„Ù‚ÙØ·ÙÙ‘ ÙƒÙØªÙŽØ§Ø¨Ù‹Ø§ Ù…ÙÙ„ÙŽÙˆÙŽÙ‘Ù†Ù‹Ø§ Ù…ÙŽÙ„ÙÙŠØ¦Ù‹Ø§ Ø¨ÙØ§Ù„ØµÙÙ‘ÙˆÙŽØ±Ù Ø§Ù„Ø±ÙŽÙ‘Ø§Ø¦ÙØ¹ÙŽØ©Ù."
+                  text: "Ã™ÂÃ™Å½Ã˜ÂªÃ™Å½Ã˜Â­Ã™Å½ Ã˜Â§Ã™â€žÃ™â€šÃ™ÂÃ˜Â·Ã™ÂÃ™â€˜ Ã™Æ’Ã™ÂÃ˜ÂªÃ™Å½Ã˜Â§Ã˜Â¨Ã™â€¹Ã˜Â§ Ã™â€¦Ã™ÂÃ™â€žÃ™Å½Ã™Ë†Ã™Å½Ã™â€˜Ã™â€ Ã™â€¹Ã˜Â§ Ã™â€¦Ã™Å½Ã™â€žÃ™ÂÃ™Å Ã˜Â¦Ã™â€¹Ã˜Â§ Ã˜Â¨Ã™ÂÃ˜Â§Ã™â€žÃ˜ÂµÃ™ÂÃ™â€˜Ã™Ë†Ã™Å½Ã˜Â±Ã™Â Ã˜Â§Ã™â€žÃ˜Â±Ã™Å½Ã™â€˜Ã˜Â§Ã˜Â¦Ã™ÂÃ˜Â¹Ã™Å½Ã˜Â©Ã™Â.",
+                  speech: "Ã™ÂÃ™Å½Ã˜ÂªÃ™Å½Ã˜Â­Ã™Å½ Ã˜Â§Ã™â€žÃ™â€šÃ™ÂÃ˜Â·Ã™ÂÃ™â€˜ Ã™Æ’Ã™ÂÃ˜ÂªÃ™Å½Ã˜Â§Ã˜Â¨Ã™â€¹Ã˜Â§ Ã™â€¦Ã™ÂÃ™â€žÃ™Å½Ã™Ë†Ã™Å½Ã™â€˜Ã™â€ Ã™â€¹Ã˜Â§ Ã™â€¦Ã™Å½Ã™â€žÃ™ÂÃ™Å Ã˜Â¦Ã™â€¹Ã˜Â§ Ã˜Â¨Ã™ÂÃ˜Â§Ã™â€žÃ˜ÂµÃ™ÂÃ™â€˜Ã™Ë†Ã™Å½Ã˜Â±Ã™Â Ã˜Â§Ã™â€žÃ˜Â±Ã™Å½Ã™â€˜Ã˜Â§Ã˜Â¦Ã™ÂÃ˜Â¹Ã™Å½Ã˜Â©Ã™Â."
                 },
                 {
                   images: ["assets/images/games/words/flower.png", "assets/images/games/words/train.png"],
-                  text: "Ø´ÙŽØ§Ù‡ÙŽØ¯ÙŽ Ø²ÙŽÙ‡Ù’Ø±ÙŽØ©Ù‹ Ø¨ÙŽØ¯ÙÙŠØ¹ÙŽØ©Ù‹ ÙˆÙŽÙ‚ÙØ·ÙŽØ§Ø±Ù‹Ø§ ØµÙŽØºÙÙŠØ±Ù‹Ø§ ÙŠÙŽØ³ÙÙŠØ±Ù Ø¨ÙØ³ÙØ±Ù’Ø¹ÙŽØ©Ù.",
-                  speech: "Ø´ÙŽØ§Ù‡ÙŽØ¯ÙŽ Ø²ÙŽÙ‡Ù’Ø±ÙŽØ©Ù‹ Ø¨ÙŽØ¯ÙÙŠØ¹ÙŽØ©Ù‹ ÙˆÙŽÙ‚ÙØ·ÙŽØ§Ø±Ù‹Ø§ ØµÙŽØºÙÙŠØ±Ù‹Ø§ ÙŠÙŽØ³ÙÙŠØ±Ù Ø¨ÙØ³ÙØ±Ù’Ø¹ÙŽØ©Ù."
+                  text: "Ã˜Â´Ã™Å½Ã˜Â§Ã™â€¡Ã™Å½Ã˜Â¯Ã™Å½ Ã˜Â²Ã™Å½Ã™â€¡Ã™â€™Ã˜Â±Ã™Å½Ã˜Â©Ã™â€¹ Ã˜Â¨Ã™Å½Ã˜Â¯Ã™ÂÃ™Å Ã˜Â¹Ã™Å½Ã˜Â©Ã™â€¹ Ã™Ë†Ã™Å½Ã™â€šÃ™ÂÃ˜Â·Ã™Å½Ã˜Â§Ã˜Â±Ã™â€¹Ã˜Â§ Ã˜ÂµÃ™Å½Ã˜ÂºÃ™ÂÃ™Å Ã˜Â±Ã™â€¹Ã˜Â§ Ã™Å Ã™Å½Ã˜Â³Ã™ÂÃ™Å Ã˜Â±Ã™Â Ã˜Â¨Ã™ÂÃ˜Â³Ã™ÂÃ˜Â±Ã™â€™Ã˜Â¹Ã™Å½Ã˜Â©Ã™Â.",
+                  speech: "Ã˜Â´Ã™Å½Ã˜Â§Ã™â€¡Ã™Å½Ã˜Â¯Ã™Å½ Ã˜Â²Ã™Å½Ã™â€¡Ã™â€™Ã˜Â±Ã™Å½Ã˜Â©Ã™â€¹ Ã˜Â¨Ã™Å½Ã˜Â¯Ã™ÂÃ™Å Ã˜Â¹Ã™Å½Ã˜Â©Ã™â€¹ Ã™Ë†Ã™Å½Ã™â€šÃ™ÂÃ˜Â·Ã™Å½Ã˜Â§Ã˜Â±Ã™â€¹Ã˜Â§ Ã˜ÂµÃ™Å½Ã˜ÂºÃ™ÂÃ™Å Ã˜Â±Ã™â€¹Ã˜Â§ Ã™Å Ã™Å½Ã˜Â³Ã™ÂÃ™Å Ã˜Â±Ã™Â Ã˜Â¨Ã™ÂÃ˜Â³Ã™ÂÃ˜Â±Ã™â€™Ã˜Â¹Ã™Å½Ã˜Â©Ã™Â."
                 },
                 {
                   images: ["assets/images/games/words/star.png", "assets/images/games/words/moon.png"],
-                  text: "ÙÙŽØ±ÙØ­ÙŽ Ø§Ù„Ù‚ÙØ·ÙÙ‘ Ø¨ÙØ§Ù„Ù‚ÙØ±ÙŽØ§Ø¡ÙŽØ©Ù ÙˆÙŽØªÙŽÙ…ÙŽÙ†ÙŽÙ‘Ù‰ Ø£ÙŽÙ†Ù’ ÙŠÙŽÙ‚Ù’Ø±ÙŽØ£ÙŽ ÙƒÙÙ„ÙŽÙ‘ ÙŠÙŽÙˆÙ’Ù…Ù.",
-                  speech: "ÙÙŽØ±ÙØ­ÙŽ Ø§Ù„Ù‚ÙØ·ÙÙ‘ Ø¨ÙØ§Ù„Ù‚ÙØ±ÙŽØ§Ø¡ÙŽØ©Ù ÙˆÙŽØªÙŽÙ…ÙŽÙ†ÙŽÙ‘Ù‰ Ø£ÙŽÙ†Ù’ ÙŠÙŽÙ‚Ù’Ø±ÙŽØ£ÙŽ ÙƒÙÙ„ÙŽÙ‘ ÙŠÙŽÙˆÙ’Ù…Ù."
+                  text: "Ã™ÂÃ™Å½Ã˜Â±Ã™ÂÃ˜Â­Ã™Å½ Ã˜Â§Ã™â€žÃ™â€šÃ™ÂÃ˜Â·Ã™ÂÃ™â€˜ Ã˜Â¨Ã™ÂÃ˜Â§Ã™â€žÃ™â€šÃ™ÂÃ˜Â±Ã™Å½Ã˜Â§Ã˜Â¡Ã™Å½Ã˜Â©Ã™Â Ã™Ë†Ã™Å½Ã˜ÂªÃ™Å½Ã™â€¦Ã™Å½Ã™â€ Ã™Å½Ã™â€˜Ã™â€° Ã˜Â£Ã™Å½Ã™â€ Ã™â€™ Ã™Å Ã™Å½Ã™â€šÃ™â€™Ã˜Â±Ã™Å½Ã˜Â£Ã™Å½ Ã™Æ’Ã™ÂÃ™â€žÃ™Å½Ã™â€˜ Ã™Å Ã™Å½Ã™Ë†Ã™â€™Ã™â€¦Ã™Â.",
+                  speech: "Ã™ÂÃ™Å½Ã˜Â±Ã™ÂÃ˜Â­Ã™Å½ Ã˜Â§Ã™â€žÃ™â€šÃ™ÂÃ˜Â·Ã™ÂÃ™â€˜ Ã˜Â¨Ã™ÂÃ˜Â§Ã™â€žÃ™â€šÃ™ÂÃ˜Â±Ã™Å½Ã˜Â§Ã˜Â¡Ã™Å½Ã˜Â©Ã™Â Ã™Ë†Ã™Å½Ã˜ÂªÃ™Å½Ã™â€¦Ã™Å½Ã™â€ Ã™Å½Ã™â€˜Ã™â€° Ã˜Â£Ã™Å½Ã™â€ Ã™â€™ Ã™Å Ã™Å½Ã™â€šÃ™â€™Ã˜Â±Ã™Å½Ã˜Â£Ã™Å½ Ã™Æ’Ã™ÂÃ™â€žÃ™Å½Ã™â€˜ Ã™Å Ã™Å½Ã™Ë†Ã™â€™Ã™â€¦Ã™Â."
                 }
               ],
-              moral: "âœ¨ Ø§Ù„Ø¹ÙØ¨Ù’Ø±ÙŽØ©Ù : Ø§Ù„ÙƒÙØªÙØ¨Ù ØªÙŽÙÙ’ØªÙŽØ­Ù Ø£ÙŽØ¨Ù’ÙˆÙŽØ§Ø¨ÙŽ Ø§Ù„Ø¹ÙÙ„Ù’Ù…Ù ÙˆÙŽØ§Ù„Ø®ÙŽÙŠÙŽØ§Ù„Ù!",
+              moral: "Ã¢Å“Â¨ Ã˜Â§Ã™â€žÃ˜Â¹Ã™ÂÃ˜Â¨Ã™â€™Ã˜Â±Ã™Å½Ã˜Â©Ã™Â : Ã˜Â§Ã™â€žÃ™Æ’Ã™ÂÃ˜ÂªÃ™ÂÃ˜Â¨Ã™Â Ã˜ÂªÃ™Å½Ã™ÂÃ™â€™Ã˜ÂªÃ™Å½Ã˜Â­Ã™Â Ã˜Â£Ã™Å½Ã˜Â¨Ã™â€™Ã™Ë†Ã™Å½Ã˜Â§Ã˜Â¨Ã™Å½ Ã˜Â§Ã™â€žÃ˜Â¹Ã™ÂÃ™â€žÃ™â€™Ã™â€¦Ã™Â Ã™Ë†Ã™Å½Ã˜Â§Ã™â€žÃ˜Â®Ã™Å½Ã™Å Ã™Å½Ã˜Â§Ã™â€žÃ™Â!",
               quiz: {
-                question: "Ù…ÙŽØ§Ø°ÙŽØ§ ÙÙŽØªÙŽØ­ÙŽ Ø§Ù„Ù‚ÙØ·ÙÙ‘ØŸ",
+                question: "Ã™â€¦Ã™Å½Ã˜Â§Ã˜Â°Ã™Å½Ã˜Â§ Ã™ÂÃ™Å½Ã˜ÂªÃ™Å½Ã˜Â­Ã™Å½ Ã˜Â§Ã™â€žÃ™â€šÃ™ÂÃ˜Â·Ã™ÂÃ™â€˜Ã˜Å¸",
                 options: [
-                  { text: "ðŸ“– ÙƒÙØªÙŽØ§Ø¨Ù‹Ø§", correct: true },
-                  { text: "ðŸ“¦ ØµÙÙ†Ù’Ø¯ÙÙˆÙ‚Ù‹Ø§", correct: false }
+                  { text: "Ã°Å¸â€œâ€“ Ã™Æ’Ã™ÂÃ˜ÂªÃ™Å½Ã˜Â§Ã˜Â¨Ã™â€¹Ã˜Â§", correct: true },
+                  { text: "Ã°Å¸â€œÂ¦ Ã˜ÂµÃ™ÂÃ™â€ Ã™â€™Ã˜Â¯Ã™ÂÃ™Ë†Ã™â€šÃ™â€¹Ã˜Â§", correct: false }
                 ]
               }
             },
             {
               id: "famille",
-              title: "ÙŠÙŽÙˆÙ’Ù…ÙŒ Ø³ÙŽØ¹ÙÙŠØ¯ÙŒ Ù…ÙŽØ¹ÙŽ Ø§Ù„Ø¹ÙŽØ§Ø¦ÙÙ„ÙŽØ©Ù",
-              tag: "Ø§Ù„Ø¹ÙŽØ§Ø¦ÙÙ„ÙŽØ©Ù ÙˆÙŽØ§Ù„Ù…ÙŽØ­ÙŽØ¨ÙŽÙ‘Ø©Ù",
+              title: "Ã™Å Ã™Å½Ã™Ë†Ã™â€™Ã™â€¦Ã™Å’ Ã˜Â³Ã™Å½Ã˜Â¹Ã™ÂÃ™Å Ã˜Â¯Ã™Å’ Ã™â€¦Ã™Å½Ã˜Â¹Ã™Å½ Ã˜Â§Ã™â€žÃ˜Â¹Ã™Å½Ã˜Â§Ã˜Â¦Ã™ÂÃ™â€žÃ™Å½Ã˜Â©Ã™Â",
+              tag: "Ã˜Â§Ã™â€žÃ˜Â¹Ã™Å½Ã˜Â§Ã˜Â¦Ã™ÂÃ™â€žÃ™Å½Ã˜Â©Ã™Â Ã™Ë†Ã™Å½Ã˜Â§Ã™â€žÃ™â€¦Ã™Å½Ã˜Â­Ã™Å½Ã˜Â¨Ã™Å½Ã™â€˜Ã˜Â©Ã™Â",
               bg: "radial-gradient(circle at 50% 0%, #a7f3d0 0%, #34d399 100%)",
               thumb: "assets/images/family/father.png",
-              desc: "Ø£ÙŽØ¬Ù’Ù…ÙŽÙ„Ù Ø§Ù„Ø£ÙŽÙˆÙ’Ù‚ÙŽØ§ØªÙ Ø¨ÙŽÙŠÙ’Ù†ÙŽ Ø£ÙŽØ¨ÙÙŠ ÙˆÙŽØ£ÙÙ…ÙÙ‘ÙŠ ÙˆÙŽØ¥ÙØ®Ù’ÙˆÙŽØªÙÙŠ.",
+              desc: "Ã˜Â£Ã™Å½Ã˜Â¬Ã™â€™Ã™â€¦Ã™Å½Ã™â€žÃ™Â Ã˜Â§Ã™â€žÃ˜Â£Ã™Å½Ã™Ë†Ã™â€™Ã™â€šÃ™Å½Ã˜Â§Ã˜ÂªÃ™Â Ã˜Â¨Ã™Å½Ã™Å Ã™â€™Ã™â€ Ã™Å½ Ã˜Â£Ã™Å½Ã˜Â¨Ã™ÂÃ™Å  Ã™Ë†Ã™Å½Ã˜Â£Ã™ÂÃ™â€¦Ã™ÂÃ™â€˜Ã™Å  Ã™Ë†Ã™Å½Ã˜Â¥Ã™ÂÃ˜Â®Ã™â€™Ã™Ë†Ã™Å½Ã˜ÂªÃ™ÂÃ™Å .",
               pages: [
                 {
                   images: ["assets/images/family/father.png", "assets/images/family/mother.png"],
-                  text: "ÙÙÙŠ Ø§Ù„ØµÙŽÙ‘Ø¨ÙŽØ§Ø­ÙØŒ ÙŠÙŽØ¬Ù’ØªÙŽÙ…ÙØ¹Ù Ø£ÙŽØ¨ÙÙŠ ÙˆÙŽØ£ÙÙ…ÙÙ‘ÙŠ Ø­ÙŽÙˆÙ’Ù„ÙŽ Ù…ÙŽØ§Ø¦ÙØ¯ÙŽØ©Ù Ø§Ù„ÙÙØ·ÙÙˆØ±Ù Ø§Ù„Ù„ÙŽÙ‘Ø°ÙÙŠØ°Ù.",
-                  speech: "ÙÙÙŠ Ø§Ù„ØµÙŽÙ‘Ø¨ÙŽØ§Ø­ÙØŒ ÙŠÙŽØ¬Ù’ØªÙŽÙ…ÙØ¹Ù Ø£ÙŽØ¨ÙÙŠ ÙˆÙŽØ£ÙÙ…ÙÙ‘ÙŠ Ø­ÙŽÙˆÙ’Ù„ÙŽ Ù…ÙŽØ§Ø¦ÙØ¯ÙŽØ©Ù Ø§Ù„ÙÙØ·ÙÙˆØ±Ù Ø§Ù„Ù„ÙŽÙ‘Ø°ÙÙŠØ°Ù."
+                  text: "Ã™ÂÃ™ÂÃ™Å  Ã˜Â§Ã™â€žÃ˜ÂµÃ™Å½Ã™â€˜Ã˜Â¨Ã™Å½Ã˜Â§Ã˜Â­Ã™ÂÃ˜Å’ Ã™Å Ã™Å½Ã˜Â¬Ã™â€™Ã˜ÂªÃ™Å½Ã™â€¦Ã™ÂÃ˜Â¹Ã™Â Ã˜Â£Ã™Å½Ã˜Â¨Ã™ÂÃ™Å  Ã™Ë†Ã™Å½Ã˜Â£Ã™ÂÃ™â€¦Ã™ÂÃ™â€˜Ã™Å  Ã˜Â­Ã™Å½Ã™Ë†Ã™â€™Ã™â€žÃ™Å½ Ã™â€¦Ã™Å½Ã˜Â§Ã˜Â¦Ã™ÂÃ˜Â¯Ã™Å½Ã˜Â©Ã™Â Ã˜Â§Ã™â€žÃ™ÂÃ™ÂÃ˜Â·Ã™ÂÃ™Ë†Ã˜Â±Ã™Â Ã˜Â§Ã™â€žÃ™â€žÃ™Å½Ã™â€˜Ã˜Â°Ã™ÂÃ™Å Ã˜Â°Ã™Â.",
+                  speech: "Ã™ÂÃ™ÂÃ™Å  Ã˜Â§Ã™â€žÃ˜ÂµÃ™Å½Ã™â€˜Ã˜Â¨Ã™Å½Ã˜Â§Ã˜Â­Ã™ÂÃ˜Å’ Ã™Å Ã™Å½Ã˜Â¬Ã™â€™Ã˜ÂªÃ™Å½Ã™â€¦Ã™ÂÃ˜Â¹Ã™Â Ã˜Â£Ã™Å½Ã˜Â¨Ã™ÂÃ™Å  Ã™Ë†Ã™Å½Ã˜Â£Ã™ÂÃ™â€¦Ã™ÂÃ™â€˜Ã™Å  Ã˜Â­Ã™Å½Ã™Ë†Ã™â€™Ã™â€žÃ™Å½ Ã™â€¦Ã™Å½Ã˜Â§Ã˜Â¦Ã™ÂÃ˜Â¯Ã™Å½Ã˜Â©Ã™Â Ã˜Â§Ã™â€žÃ™ÂÃ™ÂÃ˜Â·Ã™ÂÃ™Ë†Ã˜Â±Ã™Â Ã˜Â§Ã™â€žÃ™â€žÃ™Å½Ã™â€˜Ã˜Â°Ã™ÂÃ™Å Ã˜Â°Ã™Â."
                 },
                 {
                   images: ["assets/images/games/words/bike.png", "assets/images/family/brother.png"],
-                  text: "ÙŠÙŽÙ„Ù’Ø¹ÙŽØ¨Ù Ø£ÙŽØ®ÙÙŠ Ø¨ÙØ¯ÙŽØ±ÙŽÙ‘Ø§Ø¬ÙŽØªÙÙ‡Ù ÙÙÙŠ Ø§Ù„Ø­ÙŽØ¯ÙÙŠÙ‚ÙŽØ©Ù ØªÙŽØ­Ù’ØªÙŽ Ø§Ù„Ø£ÙŽØ´Ù’Ø¬ÙŽØ§Ø±Ù.",
-                  speech: "ÙŠÙŽÙ„Ù’Ø¹ÙŽØ¨Ù Ø£ÙŽØ®ÙÙŠ Ø¨ÙØ¯ÙŽØ±ÙŽÙ‘Ø§Ø¬ÙŽØªÙÙ‡Ù ÙÙÙŠ Ø§Ù„Ø­ÙŽØ¯ÙÙŠÙ‚ÙŽØ©Ù ØªÙŽØ­Ù’ØªÙŽ Ø§Ù„Ø£ÙŽØ´Ù’Ø¬ÙŽØ§Ø±Ù."
+                  text: "Ã™Å Ã™Å½Ã™â€žÃ™â€™Ã˜Â¹Ã™Å½Ã˜Â¨Ã™Â Ã˜Â£Ã™Å½Ã˜Â®Ã™ÂÃ™Å  Ã˜Â¨Ã™ÂÃ˜Â¯Ã™Å½Ã˜Â±Ã™Å½Ã™â€˜Ã˜Â§Ã˜Â¬Ã™Å½Ã˜ÂªÃ™ÂÃ™â€¡Ã™Â Ã™ÂÃ™ÂÃ™Å  Ã˜Â§Ã™â€žÃ˜Â­Ã™Å½Ã˜Â¯Ã™ÂÃ™Å Ã™â€šÃ™Å½Ã˜Â©Ã™Â Ã˜ÂªÃ™Å½Ã˜Â­Ã™â€™Ã˜ÂªÃ™Å½ Ã˜Â§Ã™â€žÃ˜Â£Ã™Å½Ã˜Â´Ã™â€™Ã˜Â¬Ã™Å½Ã˜Â§Ã˜Â±Ã™Â.",
+                  speech: "Ã™Å Ã™Å½Ã™â€žÃ™â€™Ã˜Â¹Ã™Å½Ã˜Â¨Ã™Â Ã˜Â£Ã™Å½Ã˜Â®Ã™ÂÃ™Å  Ã˜Â¨Ã™ÂÃ˜Â¯Ã™Å½Ã˜Â±Ã™Å½Ã™â€˜Ã˜Â§Ã˜Â¬Ã™Å½Ã˜ÂªÃ™ÂÃ™â€¡Ã™Â Ã™ÂÃ™ÂÃ™Å  Ã˜Â§Ã™â€žÃ˜Â­Ã™Å½Ã˜Â¯Ã™ÂÃ™Å Ã™â€šÃ™Å½Ã˜Â©Ã™Â Ã˜ÂªÃ™Å½Ã˜Â­Ã™â€™Ã˜ÂªÃ™Å½ Ã˜Â§Ã™â€žÃ˜Â£Ã™Å½Ã˜Â´Ã™â€™Ã˜Â¬Ã™Å½Ã˜Â§Ã˜Â±Ã™Â."
                 },
                 {
                   images: ["assets/images/family/sister.png", "assets/images/fennygo/badge-explorer.png"],
-                  text: "Ø§Ù„Ø¹ÙŽØ§Ø¦ÙÙ„ÙŽØ©Ù Ù‡ÙÙŠÙŽ Ø£ÙŽØºÙ’Ù„ÙŽÙ‰ Ø´ÙŽÙŠÙ’Ø¡Ù ÙÙÙŠ Ø­ÙŽÙŠÙŽØ§ØªÙÙ†ÙŽØ§.",
-                  speech: "Ø§Ù„Ø¹ÙŽØ§Ø¦ÙÙ„ÙŽØ©Ù Ù‡ÙÙŠÙŽ Ø£ÙŽØºÙ’Ù„ÙŽÙ‰ Ø´ÙŽÙŠÙ’Ø¡Ù ÙÙÙŠ Ø­ÙŽÙŠÙŽØ§ØªÙÙ†ÙŽØ§."
+                  text: "Ã˜Â§Ã™â€žÃ˜Â¹Ã™Å½Ã˜Â§Ã˜Â¦Ã™ÂÃ™â€žÃ™Å½Ã˜Â©Ã™Â Ã™â€¡Ã™ÂÃ™Å Ã™Å½ Ã˜Â£Ã™Å½Ã˜ÂºÃ™â€™Ã™â€žÃ™Å½Ã™â€° Ã˜Â´Ã™Å½Ã™Å Ã™â€™Ã˜Â¡Ã™Â Ã™ÂÃ™ÂÃ™Å  Ã˜Â­Ã™Å½Ã™Å Ã™Å½Ã˜Â§Ã˜ÂªÃ™ÂÃ™â€ Ã™Å½Ã˜Â§.",
+                  speech: "Ã˜Â§Ã™â€žÃ˜Â¹Ã™Å½Ã˜Â§Ã˜Â¦Ã™ÂÃ™â€žÃ™Å½Ã˜Â©Ã™Â Ã™â€¡Ã™ÂÃ™Å Ã™Å½ Ã˜Â£Ã™Å½Ã˜ÂºÃ™â€™Ã™â€žÃ™Å½Ã™â€° Ã˜Â´Ã™Å½Ã™Å Ã™â€™Ã˜Â¡Ã™Â Ã™ÂÃ™ÂÃ™Å  Ã˜Â­Ã™Å½Ã™Å Ã™Å½Ã˜Â§Ã˜ÂªÃ™ÂÃ™â€ Ã™Å½Ã˜Â§."
                 }
               ],
-              moral: "âœ¨ Ø§Ù„Ø¹ÙØ¨Ù’Ø±ÙŽØ©Ù : Ø§Ø¬Ù’ØªÙÙ…ÙŽØ§Ø¹Ù Ø§Ù„Ø¹ÙŽØ§Ø¦ÙÙ„ÙŽØ©Ù ÙŠÙŽØµÙ’Ù†ÙŽØ¹Ù Ø§Ù„Ø³ÙŽÙ‘Ø¹ÙŽØ§Ø¯ÙŽØ©ÙŽ!",
+              moral: "Ã¢Å“Â¨ Ã˜Â§Ã™â€žÃ˜Â¹Ã™ÂÃ˜Â¨Ã™â€™Ã˜Â±Ã™Å½Ã˜Â©Ã™Â : Ã˜Â§Ã˜Â¬Ã™â€™Ã˜ÂªÃ™ÂÃ™â€¦Ã™Å½Ã˜Â§Ã˜Â¹Ã™Â Ã˜Â§Ã™â€žÃ˜Â¹Ã™Å½Ã˜Â§Ã˜Â¦Ã™ÂÃ™â€žÃ™Å½Ã˜Â©Ã™Â Ã™Å Ã™Å½Ã˜ÂµÃ™â€™Ã™â€ Ã™Å½Ã˜Â¹Ã™Â Ã˜Â§Ã™â€žÃ˜Â³Ã™Å½Ã™â€˜Ã˜Â¹Ã™Å½Ã˜Â§Ã˜Â¯Ã™Å½Ã˜Â©Ã™Å½!",
               quiz: {
-                question: "Ù…ÙŽØ§Ø°ÙŽØ§ ÙÙŽØ¹ÙŽÙ„ÙŽ Ø§Ù„Ø£ÙŽØ®Ù ÙÙÙŠ Ø§Ù„Ø­ÙŽØ¯ÙÙŠÙ‚ÙŽØ©ÙØŸ",
+                question: "Ã™â€¦Ã™Å½Ã˜Â§Ã˜Â°Ã™Å½Ã˜Â§ Ã™ÂÃ™Å½Ã˜Â¹Ã™Å½Ã™â€žÃ™Å½ Ã˜Â§Ã™â€žÃ˜Â£Ã™Å½Ã˜Â®Ã™Â Ã™ÂÃ™ÂÃ™Å  Ã˜Â§Ã™â€žÃ˜Â­Ã™Å½Ã˜Â¯Ã™ÂÃ™Å Ã™â€šÃ™Å½Ã˜Â©Ã™ÂÃ˜Å¸",
                 options: [
-                  { text: "ðŸš² Ù„ÙŽØ¹ÙØ¨ÙŽ Ø¨ÙØ§Ù„Ø¯ÙŽÙ‘Ø±ÙŽÙ‘Ø§Ø¬ÙŽØ©Ù", correct: true },
-                  { text: "âš½ Ù„ÙŽØ¹ÙØ¨ÙŽ Ø¨ÙØ§Ù„ÙƒÙØ±ÙŽØ©Ù", correct: false }
+                  { text: "Ã°Å¸Å¡Â² Ã™â€žÃ™Å½Ã˜Â¹Ã™ÂÃ˜Â¨Ã™Å½ Ã˜Â¨Ã™ÂÃ˜Â§Ã™â€žÃ˜Â¯Ã™Å½Ã™â€˜Ã˜Â±Ã™Å½Ã™â€˜Ã˜Â§Ã˜Â¬Ã™Å½Ã˜Â©Ã™Â", correct: true },
+                  { text: "Ã¢Å¡Â½ Ã™â€žÃ™Å½Ã˜Â¹Ã™ÂÃ˜Â¨Ã™Å½ Ã˜Â¨Ã™ÂÃ˜Â§Ã™â€žÃ™Æ’Ã™ÂÃ˜Â±Ã™Å½Ã˜Â©Ã™Â", correct: false }
                 ]
               }
             }
@@ -530,12 +530,12 @@
                   speech: "At night, under the shining moon, both friends fall asleep smiling."
                 }
               ],
-              moral: "âœ¨ Moral: Sharing makes every friendship shine brighter!",
+              moral: "Ã¢Å“Â¨ Moral: Sharing makes every friendship shine brighter!",
               quiz: {
                 question: "Who did the little lion share his apple with?",
                 options: [
-                  { text: "ðŸ° The rabbit", correct: true },
-                  { text: "ðŸ» The bear", correct: false }
+                  { text: "Ã°Å¸ÂÂ° The rabbit", correct: true },
+                  { text: "Ã°Å¸ÂÂ» The bear", correct: false }
                 ]
               }
             },
@@ -563,12 +563,12 @@
                   speech: "He loves learning new words and dreaming under the glowing stars."
                 }
               ],
-              moral: "âœ¨ Moral: Every book is a magical doorway to adventure!",
+              moral: "Ã¢Å“Â¨ Moral: Every book is a magical doorway to adventure!",
               quiz: {
                 question: "What did the kitten open?",
                 options: [
-                  { text: "ðŸ“– A picture book", correct: true },
-                  { text: "ðŸ“¦ A wooden box", correct: false }
+                  { text: "Ã°Å¸â€œâ€“ A picture book", correct: true },
+                  { text: "Ã°Å¸â€œÂ¦ A wooden box", correct: false }
                 ]
               }
             },
@@ -596,12 +596,12 @@
                   speech: "Together, our family shares love, joy, and laughter."
                 }
               ],
-              moral: "âœ¨ Moral: Family is life's greatest treasure!",
+              moral: "Ã¢Å“Â¨ Moral: Family is life's greatest treasure!",
               quiz: {
                 question: "What is the brother riding?",
                 options: [
-                  { text: "ðŸš² A bicycle", correct: true },
-                  { text: "ðŸš— A car", correct: false }
+                  { text: "Ã°Å¸Å¡Â² A bicycle", correct: true },
+                  { text: "Ã°Å¸Å¡â€” A car", correct: false }
                 ]
               }
             }
@@ -613,13 +613,13 @@
       let pageIdx = 0;
 
       function getLangData() {
-        const langId = window.AppLang ? window.AppLang.getCurrentLangId() : (localStorage.getItem("selectedLanguage") || "French");
-        return STORIES_DATA[langId] || STORIES_DATA.French;
+        const langId = window.AppLang ? window.AppLang.getCurrentLangId() : (localStorage.getItem("selectedLanguage") || "English");
+        return STORIES_DATA[langId] || STORIES_DATA.English;
       }
 
       function renderStoriesHub() {
         const data = getLangData();
-        document.documentElement.dir = (window.AppLang && window.AppLang.getCurrentLangId() === "Arabic") ? "rtl" : "ltr";
+        document.documentElement.dir = "ltr";
         document.getElementById("storiesMainTitle").textContent = data.title;
         document.getElementById("storiesMainSubtitle").textContent = data.subtitle;
         document.getElementById("listenStoryLabel").textContent = data.listen;
@@ -692,19 +692,19 @@
           const span = document.createElement("span");
           span.className = "story-word-tap";
           span.textContent = w;
-          span.title = "Touche pour Ã©couter : " + w;
+          span.title = "Touche pour ÃƒÂ©couter : " + w;
           span.addEventListener("click", (e) => {
             e.stopPropagation();
             span.classList.add("speaking");
             if (window.AppLang) {
-              window.AppLang.speak(w.replace(/[.,!?;:Â«Â»]/g, ""), data.speechLang);
+              window.AppLang.speak(w.replace(/[.,!?;:Ã‚Â«Ã‚Â»]/g, ""), data.speechLang);
             }
             setTimeout(() => span.classList.remove("speaking"), 600);
           });
           textBox.appendChild(span);
         });
 
-        // Ã‰nigme interactive sur la derniÃ¨re page
+        // Ãƒâ€°nigme interactive sur la derniÃƒÂ¨re page
         const quizBox = document.getElementById("storyQuizBox");
         if (pageIdx === activeStory.pages.length - 1 && activeStory.quiz) {
           quizBox.classList.remove("hidden");
@@ -720,8 +720,8 @@
               if (opt.correct) {
                 btn.style.background = "#86efac";
                 btn.style.borderColor = "#16a34a";
-                btn.textContent = opt.text + " â­ Bravo !";
-                if (window.AppLang) window.AppLang.speak("Bravo ! Bonne rÃ©ponse !", data.speechLang);
+                btn.textContent = opt.text + " Ã¢Â­Â Bravo !";
+                if (window.AppLang) window.AppLang.speak("Bravo ! Bonne rÃƒÂ©ponse !", data.speechLang);
               } else {
                 btn.style.background = "#fca5a5";
                 setTimeout(() => { btn.style.background = ""; }, 500);

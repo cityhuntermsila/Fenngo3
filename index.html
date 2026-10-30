@@ -292,9 +292,8 @@
       <!-- Language selector + Menu button -->
       <div class="flex items-center gap-1.5">
         <div class="flex items-center gap-0.5 bg-ow-2 border border-ow-line rounded-full p-0.5">
-          <button type="button" class="lang-pill-btn active" data-set-lang="French">FR</button>
-          <button type="button" class="lang-pill-btn" data-set-lang="English">EN</button>
-          <button type="button" class="lang-pill-btn" data-set-lang="Arabic">عربي</button>
+          <button type="button" class="lang-pill-btn active" data-set-lang="English">EN</button>
+          <button type="button" class="lang-pill-btn" data-set-lang="French">FR</button>
         </div>
         <button type="button" id="menuBtn" class="lg:hidden w-7 h-7 rounded-lg bg-v9 text-y grid place-items-center text-xs" aria-label="Menu" aria-expanded="false">
           <i class="fa-solid fa-bars"></i>
@@ -1516,17 +1515,16 @@
       });
 
       function currentLang() {
-        return window.AppLang ? window.AppLang.getCurrentLangId() : (localStorage.getItem("selectedLanguage") || "French");
+        return window.AppLang ? window.AppLang.getCurrentLangId() : (localStorage.getItem("selectedLanguage") || "English");
       }
 
       function applyLang() {
         const lang = currentLang();
         const dict = I18N[lang] || {};
-        const isRtl = lang === "Arabic";
 
         // HTML direction and language
-        document.documentElement.dir = isRtl ? "rtl" : "ltr";
-        document.documentElement.lang = isRtl ? "ar" : (lang === "English" ? "en" : "fr");
+        document.documentElement.dir = "ltr";
+        document.documentElement.lang = lang === "French" ? "fr" : "en";
 
         document.querySelectorAll("[data-i18n]").forEach((el) => {
           const key = el.dataset.i18n;
