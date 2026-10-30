@@ -2220,7 +2220,7 @@ body.modal-open {
 /* =========================================
    RESPONSIVE LAYOUT FOR MOBILE & TABLETS (< 768px)
 ========================================= */
-@media screen and (max-width: 767px) {
+@media (max-width: 960px), (max-height: 600px) {
   html,
   body.numbers-page {
     height: auto !important;

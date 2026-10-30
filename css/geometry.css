@@ -1075,7 +1075,7 @@ body:is(.mobile-portrait-rotate, .mobile-landscape-layout) .object-image {
 /* =========================================
    RESPONSIVE LAYOUT FOR MOBILE & TABLETS (< 768px)
 ========================================= */
-@media screen and (max-width: 768px) {
+@media (max-width: 960px), (max-height: 600px) {
   html,
   body.geometry-page {
     height: auto !important;

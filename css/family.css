@@ -391,7 +391,7 @@ html[dir="rtl"] .card-sound-mini {
 }
 
 /* Responsive adjustments for smaller screens */
-@media (max-width: 768px) {
+@media (max-width: 960px), (max-height: 600px) {
   html,
   body.family-page {
     height: auto !important;

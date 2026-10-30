@@ -19,23 +19,18 @@
 html,
 body {
   width: 100%;
-  height: 100%;
   min-height: 100%;
   margin: 0;
   padding: 0;
 }
 
 html {
-  overflow: hidden;
   background: #79dcff;
 }
 
 body.category {
   width: 100%;
-  height: var(--visible-height);
-  min-height: 0;
-  overflow: hidden;
-  overscroll-behavior: none;
+  min-height: 100%;
   background: url("../assets/images/category-images/background.png") center / cover no-repeat;
   -webkit-tap-highlight-color: transparent;
 }
@@ -46,10 +41,7 @@ body.category {
   display: flex;
   flex-direction: column;
   width: 100%;
-  height: var(--visible-height);
-  min-width: 0;
-  min-height: 0;
-  overflow: hidden;
+  min-height: 100dvh;
   background: url("../assets/images/category-images/background.png") center / cover no-repeat;
 }
 
@@ -74,8 +66,26 @@ body.category {
   min-width: 0;
   min-height: 0;
   padding: clamp(6px, 1.4vh, 16px) clamp(12px, 2vw, 24px);
-  overflow-y: auto;
-  overflow-x: hidden;
+}
+
+/* Desktop-only zero-scroll full viewport presentation */
+@media (min-width: 961px) and (min-height: 561px) {
+  html {
+    overflow: hidden;
+  }
+  body.category {
+    height: var(--visible-height, 100dvh);
+    overflow: hidden;
+    overscroll-behavior: none;
+  }
+  .category-app {
+    height: var(--visible-height, 100dvh);
+    overflow: hidden;
+  }
+  .category-main {
+    overflow-y: auto;
+    overflow-x: hidden;
+  }
 }
 
 .category-logo {
@@ -230,61 +240,19 @@ body.category {
   }
 }
 
-/* Physical phone landscape. Nothing is rotated here. */
-@media screen and (orientation: landscape) and (max-width: 1000px) and (max-height: 540px) {
-  .category-main {
-    padding: 4px 16px;
-  }
-
-  .category-logo {
-    width: min(34%, 270px);
-    max-height: 10vh;
-    margin-bottom: 2px;
-  }
-
-  .category-grid {
-    width: min(74vw, 660px);
-    gap: 6px 14px;
-  }
-
-  .category-grid.main-category-grid {
-    width: min(96vw, 920px);
-    gap: 4px 8px;
-  }
-
-  .main-category-grid .category-card {
-    max-width: 150px;
-  }
-
-  .main-category-grid .category-card img {
-    max-height: 22vh;
-  }
-
-  .category-grid.cours-grid {
-    width: min(88vw, 780px);
-    gap: 4px 10px;
-  }
-
-  .category-card img {
-    max-height: 30vh;
-  }
-
-  .cours-grid .category-card img {
-    max-height: 21vh;
-  }
-}
-
 /* =========================================================
-   RESPONSIVE LAYOUT FOR MOBILE PORTRAIT & LANDSCAPE (< 768px)
-   Normal vertical flow with clean 2-column touch cards
+   RESPONSIVE LAYOUT FOR MOBILE & TABLETS (Portrait & Landscape)
+   Natural vertical flow with clean touch cards & full accessibility
    ========================================================= */
-@media screen and (max-width: 767px) {
+@media (max-width: 960px), (max-height: 560px) {
   html,
   body.category {
     height: auto !important;
     min-height: 100% !important;
     overflow-x: hidden !important;
     overflow-y: auto !important;
+    overscroll-behavior-y: auto !important;
+    -webkit-overflow-scrolling: touch !important;
   }
 
   .category-app {
@@ -294,26 +262,26 @@ body.category {
     height: auto !important;
     min-height: 100dvh !important;
     transform: none !important;
-    overflow-y: auto !important;
-    overflow-x: hidden !important;
+    overflow: visible !important;
   }
 
   .category-main {
     justify-content: flex-start !important;
-    padding: 18px 12px 32px !important;
+    padding: clamp(54px, 8.5vh, 70px) 12px 42px !important;
     min-height: 100dvh !important;
     height: auto !important;
     overflow: visible !important;
   }
 
-  .category-logo {
-    width: min(84%, 300px) !important;
-    max-height: 72px !important;
-    margin: 4px auto 14px !important;
+  .category-logo,
+  .cours-logo {
+    width: min(84%, 280px) !important;
+    max-height: 64px !important;
+    margin: 4px auto 16px !important;
     animation-name: bounceLogoMobile;
   }
 
-  /* Main Category Hub: 2-column clean responsive layout */
+  /* Main Category Hub (category.html - 7 items): 2-column mobile layout */
   .category-grid.main-category-grid {
     display: grid !important;
     grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
@@ -359,29 +327,64 @@ body.category {
     max-height: 120px !important;
   }
 
-  /* Cours Grid (9 courses on cours.html): 2 columns */
+  /* Cours Grid (cours.html - 9 courses): 2 columns on phone portrait */
   .category-grid.cours-grid {
     display: grid !important;
     grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
     grid-template-rows: auto !important;
-    gap: 12px 10px !important;
+    gap: 14px 12px !important;
     width: 100% !important;
     max-width: 440px !important;
     margin: 0 auto !important;
+    padding: 0 4px !important;
+  }
+
+  .cours-grid .category-card {
+    position: relative !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    min-height: 96px !important;
+    width: 100% !important;
   }
 
   .cours-grid .category-card img {
-    max-height: 115px !important;
+    max-height: 110px !important;
+    width: auto !important;
+    max-width: 100% !important;
+    object-fit: contain !important;
+  }
+
+  /* 9th course card (Common Orders) centered spanning 2 columns */
+  .cours-grid .category-card:last-child {
+    grid-column: 1 / span 2 !important;
+    max-width: 210px !important;
+    margin: 0 auto !important;
+    width: 100% !important;
   }
 }
 
-@media screen and (min-width: 480px) and (max-width: 767px) {
+/* Wider mobile, landscape phones & tablets: 3 columns for 9 courses */
+@media screen and (min-width: 560px) and (max-width: 960px),
+       screen and (orientation: landscape) and (max-height: 560px) {
   .category-grid.cours-grid {
     grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
-    max-width: 620px !important;
+    max-width: 760px !important;
+    gap: 12px 14px !important;
   }
+
+  .cours-grid .category-card:last-child {
+    grid-column: auto !important;
+    max-width: none !important;
+    margin: 0 !important;
+  }
+
+  .cours-grid .category-card img {
+    max-height: clamp(80px, 17vh, 125px) !important;
+  }
+
   .category-grid.main-category-grid {
-    max-width: 520px !important;
+    max-width: 640px !important;
   }
 }
 
@@ -396,8 +399,8 @@ body.category {
   }
 }
 
-/* Tablet */
-@media screen and (min-width: 768px) and (max-width: 1023px) {
+/* Medium Tablets */
+@media screen and (min-width: 961px) and (max-width: 1180px) {
   .category-logo {
     width: min(76%, 560px);
   }

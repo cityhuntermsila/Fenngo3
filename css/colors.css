@@ -4477,7 +4477,7 @@ body:is(.mobile-portrait-rotate, .mobile-landscape-layout) .color-mobile-flex-ro
 /* =========================================
    RESPONSIVE LAYOUT FOR MOBILE (< 768px)
 ========================================= */
-@media screen and (max-width: 768px) {
+@media (max-width: 960px), (max-height: 600px) {
   html,
   body.colors-page {
     height: auto !important;
