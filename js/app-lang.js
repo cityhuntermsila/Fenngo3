@@ -375,6 +375,19 @@
     });
   }
 
+    // Stop all audio on page unload or visibility change
+  window.addEventListener("pagehide", stopSpeech);
+  window.addEventListener("beforeunload", stopSpeech);
+  document.addEventListener("visibilitychange", () => {
+    if (document.hidden) stopSpeech();
+  });
+  document.addEventListener("click", (e) => {
+    const a = e.target.closest("a");
+    if (a && (a.id === "globalBackBtn" || a.classList.contains("global-back-btn") || (a.href && (a.href.includes("category.html") || a.href.includes("cours.html") || a.href.includes("index.html"))))) {
+      stopSpeech();
+    }
+  });
+
   global.AppLang = {
     LANGUAGES,
     getCurrentLangId,

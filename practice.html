@@ -9,8 +9,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@600;700;800;900&family=Nunito:wght@600;700;800;900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/common.css?v=63">
-  <link rel="stylesheet" href="css/fennygo.css?v=63">
+  <link rel="stylesheet" href="css/common.css?v=64">
+  <link rel="stylesheet" href="css/fennygo.css?v=64">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
   <style>
     /* Reset & Base */
@@ -604,8 +604,8 @@
   <audio id="audioCheering" src="assets/images/music/cheering.mp3" preload="auto"></audio>
   <audio id="audioWrong" src="assets/images/music/wrong- sound.mp3" preload="auto"></audio>
 
-  <script src="js/app-lang.js?v=63"></script>
-  <script src="js/fenny-companion.js?v=63"></script>
+  <script src="js/app-lang.js?v=64"></script>
+  <script src="js/fenny-companion.js?v=64"></script>
   <script>
     (() => {
       "use strict";
@@ -870,10 +870,75 @@
       const cheeringAudio = document.getElementById("audioCheering");
       const wrongAudio = document.getElementById("audioWrong");
 
+      let activeTimerInterval = null;
+      let pendingAudioTimeout = null;
+      let activeNextStageTimeout = null;
+
+      function stopAllAudio() {
+        // 1. Stop all HTML5 audio elements (cheering, applause, wrong sound)
+        if (cheeringAudio) {
+          try {
+            cheeringAudio.pause();
+            cheeringAudio.currentTime = 0;
+          } catch (e) {}
+        }
+        if (wrongAudio) {
+          try {
+            wrongAudio.pause();
+            wrongAudio.currentTime = 0;
+          } catch (e) {}
+        }
+        document.querySelectorAll("audio").forEach(a => {
+          try {
+            a.pause();
+            a.currentTime = 0;
+          } catch (e) {}
+        });
+
+        // 2. Stop voice speech synthesis and AppLang TTS
+        if (window.AppLang && typeof window.AppLang.stopSpeech === "function") {
+          window.AppLang.stopSpeech();
+        }
+        if ("speechSynthesis" in window) {
+          try {
+            window.speechSynthesis.cancel();
+          } catch (e) {}
+        }
+
+        // 3. Clear any active countdown timers (Speed Quiz)
+        if (activeTimerInterval) {
+          clearInterval(activeTimerInterval);
+          activeTimerInterval = null;
+        }
+
+        // 4. Clear any pending delayed audio timeouts
+        if (pendingAudioTimeout) {
+          clearTimeout(pendingAudioTimeout);
+          pendingAudioTimeout = null;
+        }
+
+        // 5. Clear stage transition timeouts
+        if (activeNextStageTimeout) {
+          clearTimeout(activeNextStageTimeout);
+          activeNextStageTimeout = null;
+        }
+      }
+
       function playSound(audioEl) {
         if (!audioEl) return;
         audioEl.currentTime = 0;
         audioEl.play().catch(() => {});
+      }
+
+      function delayedSpeak(text, delay = 250) {
+        if (pendingAudioTimeout) {
+          clearTimeout(pendingAudioTimeout);
+          pendingAudioTimeout = null;
+        }
+        pendingAudioTimeout = setTimeout(() => {
+          speak(text);
+          pendingAudioTimeout = null;
+        }, delay);
       }
 
       function speak(text, onEnded = null) {
@@ -896,6 +961,7 @@
       }
 
       function applyLanguage(lang) {
+        stopAllAudio();
         currentLang = lang;
         localStorage.setItem("selectedLanguage", lang);
         const t = I18N[lang];
@@ -976,6 +1042,7 @@
       // 2. CATEGORY DETAIL (4 GAMES IN 2 COLUMNS + ALL 10 ITEMS)
       // =========================================================
       function openCategoryDetail(catId) {
+        stopAllAudio();
         selectedCatId = catId;
         renderCategoryDetail(catId);
         document.getElementById("hubView").classList.add("hidden");
@@ -1073,6 +1140,7 @@
       // 3. GAME ARENA ENGINE
       // =========================================================
       function startGame(modeId) {
+        stopAllAudio();
         activeGameMode = modeId;
         const items = [...DATASET[selectedCatId]];
         shuffleArray(items);
@@ -1145,7 +1213,7 @@
 
         stage.appendChild(container);
 
-        setTimeout(() => speak(target.word), 250);
+        delayedSpeak(target.word, 250);
         container.querySelector("#replaySoundBtn").addEventListener("click", () => speak(target.word));
 
         const grid = container.querySelector("#soundChoicesGrid");
@@ -1334,7 +1402,7 @@
         `;
 
         stage.appendChild(container);
-        setTimeout(() => speak(target.word), 250);
+        delayedSpeak(target.word, 250);
 
         const slotsContainer = container.querySelector("#spellingSlots");
         const bubblesContainer = container.querySelector("#spellingBubbles");
@@ -1445,23 +1513,33 @@
         `;
 
         stage.appendChild(container);
-        setTimeout(() => speak(target.word), 250);
+        delayedSpeak(target.word, 250);
 
         let timeLeft = 75;
         const timerFill = container.querySelector("#speedTimerFill");
-        const timerInterval = setInterval(() => {
+        if (activeTimerInterval) {
+          clearInterval(activeTimerInterval);
+          activeTimerInterval = null;
+        }
+        activeTimerInterval = setInterval(() => {
           timeLeft--;
           if (timerFill) timerFill.style.width = `${(timeLeft / 75) * 100}%`;
 
           if (timeLeft <= 0) {
-            clearInterval(timerInterval);
+            if (activeTimerInterval) {
+              clearInterval(activeTimerInterval);
+              activeTimerInterval = null;
+            }
             playSound(wrongAudio);
             handleWrongAnswer();
           }
         }, 100);
 
         function handleAnswer(userChoseYes) {
-          clearInterval(timerInterval);
+          if (activeTimerInterval) {
+            clearInterval(activeTimerInterval);
+            activeTimerInterval = null;
+          }
           const answerIsCorrect = (userChoseYes && isTrue) || (!userChoseYes && !isTrue);
           if (answerIsCorrect) {
             playSound(cheeringAudio);
@@ -1491,7 +1569,8 @@
         document.getElementById("arenaScoreVal").textContent = gameScore;
         updateStatsDisplay();
 
-        setTimeout(() => {
+        activeNextStageTimeout = setTimeout(() => {
+          activeNextStageTimeout = null;
           currentQIndex++;
           if (currentQIndex < totalQuestions) {
             loadCurrentStage();
@@ -1506,7 +1585,8 @@
         feedback.textContent = I18N[currentLang].wrongMsg;
         feedback.className = "min-h-[24px] text-center text-xs sm:text-sm font-black text-rose-600";
 
-        setTimeout(() => {
+        activeNextStageTimeout = setTimeout(() => {
+          activeNextStageTimeout = null;
           currentQIndex++;
           if (currentQIndex < totalQuestions) {
             loadCurrentStage();
@@ -1598,7 +1678,12 @@
         });
       });
 
+      document.getElementById("topNavBackBtn").addEventListener("click", () => {
+        stopAllAudio();
+      });
+
       document.getElementById("backToHubBtn").addEventListener("click", () => {
+        stopAllAudio();
         selectedCatId = null;
         document.getElementById("categoryDetailView").classList.add("hidden");
         document.getElementById("hubView").classList.remove("hidden");
@@ -1606,24 +1691,35 @@
       });
 
       document.getElementById("backToCatDetailBtn").addEventListener("click", () => {
+        stopAllAudio();
         document.getElementById("arenaView").classList.add("hidden");
         document.getElementById("categoryDetailView").classList.remove("hidden");
         window.scrollTo({ top: 0, behavior: "smooth" });
       });
 
       document.getElementById("replayCurrentGameBtn").addEventListener("click", () => {
+        stopAllAudio();
         startGame(activeGameMode);
       });
 
       document.getElementById("switchGameInCatBtn").addEventListener("click", () => {
+        stopAllAudio();
         document.getElementById("victoryView").classList.add("hidden");
         document.getElementById("categoryDetailView").classList.remove("hidden");
       });
 
       document.getElementById("victoryAllThemesBtn").addEventListener("click", () => {
+        stopAllAudio();
         selectedCatId = null;
         document.getElementById("victoryView").classList.add("hidden");
         document.getElementById("hubView").classList.remove("hidden");
+      });
+
+      // Stop audio on tab switch or page navigation
+      window.addEventListener("pagehide", stopAllAudio);
+      window.addEventListener("beforeunload", stopAllAudio);
+      document.addEventListener("visibilitychange", () => {
+        if (document.hidden) stopAllAudio();
       });
 
       // Init
