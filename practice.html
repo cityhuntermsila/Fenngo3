@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="fr">
 
 <head>
@@ -9,8 +9,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@600;700;800;900&family=Nunito:wght@600;700;800;900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/common.css?v=68">
-  <link rel="stylesheet" href="css/fennygo.css?v=68">
+  <link rel="stylesheet" href="css/common.css?v=70">
+  <link rel="stylesheet" href="css/fennygo.css?v=70">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
   <style>
     /* Reset & Base */
@@ -458,7 +458,7 @@
     <header class="compact-header px-3 py-2 sm:px-4 sm:py-2.5 flex items-center justify-between gap-2">
       <!-- Back + Compact Title -->
       <div class="flex items-center gap-2">
-        <a href="category.html" class="w-9 h-9 rounded-full bg-slate-100 border-2 border-slate-300 flex items-center justify-center text-slate-700 hover:bg-slate-200 active:scale-95 transition" aria-label="Retour au menu principal">
+        <a href="category.html" id="topNavBackBtn" class="w-9 h-9 rounded-full bg-slate-100 border-2 border-slate-300 flex items-center justify-center text-slate-700 hover:bg-slate-200 active:scale-95 transition" aria-label="Retour au menu principal">
           <i class="fa-solid fa-arrow-left text-sm"></i>
         </a>
         <div class="flex items-center gap-1.5">
@@ -604,8 +604,8 @@
   <audio id="audioCheering" src="assets/images/music/cheering.mp3" preload="auto"></audio>
   <audio id="audioWrong" src="assets/images/music/wrong- sound.mp3" preload="auto"></audio>
 
-  <script src="js/app-lang.js?v=68"></script>
-  <script src="js/fenny-companion.js?v=68"></script>
+  <script src="js/app-lang.js?v=70"></script>
+  <script src="js/fenny-companion.js?v=70"></script>
   <script>
     (() => {
       "use strict";
@@ -1690,41 +1690,41 @@
         });
       });
 
-      document.getElementById("topNavBackBtn").addEventListener("click", () => {
+      document.getElementById("topNavBackBtn")?.addEventListener("click", () => {
         stopAllAudio();
       });
 
-      document.getElementById("backToHubBtn").addEventListener("click", () => {
+      document.getElementById("backToHubBtn")?.addEventListener("click", () => {
         stopAllAudio();
         selectedCatId = null;
-        document.getElementById("categoryDetailView").classList.add("hidden");
-        document.getElementById("hubView").classList.remove("hidden");
+        document.getElementById("categoryDetailView")?.classList.add("hidden");
+        document.getElementById("hubView")?.classList.remove("hidden");
         window.scrollTo({ top: 0, behavior: "smooth" });
       });
 
-      document.getElementById("backToCatDetailBtn").addEventListener("click", () => {
+      document.getElementById("backToCatDetailBtn")?.addEventListener("click", () => {
         stopAllAudio();
-        document.getElementById("arenaView").classList.add("hidden");
-        document.getElementById("categoryDetailView").classList.remove("hidden");
+        document.getElementById("arenaView")?.classList.add("hidden");
+        document.getElementById("categoryDetailView")?.classList.remove("hidden");
         window.scrollTo({ top: 0, behavior: "smooth" });
       });
 
-      document.getElementById("replayCurrentGameBtn").addEventListener("click", () => {
+      document.getElementById("replayCurrentGameBtn")?.addEventListener("click", () => {
         stopAllAudio();
         startGame(activeGameMode);
       });
 
-      document.getElementById("switchGameInCatBtn").addEventListener("click", () => {
+      document.getElementById("switchGameInCatBtn")?.addEventListener("click", () => {
         stopAllAudio();
-        document.getElementById("victoryView").classList.add("hidden");
-        document.getElementById("categoryDetailView").classList.remove("hidden");
+        document.getElementById("victoryView")?.classList.add("hidden");
+        document.getElementById("categoryDetailView")?.classList.remove("hidden");
       });
 
-      document.getElementById("victoryAllThemesBtn").addEventListener("click", () => {
+      document.getElementById("victoryAllThemesBtn")?.addEventListener("click", () => {
         stopAllAudio();
         selectedCatId = null;
-        document.getElementById("victoryView").classList.add("hidden");
-        document.getElementById("hubView").classList.remove("hidden");
+        document.getElementById("victoryView")?.classList.add("hidden");
+        document.getElementById("hubView")?.classList.remove("hidden");
       });
 
       // Stop audio on tab switch or page navigation
