@@ -9,8 +9,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@600;700;800;900&family=Nunito:wght@600;700;800;900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/common.css?v=58">
-  <link rel="stylesheet" href="css/fennygo.css?v=58">
+  <link rel="stylesheet" href="css/common.css?v=59">
+  <link rel="stylesheet" href="css/fennygo.css?v=59">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
   <style>
     /* Reset & Base */
@@ -264,15 +264,19 @@
     /* 3D Flip Memory Cards */
     .memory-grid {
       display: grid;
-      grid-template-columns: repeat(4, minmax(0, 1fr));
-      gap: 8px;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+      max-width: 340px;
+      margin: 0 auto;
       perspective: 1000px;
+      width: 100%;
     }
 
-    @media (max-width: 640px) {
+    @media (min-width: 540px) {
       .memory-grid {
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-        gap: 6px;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 12px;
+        max-width: 500px;
       }
     }
 
@@ -432,7 +436,7 @@
         </a>
         <div class="flex items-center gap-1.5">
           <img src="assets/images/fennygo/fenny-avatar.png" alt="Fenny" class="w-7 h-7 sm:w-8 sm:h-8 object-contain">
-          <span class="text-sm sm:text-base font-black text-slate-900" id="headerTitle">Practice 3AP</span>
+          <span class="text-xs sm:text-sm font-black text-slate-900 whitespace-nowrap truncate" id="headerTitle">Practice 3AP</span>
         </div>
       </div>
 
@@ -510,7 +514,7 @@
           <span id="backToCatDetailText">Jeux</span>
         </button>
 
-        <span id="arenaActiveModePill" class="text-xs font-black text-sky-900 bg-sky-100 px-2.5 py-0.5 rounded-full border border-sky-300">
+        <span id="arenaActiveModePill" class="text-[11px] sm:text-xs font-black text-sky-900 bg-sky-100 px-2.5 py-0.5 rounded-full border border-sky-300 truncate max-w-[130px] sm:max-w-xs">
           Jeu
         </span>
 
@@ -573,8 +577,8 @@
   <audio id="audioCheering" src="assets/images/music/cheering.mp3" preload="auto"></audio>
   <audio id="audioWrong" src="assets/images/music/wrong- sound.mp3" preload="auto"></audio>
 
-  <script src="js/app-lang.js?v=58"></script>
-  <script src="js/fenny-companion.js?v=58"></script>
+  <script src="js/app-lang.js?v=59"></script>
+  <script src="js/fenny-companion.js?v=59"></script>
   <script>
     (() => {
       "use strict";
@@ -707,7 +711,7 @@
           { id: "elephant", word: "Elephant", fr: "Éléphant", ar: "فيل", img: "assets/images/alphabet/E/elephant.png" },
           { id: "fish", word: "Fish", fr: "Poisson", ar: "سمكة", img: "assets/images/alphabet/F/fish.png" },
           { id: "grapes", word: "Grapes", fr: "Raisin", ar: "عنب", img: "assets/images/color/green/grapes.png" },
-          { id: "house", word: "House", fr: "Maison", ar: "منزل", img: "assets/images/alphabet/H/House.png" },
+          { id: "house", word: "House", fr: "Maison", ar: "منزل", img: "assets/images/alphabet/H/house.png" },
           { id: "sun", word: "Sun", fr: "Soleil", ar: "شمس", img: "assets/images/color/yellow/sun.png" },
           { id: "mango", word: "Mango", fr: "Mangue", ar: "مانجو", img: "assets/images/alphabet/M/mango.png" }
         ],
@@ -811,9 +815,9 @@
 
       const CATEGORY_ICONS = {
         alphabet: "assets/images/category-images/alphabet.png",
-        numbers: "assets/images/category-images/numbers.png",
-        colors: "assets/images/category-images/colors.png",
-        geometry: "assets/images/category-images/geometry.png",
+        numbers: "assets/images/category-images/numbeer.png",
+        colors: "assets/images/category-images/color.png",
+        geometry: "assets/images/category-images/geometric.png",
         family: "assets/images/category-images/family.png",
         stationery: "assets/images/category-images/stationery.png",
         bodyParts: "assets/images/category-images/body-parts.png",
@@ -1070,7 +1074,7 @@
         document.getElementById("arenaFeedback").textContent = "";
 
         const t = I18N[currentLang];
-        document.getElementById("arenaProgressLabel").textContent = `${t.step} ${currentQIndex + 1} / ${totalQuestions}`;
+        document.getElementById("arenaProgressLabel").textContent = `${currentQIndex + 1} / ${totalQuestions}`;
 
         if (activeGameMode === "listen") {
           renderSoundMatchQuestion(stage);
@@ -1191,7 +1195,7 @@
               <img src="assets/images/practice/card-back.svg" alt="Card">
             </div>
             <div class="memory-face memory-front">
-              <img src="${cardData.item.img}" alt="${cardData.item.word}">
+              <img src="${cardData.item.img}" alt="${cardData.item.word}" class="w-full h-full object-contain filter drop-shadow max-h-[72%]" onerror="this.onerror=null; this.src='assets/images/fennygo/fenny-avatar.png';">
               <span class="text-[10px] font-black text-slate-900 line-clamp-1 mt-0.5">${cardData.item.word}</span>
             </div>
           `;
