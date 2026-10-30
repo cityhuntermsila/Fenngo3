@@ -33,11 +33,9 @@
 html,
 body.games-page {
   width: 100%;
-  height: 100dvh;
+  min-height: 100%;
   margin: 0;
   padding: 0;
-  overflow: hidden;
-  overscroll-behavior: none;
   font-family: "Nunito", "Cairo", "Tajawal", sans-serif;
   color: var(--nk-text);
   background: radial-gradient(circle at 50% 20%, #fdeebc 0%, #f7cf68 50%, #f1bb3d 100%);
@@ -47,10 +45,28 @@ body.games-page {
 .games-app {
   position: relative;
   width: 100%;
-  height: 100dvh;
-  overflow: hidden;
+  min-height: 100dvh;
   display: flex;
   flex-direction: column;
+}
+
+@media (min-width: 961px) and (min-height: 561px) {
+  html,
+  body.games-page {
+    height: 100dvh;
+    overflow: hidden;
+    overscroll-behavior: none;
+  }
+
+  .games-app {
+    height: 100dvh;
+    overflow: hidden;
+  }
+
+  .games-hub {
+    height: 100dvh;
+    overflow: hidden;
+  }
 }
 
 body.games-page.in-active-game #globalBackBtn {
@@ -66,14 +82,12 @@ body.games-page.in-active-game #globalBackBtn {
    ========================================================= */
 .games-hub {
   width: 100%;
-  height: 100dvh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
   gap: clamp(8px, 1.4vh, 14px);
   padding: clamp(8px, 1.4vh, 14px) clamp(12px, 2.2vw, 28px);
-  overflow: hidden;
 }
 
 /* Bandeau Hero (.gamesArchive__hero + .gamesArchive__quiz) */
@@ -778,11 +792,16 @@ body.games-page.in-active-game #globalBackBtn {
 
 .victory-card {
   width: min(500px, 92vw);
+  max-height: 92dvh;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior-y: contain;
+  touch-action: pan-y;
   background: #fffcf6;
   border: 3px solid #dec28f;
   border-bottom: 8px solid #c59f5f;
   border-radius: 40px;
-  padding: clamp(22px, 3.4vh, 36px);
+  padding: clamp(18px, 3vh, 32px);
   text-align: center;
   box-shadow: 2px 10px 60px 0 rgba(70, 50, 20, 0.35);
   animation: popInModal 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
@@ -1001,9 +1020,9 @@ body.games-page.in-active-game #globalBackBtn {
 }
 
 /* =========================================================
-   RESPONSIVE DESIGN SYSTEM FOR MOBILE & TABLETS (< 860px)
+   RESPONSIVE DESIGN SYSTEM FOR MOBILE & TABLETS (< 960px)
    ========================================================= */
-@media screen and (max-width: 860px) {
+@media screen and (max-width: 960px), screen and (max-height: 560px) {
   html,
   body.games-page {
     height: auto !important;
@@ -1064,7 +1083,7 @@ body.games-page.in-active-game #globalBackBtn {
     display: grid !important;
     grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
     width: 100% !important;
-    max-width: 580px !important;
+    max-width: 680px !important;
     height: auto !important;
     gap: 12px 10px !important;
   }
@@ -1073,7 +1092,7 @@ body.games-page.in-active-game #globalBackBtn {
     width: 100% !important;
     height: auto !important;
     min-width: 0 !important;
-    min-height: 230px !important;
+    min-height: 220px !important;
     border-radius: 22px !important;
   }
 
@@ -1114,11 +1133,44 @@ body.games-page.in-active-game #globalBackBtn {
     font-size: 24px !important;
     padding: 4px 10px !important;
   }
+
+  .victory-card {
+    width: min(94vw, 440px) !important;
+    padding: 18px 14px !important;
+    border-radius: 26px !important;
+  }
+
+  .victory-trophy img {
+    width: 64px !important;
+    height: 64px !important;
+  }
+
+  .victory-title {
+    font-size: 22px !important;
+  }
+
+  .victory-subtitle {
+    font-size: 13px !important;
+    margin: 4px 0 12px !important;
+  }
+
+  .victory-actions {
+    flex-direction: column !important;
+    gap: 8px !important;
+  }
+
+  .victory-actions .nk-btn-green,
+  .victory-actions .nk-btn-purple {
+    width: 100% !important;
+    min-width: 0 !important;
+    padding: 10px 16px !important;
+    font-size: 14px !important;
+  }
 }
 
-@media screen and (max-width: 500px) {
+@media screen and (max-width: 480px) {
   .hub-grid {
     grid-template-columns: 1fr !important;
-    max-width: 340px !important;
+    max-width: 360px !important;
   }
 }

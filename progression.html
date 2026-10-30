@@ -9,8 +9,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@600;700;800;900&family=Nunito:wght@600;700;800;900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/common.css?v=16">
-  <link rel="stylesheet" href="css/fennygo.css?v=2">
+  <link rel="stylesheet" href="css/common.css?v=35">
+  <link rel="stylesheet" href="css/fennygo.css?v=35">
   <style>
     html, body {
       height: auto !important;
@@ -207,7 +207,7 @@
 </head>
 
 <body>
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 pt-16 pb-24 space-y-10">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 pt-16 pb-24 space-y-10 page-scroll">
 
     <!-- Top Header -->
     <header class="flex flex-wrap items-center justify-between gap-4">
@@ -555,14 +555,14 @@
 
   <!-- Lightbox Modal -->
   <div id="progLightbox" class="fenny-modal-backdrop hidden">
-    <div class="relative max-w-5xl w-full bg-slate-900 p-4 rounded-3xl border-4 border-amber-400">
+    <div class="relative max-w-5xl w-full bg-slate-900 p-4 rounded-3xl border-4 border-amber-400 max-h-[92dvh] overflow-y-auto">
       <button type="button" id="closeProgLightbox" class="fenny-modal-close">&times;</button>
       <img id="progLightboxImg" src="" alt="Slide Preview" class="w-full max-h-[80dvh] object-contain rounded-2xl">
     </div>
   </div>
 
-  <script src="js/app-lang.js?v=14"></script>
-  <script src="js/fenny-companion.js?v=3"></script>
+  <script src="js/app-lang.js?v=35"></script>
+  <script src="js/fenny-companion.js?v=35"></script>
   <script>
     (() => {
       function syncStars() {
