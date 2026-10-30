@@ -1190,7 +1190,8 @@
     // =========================================================
     function renderMaze() {
       if (!running) return;
-      animTick += 0.055;
+      try {
+        animTick += 0.055;
       const W = canvas.width;
       const H = canvas.height;
       const horizonY = H * 0.28;
@@ -1768,10 +1769,10 @@
       ctx.rotate(chickLean + walkWaddle);
 
       // Ombre portée au sol en 3D (s'écrase et grandit au sol)
-      const shadowScale = (1 - Math.abs(hop) / (hopMax * 2.2)) * (0.6 + chickPt.p * 0.55);
+      const shadowScale = Math.max(0.05, (1 - Math.abs(hop) / (hopMax * 2.2)) * (0.6 + chickPt.p * 0.55));
       ctx.fillStyle = "rgba(0, 0, 0, 0.22)";
       ctx.beginPath();
-      ctx.ellipse(0, 34 - hop, 30 * shadowScale, 10 * shadowScale, 0, 0, Math.PI * 2);
+      ctx.ellipse(0, 34 - hop, Math.max(1, 30 * shadowScale), Math.max(1, 10 * shadowScale), 0, 0, Math.PI * 2);
       ctx.fill();
 
       // Dessin du Sprite 3D Pixar mignon
@@ -1793,24 +1794,21 @@
       // 6. PARTICULES FLOTTANTES & FEUILLES DE LABYRINTHE
       // ---------------------------------------------------------
       // Particules dynamiques (étincelles, poussière, étoiles)
-      particles = particles.filter((p) => p.life > 0);
+      particles = particles.filter((p) => p.life > 0.01);
       particles.forEach((p) => {
         p.x += p.vx;
         p.y += p.vy;
         p.life -= p.decay;
+        if (p.life <= 0) return;
 
         ctx.save();
-        ctx.globalAlpha = Math.max(0, p.life);
+        ctx.globalAlpha = Math.max(0, Math.min(1, p.life));
         ctx.fillStyle = p.color;
-        if (p.isStar) {
-          ctx.beginPath();
-          ctx.arc(p.x, p.y, p.radius * p.life, 0, Math.PI * 2);
-          ctx.fill();
-        } else {
-          ctx.beginPath();
-          ctx.arc(p.x, p.y, p.radius * (1 - p.life * 0.3), 0, Math.PI * 2);
-          ctx.fill();
-        }
+        const rawR = p.isStar ? (p.radius * p.life) : (p.radius * (1 - p.life * 0.3));
+        const r = Math.max(0.5, rawR);
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, r, 0, Math.PI * 2);
+        ctx.fill();
         ctx.restore();
       });
 
@@ -1832,12 +1830,19 @@
         ctx.fillStyle = leaf.color;
         ctx.globalAlpha = 0.45;
         ctx.beginPath();
-        ctx.ellipse(0, 0, leaf.size, leaf.size * 0.5, 0, 0, Math.PI * 2);
+        const leafW = Math.max(0.5, leaf.size);
+        const leafH = Math.max(0.5, leaf.size * 0.5);
+        ctx.ellipse(0, 0, leafW, leafH, 0, 0, Math.PI * 2);
         ctx.fill();
         ctx.restore();
       });
+      } catch (err) {
+        console.error("renderMaze error:", err);
+      }
 
-      rafId = requestAnimationFrame(renderMaze);
+      if (running) {
+        rafId = requestAnimationFrame(renderMaze);
+      }
     }
 
     rafId = requestAnimationFrame(renderMaze);
