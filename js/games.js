@@ -187,11 +187,10 @@
   }
 
   function pickThreeLetterChoices(db) {
-    if (getActiveLangId() === 'French') {
-      const picked = shuffle(db.letters).slice(0, 3).map((l) => ({ label: l.base, speech: l.name }));
-      const winnerIdx = Math.floor(Math.random() * 3);
-      return { options: picked, winnerIdx, target: picked[winnerIdx] };
-    }
+    const letters = (db && db.letters && db.letters.length) ? db.letters : LATIN_LETTERS.map(l => ({ base: l, name: `Letter ${l}`, variants: null }));
+    const picked = shuffle(letters).slice(0, 3).map((l) => ({ label: l.base, speech: l.name }));
+    const winnerIdx = Math.floor(Math.random() * 3);
+    return { options: picked, winnerIdx, target: picked[winnerIdx] };
   }
 
   /* =========================================================
