@@ -126,15 +126,13 @@ function getActiveDataset() {
 }
 
 function updateNavLabels() {
-    if (currentLangId === "Arabic") {
-        prevLetterBtn.innerHTML = "السابق &rarr;";
-        nextLetterBtn.innerHTML = "&larr; التالي";
-    } else if (currentLangId === "French") {
-        prevLetterBtn.innerHTML = "&larr; Précédent";
-        nextLetterBtn.innerHTML = "Suivant &rarr;";
-    } else {
-        prevLetterBtn.innerHTML = "&larr; Previous";
-        nextLetterBtn.innerHTML = "Next &rarr;";
+    if (prevLetterBtn) {
+        prevLetterBtn.innerHTML = currentLangId === "Arabic" ? "&#10095;" : "&#10094;";
+        prevLetterBtn.setAttribute("aria-label", currentLangId === "Arabic" ? "التالي" : (currentLangId === "French" ? "Précédent" : "Previous"));
+    }
+    if (nextLetterBtn) {
+        nextLetterBtn.innerHTML = currentLangId === "Arabic" ? "&#10094;" : "&#10095;";
+        nextLetterBtn.setAttribute("aria-label", currentLangId === "Arabic" ? "السابق" : (currentLangId === "French" ? "Suivant" : "Next"));
     }
 }
 

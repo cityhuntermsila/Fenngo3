@@ -6,8 +6,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <script src="https://cdn.tailwindcss.com"></script>
   <title>ABC Alphabet</title>
-  <link rel="stylesheet" href="css/common.css?v=49">
-  <link rel="stylesheet" href="css/alphabet.css?v=49">
+  <link rel="stylesheet" href="css/common.css?v=50">
+  <link rel="stylesheet" href="css/alphabet.css?v=50">
 </head>
 
 <body class="alphabet">
@@ -19,11 +19,9 @@
   </div>
   <div class="cube-modal" id="cubeModal">
     <button class="close-btn" id="closeBtn" aria-label="Close">&times;</button>
-    <div class="cube-navigation">
-      <button id="prevLetterBtn" class="nav-btn">&larr; Previous</button>
-      <button id="nextLetterBtn" class="nav-btn">Next &rarr;</button>
-    </div>
     <div class="alphabet-detail-card">
+      <button type="button" id="prevLetterBtn" class="modal-nav-btn modal-prev-btn" aria-label="Previous letter">&#10094;</button>
+      <button type="button" id="nextLetterBtn" class="modal-nav-btn modal-next-btn" aria-label="Next letter">&#10095;</button>
       <h2 id="cubeHeading" class="detail-title">A for Apple</h2>
       <div class="detail-image-box"><img id="frontImage" src="" alt=""></div>
       <div class="detail-letters"><span id="frontLetter">A</span><span id="backLetter">a</span></div>
@@ -32,9 +30,9 @@
       </button>
     </div>
   </div>
-  <script src="js/app-lang.js?v=49"></script>
-  <script src="js/include.js?v=49"></script>
-  <script src="js/alphabet.js?v=49"></script>
+  <script src="js/app-lang.js?v=50"></script>
+  <script src="js/include.js?v=50"></script>
+  <script src="js/alphabet.js?v=50"></script>
 </body>
 
 </html>
