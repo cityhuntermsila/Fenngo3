@@ -963,6 +963,7 @@
     let currentWordObj = null;
     let letterStep = 0;
     let gateChoices = [];
+    let nextGateChoices = [];
 
     // Navigation & positionnement 3D
     let chickLane = 1;              // 0: Gauche, 1: Centre, 2: Droite
@@ -1031,6 +1032,12 @@
       `;
     }
 
+    function generateChoicesFor(target) {
+      const pool = db.letters.map((x) => x.base).filter((b) => b !== target);
+      const distractors = shuffle(pool).slice(0, 2);
+      return shuffle([target, ...distractors]);
+    }
+
     function setupLetterStep() {
       transitioning = false;
       gateTransitionProg = 0;
@@ -1038,9 +1045,19 @@
       gateDoorAngle = 0;
       const targetLetter = currentWordObj.letters[letterStep];
 
-      const pool = db.letters.map((x) => x.base).filter((b) => b !== targetLetter);
-      const distractors = shuffle(pool).slice(0, 2);
-      gateChoices = shuffle([targetLetter, ...distractors]);
+      if (nextGateChoices && nextGateChoices.length === 3 && nextGateChoices.includes(targetLetter)) {
+        gateChoices = nextGateChoices;
+      } else {
+        gateChoices = generateChoicesFor(targetLetter);
+      }
+
+      // Préparation immédiate de la porte suivante pour qu'elle ne soit JAMAIS vide
+      const nextIdx = letterStep + 1;
+      if (nextIdx < currentWordObj.letters.length) {
+        nextGateChoices = generateChoicesFor(currentWordObj.letters[nextIdx]);
+      } else {
+        nextGateChoices = ["⭐", "⭐", "⭐"];
+      }
 
       renderWordBanner();
       const letterObj = db.letters.find((x) => x.base === targetLetter);
@@ -1100,20 +1117,9 @@
       if (chosen === targetLetter) {
         transitioning = true;
         gateOpenLane = laneIdx;
+        gateTransitionProg = 0;
         SFX.success();
         if (btnEl) btnEl.classList.add("correct-flash");
-
-        // Déclenchement de la marche en avant vers la porte ouverte
-        setTimeout(() => {
-          letterStep++;
-          if (letterStep >= currentWordObj.letters.length) {
-            speakPrompt(currentWordObj.word, currentWordObj.word);
-            const won = advanceProgress();
-            if (!won) setTimeout(pickNewWord, 950);
-          } else {
-            setupLetterStep();
-          }
-        }, 850);
       } else {
         SFX.error();
         shakeLane = laneIdx;
@@ -1209,9 +1215,22 @@
       mazeScrollZ = (mazeScrollZ + travelSpeed) % 1;
 
       if (transitioning) {
-        gateTransitionProg = Math.min(1, gateTransitionProg + 0.042);
-        gateDoorAngle = Math.min(Math.PI * 0.48, gateDoorAngle + 0.085);
-        chickZ = Math.max(0.62, chickZ - 0.008);
+        gateTransitionProg += 0.024;
+        gateDoorAngle = Math.min(Math.PI * 0.48, gateDoorAngle + 0.095);
+        chickZ = Math.max(0.55, chickZ - 0.008);
+
+        // Franchissement complet et continu vers la lettre suivante sans blocage
+        if (gateTransitionProg >= 1) {
+          letterStep++;
+          if (letterStep >= currentWordObj.letters.length) {
+            transitioning = false;
+            speakPrompt(currentWordObj.word, currentWordObj.word);
+            const won = advanceProgress();
+            if (!won) setTimeout(pickNewWord, 950);
+          } else {
+            setupLetterStep();
+          }
+        }
       } else {
         chickZ += (0.80 - chickZ) * 0.08;
       }
@@ -1548,7 +1567,7 @@
       const currentGateZ = 0.58 + gateTransitionProg * 0.65;
 
       // Fonction utilitaire pour dessiner un ensemble de 3 portes à une profondeur Z donnée
-      function drawGateSet(gateZ, isCurrentGate) {
+      function drawGateSet(gateZ, isCurrentGate, choices) {
         if (gateZ > 1.25 || gateZ < 0.05) return;
 
         for (let i = 0; i < 3; i++) {
@@ -1711,20 +1730,20 @@
           ctx.font = `900 ${fontSize}px Cairo, sans-serif`;
           ctx.textAlign = "center";
           ctx.textBaseline = "middle";
-          const letterChar = isCurrentGate ? (gateChoices[i] || "") : "";
+          const letterChar = (choices && choices[i]) || (isCurrentGate ? (gateChoices[i] || "") : "");
           ctx.fillText(letterChar, ptC.x, signY + signH * 0.52);
 
           ctx.restore();
         }
       }
 
-      // Dessin des portes actuelles
-      drawGateSet(currentGateZ, true);
+      // Dessin des portes actuelles (avec lettres bien visibles)
+      drawGateSet(currentGateZ, true, gateChoices);
 
-      // Si transition en cours, on dessine la prochaine porte au loin qui s'approche
+      // Si transition en cours, dessin de la prochaine porte avec ses lettres déjà prêtes
       if (transitioning) {
         const nextGateZ = 0.12 + gateTransitionProg * 0.46;
-        drawGateSet(nextGateZ, false);
+        drawGateSet(nextGateZ, false, nextGateChoices);
       }
 
       // ---------------------------------------------------------
