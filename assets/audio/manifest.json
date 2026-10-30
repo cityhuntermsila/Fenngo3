@@ -1490,6 +1490,10 @@
       "text": "H comme Maison",
       "file": "assets/audio/fr/4632b603.mp3"
     },
+    "b3e868d9": {
+      "text": "I comme Igloo",
+      "file": "assets/audio/fr/b3e868d9.mp3"
+    },
     "9be350a3": {
       "text": "I comme Glaçon",
       "file": "assets/audio/fr/9be350a3.mp3"
@@ -1501,6 +1505,10 @@
     "63ce001f": {
       "text": "J comme Méduse",
       "file": "assets/audio/fr/63ce001f.mp3"
+    },
+    "48e62c3b": {
+      "text": "K comme Koala",
+      "file": "assets/audio/fr/48e62c3b.mp3"
     },
     "31fb4778": {
       "text": "K comme Cerf-volant",
@@ -1546,6 +1554,10 @@
       "text": "T comme Train",
       "file": "assets/audio/fr/e294aea2.mp3"
     },
+    "ec6241f2": {
+      "text": "U comme Un",
+      "file": "assets/audio/fr/ec6241f2.mp3"
+    },
     "9c6ab3a0": {
       "text": "U comme Parapluie",
       "file": "assets/audio/fr/9c6ab3a0.mp3"
@@ -1553,6 +1565,10 @@
     "606c290b": {
       "text": "V comme Volcan",
       "file": "assets/audio/fr/606c290b.mp3"
+    },
+    "badfd8bd": {
+      "text": "W comme Wagon",
+      "file": "assets/audio/fr/badfd8bd.mp3"
     },
     "e78141fe": {
       "text": "W comme Pastèque",
