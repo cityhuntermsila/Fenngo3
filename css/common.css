@@ -328,7 +328,7 @@ body.numbers-page .number-glow::before {
   height: clamp(110px, 25dvh, 190px) !important;
 }
 body.numbers-page .modal-number-img {
-  height: clamp(105px, 26dvh, 200px) !important;
+  height: clamp(140px, 26dvh, 220px) !important;
   width: auto !important;
 }
 body.numbers-page .modal-number-word {

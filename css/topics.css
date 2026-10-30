@@ -302,8 +302,8 @@ body.topic-page {
 
 .modal-avatar-stage {
   margin: clamp(8px, 1.6vh, 16px) 0;
-  width: clamp(135px, 28dvh, 220px);
-  height: clamp(135px, 28dvh, 220px);
+  width: clamp(170px, 30dvh, 250px);
+  height: clamp(170px, 30dvh, 250px);
   border-radius: 50%;
   background: radial-gradient(circle, #ffffff 35%, #e0f2fe 100%);
   border: 5px solid #7dd3fc;
@@ -496,9 +496,9 @@ body.topic-page {
   }
 
   .modal-avatar-stage {
-    width: clamp(90px, 16vh, 130px) !important;
-    height: clamp(90px, 16vh, 130px) !important;
-    margin: 4px 0 6px !important;
+    width: clamp(145px, 24vh, 210px) !important;
+    height: clamp(145px, 24vh, 210px) !important;
+    margin: 4px 0 8px !important;
     padding: 8px !important;
   }
 

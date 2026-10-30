@@ -352,8 +352,8 @@ html[dir="rtl"] .card-sound-mini {
 }
 
 .modal-avatar-stage {
-  width: clamp(140px, 28dvh, 210px);
-  height: clamp(140px, 28dvh, 210px);
+  width: clamp(170px, 30dvh, 250px);
+  height: clamp(170px, 30dvh, 250px);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -536,9 +536,9 @@ html[dir="rtl"] .card-sound-mini {
   }
 
   .modal-avatar-stage {
-    width: clamp(95px, 18vh, 135px) !important;
-    height: clamp(95px, 18vh, 135px) !important;
-    margin: 4px 0 6px !important;
+    width: clamp(150px, 25vh, 215px) !important;
+    height: clamp(150px, 25vh, 215px) !important;
+    margin: 4px 0 8px !important;
   }
 
   .modal-title {

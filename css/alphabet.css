@@ -517,10 +517,10 @@ body.alphabet {
   }
 
   .detail-image-box {
-    width: 110px !important;
-    height: 110px !important;
+    width: clamp(145px, 24vh, 210px) !important;
+    height: clamp(145px, 24vh, 210px) !important;
     min-height: 0 !important;
-    margin: 0 auto 6px !important;
+    margin: 0 auto 8px !important;
   }
 
   .detail-letters {

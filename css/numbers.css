@@ -2306,7 +2306,7 @@ body.modal-open {
 
   .modal-number-img {
     height: 100% !important;
-    max-height: clamp(80px, 16vh, 120px) !important;
+    max-height: clamp(140px, 24vh, 210px) !important;
     width: auto !important;
   }
 
@@ -2481,7 +2481,7 @@ body.modal-open {
 
   .modal-number-img {
     height: 100% !important;
-    max-height: clamp(65px, 11vh, 90px) !important;
+    max-height: clamp(120px, 20vh, 180px) !important;
     width: auto !important;
     margin: 0 auto !important;
   }
