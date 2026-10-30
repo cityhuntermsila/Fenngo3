@@ -9,8 +9,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@600;700;800;900&family=Nunito:wght@600;700;800;900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/common.css?v=67">
-  <link rel="stylesheet" href="css/fennygo.css?v=67">
+  <link rel="stylesheet" href="css/common.css?v=68">
+  <link rel="stylesheet" href="css/fennygo.css?v=68">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
   <style>
     /* Reset & Base */
@@ -604,8 +604,8 @@
   <audio id="audioCheering" src="assets/images/music/cheering.mp3" preload="auto"></audio>
   <audio id="audioWrong" src="assets/images/music/wrong- sound.mp3" preload="auto"></audio>
 
-  <script src="js/app-lang.js?v=67"></script>
-  <script src="js/fenny-companion.js?v=67"></script>
+  <script src="js/app-lang.js?v=68"></script>
+  <script src="js/fenny-companion.js?v=68"></script>
   <script>
     (() => {
       "use strict";
@@ -731,16 +731,16 @@
       // 2. Verified 10-Item Dataset per Category with verified local 3D images
       const DATASET = {
         alphabet: [
-          { id: "apple", word: "Apple", fr: "Pomme", ar: "ØªÙØ§Ø­Ø©", img: "assets/images/alphabet/A/apple.png" },
-          { id: "ball", word: "Ball", fr: "Ballon", ar: "ÙƒØ±Ø©", img: "assets/images/alphabet/B/ball.png" },
-          { id: "cat", word: "Cat", fr: "Chat", ar: "Ù‚Ø·", img: "assets/images/alphabet/C/cat.png" },
-          { id: "dog", word: "Dog", fr: "Chien", ar: "ÙƒÙ„Ø¨", img: "assets/images/alphabet/D/Dog.png" },
-          { id: "elephant", word: "Elephant", fr: "Ã‰lÃ©phant", ar: "ÙÙŠÙ„", img: "assets/images/alphabet/E/elephant.png" },
-          { id: "fish", word: "Fish", fr: "Poisson", ar: "Ø³Ù…ÙƒØ©", img: "assets/images/alphabet/F/fish.png" },
-          { id: "grapes", word: "Grapes", fr: "Raisin", ar: "Ø¹Ù†Ø¨", img: "assets/images/color/green/grapes.png" },
-          { id: "house", word: "House", fr: "Maison", ar: "Ù…Ù†Ø²Ù„", img: "assets/images/alphabet/H/house.png" },
-          { id: "sun", word: "Sun", fr: "Soleil", ar: "Ø´Ù…Ø³", img: "assets/images/color/yellow/sun.png" },
-          { id: "mango", word: "Mango", fr: "Mangue", ar: "Ù…Ø§Ù†Ø¬Ùˆ", img: "assets/images/alphabet/M/mango.png" }
+          { id: "astronaut", word: "Astronaut", fr: "Astronaute", ar: "رائد فضاء", img: "assets/images/alphabet/A/astronaut.png" },
+          { id: "ball", word: "Ball", fr: "Ballon", ar: "كرة", img: "assets/images/alphabet/B/ball.png" },
+          { id: "cat", word: "Cat", fr: "Chat", ar: "قط", img: "assets/images/alphabet/C/cat.png" },
+          { id: "dolphin", word: "Dolphin", fr: "Dauphin", ar: "دلفين", img: "assets/images/alphabet/D/Dolphin.png" },
+          { id: "elephant", word: "Elephant", fr: "Éléphant", ar: "فيل", img: "assets/images/alphabet/E/elephant.png" },
+          { id: "fraise", word: "Strawberry", fr: "Fraise", ar: "فراولة", img: "assets/images/alphabet/F/fraise.png" },
+          { id: "cake", word: "Cake", fr: "Gâteau", ar: "كعكة", img: "assets/images/alphabet/C/Cake.png" },
+          { id: "hibou", word: "Owl", fr: "Hibou", ar: "بومة", img: "assets/images/alphabet/H/hibou.png" },
+          { id: "lion", word: "Lion", fr: "Lion", ar: "أسد", img: "assets/images/language-images/lion.png" },
+          { id: "mango", word: "Mango", fr: "Mangue", ar: "مانجو", img: "assets/images/alphabet/M/mango.png" }
         ],
         numbers: [
           { id: "one", word: "One", fr: "Un", ar: "ÙˆØ§Ø­Ø¯", img: "assets/images/number/one.png" },
@@ -941,12 +941,24 @@
         }, delay);
       }
 
+            function getItemWord(item) {
+        if (!item) return "";
+        if (currentLang === "French" && item.fr) return item.fr;
+        if (currentLang === "Arabic" && item.ar) return item.ar;
+        return item.word;
+      }
+
+      function getItemSpeech(item) {
+        return getItemWord(item);
+      }
+
       function speak(text, onEnded = null) {
+        const langCode = currentLang === "Arabic" ? "ar-SA" : (currentLang === "French" ? "fr-FR" : "en-US");
         if (window.AppLang && typeof window.AppLang.speak === "function") {
-          window.AppLang.speak(text, "en-US", 0.85, 1.1, onEnded);
+          window.AppLang.speak(text, langCode, 0.85, 1.1, onEnded);
         } else if ("speechSynthesis" in window) {
           const u = new SpeechSynthesisUtterance(text);
-          u.lang = "en-US";
+          u.lang = langCode;
           u.rate = 0.85;
           if (onEnded) u.onend = onEnded;
           window.speechSynthesis.speak(u);
@@ -1204,7 +1216,7 @@
               <i class="fa-solid fa-volume-high"></i>
               <span>${t.replayAudio}</span>
             </button>
-            <span class="text-xs font-black text-slate-800">"${target.word}"</span>
+            <span class="text-xs font-black text-slate-800">"${getItemWord(target)}"</span>
           </div>
 
           <!-- 2 Columns Grid for 4 Choices -->
@@ -1213,8 +1225,8 @@
 
         stage.appendChild(container);
 
-        delayedSpeak(target.word, 250);
-        container.querySelector("#replaySoundBtn").addEventListener("click", () => speak(target.word));
+        delayedSpeak(getItemWord(target), 250);
+        container.querySelector("#replaySoundBtn").addEventListener("click", () => speak(getItemWord(target)));
 
         const grid = container.querySelector("#soundChoicesGrid");
         choices.forEach(ch => {
@@ -1224,13 +1236,13 @@
             <div class="w-16 h-16 sm:w-20 sm:h-20 flex items-center justify-center mb-1">
               <img src="${ch.img}" alt="${ch.word}" class="w-full h-full object-contain filter drop-shadow">
             </div>
-            <span class="text-xs font-black text-slate-800 truncate">${ch.word}</span>
+            <span class="text-xs font-black text-slate-800 truncate">${getItemWord(ch)}</span>
           `;
 
           card.addEventListener("click", () => {
             if (card.classList.contains("correct") || card.classList.contains("wrong")) return;
 
-            speak(ch.word);
+            speak(getItemWord(ch));
 
             if (ch.id === target.id) {
               card.classList.add("correct");
@@ -1294,7 +1306,7 @@
             </div>
             <div class="memory-face memory-front">
               <img src="${cardData.item.img}" alt="${cardData.item.word}" onerror="this.onerror=null; this.src='assets/images/fennygo/fenny-avatar.png';">
-              <span>${cardData.item.word}</span>
+              <span>${getItemWord(cardData.item)}</span>
             </div>
           `;
 
@@ -1302,7 +1314,7 @@
             if (isLocked || cardEl.classList.contains("flipped") || cardEl.classList.contains("matched")) return;
 
             cardEl.classList.add("flipped");
-            speak(cardData.item.word);
+            speak(getItemWord(cardData.item));
             flippedCards.push({ el: cardEl, data: cardData });
 
             if (flippedCards.length === 2) {
@@ -1402,7 +1414,7 @@
         `;
 
         stage.appendChild(container);
-        delayedSpeak(target.word, 250);
+        delayedSpeak(getItemWord(target), 250);
 
         const slotsContainer = container.querySelector("#spellingSlots");
         const bubblesContainer = container.querySelector("#spellingBubbles");
@@ -1498,7 +1510,7 @@
           </div>
 
           <span class="text-sm sm:text-base font-black text-slate-900 block">
-            "${target.word}" ?
+            "${getItemWord(target)}" ?
           </span>
 
           <!-- 2 Columns Grid for Yes / No Buttons -->
@@ -1513,7 +1525,7 @@
         `;
 
         stage.appendChild(container);
-        delayedSpeak(target.word, 250);
+        delayedSpeak(getItemWord(target), 250);
 
         let timeLeft = 75;
         const timerFill = container.querySelector("#speedTimerFill");
