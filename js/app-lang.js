@@ -290,6 +290,7 @@
     }
     if (
       path.endsWith("cours.html") ||
+      path.endsWith("practice.html") ||
       path.endsWith("vocabulary.html") ||
       path.endsWith("games.html") ||
       path.endsWith("tracing.html") ||
@@ -307,7 +308,7 @@
    */
   function setupBackButton() {
     const path = (window.location.pathname || "").toLowerCase();
-    if (path.endsWith("index.html") || path.endsWith("progression.html") || path === "/" || path === "") {
+    if (path.endsWith("index.html") || path.endsWith("progression.html") || path.endsWith("practice.html") || path === "/" || path === "") {
       const existing = document.getElementById("globalBackBtn");
       if (existing) existing.remove();
       return;

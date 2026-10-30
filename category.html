@@ -10,8 +10,8 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <title>Kids Learner - Dashboard</title>
 
-  <link rel="stylesheet" href="css/common.css?v=55">
-  <link rel="stylesheet" href="css/category.css?v=55">
+  <link rel="stylesheet" href="css/common.css?v=56">
+  <link rel="stylesheet" href="css/category.css?v=56">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 </head>
 
@@ -25,20 +25,20 @@
         alt="Kids Learner"
       >
 
-      <!-- Grille 2 lignes x 5 colonnes :
-           Ligne 1 (au milieu) : Courses & Progression
-           Ligne 2 : Les 5 éléments restants (Vocabulaire, Jeux, Traçage, Test, Histoires) -->
+      <!-- Grille 8 cartes équilibrée (2x4 desktop, 4x2 mobile) -->
       <section class="category-grid main-category-grid" aria-label="Main learning sections">
-        <!-- 1ère ligne : Courses & Progression -->
         <a href="cours.html" class="category-card card-cours" data-cat-key="cours" aria-label="Cours">
           <img src="assets/images/category-images/cours.png" alt="Cours">
+        </a>
+
+        <a href="practice.html" class="category-card card-practice" data-cat-key="practice" aria-label="Entraînement & Jeux">
+          <img src="assets/images/category-images/practice.svg" alt="Entraînement & Jeux">
         </a>
 
         <a href="progression.html" class="category-card card-progression" data-cat-key="progression" aria-label="Suivi & Progression">
           <img src="assets/images/category-images/progression.png" alt="Suivi & Progression">
         </a>
 
-        <!-- 2ème ligne : Les 5 éléments restants distribués sur 5 colonnes -->
         <a href="vocabulary.html" class="category-card card-vocab" data-cat-key="vocabulary" aria-label="Vocabulaire Multisensoriel">
           <img src="assets/images/category-images/vocabulary.svg" alt="Vocabulaire Multisensoriel">
         </a>
@@ -64,9 +64,9 @@
     <div id="footer" class="category-footer"></div>
   </div>
 
-  <script src="js/app-lang.js?v=55"></script>
-  <script src="js/include.js?v=55"></script>
-  <script src="js/category.js?v=55"></script>
+  <script src="js/app-lang.js?v=56"></script>
+  <script src="js/include.js?v=56"></script>
+  <script src="js/category.js?v=56"></script>
 </body>
 
 </html>

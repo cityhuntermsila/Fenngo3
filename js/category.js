@@ -7,6 +7,7 @@
   const categoryLabels = {
     English: {
       cours: "Courses",
+      practice: "Practice & Games",
       vocabulary: "Multi-Sensory Vocab",
       games: "Games",
       tracing: "Tracing & Writing",
@@ -25,6 +26,7 @@
     },
     French: {
       cours: "Cours",
+      practice: "Entraînement & Jeux",
       vocabulary: "Vocabulaire Multisensoriel",
       games: "Jeux",
       tracing: "Traçage / Écriture",
@@ -43,6 +45,7 @@
     },
     Arabic: {
       cours: "الدروس",
+      practice: "تدريب وألعاب",
       vocabulary: "المفردات متعددة الحواس",
       games: "الألعاب",
       tracing: "التخطيط والكتابة",

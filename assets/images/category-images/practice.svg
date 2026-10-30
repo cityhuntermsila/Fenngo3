@@ -1,0 +1,142 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 310" width="420" height="310">
+  <defs>
+    <!-- Background Gradient (Vibrant Emerald / Cyan 3D Gaming Aesthetic) -->
+    <linearGradient id="pracBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#06b6d4"/>
+      <stop offset="50%" stop-color="#0891b2"/>
+      <stop offset="100%" stop-color="#0f766e"/>
+    </linearGradient>
+
+    <!-- Radial Light Burst -->
+    <radialGradient id="pracRay" cx="50%" cy="40%" r="65%">
+      <stop offset="0%" stop-color="#a5f3fc" stop-opacity="0.55"/>
+      <stop offset="60%" stop-color="#06b6d4" stop-opacity="0.15"/>
+      <stop offset="100%" stop-color="#0f766e" stop-opacity="0"/>
+    </radialGradient>
+
+    <!-- Gamepad 3D Body Gradient -->
+    <linearGradient id="padGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="18%" stop-color="#e0f2fe"/>
+      <stop offset="70%" stop-color="#bae6fd"/>
+      <stop offset="100%" stop-color="#7dd3fc"/>
+    </linearGradient>
+
+    <!-- Gold Button Gradient -->
+    <linearGradient id="goldBtn" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#fef08a"/>
+      <stop offset="100%" stop-color="#f59e0b"/>
+    </linearGradient>
+
+    <!-- Coral Button Gradient -->
+    <linearGradient id="coralBtn" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#fca5a5"/>
+      <stop offset="100%" stop-color="#ef4444"/>
+    </linearGradient>
+
+    <!-- Emerald Button Gradient -->
+    <linearGradient id="emeraldBtn" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#86efac"/>
+      <stop offset="100%" stop-color="#10b981"/>
+    </linearGradient>
+
+    <!-- Purple Button Gradient -->
+    <linearGradient id="purpleBtn" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#d8b4fe"/>
+      <stop offset="100%" stop-color="#8b5cf6"/>
+    </linearGradient>
+
+    <!-- Shadows -->
+    <filter id="pracCardSh" x="-8%" y="-8%" width="116%" height="120%">
+      <feDropShadow dx="0" dy="8" stdDeviation="6" flood-color="#083344" flood-opacity="0.45"/>
+    </filter>
+    <filter id="pracGlow" x="-15%" y="-15%" width="130%" height="130%">
+      <feDropShadow dx="0" dy="6" stdDeviation="4" flood-color="#083344" flood-opacity="0.35"/>
+    </filter>
+  </defs>
+
+  <!-- Outer Card Frame (Same 392x262 as category cards) -->
+  <rect x="14" y="10" width="392" height="262" rx="48" fill="#ffffff" filter="url(#pracCardSh)"/>
+  <rect x="22" y="18" width="376" height="246" rx="42" fill="url(#pracBg)"/>
+  <rect x="22" y="18" width="376" height="246" rx="42" fill="url(#pracRay)"/>
+
+  <!-- Background Decorative Sparkles & Stars -->
+  <g fill="#fef08a" opacity="0.85">
+    <polygon points="56,42 60,52 70,54 62,62 64,72 56,66 48,72 50,62 42,54 52,52"/>
+    <polygon points="364,42 368,52 378,54 370,62 372,72 364,66 356,72 358,62 350,54 360,52"/>
+    <circle cx="88" cy="80" r="4" fill="#ffffff"/>
+    <circle cx="332" cy="78" r="4" fill="#ffffff"/>
+  </g>
+
+  <!-- Top Badge: "LEARNING GAMES 3AP" -->
+  <g filter="url(#pracGlow)">
+    <rect x="110" y="32" width="200" height="30" rx="15" fill="#ffffff" stroke="#0891b2" stroke-width="2.5"/>
+    <text x="210" y="52" text-anchor="middle" fill="#0e7490" font-family="'Nunito', sans-serif" font-size="12" font-weight="900" letter-spacing="1">
+      🎮 LEARNING GAMES 3AP
+    </text>
+  </g>
+
+  <!-- Main 3D Game Controller & Educational Icons -->
+  <g filter="url(#pracGlow)">
+    <!-- Controller Main Body -->
+    <path d="M 120 120 C 120 95, 145 85, 210 85 C 275 85, 300 95, 300 120 C 300 155, 315 200, 275 200 C 245 200, 240 175, 210 175 C 180 175, 175 200, 145 200 C 105 200, 120 155, 120 120 Z"
+          fill="url(#padGrad)" stroke="#ffffff" stroke-width="4"/>
+
+    <!-- Controller Inner Grip Highlights -->
+    <path d="M 135 125 C 135 105, 155 96, 210 96 C 265 96, 285 105, 285 125"
+          fill="none" stroke="#ffffff" stroke-width="3" stroke-linecap="round" opacity="0.8"/>
+
+    <!-- D-Pad (Left Side) -->
+    <g transform="translate(150, 118)">
+      <rect x="-7" y="-22" width="14" height="44" rx="4" fill="#38bdf8" stroke="#0284c7" stroke-width="2"/>
+      <rect x="-22" y="-7" width="44" height="14" rx="4" fill="#38bdf8" stroke="#0284c7" stroke-width="2"/>
+      <circle cx="0" cy="0" r="4" fill="#0369a1"/>
+    </g>
+
+    <!-- 4 Action Buttons (Right Side) -->
+    <g transform="translate(268, 118)">
+      <!-- Top (Gold) -->
+      <circle cx="0" cy="-14" r="8" fill="url(#goldBtn)" stroke="#d97706" stroke-width="2"/>
+      <text x="0" y="-11" text-anchor="middle" fill="#78350f" font-family="'Nunito', sans-serif" font-size="9" font-weight="900">A</text>
+      <!-- Right (Coral) -->
+      <circle cx="14" cy="0" r="8" fill="url(#coralBtn)" stroke="#b91c1c" stroke-width="2"/>
+      <text x="0" y="3" transform="translate(14,0)" text-anchor="middle" fill="#7f1d1d" font-family="'Nunito', sans-serif" font-size="9" font-weight="900">B</text>
+      <!-- Bottom (Emerald) -->
+      <circle cx="0" cy="14" r="8" fill="url(#emeraldBtn)" stroke="#047857" stroke-width="2"/>
+      <text x="0" y="17" text-anchor="middle" fill="#064e3b" font-family="'Nunito', sans-serif" font-size="9" font-weight="900">C</text>
+      <!-- Left (Purple) -->
+      <circle cx="-14" cy="0" r="8" fill="url(#purpleBtn)" stroke="#6d28d9" stroke-width="2"/>
+      <text x="0" y="3" transform="translate(-14,0)" text-anchor="middle" fill="#4c1d95" font-family="'Nunito', sans-serif" font-size="9" font-weight="900">1</text>
+    </g>
+
+    <!-- Center Indicator Lights & Trophy Icon -->
+    <g transform="translate(210, 128)">
+      <circle cx="-12" cy="0" r="3.5" fill="#ef4444"/>
+      <circle cx="0" cy="0" r="3.5" fill="#facc15"/>
+      <circle cx="12" cy="0" r="3.5" fill="#22c55e"/>
+      <!-- Glowing Star in Middle -->
+      <polygon points="0,-18 3,-10 11,-9 5,-3 7,5 0,1 -7,5 -5,-3 -11,-9 -3,-10" fill="#f59e0b" stroke="#ffffff" stroke-width="1.5"/>
+    </g>
+  </g>
+
+  <!-- Floating Learning Badges (ABC, 123, Shapes, Family) around controller -->
+  <!-- Top Left: 123 -->
+  <g filter="url(#pracGlow)">
+    <rect x="58" y="102" width="46" height="46" rx="14" fill="#fef08a" stroke="#ca8a04" stroke-width="3"/>
+    <text x="81" y="132" text-anchor="middle" fill="#713f12" font-family="'Nunito', sans-serif" font-size="20" font-weight="900">123</text>
+  </g>
+
+  <!-- Top Right: ABC -->
+  <g filter="url(#pracGlow)">
+    <rect x="316" y="102" width="46" height="46" rx="14" fill="#fee2e2" stroke="#dc2626" stroke-width="3"/>
+    <text x="339" y="132" text-anchor="middle" fill="#7f1d1d" font-family="'Nunito', sans-serif" font-size="18" font-weight="900">ABC</text>
+  </g>
+
+  <!-- Bottom Banner Pill: "Practice & Play" -->
+  <g filter="url(#pracGlow)">
+    <rect x="100" y="212" width="220" height="42" rx="21" fill="#ffffff" stroke="#0891b2" stroke-width="3.5"/>
+    <text x="210" y="239" text-anchor="middle" fill="#0f766e" font-family="'Nunito', sans-serif" font-size="19" font-weight="900" letter-spacing="0.5">
+      Practice &amp; Play
+    </text>
+  </g>
+</svg>

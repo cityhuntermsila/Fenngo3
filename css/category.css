@@ -114,65 +114,27 @@ body.category {
 }
 
 /* =========================================================
-   2 LIGNES x 5 COLONNES - GRILLE POUR category.html
-   Ligne 1 : 2 éléments au milieu (Courses & Progression)
-   Ligne 2 : Les 5 éléments restants (Vocab, Jeux, Traçage, Test, Histoires)
-   Tailles rigoureusement harmonisées sur l'ensemble des 7 cartes
+   2 LIGNES x 4 COLONNES - GRILLE POUR category.html (8 cartes)
+   Ligne 1 : Cours, Practice, Progression, Vocabulaire
+   Ligne 2 : Jeux, Traçage, Test, Histoires
+   Tailles rigoureusement harmonisées sur l'ensemble des 8 cartes
    ========================================================= */
 .category-grid.main-category-grid {
   display: grid;
-  grid-template-columns: repeat(10, minmax(0, 1fr));
-  grid-template-rows: auto auto;
-  gap: clamp(7px, 1.6vh, 16px) clamp(7px, 1.25vw, 18px);
-  width: min(96vw, 1280px);
-  max-width: 1280px;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: clamp(8px, 1.8vh, 18px) clamp(8px, 1.5vw, 20px);
+  width: min(96vw, 1100px);
+  max-width: 1100px;
   margin: 0 auto;
   align-items: center;
   justify-items: center;
 }
 
-/* 1ère ligne : Courses & Progression centrés au milieu (cols 4-5 et 6-7 = span 2 chacun) */
-.main-category-grid .card-cours {
-  grid-row: 1;
-  grid-column: 4 / span 2;
-}
-
-.main-category-grid .card-progression {
-  grid-row: 1;
-  grid-column: 6 / span 2;
-}
-
-/* 2ème ligne : Les 5 éléments restants répartis sur les 5 colonnes principales (span 2 chacun) */
-.main-category-grid .card-vocab {
-  grid-row: 2;
-  grid-column: 1 / span 2;
-}
-
-.main-category-grid .card-games {
-  grid-row: 2;
-  grid-column: 3 / span 2;
-}
-
-.main-category-grid .card-tracing {
-  grid-row: 2;
-  grid-column: 5 / span 2;
-}
-
-.main-category-grid .card-test {
-  grid-row: 2;
-  grid-column: 7 / span 2;
-}
-
-.main-category-grid .card-stories {
-  grid-row: 2;
-  grid-column: 9 / span 2;
-}
-
-/* Harmonisation des 7 cartes : même échelle, aspect ratio préservé (420:310) */
+/* Harmonisation des 8 cartes : même échelle, aspect ratio préservé (420:300) */
 .main-category-grid .category-card {
   position: relative;
   width: 100%;
-  max-width: 220px;
+  max-width: 230px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -312,7 +274,7 @@ body.category {
     animation-name: bounceLogoMobile;
   }
 
-  /* Main Category Hub (category.html - 7 items): 2-column mobile layout */
+  /* Main Category Hub (category.html - 8 items): 2-column mobile layout */
   .category-grid.main-category-grid {
     display: grid !important;
     grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
@@ -320,35 +282,6 @@ body.category {
     gap: 8px 8px !important;
     width: 100% !important;
     max-width: 360px !important;
-    margin: 0 auto !important;
-  }
-
-  .main-category-grid .card-cours {
-    grid-row: auto !important;
-    grid-column: 1 / span 1 !important;
-  }
-
-  .main-category-grid .card-progression {
-    grid-row: auto !important;
-    grid-column: 2 / span 1 !important;
-  }
-
-  .main-category-grid .card-vocab,
-  .main-category-grid .card-games,
-  .main-category-grid .card-tracing,
-  .main-category-grid .card-test {
-    grid-row: auto !important;
-    grid-column: auto !important;
-  }
-
-  /* Stories (7th card) centered across columns with identical dimension */
-  .main-category-grid .card-stories {
-    grid-row: auto !important;
-    grid-column: 1 / span 2 !important;
-    justify-self: center !important;
-    width: calc((100% - 8px) / 2) !important;
-    max-width: 155px !important;
-    aspect-ratio: 420 / 300 !important;
     margin: 0 auto !important;
   }
 
@@ -364,7 +297,6 @@ body.category {
   .main-category-grid .category-card img {
     width: 100% !important;
     height: 100% !important;
-    max-width: 100% !important;
     max-height: 100% !important;
     object-fit: contain !important;
   }
