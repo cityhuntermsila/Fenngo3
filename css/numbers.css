@@ -2611,7 +2611,7 @@ body.modal-open {
   .modal-nav {
     display: flex !important;
     position: absolute !important;
-    top: 50% !important;
+    top: clamp(80px, 15vh, 105px) !important;
     transform: translateY(-50%) !important;
     width: 38px !important;
     height: 38px !important;
