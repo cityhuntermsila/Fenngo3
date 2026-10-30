@@ -298,7 +298,7 @@ body.category {
 
   .category-main {
     justify-content: flex-start !important;
-    padding: clamp(54px, 8.5vh, 70px) 12px 42px !important;
+    padding: clamp(38px, 5vh, 48px) 10px 80px !important;
     min-height: 100dvh !important;
     height: auto !important;
     overflow: visible !important;
@@ -306,9 +306,9 @@ body.category {
 
   .category-logo,
   .cours-logo {
-    width: min(84%, 280px) !important;
-    max-height: 64px !important;
-    margin: 4px auto 16px !important;
+    width: min(84%, 240px) !important;
+    max-height: clamp(38px, 5.5vh, 50px) !important;
+    margin: 2px auto 8px !important;
     animation-name: bounceLogoMobile;
   }
 
@@ -317,9 +317,9 @@ body.category {
     display: grid !important;
     grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
     grid-template-rows: auto !important;
-    gap: 12px 10px !important;
+    gap: 8px 8px !important;
     width: 100% !important;
-    max-width: 440px !important;
+    max-width: 360px !important;
     margin: 0 auto !important;
   }
 
@@ -346,8 +346,8 @@ body.category {
     grid-row: auto !important;
     grid-column: 1 / span 2 !important;
     justify-self: center !important;
-    width: calc((100% - 10px) / 2) !important;
-    max-width: 195px !important;
+    width: calc((100% - 8px) / 2) !important;
+    max-width: 155px !important;
     aspect-ratio: 420 / 300 !important;
     margin: 0 auto !important;
   }
@@ -355,7 +355,7 @@ body.category {
   .main-category-grid .category-card {
     position: relative !important;
     width: 100% !important;
-    max-width: 195px !important;
+    max-width: 155px !important;
     aspect-ratio: 420 / 300 !important;
     height: auto !important;
     margin: 0 auto !important;
@@ -374,9 +374,9 @@ body.category {
     display: grid !important;
     grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
     grid-template-rows: auto !important;
-    gap: 12px 10px !important;
+    gap: 8px 8px !important;
     width: 100% !important;
-    max-width: 440px !important;
+    max-width: 360px !important;
     margin: 0 auto !important;
     padding: 0 4px !important;
   }
@@ -388,7 +388,7 @@ body.category {
     align-items: center !important;
     justify-content: center !important;
     width: 100% !important;
-    max-width: 195px !important;
+    max-width: 155px !important;
     aspect-ratio: 420 / 300 !important;
     height: auto !important;
     min-height: 0 !important;
@@ -408,8 +408,8 @@ body.category {
   .cours-grid .category-card:last-child {
     grid-column: 1 / span 2 !important;
     justify-self: center !important;
-    width: calc((100% - 10px) / 2) !important;
-    max-width: 195px !important;
+    width: calc((100% - 8px) / 2) !important;
+    max-width: 155px !important;
     aspect-ratio: 420 / 300 !important;
     height: auto !important;
     margin: 0 auto !important;
