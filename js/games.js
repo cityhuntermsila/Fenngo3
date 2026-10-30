@@ -152,7 +152,9 @@
   const SPRITES = {};
   [
     ["car", "assets/images/games/car-sprite.png"],
-    ["chick", "assets/images/games/chick-sprite.png"],
+    ["chick", "assets/images/games/chick-back.png"],
+    ["chickFront", "assets/images/games/chick-sprite.png"],
+    ["chickBack", "assets/images/games/chick-back.png"],
     ["star", "assets/images/games/star.png"],
     ["gems", "assets/images/games/gems.png"],
     ["apple", "assets/images/games/words/apple.png"],
