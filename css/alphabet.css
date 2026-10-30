@@ -5,24 +5,22 @@
 html,
 body {
   width: 100%;
-  height: 100%;
+  min-height: 100%;
+  margin: 0;
+  padding: 0;
 }
 body.alphabet {
   width: 100%;
-  height: var(--visible-height);
-  min-height: 0;
-  overflow: hidden;
-  overscroll-behavior: none;
-  background: url("../assets/images/alphabet/backgound.png") center/cover
-    no-repeat;
+  min-height: 100%;
+  background: url("../assets/images/alphabet/backgound.png") center/cover no-repeat;
+  -webkit-tap-highlight-color: transparent;
 }
 .alphabet-app {
   position: relative;
   display: flex;
   flex-direction: column;
   width: 100%;
-  height: var(--visible-height);
-  overflow: hidden;
+  min-height: 100dvh;
 }
 .alphabet-header,
 .alphabet-footer {
@@ -34,11 +32,26 @@ body.alphabet {
   display: flex;
   flex: 1 1 auto;
   min-height: 0;
-  overflow-x: hidden;
-  overflow-y: auto;
-  align-items: center;
-  justify-content: center;
   padding: clamp(10px, 2.2vw, 32px);
+}
+
+/* Desktop-only zero-scroll presentation */
+@media (min-width: 961px) and (min-height: 561px) {
+  body.alphabet {
+    height: var(--visible-height, 100dvh);
+    overflow: hidden;
+    overscroll-behavior: none;
+  }
+  .alphabet-app {
+    height: var(--visible-height, 100dvh);
+    overflow: hidden;
+  }
+  .alphabet-main {
+    overflow-x: hidden;
+    overflow-y: auto;
+    align-items: center;
+    justify-content: center;
+  }
 }
 .alphabet-grid {
   display: grid;
@@ -449,10 +462,12 @@ body.alphabet {
   }
 
   .alphabet-main {
-    padding: 58px 12px 32px !important;
+    padding: clamp(54px, 8.5vh, 70px) 12px 36px !important;
     height: auto !important;
     min-height: 100dvh !important;
     overflow: visible !important;
+    align-items: center !important;
+    justify-content: flex-start !important;
   }
 
   .alphabet-grid {

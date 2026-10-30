@@ -10,11 +10,9 @@
 html,
 body.family-page {
   width: 100%;
-  height: 100dvh;
+  min-height: 100%;
   margin: 0;
   padding: 0;
-  overflow: hidden;
-  overscroll-behavior: none;
   background: url("../assets/images/category-images/background.png") center / cover no-repeat;
   -webkit-tap-highlight-color: transparent;
 }
@@ -24,8 +22,7 @@ body.family-page {
   display: flex;
   flex-direction: column;
   width: 100%;
-  height: 100dvh;
-  overflow: hidden;
+  min-height: 100dvh;
 }
 
 .family-main {
@@ -35,9 +32,25 @@ body.family-page {
   align-items: center;
   justify-content: space-evenly;
   width: 100%;
-  height: 100dvh;
+  min-height: 0;
   padding: clamp(6px, 1.2vh, 14px) clamp(10px, 2vw, 24px);
-  overflow: hidden !important;
+}
+
+/* Desktop-only presentation */
+@media (min-width: 961px) and (min-height: 561px) {
+  body.family-page {
+    height: 100dvh;
+    overflow: hidden;
+    overscroll-behavior: none;
+  }
+  .family-app {
+    height: 100dvh;
+    overflow: hidden;
+  }
+  .family-main {
+    height: 100dvh;
+    overflow: hidden !important;
+  }
 }
 
 /* Heading */
@@ -410,7 +423,7 @@ html[dir="rtl"] .card-sound-mini {
     height: auto !important;
     min-height: 100dvh !important;
     overflow: visible !important;
-    padding: 58px 12px 32px !important;
+    padding: clamp(54px, 8.5vh, 70px) 12px 36px !important;
     justify-content: flex-start !important;
     gap: 16px !important;
   }
