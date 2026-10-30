@@ -67,16 +67,16 @@
         { base: "ي", name: "يَاء", variants: [{ label: "يَ", speech: "يَ" }, { label: "يُ", speech: "يُ" }, { label: "يِ", speech: "يِ" }] }
       ],
       words: [
-        { word: "لَيْمُون", letters: ["ل", "ي", "م", "و", "ن"], emoji: "🍋" },
-        { word: "أَسَد", letters: ["أ", "س", "د"], emoji: "🦁" },
-        { word: "قَلَم", letters: ["ق", "ل", "م"], emoji: "✏️" },
-        { word: "شَمْس", letters: ["ش", "م", "س"], emoji: "☀️" },
-        { word: "جَمَل", letters: ["ج", "م", "ل"], emoji: "🐪" },
-        { word: "سَمَك", letters: ["س", "م", "ك"], emoji: "🐟" },
-        { word: "كِتَاب", letters: ["ك", "ت", "ا", "ب"], emoji: "📖" },
-        { word: "أَرْنَب", letters: ["أ", "ر", "ن", "ب"], emoji: "🐰" },
-        { word: "بَطَّة", letters: ["ب", "ط", "ة"], emoji: "🦆" },
-        { word: "تُفَّاح", letters: ["ت", "ف", "ا", "ح"], emoji: "🍎" }
+        { word: "لَيْمُون", letters: ["ل", "ي", "م", "و", "ن"], emoji: "🍋", img: "assets/images/games/words/lemon.png" },
+        { word: "أَسَد", letters: ["أ", "س", "د"], emoji: "🦁", img: "assets/images/games/words/lion.png" },
+        { word: "قَلَم", letters: ["ق", "ل", "م"], emoji: "✏️", img: "assets/images/stationery/pencil.png" },
+        { word: "شَمْس", letters: ["ش", "م", "س"], emoji: "☀️", img: "assets/images/games/words/sun.png" },
+        { word: "جَمَل", letters: ["ج", "م", "ل"], emoji: "🐪", img: "assets/images/games/words/camel.png" },
+        { word: "سَمَك", letters: ["س", "م", "ك"], emoji: "🐟", img: "assets/images/games/words/fish.png" },
+        { word: "كِتَاب", letters: ["ك", "ت", "ا", "ب"], emoji: "📖", img: "assets/images/stationery/book.png" },
+        { word: "أَرْنَب", letters: ["أ", "ر", "ن", "ب"], emoji: "🐰", img: "assets/images/games/words/rabbit.png" },
+        { word: "بَطَّة", letters: ["ب", "ط", "ة"], emoji: "🦆", img: "assets/images/games/words/duck.png" },
+        { word: "تُفَّاح", letters: ["ت", "ف", "ا", "ح"], emoji: "🍎", img: "assets/images/games/words/apple.png" }
       ],
       numbers: [
         { value: 1, display: "١", word: "وَاحِد" },
@@ -132,16 +132,16 @@
         variants: null
       })),
       words: [
-        { word: "CHAT", letters: ["C", "H", "A", "T"], emoji: "🐱" },
-        { word: "LION", letters: ["L", "I", "O", "N"], emoji: "🦁" },
-        { word: "POMME", letters: ["P", "O", "M", "M", "E"], emoji: "🍎" },
-        { word: "LUNE", letters: ["L", "U", "N", "E"], emoji: "🌙" },
-        { word: "OURS", letters: ["O", "U", "R", "S"], emoji: "🐻" },
-        { word: "LIVRE", letters: ["L", "I", "V", "R", "E"], emoji: "📖" },
-        { word: "FLEUR", letters: ["F", "L", "E", "U", "R"], emoji: "🌸" },
-        { word: "TRAIN", letters: ["T", "R", "A", "I", "N"], emoji: "🚂" },
-        { word: "POULE", letters: ["P", "O", "U", "L", "E"], emoji: "🐔" },
-        { word: "VELO", letters: ["V", "E", "L", "O"], emoji: "🚲" }
+        { word: "CHAT", letters: ["C", "H", "A", "T"], emoji: "🐱", img: "assets/images/games/words/cat.png" },
+        { word: "LION", letters: ["L", "I", "O", "N"], emoji: "🦁", img: "assets/images/games/words/lion.png" },
+        { word: "POMME", letters: ["P", "O", "M", "M", "E"], emoji: "🍎", img: "assets/images/games/words/apple.png" },
+        { word: "LUNE", letters: ["L", "U", "N", "E"], emoji: "🌙", img: "assets/images/games/words/moon.png" },
+        { word: "OURS", letters: ["O", "U", "R", "S"], emoji: "🐻", img: "assets/images/games/words/bear.png" },
+        { word: "LIVRE", letters: ["L", "I", "V", "R", "E"], emoji: "📖", img: "assets/images/stationery/book.png" },
+        { word: "FLEUR", letters: ["F", "L", "E", "U", "R"], emoji: "🌸", img: "assets/images/games/words/flower.png" },
+        { word: "TRAIN", letters: ["T", "R", "A", "I", "N"], emoji: "🚂", img: "assets/images/games/words/train.png" },
+        { word: "POULE", letters: ["P", "O", "U", "L", "E"], emoji: "🐔", img: "assets/images/games/words/hen.png" },
+        { word: "VELO", letters: ["V", "E", "L", "O"], emoji: "🚲", img: "assets/images/games/words/bike.png" }
       ],
       numbers: [
         { value: 1, display: "1", word: "Un" },
@@ -197,16 +197,16 @@
         variants: null
       })),
       words: [
-        { word: "LEMON", letters: ["L", "E", "M", "O", "N"], emoji: "🍋" },
-        { word: "LION", letters: ["L", "I", "O", "N"], emoji: "🦁" },
-        { word: "APPLE", letters: ["A", "P", "P", "L", "E"], emoji: "🍎" },
-        { word: "SUN", letters: ["S", "U", "N"], emoji: "☀️" },
-        { word: "FISH", letters: ["F", "I", "S", "H"], emoji: "🐟" },
-        { word: "BOOK", letters: ["B", "O", "O", "K"], emoji: "📖" },
-        { word: "DUCK", letters: ["D", "U", "C", "K"], emoji: "🦆" },
-        { word: "BEAR", letters: ["B", "E", "A", "R"], emoji: "🐻" },
-        { word: "STAR", letters: ["S", "T", "A", "R"], emoji: "⭐" },
-        { word: "CAT", letters: ["C", "A", "T"], emoji: "🐱" }
+        { word: "LEMON", letters: ["L", "E", "M", "O", "N"], emoji: "🍋", img: "assets/images/games/words/lemon.png" },
+        { word: "LION", letters: ["L", "I", "O", "N"], emoji: "🦁", img: "assets/images/games/words/lion.png" },
+        { word: "APPLE", letters: ["A", "P", "P", "L", "E"], emoji: "🍎", img: "assets/images/games/words/apple.png" },
+        { word: "SUN", letters: ["S", "U", "N"], emoji: "☀️", img: "assets/images/games/words/sun.png" },
+        { word: "FISH", letters: ["F", "I", "S", "H"], emoji: "🐟", img: "assets/images/games/words/fish.png" },
+        { word: "BOOK", letters: ["B", "O", "O", "K"], emoji: "📖", img: "assets/images/stationery/book.png" },
+        { word: "DUCK", letters: ["D", "U", "C", "K"], emoji: "🦆", img: "assets/images/games/words/duck.png" },
+        { word: "BEAR", letters: ["B", "E", "A", "R"], emoji: "🐻", img: "assets/images/games/words/bear.png" },
+        { word: "STAR", letters: ["S", "T", "A", "R"], emoji: "⭐", img: "assets/images/games/words/star.png" },
+        { word: "CAT", letters: ["C", "A", "T"], emoji: "🐱", img: "assets/images/games/words/cat.png" }
       ],
       numbers: [
         { value: 1, display: "1", word: "One" },
@@ -233,90 +233,33 @@
     castle: { bg: "radial-gradient(circle at 50% 0%, #dee5ff 0%, #7c65e0 100%)" }
   };
 
-  function getGameIconSvg(gameId, isArabic) {
-    const sampleLetter = isArabic ? "بَ" : "A";
-    const sampleMole = isArabic ? "ش" : "B";
-    const sampleNum9 = isArabic ? "٩" : "9";
-    const sampleNum1 = isArabic ? "١" : "1";
-    const sampleNum2 = isArabic ? "٢" : "2";
+  // Preloaded 3D sprites for active Canvas games
+  const SPRITES = {};
+  [
+    ["car", "assets/images/games/car-sprite.png"],
+    ["chick", "assets/images/games/chick-sprite.png"],
+    ["star", "assets/images/games/star.png"],
+    ["gems", "assets/images/games/gems.png"],
+    ["apple", "assets/images/games/words/apple.png"],
+    ["lemon", "assets/images/games/words/lemon.png"],
+    ["duck", "assets/images/games/words/duck.png"],
+    ["fish", "assets/images/games/words/fish.png"],
+    ["flower", "assets/images/games/words/flower.png"],
+    ["sun", "assets/images/games/words/sun.png"],
+    ["lion", "assets/images/games/words/lion.png"],
+    ["bear", "assets/images/games/words/bear.png"],
+    ["rabbit", "assets/images/games/words/rabbit.png"],
+    ["cat", "assets/images/games/words/cat.png"]
+  ].forEach(([key, src]) => {
+    const img = new Image();
+    img.src = src;
+    SPRITES[key] = img;
+  });
 
-    switch (gameId) {
-      case "runner":
-        return `<svg viewBox="0 0 220 115" preserveAspectRatio="xMidYMid meet">
-          <circle cx="34" cy="24" r="14" fill="#ffffff" opacity="0.35"/>
-          <circle cx="190" cy="28" r="20" fill="#ffffff" opacity="0.25"/>
-          <path d="M52 108 L86 18 L134 18 L168 108 Z" fill="#2c2a33" stroke="#ffffff" stroke-width="2.5"/>
-          <line x1="110" y1="22" x2="110" y2="104" stroke="#ffe60a" stroke-width="4" stroke-dasharray="8 6"/>
-          <rect x="90" y="14" width="40" height="26" rx="10" fill="#4221b8" stroke="#ffffff" stroke-width="2.5"/>
-          <text x="110" y="32" text-anchor="middle" fill="#ffffff" font-size="16" font-weight="900">${sampleLetter}</text>
-          <ellipse cx="110" cy="96" rx="30" ry="7" fill="rgba(0,0,0,0.28)"/>
-          <rect x="82" y="60" width="56" height="30" rx="12" fill="#ef4444" stroke="#ffffff" stroke-width="3"/>
-          <rect x="90" y="48" width="40" height="18" rx="8" fill="#dc2626" stroke="#ffffff" stroke-width="2.5"/>
-          <rect x="95" y="51" width="30" height="11" rx="4" fill="#bae6fd"/>
-          <circle cx="91" cy="90" r="8" fill="#0f172a"/><circle cx="129" cy="90" r="8" fill="#0f172a"/>
-          <circle cx="91" cy="74" r="4.5" fill="#fde047"/><circle cx="129" cy="74" r="4.5" fill="#fde047"/>
-        </svg>`;
-      case "maze":
-        return `<svg viewBox="0 0 220 115" preserveAspectRatio="xMidYMid meet">
-          <circle cx="32" cy="28" r="16" fill="#ffffff" opacity="0.35"/>
-          <rect x="44" y="12" width="132" height="86" rx="20" fill="#15803d" stroke="#ffffff" stroke-width="3"/>
-          <rect x="56" y="20" width="108" height="70" rx="14" fill="#fef3c7"/>
-          <path d="M88 20 L88 60 M132 45 L132 90" stroke="#16a34a" stroke-width="9" stroke-linecap="round"/>
-          <circle cx="110" cy="58" r="22" fill="#facc15" stroke="#ffffff" stroke-width="3.5"/>
-          <circle cx="102" cy="52" r="3.5" fill="#0f172a"/><circle cx="118" cy="52" r="3.5" fill="#0f172a"/>
-          <polygon points="104,59 116,59 110,68" fill="#f97316"/>
-          <circle cx="96" cy="58" r="4" fill="#fb7185" opacity="0.65"/><circle cx="124" cy="58" r="4" fill="#fb7185" opacity="0.65"/>
-        </svg>`;
-      case "ninja":
-        return `<svg viewBox="0 0 220 115" preserveAspectRatio="xMidYMid meet">
-          <circle cx="42" cy="30" r="18" fill="#ffffff" opacity="0.3"/>
-          <circle cx="110" cy="58" r="36" fill="#16a34a" stroke="#ffffff" stroke-width="3.5"/>
-          <circle cx="110" cy="58" r="29" fill="#ef4444"/>
-          <circle cx="110" cy="58" r="17" fill="#ffffff"/>
-          <text x="110" y="65" text-anchor="middle" fill="#4221b8" font-size="22" font-weight="900">${sampleLetter}</text>
-          <path d="M46 86 Q110 46 174 20" fill="none" stroke="#ffe60a" stroke-width="6.5" stroke-linecap="round"/>
-          <circle cx="66" cy="32" r="5" fill="#ffffff" opacity="0.8"/><circle cx="154" cy="72" r="6" fill="#ffffff" opacity="0.8"/>
-        </svg>`;
-      case "basketball":
-        return `<svg viewBox="0 0 220 115" preserveAspectRatio="xMidYMid meet">
-          <rect x="72" y="10" width="76" height="44" rx="10" fill="#ffffff" stroke="#4221b8" stroke-width="3.5"/>
-          <text x="110" y="40" text-anchor="middle" fill="#4221b8" font-size="25" font-weight="900">${sampleNum9}</text>
-          <path d="M86 54 L134 54 L126 78 L94 78 Z" fill="none" stroke="#ffffff" stroke-width="3"/>
-          <line x1="82" y1="54" x2="138" y2="54" stroke="#ea580c" stroke-width="5.5" stroke-linecap="round"/>
-          <circle cx="110" cy="84" r="18" fill="#f97316" stroke="#ffffff" stroke-width="3"/>
-          <path d="M93 84 L127 84 M110 66 L110 102" stroke="#7c2d12" stroke-width="2.2"/>
-        </svg>`;
-      case "whack":
-        return `<svg viewBox="0 0 220 115" preserveAspectRatio="xMidYMid meet">
-          <ellipse cx="110" cy="90" rx="50" ry="13" fill="#451a03"/>
-          <path d="M82 88 L82 44 A28 28 0 0 1 138 44 L138 88 Z" fill="#92400e" stroke="#ffffff" stroke-width="3"/>
-          <circle cx="100" cy="42" r="3.8" fill="#0f172a"/><circle cx="120" cy="42" r="3.8" fill="#0f172a"/>
-          <ellipse cx="110" cy="50" rx="8" ry="5" fill="#f472b6"/>
-          <rect x="88" y="60" width="44" height="26" rx="8" fill="#ffffff" stroke="#4221b8" stroke-width="2.5"/>
-          <text x="110" y="79" text-anchor="middle" fill="#4221b8" font-size="19" font-weight="900">${sampleMole}</text>
-          <path d="M62 90 Q110 78 158 90" fill="none" stroke="#78350f" stroke-width="7" stroke-linecap="round"/>
-        </svg>`;
-      case "tower":
-        return `<svg viewBox="0 0 220 115" preserveAspectRatio="xMidYMid meet">
-          <circle cx="110" cy="20" r="15" fill="#ef4444" stroke="#ffffff" stroke-width="2.5"/>
-          <line x1="110" y1="35" x2="110" y2="46" stroke="#ffffff" stroke-width="2.5"/>
-          <rect x="78" y="44" width="64" height="25" rx="6" fill="#ffe60a" stroke="#ffffff" stroke-width="2.5"/>
-          <rect x="84" y="50" width="9" height="9" rx="2" fill="#ffffff"/><rect x="127" y="50" width="9" height="9" rx="2" fill="#ffffff"/>
-          <text x="110" y="62" text-anchor="middle" fill="#2c2a33" font-size="17" font-weight="900">${sampleNum2}</text>
-          <rect x="70" y="71" width="80" height="27" rx="6" fill="#4221b8" stroke="#ffffff" stroke-width="2.5"/>
-          <rect x="77" y="77" width="10" height="10" rx="2" fill="#c6d2ff"/><rect x="133" y="77" width="10" height="10" rx="2" fill="#c6d2ff"/>
-          <text x="110" y="90" text-anchor="middle" fill="#ffffff" font-size="17" font-weight="900">${sampleNum1}</text>
-        </svg>`;
-      default:
-        return `<svg viewBox="0 0 220 115" preserveAspectRatio="xMidYMid meet">
-          <rect x="70" y="10" width="80" height="28" rx="10" fill="#ffffff" stroke="#4221b8" stroke-width="3"/>
-          <circle cx="90" cy="24" r="6" fill="#ef4444"/><circle cx="110" cy="24" r="6" fill="#ef4444"/><circle cx="130" cy="24" r="6" fill="#ef4444"/>
-          <path d="M90 46 L84 38 M130 46 L136 38" stroke="#15803d" stroke-width="4" stroke-linecap="round"/>
-          <circle cx="110" cy="60" r="20" fill="#31c838" stroke="#ffffff" stroke-width="3"/>
-          <circle cx="110" cy="57" r="7" fill="#ffffff"/><circle cx="110" cy="57" r="3.5" fill="#0f172a"/>
-          <rect x="96" y="81" width="28" height="20" rx="6" fill="#2c2a33" stroke="#ffffff" stroke-width="2"/>
-        </svg>`;
-    }
+  function getGameIconSvg(gameId) {
+    const validIds = ["runner", "maze", "ninja", "basketball", "whack", "tower", "castle"];
+    const safeId = validIds.includes(gameId) ? gameId : "runner";
+    return `<img src="assets/images/games/${safeId}.png" alt="${safeId}" class="nk-game-3d-thumb" loading="lazy">`;
   }
 
   function getActiveLangId() {
@@ -1048,14 +991,14 @@
         }
       }
 
-      // Voiture de course rouge 3D vue de dos
+      // Voiture de course rouge 3D vue de dos (Sprite 3D Pixar)
       const targetNormX = (carLane - 1) * 0.27;
       carVisualX += (targetNormX - carVisualX) * 0.18;
       carTilt *= 0.88;
       const carX = W / 2 + botRoadW * carVisualX;
       const carY = H * 0.77;
-      const carW = Math.min(122, W * 0.17);
-      const carH = carW * 0.72;
+      const carW = Math.min(136, W * 0.19);
+      const carH = carW * 0.85;
 
       ctx.save();
       ctx.translate(carX, carY);
@@ -1064,55 +1007,17 @@
       // Ombre portée au sol
       ctx.fillStyle = "rgba(0, 0, 0, 0.35)";
       ctx.beginPath();
-      ctx.ellipse(0, carH * 0.42, carW * 0.52, carH * 0.18, 0, 0, Math.PI * 2);
+      ctx.ellipse(0, carH * 0.4, carW * 0.48, carH * 0.16, 0, 0, Math.PI * 2);
       ctx.fill();
 
-      // Pneus larges
-      ctx.fillStyle = "#0f172a";
-      ctx.beginPath();
-      ctx.roundRect(-carW * 0.49, carH * 0.05, carW * 0.2, carH * 0.38, 6);
-      ctx.roundRect(carW * 0.29, carH * 0.05, carW * 0.2, carH * 0.38, 6);
-      ctx.fill();
-
-      // Carrosserie principale rouge brillante
-      const bodyGrad = ctx.createLinearGradient(0, -carH * 0.4, 0, carH * 0.35);
-      bodyGrad.addColorStop(0, "#ff4d6d");
-      bodyGrad.addColorStop(0.5, "#ef4444");
-      bodyGrad.addColorStop(1, "#b91c1c");
-      ctx.fillStyle = bodyGrad;
-      ctx.strokeStyle = "#ffffff";
-      ctx.lineWidth = 3.5;
-      ctx.beginPath();
-      ctx.roundRect(-carW * 0.44, -carH * 0.35, carW * 0.88, carH * 0.7, 18);
-      ctx.fill();
-      ctx.stroke();
-
-      // Habitacle & lunette arrière bleutée
-      ctx.fillStyle = "#dc2626";
-      ctx.beginPath();
-      ctx.roundRect(-carW * 0.33, -carH * 0.68, carW * 0.66, carH * 0.4, 14);
-      ctx.fill();
-      ctx.stroke();
-
-      ctx.fillStyle = "#7dd3fc";
-      ctx.beginPath();
-      ctx.roundRect(-carW * 0.26, -carH * 0.6, carW * 0.52, carH * 0.24, 7);
-      ctx.fill();
-
-      // Aileron sport arrière
-      ctx.fillStyle = "#991b1b";
-      ctx.beginPath();
-      ctx.roundRect(-carW * 0.46, -carH * 0.38, carW * 0.92, carH * 0.1, 5);
-      ctx.fill();
-
-      // Feux arrière lumineux + plaque centrale
-      ctx.fillStyle = "#fde047";
-      ctx.beginPath();
-      ctx.arc(-carW * 0.3, -carH * 0.04, 7, 0, Math.PI * 2);
-      ctx.arc(carW * 0.3, -carH * 0.04, 7, 0, Math.PI * 2);
-      ctx.fill();
-      ctx.fillStyle = "#ffffff";
-      ctx.fillRect(-carW * 0.14, -carH * 0.08, carW * 0.28, carH * 0.14);
+      if (SPRITES.car && SPRITES.car.complete && SPRITES.car.naturalWidth > 0) {
+        ctx.drawImage(SPRITES.car, -carW * 0.52, -carH * 0.56, carW * 1.04, carH * 1.04);
+      } else {
+        ctx.fillStyle = "#ef4444";
+        ctx.beginPath();
+        ctx.roundRect(-carW * 0.44, -carH * 0.35, carW * 0.88, carH * 0.7, 18);
+        ctx.fill();
+      }
       ctx.restore();
 
       starsBurst.forEach((st) => {
@@ -1176,8 +1081,12 @@
         })
         .join("");
 
+      const iconHtml = currentWordObj.img
+        ? `<img src="${currentWordObj.img}" alt="${currentWordObj.word}" class="word-3d-icon">`
+        : `<span class="word-emoji">${currentWordObj.emoji}</span>`;
+
       bannerEl.innerHTML = `
-        <span class="word-emoji">${currentWordObj.emoji}</span>
+        ${iconHtml}
         <div class="word-letters-row" dir="${db.dir}">${boxesHtml}</div>
       `;
     }
@@ -1327,48 +1236,22 @@
       const bounce = Math.abs(Math.sin(animTick)) * 6;
       const chickY = H * 0.72 - chickYOffset - bounce;
 
-      // Petit poussin jaune 3D mignon
+      // Petit poussin jaune 3D mignon (Sprite 3D Pixar)
       ctx.save();
       ctx.translate(chickX, chickY);
       ctx.fillStyle = "rgba(0,0,0,0.18)";
       ctx.beginPath();
-      ctx.ellipse(0, 30 + bounce, 24, 8, 0, 0, Math.PI * 2);
+      ctx.ellipse(0, 34 + bounce, 26, 9, 0, 0, Math.PI * 2);
       ctx.fill();
 
-      // Ailes
-      ctx.fillStyle = "#eab308";
-      ctx.beginPath();
-      ctx.ellipse(-28, 2, 10, 16, 0.3, 0, Math.PI * 2);
-      ctx.ellipse(28, 2, 10, 16, -0.3, 0, Math.PI * 2);
-      ctx.fill();
-
-      // Corps rond
-      ctx.fillStyle = "#facc15";
-      ctx.strokeStyle = "#ffffff";
-      ctx.lineWidth = 4;
-      ctx.beginPath();
-      ctx.arc(0, 0, 29, 0, Math.PI * 2);
-      ctx.fill();
-      ctx.stroke();
-
-      // Yeux brillants, joues roses & bec orange
-      ctx.fillStyle = "#0f172a";
-      ctx.beginPath();
-      ctx.arc(-10, -6, 4, 0, Math.PI * 2);
-      ctx.arc(10, -6, 4, 0, Math.PI * 2);
-      ctx.fill();
-      ctx.fillStyle = "#fb7185";
-      ctx.beginPath();
-      ctx.arc(-16, 2, 4.5, 0, Math.PI * 2);
-      ctx.arc(16, 2, 4.5, 0, Math.PI * 2);
-      ctx.fill();
-      ctx.fillStyle = "#f97316";
-      ctx.beginPath();
-      ctx.moveTo(-7, 2);
-      ctx.lineTo(7, 2);
-      ctx.lineTo(0, 12);
-      ctx.closePath();
-      ctx.fill();
+      if (SPRITES.chick && SPRITES.chick.complete && SPRITES.chick.naturalWidth > 0) {
+        ctx.drawImage(SPRITES.chick, -42, -44, 84, 84);
+      } else {
+        ctx.fillStyle = "#facc15";
+        ctx.beginPath();
+        ctx.arc(0, 0, 29, 0, Math.PI * 2);
+        ctx.fill();
+      }
       ctx.restore();
 
       rafId = requestAnimationFrame(renderMaze);
@@ -1639,16 +1522,16 @@
     let running = true;
     let rafId = null;
     let targetNumObj = null;
-    let currentEmoji = "🍎";
+    let currentSpriteKey = "apple";
     let hoopOptions = [];
     let ball = { x: 0, y: 0, startX: 0, startY: 0, targetX: 0, targetY: 0, t: 0, state: "idle", hoopIdx: -1 };
     let celebrationJump = 0;
 
-    const countEmojis = ["🍎", "🧦", "⭐", "🍌", "⚽", "🍓"];
+    const countSpriteKeys = ["apple", "star", "lemon", "duck", "fish", "flower"];
 
     function setupRound() {
       targetNumObj = db.numbers[Math.floor(Math.random() * db.numbers.length)];
-      currentEmoji = countEmojis[Math.floor(Math.random() * countEmojis.length)];
+      currentSpriteKey = countSpriteKeys[Math.floor(Math.random() * countSpriteKeys.length)];
 
       const distractors = shuffle(db.numbers.filter((n) => n.value !== targetNumObj.value)).slice(0, 2);
       hoopOptions = shuffle([targetNumObj, ...distractors]);
@@ -1714,14 +1597,18 @@
         ctx.fill();
       }
 
-      // Animaux spectateurs
-      const animals = ["🦁", "🐼", "🐵", "🐰", "🐻", "🐸"];
+      // Animaux spectateurs 3D
+      const spectatorKeys = ["lion", "bear", "rabbit", "cat", "duck", "chick"];
       const jumpY = celebrationJump > 0 ? Math.abs(Math.sin(celebrationJump * 0.35)) * 18 : 0;
       if (celebrationJump > 0) celebrationJump--;
-      ctx.font = `${Math.max(26, Math.round(W * 0.034))}px sans-serif`;
-      ctx.textAlign = "center";
-      animals.forEach((an, i) => {
-        ctx.fillText(an, W * (0.1 + i * 0.16), H * 0.39 - jumpY);
+      const specSize = Math.max(36, Math.round(W * 0.045));
+      spectatorKeys.forEach((spKey, i) => {
+        const spImg = SPRITES[spKey];
+        const sx = W * (0.1 + i * 0.16);
+        const sy = H * 0.38 - jumpY;
+        if (spImg && spImg.complete && spImg.naturalWidth > 0) {
+          ctx.drawImage(spImg, sx - specSize / 2, sy - specSize / 2, specSize, specSize);
+        }
       });
 
       // Parquet de basket brillant + lignes blanches du terrain
@@ -1756,15 +1643,17 @@
       ctx.fillText(db.ui.howMany, W / 2, boardY + boardH * 0.22);
 
       const count = targetNumObj.value;
-      const itemFontSize = Math.min(34, Math.round(boardH * 0.26));
-      ctx.font = `${itemFontSize}px sans-serif`;
+      const itemSize = Math.min(42, Math.round(boardH * 0.32));
+      const countImg = SPRITES[currentSpriteKey];
       for (let i = 0; i < count; i++) {
         const r = Math.floor(i / 5);
         const c = i % 5;
         const rowCols = r === 1 ? count - 5 : Math.min(5, count);
-        const ox = W / 2 + (c - (rowCols - 1) / 2) * (itemFontSize * 1.35);
-        const oy = boardY + boardH * (count > 5 ? (r === 0 ? 0.54 : 0.82) : 0.66);
-        ctx.fillText(currentEmoji, ox, oy);
+        const ox = W / 2 + (c - (rowCols - 1) / 2) * (itemSize * 1.25);
+        const oy = boardY + boardH * (count > 5 ? (r === 0 ? 0.52 : 0.8) : 0.64);
+        if (countImg && countImg.complete && countImg.naturalWidth > 0) {
+          ctx.drawImage(countImg, ox - itemSize / 2, oy - itemSize / 2, itemSize, itemSize);
+        }
       }
 
       // 3 Paniers de basket
@@ -1945,6 +1834,15 @@
             clearTimeout(waveTimer);
             SFX.success();
             spawnConfetti(35);
+            floatParticles.push({
+              x: h.x,
+              y: h.y - 40,
+              vy: 1.8,
+              alpha: 1.0,
+              scale: 1.0,
+              text: "+10 ⭐",
+              color: "#f59e0b"
+            });
             const won = advanceProgress();
             if (!won) {
               targetLetterObj = null;
@@ -1960,87 +1858,270 @@
 
     spawnMoleWave();
 
+    let floatParticles = [];
+    let whackPhase = 0;
+
     function renderWhack() {
       if (!running) return;
+      whackPhase += 0.05;
       const W = canvas.width;
       const H = canvas.height;
 
-      // Ciel & prairie ensoleillée
-      ctx.fillStyle = "#7dd3fc";
-      ctx.fillRect(0, 0, W, H * 0.18);
-      const lawnGrad = ctx.createLinearGradient(0, H * 0.16, 0, H);
-      lawnGrad.addColorStop(0, "#4ade80");
-      lawnGrad.addColorStop(1, "#15803d");
-      ctx.fillStyle = lawnGrad;
-      ctx.fillRect(0, H * 0.16, W, H * 0.84);
+      // 1. Ciel dégradé avec soleil radieux et nuages
+      const skyGrad = ctx.createLinearGradient(0, 0, 0, H * 0.22);
+      skyGrad.addColorStop(0, "#38bdf8");
+      skyGrad.addColorStop(1, "#bae6fd");
+      ctx.fillStyle = skyGrad;
+      ctx.fillRect(0, 0, W, H * 0.22);
 
-      // Clôture en bois
+      // Soleil doux en haut à droite
+      ctx.fillStyle = "rgba(254, 240, 138, 0.45)";
+      ctx.beginPath();
+      ctx.arc(W * 0.88, H * 0.08, 48 + Math.sin(whackPhase * 1.5) * 4, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.fillStyle = "#fef08a";
+      ctx.beginPath();
+      ctx.arc(W * 0.88, H * 0.08, 28, 0, Math.PI * 2);
+      ctx.fill();
+
+      // 2. Collines verdoyantes & prairie 3D
+      const hillGrad = ctx.createLinearGradient(0, H * 0.15, 0, H);
+      hillGrad.addColorStop(0, "#4ade80");
+      hillGrad.addColorStop(0.3, "#22c55e");
+      hillGrad.addColorStop(1, "#15803d");
+      ctx.fillStyle = hillGrad;
+      ctx.fillRect(0, H * 0.20, W, H * 0.80);
+
+      // Clôture champêtre en bois
       ctx.fillStyle = "#d97706";
-      ctx.strokeStyle = "#78350f";
-      ctx.lineWidth = 2;
-      for (let x = 0; x < W; x += 48) {
-        ctx.fillRect(x + 8, H * 0.04, 26, H * 0.14);
-        ctx.strokeRect(x + 8, H * 0.04, 26, H * 0.14);
+      ctx.strokeStyle = "#92400e";
+      ctx.lineWidth = 2.5;
+      for (let x = 12; x < W; x += 52) {
+        ctx.beginPath();
+        ctx.roundRect(x, H * 0.08, 24, H * 0.14, [6, 6, 0, 0]);
+        ctx.fill();
+        ctx.stroke();
       }
-      ctx.fillRect(0, H * 0.09, W, 10);
+      ctx.fillStyle = "#b45309";
+      ctx.fillRect(0, H * 0.12, W, 8);
+      ctx.fillRect(0, H * 0.17, W, 8);
 
       const holes = getHoleCoords(W, H);
       holes.forEach((h, idx) => {
-        // Terrier sombre
-        ctx.fillStyle = "#290f02";
+        // Ombre portée sous le terrier
+        ctx.fillStyle = "rgba(15, 23, 42, 0.28)";
+        ctx.beginPath();
+        ctx.ellipse(h.x, h.y + 12, 64, 24, 0, 0, Math.PI * 2);
+        ctx.fill();
+
+        // Intérieur sombre 3D du terrier
+        const holeInnerGrad = ctx.createRadialGradient(h.x, h.y, 4, h.x, h.y, 56);
+        holeInnerGrad.addColorStop(0, "#1c0a00");
+        holeInnerGrad.addColorStop(0.8, "#381504");
+        holeInnerGrad.addColorStop(1, "#542308");
+        ctx.fillStyle = holeInnerGrad;
         ctx.beginPath();
         ctx.ellipse(h.x, h.y, 58, 22, 0, 0, Math.PI * 2);
         ctx.fill();
 
         const mole = activeMoles.find((m) => m.holeIdx === idx);
-        if (mole && !mole.hit) {
-          mole.pop = Math.min(1, mole.pop + 0.12);
-          const my = h.y - 38 * mole.pop;
+        if (mole) {
+          if (!mole.hit) {
+            mole.pop = Math.min(1, mole.pop + 0.12);
+          } else {
+            mole.pop = Math.max(0, mole.pop - 0.1);
+          }
 
-          // Corps de la taupe
-          ctx.fillStyle = "#92400e";
-          ctx.strokeStyle = "#ffffff";
-          ctx.lineWidth = 3;
-          ctx.beginPath();
-          ctx.roundRect(h.x - 32, my - 38, 64, 60, [32, 32, 8, 8]);
-          ctx.fill();
-          ctx.stroke();
+          if (mole.pop > 0.05) {
+            const wobble = Math.sin(whackPhase * 4 + idx) * 2;
+            const my = h.y - 46 * mole.pop + (mole.hit ? 8 : wobble);
 
-          // Yeux, joues & museau rose
-          ctx.fillStyle = "#0f172a";
-          ctx.beginPath();
-          ctx.arc(h.x - 12, my - 20, 3.5, 0, Math.PI * 2);
-          ctx.arc(h.x + 12, my - 20, 3.5, 0, Math.PI * 2);
-          ctx.fill();
-          ctx.fillStyle = "#f472b6";
-          ctx.beginPath();
-          ctx.ellipse(h.x, my - 12, 8, 5, 0, 0, Math.PI * 2);
-          ctx.fill();
+            // --- TAUPE CUTE 3D ENRICHIE ---
+            ctx.save();
+            ctx.translate(h.x, my);
 
-          // Pancarte blanche
-          ctx.fillStyle = "#ffffff";
-          ctx.strokeStyle = "#a855f7";
-          ctx.lineWidth = 3.5;
-          ctx.beginPath();
-          ctx.roundRect(h.x - 28, my - 3, 56, 36, 10);
-          ctx.fill();
-          ctx.stroke();
+            // 1. Petites oreilles rondes
+            ctx.fillStyle = "#78350f";
+            ctx.strokeStyle = "#451a03";
+            ctx.lineWidth = 2.5;
+            // Oreille gauche
+            ctx.beginPath();
+            ctx.arc(-26, -32, 11, 0, Math.PI * 2);
+            ctx.fill();
+            ctx.stroke();
+            ctx.fillStyle = "#f472b6";
+            ctx.beginPath();
+            ctx.arc(-26, -32, 6, 0, Math.PI * 2);
+            ctx.fill();
+            // Oreille droite
+            ctx.fillStyle = "#78350f";
+            ctx.beginPath();
+            ctx.arc(26, -32, 11, 0, Math.PI * 2);
+            ctx.fill();
+            ctx.stroke();
+            ctx.fillStyle = "#f472b6";
+            ctx.beginPath();
+            ctx.arc(26, -32, 6, 0, Math.PI * 2);
+            ctx.fill();
 
-          ctx.fillStyle = "#3b0764";
-          ctx.font = "900 25px Cairo, sans-serif";
-          ctx.textAlign = "center";
-          ctx.textBaseline = "middle";
-          ctx.fillText(mole.letter, h.x, my + 15);
+            // 2. Corps / Tête pelucheuse avec dégradé doux
+            const furGrad = ctx.createRadialGradient(0, -18, 6, 0, -12, 42);
+            furGrad.addColorStop(0, "#b45309");
+            furGrad.addColorStop(0.65, "#92400e");
+            furGrad.addColorStop(1, "#712708");
+            ctx.fillStyle = furGrad;
+            ctx.strokeStyle = "#fef3c7";
+            ctx.lineWidth = 2.5;
+            ctx.beginPath();
+            ctx.roundRect(-34, -40, 68, 66, [34, 34, 14, 14]);
+            ctx.fill();
+            ctx.stroke();
+
+            // 3. Joues roses toutes mignonnes (blush kawaii)
+            ctx.fillStyle = "rgba(251, 113, 133, 0.65)";
+            ctx.beginPath();
+            ctx.ellipse(-20, -12, 7, 5, 0, 0, Math.PI * 2);
+            ctx.ellipse(20, -12, 7, 5, 0, 0, Math.PI * 2);
+            ctx.fill();
+
+            if (mole.hit) {
+              // Yeux étourdis / winking
+              ctx.strokeStyle = "#451a03";
+              ctx.lineWidth = 3.5;
+              ctx.beginPath();
+              // Oeil gauche en étoile/croix
+              ctx.moveTo(-16, -24); ctx.lineTo(-8, -16);
+              ctx.moveTo(-8, -24); ctx.lineTo(-16, -16);
+              // Oeil droit
+              ctx.moveTo(8, -24); ctx.lineTo(16, -16);
+              ctx.moveTo(16, -24); ctx.lineTo(8, -16);
+              ctx.stroke();
+            } else {
+              // Grands yeux kawaii brillants
+              ctx.fillStyle = "#0f172a";
+              ctx.beginPath();
+              ctx.arc(-13, -20, 6, 0, Math.PI * 2);
+              ctx.arc(13, -20, 6, 0, Math.PI * 2);
+              ctx.fill();
+
+              // Reflets lumineux dans les yeux
+              ctx.fillStyle = "#ffffff";
+              ctx.beginPath();
+              ctx.arc(-15, -22, 2.2, 0, Math.PI * 2);
+              ctx.arc(11, -22, 2.2, 0, Math.PI * 2);
+              ctx.arc(-11, -18, 1.2, 0, Math.PI * 2);
+              ctx.arc(15, -18, 1.2, 0, Math.PI * 2);
+              ctx.fill();
+            }
+
+            // 4. Museau & Truffe rose en forme de cœur
+            ctx.fillStyle = "#fbcfe8";
+            ctx.beginPath();
+            ctx.ellipse(0, -9, 13, 9, 0, 0, Math.PI * 2);
+            ctx.fill();
+
+            ctx.fillStyle = "#ec4899";
+            ctx.beginPath();
+            ctx.ellipse(0, -12, 6, 4, 0, 0, Math.PI * 2);
+            ctx.fill();
+
+            // Sourire amical avec 2 petites quenottes blanches
+            ctx.strokeStyle = "#831843";
+            ctx.lineWidth = 2;
+            ctx.beginPath();
+            ctx.arc(0, -7, 6, 0.15 * Math.PI, 0.85 * Math.PI);
+            ctx.stroke();
+            ctx.fillStyle = "#ffffff";
+            ctx.fillRect(-3, -5, 2.5, 3.5);
+            ctx.fillRect(0.5, -5, 2.5, 3.5);
+
+            // 5. Pancarte / Panneau 3D en bois doré tenant la lettre
+            const signGrad = ctx.createLinearGradient(0, 0, 0, 38);
+            signGrad.addColorStop(0, "#fffbeb");
+            signGrad.addColorStop(1, "#fef3c7");
+            ctx.fillStyle = signGrad;
+            ctx.strokeStyle = "#d97706";
+            ctx.lineWidth = 3.5;
+            ctx.beginPath();
+            ctx.roundRect(-30, 2, 60, 38, 12);
+            ctx.fill();
+            ctx.stroke();
+
+            // Clous dorés aux 4 coins de la pancarte
+            ctx.fillStyle = "#b45309";
+            [[-24, 7], [24, 7], [-24, 34], [24, 34]].forEach(([cx, cy]) => {
+              ctx.beginPath();
+              ctx.arc(cx, cy, 1.8, 0, Math.PI * 2);
+              ctx.fill();
+            });
+
+            // Lettre cible vibrante et lisible avec ombre 3D
+            ctx.fillStyle = "rgba(79, 70, 229, 0.22)";
+            ctx.font = "900 27px Cairo, sans-serif";
+            ctx.textAlign = "center";
+            ctx.textBaseline = "middle";
+            ctx.fillText(mole.letter, 1, 23);
+
+            ctx.fillStyle = "#4338ca";
+            ctx.fillText(mole.letter, 0, 21);
+
+            // 6. Petites pattes pelucheuses tenant le bord de la pancarte
+            ctx.fillStyle = "#92400e";
+            ctx.strokeStyle = "#451a03";
+            ctx.lineWidth = 2;
+            ctx.beginPath();
+            ctx.roundRect(-26, 0, 12, 10, 5);
+            ctx.roundRect(14, 0, 12, 10, 5);
+            ctx.fill();
+            ctx.stroke();
+
+            ctx.restore();
+          }
         }
 
-        // Rebord de terre devant le trou
+        // Rebord de terre 3D devant le terrier
         ctx.strokeStyle = "#78350f";
-        ctx.lineWidth = 7;
+        ctx.lineWidth = 8;
         ctx.lineCap = "round";
         ctx.beginPath();
-        ctx.arc(h.x, h.y + 2, 54, 0.15 * Math.PI, 0.85 * Math.PI);
+        ctx.arc(h.x, h.y + 3, 55, 0.14 * Math.PI, 0.86 * Math.PI);
         ctx.stroke();
+
+        ctx.strokeStyle = "#92400e";
+        ctx.lineWidth = 3;
+        ctx.beginPath();
+        ctx.arc(h.x, h.y + 1, 55, 0.16 * Math.PI, 0.84 * Math.PI);
+        ctx.stroke();
+
+        // Petits brins d'herbe frais autour du trou
+        ctx.strokeStyle = "#16a34a";
+        ctx.lineWidth = 2.5;
+        [[-42, 1], [-35, 6], [36, 5], [44, 0]].forEach(([gx, gy]) => {
+          ctx.beginPath();
+          ctx.moveTo(h.x + gx, h.y + gy);
+          ctx.lineTo(h.x + gx + 3, h.y + gy - 10);
+          ctx.stroke();
+        });
       });
+
+      // Particules flottantes lors des réussites
+      for (let i = floatParticles.length - 1; i >= 0; i--) {
+        const p = floatParticles[i];
+        p.y -= p.vy;
+        p.alpha -= 0.025;
+        p.scale += 0.02;
+        if (p.alpha <= 0) {
+          floatParticles.splice(i, 1);
+          continue;
+        }
+        ctx.save();
+        ctx.globalAlpha = p.alpha;
+        ctx.font = "900 24px Cairo, sans-serif";
+        ctx.fillStyle = p.color;
+        ctx.textAlign = "center";
+        ctx.fillText(p.text, p.x, p.y);
+        ctx.restore();
+      }
 
       rafId = requestAnimationFrame(renderWhack);
     }

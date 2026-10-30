@@ -1,0 +1,107 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 310" width="420" height="310">
+  <defs>
+    <linearGradient id="vocBg" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#8b5cf6"/>
+      <stop offset="100%" stop-color="#6d28d9"/>
+    </linearGradient>
+    <radialGradient id="vocRay" cx="50%" cy="38%" r="62%">
+      <stop offset="0%" stop-color="#f5d0fe" stop-opacity="0.45"/>
+      <stop offset="100%" stop-color="#6d28d9" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="vocTileY" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#fef08a"/>
+      <stop offset="100%" stop-color="#facc15"/>
+    </linearGradient>
+    <linearGradient id="vocTileO" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#fdba74"/>
+      <stop offset="100%" stop-color="#f97316"/>
+    </linearGradient>
+    <filter id="vocCardSh" x="-8%" y="-8%" width="116%" height="120%">
+      <feDropShadow dx="0" dy="8" stdDeviation="6" flood-color="#2e1065" flood-opacity="0.42"/>
+    </filter>
+    <filter id="vocSoftSh" x="-10%" y="-10%" width="120%" height="125%">
+      <feDropShadow dx="0" dy="4" stdDeviation="3" flood-color="#0f172a" flood-opacity="0.32"/>
+    </filter>
+  </defs>
+
+  <!-- Card Frame (same dimensions as other category cards) -->
+  <rect x="14" y="10" width="392" height="262" rx="48" fill="#ffffff" filter="url(#vocCardSh)"/>
+  <rect x="22" y="18" width="376" height="246" rx="42" fill="url(#vocBg)"/>
+  <rect x="22" y="18" width="376" height="246" rx="42" fill="url(#vocRay)"/>
+
+  <!-- Decorative Stars -->
+  <g fill="#fde047" filter="url(#vocSoftSh)">
+    <polygon points="56,46 61,56 72,58 64,66 66,77 56,71 46,77 48,66 40,58 51,56"/>
+    <polygon points="364,46 369,56 380,58 372,66 374,77 364,71 354,77 356,66 348,58 359,56"/>
+    <circle cx="92" cy="74" r="5" fill="#fef08a"/>
+    <circle cx="328" cy="74" r="5" fill="#fef08a"/>
+  </g>
+
+  <!-- 3 Sensory Pill Badges: Listen • Read • Speak -->
+  <g filter="url(#vocSoftSh)">
+    <!-- Listen Pill -->
+    <rect x="52" y="44" width="94" height="30" rx="15" fill="#fef08a" stroke="#ca8a04" stroke-width="2"/>
+    <text x="74" y="65" font-size="16">👂</text>
+    <text x="114" y="64" text-anchor="middle" fill="#713f12" font-family="'Nunito', sans-serif" font-size="13" font-weight="900">LISTEN</text>
+
+    <!-- Read Pill -->
+    <rect x="163" y="38" width="94" height="30" rx="15" fill="#e0e7ff" stroke="#4338ca" stroke-width="2"/>
+    <text x="185" y="59" font-size="16">👁️</text>
+    <text x="225" y="58" text-anchor="middle" fill="#312e81" font-family="'Nunito', sans-serif" font-size="13" font-weight="900">READ</text>
+
+    <!-- Speak Pill -->
+    <rect x="274" y="44" width="94" height="30" rx="15" fill="#fee2e2" stroke="#dc2626" stroke-width="2"/>
+    <text x="296" y="65" font-size="16">🎙️</text>
+    <text x="336" y="64" text-anchor="middle" fill="#7f1d1d" font-family="'Nunito', sans-serif" font-size="13" font-weight="900">SPEAK</text>
+  </g>
+
+  <!-- Center Scrabble-style Letter Tiles: B - A - G -->
+  <g filter="url(#vocSoftSh)">
+    <!-- Tile 1: B -->
+    <rect x="105" y="92" width="60" height="66" rx="16" fill="url(#vocTileY)" stroke="#ca8a04" stroke-width="3"/>
+    <rect x="109" y="96" width="52" height="58" rx="12" fill="#fffbeb" opacity="0.4"/>
+    <text x="135" y="140" text-anchor="middle" fill="#713f12" font-family="'Nunito', sans-serif" font-size="44" font-weight="900">B</text>
+    <text x="156" y="112" text-anchor="middle" fill="#854d0e" font-family="'Nunito', sans-serif" font-size="11" font-weight="900">1</text>
+
+    <!-- Tile 2: A -->
+    <rect x="180" y="86" width="60" height="66" rx="16" fill="url(#vocTileO)" stroke="#c2410c" stroke-width="3"/>
+    <rect x="184" y="90" width="52" height="58" rx="12" fill="#fff7ed" opacity="0.4"/>
+    <text x="210" y="134" text-anchor="middle" fill="#7c2d12" font-family="'Nunito', sans-serif" font-size="44" font-weight="900">A</text>
+    <text x="231" y="106" text-anchor="middle" fill="#9a3412" font-family="'Nunito', sans-serif" font-size="11" font-weight="900">1</text>
+
+    <!-- Tile 3: G -->
+    <rect x="255" y="92" width="60" height="66" rx="16" fill="url(#vocTileY)" stroke="#ca8a04" stroke-width="3"/>
+    <rect x="259" y="96" width="52" height="58" rx="12" fill="#fffbeb" opacity="0.4"/>
+    <text x="285" y="140" text-anchor="middle" fill="#713f12" font-family="'Nunito', sans-serif" font-size="44" font-weight="900">G</text>
+    <text x="306" y="112" text-anchor="middle" fill="#854d0e" font-family="'Nunito', sans-serif" font-size="11" font-weight="900">2</text>
+  </g>
+
+  <!-- Soundwave Graphic + 3D School Bag / Icon below -->
+  <g filter="url(#vocSoftSh)">
+    <!-- Audio Wave lines -->
+    <rect x="80" y="172" width="6" height="18" rx="3" fill="#f43f5e"/>
+    <rect x="92" y="166" width="6" height="30" rx="3" fill="#f59e0b"/>
+    <rect x="104" y="162" width="6" height="38" rx="3" fill="#10b981"/>
+    <rect x="116" y="168" width="6" height="26" rx="3" fill="#06b6d4"/>
+
+    <!-- School Bag 3D illustration icon -->
+    <rect x="176" y="160" width="68" height="52" rx="14" fill="#f97316" stroke="#c2410c" stroke-width="3"/>
+    <path d="M194 160 C194 148, 226 148, 226 160" fill="none" stroke="#fed7aa" stroke-width="4" stroke-linecap="round"/>
+    <rect x="186" y="180" width="48" height="26" rx="6" fill="#fbbf24"/>
+    <circle cx="210" cy="192" r="5" fill="#475569"/>
+
+    <!-- Right Wave lines -->
+    <rect x="298" y="168" width="6" height="26" rx="3" fill="#06b6d4"/>
+    <rect x="310" y="162" width="6" height="38" rx="3" fill="#10b981"/>
+    <rect x="322" y="166" width="6" height="30" rx="3" fill="#f59e0b"/>
+    <rect x="334" y="172" width="6" height="18" rx="3" fill="#f43f5e"/>
+  </g>
+
+  <!-- Bottom Banner Pill: "VOCABULAIRE MULTISENSORIEL" -->
+  <g filter="url(#vocSoftSh)">
+    <rect x="42" y="224" width="336" height="36" rx="18" fill="#facc15" stroke="#713f12" stroke-width="2.5"/>
+    <text x="210" y="248" text-anchor="middle" fill="#2e1065" font-family="'Nunito', 'Cairo', sans-serif" font-size="16" font-weight="900" letter-spacing="0.5">
+      VOCABULAIRE 3D &amp; PHONICS
+    </text>
+  </g>
+</svg>

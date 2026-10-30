@@ -1,148 +1,29 @@
 (() => {
   "use strict";
 
+  const iconImg = (src, alt) => `<img src="${src}" alt="${alt}" loading="lazy" style="width:100%;height:100%;object-fit:contain;filter:drop-shadow(0 8px 14px rgba(0,0,0,0.2));">`;
+
   const ICONS = {
-    standup: `
-      <svg viewBox="0 0 140 140" xmlns="http://www.w3.org/2000/svg">
-        <path d="M28 56 L28 24 M18 34 L28 22 L38 34" fill="none" stroke="#22c55e" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
-        <circle cx="76" cy="36" r="18" fill="#fcd3b6" stroke="#ffffff" stroke-width="3.5"/>
-        <rect x="60" y="56" width="32" height="36" rx="10" fill="#3b82f6" stroke="#ffffff" stroke-width="3.5"/>
-        <line x1="68" y1="92" x2="68" y2="120" stroke="#1e293b" stroke-width="8" stroke-linecap="round"/>
-        <line x1="84" y1="92" x2="84" y2="120" stroke="#1e293b" stroke-width="8" stroke-linecap="round"/>
-      </svg>`,
-    sitdown: `
-      <svg viewBox="0 0 140 140" xmlns="http://www.w3.org/2000/svg">
-        <path d="M28 24 L28 56 M18 46 L28 58 L38 46" fill="none" stroke="#f97316" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
-        <path d="M52 54 L52 118 M52 90 L92 90 L92 118" fill="none" stroke="#b45309" stroke-width="7" stroke-linecap="round"/>
-        <circle cx="76" cy="42" r="16" fill="#fcd3b6" stroke="#ffffff" stroke-width="3"/>
-        <path d="M68 60 L68 86 L96 86 L96 114" fill="none" stroke="#3b82f6" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
-      </svg>`,
-    raisehand: `
-      <svg viewBox="0 0 140 140" xmlns="http://www.w3.org/2000/svg">
-        <path d="M92 84 L106 24" fill="none" stroke="#fcd3b6" stroke-width="14" stroke-linecap="round"/>
-        <circle cx="106" cy="20" r="10" fill="#fcd3b6" stroke="#ffffff" stroke-width="2.5"/>
-        <circle cx="64" cy="56" r="24" fill="#fcd3b6" stroke="#ffffff" stroke-width="3.5"/>
-        <path d="M36 116 Q64 82 92 116 Z" fill="#8b5cf6" stroke="#ffffff" stroke-width="3.5"/>
-      </svg>`,
-    erase: `
-      <svg viewBox="0 0 140 140" xmlns="http://www.w3.org/2000/svg">
-        <rect x="20" y="28" width="100" height="76" rx="12" fill="#14532d" stroke="#fde68a" stroke-width="5"/>
-        <path d="M36 56 Q56 46 76 58" fill="none" stroke="#ffffff" stroke-width="4" stroke-dasharray="6 4" stroke-linecap="round"/>
-        <rect x="64" y="54" width="38" height="24" rx="6" fill="#ec4899" stroke="#ffffff" stroke-width="3.5"/>
-      </svg>`,
-    showpoint: `
-      <svg viewBox="0 0 140 140" xmlns="http://www.w3.org/2000/svg">
-        <circle cx="102" cy="46" r="18" fill="#fde047" stroke="#f59e0b" stroke-width="4"/>
-        <path d="M26 98 L82 58" fill="none" stroke="#fcd3b6" stroke-width="18" stroke-linecap="round"/>
-        <circle cx="88" cy="54" r="9" fill="#fcd3b6" stroke="#ffffff" stroke-width="2.5"/>
-      </svg>`,
-    listen: `
-      <svg viewBox="0 0 140 140" xmlns="http://www.w3.org/2000/svg">
-        <path d="M40 44 C40 20, 88 20, 88 58 C88 88, 70 112, 50 112 C38 112, 34 98, 44 92" fill="#fcd3b6" stroke="#ffffff" stroke-width="4.5"/>
-        <path d="M98 46 Q112 70 98 94" fill="none" stroke="#0284c7" stroke-width="5" stroke-linecap="round"/>
-        <path d="M110 34 Q128 70 110 106" fill="none" stroke="#38bdf8" stroke-width="5" stroke-linecap="round"/>
-      </svg>`,
-    look: `
-      <svg viewBox="0 0 140 140" xmlns="http://www.w3.org/2000/svg">
-        <ellipse cx="46" cy="70" rx="22" ry="28" fill="#ffffff" stroke="#1e293b" stroke-width="4.5"/>
-        <ellipse cx="94" cy="70" rx="22" ry="28" fill="#ffffff" stroke="#1e293b" stroke-width="4.5"/>
-        <circle cx="52" cy="70" r="10" fill="#0284c7"/>
-        <circle cx="100" cy="70" r="10" fill="#0284c7"/>
-        <circle cx="55" cy="66" r="3.5" fill="#ffffff"/>
-        <circle cx="103" cy="66" r="3.5" fill="#ffffff"/>
-      </svg>`,
-    read: `
-      <svg viewBox="0 0 140 140" xmlns="http://www.w3.org/2000/svg">
-        <path d="M22 40 Q46 30 70 42 L70 110 Q46 98 22 108 Z" fill="#fef3c7" stroke="#ffffff" stroke-width="4"/>
-        <path d="M118 40 Q94 30 70 42 L70 110 Q94 98 118 108 Z" fill="#fde68a" stroke="#ffffff" stroke-width="4"/>
-        <text x="34" y="78" fill="#b45309" font-family="'Comic Sans MS', sans-serif" font-size="20" font-weight="900">ABC</text>
-        <line x1="80" y1="62" x2="108" y2="62" stroke="#b45309" stroke-width="4" stroke-linecap="round"/>
-        <line x1="80" y1="78" x2="104" y2="78" stroke="#b45309" stroke-width="4" stroke-linecap="round"/>
-      </svg>`,
-    draw: `
-      <svg viewBox="0 0 140 140" xmlns="http://www.w3.org/2000/svg">
-        <rect x="24" y="24" width="84" height="92" rx="10" fill="#ffffff" stroke="#cbd5e1" stroke-width="4"/>
-        <circle cx="64" cy="68" r="20" fill="#fef08a" stroke="#f59e0b" stroke-width="3.5"/>
-        <g transform="translate(88, 52) rotate(30)">
-          <rect x="0" y="0" width="16" height="52" fill="#ef4444" stroke="#ffffff" stroke-width="3"/>
-          <polygon points="0,52 16,52 8,68" fill="#1e293b"/>
-        </g>
-      </svg>`,
-    colour: `
-      <svg viewBox="0 0 140 140" xmlns="http://www.w3.org/2000/svg">
-        <path d="M70 22 C36 22, 18 48, 22 78 C26 106, 52 118, 76 114 C92 112, 96 98, 86 90 C78 84, 84 72, 98 72 C114 72, 122 56, 114 40 C106 26, 88 22, 70 22 Z" fill="#fde68a" stroke="#ffffff" stroke-width="4.5"/>
-        <circle cx="46" cy="54" r="10" fill="#ef4444"/>
-        <circle cx="72" cy="44" r="10" fill="#3b82f6"/>
-        <circle cx="94" cy="54" r="10" fill="#22c55e"/>
-        <circle cx="46" cy="82" r="10" fill="#a855f7"/>
-      </svg>`,
-    write: `
-      <svg viewBox="0 0 140 140" xmlns="http://www.w3.org/2000/svg">
-        <rect x="24" y="24" width="82" height="94" rx="10" fill="#ffffff" stroke="#60a5fa" stroke-width="4"/>
-        <path d="M38 56 Q52 46 66 56 T92 56" fill="none" stroke="#1d4ed8" stroke-width="4" stroke-linecap="round"/>
-        <path d="M38 78 Q52 68 66 78" fill="none" stroke="#1d4ed8" stroke-width="4" stroke-linecap="round"/>
-        <g transform="translate(88, 48) rotate(28)">
-          <rect x="0" y="0" width="16" height="54" fill="#2563eb" stroke="#ffffff" stroke-width="3"/>
-          <polygon points="0,54 16,54 8,70" fill="#1e293b"/>
-        </g>
-      </svg>`,
-    repeatsay: `
-      <svg viewBox="0 0 140 140" xmlns="http://www.w3.org/2000/svg">
-        <rect x="22" y="28" width="96" height="66" rx="22" fill="#38bdf8" stroke="#ffffff" stroke-width="4.5"/>
-        <polygon points="48,94 68,94 42,116" fill="#38bdf8"/>
-        <circle cx="50" cy="61" r="6" fill="#ffffff"/>
-        <circle cx="70" cy="61" r="6" fill="#ffffff"/>
-        <circle cx="90" cy="61" r="6" fill="#ffffff"/>
-      </svg>`,
-    tick: `
-      <svg viewBox="0 0 140 140" xmlns="http://www.w3.org/2000/svg">
-        <circle cx="70" cy="70" r="48" fill="#22c55e" stroke="#ffffff" stroke-width="5"/>
-        <path d="M44 72 L62 90 L98 50" fill="none" stroke="#ffffff" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
-      </svg>`,
-    cross: `
-      <svg viewBox="0 0 140 140" xmlns="http://www.w3.org/2000/svg">
-        <circle cx="70" cy="70" r="48" fill="#ef4444" stroke="#ffffff" stroke-width="5"/>
-        <path d="M48 48 L92 92 M92 48 L48 92" fill="none" stroke="#ffffff" stroke-width="12" stroke-linecap="round"/>
-      </svg>`,
-    circle: `
-      <svg viewBox="0 0 140 140" xmlns="http://www.w3.org/2000/svg">
-        <circle cx="70" cy="70" r="44" fill="none" stroke="#e11d48" stroke-width="9" stroke-dasharray="14 6"/>
-        <polygon points="70,40 77,58 96,59 81,71 86,90 70,79 54,90 59,71 44,59 63,58" fill="#facc15" stroke="#ca8a04" stroke-width="2.5"/>
-      </svg>`,
-    match: `
-      <svg viewBox="0 0 140 140" xmlns="http://www.w3.org/2000/svg">
-        <circle cx="34" cy="40" r="16" fill="#ef4444" stroke="#ffffff" stroke-width="3.5"/>
-        <circle cx="106" cy="100" r="16" fill="#ef4444" stroke="#ffffff" stroke-width="3.5"/>
-        <circle cx="34" cy="100" r="16" fill="#3b82f6" stroke="#ffffff" stroke-width="3.5"/>
-        <circle cx="106" cy="40" r="16" fill="#3b82f6" stroke="#ffffff" stroke-width="3.5"/>
-        <line x1="50" y1="44" x2="90" y2="96" stroke="#1e293b" stroke-width="5" stroke-dasharray="6 4" stroke-linecap="round"/>
-        <line x1="50" y1="96" x2="90" y2="44" stroke="#1e293b" stroke-width="5" stroke-dasharray="6 4" stroke-linecap="round"/>
-      </svg>`,
-    repeatafterme: `
-      <svg viewBox="0 0 140 140" xmlns="http://www.w3.org/2000/svg">
-        <rect x="16" y="24" width="64" height="44" rx="14" fill="#8b5cf6" stroke="#ffffff" stroke-width="3.5"/>
-        <rect x="60" y="72" width="64" height="44" rx="14" fill="#ec4899" stroke="#ffffff" stroke-width="3.5"/>
-        <path d="M48 46 L60 46 M80 94 L104 94" stroke="#ffffff" stroke-width="5" stroke-linecap="round"/>
-      </svg>`,
-    lookpicture: `
-      <svg viewBox="0 0 140 140" xmlns="http://www.w3.org/2000/svg">
-        <rect x="20" y="26" width="100" height="88" rx="12" fill="#e0f2fe" stroke="#f59e0b" stroke-width="6"/>
-        <circle cx="46" cy="52" r="10" fill="#facc15"/>
-        <polygon points="24,108 58,68 86,98 100,82 116,108" fill="#22c55e"/>
-      </svg>`,
-    listencd: `
-      <svg viewBox="0 0 140 140" xmlns="http://www.w3.org/2000/svg">
-        <circle cx="70" cy="70" r="46" fill="#38bdf8" stroke="#ffffff" stroke-width="5"/>
-        <circle cx="70" cy="70" r="14" fill="#ffffff" stroke="#0284c7" stroke-width="4"/>
-        <path d="M98 30 L98 62" stroke="#ec4899" stroke-width="5" stroke-linecap="round"/>
-        <circle cx="92" cy="64" r="8" fill="#ec4899"/>
-      </svg>`,
-    openbook: `
-      <svg viewBox="0 0 140 140" xmlns="http://www.w3.org/2000/svg">
-        <path d="M18 38 Q44 26 70 40 L70 108 Q44 94 18 106 Z" fill="#bbf7d0" stroke="#16a34a" stroke-width="4"/>
-        <path d="M122 38 Q96 26 70 40 L70 108 Q96 94 122 106 Z" fill="#dcfce7" stroke="#16a34a" stroke-width="4"/>
-        <line x1="70" y1="40" x2="70" y2="108" stroke="#15803d" stroke-width="4"/>
-      </svg>`
+    standup: iconImg("assets/images/common-orders/standup.png", "Stand up"),
+    sitdown: iconImg("assets/images/common-orders/sitdown.png", "Sit down"),
+    raisehand: iconImg("assets/images/common-orders/raisehand.png", "Raise your hand"),
+    erase: iconImg("assets/images/common-orders/erase.png", "Erase"),
+    showpoint: iconImg("assets/images/common-orders/showpoint.png", "Show / Point"),
+    listen: iconImg("assets/images/common-orders/listen.png", "Listen"),
+    look: iconImg("assets/images/common-orders/look.png", "Look"),
+    read: iconImg("assets/images/common-orders/read.png", "Read"),
+    draw: iconImg("assets/images/common-orders/draw.png", "Draw"),
+    colour: iconImg("assets/images/common-orders/colour.png", "Colour"),
+    write: iconImg("assets/images/common-orders/write.png", "Write"),
+    repeatsay: iconImg("assets/images/common-orders/repeatsay.png", "Repeat / Say"),
+    tick: iconImg("assets/images/common-orders/tick.png", "Tick"),
+    cross: iconImg("assets/images/common-orders/cross.png", "Cross"),
+    circle: iconImg("assets/images/common-orders/circle.png", "Circle"),
+    match: iconImg("assets/images/common-orders/match.png", "Match"),
+    repeatafterme: iconImg("assets/images/common-orders/repeatafterme.png", "Repeat after me"),
+    lookpicture: iconImg("assets/images/common-orders/lookpicture.png", "Look at the picture"),
+    listencd: iconImg("assets/images/common-orders/listencd.png", "Listen to the CD"),
+    openbook: iconImg("assets/images/common-orders/openbook.png", "Open your book")
   };
 
   const THEMES = [

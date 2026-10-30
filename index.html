@@ -1,15 +1,1761 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr" style="font-size: 14.4px;">
 
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Kids Learner</title>
-  <meta http-equiv="refresh" content="0; url=language.html">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="description" content="Fenncky &amp; FennyGo3 — Plateforme d'apprentissage interactif par l'IA pour les élèves du primaire (programme algérien 3AP).">
+  <title>Fenncky &amp; FennyGo3 — Apprentissage Interactif par l'IA</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            // Natural ecru/cream ground with soft sage warmth
+            ow: { DEFAULT: "#f7faf6", 2: "#edf4ec", line: "#d8e6d7" },
+            // Nature green scale (vert clair to vert foncé)
+            v: {
+              1: "#ecfdf5", // Vert clair très doux (mint)
+              2: "#a7f3d0", // Vert clair bordure (leaf)
+              3: "#6ee7b7", // Vert clair printanier
+              4: "#34d399", // Vert clair éclatant
+              5: "#059669", // Vert émeraude nature
+              6: "#047857", // Vert pin profond
+              7: "#065f46", // Vert forêt dense
+              8: "#064e3b", // Vert foncé boisé
+              9: "#082f23", // Vert très foncé canopée
+              10: "#041c14" // Vert nuit profonde
+            },
+            // Touche de jaune (soleil, étoiles, récompenses)
+            y: { DEFAULT: "#facc15", l: "#fde047", s: "#fef9c3", d: "#ca8a04" },
+            // Touche d'orange (mascotte, coucher de soleil, punch interactif)
+            o: { DEFAULT: "#f97316", l: "#fb923c", d: "#ea580c", s: "#ffedd5" },
+            // Bleu clair et Bleu foncé
+            b: { DEFAULT: "#0284c7", l: "#38bdf8", s: "#e0f2fe", d: "#0c4a6e", deep: "#072b42" },
+            // Un peu de violet (lavande sauvage, orchidée)
+            vi: { DEFAULT: "#8b5cf6", l: "#c4b5fd", s: "#f5f3ff", d: "#6d28d9" }
+          }
+        }
+      }
+    };
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@600;700;800;900&family=Nunito:wght@600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <link rel="stylesheet" href="css/fennygo.css?v=5">
+  <style>
+    html, body {
+      min-height: 100%;
+      height: auto !important;
+      overflow-x: hidden !important;
+      overflow-y: auto !important;
+      scroll-behavior: smooth;
+      scroll-padding-top: 60px;
+      background: #f7faf6;
+      color: #082f23;
+      font-family: "Nunito", "Cairo", sans-serif;
+    }
+    html[dir="rtl"] body { font-family: "Cairo", "Nunito", sans-serif; }
+
+    .bg-dots {
+      background-image:
+        radial-gradient(circle at 10% 0%, rgba(34, 197, 94, 0.16) 0, transparent 32%),   /* Vert clair */
+        radial-gradient(circle at 95% 15%, rgba(14, 165, 233, 0.14) 0, transparent 34%),  /* Bleu clair */
+        radial-gradient(circle at 50% 50%, rgba(249, 115, 22, 0.08) 0, transparent 30%),  /* Touche orange */
+        radial-gradient(circle at 15% 80%, rgba(250, 204, 21, 0.09) 0, transparent 28%),  /* Touche jaune */
+        radial-gradient(circle at 85% 85%, rgba(139, 92, 246, 0.08) 0, transparent 26%);  /* Un peu de violet */
+    }
+
+    /* ---------- Structured Zone Cards with Distinct Nature Borders ---------- */
+    .zone-card {
+      background: #ffffff;
+      border: 1.5px solid #a7f3d0;
+      border-bottom: 3.5px solid #059669; /* Vert foncé/émeraude */
+      border-radius: 18px;
+      box-shadow: 0 3px 12px rgba(8, 47, 35, 0.04);
+      padding: clamp(10px, 1.8vw, 16px);
+      transition: border-color .2s ease, box-shadow .2s ease;
+    }
+    .zone-card:hover {
+      border-color: #34d399;
+      box-shadow: 0 6px 18px rgba(5, 150, 105, 0.09);
+    }
+
+    .zone-card-gold {
+      background: #ffffff;
+      border: 1.5px solid #bae6fd; /* Bleu clair */
+      border-bottom: 3.5px solid #0284c7; /* Bleu foncé/océan */
+      border-radius: 18px;
+      box-shadow: 0 3px 12px rgba(12, 74, 110, 0.04);
+      padding: clamp(10px, 1.8vw, 16px);
+      transition: border-color .2s ease, box-shadow .2s ease;
+    }
+    .zone-card-gold:hover {
+      border-color: #38bdf8;
+      box-shadow: 0 6px 18px rgba(2, 132, 199, 0.09);
+    }
+
+    /* Bleu foncé & Vert foncé Dark Contrast Zones */
+    .zone-card-dark {
+      background: linear-gradient(145deg, #072a1e 0%, #0c4a6e 100%); /* Vert foncé à Bleu foncé */
+      border: 1.5px solid #059669; /* Vert clair / émeraude */
+      border-bottom: 3.5px solid #f97316; /* Touche d'orange */
+      border-radius: 18px;
+      box-shadow: 0 6px 20px rgba(8, 47, 35, 0.2);
+      padding: clamp(10px, 1.8vw, 16px);
+    }
+
+    /* ---------- Buttons with Nature Palettes ---------- */
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center; gap: 6px;
+      font-weight: 900; border-radius: 999px; padding: 6px 14px; font-size: 11.5px;
+      transition: transform .15s ease, filter .15s ease, box-shadow .15s ease;
+      white-space: nowrap;
+    }
+    .btn:hover { transform: translateY(-1.5px); filter: brightness(1.05); }
+    .btn:active { transform: translateY(1px); }
+    .btn-y { background: #facc15; color: #082f23; border: 1.5px solid #ca8a04; border-bottom: 3px solid #ca8a04; box-shadow: 0 3px 10px rgba(234, 179, 8, .25); }
+    .btn-v { background: linear-gradient(135deg, #059669, #047857); color: #fff; border: 1.5px solid #064e3b; border-bottom: 3px solid #082f23; box-shadow: 0 3px 10px rgba(5, 150, 105, .28); }
+    .btn-orange { background: linear-gradient(135deg, #f97316, #ea580c); color: #fff; border: 1.5px solid #c2410c; border-bottom: 3px solid #9a3412; box-shadow: 0 3px 10px rgba(234, 88, 12, .28); }
+    .btn-blue { background: linear-gradient(135deg, #0284c7, #0369a1); color: #fff; border: 1.5px solid #075985; border-bottom: 3px solid #0c4a6e; box-shadow: 0 3px 10px rgba(2, 132, 199, .25); }
+    .btn-ghost { background: #fff; color: #065f46; border: 1.5px solid #a7f3d0; }
+    .btn-ghost:hover { border-color: #059669; background: #ecfdf5; }
+
+    /* Big hero portal button with sunset orange energy */
+    .cta-tile {
+      display: flex; align-items: center; gap: 9px; padding: 7px 11px; border-radius: 14px;
+      transition: transform .18s ease, box-shadow .18s ease; text-align: start;
+    }
+    .cta-tile:hover { transform: translateY(-1.5px); }
+    .cta-tile .ico { width: 34px; height: 34px; border-radius: 10px; display: grid; place-items: center; font-size: 14.5px; flex-shrink: 0; }
+    .cta-y { background: #facc15; color: #082f23; border: 1.5px solid #ca8a04; border-bottom: 3.5px solid #ca8a04; box-shadow: 0 6px 14px rgba(234, 179, 8, .28); }
+    .cta-y .ico { background: #082f23; color: #facc15; }
+    .cta-orange { background: linear-gradient(135deg, #f97316, #ea580c); color: #fff; border: 1.5px solid #c2410c; border-bottom: 3.5px solid #9a3412; box-shadow: 0 6px 14px rgba(234, 88, 12, .28); }
+    .cta-orange .ico { background: #ffffff; color: #ea580c; }
+
+    /* ---------- Cards & Labels (10% smaller) ---------- */
+    .card { background: #fff; border: 1.5px solid #d8e6d7; border-radius: 14px; box-shadow: 0 2px 8px rgba(8, 47, 35, .03); }
+    .card-hover { transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease; }
+    .card-hover:hover { transform: translateY(-1.5px); border-color: #059669; box-shadow: 0 6px 16px rgba(5, 150, 105, .1); }
+
+    .eyebrow {
+      display: inline-flex; align-items: center; gap: 4.5px; font-size: 9.5px; font-weight: 900; letter-spacing: .04em;
+      text-transform: uppercase; color: #047857; background: #ecfdf5; border: 1.5px solid #a7f3d0; padding: 2px 8px; border-radius: 999px;
+    }
+    .sec-title { font-size: clamp(16px, 1.9vw, 21px); font-weight: 900; line-height: 1.25; color: #082f23; }
+    .sec-sub { font-size: 11.5px; font-weight: 700; color: #065f46; opacity: .92; }
+
+    /* ---------- Navigation ---------- */
+    .nav-wrap { background: rgba(247, 250, 246, .96); backdrop-filter: blur(10px); border-bottom: 1.5px solid #d8e6d7; }
+    .nav-link { padding: 4px 8px; border-radius: 999px; font-size: 11.5px; font-weight: 800; color: #065f46; transition: background .15s, color .15s; }
+    .nav-link:hover { background: #ecfdf5; color: #047857; }
+    .nav-link.active { background: #082f23; color: #facc15; }
+    .lang-pill-btn { padding: 2px 7px; border-radius: 999px; font-weight: 800; font-size: 10px; color: #065f46; transition: all .15s; }
+    .lang-pill-btn.active { background: #22c55e; color: #ffffff; box-shadow: 0 1.5px 0 #15803d; }
+
+    /* ---------- Visual Slide Frames (Sleek & Reduced by 10%) ---------- */
+    .slide-frame {
+      position: relative;
+      border-radius: 14px;
+      overflow: hidden;
+      border: 1.5px solid #e7e1d6;
+      box-shadow: 0 5px 18px rgba(46, 16, 101, 0.06);
+      background: #ffffff;
+      cursor: zoom-in;
+    }
+    .slide-frame img {
+      width: 100%;
+      max-height: 195px;
+      object-fit: contain;
+      background: #ffffff;
+      display: block;
+      transition: transform 0.3s ease;
+    }
+    .slide-frame:hover img {
+      transform: scale(1.02);
+    }
+    .slide-zoom-pill {
+      position: absolute;
+      bottom: 6px;
+      right: 6px;
+      background: rgba(46, 16, 101, 0.9);
+      color: #facc15;
+      font-size: 9px;
+      font-weight: 900;
+      padding: 2px 7.5px;
+      border-radius: 999px;
+      border: 1px solid rgba(250, 204, 21, 0.4);
+      backdrop-filter: blur(4px);
+      pointer-events: none;
+    }
+    html[dir="rtl"] .slide-zoom-pill {
+      right: auto;
+      left: 6px;
+    }
+
+    /* Mascot Floating Animation */
+    @keyframes floaty {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-4px); }
+    }
+    .floaty {
+      animation: floaty 3.2s ease-in-out infinite;
+    }
+
+    .marquee { display: flex; gap: 10px; width: max-content; animation: marquee 52s linear infinite; }
+    .marquee-mask { mask-image: linear-gradient(90deg, transparent, #000 2.5%, #000 97.5%, transparent); overflow: hidden; }
+    .marquee-mask:hover .marquee { animation-play-state: paused; }
+    @keyframes marquee { to { transform: translateX(-50%); } }
+    html[dir="rtl"] .marquee { animation-direction: reverse; }
+
+    .marquee-vertical-mask {
+      mask-image: linear-gradient(180deg, transparent, #000 5%, #000 95%, transparent);
+      -webkit-mask-image: linear-gradient(180deg, transparent, #000 5%, #000 95%, transparent);
+      overflow: hidden;
+      position: relative;
+    }
+    .marquee-vertical {
+      display: flex;
+      flex-direction: column;
+      gap: 7px;
+      animation: marquee-vertical 24s linear infinite;
+    }
+    .marquee-vertical:hover,
+    .marquee-vertical-mask:hover .marquee-vertical {
+      animation-play-state: paused;
+    }
+    @keyframes marquee-vertical {
+      0% { transform: translateY(0); }
+      100% { transform: translateY(-50%); }
+    }
+
+    .reveal { opacity: 0; transform: translateY(10px); transition: opacity .4s ease, transform .4s ease; }
+    .reveal.in { opacity: 1; transform: none; }
+
+    details.faq summary { list-style: none; cursor: pointer; }
+    details.faq summary::-webkit-details-marker { display: none; }
+    details.faq[open] .faq-ico { transform: rotate(45deg); background: #38bdf8; color: #082f23; }
+
+    .field { width: 100%; padding: 5.5px 9px; border-radius: 8px; border: 1.5px solid #a7f3d0; background: #ffffff; font-weight: 700; font-size: 11.5px; color: #082f23; }
+    .field:focus { outline: none; border-color: #059669; box-shadow: 0 0 0 2px #dcfce7; background: #fff; }
+    .field-label { display: block; font-size: 9.5px; font-weight: 900; text-transform: uppercase; letter-spacing: .03em; color: #065f46; margin-bottom: 2px; }
+
+    #toTop { position: fixed; left: 14px; bottom: 14px; z-index: 80; opacity: 0; pointer-events: none; transition: opacity .2s; }
+    #toTop.show { opacity: 1; pointer-events: auto; }
+    html[dir="rtl"] #toTop { left: auto; right: 14px; }
+
+    .ms-letter-tile {
+      user-select: none;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .marquee, .marquee-vertical, .floaty { animation: none; }
+      .reveal { opacity: 1; transform: none; }
+    }
+  </style>
 </head>
 
-<body>
-  <p>Redirecting to <a href="language.html">Language Selection</a>...</p>
+<body class="bg-dots">
+
+  <!-- ======================= NAVIGATION (Compact Height 50px) ======================= -->
+  <header class="nav-wrap sticky top-0 z-50">
+    <div class="max-w-6xl mx-auto px-3 sm:px-4 h-[50px] flex items-center justify-between gap-2.5">
+      <!-- Brand -->
+      <a href="#accueil" class="flex items-center gap-1.5 shrink-0">
+        <span class="w-7 h-7 sm:w-8 sm:h-8 rounded-lg bg-emerald-600 grid place-items-center border-b-2 border-emerald-800 shadow-2xs">
+          <img src="assets/images/fennygo/fenny-mascot.png" alt="Fenny" class="w-6 h-6 sm:w-7 sm:h-7 object-contain">
+        </span>
+        <span class="leading-none">
+          <span class="block text-base font-black text-v9">Fenn<span class="text-purple-600">cky</span></span>
+          <span class="block text-[8.5px] font-extrabold text-emerald-700">&amp; FennyGo3 · EdTech 🇩🇿</span>
+        </span>
+      </a>
+
+      <!-- Navigation links -->
+      <nav class="hidden lg:flex items-center gap-0.5" id="mainNav">
+        <a href="#accueil" class="nav-link" data-i18n="navHome">Accueil</a>
+        <a href="category.html" class="nav-link" data-i18n="navHub">Kids Learner</a>
+        <a href="#fennygo" class="nav-link" data-i18n="navFenny">Démo Interactive</a>
+        <a href="#methode" class="nav-link" data-i18n="navMethod">Méthode 3AP</a>
+        <a href="#hub" class="nav-link" data-i18n="navHubMenu">Espace Élève</a>
+        <a href="#qui-sommes-nous" class="nav-link" data-i18n="navAbout">Qui sommes-nous</a>
+        <a href="#offres" class="nav-link" data-i18n="navOffers">Offres</a>
+        <a href="#partenaires" class="nav-link" data-i18n="navPartners">Partenaires</a>
+        <a href="#contact" class="nav-link" data-i18n="navContact">Contact</a>
+      </nav>
+
+      <!-- Language selector + Menu button -->
+      <div class="flex items-center gap-1.5">
+        <div class="flex items-center gap-0.5 bg-ow-2 border border-ow-line rounded-full p-0.5">
+          <button type="button" class="lang-pill-btn active" data-set-lang="French">FR</button>
+          <button type="button" class="lang-pill-btn" data-set-lang="English">EN</button>
+          <button type="button" class="lang-pill-btn" data-set-lang="Arabic">عربي</button>
+        </div>
+        <button type="button" id="menuBtn" class="lg:hidden w-7 h-7 rounded-lg bg-v9 text-y grid place-items-center text-xs" aria-label="Menu" aria-expanded="false">
+          <i class="fa-solid fa-bars"></i>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile menu -->
+    <div id="mobileMenu" class="lg:hidden hidden border-t border-ow-line bg-ow px-3 py-2 space-y-1.5">
+      <div class="grid grid-cols-2 gap-1 text-[11px]">
+        <a href="#accueil" class="nav-link" data-i18n="navHome">Accueil</a>
+        <a href="category.html" class="nav-link" data-i18n="navHub">Kids Learner</a>
+        <a href="#fennygo" class="nav-link" data-i18n="navFenny">Démo Interactive</a>
+        <a href="#methode" class="nav-link" data-i18n="navMethod">Méthode 3AP</a>
+        <a href="#hub" class="nav-link" data-i18n="navHubMenu">Espace Élève</a>
+        <a href="#qui-sommes-nous" class="nav-link" data-i18n="navAbout">Qui sommes-nous</a>
+        <a href="#offres" class="nav-link" data-i18n="navOffers">Offres</a>
+        <a href="#partenaires" class="nav-link" data-i18n="navPartners">Partenaires</a>
+        <a href="#contact" class="nav-link" data-i18n="navContact">Contact</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- ======================= MAIN STRUCTURED CONTAINER (Reduced Spacing) ======================= -->
+  <main class="max-w-6xl mx-auto px-2.5 sm:px-3.5 py-2 sm:py-3.5 space-y-2.5 sm:space-y-3.5">
+
+    <!-- ======================= ZONE 1: HERO ======================= -->
+    <section id="accueil" class="zone-card reveal">
+      <div class="grid lg:grid-cols-2 gap-4 sm:gap-5 items-center">
+        <!-- Copy -->
+        <div class="space-y-2.5">
+          <span class="eyebrow"><i class="fa-solid fa-star text-y-d"></i><span data-i18n="heroEyebrow">Programme officiel 3AP · Trilingue FR / EN / AR</span></span>
+
+          <h1 class="text-xl sm:text-2xl lg:text-[29px] font-black leading-[1.15] text-v9" data-i18n="heroTitle">
+            L'apprentissage des langues qui donne envie d'apprendre.
+          </h1>
+
+          <p class="text-[11px] sm:text-[12.5px] font-bold text-v7 max-w-xl leading-relaxed" data-i18n="heroDesc">
+            Voix natives, caméra IA qui lit l'écriture, mini-jeux 3D et suivi pour les parents : Fenncky et son compagnon virtuel Fenny accompagnent chaque enfant du primaire, à la maison comme en classe.
+          </p>
+
+          <!-- PRIMARY CTA: Kids Learner Hub (Sunset Orange Touch - Centered in Zone) -->
+          <div class="pt-0.5 flex justify-center">
+            <a href="category.html" class="cta-tile cta-orange w-full max-w-sm mx-auto">
+              <span class="ico"><i class="fa-solid fa-rocket"></i></span>
+              <span>
+                <span class="block font-black text-xs sm:text-[13.5px] leading-tight" data-i18n="ctaHubTitle">Ouvrir Kids Learner</span>
+                <span class="block text-[10px] font-bold opacity-90" data-i18n="ctaHubSub">Cours, jeux, traçage &amp; tests 3AP</span>
+              </span>
+              <i class="fa-solid fa-arrow-right ms-auto rtl:rotate-180 text-[10px]"></i>
+            </a>
+          </div>
+
+          <!-- Trust row with nature icons -->
+          <div class="flex flex-wrap items-center gap-x-3 gap-y-1 pt-0.5 text-[10.5px] font-extrabold text-v7">
+            <span class="flex items-center gap-1"><span class="text-amber-500 text-[11px]">★★★★★</span><span data-i18n="trustRating">4,9/5 par les parents</span></span>
+            <span class="flex items-center gap-1"><i class="fa-solid fa-school text-emerald-600"></i><span data-i18n="trustSchools">25+ écoles pilotes</span></span>
+            <span class="flex items-center gap-1"><i class="fa-solid fa-shield-halved text-sky-600"></i><span data-i18n="trustSafe">Sans pub · 100% sécurisé</span></span>
+            <button type="button" id="heroPitchAudioBtn" class="flex items-center gap-1 hover:text-emerald-700 text-emerald-800"><i class="fa-solid fa-volume-high text-emerald-600"></i><span data-i18n="trustListen">Écouter Fenny</span></button>
+          </div>
+        </div>
+
+        <!-- Mascot Visual with Quick Check-in (10% smaller) -->
+        <div class="relative">
+          <div class="relative card !rounded-[16px] p-1.5 bg-[#082f23] !border-2 !border-emerald-600 shadow-md">
+            <img src="assets/images/fennygo/meet-fenny.jpg" alt="Fenny, le compagnon virtuel" class="w-full h-42 sm:h-48 object-cover object-top rounded-[12px]">
+          </div>
+          <!-- floating interactive mascot chip -->
+          <div class="absolute -bottom-2.5 start-2.5 card px-2 py-1 flex items-center gap-1.5 shadow-sm border border-emerald-200">
+            <img src="assets/images/fennygo/fenny-mascot.png" alt="Fenny" class="w-7 h-7 object-contain floaty">
+            <div class="leading-tight">
+              <div class="text-[9px] font-black text-emerald-700">Fenny</div>
+              <div class="text-[10px] font-extrabold text-v9" data-i18n="chipHello">« Hello ! Prêt à jouer ? »</div>
+            </div>
+          </div>
+          <div class="absolute -top-2 end-2.5 bg-gradient-to-r from-amber-400 to-orange-500 text-white rounded-full px-2 py-0.5 text-[9.5px] font-black border border-amber-600 shadow-sm">
+            <i class="fa-solid fa-trophy text-yellow-100"></i> +5 ⭐
+          </div>
+        </div>
+      </div>
+
+      <!-- KPI strip inside Zone 1 -->
+      <div class="mt-3.5 grid grid-cols-2 sm:grid-cols-4 gap-2 pt-2.5 border-t border-v-2">
+        <div class="card p-2 border border-ow-line bg-ow text-center"><div class="text-lg sm:text-xl font-black text-v5 leading-tight">9</div><div class="text-[9.5px] font-extrabold text-v7" data-i18n="kpi1">unités de cours illustrées</div></div>
+        <div class="card p-2 border border-ow-line bg-ow text-center"><div class="text-lg sm:text-xl font-black text-v5 leading-tight">7</div><div class="text-[9.5px] font-extrabold text-v7" data-i18n="kpi2">mini-jeux 3D</div></div>
+        <div class="card p-2 border border-ow-line bg-ow text-center"><div class="text-lg sm:text-xl font-black text-v5 leading-tight">3</div><div class="text-[9.5px] font-extrabold text-v7" data-i18n="kpi3">langues avec voix natives</div></div>
+        <div class="card p-2 border border-ow-line bg-ow text-center"><div class="text-lg sm:text-xl font-black text-v5 leading-tight">98%</div><div class="text-[9.5px] font-extrabold text-v7" data-i18n="kpi4">d'enfants motivés</div></div>
+      </div>
+    </section>
+
+
+
+    <!-- =========================================================
+         ZONE 2: FENNYGO3 - VITRINE INTERACTIVE DU COMPAGNON VIRTUEL
+         ========================================================= -->
+    <section id="fennygo" class="zone-card reveal">
+      <!-- Zone Header -->
+      <div class="flex flex-wrap items-end justify-between gap-2 mb-2.5 pb-2 border-b border-v-2">
+        <div>
+          <span class="eyebrow"><i class="fa-solid fa-wand-magic-sparkles text-v5"></i><span data-i18n="fgSectionEyebrow">FennyGo3 · Vitrine &amp; Démo Interactive</span></span>
+          <h2 class="sec-title mt-0.5" data-i18n="fgSectionTitle">
+            FennyGo3 : Le Compagnon IA qui Transforme le Manuel en Jeu
+          </h2>
+        </div>
+        <p class="sec-sub max-w-md text-[10.5px] sm:text-[11.5px]" data-i18n="fgSectionSub">
+          Tablette multisensorielle, scanner d'écriture par caméra et check-in quotidien : testez la méthode en direct !
+        </p>
+      </div>
+
+      <!-- Mascot Check-in Bar (Tightened) -->
+      <div class="card p-2 sm:p-2.5 bg-ow border border-v-2 flex items-center gap-2.5 mb-2.5 shadow-xs">
+        <img src="assets/images/fennygo/fenny-mascot.png" alt="Fenny" class="w-9 h-9 sm:w-10 sm:h-10 object-contain floaty shrink-0">
+        <div class="flex-1 min-w-0">
+          <div class="flex items-center gap-1.5 mb-0.5">
+            <span class="font-black text-v9 text-xs sm:text-sm" data-i18n="fgCompanionTitle">Fenny Companion : "Hello!"</span>
+            <span class="fenny-soundwave speaking">
+              <span></span><span></span><span></span><span></span><span></span><span></span>
+            </span>
+          </div>
+          <p class="text-[10px] font-bold text-v7 mb-1.5 leading-tight" data-i18n="fgMascotHint">
+            Cliquez pour tester l'accueil vocal de Fenny en anglais natif ou lancer la question du jour !
+          </p>
+          <div class="flex flex-wrap gap-1.5">
+            <button type="button" id="fgSpeakHelloBtn" class="btn btn-v !py-0.5 !px-2.5 !text-[10.5px]">
+              <i class="fa-solid fa-volume-high text-y"></i>
+              <span data-i18n="fgBtnHello">Écouter "Hello!"</span>
+            </button>
+            <button type="button" id="fgDailyCheckinBtn" class="btn !bg-amber-100 !text-amber-950 !border-amber-300 hover:!bg-amber-200 !py-0.5 !px-2.5 !text-[10.5px]">
+              <i class="fa-solid fa-sparkles text-amber-600"></i>
+              <span data-i18n="fgBtnCheckin">Question du Jour</span>
+            </button>
+            <button type="button" id="fgTactileAudioBtn" class="btn !bg-orange-50 !text-orange-900 !border-orange-300 hover:!bg-orange-100 !py-0.5 !px-2.5 !text-[10.5px]">
+              <i class="fa-solid fa-pen-nib text-orange-600"></i>
+              <span data-i18n="fgBtnBag">Écouter "b_ag — Bag!"</span>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- 2-Column Core Demo Stage: Left Pedagogical Pillars + Right Live Interactive Tablet -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-3.5 items-center">
+
+        <!-- Left Column: 3 Pillars + Computer Vision Demo -->
+        <div class="lg:col-span-6 space-y-2">
+          <!-- 3 Pillars Cards (Listen: Bleu clair • Read: Vert clair • Speak: Un peu de violet) -->
+          <div class="grid grid-cols-3 gap-1.5">
+            <div class="p-2 rounded-lg bg-sky-50 border border-sky-300 text-center shadow-xs">
+              <div class="text-base mb-0.5">👂</div>
+              <h3 class="font-black text-[11px] text-sky-950" data-i18n="pillarListen">Listen</h3>
+              <p class="text-[9px] font-bold text-sky-700 leading-tight mt-0.5" data-i18n="pillarListenSub">Modélisation native</p>
+            </div>
+            <div class="p-2 rounded-lg bg-emerald-50 border border-emerald-300 text-center shadow-xs">
+              <div class="text-base mb-0.5">👁️</div>
+              <h3 class="font-black text-[11px] text-emerald-950" data-i18n="pillarRead">Read</h3>
+              <p class="text-[9px] font-bold text-emerald-700 leading-tight mt-0.5" data-i18n="pillarReadSub">Lien lettre-son</p>
+            </div>
+            <div class="p-2 rounded-lg bg-purple-50 border border-purple-300 text-center shadow-xs">
+              <div class="text-base mb-0.5">🎙️</div>
+              <h3 class="font-black text-[11px] text-purple-950" data-i18n="pillarSpeak">Speak</h3>
+              <p class="text-[9px] font-bold text-purple-700 leading-tight mt-0.5" data-i18n="pillarSpeakSub">Reconnaissance vocale</p>
+            </div>
+          </div>
+
+          <!-- Computer Vision 3-Step Strip -->
+          <div class="card p-2 border border-emerald-200 bg-white">
+            <div class="flex items-center justify-between mb-1">
+              <span class="text-[9.5px] font-black uppercase tracking-wider text-emerald-800">
+                <i class="fa-solid fa-camera text-sky-600 me-1"></i><span data-i18n="cvTitle">Vision par Ordinateur &amp; Écriture</span>
+              </span>
+              <a href="tracing.html?mode=vision" class="text-[10px] font-black text-sky-700 hover:text-sky-900 hover:underline" data-i18n="cvTest">
+                Tester le scanner →
+              </a>
+            </div>
+            <div class="grid grid-cols-3 gap-1.5 text-center text-[10px]">
+              <div class="p-1 rounded bg-emerald-50/70 border border-emerald-200">
+                <span class="block font-black text-emerald-950 text-[10px]" data-i18n="cvStep1T">1. Écriture</span>
+                <span class="text-[8.5px] font-bold text-emerald-800" data-i18n="cvStep1D">Tracé b, h, k, m</span>
+              </div>
+              <div class="p-1 rounded bg-sky-50 border border-sky-200">
+                <span class="block font-black text-sky-800 text-[10px]" data-i18n="cvStep2T">2. Scan Caméra</span>
+                <span class="text-[8.5px] font-bold text-sky-700" data-i18n="cvStep2D">Analyse IA directe</span>
+              </div>
+              <div class="p-1 rounded bg-orange-50 border border-orange-200">
+                <span class="block font-black text-orange-900 text-[10px]" data-i18n="cvStep3T">3. Récompense</span>
+                <span class="text-[8.5px] font-bold text-orange-600" data-i18n="cvStep3D">Mot validé +5 ⭐</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Interactive Extracted Badges (Violet • Orange • Vert clair) -->
+          <div class="grid grid-cols-3 gap-1.5 text-center">
+            <button type="button" class="p-1.5 rounded-lg bg-purple-50 border border-purple-200 hover:border-purple-400 transition flex flex-col items-center" onclick="window.FennyGo?.speakWithWave('Phonics Master Badge! Great pronunciation!', 'en-US')">
+              <img src="assets/images/fennygo/badge-phonics.png" alt="Phonics Master" class="w-8 h-8 object-contain">
+              <span class="mt-0.5 text-[9.5px] font-black text-purple-950" data-i18n="bPhonics">Phonics Master</span>
+              <span class="text-[8.5px] font-bold text-purple-700" data-i18n="badgeListen">🔊 Écouter</span>
+            </button>
+            <button type="button" class="p-1.5 rounded-lg bg-orange-50 border border-orange-200 hover:border-orange-400 transition flex flex-col items-center" onclick="window.FennyGo?.speakWithWave('Spelling Star Badge! You write letters so well!', 'en-US')">
+              <img src="assets/images/fennygo/badge-spelling.png" alt="Spelling Star" class="w-8 h-8 object-contain">
+              <span class="mt-0.5 text-[9.5px] font-black text-orange-950" data-i18n="bSpelling">Spelling Star</span>
+              <span class="text-[8.5px] font-bold text-orange-600" data-i18n="badgeListen">🔊 Écouter</span>
+            </button>
+            <button type="button" class="p-1.5 rounded-lg bg-emerald-50 border border-emerald-200 hover:border-emerald-400 transition flex flex-col items-center" onclick="window.FennyGo?.speakWithWave('World Explorer Badge! Let us explore all six units!', 'en-US')">
+              <img src="assets/images/fennygo/badge-explorer.png" alt="World Explorer" class="w-8 h-8 object-contain">
+              <span class="mt-0.5 text-[9.5px] font-black text-emerald-950" data-i18n="bExplorer">World Explorer</span>
+              <span class="text-[8.5px] font-bold text-emerald-700" data-i18n="badgeListen">🔊 Écouter</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Right Column: Interactive Live Multi-Sensory Tablet Simulator (Bleu foncé outer casing) -->
+        <div class="lg:col-span-6">
+          <div class="bg-[#0c4a6e] p-2.5 rounded-[20px] border-3 border-[#0284c7] shadow-md">
+            <div class="bg-gradient-to-b from-[#f0fdf4] via-[#fefce8] to-[#fde047] rounded-[15px] p-2.5 relative overflow-hidden min-h-[250px] flex flex-col justify-between border border-emerald-400">
+
+              <!-- Tablet Top Bar -->
+              <div class="flex items-center justify-between z-10">
+                <button type="button" id="fgPrevWordBtn" class="w-7 h-7 rounded-full bg-[#082f23] border border-amber-300 shadow flex items-center justify-center text-amber-300 font-black hover:scale-105 transition" title="Mot précédent">
+                  <i class="fa-solid fa-arrow-left text-[10px]"></i>
+                </button>
+                <div class="text-center">
+                  <span class="font-black text-xs sm:text-sm text-[#082f23] tracking-wide block leading-none" data-i18n="tabTitle">Tablette Multisensorielle 3AP</span>
+                  <span class="text-[9px] font-extrabold text-emerald-900" data-i18n="tabSub">Cliquez sur les tuiles ou les boutons !</span>
+                </div>
+                <a href="vocabulary.html" class="w-7 h-7 rounded-full bg-emerald-700 border border-[#082f23] shadow flex items-center justify-center text-amber-300 font-black hover:scale-105 transition" title="Ouvrir le Studio 4D complet">
+                  <i class="fa-solid fa-up-right-from-square text-[10px]"></i>
+                </a>
+              </div>
+
+              <!-- Scrabble Letter Tiles: S C H O O L   B A G -->
+              <div id="fgLetterTilesRow" class="flex flex-wrap items-center justify-center gap-1 sm:gap-1.5 my-1.5 z-10" dir="ltr"></div>
+
+              <!-- Main Tablet Stage -->
+              <div class="grid grid-cols-12 items-center gap-1.5 z-10 my-0.5">
+                <!-- Left: 3 Sensory Circular Action Buttons (Bleu clair, Vert foncé, Violet) -->
+                <div class="col-span-3 flex flex-col items-center gap-1.5">
+                  <button type="button" id="fgBtnListen" class="w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-white border-2 border-sky-500 shadow hover:scale-110 active:scale-95 transition flex flex-col items-center justify-center" title="Listen: Native Pronunciation">
+                    <span class="text-xs leading-none">👂</span>
+                    <span class="text-[7.5px] font-black text-sky-900" data-i18n="tabBtnListen">Listen</span>
+                  </button>
+
+                  <button type="button" id="fgBtnRead" class="w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-emerald-700 border-2 border-emerald-950 shadow hover:scale-110 active:scale-95 transition flex flex-col items-center justify-center" title="Read: Syllable Highlight">
+                    <span class="text-xs leading-none">👁️</span>
+                    <span class="text-[7.5px] font-black text-amber-200" data-i18n="tabBtnRead">Read</span>
+                  </button>
+
+                  <button type="button" id="fgBtnSpeak" class="w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-purple-700 border-2 border-purple-950 shadow hover:scale-110 active:scale-95 transition flex flex-col items-center justify-center" title="Speak: Voice Recognition">
+                    <span class="text-xs leading-none">🎙️</span>
+                    <span class="text-[7.5px] font-black text-yellow-300" data-i18n="tabBtnSpeak">Speak</span>
+                  </button>
+                </div>
+
+                <!-- Center: 3D Object (10% smaller) -->
+                <div class="col-span-6 flex flex-col items-center justify-center text-center">
+                  <img id="fgObjectImg" src="assets/images/fennygo/school-bag-3d.png" alt="3D Vocabulary Object" class="w-[72px] h-[72px] sm:w-[84px] sm:h-[84px] object-contain drop-shadow-[0_6px_10px_rgba(8,47,35,0.18)] transition-transform duration-300 cursor-pointer hover:scale-105">
+                  <div id="fgStatusBanner" class="mt-1 px-2 py-0.5 rounded-full bg-[#082f23] border border-emerald-400 text-[9px] font-black text-yellow-300 shadow-xs" data-i18n="tabPrompt">
+                    👆 Touche 👂 Listen, 👁️ Read ou 🎙️ Speak !
+                  </div>
+                </div>
+
+                <!-- Right: Mascot Celebrator -->
+                <div class="col-span-3 flex flex-col items-center justify-end self-end">
+                  <div id="fgFennyNotes" class="text-[11px] font-black text-emerald-800 animate-bounce mb-0.5">🎵 🎶</div>
+                  <img id="fgFennyMascot" src="assets/images/fennygo/fenny-mascot.png" alt="Fenny Celebrating" class="w-10 h-10 sm:w-12 sm:h-12 object-contain drop-shadow-sm transition-transform duration-300">
+                </div>
+              </div>
+
+              <!-- Bottom Indicator -->
+              <div class="w-16 h-1 bg-[#082f23]/60 rounded-full mx-auto mt-0.5"></div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Pedagogical High-Res Visuals Gallery (Lightbox triggers - Compact) -->
+      <div class="mt-3 pt-2.5 border-t border-v-2">
+        <div class="flex items-center justify-between mb-1.5">
+          <span class="text-[10px] font-black text-v8 uppercase tracking-wider">
+            <i class="fa-solid fa-images text-v5 me-1"></i><span data-i18n="galleryTitle">Galerie Pédagogique 3AP (Cliquez pour agrandir)</span>
+          </span>
+          <span class="text-[9px] font-bold text-v6" data-i18n="galleryBadge">5 Visuels Clés</span>
+        </div>
+        <div class="grid grid-cols-2 sm:grid-cols-5 gap-1.5">
+          <div class="slide-frame" data-lightbox-src="assets/images/fennygo/meet-fenny.jpg" data-lightbox-caption="Meet Fenny! — Compagnon virtuel &amp; check-in quotidien">
+            <img src="assets/images/fennygo/meet-fenny.jpg" alt="Meet Fenny" class="!max-h-[78px]">
+            <span class="slide-zoom-pill"><i class="fa-solid fa-magnifying-glass-plus"></i></span>
+          </div>
+          <div class="slide-frame" data-lightbox-src="assets/images/fennygo/algerian-program.jpg" data-lightbox-caption="Donner vie au programme algérien 3AP">
+            <img src="assets/images/fennygo/algerian-program.jpg" alt="Programme Algérien" class="!max-h-[78px]">
+            <span class="slide-zoom-pill"><i class="fa-solid fa-magnifying-glass-plus"></i></span>
+          </div>
+          <div class="slide-frame" data-lightbox-src="assets/images/fennygo/multisensory-vocab.jpg" data-lightbox-caption="Multi-Sensory Vocabulary Building (Listen • Read • Speak)">
+            <img src="assets/images/fennygo/multisensory-vocab.jpg" alt="Vocabulaire multisensoriel" class="!max-h-[78px]">
+            <span class="slide-zoom-pill"><i class="fa-solid fa-magnifying-glass-plus"></i></span>
+          </div>
+          <div class="slide-frame" data-lightbox-src="assets/images/fennygo/tactile-vision.jpg" data-lightbox-caption="Vision par ordinateur &amp; apprentissage tactile de l'écriture">
+            <img src="assets/images/fennygo/tactile-vision.jpg" alt="Vision Tactile" class="!max-h-[78px]">
+            <span class="slide-zoom-pill"><i class="fa-solid fa-magnifying-glass-plus"></i></span>
+          </div>
+          <div class="slide-frame" data-lightbox-src="assets/images/fennygo/progression-analytics.jpg" data-lightbox-caption="Tableau de bord de progression &amp; alertes de remédiation">
+            <img src="assets/images/fennygo/progression-analytics.jpg" alt="Tableau de bord" class="!max-h-[78px]">
+            <span class="slide-zoom-pill"><i class="fa-solid fa-magnifying-glass-plus"></i></span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================= ZONE 3: MÉTHODE 4D (DARK CONTRAST) ======================= -->
+    <section id="methode" class="zone-card-dark text-ow reveal">
+      <div class="text-center max-w-2xl mx-auto mb-2.5">
+        <span class="eyebrow !bg-[#072a1e] !border-emerald-500 !text-emerald-300" data-i18n="featEyebrow">Pourquoi Fenncky ?</span>
+        <h2 class="sec-title !text-ow mt-0.5" data-i18n="featTitle">Une méthode multisensorielle, pensée pour les enfants</h2>
+      </div>
+
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-2">
+        <!-- 1. Écouter (Bleu clair) -->
+        <div class="rounded-xl bg-sky-950/70 border border-sky-400/35 p-2.5">
+          <span class="w-7 h-7 rounded-lg bg-sky-400 text-sky-950 grid place-items-center mb-1 text-[11px]"><i class="fa-solid fa-ear-listen"></i></span>
+          <h3 class="font-black text-xs text-sky-300" data-i18n="f1t">Écouter</h3>
+          <p class="text-[10.5px] font-bold text-sky-100/80 mt-0.5 leading-snug" data-i18n="f1d">Prononciation native en anglais, français et arabe, même hors-ligne.</p>
+        </div>
+        <!-- 2. Écrire & scanner (Vert clair) -->
+        <div class="rounded-xl bg-emerald-950/70 border border-emerald-400/35 p-2.5">
+          <span class="w-7 h-7 rounded-lg bg-emerald-400 text-emerald-950 grid place-items-center mb-1 text-[11px]"><i class="fa-solid fa-camera"></i></span>
+          <h3 class="font-black text-xs text-emerald-300" data-i18n="f2t">Écrire &amp; scanner</h3>
+          <p class="text-[10.5px] font-bold text-emerald-100/80 mt-0.5 leading-snug" data-i18n="f2d">La caméra IA lit les lettres écrites à la main et récompense l'enfant.</p>
+        </div>
+        <!-- 3. Jouer sans stress (Touche d'orange) -->
+        <div class="rounded-xl bg-orange-950/70 border border-orange-400/35 p-2.5">
+          <span class="w-7 h-7 rounded-lg bg-orange-400 text-orange-950 grid place-items-center mb-1 text-[11px]"><i class="fa-solid fa-gamepad"></i></span>
+          <h3 class="font-black text-xs text-orange-300" data-i18n="f3t">Jouer sans stress</h3>
+          <p class="text-[10.5px] font-bold text-orange-100/80 mt-0.5 leading-snug" data-i18n="f3d">Étoiles, badges et mini-jeux : l'évaluation devient un jeu.</p>
+        </div>
+        <!-- 4. Suivre les progrès (Un peu de violet) -->
+        <div class="rounded-xl bg-purple-950/70 border border-purple-400/35 p-2.5">
+          <span class="w-7 h-7 rounded-lg bg-purple-400 text-purple-950 grid place-items-center mb-1 text-[11px]"><i class="fa-solid fa-chart-line"></i></span>
+          <h3 class="font-black text-xs text-purple-300" data-i18n="f4t">Suivre les progrès</h3>
+          <p class="text-[10.5px] font-bold text-purple-100/80 mt-0.5 leading-snug" data-i18n="f4d">Tableau de bord parents/enseignants et alertes de remédiation.</p>
+        </div>
+      </div>
+
+      <!-- How it works 3-step row -->
+      <div class="mt-3 pt-2.5 border-t border-emerald-800/80 grid md:grid-cols-3 gap-2">
+        <div class="flex items-start gap-2">
+          <span class="w-5 h-5 rounded-full bg-yellow-400 text-emerald-950 font-black text-[10px] grid place-items-center shrink-0">1</span>
+          <div><h4 class="font-black text-[11px] text-ow" data-i18n="s1t">Fenny dit bonjour</h4><p class="text-[10px] font-bold text-emerald-200/80" data-i18n="s1d">Accueil vocal et question du jour.</p></div>
+        </div>
+        <div class="flex items-start gap-2">
+          <span class="w-5 h-5 rounded-full bg-sky-400 text-sky-950 font-black text-[10px] grid place-items-center shrink-0">2</span>
+          <div><h4 class="font-black text-[11px] text-ow" data-i18n="s2t">L'enfant choisit son monde</h4><p class="text-[10px] font-bold text-emerald-200/80" data-i18n="s2d">Cours, jeux, écriture ou histoires.</p></div>
+        </div>
+        <div class="flex items-start gap-2">
+          <span class="w-5 h-5 rounded-full bg-emerald-400 text-emerald-950 font-black text-[10px] grid place-items-center shrink-0">3</span>
+          <div><h4 class="font-black text-[11px] text-ow" data-i18n="s3t">Les parents suivent</h4><p class="text-[10px] font-bold text-emerald-200/80" data-i18n="s3d">Progression par unité et compétence.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================= ZONE 4: KIDS LEARNER HUB PREVIEW ======================= -->
+    <section id="hub" class="zone-card-gold reveal">
+      <div class="flex flex-wrap items-end justify-between gap-2 mb-2 pb-1.5 border-b border-v-2">
+        <div>
+          <span class="eyebrow" data-i18n="p1Tag">Espace élève · Kids Learner</span>
+          <h2 class="sec-title mt-0.5" data-i18n="hubTitle">Les 7 Mondes d'Apprentissage 3AP</h2>
+        </div>
+        <a href="category.html" class="btn btn-y !py-0.5 !px-3 !text-[11px]">
+          <i class="fa-solid fa-play text-[9px]"></i>
+          <span data-i18n="launchHubBtn">Lancer Kids Learner</span>
+        </a>
+      </div>
+
+      <p class="text-[11px] font-bold text-v7 mb-2.5 leading-snug" data-i18n="hubSub">
+        Un environnement bienveillant complet : 9 unités illustrées, vocabulaire multisensoriel 3D, 7 mini-jeux, atelier d'écriture, tests sans stress, histoires courtes et suivi par étoiles.
+      </p>
+
+      <div class="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-7 gap-1.5">
+        <a href="cours.html" class="card card-hover p-1.5 text-center bg-white border border-ow-line flex flex-col items-center gap-0.5" title="9 Cours">
+          <img src="assets/images/category-images/cours.png" alt="Cours" class="h-8 sm:h-9 object-contain">
+          <span class="text-[10px] font-black text-v9" data-i18n="hubC1">Cours (9 Unités)</span>
+        </a>
+        <a href="vocabulary.html" class="card card-hover p-1.5 text-center bg-white border border-ow-line flex flex-col items-center gap-0.5" title="Vocabulaire Multisensoriel">
+          <img src="assets/images/category-images/vocabulary.svg" alt="Vocabulaire" class="h-8 sm:h-9 object-contain">
+          <span class="text-[10px] font-black text-v9" data-i18n="hubC2">Vocabulaire 3D</span>
+        </a>
+        <a href="games.html" class="card card-hover p-1.5 text-center bg-white border border-ow-line flex flex-col items-center gap-0.5" title="Mini-Jeux 3D">
+          <img src="assets/images/category-images/games.png" alt="Jeux" class="h-8 sm:h-9 object-contain">
+          <span class="text-[10px] font-black text-v9" data-i18n="hubC3">7 Mini-Jeux</span>
+        </a>
+        <a href="tracing.html" class="card card-hover p-1.5 text-center bg-white border border-ow-line flex flex-col items-center gap-0.5" title="Traçage &amp; Écriture">
+          <img src="assets/images/category-images/tracing.png" alt="Traçage" class="h-8 sm:h-9 object-contain">
+          <span class="text-[10px] font-black text-v9" data-i18n="hubC4">Traçage &amp; IA</span>
+        </a>
+        <a href="test.html" class="card card-hover p-1.5 text-center bg-white border border-ow-line flex flex-col items-center gap-0.5" title="Quiz &amp; Tests">
+          <img src="assets/images/category-images/test.png" alt="Test" class="h-8 sm:h-9 object-contain">
+          <span class="text-[10px] font-black text-v9" data-i18n="hubC5">Quiz Ludique</span>
+        </a>
+        <a href="stories.html" class="card card-hover p-1.5 text-center bg-white border border-ow-line flex flex-col items-center gap-0.5" title="Histoires courtes">
+          <img src="assets/images/category-images/stories.png" alt="Histoires" class="h-8 sm:h-9 object-contain">
+          <span class="text-[10px] font-black text-v9" data-i18n="hubC6">Histoires</span>
+        </a>
+        <a href="progression.html" class="card card-hover p-1.5 text-center bg-white border border-ow-line flex flex-col items-center gap-0.5" title="Suivi &amp; Progression">
+          <img src="assets/images/category-images/progression.png" alt="Progression" class="h-8 sm:h-9 object-contain">
+          <span class="text-[10px] font-black text-v9" data-i18n="hubC7">Progression</span>
+        </a>
+      </div>
+    </section>
+
+    <!-- ======================= ZONE 5: QUI SOMMES-NOUS ======================= -->
+    <section id="qui-sommes-nous" class="zone-card reveal">
+      <div class="grid lg:grid-cols-5 gap-3.5 items-center">
+        <div class="lg:col-span-3 space-y-2">
+          <span class="eyebrow" data-i18n="aboutEyebrow">Qui sommes-nous ?</span>
+          <h2 class="sec-title" data-i18n="aboutTitle">Une équipe algérienne passionnée par l'éducation de demain</h2>
+          <p class="text-[11px] sm:text-[12px] font-bold text-v7 leading-relaxed" data-i18n="aboutP1">
+            Enseignants du primaire, ingénieurs en intelligence artificielle et illustrateurs se sont réunis autour d'un objectif : rendre l'apprentissage des langues vivant et accessible à chaque enfant, dès la 3ème année primaire.
+          </p>
+          <p class="text-[11px] sm:text-[12px] font-bold text-v7 leading-relaxed" data-i18n="aboutP2">
+            Notre mascotte <b class="text-v5">Fenny</b>, inspirée du fennec algérien, symbolise l'éveil et l'agilité : elle encourage, dédramatise l'erreur et célèbre chaque progrès.
+          </p>
+          <div class="grid sm:grid-cols-2 gap-2 pt-0.5">
+            <div class="rounded-lg bg-emerald-50 border border-emerald-300 p-2">
+              <h3 class="font-black text-[11px] text-emerald-950 flex items-center gap-1"><i class="fa-solid fa-bullseye text-emerald-600"></i><span data-i18n="missionT">Notre mission</span></h3>
+              <p class="text-[10px] font-bold text-emerald-800 mt-0.5 leading-snug" data-i18n="missionD">Démocratiser l'excellence linguistique, en classe comme à la maison, avec ou sans internet.</p>
+            </div>
+            <div class="rounded-lg bg-sky-50 border border-sky-300 p-2">
+              <h3 class="font-black text-[11px] text-sky-950 flex items-center gap-1"><i class="fa-solid fa-eye text-sky-600"></i><span data-i18n="visionT">Notre vision</span></h3>
+              <p class="text-[10px] font-bold text-sky-800 mt-0.5 leading-snug" data-i18n="visionD">Devenir la référence EdTech en Algérie et dans la région MENA.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="lg:col-span-2">
+          <div class="card p-2.5 space-y-2 border border-v-2">
+            <div class="flex items-center gap-2 pb-1.5 border-b border-ow-line">
+              <img src="assets/images/fennygo/fenny-avatar.png" alt="Équipe" class="w-8 h-8 rounded-full bg-y-s object-contain border border-y">
+              <div>
+                <div class="font-black text-[11px] text-v9" data-i18n="teamT">Conçu en Algérie 🇩🇿</div>
+                <div class="text-[9px] font-bold text-v6" data-i18n="teamD">Pédagogues · Ingénieurs IA · Illustrateurs 3D · Orthophonistes</div>
+              </div>
+            </div>
+            <ul class="space-y-1 text-[11px] font-bold text-v8">
+              <li class="flex items-start gap-1"><i class="fa-solid fa-circle-check text-y-d text-[10px] mt-0.5"></i><span data-i18n="v1">Contenus validés par des inspecteurs</span></li>
+              <li class="flex items-start gap-1"><i class="fa-solid fa-circle-check text-y-d text-[10px] mt-0.5"></i><span data-i18n="v2">Psychologie positive : zéro stress d'examen</span></li>
+              <li class="flex items-start gap-1"><i class="fa-solid fa-circle-check text-y-d text-[10px] mt-0.5"></i><span data-i18n="v3">Données protégées, aucune publicité</span></li>
+              <li class="flex items-start gap-1"><i class="fa-solid fa-circle-check text-y-d text-[10px] mt-0.5"></i><span data-i18n="v4">Fonctionne hors-ligne sur tablettes et TBI</span></li>
+            </ul>
+            <a href="#contact" class="btn btn-ghost w-full !text-[10.5px] !py-1"><span data-i18n="joinBtn">Rejoindre l'aventure</span><i class="fa-solid fa-arrow-right rtl:rotate-180 text-[9px]"></i></a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================= ZONE 6: OFFRES & TARIFS ======================= -->
+    <section id="offres" class="zone-card-gold reveal">
+      <div class="text-center max-w-2xl mx-auto mb-2.5 pb-1.5 border-b border-v-2">
+        <span class="eyebrow" data-i18n="offEyebrow">Offres &amp; tarifs</span>
+        <h2 class="sec-title mt-0.5" data-i18n="offTitle">Une formule pour chaque famille et chaque école</h2>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-2.5 items-stretch">
+        <!-- Free (Bleu clair) -->
+        <div class="card p-2.5 flex flex-col border border-sky-200 bg-white shadow-xs">
+          <div class="text-[9px] font-black uppercase text-sky-700" data-i18n="o1Tag">Essai</div>
+          <h3 class="text-sm font-black text-emerald-950" data-i18n="o1Name">Découverte</h3>
+          <div class="text-lg font-black text-emerald-700 my-0.5" data-i18n="o1Price">Gratuit</div>
+          <ul class="space-y-0.5 text-[11px] font-bold text-emerald-900 mb-2.5">
+            <li><i class="fa-solid fa-check text-emerald-600 me-1 text-[9px]"></i><span data-i18n="o1a">Accès au hub Kids Learner</span></li>
+            <li><i class="fa-solid fa-check text-emerald-600 me-1 text-[9px]"></i><span data-i18n="o1b">Démo FennyGo3 intégrée</span></li>
+            <li><i class="fa-solid fa-check text-emerald-600 me-1 text-[9px]"></i><span data-i18n="o1c">Check-in quotidien avec Fenny</span></li>
+          </ul>
+          <a href="category.html" class="btn btn-ghost mt-auto w-full !text-[10.5px] !py-1"><span data-i18n="o1Btn">Essayer maintenant</span></a>
+        </div>
+
+        <!-- Family featured (Vert foncé, Bleu foncé & Touche d'orange) -->
+        <div class="relative rounded-[14px] p-2.5 flex flex-col bg-gradient-to-br from-[#082f23] via-[#093d2e] to-[#0c4a6e] text-ow shadow-md border-2 border-emerald-400 border-b-4 border-b-orange-500">
+          <span class="absolute -top-2 start-2.5 bg-gradient-to-r from-amber-400 to-orange-500 text-white text-[9px] font-black px-2 py-0.5 rounded-full border border-orange-600 shadow-sm" data-i18n="o2Badge">⭐ Le plus choisi · -30%</span>
+          <div class="text-[9px] font-black uppercase text-amber-300" data-i18n="o2Tag">Maison</div>
+          <h3 class="text-sm font-black text-white" data-i18n="o2Name">Famille Premium</h3>
+          <div class="my-0.5 flex items-baseline gap-1">
+            <span class="text-lg font-black text-amber-300" data-i18n="o2PriceCurr">2 900 DA</span>
+            <span class="text-[10px] font-bold text-emerald-200/60 line-through" data-i18n="o2PriceOld">4 200 DA</span>
+            <span class="text-[9.5px] font-bold text-emerald-100/90" data-i18n="perYear">/ an</span>
+          </div>
+          <ul class="space-y-0.5 text-[11px] font-bold text-emerald-100/90 mb-2.5">
+            <li><i class="fa-solid fa-check text-amber-300 me-1 text-[9px]"></i><span data-i18n="o2a">9 unités + 7 mini-jeux</span></li>
+            <li><i class="fa-solid fa-check text-amber-300 me-1 text-[9px]"></i><span data-i18n="o2b">Scanner caméra IA</span></li>
+            <li><i class="fa-solid fa-check text-amber-300 me-1 text-[9px]"></i><span data-i18n="o2c">Tableau de bord parents</span></li>
+            <li><i class="fa-solid fa-check text-amber-300 me-1 text-[9px]"></i><span data-i18n="o2d">3 profils enfants + hors-ligne</span></li>
+          </ul>
+          <a href="#contact" data-offer="Pack Famille Premium (2 900 DA/an)" class="btn btn-orange mt-auto w-full select-offer-btn !text-[10.5px] !py-1"><i class="fa-solid fa-cart-shopping text-[9px]"></i><span data-i18n="o2Btn">Commander</span></a>
+          <p class="text-[8.5px] font-bold text-emerald-200/70 text-center mt-1" data-i18n="o2Note">Satisfait ou remboursé 30 jours · CIB / Edahabia</p>
+        </div>
+
+        <!-- School (Bleu foncé & Vert clair) -->
+        <div class="card p-2.5 flex flex-col border border-emerald-200 bg-white shadow-xs">
+          <div class="text-[9px] font-black uppercase text-emerald-800" data-i18n="o3Tag">Établissements</div>
+          <h3 class="text-sm font-black text-emerald-950" data-i18n="o3Name">École</h3>
+          <div class="text-lg font-black text-sky-800 my-0.5" data-i18n="o3Price">Sur devis</div>
+          <ul class="space-y-0.5 text-[11px] font-bold text-emerald-900 mb-2.5">
+            <li><i class="fa-solid fa-check text-emerald-600 me-1 text-[9px]"></i><span data-i18n="o3a">Serveur local sans internet</span></li>
+            <li><i class="fa-solid fa-check text-emerald-600 me-1 text-[9px]"></i><span data-i18n="o3b">Supervision par classe</span></li>
+            <li><i class="fa-solid fa-check text-emerald-600 me-1 text-[9px]"></i><span data-i18n="o3c">Compatible TBI + formation</span></li>
+          </ul>
+          <a href="#contact" data-offer="Devis Pack Établissement Scolaire" class="btn btn-v mt-auto w-full select-offer-btn !text-[10.5px] !py-1"><span data-i18n="o3Btn">Demander un devis</span></a>
+        </div>
+      </div>
+
+      <!-- Testimonials (Compact) -->
+      <div class="mt-3 pt-2 border-t border-emerald-200 grid md:grid-cols-3 gap-2">
+        <figure class="card p-2 border border-emerald-100 bg-ow">
+          <div class="text-amber-500 text-[9px]">★★★★★</div>
+          <blockquote class="text-[10.5px] font-bold text-emerald-950 italic my-0.5" data-i18n="t1Quote">« Ma fille attend chaque soir son check-in avec Fenny. Sa prononciation a progressé dès la 2e semaine. »</blockquote>
+          <figcaption class="text-[9px] font-black text-emerald-700" data-i18n="t1Author">Meriem B. · Maman, Alger</figcaption>
+        </figure>
+        <figure class="card p-2 border border-emerald-100 bg-ow">
+          <div class="text-amber-500 text-[9px]">★★★★★</div>
+          <blockquote class="text-[10.5px] font-bold text-emerald-950 italic my-0.5" data-i18n="t2Quote">« Le scan caméra et les alertes de remédiation nous font gagner un temps précieux en classe. »</blockquote>
+          <figcaption class="text-[9px] font-black text-emerald-700" data-i18n="t2Author">Karim T. · Enseignant, Oran</figcaption>
+        </figure>
+        <figure class="card p-2 border border-emerald-100 bg-ow">
+          <div class="text-amber-500 text-[9px]">★★★★★</div>
+          <blockquote class="text-[10.5px] font-bold text-emerald-950 italic my-0.5" data-i18n="t3Quote">« Le mode hors-ligne sur nos tablettes est irréprochable. Une vraie fierté algérienne. »</blockquote>
+          <figcaption class="text-[9px] font-black text-emerald-700" data-i18n="t3Author">Dr. Nabil S. · Directeur, Constantine</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <!-- ======================= ZONE 7: PARTENAIRES & RÉSEAU TERRAIN ======================= -->
+    <section id="partenaires" class="zone-card reveal">
+      <!-- Section Header -->
+      <div class="flex flex-wrap items-end justify-between gap-2 mb-2.5 pb-2 border-b border-v-2">
+        <div>
+          <span class="eyebrow"><i class="fa-solid fa-handshake-angle text-v5"></i> <span data-i18n="partEyebrow">Nos Partenaires &amp; Réseau Terrain</span></span>
+          <h2 class="sec-title mt-0.5" data-i18n="partTitle">Un écosystème d'excellence qui déploie Fenncky sur le terrain</h2>
+          <p class="text-[10px] sm:text-[11px] font-bold text-v7 mt-0.5" data-i18n="partSub">Écoles primaires, inspecteurs pédagogiques, incubateurs EdTech et intégrateurs unissent leurs forces à travers l'Algérie.</p>
+        </div>
+        <a href="#contact" data-offer="Proposition de Partenariat" class="btn btn-orange !text-[10.5px] !py-1 !px-3 select-offer-btn shrink-0 shadow-xs">
+          <i class="fa-solid fa-handshake"></i>
+          <span data-i18n="partBtn">Devenir partenaire</span>
+        </a>
+      </div>
+
+      <!-- Quick Metrics Ribbon (Nature Color Palette) -->
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 mb-3">
+        <div class="card p-1.5 sm:p-2 border border-emerald-200 flex items-center gap-2 bg-white shadow-2xs">
+          <span class="w-6 h-6 rounded-md bg-[#082f23] text-emerald-300 grid place-items-center text-[10px] shrink-0"><i class="fa-solid fa-school-flag"></i></span>
+          <div class="leading-tight">
+            <span class="block text-[11px] font-black text-emerald-950" data-i18n="pMetric1Num">25+ Écoles</span>
+            <span class="block text-[8.5px] font-bold text-emerald-700" data-i18n="pMetric1Lbl">Pilotes équipées (3AP)</span>
+          </div>
+        </div>
+        <div class="card p-1.5 sm:p-2 border border-orange-200 flex items-center gap-2 bg-white shadow-2xs">
+          <span class="w-6 h-6 rounded-md bg-orange-500 text-white grid place-items-center text-[10px] shrink-0"><i class="fa-solid fa-children"></i></span>
+          <div class="leading-tight">
+            <span class="block text-[11px] font-black text-orange-950" data-i18n="pMetric2Num">1 200+ Élèves</span>
+            <span class="block text-[8.5px] font-bold text-orange-700" data-i18n="pMetric2Lbl">Apprenants actifs</span>
+          </div>
+        </div>
+        <div class="card p-1.5 sm:p-2 border border-sky-200 flex items-center gap-2 bg-white shadow-2xs">
+          <span class="w-6 h-6 rounded-md bg-sky-600 text-white grid place-items-center text-[10px] shrink-0"><i class="fa-solid fa-map-location-dot"></i></span>
+          <div class="leading-tight">
+            <span class="block text-[11px] font-black text-sky-950" data-i18n="pMetric3Num">48 Wilayas</span>
+            <span class="block text-[8.5px] font-bold text-sky-700" data-i18n="pMetric3Lbl">Objectif déploiement</span>
+          </div>
+        </div>
+        <div class="card p-1.5 sm:p-2 border border-emerald-200 flex items-center gap-2 bg-white shadow-2xs">
+          <span class="w-6 h-6 rounded-md bg-emerald-600 text-white grid place-items-center text-[10px] shrink-0"><i class="fa-solid fa-certificate"></i></span>
+          <div class="leading-tight">
+            <span class="block text-[11px] font-black text-emerald-950" data-i18n="pMetric4Num">100% Conforme</span>
+            <span class="block text-[8.5px] font-bold text-emerald-700" data-i18n="pMetric4Lbl">Programme officiel MEN</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Main Partner Content: 2-column layout (Pillars on Left, Photo & Address Card on Right) -->
+      <div class="grid lg:grid-cols-12 gap-3 items-stretch">
+        <!-- LEFT: VERTICAL SCROLLING PARTNER MENU (lg:col-span-7) -->
+        <div class="lg:col-span-7 flex flex-col justify-between space-y-2">
+          <div class="flex items-center justify-between pb-1.5 border-b border-ow-line">
+            <div class="flex items-center gap-1.5">
+              <span class="w-6 h-6 rounded-md bg-emerald-800 text-yellow-300 grid place-items-center text-[10px] shrink-0"><i class="fa-solid fa-arrows-up-down"></i></span>
+              <div>
+                <h3 class="font-black text-[11px] text-v9 leading-tight" data-i18n="vertMenuTitle">Menu Défilant des Partenaires Réseau</h3>
+                <span class="text-[8px] font-extrabold text-v6 uppercase tracking-wider" data-i18n="vertMenuSub">Défilement vertical continu · Survoler pour figer</span>
+              </div>
+            </div>
+            <span class="text-[8.5px] font-extrabold text-emerald-800 bg-emerald-100 px-2 py-0.5 rounded-full border border-emerald-300 flex items-center gap-1">
+              <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span> <span data-i18n="vertMenuLive">En direct</span>
+            </span>
+          </div>
+
+          <!-- Vertical Scrolling Viewport -->
+          <div class="marquee-vertical-mask card p-1.5 bg-ow border border-ow-line h-[360px] sm:h-[390px]">
+            <div class="marquee-vertical">
+              <!-- Partner 1 (Vert clair) -->
+              <div class="card card-hover p-2 flex items-center gap-2 border border-emerald-100 bg-white cursor-pointer" data-lightbox-src="assets/images/partners/ecole-elamel.jpg" data-lightbox-caption="École Pilote Émir Abdelkader (3AP) — 14 Rue Didouche Mourad, Alger-Centre">
+                <img src="assets/images/partners/ecole-elamel.jpg" alt="École Pilote Émir Abdelkader" class="w-11 h-9 rounded-lg object-cover border border-emerald-200 shadow-2xs shrink-0">
+                <div class="flex-1 min-w-0 leading-tight">
+                  <div class="flex items-center justify-between gap-1">
+                    <h4 class="font-black text-[10.5px] text-v9 truncate" data-i18n="p1Name">École Pilote Émir Abdelkader</h4>
+                    <span class="text-[7.5px] font-extrabold px-1.5 py-0.2 bg-emerald-100 text-emerald-900 rounded border border-emerald-300 shrink-0" data-i18n="tag3AP">3AP</span>
+                  </div>
+                  <p class="text-[8.5px] font-bold text-v7 mt-0.5 truncate" data-i18n="pa1d">25+ classes de 3AP équipées en tablettes et accompagnement didactique.</p>
+                  <p class="text-[8.5px] font-black text-v6 flex items-center gap-1 mt-0.5 truncate">
+                    <i class="fa-solid fa-location-dot text-amber-500 text-[8px]"></i>
+                    <span data-i18n="p1Addr">14 Rue Didouche Mourad, Alger-Centre</span>
+                  </p>
+                </div>
+              </div>
+
+              <!-- Partner 2 (Bleu clair) -->
+              <div class="card card-hover p-2 flex items-center gap-2 border border-sky-100 bg-white cursor-pointer" data-lightbox-src="assets/images/partners/institut-pedagogique.jpg" data-lightbox-caption="Institut Pédagogique National (IPN) — 05 Avenue de l'Indépendance, Kouba, Alger">
+                <img src="assets/images/partners/institut-pedagogique.jpg" alt="Institut Pédagogique National" class="w-11 h-9 rounded-lg object-cover border border-sky-200 shadow-2xs shrink-0">
+                <div class="flex-1 min-w-0 leading-tight">
+                  <div class="flex items-center justify-between gap-1">
+                    <h4 class="font-black text-[10.5px] text-v9 truncate" data-i18n="p2Name">Institut Pédagogique National (IPN)</h4>
+                    <span class="text-[7.5px] font-extrabold px-1.5 py-0.2 bg-sky-100 text-sky-900 rounded border border-sky-300 shrink-0" data-i18n="tagDidactic">Didactique</span>
+                  </div>
+                  <p class="text-[8.5px] font-bold text-v7 mt-0.5 truncate" data-i18n="pa2d">Inspecteurs et conseillers valident les progressions et paliers d'acquisition.</p>
+                  <p class="text-[8.5px] font-black text-v6 flex items-center gap-1 mt-0.5 truncate">
+                    <i class="fa-solid fa-location-dot text-amber-500 text-[8px]"></i>
+                    <span data-i18n="p2Addr">05 Avenue de l'Indépendance, Kouba (Alger)</span>
+                  </p>
+                </div>
+              </div>
+
+              <!-- Partner 3 (Vert foncé / R&D) -->
+              <div class="card card-hover p-2 flex items-center gap-2 border border-teal-100 bg-white cursor-pointer" data-lightbox-src="assets/images/partners/cyberparc-lab.jpg" data-lightbox-caption="Cyberparc EdTech Innovation Lab — Bâtiment B3, Sidi Abdellah, Alger">
+                <img src="assets/images/partners/cyberparc-lab.jpg" alt="Cyberparc EdTech Lab" class="w-11 h-9 rounded-lg object-cover border border-teal-200 shadow-2xs shrink-0">
+                <div class="flex-1 min-w-0 leading-tight">
+                  <div class="flex items-center justify-between gap-1">
+                    <h4 class="font-black text-[10.5px] text-v9 truncate" data-i18n="p3Name">Cyberparc EdTech Innovation Lab</h4>
+                    <span class="text-[7.5px] font-extrabold px-1.5 py-0.2 bg-teal-100 text-teal-900 rounded border border-teal-300 shrink-0" data-i18n="tagRnd">R&amp;D IA</span>
+                  </div>
+                  <p class="text-[8.5px] font-bold text-v7 mt-0.5 truncate" data-i18n="pa3d">R&amp;D en vision embarquée, reconnaissance d'écriture et voix locales.</p>
+                  <p class="text-[8.5px] font-black text-v6 flex items-center gap-1 mt-0.5 truncate">
+                    <i class="fa-solid fa-location-dot text-amber-500 text-[8px]"></i>
+                    <span data-i18n="p3Addr">Bâtiment B3, Sidi Abdellah, Rahmania (Alger)</span>
+                  </p>
+                </div>
+              </div>
+
+              <!-- Partner 4 (Un peu de violet) -->
+              <div class="card card-hover p-2 flex items-center gap-2 border border-purple-100 bg-white cursor-pointer" data-lightbox-src="assets/images/partners/academy-langues.jpg" data-lightbox-caption="Cambridge Kids Language Academy — 28 Boulevard du 11 Décembre 1960, Val d'Hydra, Alger">
+                <img src="assets/images/partners/academy-langues.jpg" alt="Cambridge Kids Academy" class="w-11 h-9 rounded-lg object-cover border border-purple-200 shadow-2xs shrink-0">
+                <div class="flex-1 min-w-0 leading-tight">
+                  <div class="flex items-center justify-between gap-1">
+                    <h4 class="font-black text-[10.5px] text-v9 truncate" data-i18n="p4Name">Cambridge Kids Language Academy</h4>
+                    <span class="text-[7.5px] font-extrabold px-1.5 py-0.2 bg-purple-100 text-purple-900 rounded border border-purple-300 shrink-0" data-i18n="tagImmersion">Immersion</span>
+                  </div>
+                  <p class="text-[8.5px] font-bold text-v7 mt-0.5 truncate" data-i18n="pa4d">Ateliers immersifs « Meet Fenny! », stages vacances et phonétique trilingue.</p>
+                  <p class="text-[8.5px] font-black text-v6 flex items-center gap-1 mt-0.5 truncate">
+                    <i class="fa-solid fa-location-dot text-amber-500 text-[8px]"></i>
+                    <span data-i18n="p4Addr">28 Bd 11 Décembre 1960, Val d'Hydra (Alger)</span>
+                  </p>
+                </div>
+              </div>
+
+              <!-- Partner 5 (Touche d'orange) -->
+              <div class="card card-hover p-2 flex items-center gap-2 border border-orange-100 bg-white cursor-pointer" data-lightbox-src="assets/images/partners/federation-parents.jpg" data-lightbox-caption="Fédération Nationale des Parents d'Élèves (FNAPE) — 42 Rue Larbi Ben M'hidi, Oran">
+                <img src="assets/images/partners/federation-parents.jpg" alt="Fédération Parents" class="w-11 h-9 rounded-lg object-cover border border-orange-200 shadow-2xs shrink-0">
+                <div class="flex-1 min-w-0 leading-tight">
+                  <div class="flex items-center justify-between gap-1">
+                    <h4 class="font-black text-[10.5px] text-v9 truncate" data-i18n="p5Name">Fédération Nationale Parents (FNAPE)</h4>
+                    <span class="text-[7.5px] font-extrabold px-1.5 py-0.2 bg-orange-100 text-orange-900 rounded border border-orange-300 shrink-0" data-i18n="tagFamily">Familles</span>
+                  </div>
+                  <p class="text-[8.5px] font-bold text-v7 mt-0.5 truncate" data-i18n="pa5d">Co-construction du tableau de bord parental et licences solidaires.</p>
+                  <p class="text-[8.5px] font-black text-v6 flex items-center gap-1 mt-0.5 truncate">
+                    <i class="fa-solid fa-location-dot text-amber-500 text-[8px]"></i>
+                    <span data-i18n="p5Addr">42 Rue Larbi Ben M'hidi, Oran Centre (Oran)</span>
+                  </p>
+                </div>
+              </div>
+
+              <!-- Partner 6 (Bleu foncé) -->
+              <div class="card card-hover p-2 flex items-center gap-2 border border-blue-100 bg-white cursor-pointer" data-lightbox-src="assets/images/partners/hardware-tbi.jpg" data-lightbox-caption="Maghreb Interactive Solutions (MIS) — Zone d'Activité Amara, Lot 18, Chéraga, Alger">
+                <img src="assets/images/partners/hardware-tbi.jpg" alt="Maghreb Interactive Solutions" class="w-11 h-9 rounded-lg object-cover border border-blue-200 shadow-2xs shrink-0">
+                <div class="flex-1 min-w-0 leading-tight">
+                  <div class="flex items-center justify-between gap-1">
+                    <h4 class="font-black text-[10.5px] text-v9 truncate" data-i18n="p6Name">Maghreb Interactive Solutions (MIS)</h4>
+                    <span class="text-[7.5px] font-extrabold px-1.5 py-0.2 bg-blue-100 text-blue-950 rounded border border-blue-300 shrink-0" data-i18n="tagHardware">TBI &amp; Tab</span>
+                  </div>
+                  <p class="text-[8.5px] font-bold text-v7 mt-0.5 truncate" data-i18n="pa6d">Pré-installation certifiée sur tablettes scolaires et tableaux interactifs.</p>
+                  <p class="text-[8.5px] font-black text-v6 flex items-center gap-1 mt-0.5 truncate">
+                    <i class="fa-solid fa-location-dot text-amber-500 text-[8px]"></i>
+                    <span data-i18n="p6Addr">Zone d'Activité Amara, Lot 18, Chéraga (Alger)</span>
+                  </p>
+                </div>
+              </div>
+
+              <!-- ================= DUPLICATED SET FOR SEAMLESS 100% INFINITE VERTICAL MARQUEE ================= -->
+              <div class="card card-hover p-2 flex items-center gap-2 border border-emerald-100 bg-white cursor-pointer" aria-hidden="true" data-lightbox-src="assets/images/partners/ecole-elamel.jpg" data-lightbox-caption="École Pilote Émir Abdelkader (3AP) — 14 Rue Didouche Mourad, Alger-Centre">
+                <img src="assets/images/partners/ecole-elamel.jpg" alt="" class="w-11 h-9 rounded-lg object-cover border border-emerald-200 shadow-2xs shrink-0">
+                <div class="flex-1 min-w-0 leading-tight">
+                  <div class="flex items-center justify-between gap-1">
+                    <h4 class="font-black text-[10.5px] text-v9 truncate" data-i18n="p1Name">École Pilote Émir Abdelkader</h4>
+                    <span class="text-[7.5px] font-extrabold px-1.5 py-0.2 bg-emerald-100 text-emerald-900 rounded border border-emerald-300 shrink-0" data-i18n="tag3AP">3AP</span>
+                  </div>
+                  <p class="text-[8.5px] font-bold text-v7 mt-0.5 truncate" data-i18n="pa1d">25+ classes de 3AP équipées en tablettes et accompagnement didactique.</p>
+                  <p class="text-[8.5px] font-black text-v6 flex items-center gap-1 mt-0.5 truncate">
+                    <i class="fa-solid fa-location-dot text-amber-500 text-[8px]"></i>
+                    <span data-i18n="p1Addr">14 Rue Didouche Mourad, Alger-Centre</span>
+                  </p>
+                </div>
+              </div>
+
+              <div class="card card-hover p-2 flex items-center gap-2 border border-sky-100 bg-white cursor-pointer" aria-hidden="true" data-lightbox-src="assets/images/partners/institut-pedagogique.jpg" data-lightbox-caption="Institut Pédagogique National (IPN) — 05 Avenue de l'Indépendance, Kouba, Alger">
+                <img src="assets/images/partners/institut-pedagogique.jpg" alt="" class="w-11 h-9 rounded-lg object-cover border border-sky-200 shadow-2xs shrink-0">
+                <div class="flex-1 min-w-0 leading-tight">
+                  <div class="flex items-center justify-between gap-1">
+                    <h4 class="font-black text-[10.5px] text-v9 truncate" data-i18n="p2Name">Institut Pédagogique National (IPN)</h4>
+                    <span class="text-[7.5px] font-extrabold px-1.5 py-0.2 bg-sky-100 text-sky-900 rounded border border-sky-300 shrink-0" data-i18n="tagDidactic">Didactique</span>
+                  </div>
+                  <p class="text-[8.5px] font-bold text-v7 mt-0.5 truncate" data-i18n="pa2d">Inspecteurs et conseillers valident les progressions et paliers d'acquisition.</p>
+                  <p class="text-[8.5px] font-black text-v6 flex items-center gap-1 mt-0.5 truncate">
+                    <i class="fa-solid fa-location-dot text-amber-500 text-[8px]"></i>
+                    <span data-i18n="p2Addr">05 Avenue de l'Indépendance, Kouba (Alger)</span>
+                  </p>
+                </div>
+              </div>
+
+              <div class="card card-hover p-2 flex items-center gap-2 border border-teal-100 bg-white cursor-pointer" aria-hidden="true" data-lightbox-src="assets/images/partners/cyberparc-lab.jpg" data-lightbox-caption="Cyberparc EdTech Innovation Lab — Bâtiment B3, Sidi Abdellah, Alger">
+                <img src="assets/images/partners/cyberparc-lab.jpg" alt="" class="w-11 h-9 rounded-lg object-cover border border-teal-200 shadow-2xs shrink-0">
+                <div class="flex-1 min-w-0 leading-tight">
+                  <div class="flex items-center justify-between gap-1">
+                    <h4 class="font-black text-[10.5px] text-v9 truncate" data-i18n="p3Name">Cyberparc EdTech Innovation Lab</h4>
+                    <span class="text-[7.5px] font-extrabold px-1.5 py-0.2 bg-teal-100 text-teal-900 rounded border border-teal-300 shrink-0" data-i18n="tagRnd">R&amp;D IA</span>
+                  </div>
+                  <p class="text-[8.5px] font-bold text-v7 mt-0.5 truncate" data-i18n="pa3d">R&amp;D en vision embarquée, reconnaissance d'écriture et voix locales.</p>
+                  <p class="text-[8.5px] font-black text-v6 flex items-center gap-1 mt-0.5 truncate">
+                    <i class="fa-solid fa-location-dot text-amber-500 text-[8px]"></i>
+                    <span data-i18n="p3Addr">Bâtiment B3, Sidi Abdellah, Rahmania (Alger)</span>
+                  </p>
+                </div>
+              </div>
+
+              <div class="card card-hover p-2 flex items-center gap-2 border border-purple-100 bg-white cursor-pointer" aria-hidden="true" data-lightbox-src="assets/images/partners/academy-langues.jpg" data-lightbox-caption="Cambridge Kids Language Academy — 28 Boulevard du 11 Décembre 1960, Val d'Hydra, Alger">
+                <img src="assets/images/partners/academy-langues.jpg" alt="" class="w-11 h-9 rounded-lg object-cover border border-purple-200 shadow-2xs shrink-0">
+                <div class="flex-1 min-w-0 leading-tight">
+                  <div class="flex items-center justify-between gap-1">
+                    <h4 class="font-black text-[10.5px] text-v9 truncate" data-i18n="p4Name">Cambridge Kids Language Academy</h4>
+                    <span class="text-[7.5px] font-extrabold px-1.5 py-0.2 bg-purple-100 text-purple-900 rounded border border-purple-300 shrink-0" data-i18n="tagImmersion">Immersion</span>
+                  </div>
+                  <p class="text-[8.5px] font-bold text-v7 mt-0.5 truncate" data-i18n="pa4d">Ateliers immersifs « Meet Fenny! », stages vacances et phonétique trilingue.</p>
+                  <p class="text-[8.5px] font-black text-v6 flex items-center gap-1 mt-0.5 truncate">
+                    <i class="fa-solid fa-location-dot text-amber-500 text-[8px]"></i>
+                    <span data-i18n="p4Addr">28 Bd 11 Décembre 1960, Val d'Hydra (Alger)</span>
+                  </p>
+                </div>
+              </div>
+
+              <div class="card card-hover p-2 flex items-center gap-2 border border-orange-100 bg-white cursor-pointer" aria-hidden="true" data-lightbox-src="assets/images/partners/federation-parents.jpg" data-lightbox-caption="Fédération Nationale des Parents d'Élèves (FNAPE) — 42 Rue Larbi Ben M'hidi, Oran">
+                <img src="assets/images/partners/federation-parents.jpg" alt="" class="w-11 h-9 rounded-lg object-cover border border-orange-200 shadow-2xs shrink-0">
+                <div class="flex-1 min-w-0 leading-tight">
+                  <div class="flex items-center justify-between gap-1">
+                    <h4 class="font-black text-[10.5px] text-v9 truncate" data-i18n="p5Name">Fédération Nationale Parents (FNAPE)</h4>
+                    <span class="text-[7.5px] font-extrabold px-1.5 py-0.2 bg-orange-100 text-orange-900 rounded border border-orange-300 shrink-0" data-i18n="tagFamily">Familles</span>
+                  </div>
+                  <p class="text-[8.5px] font-bold text-v7 mt-0.5 truncate" data-i18n="pa5d">Co-construction du tableau de bord parental et licences solidaires.</p>
+                  <p class="text-[8.5px] font-black text-v6 flex items-center gap-1 mt-0.5 truncate">
+                    <i class="fa-solid fa-location-dot text-amber-500 text-[8px]"></i>
+                    <span data-i18n="p5Addr">42 Rue Larbi Ben M'hidi, Oran Centre (Oran)</span>
+                  </p>
+                </div>
+              </div>
+
+              <div class="card card-hover p-2 flex items-center gap-2 border border-blue-100 bg-white cursor-pointer" aria-hidden="true" data-lightbox-src="assets/images/partners/hardware-tbi.jpg" data-lightbox-caption="Maghreb Interactive Solutions (MIS) — Zone d'Activité Amara, Lot 18, Chéraga, Alger">
+                <img src="assets/images/partners/hardware-tbi.jpg" alt="" class="w-11 h-9 rounded-lg object-cover border border-blue-200 shadow-2xs shrink-0">
+                <div class="flex-1 min-w-0 leading-tight">
+                  <div class="flex items-center justify-between gap-1">
+                    <h4 class="font-black text-[10.5px] text-v9 truncate" data-i18n="p6Name">Maghreb Interactive Solutions (MIS)</h4>
+                    <span class="text-[7.5px] font-extrabold px-1.5 py-0.2 bg-blue-100 text-blue-950 rounded border border-blue-300 shrink-0" data-i18n="tagHardware">TBI &amp; Tab</span>
+                  </div>
+                  <p class="text-[8.5px] font-bold text-v7 mt-0.5 truncate" data-i18n="pa6d">Pré-installation certifiée sur tablettes scolaires et tableaux interactifs.</p>
+                  <p class="text-[8.5px] font-black text-v6 flex items-center gap-1 mt-0.5 truncate">
+                    <i class="fa-solid fa-location-dot text-amber-500 text-[8px]"></i>
+                    <span data-i18n="p6Addr">Zone d'Activité Amara, Lot 18, Chéraga (Alger)</span>
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Institutional Trust Strip -->
+          <div class="card p-1.5 sm:p-2 border border-v-2 bg-ow-2 flex flex-wrap items-center justify-between gap-1 text-[9px] font-black text-v7">
+            <span class="flex items-center gap-1 text-v9"><i class="fa-solid fa-award text-y-d"></i> <span data-i18n="partEcoLabel">Écosystème partenaire :</span></span>
+            <span class="flex items-center gap-1 px-1.5 py-0.5 bg-white rounded border border-ow-line"><i class="fa-solid fa-landmark text-v5"></i> <span data-i18n="trustMen">Ministère Éducation 3AP</span></span>
+            <span class="flex items-center gap-1 px-1.5 py-0.5 bg-white rounded border border-ow-line"><i class="fa-solid fa-microchip text-v5"></i> <span data-i18n="trustCyberparc">Cyberparc Sidi Abdellah</span></span>
+            <span class="flex items-center gap-1 px-1.5 py-0.5 bg-white rounded border border-ow-line"><i class="fa-solid fa-users text-v5"></i> <span data-i18n="trustParents">Fédérations Parents</span></span>
+          </div>
+        </div>
+
+        <!-- RIGHT: FIELD PHOTO + OFFICIAL HUB ADDRESS (lg:col-span-5) -->
+        <div class="lg:col-span-5 flex flex-col gap-2">
+          <!-- Field Deployment Photo Card with Lightbox trigger -->
+          <div class="slide-frame group cursor-pointer overflow-hidden rounded-xl border border-v-2 bg-v9 relative shadow-xs" data-lightbox-src="assets/images/fennygo/algerian-program.jpg" data-lightbox-caption="Déploiement en classe pilote 3AP : élèves et enseignants en pleine séance interactive avec Fenncky &amp; FennyGo3.">
+            <img src="assets/images/fennygo/algerian-program.jpg" alt="Déploiement en classe pilote 3AP" class="w-full h-32 sm:h-36 object-cover object-center transition duration-300 group-hover:scale-105">
+            <span class="absolute top-2 left-2 bg-v9/85 text-y backdrop-blur-sm border border-y/40 text-[8.5px] font-black px-2 py-0.5 rounded-full flex items-center gap-1">
+              <i class="fa-solid fa-camera"></i> <span data-i18n="partPhotoBadge">Déploiement en classe pilote 3AP</span>
+            </span>
+            <span class="slide-zoom-pill"><i class="fa-solid fa-magnifying-glass-plus"></i></span>
+            <div class="p-1.5 bg-white/95 border-t border-ow-line text-[9px] font-bold text-v8">
+              <p class="line-clamp-2" data-i18n="partPhotoCap"><i class="fa-solid fa-circle-check text-emerald-600 mr-1"></i>Séance interactive de phonétique et vocabulaire en école pilote primaire (Alger).</p>
+            </div>
+          </div>
+
+          <!-- Official Partner Hub & Physical Address Card -->
+          <div class="card p-2.5 border-2 border-y/60 bg-gradient-to-br from-white via-ow to-y-s/30 rounded-xl shadow-xs space-y-1.5">
+            <div class="flex items-center justify-between pb-1 border-b border-ow-line">
+              <div class="flex items-center gap-1.5">
+                <span class="w-6 h-6 rounded-md bg-v9 text-y grid place-items-center text-[10px] shrink-0"><i class="fa-solid fa-building-circle-check"></i></span>
+                <div>
+                  <h4 class="font-black text-[10.5px] text-v9 leading-tight" data-i18n="partAddrTitle">Siège &amp; Pôle Partenariats</h4>
+                  <span class="text-[8px] font-extrabold text-v6 uppercase tracking-wider" data-i18n="partAddrOrg">Fenncky EdTech Algérie</span>
+                </div>
+              </div>
+              <span class="inline-flex items-center gap-1 px-1.5 py-0.5 rounded-full bg-emerald-100 text-emerald-800 text-[8px] font-black border border-emerald-300">
+                <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span> <span data-i18n="partAddrStatus">Ouvert</span>
+              </span>
+            </div>
+
+            <!-- Address details -->
+            <div class="space-y-1 text-[9.5px] font-bold text-v8">
+              <div class="flex items-start gap-1.5">
+                <span class="w-5 h-5 rounded bg-v-1 text-v5 grid place-items-center text-[9px] shrink-0 mt-0.5"><i class="fa-solid fa-location-dot"></i></span>
+                <div class="leading-tight">
+                  <p class="font-black text-v9" data-i18n="partAddrStreet">Cyberparc National de Sidi Abdellah</p>
+                  <p class="text-v7 text-[9px]" data-i18n="partAddrBldg">Bâtiment Innovation B3, 2ème étage</p>
+                  <p class="text-v6 text-[8.5px]" data-i18n="partAddrCity">16093 Rahmania / Sidi Abdellah, Wilaya d'Alger — Algérie</p>
+                </div>
+              </div>
+
+              <div class="flex items-center gap-1.5 pt-0.5">
+                <span class="w-5 h-5 rounded bg-v-1 text-v5 grid place-items-center text-[9px] shrink-0"><i class="fa-solid fa-phone"></i></span>
+                <span class="text-[9px]"><a href="tel:+21323578910" class="hover:text-v5 font-extrabold" dir="ltr">+213 23 57 89 10</a> · <a href="tel:+213550123456" class="hover:text-v5 font-extrabold" dir="ltr">+213 550 12 34 56</a></span>
+              </div>
+
+              <div class="flex items-center gap-1.5">
+                <span class="w-5 h-5 rounded bg-v-1 text-v5 grid place-items-center text-[9px] shrink-0"><i class="fa-solid fa-envelope"></i></span>
+                <a href="mailto:partenaires@fenncky-edtech.dz" class="text-v5 hover:underline font-extrabold text-[9px]">partenaires@fenncky-edtech.dz</a>
+              </div>
+
+              <div class="flex items-center gap-1.5 text-v6 text-[8.5px]">
+                <span class="w-5 h-5 rounded bg-v-1 text-v5 grid place-items-center text-[9px] shrink-0"><i class="fa-regular fa-clock"></i></span>
+                <span data-i18n="partAddrHours">Dimanche – Jeudi : 08h30 – 16h30 (Visites sur RDV)</span>
+              </div>
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="flex items-center gap-1.5 pt-1">
+              <a href="#contact" data-offer="Proposition de Partenariat &amp; Visite Hub" class="btn btn-y !text-[9.5px] !py-1 !px-2 flex-1 select-offer-btn text-center justify-center">
+                <i class="fa-solid fa-calendar-check text-[8.5px]"></i>
+                <span data-i18n="partAddrCta">Prendre RDV</span>
+              </a>
+              <a href="https://maps.google.com/?q=Cyberparc+Sidi+Abdellah+Alger" target="_blank" rel="noopener noreferrer" class="btn btn-ghost !text-[9.5px] !py-1 !px-2 text-center justify-center">
+                <i class="fa-solid fa-diamond-turn-right text-v5 text-[8.5px]"></i>
+                <span data-i18n="partAddrMap">Itinéraire</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================= ZONE 8: FAQ & CONTACT (DARK CONTRAST) ======================= -->
+    <section id="contact" class="zone-card-dark text-ow reveal">
+      <div class="grid lg:grid-cols-5 gap-3.5 items-start">
+        <!-- Left: info + FAQ -->
+        <div class="lg:col-span-2 space-y-2">
+          <div>
+            <span class="eyebrow !bg-y !border-y-d !text-v9" data-i18n="contactEyebrow">Contactez-nous</span>
+            <h2 class="sec-title !text-ow mt-0.5" data-i18n="contactTitle">Une question, une démo, un devis ?</h2>
+            <p class="text-[11px] font-bold text-v-2 mt-0.5" data-i18n="contactSub">Notre équipe vous répond sous 24h.</p>
+          </div>
+
+          <ul class="space-y-1 text-[11px] font-bold">
+            <li class="flex items-center gap-1.5"><span class="w-6 h-6 rounded-md bg-y text-v9 grid place-items-center text-[10px]"><i class="fa-solid fa-location-dot"></i></span><span data-i18n="contactLoc">Cyberparc, Alger — Algérie</span></li>
+            <li class="flex items-center gap-1.5"><span class="w-6 h-6 rounded-md bg-y text-v9 grid place-items-center text-[10px]"><i class="fa-brands fa-whatsapp"></i></span><a href="tel:+213550123456" class="hover:text-y" dir="ltr">+213 550 12 34 56</a></li>
+            <li class="flex items-center gap-1.5"><span class="w-6 h-6 rounded-md bg-y text-v9 grid place-items-center text-[10px]"><i class="fa-solid fa-envelope"></i></span><a href="mailto:contact@fenncky-edtech.dz" class="hover:text-y">contact@fenncky-edtech.dz</a></li>
+          </ul>
+
+          <div class="space-y-1 pt-0.5 border-t border-v7">
+            <h3 class="text-[10px] font-black uppercase tracking-wider text-y" data-i18n="faqTitle">Questions fréquentes</h3>
+            <details class="faq rounded-lg bg-white/10 border border-white/15 px-2 py-1">
+              <summary class="flex items-center justify-between gap-1.5 text-[11px] font-black"><span data-i18n="q1">Faut-il une connexion internet ?</span><span class="faq-ico w-3.5 h-3.5 rounded-full bg-white/15 grid place-items-center text-[8px] transition"><i class="fa-solid fa-plus"></i></span></summary>
+              <p class="text-[10px] font-bold text-v-2 mt-0.5 leading-snug" data-i18n="a1">Non : les voix et les activités fonctionnent hors-ligne une fois installées.</p>
+            </details>
+            <details class="faq rounded-lg bg-white/10 border border-white/15 px-2 py-1">
+              <summary class="flex items-center justify-between gap-1.5 text-[11px] font-black"><span data-i18n="q2">Pour quel âge ?</span><span class="faq-ico w-3.5 h-3.5 rounded-full bg-white/15 grid place-items-center text-[8px] transition"><i class="fa-solid fa-plus"></i></span></summary>
+              <p class="text-[10px] font-bold text-v-2 mt-0.5 leading-snug" data-i18n="a2">De la maternelle à la 3ème année primaire (5 à 9 ans).</p>
+            </details>
+            <details class="faq rounded-lg bg-white/10 border border-white/15 px-2 py-1">
+              <summary class="flex items-center justify-between gap-1.5 text-[11px] font-black"><span data-i18n="q3">Comment suivre mon enfant ?</span><span class="faq-ico w-3.5 h-3.5 rounded-full bg-white/15 grid place-items-center text-[8px] transition"><i class="fa-solid fa-plus"></i></span></summary>
+              <p class="text-[10px] font-bold text-v-2 mt-0.5 leading-snug" data-i18n="a3">Via la page Progression : étoiles, unités maîtrisées et conseils de remédiation.</p>
+            </details>
+          </div>
+        </div>
+
+        <!-- Right: form (Compact) -->
+        <form id="contactForm" class="lg:col-span-3 bg-white text-v9 rounded-[16px] p-2.5 sm:p-3 space-y-2 shadow-md border border-y">
+          <div class="grid sm:grid-cols-2 gap-2">
+            <div><label for="contactName" class="field-label" data-i18n="fName">Nom &amp; prénom *</label><input id="contactName" class="field" required placeholder="Amine Benali"></div>
+            <div><label for="contactPhone" class="field-label" data-i18n="fPhone">Téléphone *</label><input id="contactPhone" type="tel" class="field" required placeholder="0550 00 00 00" dir="ltr"></div>
+            <div><label for="contactEmail" class="field-label" data-i18n="fEmail">Email *</label><input id="contactEmail" type="email" class="field" required placeholder="exemple@email.com" dir="ltr"></div>
+            <div>
+              <label for="contactRole" class="field-label" data-i18n="fRole">Vous êtes *</label>
+              <select id="contactRole" class="field">
+                <option data-i18n="fOptParent">👨‍👩‍👧 Parent</option>
+                <option data-i18n="fOptPrincipal">🏫 Directeur d'école</option>
+                <option data-i18n="fOptTeacher">👩‍🏫 Enseignant(e)</option>
+                <option data-i18n="fOptPartner">🤝 Partenaire</option>
+              </select>
+            </div>
+          </div>
+          <div><label for="contactSubject" class="field-label" data-i18n="fSubject">Objet *</label><input id="contactSubject" class="field" required placeholder="Pack Famille / Devis école / Partenariat"></div>
+          <div><label for="contactMessage" class="field-label" data-i18n="fMsg">Message *</label><textarea id="contactMessage" rows="2" class="field" required placeholder="Nombre d'enfants ou de classes, wilaya, questions…"></textarea></div>
+          <button type="submit" class="btn btn-orange w-full !py-1.5 !text-[11px] shadow-sm"><i class="fa-solid fa-paper-plane text-[9px]"></i><span data-i18n="fSend">Envoyer ma demande</span></button>
+          <div id="contactSuccessAlert" class="hidden rounded-lg bg-emerald-50 border border-emerald-300 px-2.5 py-1 text-[10.5px] font-bold text-emerald-950" role="status">
+            🎉 <span id="contactSuccessDetail" data-i18n="fSuccess">Merci ! Nous vous recontactons très vite.</span>
+          </div>
+        </form>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ======================= FOOTER (Reduced Padding) ======================= -->
+  <footer class="bg-v10 text-v-2 border-t border-v8 mt-3">
+    <div class="max-w-6xl mx-auto px-3.5 py-3.5 grid sm:grid-cols-2 md:grid-cols-4 gap-3 text-[10.5px] font-bold">
+      <div class="space-y-1">
+        <div class="flex items-center gap-1.5">
+          <span class="w-6 h-6 rounded-md bg-y grid place-items-center"><img src="assets/images/fennygo/fenny-mascot.png" alt="" class="w-5 h-5 object-contain"></span>
+          <span class="text-xs font-black text-ow">Fenncky</span>
+        </div>
+        <p class="text-v-4 text-[10px] leading-snug" data-i18n="footDesc">Apprendre les langues en jouant, avec la voix, la caméra et le cœur.</p>
+      </div>
+      <div>
+        <h4 class="text-y font-black uppercase text-[10px] mb-1" data-i18n="footApps">Applications</h4>
+        <ul class="space-y-0.5 text-[10.5px]">
+          <li><a href="category.html" class="hover:text-y" data-i18n="footHub">Kids Learner Hub</a></li>
+          <li><a href="#fennygo" class="hover:text-y" data-i18n="footDemo">Démo Interactive</a></li>
+          <li><a href="vocabulary.html" class="hover:text-y" data-i18n="footVocab">Vocabulaire Multisensoriel</a></li>
+          <li><a href="progression.html" class="hover:text-y" data-i18n="footProg">Progression</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="text-y font-black uppercase text-[10px] mb-1" data-i18n="footProject">Le projet</h4>
+        <ul class="space-y-0.5 text-[10.5px]">
+          <li><a href="#qui-sommes-nous" class="hover:text-y" data-i18n="navAbout">Qui sommes-nous</a></li>
+          <li><a href="#offres" class="hover:text-y" data-i18n="navOffers">Offres</a></li>
+          <li><a href="#partenaires" class="hover:text-y" data-i18n="navPartners">Partenaires</a></li>
+        </ul>
+      </div>
+      <div class="space-y-1">
+        <h4 class="text-y font-black uppercase text-[10px]" data-i18n="footStart">Commencer</h4>
+        <a href="category.html" class="btn btn-y !text-[10px] !py-1 w-full" data-i18n="navHub">Kids Learner</a>
+      </div>
+    </div>
+    <div class="border-t border-v8">
+      <div class="max-w-6xl mx-auto px-3.5 py-2 flex flex-wrap justify-between gap-1.5 text-[9.5px] font-bold text-v-4">
+        <span>© 2026 Fenncky — Kids Learner &amp; FennyGo3</span>
+        <span data-i18n="footMade">Fait avec ❤️ pour les élèves d'Algérie 🇩🇿</span>
+      </div>
+    </div>
+  </footer>
+
+  <button type="button" id="toTop" class="w-8 h-8 rounded-full bg-v9 text-y shadow-md grid place-items-center text-[11px] border border-y/40" aria-label="Haut de page">
+    <i class="fa-solid fa-arrow-up"></i>
+  </button>
+
+  <!-- ======================= LIGHTBOX MODAL ======================= -->
+  <div id="slideLightbox" class="fenny-modal-backdrop hidden" role="dialog" aria-modal="true">
+    <div class="relative max-w-5xl w-full bg-v9 border-2 border-y rounded-2xl p-3 shadow-2xl text-center">
+      <button type="button" id="closeLightboxBtn" class="fenny-modal-close !bg-v5 !border-y !text-white" aria-label="Fermer">&times;</button>
+      <img id="lightboxImg" src="" alt="FennyGo3 Slide" class="w-full max-h-[75dvh] object-contain rounded-xl mx-auto">
+      <p id="lightboxCaption" class="mt-2 text-y font-black text-xs sm:text-sm"></p>
+    </div>
+  </div>
+
+  <script src="js/app-lang.js?v=15"></script>
+  <script src="js/fenny-companion.js?v=4"></script>
+  <script>
+    (() => {
+      /* ---------------- i18n (FR = HTML default) ---------------- */
+      const I18N = {
+        English: {
+          navHome: "Home", navFenny: "Interactive Demo", navMethod: "3PS Method", navHubMenu: "Student Space", navAbout: "About us", navOffers: "Pricing", navPartners: "Our Partners", navContact: "Contact", navHub: "Kids Learner",
+          vertMenuTitle: "Network Partners Continuous Feed", vertMenuSub: "Continuous vertical scrolling · Hover to pause", vertMenuLive: "Live",
+          heroEyebrow: "Official 3PS curriculum · Trilingual EN / FR / AR",
+          heroTitle: "Language learning that makes kids want to learn.",
+          heroDesc: "Native voices, an AI camera that reads handwriting, 3D mini-games and parent tracking: Fenncky and its virtual companion Fenny support every child, at home and in class.",
+          ctaHubTitle: "Open Kids Learner", ctaHubSub: "Courses, games, tracing & tests",
+          ctaFennyTitle: "Discover FennyGo3", ctaFennySub: "AI companion & interactive demo",
+          trustRating: "4.9/5 from parents", trustSchools: "25+ pilot schools", trustSafe: "Ad-free · 100% safe", trustListen: "Hear Fenny",
+          chipHello: "“Hello! Ready to play?”",
+          kpi1: "illustrated course units", kpi2: "3D mini-games", kpi3: "languages with native voices", kpi4: "motivated kids",
+          stripLabel: "They support us",
+          fgSectionEyebrow: "FennyGo3 · Interactive Demo & Showcase",
+          fgSectionTitle: "FennyGo3: The AI Companion Bringing 3PS to Life",
+          fgSectionSub: "Multisensory tablet, camera handwriting scanner, and daily check-in: test the method live!",
+          fgCompanionTitle: "Fenny Companion: \"Hello!\"",
+          fgMascotHint: "Click to hear Fenny's greeting in native English or start the daily check-in question!",
+          fgBtnHello: "Listen to \"Hello!\"",
+          fgBtnCheckin: "Question of the Day",
+          fgBtnBag: "Listen to \"b_ag — Bag!\"",
+          pillarListen: "Listen", pillarListenSub: "Native modeling",
+          pillarRead: "Read", pillarReadSub: "Letter-sound link",
+          pillarSpeak: "Speak", pillarSpeakSub: "Voice recognition",
+          cvTitle: "Computer Vision & Handwriting", cvTest: "Test the scanner →",
+          cvStep1T: "1. Writing", cvStep1D: "Tracing b, h, k, m",
+          cvStep2T: "2. Camera Scan", cvStep2D: "Direct AI analysis",
+          cvStep3T: "3. Reward", cvStep3D: "Word validated +5 ⭐",
+          bPhonics: "Phonics Master", bSpelling: "Spelling Star", bExplorer: "World Explorer", badgeListen: "🔊 Listen",
+          tabTitle: "3PS Multisensory Tablet", tabSub: "Click on tiles or buttons!",
+          tabBtnListen: "Listen", tabBtnRead: "Read", tabBtnSpeak: "Speak",
+          tabPrompt: "👆 Tap 👂 Listen, 👁️ Read or 🎙️ Speak!",
+          galleryTitle: "3PS Pedagogical Gallery (Click to expand)", galleryBadge: "5 Key Visuals",
+          hubTitle: "The 7 Learning Worlds of 3PS",
+          launchHubBtn: "Launch Kids Learner",
+          hubSub: "A complete caring environment: 9 illustrated units, 3D multisensory vocabulary, 7 mini-games, writing studio, stress-free tests, short stories, and star tracking.",
+          hubC1: "Courses (9 Units)", hubC2: "3D Vocabulary", hubC3: "7 Mini-Games", hubC4: "Tracing & AI", hubC5: "Playful Quiz", hubC6: "Stories", hubC7: "Progression",
+          featEyebrow: "Why Fenncky?", featTitle: "A multisensory method designed for children",
+          f1t: "Listen", f1d: "Native pronunciation in English, French and Arabic, even offline.",
+          f2t: "Write & scan", f2d: "The AI camera reads handwritten letters and rewards the child.",
+          f3t: "Play stress-free", f3d: "Stars, badges and mini-games: assessment becomes a game.",
+          f4t: "Track progress", f4d: "Parent/teacher dashboard and remediation alerts.",
+          s1t: "Fenny says hello", s1d: "Voice greeting and question of the day.",
+          s2t: "The child picks a world", s2d: "Courses, games, writing or stories.",
+          s3t: "Parents follow along", s3d: "Progress by unit and skill.",
+          p1Tag: "Student space · Kids Learner",
+          aboutEyebrow: "About us", aboutTitle: "A passionate Algerian team building tomorrow's education",
+          aboutP1: "Primary teachers, AI engineers and illustrators came together with one goal: make language learning lively and accessible to every child, from 3rd grade.",
+          aboutP2: "Our mascot Fenny, inspired by the Algerian fennec fox, stands for curiosity and agility: it encourages, removes the fear of mistakes and celebrates every step.",
+          missionT: "Our mission", missionD: "Make language excellence accessible, in class and at home, online or offline.",
+          visionT: "Our vision", visionD: "Become the EdTech reference in Algeria and the MENA region.",
+          teamT: "Made in Algeria 🇩🇿", teamD: "Educators · AI engineers · 3D artists · Speech therapists",
+          v1: "Content validated by inspectors", v2: "Positive psychology: zero exam stress", v3: "Protected data, no ads", v4: "Works offline on tablets and smartboards",
+          joinBtn: "Join the adventure",
+          offEyebrow: "Plans & pricing", offTitle: "A plan for every family and every school",
+          o1Tag: "Trial", o1Name: "Discovery", o1Price: "Free", o1a: "Kids Learner hub access", o1b: "Integrated FennyGo3 demo", o1c: "Daily check-in with Fenny", o1Btn: "Try now",
+          o2Badge: "⭐ Most popular · -30%", o2Tag: "Home", o2Name: "Family Premium", perYear: "/ year",
+          o2PriceCurr: "2,900 DZD", o2PriceOld: "4,200 DZD",
+          o2a: "9 units + 7 mini-games", o2b: "AI camera scanner", o2c: "Parent dashboard", o2d: "3 child profiles + offline", o2Btn: "Order", o2Note: "30-day money-back · CIB / Edahabia",
+          o3Tag: "Institutions", o3Name: "School", o3Price: "On quote", o3a: "Local server, no internet needed", o3b: "Class supervision", o3c: "Smartboard-ready + training", o3Btn: "Request a quote",
+          t1Quote: "“My daughter looks forward to her check-in with Fenny every evening. Her pronunciation improved in the 2nd week.”",
+          t1Author: "Meriem B. · Parent, Algiers",
+          t2Quote: "“The camera scan and remediation alerts save us valuable time in class.”",
+          t2Author: "Karim T. · Primary Teacher, Oran",
+          t3Quote: "“The offline mode on our tablets is flawless. A genuine Algerian pride.”",
+          t3Author: "Dr. Nabil S. · School Principal, Constantine",
+          partEyebrow: "Our Partners & Field Network",
+          partTitle: "An ecosystem of excellence deploying Fenncky in the field",
+          partSub: "Primary schools, pedagogical inspectors, EdTech incubators and integrators join forces across Algeria.",
+          partBtn: "Become a partner",
+          pMetric1Num: "25+ Schools", pMetric1Lbl: "Equipped pilots (3AP)",
+          pMetric2Num: "1,200+ Students", pMetric2Lbl: "Active daily learners",
+          pMetric3Num: "48 Wilayas", pMetric3Lbl: "Deployment roadmap",
+          pMetric4Num: "100% Aligned", pMetric4Lbl: "Official MEN curriculum",
+          p1Name: "Émir Abdelkader Pilot School", p1Addr: "14 Didouche Mourad St, Algiers",
+          p2Name: "National Pedagogical Institute (IPN)", p2Addr: "05 Independence Ave, Kouba (Algiers)",
+          p3Name: "Cyberparc EdTech Innovation Lab", p3Addr: "Building B3, Sidi Abdellah (Algiers)",
+          p4Name: "Cambridge Kids Language Academy", p4Addr: "28 11-Dec-1960 Blvd, Val d'Hydra (Algiers)",
+          p5Name: "National Parents Federation (FNAPE)", p5Addr: "42 Larbi Ben M'hidi St, Oran",
+          p6Name: "Maghreb Interactive Solutions (MIS)", p6Addr: "Amara Industrial Zone, Lot 18, Cheraga (Algiers)",
+          tag3AP: "3PS", tagDidactic: "Didactic", tagRnd: "AI R&D", tagImmersion: "Immersion", tagFamily: "Families", tagHardware: "Interactive Boards & Tablets",
+          trustMen: "Ministry of Education 3PS", trustCyberparc: "Cyberparc Sidi Abdellah", trustParents: "Parents Federations",
+          pa1t: "Primary schools", pa1d: "25+ pilot schools equipped with touch devices and class monitoring.",
+          pa2t: "Pedagogical board", pa2d: "Inspectors and advisors validate instructional stages and milestones.",
+          pa3t: "Incubators & AI labs", pa3d: "R&D in on-device vision, handwriting recognition and local speech.",
+          pa4t: "Language academies", pa4d: "“Meet Fenny!” immersive workshops and phonics training camps.",
+          pa5t: "Parent associations", pa5d: "Co-designing the parent portal and community accessibility licenses.",
+          pa6t: "Hardware integrators", pa6d: "Certified pre-installation on educational tablets and smartboards.",
+          partEcoLabel: "Partner ecosystem:",
+          partPhotoBadge: "Field deployment in 3AP pilot class",
+          partPhotoCap: "Interactive phonics & vocabulary workshop in an Algiers pilot primary school.",
+          partAddrTitle: "Headquarters & Partnership Hub",
+          partAddrOrg: "Fenncky EdTech Algeria",
+          partAddrStatus: "Open",
+          partAddrStreet: "National Cyberparc of Sidi Abdellah",
+          partAddrBldg: "Innovation Building B3, 2nd Floor",
+          partAddrCity: "16093 Rahmania / Sidi Abdellah, Algiers — Algeria",
+          partAddrHours: "Sunday – Thursday: 08:30 – 16:30 (Visits by appointment)",
+          partAddrCta: "Book a meeting",
+          partAddrMap: "Directions",
+          contactEyebrow: "Contact us", contactTitle: "A question, a demo, a quote?", contactSub: "Our team replies within 24h.",
+          contactLoc: "Cyberparc, Algiers — Algeria",
+          faqTitle: "FAQ",
+          q1: "Is an internet connection required?", a1: "No: voices and activities work offline once installed.",
+          q2: "What age is it for?", a2: "From kindergarten to 3rd grade (ages 5 to 9).",
+          q3: "How do I follow my child?", a3: "Through the Progression page: stars, mastered units and remediation tips.",
+          fName: "Full name *", fPhone: "Phone *", fEmail: "Email *", fRole: "You are *",
+          fOptParent: "👨‍👩‍👧 Parent", fOptPrincipal: "🏫 School Principal", fOptTeacher: "👩‍🏫 Teacher", fOptPartner: "🤝 Partner",
+          fSubject: "Subject *", fMsg: "Message *", fSend: "Send my request",
+          fSuccess: "Thank you! We will get back to you shortly.",
+          footDesc: "Learn languages by playing, with voice, camera and heart.",
+          footApps: "Applications", footHub: "Kids Learner Hub", footDemo: "Interactive Demo", footVocab: "Multisensory Vocabulary", footProg: "Progression",
+          footProject: "Project", footStart: "Get started",
+          footMade: "Made with ❤️ for Algerian students 🇩🇿"
+        },
+        Arabic: {
+          navHome: "الرئيسية", navFenny: "عرض تفاعلي", navMethod: "منهجية 3AP", navHubMenu: "فضاء التلميذ", navAbout: "من نحن", navOffers: "العروض", navPartners: "شركاؤنا", navContact: "اتصل بنا", navHub: "Kids Learner",
+          vertMenuTitle: "القائمة العمودية المتحركة للشركاء", vertMenuSub: "تمرير عمودي مستمر · مرر للتثبيت", vertMenuLive: "مباشر",
+          heroEyebrow: "المنهاج الرسمي للسنة الثالثة · ثلاث لغات",
+          heroTitle: "تعلّم اللغات بطريقة تجعل الطفل يحبّ التعلّم.",
+          heroDesc: "أصوات أصلية، كاميرا ذكية تقرأ الخط، ألعاب ثلاثية الأبعاد ومتابعة للأولياء: يرافق Fenncky ورفيقه الذكي فيني كل طفل في البيت والقسم.",
+          ctaHubTitle: "افتح Kids Learner", ctaHubSub: "دروس، ألعاب، كتابة واختبارات",
+          ctaFennyTitle: "اكتشف FennyGo3", ctaFennySub: "الرفيق الذكي وعرض تفاعلي",
+          trustRating: "4.9/5 من الأولياء", trustSchools: "+25 مدرسة نموذجية", trustSafe: "بدون إعلانات · آمن 100٪", trustListen: "استمع إلى فيني",
+          chipHello: "« مرحبًا! هل أنت مستعد للعب؟ »",
+          kpi1: "وحدات دروس مصوّرة", kpi2: "ألعاب ثلاثية الأبعاد", kpi3: "لغات بأصوات أصلية", kpi4: "أطفال متحمسون",
+          stripLabel: "يرافقوننا",
+          fgSectionEyebrow: "FennyGo3 · عرض تفاعلي وواجهة تجريبية",
+          fgSectionTitle: "FennyGo3 : الرفيق الذكي الذي يحول المقرر إلى لعبة تفاعلية",
+          fgSectionSub: "لوحة متعددة الحواس، مسح الكتابة بالكاميرا وسؤال يومي: جرّب المنهجية مباشرة!",
+          fgCompanionTitle: "الرفيق فيني: \"Hello!\"",
+          fgMascotHint: "اضغط لسماع تحية فيني بالإنجليزية الأصلية أو لبدء سؤال اليوم!",
+          fgBtnHello: "استمع إلى \"Hello!\"",
+          fgBtnCheckin: "سؤال اليوم",
+          fgBtnBag: "استمع إلى \"b_ag — Bag!\"",
+          pillarListen: "استمع (Listen)", pillarListenSub: "نمذجة صوتية أصلية",
+          pillarRead: "اقرأ (Read)", pillarReadSub: "ربط الحرف بالصوت",
+          pillarSpeak: "تحدث (Speak)", pillarSpeakSub: "التعرف الصوتي",
+          cvTitle: "الرؤية الحاسوبية والكتابة", cvTest: "جرّب الماسح ←",
+          cvStep1T: "1. الكتابة", cvStep1D: "رسم الحروف b, h, k, m",
+          cvStep2T: "2. مسح الكاميرا", cvStep2D: "تحليل ذكي فوري",
+          cvStep3T: "3. المكافأة", cvStep3D: "كلمة صحيحة +5 ⭐",
+          bPhonics: "بطل الصوتيات", bSpelling: "نجم الإملاء", bExplorer: "مستكشف العوالم", badgeListen: "🔊 استمع",
+          tabTitle: "لوحة متعددة الحواس 3AP", tabSub: "اضغط على الحروف أو الأزرار!",
+          tabBtnListen: "استمع", tabBtnRead: "اقرأ", tabBtnSpeak: "تحدث",
+          tabPrompt: "👆 المس 👂 Listen أو 👁️ Read أو 🎙️ Speak!",
+          galleryTitle: "المعرض البيداغوجي 3AP (اضغط للتكبير)", galleryBadge: "5 صور أساسية",
+          hubTitle: "عوالم التعلم السبعة للسنة الثالثة ابتدائي",
+          launchHubBtn: "ابدأ Kids Learner",
+          hubSub: "بيئة تعليمية متكاملة ومشجعة: 9 وحدات مصوّرة، مفردات ثلاثية الأبعاد، 7 ألعاب تعليمية، ورشة كتابة، اختبارات بلا توتر، قصص قصيرة ومتابعة بالنجوم.",
+          hubC1: "الدروس (9 وحدات)", hubC2: "المفردات 3D", hubC3: "7 ألعاب مصغرة", hubC4: "الكتابة والذكاء الاصطناعي", hubC5: "اختبارات تفاعلية", hubC6: "قصص قصيرة", hubC7: "متابعة التقدم",
+          featEyebrow: "لماذا Fenncky؟", featTitle: "منهجية متعددة الحواس مصمّمة للأطفال",
+          f1t: "استمع", f1d: "نطق أصلي بالإنجليزية والفرنسية والعربية حتى بدون إنترنت.",
+          f2t: "اكتب وامسح", f2d: "الكاميرا الذكية تقرأ الحروف المكتوبة باليد وتكافئ الطفل.",
+          f3t: "العب بلا توتر", f3d: "نجوم وشارات وألعاب: التقييم يصبح لعبة.",
+          f4t: "تابع التقدم", f4d: "لوحة متابعة للأولياء والمعلمين وتنبيهات للمعالجة.",
+          s1t: "فيني يرحّب بك", s1d: "تحية صوتية وسؤال اليوم.",
+          s2t: "الطفل يختار عالمه", s2d: "دروس، ألعاب، كتابة أو قصص.",
+          s3t: "الأولياء يتابعون", s3d: "التقدم حسب الوحدة والمهارة.",
+          p1Tag: "فضاء التلميذ · Kids Learner",
+          aboutEyebrow: "من نحن", aboutTitle: "فريق جزائري شغوف بتعليم الغد",
+          aboutP1: "اجتمع معلمو الابتدائي ومهندسو الذكاء الاصطناعي والرسامون حول هدف واحد: جعل تعلّم اللغات حيًّا ومتاحًا لكل طفل منذ السنة الثالثة.",
+          aboutP2: "تميمتنا فيني، المستوحاة من الفنك الجزائري، ترمز إلى اليقظة والذكاء: تشجّع وتزيل الخوف من الخطأ وتحتفل بكل تقدّم.",
+          missionT: "مهمتنا", missionD: "إتاحة التميّز اللغوي في القسم والبيت، مع الإنترنت أو بدونه.",
+          visionT: "رؤيتنا", visionD: "أن نصبح المرجع في تكنولوجيا التعليم بالجزائر ومنطقة الشرق الأوسط وشمال إفريقيا.",
+          teamT: "صُنع في الجزائر 🇩🇿", teamD: "مربّون · مهندسو ذكاء اصطناعي · فنانون · أخصائيو نطق",
+          v1: "محتوى معتمد من المفتشين", v2: "علم نفس إيجابي: بلا ضغط امتحانات", v3: "بيانات محمية بدون إعلانات", v4: "يعمل بدون إنترنت على اللوحات والسبورات الذكية",
+          joinBtn: "انضم إلى المغامرة",
+          offEyebrow: "العروض والأسعار", offTitle: "صيغة لكل عائلة ولكل مدرسة",
+          o1Tag: "تجربة", o1Name: "اكتشاف", o1Price: "مجاني", o1a: "الدخول إلى Kids Learner", o1b: "عرض FennyGo3 مدمج", o1c: "سؤال اليوم مع فيني", o1Btn: "جرّب الآن",
+          o2Badge: "⭐ الأكثر اختيارًا · -30٪", o2Tag: "للبيت", o2Name: "العائلة المميزة", perYear: "/ سنة",
+          o2PriceCurr: "2 900 د.ج", o2PriceOld: "4 200 د.ج",
+          o2a: "9 وحدات + 7 ألعاب", o2b: "ماسح الكاميرا الذكي", o2c: "لوحة متابعة الأولياء", o2d: "3 ملفات أطفال + بدون إنترنت", o2Btn: "اطلب الآن", o2Note: "استرداد خلال 30 يومًا · CIB / الذهبية",
+          o3Tag: "المؤسسات", o3Name: "المدرسة", o3Price: "حسب الطلب", o3a: "خادم محلي بدون إنترنت", o3b: "إشراف حسب القسم", o3c: "متوافق مع السبورة الذكية + تكوين", o3Btn: "اطلب عرض سعر",
+          t1Quote: "«تنتظر ابنتي كل مساء موعدها مع فيني. تحسن نطقها للإنجليزية منذ الأسبوع الثاني.»",
+          t1Author: "مريم ب. · ولي أمر، الجزائر",
+          t2Quote: "«مسح الكاميرا وتنبيهات الدعم البيداغوجي توفر لنا وقتًا ثمينًا داخل القسم.»",
+          t2Author: "كريم ت. · أستاذ، وهران",
+          t3Quote: "«التشغيل بدون إنترنت على لوحاتنا المدرسية ممتاز ولا تشوبه شائبة. فخر جزائري حقيقي.»",
+          t3Author: "د. نبيل س. · مدير مؤسسة، قسنطينة",
+          partEyebrow: "شركاؤنا وشبكة الميدان",
+          partTitle: "منظومة امتياز تنشر Fenncky عبر ربوع الجزائر",
+          partSub: "المدارس الابتدائية، المفتشون، حاضنات تكنولوجيا التعليم وموزّعو الأجهزة يتحدون لتطوير التعليم.",
+          partBtn: "كن شريكًا",
+          pMetric1Num: "+25 مدرسة", pMetric1Lbl: "نموذجية مجهّزة (3AP)",
+          pMetric2Num: "+1 200 تلميذ", pMetric2Lbl: "متعلم نشط يوميًا",
+          pMetric3Num: "48 ولاية", pMetric3Lbl: "هدف النشر الوطني",
+          pMetric4Num: "100٪ معتمد", pMetric4Lbl: "المنهاج الرسمي لوزارة التربية",
+          p1Name: "مدرسة الأمير عبد القادر النموذجية", p1Addr: "14 شارع ديدوش مراد، الجزائر الوسطى",
+          p2Name: "المعهد الوطني للبيداغوجيا (IPN)", p2Addr: "05 شارع الاستقلال، القبة (الجزائر)",
+          p3Name: "مخبر الابتكار EdTech بالحظيرة التكنولوجية", p3Addr: "مبنى B3، سيدي عبد الله، الرحمانية (الجزائر)",
+          p4Name: "أكاديمية كامبريدج للأطفال للغات", p4Addr: "28 شارع 11 ديسمبر 1960، حيدرة (الجزائر)",
+          p5Name: "الفيدرالية الوطنية لأولياء التلاميذ", p5Addr: "42 نهج العربي بن مهيدي، وهران",
+          p6Name: "مؤسسة مغرب للحلول التفاعلية (MIS)", p6Addr: "منطقة النشاطات عمارة، شراقة (الجزائر)",
+          tag3AP: "سنة 3", tagDidactic: "بيداغوجيا", tagRnd: "بحث وتطوير", tagImmersion: "انغماس لغوي", tagFamily: "الأولياء", tagHardware: "لوحات وسبورات",
+          trustMen: "وزارة التربية الوطنية", trustCyberparc: "الحظيرة التكنولوجية سيدي عبد الله", trustParents: "فيدراليات أولياء التلاميذ",
+          pa1t: "المدارس الابتدائية", pa1d: "+25 مدرسة نموذجية مجهزة بأجهزة تفاعلية ومتابعة بيداغوجية.",
+          pa2t: "المجلس البيداغوجي", pa2d: "مفتشون ومستشارون يعتمدون التدرجات والمراحل التعليمية.",
+          pa3t: "حاضنات ومخابر الذكاء الاصطناعي", pa3d: "بحث وتطوير محلي في الرؤية الحاسوبية وقراءة الخط والصوت.",
+          pa4t: "أكاديميات اللغات", pa4d: "ورشات تفاعلية «تعرّف على فيني» وتدريبات صوتية مكثفة.",
+          pa5t: "جمعيات أولياء التلاميذ", pa5d: "تصميم مشترك للوحة متابعة الأولياء وتوفير تراخيص تضامنية.",
+          pa6t: "موزّعو ومدمجو العتاد", pa6d: "تثبيت مسبق معتمد على اللوحات المدرسية والسبورات التفاعلية.",
+          partEcoLabel: "المنظومة الشريكة:",
+          partPhotoBadge: "نشر ميداني في قسم نموذجي (سنة 3)",
+          partPhotoCap: "ورشة تفاعلية للصوتيات والمفردات في مدرسة ابتدائية نموذجية (الجزائر).",
+          partAddrTitle: "المقر وقطب الشراكات",
+          partAddrOrg: "فينكي لتكنولوجيا التعليم - الجزائر",
+          partAddrStatus: "مفتوح",
+          partAddrStreet: "الحظيرة التكنولوجية الوطنية بسيدي عبد الله",
+          partAddrBldg: "مبنى الابتكار B3، الطابق الثاني",
+          partAddrCity: "16093 الرحمانية / سيدي عبد الله، ولاية الجزائر — الجزائر",
+          partAddrHours: "الأحد – الخميس: 08:30 – 16:30 (الزيارات بموعد مسبق)",
+          partAddrCta: "حجز موعد",
+          partAddrMap: "المسار",
+          contactEyebrow: "اتصل بنا", contactTitle: "سؤال، عرض تجريبي أو عرض سعر؟", contactSub: "يرد فريقنا خلال 24 ساعة.",
+          contactLoc: "الحظيرة التكنولوجية، الجزائر",
+          faqTitle: "أسئلة شائعة",
+          q1: "هل يلزم الاتصال بالإنترنت؟", a1: "لا: الأصوات والأنشطة تعمل بدون إنترنت بعد التثبيت.",
+          q2: "لأي عمر؟", a2: "من التحضيري إلى السنة الثالثة ابتدائي (5 إلى 9 سنوات).",
+          q3: "كيف أتابع طفلي؟", a3: "عبر صفحة التقدم: النجوم والوحدات المكتسبة ونصائح المعالجة.",
+          fName: "الاسم واللقب *", fPhone: "الهاتف *", fEmail: "البريد الإلكتروني *", fRole: "أنت *",
+          fOptParent: "👨‍👩‍👧 ولي أمر", fOptPrincipal: "🏫 مدير مدرسة", fOptTeacher: "👩‍🏫 أستاذ(ة)", fOptPartner: "🤝 شريك",
+          fSubject: "الموضوع *", fMsg: "الرسالة *", fSend: "أرسل طلبي",
+          fSuccess: "شكرًا لك! سنتواصل معك في أقرب وقت.",
+          footDesc: "تعلّم اللغات باللعب، بالصوت والكاميرا والقلب.",
+          footApps: "التطبيقات", footHub: "فضاء Kids Learner", footDemo: "عرض تفاعلي", footVocab: "المفردات متعددة الحواس", footProg: "التقدم",
+          footProject: "المشروع", footStart: "ابدأ",
+          footMade: "صُنع بحب ❤️ لتلاميذ الجزائر 🇩🇿"
+        }
+      };
+
+      // Store initial French template content
+      document.querySelectorAll("[data-i18n]").forEach((el) => {
+        if (!el.dataset.fr) el.dataset.fr = el.innerHTML;
+      });
+
+      function currentLang() {
+        return window.AppLang ? window.AppLang.getCurrentLangId() : (localStorage.getItem("selectedLanguage") || "French");
+      }
+
+      function applyLang() {
+        const lang = currentLang();
+        const dict = I18N[lang] || {};
+        const isRtl = lang === "Arabic";
+
+        // HTML direction and language
+        document.documentElement.dir = isRtl ? "rtl" : "ltr";
+        document.documentElement.lang = isRtl ? "ar" : (lang === "English" ? "en" : "fr");
+
+        document.querySelectorAll("[data-i18n]").forEach((el) => {
+          const key = el.dataset.i18n;
+          if (!el.dataset.fr) el.dataset.fr = el.innerHTML;
+          if (lang !== "French" && dict[key] !== undefined) {
+            el.innerHTML = dict[key];
+          } else if (el.dataset.fr !== undefined) {
+            el.innerHTML = el.dataset.fr;
+          }
+        });
+        document.querySelectorAll("[data-set-lang]").forEach((b) => b.classList.toggle("active", b.dataset.setLang === lang));
+      }
+
+      document.querySelectorAll("[data-set-lang]").forEach((btn) => {
+        btn.addEventListener("click", () => {
+          const lang = btn.dataset.setLang;
+          if (window.AppLang) window.AppLang.setLang(lang, false);
+          else localStorage.setItem("selectedLanguage", lang);
+          applyLang();
+        });
+      });
+      window.addEventListener("appLanguageChanged", applyLang);
+      window.addEventListener("DOMContentLoaded", applyLang);
+      applyLang();
+
+      /* ---------------- Mobile menu ---------------- */
+      const menuBtn = document.getElementById("menuBtn");
+      const mobileMenu = document.getElementById("mobileMenu");
+      menuBtn?.addEventListener("click", () => {
+        const open = mobileMenu.classList.toggle("hidden") === false;
+        menuBtn.setAttribute("aria-expanded", String(open));
+        menuBtn.innerHTML = open ? '<i class="fa-solid fa-xmark"></i>' : '<i class="fa-solid fa-bars"></i>';
+      });
+      mobileMenu?.querySelectorAll("a").forEach((a) => a.addEventListener("click", () => {
+        mobileMenu.classList.add("hidden");
+        menuBtn.setAttribute("aria-expanded", "false");
+        menuBtn.innerHTML = '<i class="fa-solid fa-bars"></i>';
+      }));
+
+      /* ---------------- Scroll spy + reveal ---------------- */
+      const navLinks = document.querySelectorAll('.nav-link[href^="#"]');
+      const spy = new IntersectionObserver((entries) => {
+        entries.forEach((e) => {
+          if (!e.isIntersecting) return;
+          navLinks.forEach((l) => l.classList.toggle("active", l.getAttribute("href") === "#" + e.target.id));
+        });
+      }, { rootMargin: "-45% 0px -50% 0px" });
+      document.querySelectorAll("main section[id]").forEach((s) => spy.observe(s));
+
+      const reveal = new IntersectionObserver((entries) => {
+        entries.forEach((e) => { if (e.isIntersecting) { e.target.classList.add("in"); reveal.unobserve(e.target); } });
+      }, { threshold: 0.08 });
+      document.querySelectorAll(".reveal").forEach((el) => reveal.observe(el));
+
+      /* ---------------- Back to top ---------------- */
+      const toTop = document.getElementById("toTop");
+      window.addEventListener("scroll", () => toTop.classList.toggle("show", window.scrollY > 600), { passive: true });
+      toTop.addEventListener("click", () => window.scrollTo({ top: 0, behavior: "smooth" }));
+
+      /* ---------------- Fenny voice triggers ---------------- */
+      const fennyPitch = () => window.FennyGo?.speakWithWave("Welcome to Fenncky and FennyGo3! Let's learn English with fun and excitement!", "en-US");
+      document.getElementById("heroPitchAudioBtn")?.addEventListener("click", fennyPitch);
+      document.getElementById("fgSpeakHelloBtn")?.addEventListener("click", fennyPitch);
+      document.getElementById("fgDailyCheckinBtn")?.addEventListener("click", () => window.FennyGo?.openCheckinModal());
+      document.getElementById("fgTactileAudioBtn")?.addEventListener("click", () => window.FennyGo?.speakWithWave("b... a... g... Bag! Fantastic handwriting!", "en-US"));
+
+      /* ---------------- Multi-Sensory Tablet Simulator Logic ---------------- */
+      const MS_WORDS = [
+        { word: "SCHOOL BAG", speech: "School bag! This is a school bag.", img: "assets/images/fennygo/school-bag-3d.png" },
+        { word: "PENCIL CASE", speech: "Pencil case! This is a pencil case.", img: "assets/images/number/pencil.png" },
+        { word: "APPLE", speech: "Apple! A delicious red apple.", img: "assets/images/alphabet/A/apple.png" }
+      ];
+      let msWordIdx = 0;
+      const VOWELS = new Set(["A", "E", "I", "O", "U"]);
+
+      function renderMsWord() {
+        const item = MS_WORDS[msWordIdx % MS_WORDS.length];
+        const row = document.getElementById("fgLetterTilesRow");
+        const imgEl = document.getElementById("fgObjectImg");
+        if (!row) return;
+        if (imgEl) imgEl.src = item.img;
+        row.innerHTML = "";
+
+        Array.from(item.word).forEach((ch, idx) => {
+          if (ch === " ") {
+            const spacer = document.createElement("span");
+            spacer.className = "w-1.5 sm:w-2 inline-block";
+            row.appendChild(spacer);
+            return;
+          }
+          const tile = document.createElement("button");
+          tile.type = "button";
+          tile.dataset.tileIdx = String(idx);
+          const isVowel = VOWELS.has(ch.toUpperCase());
+          const tileColors = isVowel ? "bg-y text-v9 border-y-d" : "bg-white text-v9 border-v2";
+          tile.className = `ms-letter-tile w-5 h-6 sm:w-7 sm:h-8 rounded-md ${tileColors} border border-b-2 shadow-xs font-black text-[11px] sm:text-xs flex items-center justify-center transition-all duration-200 hover:scale-110 cursor-pointer`;
+          tile.textContent = ch;
+          tile.addEventListener("click", () => {
+            tile.classList.add("scale-125", "bg-v-1", "ring-1", "ring-v5");
+            setTimeout(() => tile.classList.remove("scale-125", "bg-v-1", "ring-1", "ring-v5"), 400);
+            window.FennyGo?.speakWithWave(ch.toLowerCase(), "en-US");
+          });
+          row.appendChild(tile);
+        });
+      }
+
+      function triggerMsListen() {
+        const item = MS_WORDS[msWordIdx % MS_WORDS.length];
+        const status = document.getElementById("fgStatusBanner");
+        const imgEl = document.getElementById("fgObjectImg");
+        if (status) status.textContent = `👂 Listen : "${item.word}" (Native English Audio)`;
+        if (imgEl) {
+          imgEl.classList.add("scale-110");
+          setTimeout(() => imgEl.classList.remove("scale-110"), 450);
+        }
+        window.FennyGo?.speakWithWave(item.speech, "en-US");
+      }
+
+      function triggerMsRead() {
+        const item = MS_WORDS[msWordIdx % MS_WORDS.length];
+        const status = document.getElementById("fgStatusBanner");
+        const tiles = Array.from(document.querySelectorAll("#fgLetterTilesRow .ms-letter-tile"));
+        if (status) status.textContent = `👁️ Read : Synchronisation Graphème-Phonème...`;
+
+        tiles.forEach((tile, i) => {
+          setTimeout(() => {
+            tiles.forEach(t => t.classList.remove("scale-125", "!bg-v5", "!text-white", "ring-1", "ring-y"));
+            tile.classList.add("scale-125", "!bg-v5", "!text-white", "ring-1", "ring-y");
+            if (i === tiles.length - 1) {
+              setTimeout(() => {
+                tile.classList.remove("scale-125", "!bg-v5", "!text-white", "ring-1", "ring-y");
+                if (status) status.textContent = `✨ "${item.word}" — Lecture syllabique terminée !`;
+              }, 400);
+            }
+          }, i * 220);
+        });
+        window.FennyGo?.speakWithWave(`${item.word}!`, "en-US");
+      }
+
+      function triggerMsSpeak() {
+        const item = MS_WORDS[msWordIdx % MS_WORDS.length];
+        const status = document.getElementById("fgStatusBanner");
+        const fenny = document.getElementById("fgFennyMascot");
+        const notes = document.getElementById("fgFennyNotes");
+        if (status) status.textContent = `🎙️ Parle maintenant : Répète "${item.word}"...`;
+
+        const celebrateSpeak = (transcript) => {
+          if (status) status.textContent = `🎉 Bravo ! Prononciation : "${transcript || item.word}" (+5 ⭐)`;
+          if (fenny) {
+            fenny.classList.add("scale-125", "-translate-y-1");
+            setTimeout(() => fenny.classList.remove("scale-125", "-translate-y-1"), 800);
+          }
+          if (notes) notes.textContent = "🎵 🎶 ⭐ 🎉";
+          if (window.FennyGo) {
+            window.FennyGo.addStars(5);
+            window.FennyGo.unlockBadge("phonics");
+            window.FennyGo.celebrate(`Awesome pronunciation! ${item.word}! +5 Stars!`);
+          }
+        };
+
+        const SpeechRec = window.SpeechRecognition || window.webkitSpeechRecognition;
+        if (SpeechRec) {
+          try {
+            const rec = new SpeechRec();
+            rec.lang = "en-US";
+            rec.interimResults = false;
+            let handled = false;
+            rec.onresult = (e) => {
+              handled = true;
+              celebrateSpeak((e.results?.[0]?.[0]?.transcript || item.word).toUpperCase());
+            };
+            rec.onerror = rec.onend = () => {
+              if (!handled) { handled = true; celebrateSpeak(item.word); }
+            };
+            rec.start();
+            setTimeout(() => { if (!handled) { try { rec.stop(); } catch (_) {} celebrateSpeak(item.word); } }, 3000);
+            return;
+          } catch (_) {}
+        }
+        setTimeout(() => celebrateSpeak(item.word), 1200);
+      }
+
+      document.getElementById("fgBtnListen")?.addEventListener("click", triggerMsListen);
+      document.getElementById("fgObjectImg")?.addEventListener("click", triggerMsListen);
+      document.getElementById("fgBtnRead")?.addEventListener("click", triggerMsRead);
+      document.getElementById("fgBtnSpeak")?.addEventListener("click", triggerMsSpeak);
+      document.getElementById("fgPrevWordBtn")?.addEventListener("click", () => {
+        msWordIdx = (msWordIdx + 1) % MS_WORDS.length;
+        renderMsWord();
+        triggerMsListen();
+      });
+      renderMsWord();
+
+      /* ---------------- Lightbox logic ---------------- */
+      const lightbox = document.getElementById("slideLightbox");
+      const lightboxImg = document.getElementById("lightboxImg");
+      const lightboxCaption = document.getElementById("lightboxCaption");
+
+      document.querySelectorAll("[data-lightbox-src]").forEach((frame) => {
+        frame.addEventListener("click", () => {
+          if (lightboxImg) lightboxImg.src = frame.getAttribute("data-lightbox-src");
+          if (lightboxCaption) lightboxCaption.textContent = frame.getAttribute("data-lightbox-caption") || "";
+          lightbox?.classList.remove("hidden");
+        });
+      });
+      document.getElementById("closeLightboxBtn")?.addEventListener("click", () => lightbox?.classList.add("hidden"));
+      lightbox?.addEventListener("click", (e) => { if (e.target === lightbox) lightbox.classList.add("hidden"); });
+
+      /* ---------------- Offer buttons prefill the form ---------------- */
+      document.querySelectorAll(".select-offer-btn").forEach((btn) => {
+        btn.addEventListener("click", () => {
+          const subject = document.getElementById("contactSubject");
+          if (!subject) return;
+          subject.value = btn.dataset.offer || "";
+          setTimeout(() => subject.focus({ preventScroll: true }), 400);
+        });
+      });
+
+      /* ---------------- Contact form ---------------- */
+      const form = document.getElementById("contactForm");
+      form?.addEventListener("submit", (e) => {
+        e.preventDefault();
+        const name = document.getElementById("contactName").value.trim();
+        const subject = document.getElementById("contactSubject").value.trim();
+        document.getElementById("contactSuccessDetail").textContent =
+          `Merci ${name} ! Votre demande « ${subject} » a bien été enregistrée. Réponse sous 24h.`;
+        document.getElementById("contactSuccessAlert").classList.remove("hidden");
+        window.FennyGo?.celebrate("Thank you! Fenny and the team will reply very soon!");
+        form.reset();
+      });
+    })();
+  </script>
 </body>
 
 </html>

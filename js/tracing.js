@@ -619,6 +619,19 @@
       const rawPct = Math.round((effectiveRatio / 0.93) * 100);
       const displayPct = Math.min(99, rawPct);
       updateProgressUI(displayPct);
+
+      const tipEl = document.getElementById("fennyTracingTip");
+      if (tipEl) {
+        if (displayPct < 25) {
+          tipEl.textContent = "Suis bien les pointillés ! ✍️";
+        } else if (displayPct < 60) {
+          tipEl.textContent = "Super départ, continue ! ✨";
+        } else if (displayPct < 88) {
+          tipEl.textContent = "Tu y es presque ! 🌟";
+        } else {
+          tipEl.textContent = "Magnifique tracé ! 🎉";
+        }
+      }
     }
   }
 
@@ -961,6 +974,51 @@
     }
   }
 
+  
+  const WORD_ILLUSTRATIONS = {
+    "CHAT": "assets/images/games/words/cat.png",
+    "CAT": "assets/images/games/words/cat.png",
+    "LION": "assets/images/games/words/lion.png",
+    "POMME": "assets/images/games/words/apple.png",
+    "APPLE": "assets/images/games/words/apple.png",
+    "LIVRE": "assets/images/stationery/book.png",
+    "BOOK": "assets/images/stationery/book.png",
+    "CRAYON": "assets/images/stationery/pencil.png",
+    "PENCIL": "assets/images/stationery/pencil.png",
+    "OURS": "assets/images/games/words/bear.png",
+    "BEAR": "assets/images/games/words/bear.png",
+    "LAPIN": "assets/images/games/words/rabbit.png",
+    "RABBIT": "assets/images/games/words/rabbit.png",
+    "POISSON": "assets/images/games/words/fish.png",
+    "FISH": "assets/images/games/words/fish.png",
+    "CANARD": "assets/images/games/words/duck.png",
+    "DUCK": "assets/images/games/words/duck.png",
+    "SOLEIL": "assets/images/games/words/sun.png",
+    "SUN": "assets/images/games/words/sun.png",
+    "LUNE": "assets/images/games/words/moon.png",
+    "MOON": "assets/images/games/words/moon.png",
+    "TRAIN": "assets/images/games/words/train.png",
+    "VELO": "assets/images/games/words/bike.png",
+    "BIKE": "assets/images/games/words/bike.png",
+    "FLEUR": "assets/images/games/words/flower.png",
+    "FLOWER": "assets/images/games/words/flower.png",
+    "CAHIER": "assets/images/stationery/notebook.png",
+    "GOMME": "assets/images/stationery/eraser.png",
+    "REGLE": "assets/images/stationery/ruler.png",
+    "PERE": "assets/images/family/father.png",
+    "PÈRE": "assets/images/family/father.png",
+    "FATHER": "assets/images/family/father.png",
+    "MERE": "assets/images/family/mother.png",
+    "MÈRE": "assets/images/family/mother.png",
+    "MOTHER": "assets/images/family/mother.png",
+    "FRERE": "assets/images/family/brother.png",
+    "FRÈRE": "assets/images/family/brother.png",
+    "BROTHER": "assets/images/family/brother.png",
+    "SOEUR": "assets/images/family/sister.png",
+    "SŒUR": "assets/images/family/sister.png",
+    "SISTER": "assets/images/family/sister.png"
+  };
+
   function loadCurrentItem() {
     const db = getDB();
     const list = getActiveList();
@@ -971,6 +1029,21 @@
     document.getElementById("previewWord").textContent = item.label;
     document.getElementById("traceInstructionBadge").textContent = db.ui.instruction;
     document.getElementById("itemPositionBadge").textContent = `${currentIndex + 1} / ${list.length}`;
+
+    const imgEl = document.getElementById("previewImg");
+    const tipEl = document.getElementById("fennyTracingTip");
+    if (tipEl) tipEl.textContent = "Suis bien les pointillés ! ✍️";
+
+    const normalizedKey = (item.text || "").toUpperCase().replace(/[^A-ZÀ-ÿ]/g, "");
+    const imgSrc = WORD_ILLUSTRATIONS[normalizedKey] || WORD_ILLUSTRATIONS[item.text];
+    if (imgEl) {
+      if (imgSrc) {
+        imgEl.src = imgSrc;
+        imgEl.classList.remove("hidden");
+      } else {
+        imgEl.classList.add("hidden");
+      }
+    }
 
     renderStrip();
     buildMaskAndCheckpoints();

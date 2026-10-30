@@ -10,8 +10,9 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <title>Kids Learner - Dashboard</title>
 
-  <link rel="stylesheet" href="css/common.css?v=13">
-  <link rel="stylesheet" href="css/category.css?v=13">
+  <link rel="stylesheet" href="css/common.css?v=16">
+  <link rel="stylesheet" href="css/category.css?v=15">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 </head>
 
 <body class="category">
@@ -24,26 +25,38 @@
         alt="Kids Learner"
       >
 
-      <!-- Catégories principales : Cours, Jeux, Traçage/Écriture, Test, Histoire courte -->
+      <!-- Grille 2 lignes x 5 colonnes :
+           Ligne 1 (au milieu) : Courses & Progression
+           Ligne 2 : Les 5 éléments restants (Vocabulaire, Jeux, Traçage, Test, Histoires) -->
       <section class="category-grid main-category-grid" aria-label="Main learning sections">
-        <a href="cours.html" class="category-card" data-cat-key="cours" aria-label="Cours">
-          <img src="assets/images/category-images/cours.svg" alt="Cours">
+        <!-- 1ère ligne : Courses & Progression -->
+        <a href="cours.html" class="category-card card-cours" data-cat-key="cours" aria-label="Cours">
+          <img src="assets/images/category-images/cours.png" alt="Cours">
         </a>
 
-        <a href="games.html" class="category-card" data-cat-key="games" aria-label="Jeux">
-          <img src="assets/images/category-images/games.svg" alt="Jeux">
+        <a href="progression.html" class="category-card card-progression" data-cat-key="progression" aria-label="Suivi & Progression">
+          <img src="assets/images/category-images/progression.png" alt="Suivi & Progression">
         </a>
 
-        <a href="tracing.html" class="category-card" data-cat-key="tracing" aria-label="Traçage / Écriture">
-          <img src="assets/images/category-images/tracing.svg" alt="Traçage / Écriture">
+        <!-- 2ème ligne : Les 5 éléments restants distribués sur 5 colonnes -->
+        <a href="vocabulary.html" class="category-card card-vocab" data-cat-key="vocabulary" aria-label="Vocabulaire Multisensoriel">
+          <img src="assets/images/category-images/vocabulary.svg" alt="Vocabulaire Multisensoriel">
         </a>
 
-        <a href="test.html" class="category-card" data-cat-key="test" aria-label="Test">
-          <img src="assets/images/category-images/test.svg" alt="Test">
+        <a href="games.html" class="category-card card-games" data-cat-key="games" aria-label="Jeux">
+          <img src="assets/images/category-images/games.png" alt="Jeux">
         </a>
 
-        <a href="stories.html" class="category-card" data-cat-key="stories" aria-label="Histoire courte">
-          <img src="assets/images/category-images/stories.svg" alt="Histoire courte">
+        <a href="tracing.html" class="category-card card-tracing" data-cat-key="tracing" aria-label="Traçage / Écriture">
+          <img src="assets/images/category-images/tracing.png" alt="Traçage / Écriture">
+        </a>
+
+        <a href="test.html" class="category-card card-test" data-cat-key="test" aria-label="Test">
+          <img src="assets/images/category-images/test.png" alt="Test">
+        </a>
+
+        <a href="stories.html" class="category-card card-stories" data-cat-key="stories" aria-label="Histoire courte">
+          <img src="assets/images/category-images/stories.png" alt="Histoire courte">
         </a>
       </section>
     </main>

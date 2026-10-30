@@ -272,7 +272,7 @@
   function getBackTargetUrl() {
     const path = (window.location.pathname || "").toLowerCase();
     if (path.endsWith("category.html") || path.endsWith("kindergarten.html")) {
-      return "language.html";
+      return "index.html";
     }
     if (
       path.endsWith("alphabet.html") ||
@@ -290,29 +290,24 @@
     }
     if (
       path.endsWith("cours.html") ||
+      path.endsWith("vocabulary.html") ||
       path.endsWith("games.html") ||
       path.endsWith("tracing.html") ||
       path.endsWith("test.html") ||
-      path.endsWith("stories.html")
+      path.endsWith("stories.html") ||
+      path.endsWith("progression.html")
     ) {
-      return "category.html";
-    }
-    if (path.endsWith("language.html")) {
       return "category.html";
     }
     return "category.html";
   }
 
   /**
-   * Creates and injects the universal Back button on all pages except language.html.
+   * Creates and injects the universal Back button on all pages except index.html.
    */
   function setupBackButton() {
     const path = (window.location.pathname || "").toLowerCase();
-    if (
-      path.endsWith("language.html") ||
-      document.getElementById("languageScreen") ||
-      document.body.classList.contains("language-page")
-    ) {
+    if (path.endsWith("index.html") || path === "/" || path === "") {
       const existing = document.getElementById("globalBackBtn");
       if (existing) existing.remove();
       return;
@@ -338,7 +333,7 @@
     `;
 
     const appContainer =
-      document.querySelector(".alphabet-app, .numbers-app, .colors-app, .geometry-app, .family-app, .topic-app, .games-app, .category-app, .kindergarten-app") ||
+      document.querySelector(".alphabet-app, .numbers-app, .colors-app, .geometry-app, .family-app, .topic-app, .games-app, .category-app, .kindergarten-app, .vocab-app") ||
       document.body;
 
     appContainer.appendChild(backBtn);
@@ -363,6 +358,13 @@
   document.addEventListener("DOMContentLoaded", () => {
     applyPageDirection();
     setupBackButton();
+
+    // Auto-load Fenny Virtual Companion on all pages
+    if (!window.FennyGo && !document.querySelector('script[src*="fenny-companion.js"]')) {
+      const s = document.createElement("script");
+      s.src = "js/fenny-companion.js?v=3";
+      document.body.appendChild(s);
+    }
   });
 
   if ("speechSynthesis" in window) {

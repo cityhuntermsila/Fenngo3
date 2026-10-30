@@ -9,8 +9,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@600;700;800;900&family=Nunito:wght@600;700;800;900&family=Tajawal:wght@700;800;900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/common.css?v=11">
-  <link rel="stylesheet" href="css/games.css?v=11">
+  <link rel="stylesheet" href="css/common.css?v=16">
+  <link rel="stylesheet" href="css/games.css?v=16">
 </head>
 
 <body class="games-page">
@@ -28,13 +28,26 @@
             <p id="hubMainSubtitle" class="nk-hero-subtitle">Des jeux ludiques et interactifs pour faire progresser votre enfant !</p>
           </div>
 
+          <!-- Fenny Companion Hero Badge -->
+          <div class="fenny-interactive-bubble hidden md:flex">
+            <img src="assets/images/fennygo/fenny-avatar.png" class="fenny-interactive-avatar" alt="Fenny">
+            <div>
+              <span class="text-xs font-black text-amber-900 block">🦊 Fenny t'accompagne !</span>
+              <span class="text-[11px] font-bold text-amber-800">Gagne des étoiles et diamants ⭐💎</span>
+            </div>
+          </div>
+
           <div class="nk-counters">
+            <a href="progression.html" class="hidden sm:inline-flex items-center gap-1.5 bg-amber-100 border-2 border-amber-400 rounded-full px-3 py-1 text-xs font-black text-amber-950 hover:scale-105 transition" title="Gamified Assessment & Badges">
+              <img src="assets/images/fennygo/badge-phonics.png" alt="Badges" class="w-6 h-6 object-contain">
+              <span>Badges &amp; Progression</span>
+            </a>
             <div class="nk-stat-pill nk-star-pill" title="Stars">
-              <span class="nk-stat-icon">⭐</span>
+              <img src="assets/images/games/star.png" alt="Stars" class="w-6 h-6 object-contain">
               <span id="hubStarsCount">0</span>
             </div>
             <div class="nk-stat-pill nk-diamond-pill" title="Diamonds">
-              <span class="nk-stat-icon">💎</span>
+              <img src="assets/images/games/gems.png" alt="Diamonds" class="w-6 h-6 object-contain">
               <span id="hubDiamondsCount">0</span>
             </div>
           </div>
@@ -63,11 +76,11 @@
             <i class="fa-solid fa-xmark"></i>
           </button>
           <div class="nk-stat-pill nk-star-pill">
-            <span class="nk-stat-icon">⭐</span>
+            <img src="assets/images/games/star.png" alt="Stars" class="w-5 h-5 object-contain">
             <span id="gameStarsCount">0</span>
           </div>
           <div class="nk-stat-pill nk-diamond-pill">
-            <span class="nk-stat-icon">💎</span>
+            <img src="assets/images/games/gems.png" alt="Diamonds" class="w-5 h-5 object-contain">
             <span id="gameDiamondsCount">0</span>
           </div>
         </div>
@@ -104,12 +117,14 @@
       <!-- Modal de Victoire de la Manche style Novakid -->
       <div id="victoryModal" class="victory-modal hidden" role="dialog" aria-modal="true">
         <div class="victory-card">
-          <div class="victory-trophy">🏆</div>
+          <div class="victory-trophy flex justify-center">
+            <img src="assets/images/games/trophy.png" alt="Trophy" class="w-24 h-24 object-contain drop-shadow-lg">
+          </div>
           <h2 id="victoryTitle" class="victory-title">Great Job Champion!</h2>
           <p id="victoryMessage" class="victory-subtitle">You completed the round successfully!</p>
           <div class="victory-rewards">
-            <span class="reward-badge">⭐ +5</span>
-            <span class="reward-badge">💎 +3</span>
+            <span class="reward-badge inline-flex items-center gap-1.5"><img src="assets/images/games/star.png" alt="Stars" class="w-5 h-5 object-contain"> +5</span>
+            <span class="reward-badge inline-flex items-center gap-1.5"><img src="assets/images/games/gems.png" alt="Diamonds" class="w-5 h-5 object-contain"> +3</span>
           </div>
           <div class="victory-actions">
             <button type="button" id="playAgainBtn" class="nk-btn-green">
@@ -128,7 +143,7 @@
   </div>
 
   <script src="js/app-lang.js?v=11"></script>
-  <script src="js/games.js?v=11"></script>
+  <script src="js/games.js?v=16"></script>
 </body>
 
 </html>

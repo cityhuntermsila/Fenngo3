@@ -9,8 +9,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@600;700;800;900&family=Nunito:wght@600;700;800;900&family=Tajawal:wght@700;800;900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/common.css?v=13">
-  <link rel="stylesheet" href="css/games.css?v=13">
+  <link rel="stylesheet" href="css/common.css?v=16">
+  <link rel="stylesheet" href="css/games.css?v=16">
   <style>
     .tracing-workspace {
       width: min(96vw, 1280px);
@@ -39,12 +39,12 @@
 
     /* Carte latérale d'aperçu (Mot/Lettre + Image + Outils) */
     .tracing-side-card {
-      background: #ffffff;
-      border: 2.5px solid #917ed6;
-      border-bottom: 6px solid #4221b8;
+      background: #fffcf6;
+      border: 2.5px solid #dec28f;
+      border-bottom: 6px solid #c59f5f;
       border-radius: 30px;
       padding: clamp(10px, 1.6vh, 18px);
-      box-shadow: 0 8px 24px rgba(66, 33, 184, 0.14);
+      box-shadow: 0 8px 24px rgba(95, 70, 30, 0.12);
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -55,8 +55,8 @@
 
     .tracing-preview-box {
       width: 100%;
-      background: linear-gradient(180deg, #f2f5ff 0%, #dee5ff 100%);
-      border: 2px solid #c6d2ff;
+      background: linear-gradient(180deg, #fdf4e1 0%, #f9e2b5 100%);
+      border: 2px solid #dec28f;
       border-radius: 22px;
       padding: clamp(8px, 1.4vh, 14px);
       display: flex;
@@ -75,7 +75,7 @@
       margin: 0;
       font-size: clamp(17px, 2.6vh, 24px);
       font-weight: 900;
-      color: #4221b8;
+      color: #8c3821;
     }
 
     /* Palette de crayons colorés */
@@ -98,17 +98,16 @@
 
     .color-swatch-btn.active {
       transform: scale(1.22);
-      box-shadow: 0 0 0 3px #4221b8, 0 4px 10px rgba(66, 33, 184, 0.35);
+      box-shadow: 0 0 0 3px #5a82c4, 0 4px 10px rgba(90, 130, 196, 0.4);
     }
 
-    /* Zone d'écriture Ardoise / Cahier avec pointillés */
+    /* Zone d'écriture Ardoise / Cahier Tablette */
     .tracing-canvas-card {
       position: relative;
       background: #ffffff;
-      border: 3px solid #917ed6;
-      border-bottom: 7px solid #4221b8;
+      border: clamp(5px, 1vw, 8px) solid #1e222a;
       border-radius: 32px;
-      box-shadow: 0 10px 30px rgba(66, 33, 184, 0.16);
+      box-shadow: 0 16px 45px rgba(0, 0, 0, 0.22);
       overflow: hidden;
       display: flex;
       flex-direction: column;
@@ -116,8 +115,8 @@
 
     .tracing-canvas-topbar {
       padding: 8px 18px;
-      background: #f7f5ff;
-      border-bottom: 2px solid #dee5ff;
+      background: #fffcf6;
+      border-bottom: 2px solid #dec28f;
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -145,11 +144,11 @@
 
     /* Barre inférieure de sélection rapide des lettres / mots */
     .tracing-bottom-bar {
-      background: #ffffff;
-      border: 2px solid #c6d2ff;
+      background: #fffcf6;
+      border: 2px solid #dec28f;
       border-radius: 24px;
       padding: 6px 12px;
-      box-shadow: 0 4px 16px rgba(66, 33, 184, 0.1);
+      box-shadow: 0 4px 16px rgba(95, 70, 30, 0.1);
       display: flex;
       align-items: center;
       gap: 8px;
@@ -174,9 +173,9 @@
       flex: 0 0 auto;
       padding: 5px 13px;
       border-radius: 14px;
-      border: 2px solid #dee5ff;
-      background: #f7f5ff;
-      color: #2c2a33;
+      border: 2px solid #e7d4b2;
+      background: #fffdf9;
+      color: #5b4536;
       font-size: clamp(13px, 2vh, 17px);
       font-weight: 900;
       cursor: pointer;
@@ -185,15 +184,15 @@
     }
 
     .trace-item-pill:hover {
-      border-color: #917ed6;
-      color: #4221b8;
+      border-color: #5a82c4;
+      color: #1e355b;
     }
 
     .trace-item-pill.active {
-      background: #4221b8;
-      border-color: #4221b8;
+      background: linear-gradient(180deg, #7ea2df 0%, #5e86cf 100%);
+      border-color: #4870b8;
       color: #ffffff;
-      box-shadow: 1.5px 3px 0 #261073;
+      box-shadow: 1.5px 3px 0 #395d9f;
     }
   </style>
 </head>
@@ -229,9 +228,123 @@
             <button type="button" id="modeLowerBtn" class="nk-skill-pill">
               🔡 <span id="modeLowerText">Lettres minuscules (a-z)</span>
             </button>
+            <button type="button" id="modeVisionBtn" class="nk-skill-pill" style="background:linear-gradient(135deg,#fef08a,#f59e0b);color:#78350f;border-color:#d97706;">
+              📷 <span id="modeVisionText">Scan Tactile IA (b, h, k, m)</span>
+            </button>
           </div>
         </div>
       </header>
+
+      <!-- =========================================================
+           MODE VISION PAR ORDINATEUR : TACTILE LEARNING MEETS COMPUTER VISION
+           (Basé sur le visuel 1 : 1. Tactile Input -> 2. Camera Scan -> 3. Digital Reward)
+           ========================================================= -->
+      <section id="visionWorkspace" class="tracing-workspace hidden" style="overflow-y:auto;">
+        <div class="bg-gradient-to-br from-amber-200 via-amber-100 to-yellow-50 border-4 border-white rounded-3xl p-4 sm:p-5 shadow-xl flex-1 flex flex-col justify-between gap-4">
+          <div class="flex flex-wrap items-center justify-between gap-2">
+            <div>
+              <h2 id="visionMainHeading" class="text-xl sm:text-2xl font-black text-amber-950">
+                📷 Tactile Learning Meets Computer Vision
+              </h2>
+              <p id="visionSubHeading" class="text-xs sm:text-sm font-bold text-amber-900">
+                Écris la lettre sur papier (ou choisis une carte), scanne-la avec la caméra et découvre ta récompense numérique !
+              </p>
+            </div>
+            <button type="button" id="toggleVisionSlideBtn" class="px-3 py-1.5 rounded-full bg-white border-2 border-amber-400 text-amber-900 font-black text-xs shadow-sm hover:bg-amber-50">
+              🖼️ Voir le schéma "Tactile Learning"
+            </button>
+          </div>
+
+          <!-- Aperçu optionnel de l'image originale -->
+          <div id="visionSlideModalBox" class="hidden bg-white p-3 rounded-2xl border-2 border-amber-300 text-center">
+            <img src="assets/images/fennygo/tactile-vision.jpg" alt="Tactile Learning Meets Computer Vision" class="max-h-64 mx-auto rounded-xl object-contain">
+          </div>
+
+          <!-- Grille des 3 étapes : 1. The Tactile Input | 2. The Camera Scan | 3. The Digital Reward -->
+          <div class="grid grid-cols-1 lg:grid-cols-3 gap-4 items-stretch flex-1">
+
+            <!-- CARD 1: 1. The Tactile Input -->
+            <div class="bg-[#fffdf5] border-2 border-amber-200 rounded-3xl p-4 shadow-md flex flex-col justify-between text-center">
+              <h3 class="text-base sm:text-lg font-black text-blue-600">1. The Tactile Input</h3>
+
+              <div class="my-2 bg-amber-200/70 rounded-2xl p-4 flex flex-col items-center justify-center relative min-h-[165px]">
+                <div class="w-28 h-32 bg-white rounded-xl shadow-lg border-2 border-slate-200 flex items-center justify-center transform -rotate-3">
+                  <span id="tactileCardLetter" class="text-7xl font-black text-slate-900" style="font-family:'Comic Sans MS',cursive;">b</span>
+                </div>
+                <div class="mt-3 flex flex-wrap justify-center gap-1.5">
+                  <button type="button" class="tactile-letter-btn px-3 py-1 rounded-xl font-black text-sm bg-blue-600 text-white shadow" data-tletter="b" data-tword="bag" data-tsuffix="_ag" data-temoji="🎒">b</button>
+                  <button type="button" class="tactile-letter-btn px-3 py-1 rounded-xl font-black text-sm bg-white text-slate-800 border border-amber-400" data-tletter="h" data-tword="hat" data-tsuffix="_at" data-temoji="🎩">h</button>
+                  <button type="button" class="tactile-letter-btn px-3 py-1 rounded-xl font-black text-sm bg-white text-slate-800 border border-amber-400" data-tletter="k" data-tword="kite" data-tsuffix="_ite" data-temoji="🪁">k</button>
+                  <button type="button" class="tactile-letter-btn px-3 py-1 rounded-xl font-black text-sm bg-white text-slate-800 border border-amber-400" data-tletter="m" data-tword="milk" data-tsuffix="_ilk" data-temoji="🥛">m</button>
+                  <button type="button" class="tactile-letter-btn px-3 py-1 rounded-xl font-black text-sm bg-white text-slate-800 border border-amber-400" data-tletter="p" data-tword="pen" data-tsuffix="_en" data-temoji="🖊️">p</button>
+                </div>
+              </div>
+
+              <p class="text-xs sm:text-sm font-extrabold text-slate-700">
+                Practicing print handwriting shapes: <strong>b, h, k, m, p</strong>
+              </p>
+            </div>
+
+            <!-- CARD 2: 2. The Camera Scan -->
+            <div class="bg-[#fffdf5] border-2 border-amber-200 rounded-3xl p-4 shadow-md flex flex-col justify-between text-center">
+              <h3 class="text-base sm:text-lg font-black text-blue-600">2. The Camera Scan</h3>
+
+              <div class="my-2 bg-amber-200/70 rounded-2xl p-3 flex flex-col items-center justify-center relative min-h-[165px] overflow-hidden">
+                <!-- Tablet / Webcam Viewport -->
+                <div class="relative w-full max-w-[240px] h-36 bg-slate-900 rounded-2xl border-4 border-blue-400 shadow-inner overflow-hidden flex items-center justify-center">
+                  <video id="tactileCameraVideo" autoplay playsinline muted class="w-full h-full object-cover hidden"></video>
+                  <div id="tactileCameraPlaceholder" class="flex flex-col items-center justify-center text-cyan-300 p-2">
+                    <div class="text-4xl mb-1">📷✨</div>
+                    <span id="scanStatusLabel" class="text-xs font-black">Prêt à scanner la lettre « b »</span>
+                  </div>
+                  <!-- Animated Cyan Laser Beam -->
+                  <div id="laserScanBeam" class="hidden absolute inset-x-0 h-1.5 bg-cyan-300 shadow-[0_0_16px_#22d3ee] animate-bounce" style="top:45%;"></div>
+                </div>
+
+                <!-- Real-Time Vision Metrics -->
+                <div id="visionMetricsRow" class="grid grid-cols-3 gap-1.5 w-full mt-2 text-[11px] font-black">
+                  <div class="bg-white rounded-lg py-1 px-1.5 border border-cyan-300 text-slate-700">Shaping: <span id="metricShape" class="text-blue-600">--</span></div>
+                  <div class="bg-white rounded-lg py-1 px-1.5 border border-cyan-300 text-slate-700">Sizing: <span id="metricSize" class="text-blue-600">--</span></div>
+                  <div class="bg-white rounded-lg py-1 px-1.5 border border-cyan-300 text-slate-700">Align: <span id="metricAlign" class="text-blue-600">--</span></div>
+                </div>
+              </div>
+
+              <div class="flex flex-wrap justify-center gap-2">
+                <button type="button" id="startWebcamBtn" class="px-3 py-1.5 rounded-xl bg-slate-800 hover:bg-slate-900 text-white font-black text-xs">
+                  🎥 Caméra Réelle
+                </button>
+                <button type="button" id="triggerAiScanBtn" class="px-4 py-1.5 rounded-xl bg-gradient-to-r from-blue-600 to-cyan-500 hover:from-blue-700 hover:to-cyan-600 text-white font-black text-xs shadow-md">
+                  🔍 Scanner &amp; Analyser
+                </button>
+              </div>
+            </div>
+
+            <!-- CARD 3: 3. The Digital Reward -->
+            <div class="bg-[#fffdf5] border-2 border-amber-200 rounded-3xl p-4 shadow-md flex flex-col justify-between text-center">
+              <h3 class="text-base sm:text-lg font-black text-blue-600">3. The Digital Reward</h3>
+
+              <div class="my-2 bg-amber-200/70 rounded-2xl p-3 flex flex-col items-center justify-center min-h-[165px]">
+                <div id="digitalRewardTablet" class="w-full max-w-[250px] h-36 rounded-2xl bg-gradient-to-br from-blue-600 via-blue-500 to-indigo-700 border-4 border-blue-300 shadow-lg flex flex-col items-center justify-center p-3 text-white relative overflow-hidden">
+                  <div class="text-xs font-black text-amber-200 mb-1">✨ WORD COMPLETED ✨</div>
+                  <div class="flex items-center justify-center gap-1 text-4xl sm:text-5xl font-black tracking-wider">
+                    <span id="rewardFirstLetter" class="px-2.5 py-0.5 rounded-xl bg-amber-400 text-blue-950 shadow-md transform scale-100 transition-transform">?</span>
+                    <span id="rewardWordSuffix" class="text-white">_ag</span>
+                    <span id="rewardWordEmoji" class="text-3xl ml-1">🎒</span>
+                  </div>
+                  <button type="button" id="rewardSpeakWordBtn" class="mt-2 px-3 py-1 rounded-full bg-white/20 hover:bg-white/30 text-white font-black text-xs">
+                    🔊 Prononcer le mot
+                  </button>
+                </div>
+              </div>
+
+              <p class="text-xs sm:text-sm font-extrabold text-slate-700">
+                The word is completed, triggering a celebratory animation and audio pronunciation.
+              </p>
+            </div>
+
+          </div>
+        </div>
+      </section>
 
       <!-- Espace de travail principal -->
       <section class="tracing-workspace">
@@ -239,8 +352,15 @@
           <!-- Colonne gauche : Modèle illustré + Couleurs du crayon + Boutons -->
           <aside class="tracing-side-card">
             <div class="tracing-preview-box">
+              <img id="previewImg" class="w-16 h-16 object-contain rounded-xl drop-shadow-md mb-1 hidden" alt="Illustration">
               <div id="previewEmoji" class="tracing-emoji">✈️</div>
               <h2 id="previewWord" class="tracing-word-label">A - Avion</h2>
+            </div>
+
+            <!-- Mascotte Fenny avec conseils d'écriture dynamiques -->
+            <div class="fenny-interactive-bubble w-full">
+              <img src="assets/images/fennygo/fenny-avatar.png" class="fenny-interactive-avatar" alt="Fenny">
+              <span id="fennyTracingTip" class="text-xs font-black text-amber-900 leading-tight">Suis bien les pointillés ! ✍️</span>
             </div>
 
             <button type="button" id="speakTargetBtn" class="speaker-btn w-full justify-center">
@@ -273,7 +393,7 @@
                 <div class="progress-track">
                   <div id="traceProgressFill" class="progress-fill" style="width: 0%"></div>
                 </div>
-                <span id="tracePercentBadge" class="font-black text-sm" style="color:#4221b8; min-width: 42px;">0%</span>
+                <span id="tracePercentBadge" class="font-black text-sm" style="color:#1e355b; min-width: 42px;">0%</span>
               </div>
               <span id="itemPositionBadge" class="nk-tag" style="font-size: 12px; padding: 4px 10px;">1 / 26</span>
             </div>
@@ -297,7 +417,153 @@
   </div>
 
   <script src="js/app-lang.js?v=13"></script>
-  <script src="js/tracing.js?v=13"></script>
+  <script src="js/tracing.js?v=16"></script>
+  <script>
+    (() => {
+      const modeVisionBtn = document.getElementById("modeVisionBtn");
+      const otherModeBtns = [
+        document.getElementById("modeLettersBtn"),
+        document.getElementById("modeWordsBtn"),
+        document.getElementById("modeLowerBtn")
+      ];
+      const visionWorkspace = document.getElementById("visionWorkspace");
+      const standardWorkspaces = Array.from(document.querySelectorAll(".tracing-workspace")).filter(el => el.id !== "visionWorkspace");
+
+      let currentTarget = { letter: "b", word: "bag", suffix: "_ag", emoji: "🎒" };
+      let mediaStream = null;
+
+      function stopWebcam() {
+        if (mediaStream) {
+          mediaStream.getTracks().forEach(t => t.stop());
+          mediaStream = null;
+        }
+        const vid = document.getElementById("tactileCameraVideo");
+        const ph = document.getElementById("tactileCameraPlaceholder");
+        if (vid) vid.classList.add("hidden");
+        if (ph) ph.classList.remove("hidden");
+      }
+
+      function openVisionMode() {
+        otherModeBtns.forEach(b => b?.classList.remove("active"));
+        modeVisionBtn?.classList.add("active");
+        standardWorkspaces.forEach(w => w.classList.add("hidden"));
+        visionWorkspace?.classList.remove("hidden");
+      }
+
+      function closeVisionMode() {
+        modeVisionBtn?.classList.remove("active");
+        visionWorkspace?.classList.add("hidden");
+        standardWorkspaces.forEach(w => w.classList.remove("hidden"));
+        stopWebcam();
+      }
+
+      modeVisionBtn?.addEventListener("click", openVisionMode);
+      otherModeBtns.forEach(btn => {
+        btn?.addEventListener("click", closeVisionMode);
+      });
+
+      document.getElementById("toggleVisionSlideBtn")?.addEventListener("click", () => {
+        document.getElementById("visionSlideModalBox")?.classList.toggle("hidden");
+      });
+
+      // Target letter selection (b, h, k, m, p)
+      document.querySelectorAll(".tactile-letter-btn").forEach(btn => {
+        btn.addEventListener("click", () => {
+          document.querySelectorAll(".tactile-letter-btn").forEach(b => {
+            b.className = "tactile-letter-btn px-3 py-1 rounded-xl font-black text-sm bg-white text-slate-800 border border-amber-400";
+          });
+          btn.className = "tactile-letter-btn px-3 py-1 rounded-xl font-black text-sm bg-blue-600 text-white shadow";
+
+          currentTarget = {
+            letter: btn.getAttribute("data-tletter") || "b",
+            word: btn.getAttribute("data-tword") || "bag",
+            suffix: btn.getAttribute("data-tsuffix") || "_ag",
+            emoji: btn.getAttribute("data-temoji") || "🎒"
+          };
+
+          document.getElementById("tactileCardLetter").textContent = currentTarget.letter;
+          document.getElementById("scanStatusLabel").textContent = `Prêt à scanner la lettre « ${currentTarget.letter} »`;
+          document.getElementById("rewardFirstLetter").textContent = "?";
+          document.getElementById("rewardWordSuffix").textContent = currentTarget.suffix;
+          document.getElementById("rewardWordEmoji").textContent = currentTarget.emoji;
+          document.getElementById("metricShape").textContent = "--";
+          document.getElementById("metricSize").textContent = "--";
+          document.getElementById("metricAlign").textContent = "--";
+
+          if (window.AppLang) {
+            window.AppLang.speak(`Letter ${currentTarget.letter}`, "en-US");
+          }
+        });
+      });
+
+      // Webcam activation
+      document.getElementById("startWebcamBtn")?.addEventListener("click", async () => {
+        if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
+          document.getElementById("scanStatusLabel").textContent = "Mode Simulation IA actif (Caméra non détectée)";
+          return;
+        }
+        try {
+          mediaStream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: "environment" } });
+          const vid = document.getElementById("tactileCameraVideo");
+          const ph = document.getElementById("tactileCameraPlaceholder");
+          if (vid) {
+            vid.srcObject = mediaStream;
+            vid.classList.remove("hidden");
+          }
+          if (ph) ph.classList.add("hidden");
+        } catch (_) {
+          document.getElementById("scanStatusLabel").textContent = "Mode Simulation IA prêt ! Clique sur Scanner.";
+        }
+      });
+
+      // AI Camera Scan & Digital Reward
+      document.getElementById("triggerAiScanBtn")?.addEventListener("click", () => {
+        const beam = document.getElementById("laserScanBeam");
+        const status = document.getElementById("scanStatusLabel");
+        beam?.classList.remove("hidden");
+        if (status) status.textContent = `Analyse IA de « ${currentTarget.letter} » en cours...`;
+
+        setTimeout(() => {
+          document.getElementById("metricShape").textContent = "96%";
+          document.getElementById("metricSize").textContent = "94%";
+          document.getElementById("metricAlign").textContent = "98%";
+        }, 450);
+
+        setTimeout(() => {
+          beam?.classList.add("hidden");
+          if (status) status.textContent = `✅ Lettre « ${currentTarget.letter} » validée avec succès !`;
+
+          const firstEl = document.getElementById("rewardFirstLetter");
+          if (firstEl) {
+            firstEl.textContent = currentTarget.letter;
+            firstEl.classList.add("scale-125");
+            setTimeout(() => firstEl.classList.remove("scale-125"), 400);
+          }
+
+          if (window.FennyGo) {
+            window.FennyGo.addStars(5);
+            window.FennyGo.unlockBadge("spelling");
+            window.FennyGo.celebrate(`${currentTarget.letter}... ${currentTarget.word}! Fantastic handwriting!`);
+          } else if (window.AppLang) {
+            window.AppLang.speak(`${currentTarget.letter}! ${currentTarget.word}!`, "en-US");
+          }
+        }, 1100);
+      });
+
+      document.getElementById("rewardSpeakWordBtn")?.addEventListener("click", () => {
+        if (window.AppLang) {
+          window.AppLang.speak(`${currentTarget.letter}... ${currentTarget.word}!`, "en-US");
+        }
+      });
+
+      window.addEventListener("DOMContentLoaded", () => {
+        const params = new URLSearchParams(window.location.search);
+        if (params.get("mode") === "vision") {
+          openVisionMode();
+        }
+      });
+    })();
+  </script>
 </body>
 
 </html>

@@ -1,72 +1,19 @@
 (() => {
   "use strict";
 
+  const iconImg = (src, alt) => `<img src="${src}" alt="${alt}" loading="lazy" style="width:100%;height:100%;object-fit:contain;filter:drop-shadow(0 8px 14px rgba(0,0,0,0.2));">`;
+
   const ICONS = {
-    head: `
-      <svg viewBox="0 0 140 140" xmlns="http://www.w3.org/2000/svg">
-        <circle cx="30" cy="76" r="10" fill="#fcd3b6" stroke="#ffffff" stroke-width="3"/>
-        <circle cx="110" cy="76" r="10" fill="#fcd3b6" stroke="#ffffff" stroke-width="3"/>
-        <circle cx="70" cy="74" r="44" fill="#fcd3b6" stroke="#ffffff" stroke-width="5"/>
-        <path d="M28 64 Q36 22 70 24 Q104 22 112 64 Q92 44 70 46 Q48 44 28 64 Z" fill="#78350f"/>
-        <circle cx="54" cy="72" r="5" fill="#1e293b"/>
-        <circle cx="86" cy="72" r="5" fill="#1e293b"/>
-        <circle cx="70" cy="82" r="4" fill="#f97316"/>
-        <path d="M54 94 Q70 106 86 94" fill="none" stroke="#e11d48" stroke-width="4" stroke-linecap="round"/>
-      </svg>`,
-    hair: `
-      <svg viewBox="0 0 140 140" xmlns="http://www.w3.org/2000/svg">
-        <circle cx="70" cy="82" r="36" fill="#fde2cc" opacity="0.55"/>
-        <path d="M24 88 Q20 26 70 22 Q120 26 116 88 Q104 54 88 58 Q70 46 52 58 Q36 54 24 88 Z" fill="#451a03" stroke="#ffffff" stroke-width="4"/>
-        <path d="M46 34 Q70 24 94 34" fill="none" stroke="#92400e" stroke-width="4" stroke-linecap="round"/>
-      </svg>`,
-    eye: `
-      <svg viewBox="0 0 140 140" xmlns="http://www.w3.org/2000/svg">
-        <path d="M18 70 Q70 26 122 70 Q70 114 18 70 Z" fill="#ffffff" stroke="#1e293b" stroke-width="5"/>
-        <circle cx="70" cy="70" r="22" fill="#0284c7"/>
-        <circle cx="70" cy="70" r="10" fill="#0f172a"/>
-        <circle cx="77" cy="63" r="5" fill="#ffffff"/>
-        <path d="M30 46 L38 54 M70 36 L70 46 M110 46 L102 54" stroke="#1e293b" stroke-width="4" stroke-linecap="round"/>
-      </svg>`,
-    ear: `
-      <svg viewBox="0 0 140 140" xmlns="http://www.w3.org/2000/svg">
-        <path d="M48 40 C48 16, 102 16, 102 58 C102 90, 82 118, 60 118 C46 118, 42 102, 52 96" fill="#fcd3b6" stroke="#ffffff" stroke-width="5" stroke-linecap="round"/>
-        <path d="M62 48 C62 34, 88 34, 88 58 C88 76, 74 90, 64 90" fill="none" stroke="#d97706" stroke-width="4.5" stroke-linecap="round"/>
-      </svg>`,
-    nose: `
-      <svg viewBox="0 0 140 140" xmlns="http://www.w3.org/2000/svg">
-        <path d="M68 28 L52 84 C36 86, 36 106, 56 106 C64 106, 76 106, 84 106 C104 106, 104 86, 88 84 L74 28" fill="#fcd3b6" stroke="#ffffff" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
-        <circle cx="56" cy="96" r="5" fill="#9a3412"/>
-        <circle cx="84" cy="96" r="5" fill="#9a3412"/>
-      </svg>`,
-    mouth: `
-      <svg viewBox="0 0 140 140" xmlns="http://www.w3.org/2000/svg">
-        <path d="M22 60 Q70 48 118 60 Q98 110 70 110 Q42 110 22 60 Z" fill="#e11d48" stroke="#ffffff" stroke-width="5"/>
-        <path d="M36 62 Q70 56 104 62 L100 74 Q70 70 40 74 Z" fill="#ffffff"/>
-        <ellipse cx="70" cy="96" rx="20" ry="11" fill="#fb7185"/>
-      </svg>`,
-    hand: `
-      <svg viewBox="0 0 140 140" xmlns="http://www.w3.org/2000/svg">
-        <path d="M42 116 L42 66 A7 7 0 0 1 56 66 L56 40 A7 7 0 0 1 70 40 L70 32 A7 7 0 0 1 84 32 L84 42 A7 7 0 0 1 98 42 L98 76 L108 66 A8 8 0 0 1 118 78 L98 110 Q86 122 66 122 Q42 122 42 116 Z" fill="#fcd3b6" stroke="#ffffff" stroke-width="4.5" stroke-linejoin="round"/>
-      </svg>`,
-    arm: `
-      <svg viewBox="0 0 140 140" xmlns="http://www.w3.org/2000/svg">
-        <path d="M26 92 L72 92 L92 44" fill="none" stroke="#fcd3b6" stroke-width="26" stroke-linecap="round" stroke-linejoin="round"/>
-        <circle cx="94" cy="38" r="14" fill="#fcd3b6" stroke="#ffffff" stroke-width="3"/>
-        <rect x="16" y="74" width="26" height="36" rx="10" fill="#3b82f6" stroke="#ffffff" stroke-width="4"/>
-      </svg>`,
-    leg: `
-      <svg viewBox="0 0 140 140" xmlns="http://www.w3.org/2000/svg">
-        <rect x="48" y="18" width="36" height="30" rx="8" fill="#3b82f6" stroke="#ffffff" stroke-width="4"/>
-        <rect x="54" y="46" width="24" height="58" rx="10" fill="#fcd3b6" stroke="#ffffff" stroke-width="4"/>
-        <path d="M50 100 L96 100 Q108 100 108 114 L48 114 Z" fill="#ef4444" stroke="#ffffff" stroke-width="4"/>
-      </svg>`,
-    foot: `
-      <svg viewBox="0 0 140 140" xmlns="http://www.w3.org/2000/svg">
-        <path d="M44 28 L44 82 Q44 108 72 108 L104 108 Q118 108 118 94 Q118 80 96 78 L72 72 L72 28 Z" fill="#fcd3b6" stroke="#ffffff" stroke-width="5" stroke-linejoin="round"/>
-        <circle cx="114" cy="78" r="5" fill="#fcd3b6"/>
-        <circle cx="104" cy="73" r="4.5" fill="#fcd3b6"/>
-        <circle cx="95" cy="70" r="4" fill="#fcd3b6"/>
-      </svg>`
+    head: iconImg("assets/images/body-parts/head.png", "Head"),
+    hair: iconImg("assets/images/body-parts/hair.png", "Hair"),
+    eye: iconImg("assets/images/body-parts/eye.png", "Eye"),
+    ear: iconImg("assets/images/body-parts/ear.png", "Ear"),
+    nose: iconImg("assets/images/body-parts/nose.png", "Nose"),
+    mouth: iconImg("assets/images/body-parts/mouth.png", "Mouth"),
+    hand: iconImg("assets/images/body-parts/hand.png", "Hand"),
+    arm: iconImg("assets/images/body-parts/arm.png", "Arm"),
+    leg: iconImg("assets/images/body-parts/leg.png", "Leg"),
+    foot: iconImg("assets/images/body-parts/foot.png", "Foot")
   };
 
   const THEMES = [

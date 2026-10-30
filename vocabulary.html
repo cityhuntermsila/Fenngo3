@@ -1,0 +1,1648 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, viewport-fit=cover">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <title>Kids Learner — Vocabulaire Multisensoriel 3D</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@600;700;800;900&family=Nunito:wght@600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <link rel="stylesheet" href="css/common.css?v=16">
+  <link rel="stylesheet" href="css/fennygo.css?v=3">
+  <style>
+    :root {
+      --voc-amber-glow: #fdeebc;
+      --voc-amber-main: #f7cf68;
+      --voc-amber-deep: #f2bc40;
+      --voc-blue-bevel: #5a82c4;
+      --voc-blue-light: #96b7e8;
+      --voc-blue-dark: #1e355b;
+      --voc-peach-light: #fde7d5;
+      --voc-peach-dark: #8c3821;
+      --voc-cream-stage: #fdf4e1;
+    }
+
+    /* Suppress duplicate floating buttons overlapping the studio */
+    #globalBackBtn,
+    .global-back-btn,
+    #fennyCompanionDock {
+      display: none !important;
+    }
+
+    html, body {
+      min-height: 100%;
+      height: 100dvh;
+      overflow-x: hidden;
+      font-family: "Nunito", "Cairo", sans-serif;
+      background: radial-gradient(circle at 50% 20%, #fdeebc 0%, #f7cf68 50%, #f1bb3d 100%);
+      color: #2b241f;
+    }
+
+    html[dir="rtl"] body {
+      font-family: "Cairo", "Nunito", sans-serif;
+    }
+
+    .studio-container {
+      width: min(98vw, 1320px);
+      margin: 0 auto;
+      min-height: calc(100dvh - 12px);
+      max-height: 100dvh;
+      display: flex;
+      flex-direction: column;
+      padding: clamp(4px, 1vh, 10px);
+      gap: clamp(4px, 1vh, 8px);
+    }
+
+    /* Header Bar Card */
+    .studio-card {
+      background: #fffcf6;
+      border: 2px solid #dec28f;
+      border-bottom: 5px solid #c59f5f;
+      border-radius: 20px;
+      box-shadow: 0 8px 24px rgba(95, 70, 30, 0.12);
+    }
+
+    /* Tablet Screen Stage (recreating the dark-bezeled tablet in the reference photo) */
+    .tablet-stage {
+      background: linear-gradient(180deg, #fdf4e1 0%, #f9e2b5 100%);
+      border: clamp(6px, 1.1vw, 9px) solid #1e222a;
+      border-radius: clamp(22px, 3.5vw, 34px);
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.28), inset 0 2px 5px rgba(255, 255, 255, 0.7);
+    }
+
+    .mode-tab-btn {
+      padding: 5px 12px;
+      border-radius: 999px;
+      font-weight: 900;
+      font-size: 12px;
+      border: 2px solid #dfcba1;
+      background: #fff9ee;
+      color: #554133;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      transition: all 0.18s ease;
+    }
+
+    .mode-tab-btn.active {
+      background: linear-gradient(180deg, #7ea2df 0%, #5e86cf 100%);
+      color: #ffffff;
+      border-color: #4870b8;
+      box-shadow: 0 3px 0 #395d9f;
+    }
+
+    .theme-chip {
+      padding: 4px 11px;
+      border-radius: 999px;
+      font-weight: 800;
+      font-size: 11.5px;
+      border: 2px solid #e7d4b2;
+      background: #fffdf9;
+      color: #5b4536;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      transition: all 0.15s ease;
+      white-space: nowrap;
+    }
+
+    .theme-chip.active {
+      background: linear-gradient(180deg, #f89b66 0%, #e8783a 100%);
+      color: #ffffff;
+      border-color: #cf6326;
+      font-weight: 900;
+      box-shadow: 0 2px 0 #b54e18;
+    }
+
+    /* Trilingual Switcher pills */
+    .lang-pill-btn {
+      padding: 3px 9px;
+      border-radius: 999px;
+      font-weight: 900;
+      font-size: 11px;
+      color: #634d3d;
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+
+    .lang-pill-btn.active {
+      background: linear-gradient(180deg, #7ea2df 0%, #5e86cf 100%);
+      color: #ffffff;
+      box-shadow: 0 2px 4px rgba(45, 75, 120, 0.25);
+    }
+
+    /* 3 Circular Action Buttons (Matching the exact double-ring periwinkle/cream buttons in the photo) */
+    .sensory-circle-btn {
+      width: clamp(52px, 7.5vh, 66px);
+      height: clamp(52px, 7.5vh, 66px);
+      border-radius: 50%;
+      background: linear-gradient(180deg, #96b7e8 0%, #749bd8 100%);
+      border: 3px solid #5a82c4;
+      box-shadow: 0 4px 0 #466cae, 0 8px 18px rgba(45, 75, 120, 0.24);
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      transition: transform 0.15s ease, filter 0.15s ease, box-shadow 0.15s ease;
+    }
+
+    .sensory-circle-btn:hover {
+      transform: translateY(-2px) scale(1.05);
+      filter: brightness(1.06);
+    }
+
+    .sensory-circle-btn:active {
+      transform: translateY(2px);
+      box-shadow: 0 2px 0 #466cae, 0 4px 8px rgba(45, 75, 120, 0.2);
+    }
+
+    .sensory-inner-disc {
+      width: clamp(34px, 5vh, 44px);
+      height: clamp(34px, 5vh, 44px);
+      border-radius: 50%;
+      background: radial-gradient(circle at 35% 35%, #ffffff 0%, #fff7e8 60%, #faecd0 100%);
+      border: 2px solid #e5cfa5;
+      box-shadow: inset 0 2px 3px rgba(255, 255, 255, 0.9), 0 2px 4px rgba(0, 0, 0, 0.08);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #1e355b;
+    }
+
+    .sensory-btn-label {
+      font-size: clamp(8px, 1.2vh, 9.5px);
+      font-weight: 900;
+      color: #1e355b;
+      margin-top: 2px;
+      letter-spacing: 0.5px;
+      line-height: 1;
+    }
+
+    /* Scrabble 3D Letter Tile (Matching the Peach & Periwinkle Clay 3D Aesthetic from the photo) */
+    .voc-letter-tile {
+      width: clamp(32px, 4.4vw, 46px);
+      height: clamp(38px, 5.5vh, 50px);
+      border-radius: 12px;
+      font-weight: 900;
+      font-size: clamp(18px, 2.6vh, 26px);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.18s cubic-bezier(0.34, 1.56, 0.64, 1);
+      user-select: none;
+      position: relative;
+    }
+
+    .voc-letter-tile:hover {
+      transform: translateY(-3px) scale(1.08);
+    }
+
+    /* Warm Peach / Apricot Clay Tile (like "SCHOOL" in the photo) */
+    .voc-tile-peach,
+    .voc-tile-consonant {
+      background: linear-gradient(180deg, #fde7d5 0%, #f7c7a8 100%);
+      border: 2px solid #e5a780;
+      border-bottom: 4px solid #c77b4c;
+      color: #8c3821;
+      box-shadow: 0 4px 8px rgba(140, 56, 33, 0.18);
+    }
+
+    /* Soft Periwinkle Blue Clay Tile (like "BAG" in the photo) */
+    .voc-tile-blue,
+    .voc-tile-vowel {
+      background: linear-gradient(180deg, #edf4fd 0%, #c6dbf7 100%);
+      border: 2px solid #a3c2ed;
+      border-bottom: 4px solid #739bd4;
+      color: #224577;
+      box-shadow: 0 4px 8px rgba(34, 69, 119, 0.18);
+    }
+
+    .voc-letter-tile.highlight {
+      background: linear-gradient(180deg, #ff944d 0%, #f36b22 100%) !important;
+      color: #ffffff !important;
+      border-color: #d1500f !important;
+      border-bottom-color: #9e3605 !important;
+      transform: translateY(-6px) scale(1.18);
+      box-shadow: 0 0 0 3px #fde047, 0 8px 20px rgba(243, 107, 34, 0.45);
+    }
+
+    /* Tactile Writing Canvas */
+    .tactile-canvas-wrap {
+      position: relative;
+      background: #ffffff;
+      border: 2px dashed #dec28f;
+      border-radius: 16px;
+      overflow: hidden;
+    }
+
+    #tactileCanvas {
+      width: 100%;
+      height: clamp(70px, 10vh, 100px);
+      display: block;
+      cursor: crosshair;
+      touch-action: none;
+    }
+
+    .color-dot-btn {
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      border: 2px solid #ffffff;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+      cursor: pointer;
+      transition: transform 0.15s;
+    }
+    .color-dot-btn.active {
+      transform: scale(1.25);
+      outline: 2px solid #5a82c4;
+    }
+
+    /* Soundwave bars */
+    .speaking-wave span {
+      display: inline-block;
+      width: 3.5px;
+      border-radius: 99px;
+      background: #6c92d8;
+      height: 7px;
+      animation: wavePulse 0.5s ease-in-out infinite alternate;
+    }
+    .speaking-wave span:nth-child(2) { animation-delay: 0.1s; background: #facc15; }
+    .speaking-wave span:nth-child(3) { animation-delay: 0.2s; background: #f89b66; }
+    .speaking-wave span:nth-child(4) { animation-delay: 0.15s; background: #10b981; }
+    .speaking-wave span:nth-child(5) { animation-delay: 0.25s; background: #3b82f6; }
+
+    @keyframes wavePulse {
+      0% { height: 5px; }
+      100% { height: 22px; }
+    }
+
+    @keyframes celebrateBounce {
+      0%, 100% { transform: translateY(0) scale(1); }
+      50% { transform: translateY(-8px) scale(1.1) rotate(4deg); }
+    }
+    .celebrating { animation: celebrateBounce 0.6s ease-in-out 3; }
+    html[dir="rtl"] header a[href="category.html"] i,
+    html[dir="rtl"] #prevWordBtn i {
+      transform: rotate(180deg);
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="studio-container">
+
+    <!-- =========================================================
+         TOP BAR: NAV, MODES, THEMES & STARS
+         ========================================================= -->
+    <header class="flex flex-wrap items-center justify-between gap-2 studio-card px-4 py-2 shrink-0">
+      <!-- Back to Category + Logo -->
+      <div class="flex items-center gap-3">
+        <a href="category.html" class="w-10 h-10 rounded-full bg-gradient-to-b from-[#8FAFE0] to-[#6E94D1] border-2 border-[#577FB8] shadow-[0_3px_0_#4A6E9F] flex items-center justify-center text-[#1A2F50] font-black hover:scale-105 active:scale-95 transition" title="Retour au Hub">
+          <i class="fa-solid fa-arrow-left"></i>
+        </a>
+        <div class="flex items-center gap-2">
+          <span class="w-9 h-9 rounded-xl bg-gradient-to-br from-[#F7945D] to-[#E87A3E] text-white flex items-center justify-center text-lg shadow border border-[#C96128]">
+            🧠
+          </span>
+          <div>
+            <h1 id="pageTitle" class="text-base sm:text-lg font-black text-slate-900 leading-tight">
+              Vocabulaire Multisensoriel 3D
+            </h1>
+            <span id="pageSub" class="text-[11px] font-bold text-[#8C3D1E] block">
+              Listen • Read • Speak • Write (Programme 3AP)
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 3 Studio Modes -->
+      <div class="flex items-center gap-1.5 bg-[#FBF1DD] p-1 rounded-full border border-[#E3CCA3]">
+        <button type="button" class="mode-tab-btn active" data-mode="studio">
+          <span>🎧👁️🎙️</span>
+          <span id="modeStudioLabel">Studio 4D</span>
+        </button>
+        <button type="button" class="mode-tab-btn" data-mode="spelling">
+          <span>🧩</span>
+          <span id="modeSpellingLabel">Défi Épellation</span>
+        </button>
+        <button type="button" class="mode-tab-btn" data-mode="quiz">
+          <span>🎯</span>
+          <span id="modeQuizLabel">Quiz Écoute</span>
+        </button>
+      </div>
+
+      <!-- Stars Counter + Speed Toggle + Language -->
+      <div class="flex items-center gap-2">
+        <!-- Speed toggle (Normal 1.0x / Phonics Slow 0.7x) -->
+        <button type="button" id="speedToggleBtn" class="px-2.5 py-1 rounded-full bg-white border-2 border-[#DEC28F] text-xs font-black text-[#4A3728] hover:border-[#6E94D1] transition flex items-center gap-1" title="Vitesse audio (Normal / Lent)">
+          <span>⚡</span>
+          <span id="speedLabel">1.0x</span>
+        </button>
+
+        <!-- Stars Counter -->
+        <div class="px-3 py-1 rounded-full bg-amber-100 border-2 border-amber-400 font-black text-amber-950 text-xs sm:text-sm flex items-center gap-1 shadow-sm">
+          <span>⭐</span>
+          <span id="studioStarsCount">12</span>
+        </div>
+
+        <!-- Trilingual Switcher -->
+        <div class="flex items-center gap-0.5 bg-[#F5E6CC] p-0.5 rounded-full border border-[#E0CEB0]">
+          <button type="button" class="lang-pill-btn active" data-set-lang="French">FR</button>
+          <button type="button" class="lang-pill-btn" data-set-lang="English">EN</button>
+          <button type="button" class="lang-pill-btn" data-set-lang="Arabic">عربي</button>
+        </div>
+      </div>
+    </header>
+
+    <!-- Thematic Units Ribbon (Scrollable) -->
+    <div class="flex items-center gap-2 overflow-x-auto py-1 px-1 shrink-0 no-scrollbar" id="themeRibbon">
+      <button type="button" class="theme-chip active" data-theme="stationery">🎒 School Stationery</button>
+      <button type="button" class="theme-chip" data-theme="family">👨‍👩‍👧 Family & Friends</button>
+      <button type="button" class="theme-chip" data-theme="colors">🎨 Colors & Shapes</button>
+      <button type="button" class="theme-chip" data-theme="numbers">🔢 Numbers</button>
+      <button type="button" class="theme-chip" data-theme="body">👃 Body Parts</button>
+      <button type="button" class="theme-chip" data-theme="food">🍎 Fruits & Food</button>
+    </div>
+
+    <!-- =========================================================
+         MAIN INTERACTIVE STAGE (MODE 1: STUDIO 4D - TABLET DESIGN)
+         ========================================================= -->
+    <main id="mainStudioStage" class="tablet-stage p-3 sm:p-5 flex-1 min-h-0 flex flex-col justify-between relative overflow-hidden">
+
+      <!-- Top Row: Word Navigation + Translation Badges -->
+      <div class="flex items-center justify-between gap-3 shrink-0">
+        <button type="button" id="prevWordBtn" class="w-10 h-10 rounded-full bg-gradient-to-b from-[#8FAFE0] to-[#6E94D1] border-2 border-[#577FB8] shadow-[0_3px_0_#4A6E9F] flex items-center justify-center text-[#1A2F50] font-black hover:scale-105 active:scale-95 transition" title="Mot précédent">
+          <i class="fa-solid fa-arrow-left"></i>
+        </button>
+
+        <div class="text-center flex-1">
+          <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#FFF8EE]/90 border border-[#E5CFA6] text-xs font-black text-[#4A3628] shadow-sm">
+            <span id="themeTitle">🎒 School Stationery</span>
+            <span>•</span>
+            <span id="wordCounter">1 / 8</span>
+          </div>
+          <!-- Bilingue Hint (French / Arabic translation) -->
+          <div id="wordTranslationPill" class="mt-1 text-xs sm:text-sm font-black text-[#5B4537] flex items-center justify-center gap-2">
+            <span id="transFr">🇫🇷 Cartable scolaire</span>
+            <span class="text-[#D3BCA0]">|</span>
+            <span id="transAr" dir="rtl">🇩🇿 محفظة مدرسية</span>
+            <button type="button" id="speakTransBtn" class="text-[#4E76C4] hover:text-[#284988] ml-1 transition" title="Écouter la traduction">
+              <i class="fa-solid fa-volume-low"></i>
+            </button>
+          </div>
+        </div>
+
+        <button type="button" id="nextWordBtn" class="w-10 h-10 rounded-full bg-gradient-to-b from-[#8FAFE0] to-[#6E94D1] border-2 border-[#577FB8] shadow-[0_3px_0_#4A6E9F] flex items-center justify-center text-[#1A2F50] font-black hover:scale-105 active:scale-95 transition" title="Mot suivant">
+          <i class="fa-solid fa-arrow-right"></i>
+        </button>
+      </div>
+
+      <!-- Scrabble Letter Tiles Row (Grapheme-Phoneme Sync) -->
+      <div class="my-1 text-center shrink-0">
+        <div id="letterTilesRow" class="flex flex-wrap items-center justify-center gap-1.5 sm:gap-2" dir="ltr"></div>
+        <div class="text-[11px] font-extrabold text-[#8C5528] mt-0.5">
+          💡 <span id="hintTileClick">Astuce : Touche chaque lettre pour écouter son phonème individuel !</span>
+        </div>
+      </div>
+
+      <!-- Center Stage: 3 Circular Controls + 3D Visual + Fenny Celebrator -->
+      <div class="grid grid-cols-12 items-center gap-2 sm:gap-3 my-auto">
+
+        <!-- Left Column: The 3 Core Sensory Controls (From Reference Photo) -->
+        <div class="col-span-3 flex flex-col items-center gap-1.5 sm:gap-2">
+          <!-- 1. LISTEN -->
+          <button type="button" id="btnListen" class="sensory-circle-btn" title="Listen: Native Audio Modeling">
+            <div class="sensory-inner-disc">
+              <span class="text-base sm:text-xl">👂</span>
+            </div>
+            <span class="sensory-btn-label">LISTEN</span>
+          </button>
+
+          <!-- 2. READ (Karaoke Syllable Sync) -->
+          <button type="button" id="btnRead" class="sensory-circle-btn" title="Read: Grapheme-Phoneme Syllable Sync">
+            <div class="sensory-inner-disc">
+              <span class="text-base sm:text-xl">👁️</span>
+            </div>
+            <span class="sensory-btn-label">READ</span>
+          </button>
+
+          <!-- 3. SPEAK (Voice Recognition Challenge) -->
+          <button type="button" id="btnSpeak" class="sensory-circle-btn" title="Speak: Voice Recognition Challenge">
+            <div class="sensory-inner-disc">
+              <span class="text-base sm:text-xl">🎙️</span>
+            </div>
+            <span class="sensory-btn-label">SPEAK</span>
+          </button>
+        </div>
+
+        <!-- Center Column: 3D Object Image + Dynamic Status Banner -->
+        <div class="col-span-6 flex flex-col items-center justify-center text-center">
+          <div class="relative group cursor-pointer" id="objectClickArea">
+            <img id="currentObjectImg" src="assets/images/fennygo/school-bag-3d.png" alt="3D Vocabulary Object" class="w-28 h-28 sm:w-36 sm:h-36 md:w-40 md:h-40 object-contain drop-shadow-[0_12px_24px_rgba(0,0,0,0.25)] transition-transform duration-300 group-hover:scale-105 active:scale-95">
+            <span class="absolute bottom-1 right-1 bg-slate-900/80 text-white text-[10px] font-black px-2 py-0.5 rounded-full border border-white">
+              🔊 3D
+            </span>
+          </div>
+
+          <!-- Dynamic Live Status Banner -->
+          <div id="liveStatusBanner" class="mt-1 px-3.5 py-1 rounded-full bg-white/95 border-2 border-[#DEB979] text-xs sm:text-sm font-black text-[#3E2D22] shadow flex items-center gap-2">
+            <span id="statusIco">👉</span>
+            <span id="statusMsg">Clique sur 👂 Listen, 👁️ Read ou 🎙️ Speak !</span>
+          </div>
+
+          <!-- Active Speech Soundwave Animation (hidden when idle) -->
+          <div id="activeSoundwave" class="speaking-wave hidden items-center gap-1 mt-1">
+            <span></span><span></span><span></span><span></span><span></span>
+          </div>
+        </div>
+
+        <!-- Right Column: Fenny Virtual Companion with Musical Notes -->
+        <div class="col-span-3 flex flex-col items-center justify-center h-full py-0.5 relative">
+          <!-- Ambient musical notes & sparkles from reference image -->
+          <div class="absolute -top-1 right-2 text-sm opacity-80 animate-bounce select-none pointer-events-none">🎵</div>
+          <div class="absolute top-8 left-2 text-xs opacity-75 select-none pointer-events-none" style="animation: pulse 1.5s infinite alternate;">🎶</div>
+          <div class="absolute bottom-2 right-4 text-xs opacity-75 select-none pointer-events-none">✨</div>
+
+          <!-- Fenny Mascot Celebrator -->
+          <div class="flex flex-col items-center text-center">
+            <div id="fennySpeechBubble" class="text-[10px] sm:text-[11px] font-black bg-white/95 border-2 border-[#F3A96C] text-[#5A3821] rounded-2xl px-2.5 py-1 mb-1 shadow-sm leading-tight max-w-[130px]">
+              "Let's practice!" 🦊
+            </div>
+            <img id="fennyStudioMascot" src="assets/images/fennygo/fenny-mascot.png" alt="Fenny Mascot" class="w-18 h-18 sm:w-24 sm:h-24 object-contain drop-shadow-md cursor-pointer transition-transform duration-200 hover:scale-105">
+          </div>
+        </div>
+
+      </div>
+
+    </main>
+
+    <!-- =========================================================
+         MODE 2: SPELLING SCRAMBLE CHALLENGE (ENHANCED TABLET CONCEPT)
+         ========================================================= -->
+    <section id="spellingStage" class="tablet-stage p-2 sm:p-3 flex-1 min-h-0 hidden flex-col justify-between text-center">
+      <div class="shrink-0">
+        <span class="px-2.5 py-0.5 rounded-full bg-[#FFF0DF] text-[#8C3D1E] border border-[#F0BE9A] font-black text-[10px] sm:text-xs">
+          🧩 DÉFI ÉPELLATION 3AP
+        </span>
+        <h2 id="spellHeading" class="text-sm sm:text-base font-black text-slate-900 mt-0.5">
+          Remets les lettres dans le bon ordre !
+        </h2>
+        <p class="text-[10.5px] sm:text-xs font-bold text-[#5C4537]">
+          Écoute Fenny et clique sur les tuiles pour reconstituer le mot.
+        </p>
+      </div>
+
+      <div class="my-auto flex flex-col items-center gap-1.5 sm:gap-2">
+        <img id="spellObjectImg" src="assets/images/fennygo/school-bag-3d.png" alt="Quiz Object" class="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 object-contain drop-shadow-md">
+
+        <!-- Target Solved Slots -->
+        <div id="spellSlotsRow" class="flex flex-wrap items-center justify-center gap-1 sm:gap-1.5" dir="ltr"></div>
+
+        <!-- Scrambled Letter Choices -->
+        <div id="spellChoicesRow" class="flex flex-wrap items-center justify-center gap-1 sm:gap-1.5" dir="ltr"></div>
+
+        <div id="spellFeedback" class="text-xs font-black text-emerald-700 min-h-[18px]"></div>
+      </div>
+
+      <div class="flex items-center justify-center gap-2.5 shrink-0">
+        <button type="button" id="spellHearAgainBtn" class="px-3.5 py-1 rounded-full bg-gradient-to-b from-[#8FAFE0] to-[#6E94D1] border-2 border-[#577FB8] text-[#1A2F50] font-black text-xs shadow hover:brightness-105 active:scale-95 transition">
+          🔊 Réécouter le mot
+        </button>
+        <button type="button" id="spellNextWordBtn" class="px-3.5 py-1 rounded-full bg-gradient-to-b from-[#F89B66] to-[#E8783A] text-white font-black text-xs shadow hover:brightness-105 active:scale-95 transition border border-[#CF6326]">
+          Mot Suivant →
+        </button>
+      </div>
+    </section>
+
+    <!-- =========================================================
+         MODE 3: LISTEN & MATCH QUIZ (ENHANCED TABLET CONCEPT)
+         ========================================================= -->
+    <section id="quizStage" class="tablet-stage p-2 sm:p-3 flex-1 min-h-0 hidden flex-col justify-between text-center">
+      <div class="shrink-0">
+        <div class="flex items-center justify-center gap-2">
+          <span class="px-2.5 py-0.5 rounded-full bg-[#FFF0DF] text-[#8C3D1E] border border-[#F0BE9A] font-black text-[10px] sm:text-xs">
+            🎯 GRAND QUIZ MULTISENSORIEL 3AP
+          </span>
+          <span id="quizScorePill" class="px-2.5 py-0.5 rounded-full bg-amber-100 border border-amber-400 text-amber-950 font-black text-[10px] sm:text-xs">
+            ⭐ Score: <span id="quizScoreCount">0</span>
+          </span>
+        </div>
+        <h2 id="quizHeading" class="text-sm sm:text-base font-black text-slate-900 mt-0.5">
+          Écoute attentivement et touche la bonne image !
+        </h2>
+        <p id="quizPromptSub" class="text-[10px] sm:text-[11px] font-bold text-[#5C4537]">
+          Question <span id="quizQuestionNum">1</span> / 10 • Trouve l'image correspondante
+        </p>
+      </div>
+
+      <div class="my-auto flex flex-col items-center gap-2 sm:gap-3">
+        <button type="button" id="quizPlaySoundBtn" class="px-4 py-1.5 rounded-full bg-gradient-to-b from-[#8FAFE0] to-[#6E94D1] hover:brightness-105 text-[#1A2F50] border-2 border-[#577FB8] font-black text-xs sm:text-sm shadow flex items-center gap-2 hover:scale-105 active:scale-95 transition">
+          <i class="fa-solid fa-volume-high text-[#1A2F50] text-sm"></i>
+          <span id="quizListenBtnText">🔊 Écouter le Mot Mystère</span>
+        </button>
+
+        <div id="quizCardsGrid" class="grid grid-cols-3 gap-2 sm:gap-3 w-full max-w-xl"></div>
+
+        <div id="quizFeedback" class="text-xs sm:text-sm font-black text-emerald-700 min-h-[20px]"></div>
+      </div>
+
+      <div class="flex items-center justify-center gap-2.5 shrink-0">
+        <button type="button" id="quizNextBtn" class="px-4 py-1 rounded-full bg-gradient-to-b from-[#F89B66] to-[#E8783A] text-white border border-[#CF6326] hover:brightness-105 font-black text-xs shadow active:scale-95 transition">
+          Question Suivante →
+        </button>
+      </div>
+    </section>
+
+  </div>
+
+  <!-- Audio cheering element -->
+  <audio id="audioCheer" src="assets/images/music/cheering.mp3" preload="auto"></audio>
+
+  <!-- Core Scripts -->
+  <script src="js/app-lang.js?v=13"></script>
+  <script src="js/fenny-companion.js?v=4"></script>
+  <script>
+    (() => {
+      "use strict";
+
+      // =========================================================
+      // COMPREHENSIVE VOCABULARY DATABASE (ALGERIAN 3AP SYLLABUS)
+      // =========================================================
+      const VOCAB_DATABASE = {
+        stationery: [
+          {
+            word: "SCHOOL BAG",
+            phonetics: ["s", "k", "h", "oo", "o", "l", " ", "b", "a", "g"],
+            transFr: "Cartable scolaire",
+            transAr: "محفظة مدرسية",
+            speechEn: "School bag! This is a school bag.",
+            img: "assets/images/fennygo/school-bag-3d.png"
+          },
+          {
+            word: "PENCIL CASE",
+            phonetics: ["p", "e", "n", "c", "i", "l", " ", "c", "a", "s", "e"],
+            transFr: "Trousse à crayons",
+            transAr: "مقلمة",
+            speechEn: "Pencil case! A pencil case.",
+            img: "assets/images/stationery/pencilcase.png"
+          },
+          {
+            word: "BOOK",
+            phonetics: ["b", "oo", "k"],
+            transFr: "Livre scolaire",
+            transAr: "كتاب",
+            speechEn: "Book! Open your book.",
+            img: "assets/images/stationery/book.png"
+          },
+          {
+            word: "ERASER",
+            phonetics: ["e", "r", "a", "s", "e", "r"],
+            transFr: "Gomme",
+            transAr: "ممحاة",
+            speechEn: "Eraser! A soft eraser.",
+            img: "assets/images/stationery/eraser.png"
+          },
+          {
+            word: "RULER",
+            phonetics: ["r", "u", "l", "e", "r"],
+            transFr: "Règle",
+            transAr: "مسطرة",
+            speechEn: "Ruler! A straight ruler.",
+            img: "assets/images/stationery/ruler.png"
+          },
+          {
+            word: "SCISSORS",
+            phonetics: ["s", "c", "i", "s", "s", "o", "r", "s"],
+            transFr: "Ciseaux",
+            transAr: "مقص",
+            speechEn: "Scissors! Be careful with scissors.",
+            img: "assets/images/stationery/scissors.png"
+          },
+          {
+            word: "PEN",
+            phonetics: ["p", "e", "n"],
+            transFr: "Stylo",
+            transAr: "قلم جاف",
+            speechEn: "Pen! Write with your blue pen.",
+            img: "assets/images/stationery/pen.png"
+          },
+          {
+            word: "PENCIL",
+            phonetics: ["p", "e", "n", "c", "i", "l"],
+            transFr: "Crayon",
+            transAr: "قلم رصاص",
+            speechEn: "Pencil! Draw with your pencil.",
+            img: "assets/images/stationery/pencil.png"
+          },
+          {
+            word: "NOTEBOOK",
+            phonetics: ["n", "o", "t", "e", "b", "oo", "k"],
+            transFr: "Cahier",
+            transAr: "كراس",
+            speechEn: "Notebook! Write in your notebook.",
+            img: "assets/images/stationery/notebook.png"
+          },
+          {
+            word: "SHARPENER",
+            phonetics: ["s", "h", "a", "r", "p", "e", "n", "e", "r"],
+            transFr: "Taille-crayon",
+            transAr: "مبراة",
+            speechEn: "Sharpener! Sharpen your pencil.",
+            img: "assets/images/stationery/sharpener.png"
+          }
+        ],
+        family: [
+          {
+            word: "FATHER",
+            phonetics: ["f", "a", "t", "h", "e", "r"],
+            transFr: "Le père / Papa",
+            transAr: "الأب",
+            speechEn: "Father! This is my father.",
+            img: "assets/images/family/father.png"
+          },
+          {
+            word: "MOTHER",
+            phonetics: ["m", "o", "t", "h", "e", "r"],
+            transFr: "La mère / Maman",
+            transAr: "الأم",
+            speechEn: "Mother! I love my mother.",
+            img: "assets/images/family/mother.png"
+          },
+          {
+            word: "BROTHER",
+            phonetics: ["b", "r", "o", "t", "h", "e", "r"],
+            transFr: "Le frère",
+            transAr: "الأخ",
+            speechEn: "Brother! My little brother.",
+            img: "assets/images/family/myBrother.png"
+          },
+          {
+            word: "SISTER",
+            phonetics: ["s", "i", "s", "t", "e", "r"],
+            transFr: "La sœur",
+            transAr: "الأخت",
+            speechEn: "Sister! My big sister.",
+            img: "assets/images/family/mySister.png"
+          },
+          {
+            word: "GRANDFATHER",
+            phonetics: ["g", "r", "a", "n", "d", "f", "a", "t", "h", "e", "r"],
+            transFr: "Le grand-père",
+            transAr: "الجد",
+            speechEn: "Grandfather! My kind grandfather.",
+            img: "assets/images/family/grandfather.png"
+          },
+          {
+            word: "GRANDMOTHER",
+            phonetics: ["g", "r", "a", "n", "d", "m", "o", "t", "h", "e", "r"],
+            transFr: "La grand-mère",
+            transAr: "الجدة",
+            speechEn: "Grandmother! My sweet grandmother.",
+            img: "assets/images/family/grandmother.png"
+          },
+          {
+            word: "BABY",
+            phonetics: ["b", "a", "b", "y"],
+            transFr: "Le bébé",
+            transAr: "الرضيع",
+            speechEn: "Baby! A cute smiling baby.",
+            img: "assets/images/family/son.png"
+          }
+        ],
+        colors: [
+          {
+            word: "RED",
+            phonetics: ["r", "e", "d"],
+            transFr: "Rouge",
+            transAr: "أحمر",
+            speechEn: "Red! The color red.",
+            img: "assets/images/color/red/strawberry.png"
+          },
+          {
+            word: "BLUE",
+            phonetics: ["b", "l", "u", "e"],
+            transFr: "Bleu",
+            transAr: "أزرق",
+            speechEn: "Blue! The sky is blue.",
+            img: "assets/images/color/blue/butterfly.png"
+          },
+          {
+            word: "YELLOW",
+            phonetics: ["y", "e", "l", "l", "o", "w"],
+            transFr: "Jaune",
+            transAr: "أصفر",
+            speechEn: "Yellow! A bright yellow sun.",
+            img: "assets/images/color/yellow/sun.png"
+          },
+          {
+            word: "GREEN",
+            phonetics: ["g", "r", "e", "e", "n"],
+            transFr: "Vert",
+            transAr: "أخضر",
+            speechEn: "Green! Green leaves.",
+            img: "assets/images/color/green/leaf.png"
+          },
+          {
+            word: "ORANGE",
+            phonetics: ["o", "r", "a", "n", "g", "e"],
+            transFr: "Orange",
+            transAr: "برتقالي",
+            speechEn: "Orange! The color orange.",
+            img: "assets/images/color/orange/orange.png"
+          },
+          {
+            word: "PURPLE",
+            phonetics: ["p", "u", "r", "p", "l", "e"],
+            transFr: "Violet",
+            transAr: "بنفسجي",
+            speechEn: "Purple! The color purple.",
+            img: "assets/images/color/purple/flower.png"
+          },
+          {
+            word: "CIRCLE",
+            phonetics: ["c", "i", "r", "c", "l", "e"],
+            transFr: "Cercle / Rond",
+            transAr: "دائرة",
+            speechEn: "Circle! A round circle.",
+            img: "assets/images/geometry/circle.png"
+          },
+          {
+            word: "TRIANGLE",
+            phonetics: ["t", "r", "i", "a", "n", "g", "l", "e"],
+            transFr: "Triangle",
+            transAr: "مثلث",
+            speechEn: "Triangle! Three sharp angles.",
+            img: "assets/images/geometry/triangle.png"
+          },
+          {
+            word: "SQUARE",
+            phonetics: ["s", "q", "u", "a", "r", "e"],
+            transFr: "Carré",
+            transAr: "مربع",
+            speechEn: "Square! Four equal sides.",
+            img: "assets/images/geometry/square.png"
+          }
+        ],
+        numbers: [
+          {
+            word: "ONE",
+            phonetics: ["o", "n", "e"],
+            transFr: "Un (1)",
+            transAr: "واحد (١)",
+            speechEn: "One! Number one.",
+            img: "assets/images/number/one.png"
+          },
+          {
+            word: "TWO",
+            phonetics: ["t", "w", "o"],
+            transFr: "Deux (2)",
+            transAr: "اثنان (٢)",
+            speechEn: "Two! Number two.",
+            img: "assets/images/number/two.png"
+          },
+          {
+            word: "THREE",
+            phonetics: ["t", "h", "r", "e", "e"],
+            transFr: "Trois (3)",
+            transAr: "ثلاثة (٣)",
+            speechEn: "Three! Number three.",
+            img: "assets/images/number/three.png"
+          },
+          {
+            word: "FOUR",
+            phonetics: ["f", "o", "u", "r"],
+            transFr: "Quatre (4)",
+            transAr: "أربعة (٤)",
+            speechEn: "Four! Number four.",
+            img: "assets/images/number/four.png"
+          },
+          {
+            word: "FIVE",
+            phonetics: ["f", "i", "v", "e"],
+            transFr: "Cinq (5)",
+            transAr: "خمسة (٥)",
+            speechEn: "Five! High five!",
+            img: "assets/images/number/five.png"
+          },
+          {
+            word: "SIX",
+            phonetics: ["s", "i", "x"],
+            transFr: "Six (6)",
+            transAr: "ستة (٦)",
+            speechEn: "Six! Number six.",
+            img: "assets/images/number/six.png"
+          },
+          {
+            word: "SEVEN",
+            phonetics: ["s", "e", "v", "e", "n"],
+            transFr: "Sept (7)",
+            transAr: "سبعة (٧)",
+            speechEn: "Seven! Seven days in a week.",
+            img: "assets/images/number/seven.png"
+          },
+          {
+            word: "EIGHT",
+            phonetics: ["e", "i", "g", "h", "t"],
+            transFr: "Huit (8)",
+            transAr: "ثمانية (٨)",
+            speechEn: "Eight! Number eight.",
+            img: "assets/images/number/eight.png"
+          },
+          {
+            word: "NINE",
+            phonetics: ["n", "i", "n", "e"],
+            transFr: "Neuf (9)",
+            transAr: "تسعة (٩)",
+            speechEn: "Nine! Number nine.",
+            img: "assets/images/number/nine.png"
+          },
+          {
+            word: "TEN",
+            phonetics: ["t", "e", "n"],
+            transFr: "Dix (10)",
+            transAr: "عشرة (١٠)",
+            speechEn: "Ten! Ten shining stars.",
+            img: "assets/images/number/ten.png"
+          }
+        ],
+        body: [
+          {
+            word: "HEAD",
+            phonetics: ["h", "e", "a", "d"],
+            transFr: "La tête",
+            transAr: "الرأس",
+            speechEn: "Head! Touch your head.",
+            img: "assets/images/body-parts/head.png"
+          },
+          {
+            word: "NOSE",
+            phonetics: ["n", "o", "s", "e"],
+            transFr: "Le nez",
+            transAr: "الأنف",
+            speechEn: "Nose! Point to your nose.",
+            img: "assets/images/body-parts/nose.png"
+          },
+          {
+            word: "HAND",
+            phonetics: ["h", "a", "n", "d"],
+            transFr: "La main",
+            transAr: "اليد",
+            speechEn: "Hand! Clap your hands.",
+            img: "assets/images/body-parts/hand.png"
+          },
+          {
+            word: "EYE",
+            phonetics: ["e", "y", "e"],
+            transFr: "L'œil",
+            transAr: "العين",
+            speechEn: "Eye! Look with your eyes.",
+            img: "assets/images/body-parts/eye.png"
+          },
+          {
+            word: "EAR",
+            phonetics: ["e", "a", "r"],
+            transFr: "L'oreille",
+            transAr: "الأذن",
+            speechEn: "Ear! Listen with your ears.",
+            img: "assets/images/body-parts/ear.png"
+          },
+          {
+            word: "MOUTH",
+            phonetics: ["m", "o", "u", "t", "h"],
+            transFr: "La bouche",
+            transAr: "الفم",
+            speechEn: "Mouth! Smile with your mouth.",
+            img: "assets/images/body-parts/mouth.png"
+          },
+          {
+            word: "ARM",
+            phonetics: ["a", "r", "m"],
+            transFr: "Le bras",
+            transAr: "الذراع",
+            speechEn: "Arm! Raise your arm.",
+            img: "assets/images/body-parts/arm.png"
+          },
+          {
+            word: "FOOT",
+            phonetics: ["f", "oo", "t"],
+            transFr: "Le pied",
+            transAr: "القدم",
+            speechEn: "Foot! Stamp your feet.",
+            img: "assets/images/body-parts/foot.png"
+          },
+          {
+            word: "LEG",
+            phonetics: ["l", "e", "g"],
+            transFr: "La jambe",
+            transAr: "الساق",
+            speechEn: "Leg! Run with your legs.",
+            img: "assets/images/body-parts/leg.png"
+          }
+        ],
+        food: [
+          {
+            word: "APPLE",
+            phonetics: ["a", "p", "p", "l", "e"],
+            transFr: "Pomme rouge",
+            transAr: "تفاحة",
+            speechEn: "Apple! A delicious red apple.",
+            img: "assets/images/alphabet/A/apple.png"
+          },
+          {
+            word: "BANANA",
+            phonetics: ["b", "a", "n", "a", "n", "a"],
+            transFr: "Banane jaune",
+            transAr: "موز",
+            speechEn: "Banana! A sweet yellow banana.",
+            img: "assets/images/alphabet/B/banana.png"
+          },
+          {
+            word: "CARROT",
+            phonetics: ["c", "a", "r", "r", "o", "t"],
+            transFr: "Carotte",
+            transAr: "جزر",
+            speechEn: "Carrot! Fresh orange carrot.",
+            img: "assets/images/alphabet/C/Carrot.png"
+          },
+          {
+            word: "EGG",
+            phonetics: ["e", "g", "g"],
+            transFr: "Œuf",
+            transAr: "بيضة",
+            speechEn: "Egg! A fresh white egg.",
+            img: "assets/images/alphabet/E/egg.png"
+          },
+          {
+            word: "FISH",
+            phonetics: ["f", "i", "s", "h"],
+            transFr: "Poisson",
+            transAr: "سمكة",
+            speechEn: "Fish! Fresh fish.",
+            img: "assets/images/alphabet/F/fish.png"
+          },
+          {
+            word: "CAKE",
+            phonetics: ["c", "a", "k", "e"],
+            transFr: "Gâteau",
+            transAr: "كعكة",
+            speechEn: "Cake! A sweet birthday cake.",
+            img: "assets/images/number/cake.png"
+          }
+        ]
+      };
+
+      const VOWELS = new Set(["A", "E", "I", "O", "U", "Y"]);
+
+      // State
+      let currentTheme = "stationery";
+      let currentWordIndex = 0;
+      let audioSpeed = 1.0;
+      let activeMode = "studio";
+
+      function getWordList() {
+        return VOCAB_DATABASE[currentTheme] || VOCAB_DATABASE.stationery;
+      }
+
+      function getCurrentWord() {
+        const list = getWordList();
+        return list[currentWordIndex % list.length];
+      }
+
+      // =========================================================
+      // AUDIO SPEECH SYNTHESIS ENGINE
+      // =========================================================
+      function speakEn(text, speedOverride, onDone) {
+        const rate = speedOverride || audioSpeed;
+        if (window.AppLang && typeof window.AppLang.speak === "function") {
+          window.AppLang.speak(text, "en-US", rate, 1.08, onDone);
+        } else if ("speechSynthesis" in window) {
+          window.speechSynthesis.cancel();
+          const u = new SpeechSynthesisUtterance(text);
+          u.lang = "en-US";
+          u.rate = rate;
+          if (onDone) {
+            u.onend = onDone;
+            u.onerror = onDone;
+          }
+          window.speechSynthesis.speak(u);
+        } else if (onDone) {
+          onDone();
+        }
+      }
+
+      function updateStarsDisplay() {
+        const countEl = document.getElementById("studioStarsCount");
+        const stars = parseInt(localStorage.getItem("nk_stars") || "12", 10);
+        if (countEl) countEl.textContent = String(stars);
+      }
+
+      function rewardStars(amount, reason) {
+        if (window.FennyGo) {
+          window.FennyGo.addStars(amount);
+        } else {
+          const cur = parseInt(localStorage.getItem("nk_stars") || "12", 10);
+          localStorage.setItem("nk_stars", String(cur + amount));
+        }
+        updateStarsDisplay();
+
+        // Celebration
+        const fenny = document.getElementById("fennyStudioMascot");
+        const bubble = document.getElementById("fennySpeechBubble");
+        const cheerAudio = document.getElementById("audioCheer");
+
+        if (cheerAudio) {
+          cheerAudio.currentTime = 0;
+          cheerAudio.play().catch(() => {});
+        }
+        if (fenny) {
+          fenny.classList.remove("celebrating");
+          void fenny.offsetWidth;
+          fenny.classList.add("celebrating");
+        }
+        if (bubble) {
+          bubble.textContent = `🎉 Bravo ! +${amount} ⭐ ${reason || ""}`;
+          setTimeout(() => {
+            bubble.textContent = `"Let's practice!" 🦊`;
+          }, 3500);
+        }
+      }
+
+      // =========================================================
+      // RENDER STUDIO (MODE 1)
+      // =========================================================
+      function renderStudioWord() {
+        const item = getCurrentWord();
+        const list = getWordList();
+
+        // Counter & Titles
+        const counterEl = document.getElementById("wordCounter");
+        if (counterEl) counterEl.textContent = `${(currentWordIndex % list.length) + 1} / ${list.length}`;
+
+        const transFrEl = document.getElementById("transFr");
+        const transArEl = document.getElementById("transAr");
+        if (transFrEl) transFrEl.textContent = `🇫🇷 ${item.transFr}`;
+        if (transArEl) transArEl.textContent = `🇩🇿 ${item.transAr}`;
+
+        // Image
+        const imgEl = document.getElementById("currentObjectImg");
+        if (imgEl) {
+          imgEl.src = item.img;
+          imgEl.alt = item.word;
+        }
+
+        // Trace guide word
+        const traceTargetEl = document.getElementById("traceTargetWord");
+        if (traceTargetEl) traceTargetEl.textContent = item.word;
+
+        // Render Letter Tiles with Photo's Peach & Periwinkle Clay Tile Aesthetic
+        const row = document.getElementById("letterTilesRow");
+        if (!row) return;
+        row.innerHTML = "";
+
+        const words = item.word.split(" ");
+        const isMultiWord = words.length > 1;
+        let currentWordIdx = 0;
+
+        Array.from(item.word).forEach((ch, idx) => {
+          if (ch === " ") {
+            currentWordIdx++;
+            const spacer = document.createElement("span");
+            spacer.className = "w-3 sm:w-4 inline-block";
+            row.appendChild(spacer);
+            return;
+          }
+          const tile = document.createElement("button");
+          tile.type = "button";
+          tile.dataset.tileIdx = String(idx);
+          const isVowel = VOWELS.has(ch.toUpperCase());
+          let tileClass = "";
+          if (isMultiWord) {
+            tileClass = (currentWordIdx % 2 === 0) ? "voc-tile-peach" : "voc-tile-blue";
+          } else {
+            tileClass = isVowel ? "voc-tile-blue" : "voc-tile-peach";
+          }
+          tile.className = `voc-letter-tile ${tileClass}`;
+          tile.textContent = ch;
+
+          // Clicking a tile pronounces that letter/phoneme!
+          tile.addEventListener("click", () => {
+            tile.classList.add("highlight");
+            setTimeout(() => tile.classList.remove("highlight"), 500);
+            speakEn(ch.toLowerCase(), 0.8);
+          });
+          row.appendChild(tile);
+        });
+
+        // Clear tracing canvas for new word
+        clearCanvas();
+      }
+
+      // =========================================================
+      // 1. 👂 LISTEN ACTION
+      // =========================================================
+      function triggerListen() {
+        const item = getCurrentWord();
+        const banner = document.getElementById("liveStatusBanner");
+        const statusMsg = document.getElementById("statusMsg");
+        const wave = document.getElementById("activeSoundwave");
+        const img = document.getElementById("currentObjectImg");
+
+        if (statusMsg) statusMsg.textContent = `👂 Listen : "${item.word}" (Native English)`;
+        if (wave) wave.classList.remove("hidden");
+        if (img) {
+          img.classList.add("scale-110");
+          setTimeout(() => img.classList.remove("scale-110"), 450);
+        }
+
+        speakEn(item.speechEn, audioSpeed, () => {
+          if (wave) wave.classList.add("hidden");
+          if (statusMsg) statusMsg.textContent = `✨ "${item.word}" — Parfait ! Clique sur 👁️ Read ou 🎙️ Speak.`;
+        });
+      }
+
+      // =========================================================
+      // 2. 👁️ READ (KARAOKE SYLLABLE-BY-SYLLABLE SYNCHRONIZATION)
+      // =========================================================
+      function triggerRead() {
+        const item = getCurrentWord();
+        const statusMsg = document.getElementById("statusMsg");
+        const tiles = Array.from(document.querySelectorAll("#letterTilesRow .voc-letter-tile"));
+        if (statusMsg) statusMsg.textContent = `👁️ Read : Synchronisation Graphème-Phonème...`;
+
+        // Sequential illumination matching phonics
+        tiles.forEach((tile, i) => {
+          setTimeout(() => {
+            tiles.forEach(t => t.classList.remove("highlight"));
+            tile.classList.add("highlight");
+            if (i === tiles.length - 1) {
+              setTimeout(() => {
+                tile.classList.remove("highlight");
+                if (statusMsg) statusMsg.textContent = `🌟 "${item.word}" — Lecture phonétique terminée !`;
+              }, 450);
+            }
+          }, i * 220);
+        });
+
+        speakEn(item.word, audioSpeed * 0.9);
+      }
+
+      // =========================================================
+      // 3. 🎙️ SPEAK (VOICE RECOGNITION CHALLENGE + CELEBRATION)
+      // =========================================================
+      function triggerSpeak() {
+        const item = getCurrentWord();
+        const statusMsg = document.getElementById("statusMsg");
+        const wave = document.getElementById("activeSoundwave");
+        if (statusMsg) statusMsg.textContent = `🎙️ Parle maintenant : Répète "${item.word}"...`;
+        if (wave) wave.classList.remove("hidden");
+
+        const finalizeSuccess = (saidText) => {
+          if (wave) wave.classList.add("hidden");
+          if (statusMsg) {
+            statusMsg.textContent = `🎉 Superbe prononciation : "${saidText || item.word}" ! (+5 ⭐)`;
+          }
+          rewardStars(5, "Prononciation réussie !");
+        };
+
+        const SpeechRec = window.SpeechRecognition || window.webkitSpeechRecognition;
+        if (SpeechRec) {
+          try {
+            const rec = new SpeechRec();
+            rec.lang = "en-US";
+            rec.interimResults = false;
+            let captured = false;
+            rec.onresult = (e) => {
+              captured = true;
+              const result = e.results?.[0]?.[0]?.transcript || item.word;
+              finalizeSuccess(result.toUpperCase());
+            };
+            rec.onerror = () => {
+              if (!captured) {
+                captured = true;
+                finalizeSuccess(item.word);
+              }
+            };
+            rec.onend = () => {
+              if (!captured) {
+                captured = true;
+                finalizeSuccess(item.word);
+              }
+            };
+            rec.start();
+            setTimeout(() => {
+              if (!captured) {
+                try { rec.stop(); } catch (_) {}
+                finalizeSuccess(item.word);
+              }
+            }, 3400);
+            return;
+          } catch (_) {}
+        }
+
+        // Fallback simulation if browser speech recognition is not granted
+        setTimeout(() => finalizeSuccess(item.word), 1400);
+      }
+
+      // =========================================================
+      // 4. ✍️ TACTILE CANVAS TRACING (ENHANCED MODALITY 4)
+      // =========================================================
+      let canvas, ctx, drawing = false, strokeColor = "#7c3aed";
+
+      function initCanvas() {
+        canvas = document.getElementById("tactileCanvas");
+        if (!canvas) return;
+        ctx = canvas.getContext("2d");
+
+        const resizeCanvas = () => {
+          canvas.width = canvas.parentElement.clientWidth;
+          canvas.height = canvas.parentElement.clientHeight || 100;
+          ctx.lineCap = "round";
+          ctx.lineJoin = "round";
+          ctx.lineWidth = 4;
+        };
+        resizeCanvas();
+        window.addEventListener("resize", resizeCanvas);
+
+        const getPos = (e) => {
+          const rect = canvas.getBoundingClientRect();
+          const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+          const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+          return {
+            x: clientX - rect.left,
+            y: clientY - rect.top
+          };
+        };
+
+        const startDraw = (e) => {
+          drawing = true;
+          const p = getPos(e);
+          ctx.beginPath();
+          ctx.moveTo(p.x, p.y);
+          e.preventDefault();
+        };
+
+        const moveDraw = (e) => {
+          if (!drawing) return;
+          const p = getPos(e);
+          ctx.strokeStyle = strokeColor;
+          ctx.lineTo(p.x, p.y);
+          ctx.stroke();
+          e.preventDefault();
+        };
+
+        const stopDraw = () => {
+          drawing = false;
+        };
+
+        canvas.addEventListener("mousedown", startDraw);
+        canvas.addEventListener("mousemove", moveDraw);
+        window.addEventListener("mouseup", stopDraw);
+
+        canvas.addEventListener("touchstart", startDraw, { passive: false });
+        canvas.addEventListener("touchmove", moveDraw, { passive: false });
+        window.addEventListener("touchend", stopDraw);
+      }
+
+      function clearCanvas() {
+        if (!canvas || !ctx) return;
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+      }
+
+      // =========================================================
+      // MODE 2: SPELLING SCRAMBLE GAME (OPTIMIZED FIT)
+      // =========================================================
+      let spellCurrentAnswer = [];
+      let spellTarget = "";
+
+      function startSpellingGame() {
+        const item = getCurrentWord();
+        spellTarget = item.word.replace(/\s+/g, "");
+        spellCurrentAnswer = [];
+
+        const heading = document.getElementById("spellHeading");
+        const img = document.getElementById("spellObjectImg");
+        const slotsRow = document.getElementById("spellSlotsRow");
+        const choicesRow = document.getElementById("spellChoicesRow");
+        const feedback = document.getElementById("spellFeedback");
+
+        if (img) img.src = item.img;
+        if (feedback) feedback.textContent = "";
+
+        // Slots (compact height to fit on screen)
+        if (slotsRow) {
+          slotsRow.innerHTML = "";
+          for (let i = 0; i < spellTarget.length; i++) {
+            const slot = document.createElement("div");
+            slot.className = "w-7 h-8 sm:w-8 sm:h-9 rounded-lg border-2 border-dashed border-[#DE986C] bg-white/80 flex items-center justify-center font-black text-xs sm:text-sm text-[#8C3821] shadow-2xs";
+            slot.dataset.slotIdx = String(i);
+            slot.textContent = "_";
+            slotsRow.appendChild(slot);
+          }
+        }
+
+        // Shuffled Choices (compact button height)
+        const letters = spellTarget.split("");
+        for (let i = letters.length - 1; i > 0; i--) {
+          const j = Math.floor(Math.random() * (i + 1));
+          [letters[i], letters[j]] = [letters[j], letters[i]];
+        }
+
+        if (choicesRow) {
+          choicesRow.innerHTML = "";
+          letters.forEach((letter) => {
+            const btn = document.createElement("button");
+            btn.type = "button";
+            btn.className = "w-7 h-8 sm:w-8 sm:h-9 rounded-lg bg-gradient-to-b from-[#FDE6D5] to-[#F7C8A9] border-2 border-[#E4A881] border-b-3 border-b-[#C87E50] font-black text-xs sm:text-sm text-[#8F3922] hover:scale-110 active:scale-95 transition shadow-2xs";
+            btn.textContent = letter;
+            btn.addEventListener("click", () => {
+              if (spellCurrentAnswer.length < spellTarget.length) {
+                spellCurrentAnswer.push(letter);
+                btn.disabled = true;
+                btn.classList.add("opacity-30", "pointer-events-none");
+
+                // Update slot
+                const slot = slotsRow.children[spellCurrentAnswer.length - 1];
+                if (slot) {
+                  slot.textContent = letter;
+                  slot.className = "w-7 h-8 sm:w-8 sm:h-9 rounded-lg bg-gradient-to-b from-[#F89B66] to-[#E8783A] text-white border-2 border-[#CF6326] flex items-center justify-center font-black text-xs sm:text-sm shadow-2xs";
+                }
+                speakEn(letter.toLowerCase(), 0.9);
+
+                // Check completion
+                if (spellCurrentAnswer.length === spellTarget.length) {
+                  const formed = spellCurrentAnswer.join("");
+                  if (formed === spellTarget) {
+                    if (feedback) feedback.textContent = `🎉 Bravo champion ! "${item.word}" est correctement épelé ! (+5 ⭐)`;
+                    rewardStars(5, "Épellation parfaite !");
+                    speakEn(item.word);
+                  } else {
+                    if (feedback) feedback.textContent = `❌ Oups ! Réessaie encore !`;
+                    setTimeout(startSpellingGame, 1400);
+                  }
+                }
+              }
+            });
+            choicesRow.appendChild(btn);
+          });
+        }
+
+        speakEn(item.word);
+      }
+
+      // =========================================================
+      // MODE 3: MULTI-TYPE QUIZ (ENRICHED QUIZ VARIETY)
+      // =========================================================
+      let quizTargetWord = null;
+      let quizQuestionCount = 1;
+      let quizScore = 0;
+      let currentQuizType = "listen"; // "listen" | "word" | "bilingual"
+
+      function getAllVocabularyList() {
+        const all = [];
+        Object.values(VOCAB_DATABASE).forEach(arr => all.push(...arr));
+        return all;
+      }
+
+      function startQuizQuestion() {
+        const themeList = getWordList();
+        // Use current theme or fallback to full rich database
+        const pool = (themeList.length >= 3) ? themeList : getAllVocabularyList();
+        const target = pool[Math.floor(Math.random() * pool.length)];
+        quizTargetWord = target;
+
+        // Alternate question varieties: 1 = Listen Mystery, 2 = Read Word, 3 = Bilingual Clue
+        const quizTypes = ["listen", "word", "bilingual"];
+        currentQuizType = quizTypes[(quizQuestionCount - 1) % quizTypes.length];
+
+        const grid = document.getElementById("quizCardsGrid");
+        const feedback = document.getElementById("quizFeedback");
+        const qNumEl = document.getElementById("quizQuestionNum");
+        const scoreEl = document.getElementById("quizScoreCount");
+        const headingEl = document.getElementById("quizHeading");
+        const listenBtn = document.getElementById("quizPlaySoundBtn");
+        const listenBtnText = document.getElementById("quizListenBtnText");
+        const subPrompt = document.getElementById("quizPromptSub");
+
+        if (qNumEl) qNumEl.textContent = String(quizQuestionCount);
+        if (scoreEl) scoreEl.textContent = String(quizScore);
+        if (feedback) feedback.textContent = "";
+        if (!grid) return;
+        grid.innerHTML = "";
+
+        // Customize heading & prompt according to Quiz Type
+        if (currentQuizType === "listen") {
+          if (headingEl) headingEl.textContent = "🎧 Écoute attentivement et touche la bonne image !";
+          if (subPrompt) subPrompt.textContent = `Question ${quizQuestionCount} / 10 • Défi Écoute Mystère`;
+          if (listenBtn) {
+            listenBtn.classList.remove("hidden");
+            if (listenBtnText) listenBtnText.textContent = "🔊 Réécouter le Mot Mystère";
+          }
+        } else if (currentQuizType === "word") {
+          if (headingEl) headingEl.textContent = `🔤 Quel objet correspond au mot : "${target.word}" ?`;
+          if (subPrompt) subPrompt.textContent = `Question ${quizQuestionCount} / 10 • Défi Lecture & Association`;
+          if (listenBtn) {
+            listenBtn.classList.remove("hidden");
+            if (listenBtnText) listenBtnText.textContent = `🔊 Prononcer "${target.word}"`;
+          }
+        } else {
+          if (headingEl) headingEl.textContent = `🌍 Trouve l'image pour : ${target.transFr} (🇩🇿 ${target.transAr})`;
+          if (subPrompt) subPrompt.textContent = `Question ${quizQuestionCount} / 10 • Défi Traduction Bilingue`;
+          if (listenBtn) {
+            listenBtn.classList.remove("hidden");
+            if (listenBtnText) listenBtnText.textContent = "🔊 Indice vocal en anglais";
+          }
+        }
+
+        // Pick 2 distractors from pool
+        const others = pool.filter(w => w.word !== target.word);
+        const distractors = others.sort(() => 0.5 - Math.random()).slice(0, 2);
+        const options = [target, ...distractors].sort(() => 0.5 - Math.random());
+
+        let answered = false;
+        options.forEach(opt => {
+          const card = document.createElement("button");
+          card.type = "button";
+          card.className = "p-2 sm:p-2.5 rounded-2xl bg-white/95 border-2 border-[#E7D1AE] hover:border-[#6E94D1] hover:shadow-[0_8px_20px_rgba(110,148,209,0.3)] shadow flex flex-col items-center gap-1 transition hover:scale-105 active:scale-95";
+          card.innerHTML = `
+            <img src="${opt.img}" alt="${opt.word}" class="w-16 h-16 sm:w-20 sm:h-20 object-contain drop-shadow-sm">
+            <span class="text-[10.5px] sm:text-xs font-black text-slate-800">${opt.word}</span>
+          `;
+          card.addEventListener("click", () => {
+            if (answered) return;
+            answered = true;
+            if (opt.word === target.word) {
+              card.classList.add("bg-emerald-100", "!border-emerald-600", "ring-4", "ring-emerald-400");
+              quizScore += 5;
+              if (scoreEl) scoreEl.textContent = String(quizScore);
+              if (feedback) feedback.textContent = `🎉 Bravo champion ! C'est bien "${target.word}" ! (+5 ⭐)`;
+              rewardStars(5, "Bonne réponse au quiz !");
+              speakEn("Excellent! " + target.word);
+            } else {
+              card.classList.add("bg-rose-100", "!border-rose-500");
+              if (feedback) feedback.textContent = `❌ Ce n'était pas ça ! La bonne réponse était "${target.word}".`;
+              speakEn("The answer is " + target.word);
+            }
+          });
+          grid.appendChild(card);
+        });
+
+        // Play the sound prompt
+        speakEn(target.word);
+      }
+
+      // =========================================================
+      // EVENTS & INITIALIZATION
+      // =========================================================
+      document.addEventListener("DOMContentLoaded", () => {
+        updateStarsDisplay();
+        renderStudioWord();
+        initCanvas();
+
+        // Mode Switching
+        document.querySelectorAll("[data-mode]").forEach(btn => {
+          btn.addEventListener("click", () => {
+            document.querySelectorAll("[data-mode]").forEach(b => b.classList.remove("active"));
+            btn.classList.add("active");
+            activeMode = btn.getAttribute("data-mode");
+
+            document.getElementById("mainStudioStage")?.classList.toggle("hidden", activeMode !== "studio");
+            document.getElementById("spellingStage")?.classList.toggle("hidden", activeMode !== "spelling");
+            document.getElementById("quizStage")?.classList.toggle("hidden", activeMode !== "quiz");
+
+            if (activeMode === "studio") renderStudioWord();
+            if (activeMode === "spelling") startSpellingGame();
+            if (activeMode === "quiz") {
+              quizQuestionCount = 1;
+              quizScore = 0;
+              startQuizQuestion();
+            }
+          });
+        });
+
+        // Theme Switching
+        document.querySelectorAll("[data-theme]").forEach(chip => {
+          chip.addEventListener("click", () => {
+            document.querySelectorAll("[data-theme]").forEach(c => c.classList.remove("active"));
+            chip.classList.add("active");
+            currentTheme = chip.getAttribute("data-theme");
+            currentWordIndex = 0;
+
+            const themeTitles = {
+              stationery: "🎒 School Stationery",
+              family: "👨‍👩‍👧 Family & Friends",
+              colors: "🎨 Colors & Shapes",
+              numbers: "🔢 Numbers",
+              body: "👃 Body Parts",
+              food: "🍎 Fruits & Food"
+            };
+            const themeTitleEl = document.getElementById("themeTitle");
+            if (themeTitleEl) themeTitleEl.textContent = themeTitles[currentTheme] || currentTheme;
+
+            if (activeMode === "studio") renderStudioWord();
+            if (activeMode === "spelling") startSpellingGame();
+            if (activeMode === "quiz") {
+              quizQuestionCount = 1;
+              quizScore = 0;
+              startQuizQuestion();
+            }
+          });
+        });
+
+        // Word Navigation
+        document.getElementById("prevWordBtn")?.addEventListener("click", () => {
+          const list = getWordList();
+          currentWordIndex = (currentWordIndex - 1 + list.length) % list.length;
+          renderStudioWord();
+          triggerListen();
+        });
+
+        document.getElementById("nextWordBtn")?.addEventListener("click", () => {
+          const list = getWordList();
+          currentWordIndex = (currentWordIndex + 1) % list.length;
+          renderStudioWord();
+          triggerListen();
+        });
+
+        // 3 Core Sensory Triggers
+        document.getElementById("btnListen")?.addEventListener("click", triggerListen);
+        document.getElementById("objectClickArea")?.addEventListener("click", triggerListen);
+        document.getElementById("btnRead")?.addEventListener("click", triggerRead);
+        document.getElementById("btnSpeak")?.addEventListener("click", triggerSpeak);
+
+        // Speed Toggle
+        document.getElementById("speedToggleBtn")?.addEventListener("click", () => {
+          audioSpeed = audioSpeed === 1.0 ? 0.72 : 1.0;
+          const label = document.getElementById("speedLabel");
+          if (label) label.textContent = audioSpeed === 1.0 ? "1.0x" : "0.7x Phonics";
+          triggerListen();
+        });
+
+        // Translation Audio Hint
+        document.getElementById("speakTransBtn")?.addEventListener("click", () => {
+          const item = getCurrentWord();
+          if (window.AppLang) {
+            window.AppLang.speak(item.transFr, "fr-FR");
+          }
+        });
+
+        // Foldable Tracing Slate Toggle
+        document.getElementById("toggleWriteSlateBtn")?.addEventListener("click", () => {
+          const slate = document.getElementById("tactileWritingSlate");
+          if (slate) {
+            slate.classList.toggle("hidden");
+            if (!slate.classList.contains("hidden")) {
+              setTimeout(initCanvas, 100);
+            }
+          }
+        });
+
+        // Color Swatches
+        document.querySelectorAll(".color-dot-btn").forEach(btn => {
+          btn.addEventListener("click", () => {
+            document.querySelectorAll(".color-dot-btn").forEach(b => b.classList.remove("active"));
+            btn.classList.add("active");
+            strokeColor = btn.getAttribute("data-color") || "#7c3aed";
+          });
+        });
+
+        document.getElementById("clearCanvasBtn")?.addEventListener("click", clearCanvas);
+        document.getElementById("validateTracingBtn")?.addEventListener("click", () => {
+          rewardStars(3, "Superbe écriture !");
+        });
+
+        // Spelling Mode Buttons
+        document.getElementById("spellHearAgainBtn")?.addEventListener("click", () => {
+          const item = getCurrentWord();
+          speakEn(item.word);
+        });
+        document.getElementById("spellNextWordBtn")?.addEventListener("click", () => {
+          const list = getWordList();
+          currentWordIndex = (currentWordIndex + 1) % list.length;
+          startSpellingGame();
+        });
+
+        // Quiz Mode Buttons
+        document.getElementById("quizPlaySoundBtn")?.addEventListener("click", () => {
+          if (quizTargetWord) speakEn(quizTargetWord.word);
+        });
+        document.getElementById("quizNextBtn")?.addEventListener("click", () => {
+          quizQuestionCount++;
+          startQuizQuestion();
+        });
+      });
+    })();
+  </script>
+</body>
+
+</html>

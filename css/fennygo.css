@@ -1,0 +1,457 @@
+/* =========================================================
+   FENNYGO3 - GLOBAL ENHANCEMENTS, VIRTUAL COMPANION & SHOWCASE
+   Inspired by the 5 FennyGo3 Pedagogical Visuals
+   ========================================================= */
+
+:root {
+  --fenny-gold: #f7c948;
+  --fenny-amber: #f59e0b;
+  --fenny-orange: #ea580c;
+  --fenny-cream: #fffbeb;
+  --fenny-blue: #2563eb;
+  --fenny-navy: #1e3a8a;
+  --fenny-purple: #4221b8;
+}
+
+/* =========================================================
+   1. FLOATING FENNY VIRTUAL COMPANION WIDGET (All App Pages)
+   ========================================================= */
+.fenny-companion-dock {
+  position: fixed;
+  bottom: 14px;
+  right: 16px;
+  z-index: 90;
+  display: flex;
+  align-items: flex-end;
+  gap: 10px;
+  pointer-events: none;
+  font-family: "Nunito", "Poppins", "Cairo", sans-serif;
+}
+
+html[dir="rtl"] .fenny-companion-dock {
+  right: auto;
+  left: 16px;
+  flex-direction: row-reverse;
+}
+
+.fenny-speech-card {
+  pointer-events: auto;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.97) 0%, rgba(238, 246, 255, 0.97) 100%);
+  border: 3px solid #60a5fa;
+  border-bottom: 6px solid #2563eb;
+  border-radius: 24px;
+  padding: 10px 14px;
+  max-width: 270px;
+  box-shadow: 0 10px 28px rgba(30, 58, 138, 0.24);
+  transform-origin: bottom right;
+  animation: fennyPopIn 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+  transition: opacity 0.25s ease, transform 0.25s ease;
+}
+
+.fenny-speech-card.hidden-bubble {
+  opacity: 0;
+  transform: scale(0.85) translateY(10px);
+  pointer-events: none;
+  display: none;
+}
+
+.fenny-speech-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 4px;
+}
+
+.fenny-hello-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: linear-gradient(135deg, #2563eb 0%, #3b82f6 100%);
+  color: #ffffff;
+  font-weight: 900;
+  font-size: 13px;
+  padding: 2px 10px;
+  border-radius: 999px;
+}
+
+/* Rainbow Audio Wave Bars from "Meet Fenny!" image */
+.fenny-soundwave {
+  display: inline-flex;
+  align-items: center;
+  gap: 2.5px;
+  height: 14px;
+}
+
+.fenny-soundwave span {
+  display: inline-block;
+  width: 3px;
+  border-radius: 99px;
+  height: 6px;
+  transition: height 0.15s ease;
+}
+
+.fenny-soundwave span:nth-child(1) { background: #ff4d6d; }
+.fenny-soundwave span:nth-child(2) { background: #ff9e00; }
+.fenny-soundwave span:nth-child(3) { background: #ffd166; }
+.fenny-soundwave span:nth-child(4) { background: #06d6a0; }
+.fenny-soundwave span:nth-child(5) { background: #118ab2; }
+.fenny-soundwave span:nth-child(6) { background: #8338ec; }
+
+.fenny-soundwave.speaking span {
+  animation: fennyWavePulse 0.55s ease-in-out infinite alternate;
+}
+.fenny-soundwave.speaking span:nth-child(2) { animation-delay: 0.1s; }
+.fenny-soundwave.speaking span:nth-child(3) { animation-delay: 0.2s; }
+.fenny-soundwave.speaking span:nth-child(4) { animation-delay: 0.15s; }
+.fenny-soundwave.speaking span:nth-child(5) { animation-delay: 0.25s; }
+.fenny-soundwave.speaking span:nth-child(6) { animation-delay: 0.05s; }
+
+@keyframes fennyWavePulse {
+  0% { height: 4px; }
+  100% { height: 14px; }
+}
+
+.fenny-speech-text {
+  margin: 0 0 8px;
+  font-size: 13px;
+  font-weight: 800;
+  color: #1e293b;
+  line-height: 1.35;
+}
+
+.fenny-quick-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+}
+
+.fenny-action-pill {
+  border: none;
+  border-radius: 999px;
+  padding: 4px 10px;
+  font-size: 11.5px;
+  font-weight: 900;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  transition: transform 0.15s ease, filter 0.15s ease;
+  text-decoration: none;
+}
+
+.fenny-action-pill:hover {
+  transform: translateY(-1px) scale(1.03);
+  filter: brightness(1.06);
+}
+
+.fenny-pill-checkin {
+  background: linear-gradient(135deg, #f59e0b 0%, #ea580c 100%);
+  color: #fff;
+  box-shadow: 0 2px 0 #9a3412;
+}
+
+.fenny-pill-progress {
+  background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+  color: #fff;
+  box-shadow: 0 2px 0 #1e3a8a;
+}
+
+.fenny-pill-showcase {
+  background: #fef3c7;
+  color: #92400e;
+  border: 1.5px solid #f59e0b;
+}
+
+/* Fenny Avatar Button */
+.fenny-avatar-btn {
+  pointer-events: auto;
+  position: relative;
+  width: 78px;
+  height: 78px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 50% 35%, #fffbeb 0%, #fde68a 65%, #f59e0b 100%);
+  border: 3.5px solid #ffffff;
+  box-shadow: 0 6px 0 #b45309, 0 10px 24px rgba(0, 0, 0, 0.28);
+  cursor: pointer;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.22s cubic-bezier(0.34, 1.56, 0.64, 1);
+  overflow: visible;
+}
+
+.fenny-avatar-btn:hover {
+  transform: translateY(-4px) scale(1.06);
+}
+
+.fenny-avatar-btn:active {
+  transform: translateY(2px) scale(0.97);
+}
+
+.fenny-avatar-btn img {
+  width: 84px;
+  height: 84px;
+  object-fit: contain;
+  margin-top: -10px;
+  filter: drop-shadow(0 3px 6px rgba(0, 0, 0, 0.2));
+  pointer-events: none;
+}
+
+.fenny-notif-dot {
+  position: absolute;
+  top: -2px;
+  right: -2px;
+  background: #ef4444;
+  color: #fff;
+  font-size: 10px;
+  font-weight: 900;
+  padding: 2px 6px;
+  border-radius: 999px;
+  border: 2px solid #fff;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);
+  animation: bounceNotif 1.6s infinite;
+}
+
+@keyframes bounceNotif {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-4px); }
+}
+
+@keyframes fennyPopIn {
+  from { opacity: 0; transform: scale(0.8) translateY(10px); }
+  to { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+/* =========================================================
+   2. FENNY DAILY CHECK-IN & STEPPING STONES MODAL
+   (Directly implements "Meet Fenny!" 3-step journey)
+   ========================================================= */
+.fenny-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 120;
+  background: rgba(15, 23, 42, 0.68);
+  backdrop-filter: blur(6px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  font-family: "Nunito", "Poppins", "Cairo", sans-serif;
+}
+
+.fenny-modal-backdrop.hidden {
+  display: none !important;
+}
+
+.fenny-checkin-card {
+  width: min(95vw, 860px);
+  max-height: 92dvh;
+  overflow-y: auto;
+  background: linear-gradient(145deg, #fbe59b 0%, #f8d468 55%, #f5c445 100%);
+  border: 4px solid #ffffff;
+  border-bottom: 8px solid #d97706;
+  border-radius: 32px;
+  box-shadow: 0 22px 60px rgba(0, 0, 0, 0.4);
+  padding: clamp(16px, 2.5vh, 28px);
+  color: #451a03;
+  position: relative;
+}
+
+.fenny-modal-close {
+  position: absolute;
+  top: 14px;
+  right: 16px;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  border: 2.5px solid #fff;
+  background: #ef4444;
+  color: #fff;
+  font-weight: 900;
+  font-size: 18px;
+  cursor: pointer;
+  box-shadow: 0 3px 0 #b91c1c;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+html[dir="rtl"] .fenny-modal-close {
+  right: auto;
+  left: 16px;
+}
+
+.fenny-checkin-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.25fr;
+  gap: 20px;
+  align-items: center;
+}
+
+@media (max-width: 720px) {
+  .fenny-checkin-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.fenny-hero-column {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.fenny-hero-figure {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.fenny-hero-figure img {
+  width: clamp(150px, 24vh, 215px);
+  height: auto;
+  filter: drop-shadow(0 10px 18px rgba(146, 64, 14, 0.28));
+}
+
+.fenny-hello-cloud {
+  background: #ffffff;
+  border: 3.5px solid #60a5fa;
+  border-bottom: 6px solid #2563eb;
+  border-radius: 24px;
+  padding: 8px 16px;
+  box-shadow: 0 8px 20px rgba(37, 99, 235, 0.22);
+  display: inline-flex;
+   flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  margin-left: -15px;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.fenny-hello-cloud:hover {
+  transform: scale(1.06);
+}
+
+.fenny-hello-cloud strong {
+  font-size: 22px;
+  font-weight: 900;
+  color: #1d4ed8;
+}
+
+.fenny-companion-glass {
+  background: rgba(255, 255, 255, 0.86);
+  border: 2.5px solid #93c5fd;
+  border-radius: 20px;
+  padding: 12px 14px;
+  box-shadow: 0 8px 24px rgba(59, 130, 246, 0.18);
+  text-align: left;
+  margin-top: 6px;
+}
+
+html[dir="rtl"] .fenny-companion-glass {
+  text-align: right;
+}
+
+/* Stepping Stones Path (1. Login & Greet -> 2. Daily Check-in -> 3. The Hub) */
+.fenny-stones-path {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.fenny-stone-step {
+  background: rgba(255, 255, 255, 0.94);
+  border: 2.5px solid #cbd5e1;
+  border-bottom: 5px solid #64748b;
+  border-radius: 20px;
+  padding: 11px 14px;
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  transition: all 0.2s ease;
+}
+
+.fenny-stone-step.active-stone {
+  border-color: #38bdf8;
+  border-bottom-color: #0284c7;
+  box-shadow: 0 0 18px rgba(56, 189, 248, 0.45);
+  background: #ffffff;
+}
+
+.fenny-stone-step.done-stone {
+  border-color: #22c55e;
+  border-bottom-color: #15803d;
+}
+
+.stone-badge-num {
+  width: 32px;
+  height: 32px;
+  border-radius: 10px;
+  background: linear-gradient(135deg, #38bdf8 0%, #0284c7 100%);
+  color: #fff;
+  font-weight: 900;
+  font-size: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.fenny-stone-step.done-stone .stone-badge-num {
+  background: linear-gradient(135deg, #4ade80 0%, #16a34a 100%);
+}
+
+.checkin-options-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.checkin-opt-btn {
+  background: #f0f9ff;
+  border: 2px solid #38bdf8;
+  border-bottom: 4px solid #0284c7;
+  color: #0f172a;
+  font-weight: 800;
+  font-size: 13px;
+  padding: 6px 12px;
+  border-radius: 14px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.checkin-opt-btn:hover {
+  background: #e0f2fe;
+  transform: translateY(-2px);
+}
+
+.checkin-opt-btn.correct {
+  background: #dcfce7;
+  border-color: #22c55e;
+  border-bottom-color: #15803d;
+  color: #14532d;
+}
+
+@media (max-width: 640px) {
+  .fenny-companion-dock {
+    bottom: 8px;
+    right: 10px;
+  }
+  .fenny-avatar-btn {
+    width: 62px;
+    height: 62px;
+  }
+  .fenny-avatar-btn img {
+    width: 66px;
+    height: 66px;
+  }
+  .fenny-speech-card {
+    max-width: 220px;
+    padding: 8px 10px;
+  }
+}

@@ -1,93 +1,19 @@
 (() => {
   "use strict";
 
+  const iconImg = (src, alt) => `<img src="${src}" alt="${alt}" loading="lazy" style="width:100%;height:100%;object-fit:contain;filter:drop-shadow(0 8px 14px rgba(0,0,0,0.2));">`;
+
   const ICONS = {
-    wakeup: `
-      <svg viewBox="0 0 140 140" xmlns="http://www.w3.org/2000/svg">
-        <g stroke="#f59e0b" stroke-width="5" stroke-linecap="round">
-          <line x1="70" y1="16" x2="70" y2="28"/>
-          <line x1="28" y1="34" x2="38" y2="42"/>
-          <line x1="112" y1="34" x2="102" y2="42"/>
-          <line x1="16" y1="74" x2="28" y2="74"/>
-          <line x1="124" y1="74" x2="112" y2="74"/>
-        </g>
-        <circle cx="70" cy="74" r="32" fill="#facc15" stroke="#ffffff" stroke-width="5"/>
-        <circle cx="58" cy="68" r="4" fill="#78350f"/>
-        <circle cx="82" cy="68" r="4" fill="#78350f"/>
-        <path d="M58 82 Q70 92 82 82" fill="none" stroke="#78350f" stroke-width="4" stroke-linecap="round"/>
-        <rect x="20" y="102" width="100" height="16" rx="8" fill="#38bdf8" stroke="#ffffff" stroke-width="3"/>
-      </svg>`,
-    washface: `
-      <svg viewBox="0 0 140 140" xmlns="http://www.w3.org/2000/svg">
-        <circle cx="70" cy="66" r="34" fill="#fcd3b6" stroke="#ffffff" stroke-width="4"/>
-        <path d="M40 52 Q70 30 100 52" fill="#78350f"/>
-        <path d="M56 64 Q60 68 64 64 M76 64 Q80 68 84 64" fill="none" stroke="#1e293b" stroke-width="3.5" stroke-linecap="round"/>
-        <path d="M60 80 Q70 88 80 80" fill="none" stroke="#be123c" stroke-width="3.5" stroke-linecap="round"/>
-        <path d="M32 96 C26 108, 38 116, 42 104 Z" fill="#38bdf8" stroke="#ffffff" stroke-width="2"/>
-        <path d="M70 104 C64 118, 76 124, 80 110 Z" fill="#0ea5e9" stroke="#ffffff" stroke-width="2"/>
-        <path d="M106 96 C100 108, 112 116, 116 104 Z" fill="#38bdf8" stroke="#ffffff" stroke-width="2"/>
-      </svg>`,
-    brushteeth: `
-      <svg viewBox="0 0 140 140" xmlns="http://www.w3.org/2000/svg">
-        <path d="M46 30 C32 30, 26 52, 34 74 C40 92, 44 108, 54 108 C62 108, 64 90, 70 90 C76 90, 78 108, 86 108 C96 108, 100 92, 106 74 C114 52, 108 30, 94 30 C82 30, 78 38, 70 38 C62 38, 58 30, 46 30 Z" fill="#ffffff" stroke="#38bdf8" stroke-width="4"/>
-        <rect x="18" y="82" width="104" height="14" rx="7" fill="#ec4899" stroke="#ffffff" stroke-width="3"/>
-        <rect x="26" y="66" width="32" height="16" rx="4" fill="#a5f3fc" stroke="#ffffff" stroke-width="2.5"/>
-      </svg>`,
-    getdressed: `
-      <svg viewBox="0 0 140 140" xmlns="http://www.w3.org/2000/svg">
-        <path d="M46 28 L20 50 L34 68 L48 56 L48 114 L92 114 L92 56 L106 68 L120 50 L94 28 Q70 42 46 28 Z" fill="#3b82f6" stroke="#ffffff" stroke-width="5" stroke-linejoin="round"/>
-        <circle cx="70" cy="64" r="12" fill="#facc15"/>
-      </svg>`,
-    breakfast: `
-      <svg viewBox="0 0 140 140" xmlns="http://www.w3.org/2000/svg">
-        <ellipse cx="64" cy="86" rx="44" ry="26" fill="#ffffff" stroke="#cbd5e1" stroke-width="4"/>
-        <circle cx="56" cy="82" r="14" fill="#facc15"/>
-        <rect x="88" y="34" width="28" height="44" rx="6" fill="#38bdf8" stroke="#ffffff" stroke-width="4"/>
-        <path d="M26 68 Q64 114 102 68 Z" fill="#f97316" stroke="#ffffff" stroke-width="4"/>
-      </svg>`,
-    goschool: `
-      <svg viewBox="0 0 140 140" xmlns="http://www.w3.org/2000/svg">
-        <rect x="20" y="44" width="100" height="58" rx="14" fill="#facc15" stroke="#ffffff" stroke-width="5"/>
-        <rect x="30" y="54" width="24" height="20" rx="4" fill="#e0f2fe"/>
-        <rect x="60" y="54" width="24" height="20" rx="4" fill="#e0f2fe"/>
-        <rect x="90" y="54" width="20" height="20" rx="4" fill="#e0f2fe"/>
-        <circle cx="44" cy="104" r="14" fill="#1e293b" stroke="#ffffff" stroke-width="4"/>
-        <circle cx="96" cy="104" r="14" fill="#1e293b" stroke="#ffffff" stroke-width="4"/>
-      </svg>`,
-    study: `
-      <svg viewBox="0 0 140 140" xmlns="http://www.w3.org/2000/svg">
-        <path d="M22 36 Q46 26 70 38 L70 108 Q46 96 22 106 Z" fill="#fef3c7" stroke="#ffffff" stroke-width="4"/>
-        <path d="M118 36 Q94 26 70 38 L70 108 Q94 96 118 106 Z" fill="#fde68a" stroke="#ffffff" stroke-width="4"/>
-        <line x1="70" y1="38" x2="70" y2="108" stroke="#d97706" stroke-width="4"/>
-        <polygon points="70,18 75,30 88,31 78,39 81,52 70,45 59,52 62,39 52,31 65,30" fill="#facc15" stroke="#ffffff" stroke-width="2.5"/>
-      </svg>`,
-    play: `
-      <svg viewBox="0 0 140 140" xmlns="http://www.w3.org/2000/svg">
-        <circle cx="70" cy="70" r="44" fill="#ffffff" stroke="#1e293b" stroke-width="5"/>
-        <polygon points="70,48 86,60 80,78 60,78 54,60" fill="#1e293b"/>
-        <line x1="70" y1="48" x2="70" y2="26" stroke="#1e293b" stroke-width="4"/>
-        <line x1="86" y1="60" x2="110" y2="54" stroke="#1e293b" stroke-width="4"/>
-        <line x1="80" y1="78" x2="96" y2="104" stroke="#1e293b" stroke-width="4"/>
-        <line x1="60" y1="78" x2="44" y2="104" stroke="#1e293b" stroke-width="4"/>
-        <line x1="54" y1="60" x2="30" y2="54" stroke="#1e293b" stroke-width="4"/>
-      </svg>`,
-    homework: `
-      <svg viewBox="0 0 140 140" xmlns="http://www.w3.org/2000/svg">
-        <rect x="28" y="22" width="74" height="96" rx="10" fill="#ffffff" stroke="#3b82f6" stroke-width="5"/>
-        <line x1="42" y1="44" x2="86" y2="44" stroke="#93c5fd" stroke-width="4" stroke-linecap="round"/>
-        <line x1="42" y1="62" x2="86" y2="62" stroke="#93c5fd" stroke-width="4" stroke-linecap="round"/>
-        <line x1="42" y1="80" x2="74" y2="80" stroke="#93c5fd" stroke-width="4" stroke-linecap="round"/>
-        <g transform="translate(88, 68) rotate(28)">
-          <rect x="0" y="0" width="16" height="48" fill="#facc15" stroke="#ca8a04" stroke-width="3"/>
-          <polygon points="0,48 16,48 8,62" fill="#1e293b"/>
-        </g>
-      </svg>`,
-    sleep: `
-      <svg viewBox="0 0 140 140" xmlns="http://www.w3.org/2000/svg">
-        <circle cx="70" cy="70" r="46" fill="#1e1b4b" stroke="#ffffff" stroke-width="4"/>
-        <path d="M68 34 A30 30 0 1 0 98 84 A24 24 0 1 1 68 34 Z" fill="#fde047"/>
-        <text x="42" y="54" fill="#93c5fd" font-family="'Comic Sans MS', sans-serif" font-size="18" font-weight="900">Zzz</text>
-      </svg>`
+    wakeup: iconImg("assets/images/daily-routine/wakeup.png", "Wake up"),
+    washface: iconImg("assets/images/daily-routine/washface.png", "Wash my face"),
+    brushteeth: iconImg("assets/images/daily-routine/brushteeth.png", "Brush my teeth"),
+    getdressed: iconImg("assets/images/daily-routine/getdressed.png", "Get dressed"),
+    breakfast: iconImg("assets/images/daily-routine/breakfast.png", "Eat breakfast"),
+    goschool: iconImg("assets/images/daily-routine/goschool.png", "Go to school"),
+    study: iconImg("assets/images/daily-routine/study.png", "Study"),
+    play: iconImg("assets/images/daily-routine/play.png", "Play"),
+    homework: iconImg("assets/images/daily-routine/homework.png", "Do homework"),
+    sleep: iconImg("assets/images/daily-routine/sleep.png", "Sleep")
   };
 
   const THEMES = [

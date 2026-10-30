@@ -1,20 +1,25 @@
 /* =========================================================
-   EDUCATIONAL MINI-GAMES PLATFORM — NOVAKID DESIGN SYSTEM
-   Palette : #4221b8 | #917ed6 | #dee5ff | #f2f5ff | #c6d2ff | #e9e7f1 | #31c838
-   100dvh Zero-Scroll | Cartes arrondies 40px | Boutons 3D #4221b8
+   EDUCATIONAL MINI-GAMES PLATFORM — GOLDEN TABLET DESIGN SYSTEM
+   Palette : Warm Honey Amber, 3D Periwinkle Blue & Peach Clay
+   100dvh Zero-Scroll | Cartes arrondies 34px | Boutons 3D tactiles
    ========================================================= */
 
 :root {
-  --nk-purple: #4221b8;
-  --nk-purple-soft: #917ed6;
-  --nk-lavender-bg: #f2f5ff;
-  --nk-lavender-mid: #dee5ff;
-  --nk-lavender-border: #c6d2ff;
-  --nk-tag-bg: #e9e7f1;
-  --nk-text: #2c2a33;
-  --nk-muted: #706f74;
-  --nk-green: #31c838;
-  --nk-green-dark: #19aa20;
+  --nk-purple: #5a82c4;              /* Soft 3D Periwinkle Blue */
+  --nk-purple-soft: #8fafe0;         /* Light Periwinkle Border/Bevel */
+  --nk-blue-dark: #1e355b;           /* Deep Slate Navy Text */
+  --nk-lavender-bg: #fdf4e1;         /* Warm Honey Cream Canvas */
+  --nk-lavender-mid: #f9e2b5;        /* Soft Vanilla Cream */
+  --nk-lavender-border: #dec28f;     /* Warm Golden Biscuit Border */
+  --nk-tag-bg: #fff1dd;              /* Peach Cream Tag */
+  --nk-text: #2b241f;                /* Warm Dark Charcoal Text */
+  --nk-muted: #78614f;               /* Warm Chestnut Muted */
+  --nk-peach: #f7c7a8;               /* Peach Clay Accent */
+  --nk-peach-dark: #8c3821;          /* Terracotta */
+  --nk-orange: #f89b66;              /* Warm Apricot */
+  --nk-orange-dark: #e8783a;         /* Deep Apricot */
+  --nk-green: #10b981;               /* Emerald Success */
+  --nk-green-dark: #059669;
 }
 
 *,
@@ -35,7 +40,7 @@ body.games-page {
   overscroll-behavior: none;
   font-family: "Nunito", "Cairo", "Tajawal", sans-serif;
   color: var(--nk-text);
-  background: linear-gradient(180deg, #f2f5ff 0%, #dee5ff 55%, #c6d2ff 100%);
+  background: radial-gradient(circle at 50% 20%, #fdeebc 0%, #f7cf68 50%, #f1bb3d 100%);
   -webkit-tap-highlight-color: transparent;
 }
 
@@ -57,7 +62,7 @@ body.games-page.in-active-game #globalBackBtn {
 }
 
 /* =========================================================
-   1. HUB PRINCIPAL — STYLE NOVAKID (.gamesArchive)
+   1. HUB PRINCIPAL — STYLE TABLETTE (.gamesArchive)
    ========================================================= */
 .games-hub {
   width: 100%;
@@ -71,16 +76,16 @@ body.games-page.in-active-game #globalBackBtn {
   overflow: hidden;
 }
 
-/* Bandeau Hero Novakid (.gamesArchive__hero + .gamesArchive__quiz) */
+/* Bandeau Hero (.gamesArchive__hero + .gamesArchive__quiz) */
 .nk-hero {
   width: min(96vw, 1300px);
-  background: #ffffff;
-  background-image: linear-gradient(180deg, #ffffff 0%, #f7f5ff 100%);
-  border: 2.5px solid var(--nk-purple-soft);
+  background: #fffcf6;
+  background-image: linear-gradient(180deg, #fffcf6 0%, #fff5e3 100%);
+  border: 2.5px solid var(--nk-lavender-border);
   border-bottom-width: 6px;
-  border-bottom-color: var(--nk-purple);
+  border-bottom-color: #c59f5f;
   border-radius: 32px;
-  box-shadow: 2px 10px 40px 0 rgba(194, 193, 255, 0.75);
+  box-shadow: 0 10px 30px rgba(95, 70, 30, 0.14);
   padding: clamp(8px, 1.3vh, 14px) clamp(16px, 2vw, 26px);
   padding-inline-start: clamp(92px, 11vw, 142px);
   display: flex;
@@ -103,7 +108,7 @@ body.games-page.in-active-game #globalBackBtn {
 
 .nk-hero-title {
   margin: 0;
-  color: var(--nk-purple);
+  color: var(--nk-text);
   font-size: clamp(19px, 3.1vh, 30px);
   font-weight: 900;
   line-height: 1.15;
@@ -112,13 +117,13 @@ body.games-page.in-active-game #globalBackBtn {
 
 .nk-hero-subtitle {
   margin: 2px 0 0;
-  color: var(--nk-text);
+  color: var(--nk-muted);
   font-size: clamp(11px, 1.65vh, 15px);
   font-weight: 700;
-  opacity: 0.85;
+  opacity: 0.9;
 }
 
-/* Compteurs Étoiles & Diamants style Novakid */
+/* Compteurs Étoiles & Diamants */
 .nk-counters {
   display: flex;
   align-items: center;
@@ -130,11 +135,11 @@ body.games-page.in-active-game #globalBackBtn {
   align-items: center;
   gap: 6px;
   padding: clamp(4px, 0.7vh, 7px) clamp(12px, 1.4vw, 18px);
-  background: #ffffff;
-  border: 2px solid var(--nk-purple-soft);
+  background: #fffdf8;
+  border: 2px solid var(--nk-lavender-border);
   border-radius: 16px;
-  box-shadow: 1.5px 3px 0 0 var(--nk-purple);
-  color: var(--nk-purple);
+  box-shadow: 1.5px 3px 0 0 #c59f5f;
+  color: #4a3628;
   font-size: clamp(14px, 2.1vh, 19px);
   font-weight: 900;
 }
@@ -150,11 +155,11 @@ body.games-page.in-active-game #globalBackBtn {
   flex-wrap: wrap;
   gap: 8px;
   padding-top: 4px;
-  border-top: 1px solid #ede9fe;
+  border-top: 1px solid #ebd9b5;
 }
 
 .nk-quiz-label {
-  color: #484848;
+  color: #5c4433;
   font-size: clamp(11px, 1.6vh, 14px);
   font-weight: 800;
   margin-inline-end: 4px;
@@ -169,11 +174,11 @@ body.games-page.in-active-game #globalBackBtn {
 
 .nk-skill-pill {
   align-items: center;
-  background: #ffffff;
-  border: 2px solid var(--nk-purple-soft);
+  background: #fffdf9;
+  border: 2px solid #e7d4b2;
   border-radius: 14px;
-  box-shadow: 2px 3px 8px 0 var(--nk-lavender-border);
-  color: var(--nk-text);
+  box-shadow: 1.5px 2px 6px 0 rgba(140, 100, 40, 0.1);
+  color: #5b4536;
   cursor: pointer;
   display: inline-flex;
   justify-content: center;
@@ -185,15 +190,15 @@ body.games-page.in-active-game #globalBackBtn {
 
 .nk-skill-pill:hover {
   border-color: var(--nk-purple);
-  color: var(--nk-purple);
+  color: var(--nk-blue-dark);
   transform: translateY(-1px);
 }
 
 .nk-skill-pill.active {
-  background: var(--nk-purple);
-  border-color: var(--nk-purple);
+  background: linear-gradient(180deg, #7ea2df 0%, #5e86cf 100%);
+  border-color: #4870b8;
   color: #ffffff;
-  box-shadow: 1.5px 3px 0 0 #261073;
+  box-shadow: 1.5px 3px 0 0 #395d9f;
 }
 
 /* =========================================================
@@ -210,18 +215,18 @@ body.games-page.in-active-game #globalBackBtn {
   gap: clamp(10px, 1.5vh, 16px) clamp(10px, 1.4vw, 18px);
 }
 
-/* Carte Novakid avec coins 34px, visuel en haut et corps blanc superposé */
+/* Carte Tablette avec coins 32px, visuel en haut et corps superposé */
 .hub-game-card {
   position: relative;
   width: calc(25% - 14px);
   height: calc(50% - 8px);
   min-width: 205px;
-  background: #ffffff;
-  border-radius: clamp(26px, 3.6vh, 36px);
+  background: #fffcf6;
+  border-radius: clamp(26px, 3.6vh, 34px);
   box-shadow:
-    0 6px 20px rgba(66, 33, 184, 0.16),
-    4px 0 20px rgba(76, 76, 76, 0.1);
-  border: 2px solid rgba(198, 210, 255, 0.85);
+    0 6px 20px rgba(95, 70, 30, 0.12),
+    0 2px 6px rgba(0, 0, 0, 0.05);
+  border: 2px solid #e7d4b2;
   display: flex;
   flex-direction: column;
   overflow: hidden;
@@ -233,10 +238,10 @@ body.games-page.in-active-game #globalBackBtn {
 
 .hub-game-card:hover {
   transform: translateY(-5px);
-  border-color: var(--nk-purple-soft);
+  border-color: #5a82c4;
   box-shadow:
-    0 12px 28px rgba(66, 33, 184, 0.24),
-    4px 0 24px rgba(66, 33, 184, 0.14);
+    0 12px 28px rgba(90, 130, 196, 0.25),
+    0 4px 10px rgba(95, 70, 30, 0.12);
 }
 
 /* Zone visuelle supérieure (.gamesArchive__cardVisual) */
@@ -244,7 +249,7 @@ body.games-page.in-active-game #globalBackBtn {
   position: relative;
   width: 100%;
   height: 48%;
-  background: var(--card-visual-bg, radial-gradient(circle at 50% 0%, #dee5ff 0%, #c6d2ff 100%));
+  background: var(--card-visual-bg, radial-gradient(circle at 50% 0%, #fff4df 0%, #fde4b8 100%));
   display: flex;
   align-items: center;
   justify-content: center;
@@ -252,25 +257,29 @@ body.games-page.in-active-game #globalBackBtn {
   padding-bottom: 14px;
 }
 
-.nk-card-visual svg {
+.nk-card-visual svg,
+.nk-card-visual img.nk-game-3d-thumb {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
+  padding: 6px 12px 12px;
+  filter: drop-shadow(0 8px 16px rgba(15, 23, 42, 0.22));
   transition: transform 0.28s ease;
 }
 
-.hub-game-card:hover .nk-card-visual svg {
-  transform: scale(1.06);
+.hub-game-card:hover .nk-card-visual svg,
+.hub-game-card:hover .nk-card-visual img.nk-game-3d-thumb {
+  transform: scale(1.08) translateY(-2px);
 }
 
-/* Numéro discret style Novakid step badge */
+/* Numéro discret style step badge */
 .nk-card-step {
   position: absolute;
   top: 8px;
   inset-inline-start: 10px;
-  background: rgba(255, 255, 255, 0.92);
-  color: var(--nk-purple);
-  border: 1.5px solid var(--nk-lavender-border);
+  background: rgba(255, 255, 255, 0.95);
+  color: #1e355b;
+  border: 1.5px solid #dec28f;
   border-radius: 999px;
   min-width: 24px;
   height: 24px;
@@ -280,11 +289,11 @@ body.games-page.in-active-game #globalBackBtn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 2px 6px rgba(66, 33, 184, 0.15);
+  box-shadow: 0 2px 6px rgba(95, 70, 30, 0.14);
   z-index: 3;
 }
 
-/* Corps blanc superposé (.gamesArchive__cardBody : border-radius 32px 32px 0 0, margin-top négatif) */
+/* Corps blanc superposé (.gamesArchive__cardBody) */
 .nk-card-body {
   background: #ffffff;
   border-radius: clamp(22px, 3vh, 32px) clamp(22px, 3vh, 32px) 0 0;
@@ -297,7 +306,7 @@ body.games-page.in-active-game #globalBackBtn {
   flex-direction: column;
   justify-content: space-between;
   gap: 4px;
-  box-shadow: 0 -4px 14px rgba(66, 33, 184, 0.08);
+  box-shadow: 0 -4px 14px rgba(95, 70, 30, 0.06);
 }
 
 /* Badges de compétence (.gamePage__tags / .gamePage__tag) */
@@ -313,8 +322,9 @@ body.games-page.in-active-game #globalBackBtn {
 .nk-tag {
   align-items: center;
   background: var(--nk-tag-bg);
+  border: 1px solid #f3d4b6;
   border-radius: 20px;
-  color: var(--nk-purple);
+  color: #8c3821;
   display: inline-flex;
   font-size: clamp(8.5px, 1.15vh, 10.5px);
   font-weight: 800;
@@ -340,7 +350,7 @@ body.games-page.in-active-game #globalBackBtn {
 }
 
 .hub-game-card:hover .nk-card-title {
-  color: var(--nk-purple);
+  color: #4e76c4;
 }
 
 .nk-card-desc {
@@ -355,7 +365,7 @@ body.games-page.in-active-game #globalBackBtn {
   overflow: hidden;
 }
 
-/* Boutons Novakid (.gamePage__btnPurple & .gamePage__btnGreen) */
+/* Boutons Tactiles 3D Pervenche & Abricot */
 .nk-btn-purple,
 .nk-btn-green {
   align-items: center;
@@ -377,27 +387,29 @@ body.games-page.in-active-game #globalBackBtn {
 }
 
 .nk-btn-purple {
-  background: #ffffff;
-  border-color: var(--nk-purple);
-  box-shadow: 1.5px 3px 0 0 var(--nk-purple);
-  color: var(--nk-purple);
+  background: linear-gradient(180deg, #8fafe0 0%, #6e94d1 100%);
+  border-color: #577fb8;
+  box-shadow: 1.5px 3px 0 0 #4a6e9f;
+  color: #1a2f50;
 }
 
 .hub-game-card:hover .nk-btn-purple,
 .nk-btn-purple:hover {
-  background: var(--nk-purple);
-  color: #ffffff;
+  background: linear-gradient(180deg, #9bbcf0 0%, #7aa0dc 100%);
+  color: #1a2f50;
+  transform: translateY(-1px);
 }
 
 .nk-btn-green {
-  background: var(--nk-green);
-  border-color: var(--nk-green-dark);
-  box-shadow: 1.5px 3px 0 0 var(--nk-green-dark);
+  background: linear-gradient(180deg, #f89b66 0%, #e8783a 100%);
+  border-color: #cf6326;
+  box-shadow: 1.5px 3px 0 0 #b54e18;
   color: #ffffff;
 }
 
 .nk-btn-green:hover {
-  background: var(--nk-green-dark);
+  background: linear-gradient(180deg, #faaa7c 0%, #ed864b 100%);
+  transform: translateY(-1px);
 }
 
 .nk-btn-purple:active,
@@ -406,7 +418,7 @@ body.games-page.in-active-game #globalBackBtn {
 }
 
 /* =========================================================
-   2. ÉCRAN DE JEU ACTIF & BARRE SUPÉRIEURE NOVAKID
+   2. ÉCRAN DE JEU ACTIF & BARRE SUPÉRIEURE (STYLE TABLETTE)
    ========================================================= */
 .game-screen {
   position: relative;
@@ -415,7 +427,7 @@ body.games-page.in-active-game #globalBackBtn {
   display: flex;
   flex-direction: column;
   overflow: hidden;
-  background: #f2f5ff;
+  background: linear-gradient(180deg, #fdf4e1 0%, #f9e2b5 100%);
 }
 
 .game-topbar {
@@ -424,9 +436,9 @@ body.games-page.in-active-game #globalBackBtn {
   width: 100%;
   height: clamp(58px, 9.2dvh, 74px);
   padding: 6px clamp(12px, 2vw, 24px);
-  background: #ffffff;
+  background: #fffcf6;
   border-bottom: 3px solid var(--nk-lavender-border);
-  box-shadow: 0 4px 20px rgba(66, 33, 184, 0.12);
+  box-shadow: 0 4px 20px rgba(95, 70, 30, 0.1);
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -445,13 +457,13 @@ body.games-page.in-active-game #globalBackBtn {
   width: clamp(40px, 5.8vh, 48px);
   height: clamp(40px, 5.8vh, 48px);
   border-radius: 16px;
-  border: 2px solid var(--nk-purple);
-  background: #ffffff;
-  color: var(--nk-purple);
+  border: 2px solid #577fb8;
+  background: linear-gradient(180deg, #8fafe0 0%, #6e94d1 100%);
+  color: #1a2f50;
   font-size: clamp(18px, 2.8vh, 24px);
   font-weight: 900;
   cursor: pointer;
-  box-shadow: 1.5px 3px 0 0 var(--nk-purple);
+  box-shadow: 1.5px 3px 0 0 #4a6e9f;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -459,7 +471,7 @@ body.games-page.in-active-game #globalBackBtn {
 }
 
 .exit-game-btn:hover {
-  background: #fee2e2;
+  background: linear-gradient(180deg, #fee2e2 0%, #fca5a5 100%);
   border-color: #dc2626;
   color: #dc2626;
   box-shadow: 1.5px 3px 0 0 #dc2626;
@@ -481,7 +493,7 @@ body.games-page.in-active-game #globalBackBtn {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  color: var(--nk-purple);
+  color: var(--nk-text);
   font-weight: 900;
   font-size: clamp(13px, 2vh, 17px);
 }
@@ -490,15 +502,15 @@ body.games-page.in-active-game #globalBackBtn {
   position: relative;
   width: 100%;
   height: clamp(12px, 2vh, 18px);
-  background: #e9e7f1;
+  background: #f0e2c8;
   border-radius: 999px;
-  border: 2px solid var(--nk-purple-soft);
+  border: 2px solid var(--nk-lavender-border);
   overflow: hidden;
 }
 
 .progress-fill {
   height: 100%;
-  background: linear-gradient(90deg, #917ed6 0%, #4221b8 50%, #31c838 100%);
+  background: linear-gradient(90deg, #8fafe0 0%, #5a82c4 50%, #10b981 100%);
   border-radius: 999px;
   transition: width 0.38s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
@@ -509,18 +521,19 @@ body.games-page.in-active-game #globalBackBtn {
   gap: 10px;
   padding: clamp(5px, 0.9vh, 9px) clamp(14px, 1.8vw, 20px);
   border-radius: 18px;
-  border: 2px solid var(--nk-purple);
-  background: linear-gradient(180deg, #ffe60a 0%, #ffa000 100%);
-  color: var(--nk-text);
+  border: 2px solid #cf6326;
+  background: linear-gradient(180deg, #f89b66 0%, #e8783a 100%);
+  color: #ffffff;
   font-size: clamp(14px, 2.1vh, 19px);
   font-weight: 900;
   cursor: pointer;
-  box-shadow: 1.5px 3px 0 0 var(--nk-purple);
+  box-shadow: 1.5px 3px 0 0 #b54e18;
   transition: transform 0.16s ease;
 }
 
 .speaker-btn:hover {
   transform: translateY(-2px);
+  background: linear-gradient(180deg, #faaa7c 0%, #ed864b 100%);
 }
 
 .speaker-btn:active {
@@ -529,12 +542,12 @@ body.games-page.in-active-game #globalBackBtn {
 
 .target-prompt-badge {
   background: #ffffff;
-  color: var(--nk-purple);
+  color: #8c3821;
   padding: 1px 12px;
   border-radius: 12px;
   font-size: clamp(16px, 2.5vh, 23px);
   font-weight: 900;
-  border: 2px solid var(--nk-purple);
+  border: 2px solid #e5a780;
 }
 
 /* =========================================================
@@ -589,14 +602,14 @@ body.games-page.in-active-game #globalBackBtn {
 }
 
 .correct-flash {
-  border-color: #19aa20 !important;
-  background: #dcfce7 !important;
-  color: #15803d !important;
-  box-shadow: 2px 4px 0 #19aa20, 0 0 20px rgba(49, 200, 56, 0.7) !important;
+  border-color: #10b981 !important;
+  background: #d1fae5 !important;
+  color: #065f46 !important;
+  box-shadow: 2px 4px 0 #059669, 0 0 20px rgba(16, 185, 129, 0.7) !important;
   transform: scale(1.08) !important;
 }
 
-/* Contrôles en bas style Novakid (.gamesArchive__quizPill) */
+/* Contrôles en bas */
 .bottom-cards-bar {
   margin-top: auto;
   display: flex;
@@ -604,24 +617,24 @@ body.games-page.in-active-game #globalBackBtn {
   justify-content: center;
   gap: clamp(10px, 1.8vw, 18px);
   padding: clamp(6px, 1vh, 12px) clamp(14px, 2vw, 24px);
-  background: rgba(255, 255, 255, 0.88);
+  background: rgba(255, 252, 246, 0.92);
   backdrop-filter: blur(8px);
   border-radius: 32px;
   border: 2.5px solid var(--nk-lavender-border);
-  box-shadow: 0 8px 24px rgba(66, 33, 184, 0.18);
+  box-shadow: 0 8px 24px rgba(95, 70, 30, 0.16);
 }
 
 .lane-arrow-btn {
   width: clamp(48px, 7.2vh, 64px);
   height: clamp(48px, 7.2vh, 64px);
   border-radius: 20px;
-  border: 2.5px solid var(--nk-purple);
-  background: var(--nk-purple);
-  color: #ffffff;
+  border: 2.5px solid #577fb8;
+  background: linear-gradient(180deg, #8fafe0 0%, #6e94d1 100%);
+  color: #1a2f50;
   font-size: clamp(24px, 3.8vh, 34px);
   font-weight: 900;
   cursor: pointer;
-  box-shadow: 2px 4px 0 #261073;
+  box-shadow: 2px 4px 0 #4a6e9f;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -629,7 +642,7 @@ body.games-page.in-active-game #globalBackBtn {
 }
 
 .lane-arrow-btn:hover {
-  background: #532cd9;
+  background: linear-gradient(180deg, #9bbcf0 0%, #7aa0dc 100%);
   transform: translateY(-2px);
 }
 
@@ -643,14 +656,14 @@ body.games-page.in-active-game #globalBackBtn {
   height: clamp(64px, 11.2dvh, 94px);
   padding: 6px 18px;
   border-radius: 22px;
-  border: 2.5px solid var(--nk-purple-soft);
-  background: #ffffff;
-  color: var(--nk-text);
+  border: 2.5px solid #e4a881;
+  background: linear-gradient(180deg, #fde7d5 0%, #f7c7a8 100%);
+  color: #8c3821;
   font-family: "Cairo", "Nunito", sans-serif;
   font-size: clamp(28px, 5vh, 44px);
   font-weight: 900;
   cursor: pointer;
-  box-shadow: 2px 5px 0 var(--nk-purple);
+  box-shadow: 2px 5px 0 #c77b4c;
   transition: all 0.16s ease;
   display: flex;
   align-items: center;
@@ -659,9 +672,8 @@ body.games-page.in-active-game #globalBackBtn {
 
 .choice-card-btn:hover {
   transform: translateY(-3px);
-  border-color: var(--nk-purple);
-  color: var(--nk-purple);
-  background: #f7f5ff;
+  background: linear-gradient(180deg, #fff0e2 0%, #fad1b4 100%);
+  color: #8c3821;
 }
 
 .choice-card-btn:active {
@@ -669,20 +681,20 @@ body.games-page.in-active-game #globalBackBtn {
 }
 
 .choice-card-btn.active-lane {
-  border-color: var(--nk-purple);
-  background: #ede9fe;
-  color: var(--nk-purple);
-  box-shadow: 2px 5px 0 var(--nk-purple), 0 0 18px rgba(145, 126, 214, 0.7);
+  border-color: #5a82c4;
+  background: linear-gradient(180deg, #edf4fd 0%, #c6dbf7 100%);
+  color: #224577;
+  box-shadow: 2px 5px 0 #739bd4, 0 0 18px rgba(90, 130, 196, 0.6);
   transform: translateY(-3px);
 }
 
-/* Bandeau du mot cible (Jeu 2 & Jeu 3) style Novakid */
+/* Bandeau du mot cible (Jeu 2 & Jeu 3) */
 .word-maze-banner {
-  background: #ffffff;
-  border: 3px solid var(--nk-purple);
+  background: #fffcf6;
+  border: 3px solid #dec28f;
   border-radius: 28px;
   padding: clamp(6px, 1.1vh, 12px) clamp(16px, 2.4vw, 28px);
-  box-shadow: 2px 6px 0 var(--nk-purple), 0 10px 28px rgba(66, 33, 184, 0.2);
+  box-shadow: 2px 6px 0 #c59f5f, 0 10px 28px rgba(95, 70, 30, 0.16);
   display: flex;
   align-items: center;
   gap: 14px;
@@ -690,6 +702,13 @@ body.games-page.in-active-game #globalBackBtn {
 
 .word-emoji {
   font-size: clamp(28px, 4.8vh, 44px);
+}
+
+.word-3d-icon {
+  width: clamp(42px, 6.2vh, 58px);
+  height: clamp(42px, 6.2vh, 58px);
+  object-fit: contain;
+  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.2));
 }
 
 .word-letters-row {
@@ -702,29 +721,29 @@ body.games-page.in-active-game #globalBackBtn {
   width: clamp(42px, 6.6vh, 58px);
   height: clamp(46px, 7vh, 62px);
   border-radius: 16px;
-  border: 2.5px solid var(--nk-lavender-border);
-  background: #f7f5ff;
-  color: var(--nk-text);
+  border: 2px solid #e4a881;
+  background: linear-gradient(180deg, #fde7d5 0%, #f7c7a8 100%);
+  color: #8c3821;
   font-size: clamp(22px, 3.6vh, 32px);
   font-weight: 900;
-  box-shadow: 1.5px 3px 0 var(--nk-purple-soft);
+  box-shadow: 1.5px 3px 0 #c77b4c;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
 .word-letter-box.solved {
-  background: #dcfce7;
-  border-color: var(--nk-green-dark);
-  color: #15803d;
-  box-shadow: 1.5px 3px 0 var(--nk-green-dark);
+  background: linear-gradient(180deg, #edf4fd 0%, #c6dbf7 100%);
+  border-color: #a3c2ed;
+  color: #224577;
+  box-shadow: 1.5px 3px 0 #739bd4;
 }
 
 .word-letter-box.current-target {
-  background: var(--nk-purple);
-  border: 2.5px solid #261073;
+  background: linear-gradient(180deg, #f89b66 0%, #e8783a 100%);
+  border: 2.5px solid #cf6326;
   color: #ffffff;
-  box-shadow: 1.5px 3px 0 #261073;
+  box-shadow: 1.5px 3px 0 #b54e18;
   animation: pulseTargetBox 0.85s infinite alternate;
 }
 
@@ -734,7 +753,7 @@ body.games-page.in-active-game #globalBackBtn {
 }
 
 /* =========================================================
-   4. MODAL DE VICTOIRE STYLE NOVAKID (.gamePage__heroCard)
+   4. MODAL DE VICTOIRE
    ========================================================= */
 .confetti-canvas {
   position: fixed;
@@ -749,7 +768,7 @@ body.games-page.in-active-game #globalBackBtn {
   position: fixed;
   inset: 0;
   z-index: 90;
-  background: rgba(23, 7, 81, 0.72);
+  background: rgba(43, 36, 31, 0.72);
   backdrop-filter: blur(8px);
   display: flex;
   align-items: center;
@@ -759,13 +778,13 @@ body.games-page.in-active-game #globalBackBtn {
 
 .victory-card {
   width: min(500px, 92vw);
-  background: #ffffff;
-  border: 3px solid var(--nk-purple-soft);
-  border-bottom: 8px solid var(--nk-purple);
+  background: #fffcf6;
+  border: 3px solid #dec28f;
+  border-bottom: 8px solid #c59f5f;
   border-radius: 40px;
   padding: clamp(22px, 3.4vh, 36px);
   text-align: center;
-  box-shadow: 2px 10px 60px 0 rgba(66, 33, 184, 0.45);
+  box-shadow: 2px 10px 60px 0 rgba(70, 50, 20, 0.35);
   animation: popInModal 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
@@ -784,7 +803,7 @@ body.games-page.in-active-game #globalBackBtn {
   margin: 0;
   font-size: clamp(24px, 4.2vh, 36px);
   font-weight: 900;
-  color: var(--nk-purple);
+  color: #2b241f;
 }
 
 .victory-subtitle {
@@ -804,12 +823,12 @@ body.games-page.in-active-game #globalBackBtn {
 .reward-badge {
   padding: 6px 18px;
   border-radius: 16px;
-  background: #f7f5ff;
-  border: 2px solid var(--nk-purple-soft);
-  box-shadow: 1.5px 3px 0 var(--nk-purple);
+  background: #fffdf8;
+  border: 2px solid var(--nk-lavender-border);
+  box-shadow: 1.5px 3px 0 #c59f5f;
   font-size: clamp(16px, 2.5vh, 22px);
   font-weight: 900;
-  color: var(--nk-purple);
+  color: #4a3628;
 }
 
 .victory-actions {
@@ -825,4 +844,158 @@ body.games-page.in-active-game #globalBackBtn {
   min-width: 175px;
   padding: 11px 22px;
   font-size: clamp(14px, 2.1vh, 18px);
+}
+
+
+/* =========================================================
+   ENRICHISSEMENTS VISUELS & INTERACTIVITÉ 3D (GAMES, TRACING, TEST, STORIES)
+   ========================================================= */
+
+/* Mot interactif dans les histoires courtes (Tap-to-Speak) */
+.story-word-tap {
+  display: inline-block;
+  padding: 2px 7px;
+  margin: 2px 3px;
+  border-radius: 12px;
+  cursor: pointer;
+  background: rgba(254, 240, 138, 0.45);
+  border: 1.5px solid transparent;
+  transition: all 0.16s ease;
+  user-select: none;
+}
+
+.story-word-tap:hover {
+  background: #fef08a;
+  border-color: #eab308;
+  transform: translateY(-2px) scale(1.08);
+  box-shadow: 0 4px 10px rgba(234, 179, 8, 0.35);
+  color: #713f12;
+}
+
+.story-word-tap:active,
+.story-word-tap.speaking {
+  background: #f59e0b;
+  color: #ffffff;
+  border-color: #d97706;
+  transform: scale(1.12);
+  box-shadow: 0 0 14px rgba(245, 158, 11, 0.65);
+}
+
+/* Badge Série de réussite (Streak) dans Test */
+.streak-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 14px;
+  border-radius: 9999px;
+  background: linear-gradient(135deg, #ef4444 0%, #f97316 100%);
+  color: #ffffff;
+  font-size: 13px;
+  font-weight: 900;
+  box-shadow: 0 4px 12px rgba(239, 68, 68, 0.35);
+  animation: pulseStreak 1.4s infinite alternate;
+}
+
+@keyframes pulseStreak {
+  0% { transform: scale(1); filter: drop-shadow(0 0 2px #f97316); }
+  100% { transform: scale(1.08); filter: drop-shadow(0 0 8px #ef4444); }
+}
+
+/* Flash de réponse correcte & secousse d'erreur */
+.correct-flash {
+  animation: correctBounce 0.55s ease forwards;
+  background: #dcfce7 !important;
+  border-color: #10b981 !important;
+  box-shadow: 0 0 20px rgba(16, 185, 129, 0.5) !important;
+}
+
+@keyframes correctBounce {
+  0% { transform: scale(1); }
+  35% { transform: scale(1.1); }
+  65% { transform: scale(0.96); }
+  100% { transform: scale(1.04); }
+}
+
+.shake-error {
+  animation: shakeError 0.45s ease-in-out forwards;
+  background: #fee2e2 !important;
+  border-color: #ef4444 !important;
+}
+
+@keyframes shakeError {
+  0%, 100% { transform: translateX(0); }
+  20%, 60% { transform: translateX(-8px); }
+  40%, 80% { transform: translateX(8px); }
+}
+
+/* Bulle interactive mascotte Fenny */
+.fenny-interactive-bubble {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: #fffdf8;
+  border: 2px solid #fcd34d;
+  box-shadow: 0 4px 12px rgba(245, 158, 11, 0.15);
+  border-radius: 20px;
+  padding: 6px 14px;
+  transition: transform 0.2s ease;
+}
+
+.fenny-interactive-bubble:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(245, 158, 11, 0.25);
+}
+
+.fenny-interactive-avatar {
+  width: 38px;
+  height: 38px;
+  object-fit: contain;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.15));
+  animation: fennyGentleFloat 3s ease-in-out infinite;
+}
+
+@keyframes fennyGentleFloat {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-4px); }
+}
+
+/* Cartes de choix enrichies dans Test */
+.test-choice-card {
+  background: #ffffff;
+  border: 2.5px solid #dec28f;
+  border-bottom: 5px solid #c59f5f;
+  border-radius: 24px;
+  box-shadow: 0 5px 14px rgba(95, 70, 30, 0.12);
+  padding: clamp(10px, 1.8vh, 18px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  cursor: pointer;
+  transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease;
+  user-select: none;
+}
+
+.test-choice-card:hover {
+  transform: translateY(-4px) scale(1.03);
+  border-color: #6366f1;
+  box-shadow: 0 8px 22px rgba(99, 102, 241, 0.22);
+}
+
+.test-choice-card:active {
+  transform: scale(0.97);
+}
+
+.test-choice-img {
+  width: clamp(52px, 8.5vh, 76px);
+  height: clamp(52px, 8.5vh, 76px);
+  object-fit: contain;
+  filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.12));
+}
+
+.test-choice-title {
+  font-size: clamp(16px, 2.4vh, 22px);
+  font-weight: 900;
+  color: #1e1b4b;
 }

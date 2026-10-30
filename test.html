@@ -5,66 +5,56 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, viewport-fit=cover">
   <script src="https://cdn.tailwindcss.com"></script>
-  <title>Kids Learner - Test & Quiz</title>
+  <title>Kids Learner - Test des Connaissances 3AP</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@600;700;800;900&family=Nunito:wght@600;700;800;900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/common.css?v=12">
-  <link rel="stylesheet" href="css/games.css?v=12">
+  <link rel="stylesheet" href="css/common.css?v=16">
+  <link rel="stylesheet" href="css/games.css?v=16">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
   <style>
     .test-container {
-      width: min(94vw, 880px);
-      height: min(82dvh, 560px);
+      width: min(94vw, 920px);
+      height: min(84dvh, 600px);
       margin: auto;
-      background: #ffffff;
-      border: 3px solid #917ed6;
-      border-bottom: 8px solid #4221b8;
-      border-radius: 36px;
-      box-shadow: 2px 10px 50px 0 rgba(66, 33, 184, 0.2);
-      padding: clamp(16px, 2.8vh, 30px);
+      background: #fffcf6;
+      border: clamp(5px, 1vw, 8px) solid #dec28f;
+      border-bottom: clamp(7px, 1.3vw, 11px) solid #c59f5f;
+      border-radius: clamp(24px, 3.5vw, 36px);
+      box-shadow: 0 16px 45px rgba(95, 70, 30, 0.16);
+      padding: clamp(14px, 2.5vh, 26px);
       display: flex;
       flex-direction: column;
       justify-content: space-between;
       align-items: center;
       text-align: center;
     }
+
     .test-question-card {
       width: 100%;
-      background: linear-gradient(180deg, #f2f5ff 0%, #dee5ff 100%);
-      border: 2.5px solid #c6d2ff;
-      border-radius: 26px;
-      padding: clamp(14px, 2.2vh, 24px);
+      background: linear-gradient(180deg, #fdf4e1 0%, #f9e2b5 100%);
+      border: 2px solid #dec28f;
+      border-radius: 24px;
+      padding: clamp(10px, 1.8vh, 18px);
       display: flex;
-      flex-direction: column;
       align-items: center;
-      gap: 10px;
+      justify-content: space-between;
+      gap: 12px;
+      box-shadow: inset 0 2px 4px rgba(255, 255, 255, 0.7);
     }
+
     .test-options-grid {
       width: 100%;
       display: grid;
       grid-template-columns: repeat(2, 1fr);
       gap: clamp(10px, 1.8vh, 18px);
     }
-    .test-option-btn {
-      background: #ffffff;
-      border: 2.5px solid #917ed6;
-      border-radius: 22px;
-      box-shadow: 2px 4px 0 #4221b8;
-      padding: clamp(12px, 2vh, 20px);
-      font-size: clamp(18px, 3vh, 28px);
-      font-weight: 900;
-      color: #2c2a33;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 12px;
-      transition: all 0.18s ease;
-    }
-    .test-option-btn:hover {
-      border-color: #4221b8;
-      background: #f7f5ff;
-      transform: translateY(-2px);
+
+    @media (max-width: 640px) {
+      .test-options-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 8px;
+      }
     }
   </style>
 </head>
@@ -75,12 +65,22 @@
       <header class="nk-hero">
         <div class="nk-hero-top">
           <div class="nk-hero-text">
-            <h1 id="testTitle" class="nk-hero-title">Test des connaissances</h1>
-            <p id="testSubtitle" class="nk-hero-subtitle">Écoute la question et choisis la bonne réponse !</p>
+            <h1 id="testTitle" class="nk-hero-title">Test des connaissances 3AP</h1>
+            <p id="testSubtitle" class="nk-hero-subtitle">Écoute Fenny et choisis la bonne illustration !</p>
           </div>
+
           <div class="nk-counters">
-            <div class="nk-stat-pill">
-              <span>🏆</span>
+            <div id="streakBadge" class="streak-badge hidden">
+              <span>🔥</span>
+              <span id="streakCount">Série 0</span>
+            </div>
+            <div class="hidden sm:flex items-center gap-1.5 bg-amber-50 border-2 border-amber-300 rounded-full px-3 py-1">
+              <img src="assets/images/fennygo/badge-phonics.png" alt="Phonics Master" class="w-6 h-6 object-contain" title="Phonics Master">
+              <img src="assets/images/fennygo/badge-spelling.png" alt="Spelling Star" class="w-6 h-6 object-contain" title="Spelling Star">
+              <img src="assets/images/fennygo/badge-explorer.png" alt="World Explorer" class="w-6 h-6 object-contain" title="World Explorer">
+            </div>
+            <div class="nk-stat-pill nk-star-pill">
+              <img src="assets/images/games/star.png" class="w-5 h-5 object-contain" alt="Star">
               <span id="testScoreLabel">0 / 10</span>
             </div>
           </div>
@@ -88,113 +88,217 @@
       </header>
 
       <section class="test-container">
+        <!-- Barre de progression de la question -->
         <div class="w-full flex items-center justify-between gap-4">
           <span id="qCounterBadge" class="nk-tag" style="font-size: 13px; padding: 5px 14px;">Question 1 / 10</span>
-          <div class="progress-track" style="max-width: 340px;">
-            <div id="testProgressFill" class="progress-fill" style="width: 10%"></div>
+          <div class="progress-track" style="max-width: 360px;">
+            <div id="testProgressFill" class="progress-fill" style="width: 10%;"></div>
           </div>
-          <button type="button" id="listenQuestionBtn" class="speaker-btn">
+        </div>
+
+        <!-- Carte de la consigne avec Fenny et bouton écoute -->
+        <div class="test-question-card">
+          <div class="flex items-center gap-3 text-start">
+            <img src="assets/images/fennygo/fenny-avatar.png" id="fennyQuizAvatar" class="w-12 h-12 sm:w-14 sm:h-14 object-contain" alt="Fenny">
+            <div>
+              <span class="text-xs font-black text-amber-900 uppercase tracking-wide">🦊 Fenny te demande :</span>
+              <h2 id="questionPrompt" class="text-base sm:text-xl font-black text-amber-950 leading-tight">Écoute bien...</h2>
+            </div>
+          </div>
+
+          <button type="button" id="listenQuestionBtn" class="nk-btn-purple flex items-center gap-2 px-4 py-2.5 text-sm sm:text-base font-black shadow-md hover:scale-105 transition" title="Écouter à nouveau">
             <i class="fa-solid fa-volume-high"></i>
             <span id="listenBtnLabel">Écouter</span>
           </button>
         </div>
 
-        <div class="test-question-card">
-          <div id="questionEmoji" style="font-size: clamp(46px, 8vh, 72px); line-height: 1.1;">❓</div>
-          <h2 id="questionPrompt" class="nk-hero-title" style="font-size: clamp(20px, 3.4vh, 32px);">Trouve la bonne réponse :</h2>
-        </div>
+        <!-- 4 Choix illustrés interactifs -->
+        <div class="test-options-grid" id="testOptionsGrid" role="group" aria-label="Réponses possibles"></div>
 
-        <div id="testOptionsGrid" class="test-options-grid"></div>
+        <!-- Bas de carte : Astuce interactive -->
+        <div class="w-full flex items-center justify-between text-xs font-bold text-amber-800/80 px-2">
+          <span>💡 Astuce : Clique sur le haut-parleur si tu veux réécouter.</span>
+          <span id="currentCategoryTag" class="nk-tag">Programme 3AP</span>
+        </div>
       </section>
     </main>
+
+    <!-- Canvas pour les confettis -->
+    <canvas id="testConfettiCanvas" style="position:fixed;inset:0;pointer-events:none;z-index:9999;width:100%;height:100%;"></canvas>
   </div>
 
-  <script src="js/app-lang.js?v=12"></script>
+  <script src="js/app-lang.js?v=13"></script>
   <script>
     (() => {
-      const QUIZ_DATA = {
+      const QUIZ_ITEMS = {
         French: {
-          title: "Test des connaissances",
-          subtitle: "Écoute le mot et choisis la bonne réponse !",
+          title: "Test des connaissances 3AP",
+          subtitle: "Écoute Fenny et choisis la bonne illustration !",
           listen: "Écouter",
           questionWord: "Question",
           promptPrefix: "Où est : ",
-          doneTitle: "Bravo ! Score final : ",
+          doneTitle: "Félicitations ! Score : ",
           restart: "Recommencer le test",
           speechLang: "fr-FR",
           items: [
-            { speech: "Grand-père", label: "Grand-père", emoji: "👴" },
-            { speech: "Grand-mère", label: "Grand-mère", emoji: "👵" },
-            { speech: "Père", label: "Père", emoji: "👨" },
-            { speech: "Mère", label: "Mère", emoji: "👩" },
-            { speech: "Un", label: "1 - Un", emoji: "1️⃣" },
-            { speech: "Trois", label: "3 - Trois", emoji: "3️⃣" },
-            { speech: "Cinq", label: "5 - Cinq", emoji: "5️⃣" },
-            { speech: "Dix", label: "10 - Dix", emoji: "🔟" },
-            { speech: "POMME", label: "Pomme", emoji: "🍎" },
-            { speech: "LION", label: "Lion", emoji: "🦁" },
-            { speech: "LIVRE", label: "Livre", emoji: "📖" },
-            { speech: "CHAT", label: "Chat", emoji: "🐱" }
+            { speech: "Le chat", label: "Le Chat", emoji: "🐱", img: "assets/images/games/words/cat.png" },
+            { speech: "Le lion", label: "Le Lion", emoji: "🦁", img: "assets/images/games/words/lion.png" },
+            { speech: "La pomme", label: "La Pomme", emoji: "🍎", img: "assets/images/games/words/apple.png" },
+            { speech: "Le livre", label: "Le Livre", emoji: "📖", img: "assets/images/stationery/book.png" },
+            { speech: "Le crayon", label: "Le Crayon", emoji: "✏️", img: "assets/images/stationery/pencil.png" },
+            { speech: "Le canard", label: "Le Canard", emoji: "🦆", img: "assets/images/games/words/duck.png" },
+            { speech: "L'ours", label: "L'Ours", emoji: "🐻", img: "assets/images/games/words/bear.png" },
+            { speech: "Le poisson", label: "Le Poisson", emoji: "🐟", img: "assets/images/games/words/fish.png" },
+            { speech: "Le soleil", label: "Le Soleil", emoji: "☀️", img: "assets/images/games/words/sun.png" },
+            { speech: "Le train", label: "Le Train", emoji: "🚂", img: "assets/images/games/words/train.png" },
+            { speech: "Le père", label: "Le Père", emoji: "👨", img: "assets/images/family/father.png" },
+            { speech: "La mère", label: "La Mère", emoji: "👩", img: "assets/images/family/mother.png" },
+            { speech: "Le vélo", label: "Le Vélo", emoji: "🚲", img: "assets/images/games/words/bike.png" },
+            { speech: "La fleur", label: "La Fleur", emoji: "🌸", img: "assets/images/games/words/flower.png" }
           ]
         },
         Arabic: {
-          title: "اخْتِبَارُ المَعْلُومَاتِ",
-          subtitle: "اسْتَمِعْ إِلَى الكَلِمَةِ وَاخْتَرِ الإِجَابَةَ الصَّحِيحَةَ!",
+          title: "اخْتِبَارُ المَعْلُومَاتِ ٣AP",
+          subtitle: "اسْتَمِعْ إِلَى فِينِي وَاخْتَرِ الصُّورَةَ الصَّحِيحَةَ!",
           listen: "اسْتَمِعْ",
           questionWord: "السُّؤَالُ",
           promptPrefix: "أَيْنَ : ",
-          doneTitle: "أَحْسَنْتَ! النَّتِيجَةُ : ",
+          doneTitle: "مُمْتَازٌ! النَّتِيجَةُ : ",
           restart: "إِعَادَةُ الاخْتِبَارِ",
           speechLang: "ar-SA",
           items: [
-            { speech: "الجَدُّ", label: "الجَدُّ", emoji: "👴" },
-            { speech: "الجَدَّةُ", label: "الجَدَّةُ", emoji: "👵" },
-            { speech: "الأَبُ", label: "الأَبُ", emoji: "👨" },
-            { speech: "الأُمُّ", label: "الأُمُّ", emoji: "👩" },
-            { speech: "وَاحِد", label: "١ - وَاحِد", emoji: "1️⃣" },
-            { speech: "ثَلَاثَة", label: "٣ - ثَلَاثَة", emoji: "3️⃣" },
-            { speech: "خَمْسَة", label: "٥ - خَمْسَة", emoji: "5️⃣" },
-            { speech: "عَشَرَة", label: "١٠ - عَشَرَة", emoji: "🔟" },
-            { speech: "تُفَّاح", label: "تُفَّاح", emoji: "🍎" },
-            { speech: "أَسَد", label: "أَسَد", emoji: "🦁" },
-            { speech: "كِتَاب", label: "كِتَاب", emoji: "📖" },
-            { speech: "سَمَك", label: "سَمَك", emoji: "🐟" }
+            { speech: "قِطّ", label: "قِطّ", emoji: "🐱", img: "assets/images/games/words/cat.png" },
+            { speech: "أَسَد", label: "أَسَد", emoji: "🦁", img: "assets/images/games/words/lion.png" },
+            { speech: "تُفَّاحَة", label: "تُفَّاحَة", emoji: "🍎", img: "assets/images/games/words/apple.png" },
+            { speech: "كِتَاب", label: "كِتَاب", emoji: "📖", img: "assets/images/stationery/book.png" },
+            { speech: "قَلَم", label: "قَلَم", emoji: "✏️", img: "assets/images/stationery/pencil.png" },
+            { speech: "بَطَّة", label: "بَطَّة", emoji: "🦆", img: "assets/images/games/words/duck.png" },
+            { speech: "دُبّ", label: "دُبّ", emoji: "🐻", img: "assets/images/games/words/bear.png" },
+            { speech: "سَمَكَة", label: "سَمَكَة", emoji: "🐟", img: "assets/images/games/words/fish.png" },
+            { speech: "شَمْس", label: "شَمْس", emoji: "☀️", img: "assets/images/games/words/sun.png" },
+            { speech: "قِطَار", label: "قِطَار", emoji: "🚂", img: "assets/images/games/words/train.png" },
+            { speech: "أَب", label: "أَب", emoji: "👨", img: "assets/images/family/father.png" },
+            { speech: "أُمّ", label: "أُمّ", emoji: "👩", img: "assets/images/family/mother.png" }
           ]
         },
         English: {
-          title: "Knowledge Test",
-          subtitle: "Listen to the word and pick the right answer!",
+          title: "Knowledge Test 3AP",
+          subtitle: "Listen to Fenny and pick the right picture!",
           listen: "Listen",
           questionWord: "Question",
-          promptPrefix: "Find: ",
-          doneTitle: "Great Job! Final Score: ",
+          promptPrefix: "Where is: ",
+          doneTitle: "Great Job! Score: ",
           restart: "Restart Test",
           speechLang: "en-US",
           items: [
-            { speech: "Grandfather", label: "Grandfather", emoji: "👴" },
-            { speech: "Grandmother", label: "Grandmother", emoji: "👵" },
-            { speech: "Father", label: "Father", emoji: "👨" },
-            { speech: "Mother", label: "Mother", emoji: "👩" },
-            { speech: "One", label: "1 - One", emoji: "1️⃣" },
-            { speech: "Three", label: "3 - Three", emoji: "3️⃣" },
-            { speech: "Five", label: "5 - Five", emoji: "5️⃣" },
-            { speech: "Ten", label: "10 - Ten", emoji: "🔟" },
-            { speech: "APPLE", label: "Apple", emoji: "🍎" },
-            { speech: "LION", label: "Lion", emoji: "🦁" },
-            { speech: "BOOK", label: "Book", emoji: "📖" },
-            { speech: "CAT", label: "Cat", emoji: "🐱" }
+            { speech: "The cat", label: "The Cat", emoji: "🐱", img: "assets/images/games/words/cat.png" },
+            { speech: "The lion", label: "The Lion", emoji: "🦁", img: "assets/images/games/words/lion.png" },
+            { speech: "The apple", label: "The Apple", emoji: "🍎", img: "assets/images/games/words/apple.png" },
+            { speech: "The book", label: "The Book", emoji: "📖", img: "assets/images/stationery/book.png" },
+            { speech: "The pencil", label: "The Pencil", emoji: "✏️", img: "assets/images/stationery/pencil.png" },
+            { speech: "The duck", label: "The Duck", emoji: "🦆", img: "assets/images/games/words/duck.png" },
+            { speech: "The bear", label: "The Bear", emoji: "🐻", img: "assets/images/games/words/bear.png" },
+            { speech: "The fish", label: "The Fish", emoji: "🐟", img: "assets/images/games/words/fish.png" },
+            { speech: "The sun", label: "The Sun", emoji: "☀️", img: "assets/images/games/words/sun.png" },
+            { speech: "The train", label: "The Train", emoji: "🚂", img: "assets/images/games/words/train.png" },
+            { speech: "Father", label: "Father", emoji: "👨", img: "assets/images/family/father.png" },
+            { speech: "Mother", label: "Mother", emoji: "👩", img: "assets/images/family/mother.png" }
           ]
         }
       };
 
+      // Synthèse audio Web Audio pour bruitages immédiats
+      let audioCtx = null;
+      function playTone(freq, duration, type) {
+        try {
+          if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+          if (audioCtx.state === "suspended") audioCtx.resume();
+          const osc = audioCtx.createOscillator();
+          const gain = audioCtx.createGain();
+          osc.type = type || "sine";
+          osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
+          gain.gain.setValueAtTime(0.2, audioCtx.currentTime);
+          gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + duration);
+          osc.connect(gain);
+          gain.connect(audioCtx.destination);
+          osc.start();
+          osc.stop(audioCtx.currentTime + duration);
+        } catch (e) {}
+      }
+
+      function playSuccessChime() {
+        playTone(523.25, 0.15);
+        setTimeout(() => playTone(659.25, 0.15), 80);
+        setTimeout(() => playTone(783.99, 0.3), 160);
+      }
+
+      function playErrorBoing() {
+        playTone(220, 0.25, "triangle");
+      }
+
+      // Confettis
+      const cCanvas = document.getElementById("testConfettiCanvas");
+      const cCtx = cCanvas.getContext("2d");
+      let confettiPieces = [];
+
+      function resizeConfetti() {
+        cCanvas.width = window.innerWidth;
+        cCanvas.height = window.innerHeight;
+      }
+      window.addEventListener("resize", resizeConfetti);
+      resizeConfetti();
+
+      function spawnConfetti(count) {
+        count = count || 35;
+        const colors = ["#f59e0b", "#10b981", "#3b82f6", "#ec4899", "#8b5cf6"];
+        for (let i = 0; i < count; i++) {
+          confettiPieces.push({
+            x: cCanvas.width / 2 + (Math.random() - 0.5) * 300,
+            y: cCanvas.height * 0.4,
+            vx: (Math.random() - 0.5) * 8,
+            vy: -4 - Math.random() * 6,
+            color: colors[Math.floor(Math.random() * colors.length)],
+            size: 6 + Math.random() * 8,
+            rot: Math.random() * 360,
+            vRot: (Math.random() - 0.5) * 12,
+            life: 60
+          });
+        }
+      }
+
+      function loopConfetti() {
+        cCtx.clearRect(0, 0, cCanvas.width, cCanvas.height);
+        for (let i = confettiPieces.length - 1; i >= 0; i--) {
+          const p = confettiPieces[i];
+          p.x += p.vx;
+          p.y += p.vy;
+          p.vy += 0.25;
+          p.rot += p.vRot;
+          p.life--;
+          if (p.life <= 0) {
+            confettiPieces.splice(i, 1);
+            continue;
+          }
+          cCtx.save();
+          cCtx.translate(p.x, p.y);
+          cCtx.rotate((p.rot * Math.PI) / 180);
+          cCtx.fillStyle = p.color;
+          cCtx.fillRect(-p.size / 2, -p.size / 2, p.size, p.size);
+          cCtx.restore();
+        }
+        requestAnimationFrame(loopConfetti);
+      }
+      requestAnimationFrame(loopConfetti);
+
       let qIndex = 0;
       let score = 0;
+      let streak = 0;
       let questions = [];
       let currentTarget = null;
 
       function getLangData() {
-        const langId = window.AppLang ? window.AppLang.getCurrentLangId() : (localStorage.getItem("selectedLanguage") || "English");
-        return QUIZ_DATA[langId] || QUIZ_DATA.English;
+        const langId = window.AppLang ? window.AppLang.getCurrentLangId() : (localStorage.getItem("selectedLanguage") || "French");
+        return QUIZ_ITEMS[langId] || QUIZ_ITEMS.French;
       }
 
       function shuffle(arr) {
@@ -208,62 +312,101 @@
 
       function startQuiz() {
         const data = getLangData();
+        document.documentElement.dir = (window.AppLang && window.AppLang.getCurrentLangId() === "Arabic") ? "rtl" : "ltr";
         document.getElementById("testTitle").textContent = data.title;
         document.getElementById("testSubtitle").textContent = data.subtitle;
         document.getElementById("listenBtnLabel").textContent = data.listen;
         qIndex = 0;
         score = 0;
+        streak = 0;
+        updateStreak();
         questions = shuffle(data.items).slice(0, 10);
         renderQuestion();
       }
 
+      function updateStreak() {
+        const badge = document.getElementById("streakBadge");
+        if (streak >= 2) {
+          badge.classList.remove("hidden");
+          document.getElementById("streakCount").textContent = "🔥 Série x" + streak;
+        } else {
+          badge.classList.add("hidden");
+        }
+      }
+
       function renderQuestion() {
         const data = getLangData();
-        document.getElementById("testScoreLabel").textContent = `${score} / 10`;
+        document.getElementById("testScoreLabel").textContent = score + " / 10";
 
         if (qIndex >= questions.length) {
-          document.getElementById("questionEmoji").textContent = "🏆";
-          document.getElementById("questionPrompt").textContent = `${data.doneTitle}${score} / 10`;
+          // Écran de victoire festif
+          document.getElementById("qCounterBadge").textContent = "Test Complété ! 🎉";
+          document.getElementById("testProgressFill").style.width = "100%";
+          document.getElementById("questionPrompt").textContent = data.doneTitle + score + " / 10 étoiles !";
+          document.getElementById("fennyQuizAvatar").src = "assets/images/fennygo/badge-phonics.png";
+
+          spawnConfetti(70);
+          playSuccessChime();
+
           const grid = document.getElementById("testOptionsGrid");
-          grid.innerHTML = `<button type="button" class="nk-btn-green" style="grid-column: 1 / -1; padding: 16px; font-size: 20px;" id="restartTestBtn">${data.restart}</button>`;
+          grid.innerHTML = '<button type="button" class="nk-btn-green flex items-center justify-center gap-2" style="grid-column: 1 / -1; padding: 14px; font-size: 18px;" id="restartTestBtn"><i class="fa-solid fa-rotate-right"></i><span>' + data.restart + '</span></button><a href="category.html" class="nk-btn-purple flex items-center justify-center gap-2" style="grid-column: 1 / -1; padding: 14px; font-size: 18px; text-decoration: none;"><i class="fa-solid fa-house"></i><span>Retour au Menu</span></a>';
           document.getElementById("restartTestBtn").addEventListener("click", startQuiz);
           return;
         }
 
         currentTarget = questions[qIndex];
-        document.getElementById("qCounterBadge").textContent = `${data.questionWord} ${qIndex + 1} / 10`;
-        document.getElementById("testProgressFill").style.width = `${((qIndex + 1) / 10) * 100}%`;
-        document.getElementById("questionEmoji").textContent = "🎧";
-        document.getElementById("questionPrompt").textContent = `${data.promptPrefix}${currentTarget.label}`;
+        document.getElementById("qCounterBadge").textContent = data.questionWord + " " + (qIndex + 1) + " / 10";
+        document.getElementById("testProgressFill").style.width = (((qIndex + 1) / 10) * 100) + "%";
+        document.getElementById("questionPrompt").textContent = data.promptPrefix + '"' + currentTarget.label + '" !';
+        document.getElementById("fennyQuizAvatar").src = "assets/images/fennygo/fenny-avatar.png";
 
         const distractors = shuffle(data.items.filter(i => i.label !== currentTarget.label)).slice(0, 3);
         const choices = shuffle([currentTarget, ...distractors]);
 
         const grid = document.getElementById("testOptionsGrid");
         grid.innerHTML = "";
+        let answered = false;
+
         choices.forEach(ch => {
-          const btn = document.createElement("button");
-          btn.type = "button";
-          btn.className = "test-option-btn";
-          btn.innerHTML = `<span style="font-size: 1.35em">${ch.emoji}</span><span>${ch.label}</span>`;
-          btn.addEventListener("click", () => {
+          const card = document.createElement("button");
+          card.type = "button";
+          card.className = "test-choice-card";
+          card.innerHTML = `<img src="${ch.img}" alt="${ch.label}" class="test-choice-img" onerror="this.style.opacity=0;"><span style="font-size: 1.6em; line-height: 1;">${ch.emoji}</span><span class="test-choice-title">${ch.label}</span>`;
+
+          card.addEventListener("click", () => {
+            if (answered) return;
+
             if (ch.label === currentTarget.label) {
-              btn.classList.add("correct-flash");
+              answered = true;
+              card.classList.add("correct-flash");
               score++;
+              streak++;
+              updateStreak();
+              playSuccessChime();
+              spawnConfetti(30);
+
               if (window.AppLang) window.AppLang.speak(currentTarget.speech, data.speechLang);
+
               setTimeout(() => {
                 qIndex++;
                 renderQuestion();
-              }, 700);
+              }, 750);
             } else {
-              btn.classList.add("shake-error");
-              setTimeout(() => btn.classList.remove("shake-error"), 450);
+              streak = 0;
+              updateStreak();
+              card.classList.add("shake-error");
+              playErrorBoing();
+              setTimeout(() => card.classList.remove("shake-error"), 500);
             }
           });
-          grid.appendChild(btn);
+
+          grid.appendChild(card);
         });
 
-        if (window.AppLang) window.AppLang.speak(currentTarget.speech, data.speechLang);
+        // Lecture vocale automatique de la consigne
+        if (window.AppLang) {
+          window.AppLang.speak(currentTarget.speech, data.speechLang);
+        }
       }
 
       document.getElementById("listenQuestionBtn").addEventListener("click", () => {

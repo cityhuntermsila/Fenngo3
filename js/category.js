@@ -7,10 +7,12 @@
   const categoryLabels = {
     English: {
       cours: "Courses",
+      vocabulary: "Multi-Sensory Vocab",
       games: "Games",
       tracing: "Tracing & Writing",
       test: "Test",
       stories: "Short Stories",
+      progression: "Progression & Stats",
       alphabet: "Alphabet",
       numbers: "Numbers",
       colors: "Colors",
@@ -23,10 +25,12 @@
     },
     French: {
       cours: "Cours",
+      vocabulary: "Vocabulaire Multisensoriel",
       games: "Jeux",
       tracing: "Traçage / Écriture",
       test: "Test",
       stories: "Histoire courte",
+      progression: "Suivi & Progression",
       alphabet: "Alphabet",
       numbers: "Nombres",
       colors: "Couleurs",
@@ -39,10 +43,12 @@
     },
     Arabic: {
       cours: "الدروس",
+      vocabulary: "المفردات متعددة الحواس",
       games: "الألعاب",
       tracing: "التخطيط والكتابة",
       test: "الاختبار",
       stories: "قصص قصيرة",
+      progression: "تتبع التقدم",
       alphabet: "الأبجدية",
       numbers: "الأرقام",
       colors: "الألوان",

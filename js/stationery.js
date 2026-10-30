@@ -1,104 +1,19 @@
 (() => {
   "use strict";
 
+  const iconImg = (src, alt) => `<img src="${src}" alt="${alt}" loading="lazy" style="width:100%;height:100%;object-fit:contain;filter:drop-shadow(0 8px 14px rgba(0,0,0,0.2));">`;
+
   const ICONS = {
-    pencil: `
-      <svg viewBox="0 0 140 140" xmlns="http://www.w3.org/2000/svg">
-        <g transform="translate(70,70) rotate(32) translate(-70,-70)">
-          <rect x="52" y="18" width="36" height="18" rx="6" fill="#f472b6" stroke="#ffffff" stroke-width="4"/>
-          <rect x="52" y="34" width="36" height="8" fill="#cbd5e1" stroke="#ffffff" stroke-width="3"/>
-          <rect x="52" y="42" width="36" height="60" fill="#facc15" stroke="#ffffff" stroke-width="4"/>
-          <line x1="64" y1="42" x2="64" y2="102" stroke="#eab308" stroke-width="3"/>
-          <line x1="76" y1="42" x2="76" y2="102" stroke="#eab308" stroke-width="3"/>
-          <polygon points="52,102 88,102 70,128" fill="#fde68a" stroke="#ffffff" stroke-width="4"/>
-          <polygon points="64,118 76,118 70,128" fill="#1e293b"/>
-        </g>
-      </svg>`,
-    pen: `
-      <svg viewBox="0 0 140 140" xmlns="http://www.w3.org/2000/svg">
-        <g transform="translate(70,70) rotate(32) translate(-70,-70)">
-          <rect x="55" y="16" width="30" height="36" rx="10" fill="#1d4ed8" stroke="#ffffff" stroke-width="4"/>
-          <path d="M85 24 L94 24 L94 52" fill="none" stroke="#93c5fd" stroke-width="5" stroke-linecap="round"/>
-          <rect x="57" y="52" width="26" height="52" rx="6" fill="#3b82f6" stroke="#ffffff" stroke-width="4"/>
-          <polygon points="57,104 83,104 70,126" fill="#e2e8f0" stroke="#ffffff" stroke-width="3.5"/>
-          <circle cx="70" cy="125" r="3" fill="#1e3a8a"/>
-        </g>
-      </svg>`,
-    book: `
-      <svg viewBox="0 0 140 140" xmlns="http://www.w3.org/2000/svg">
-        <rect x="28" y="20" width="84" height="100" rx="12" fill="#ef4444" stroke="#ffffff" stroke-width="5"/>
-        <rect x="36" y="20" width="10" height="100" fill="#b91c1c"/>
-        <rect x="54" y="36" width="46" height="28" rx="6" fill="#fef08a" stroke="#ffffff" stroke-width="3"/>
-        <line x1="60" y1="80" x2="94" y2="80" stroke="#ffffff" stroke-width="4" stroke-linecap="round"/>
-        <line x1="60" y1="92" x2="86" y2="92" stroke="#ffffff" stroke-width="4" stroke-linecap="round"/>
-      </svg>`,
-    notebook: `
-      <svg viewBox="0 0 140 140" xmlns="http://www.w3.org/2000/svg">
-        <rect x="34" y="20" width="76" height="100" rx="10" fill="#a855f7" stroke="#ffffff" stroke-width="5"/>
-        <rect x="44" y="28" width="58" height="84" rx="6" fill="#ffffff"/>
-        <line x1="52" y1="46" x2="94" y2="46" stroke="#c084fc" stroke-width="3.5" stroke-linecap="round"/>
-        <line x1="52" y1="62" x2="94" y2="62" stroke="#c084fc" stroke-width="3.5" stroke-linecap="round"/>
-        <line x1="52" y1="78" x2="94" y2="78" stroke="#c084fc" stroke-width="3.5" stroke-linecap="round"/>
-        <line x1="52" y1="94" x2="80" y2="94" stroke="#c084fc" stroke-width="3.5" stroke-linecap="round"/>
-        <g fill="#475569">
-          <rect x="26" y="34" width="14" height="6" rx="3"/>
-          <rect x="26" y="54" width="14" height="6" rx="3"/>
-          <rect x="26" y="74" width="14" height="6" rx="3"/>
-          <rect x="26" y="94" width="14" height="6" rx="3"/>
-        </g>
-      </svg>`,
-    eraser: `
-      <svg viewBox="0 0 140 140" xmlns="http://www.w3.org/2000/svg">
-        <g transform="translate(70,70) rotate(-18) translate(-70,-70)">
-          <rect x="26" y="42" width="54" height="56" rx="10" fill="#ec4899" stroke="#ffffff" stroke-width="5"/>
-          <rect x="68" y="42" width="46" height="56" rx="10" fill="#38bdf8" stroke="#ffffff" stroke-width="5"/>
-          <rect x="58" y="42" width="22" height="56" fill="#ffffff"/>
-        </g>
-      </svg>`,
-    ruler: `
-      <svg viewBox="0 0 140 140" xmlns="http://www.w3.org/2000/svg">
-        <g transform="translate(70,70) rotate(-30) translate(-70,-70)">
-          <rect x="48" y="14" width="44" height="112" rx="8" fill="#facc15" stroke="#ffffff" stroke-width="5"/>
-          <g stroke="#92400e" stroke-width="3.5" stroke-linecap="round">
-            <line x1="48" y1="30" x2="64" y2="30"/>
-            <line x1="48" y1="46" x2="70" y2="46"/>
-            <line x1="48" y1="62" x2="64" y2="62"/>
-            <line x1="48" y1="78" x2="70" y2="78"/>
-            <line x1="48" y1="94" x2="64" y2="94"/>
-            <line x1="48" y1="110" x2="70" y2="110"/>
-          </g>
-        </g>
-      </svg>`,
-    schoolbag: `
-      <svg viewBox="0 0 140 140" xmlns="http://www.w3.org/2000/svg">
-        <path d="M52 24 Q70 6 88 24" fill="none" stroke="#15803d" stroke-width="8" stroke-linecap="round"/>
-        <rect x="30" y="26" width="80" height="92" rx="24" fill="#22c55e" stroke="#ffffff" stroke-width="5"/>
-        <path d="M34 60 Q70 76 106 60 L106 44 Q106 28 88 28 L52 28 Q34 28 34 44 Z" fill="#16a34a" stroke="#ffffff" stroke-width="4"/>
-        <rect x="44" y="74" width="52" height="32" rx="12" fill="#facc15" stroke="#ffffff" stroke-width="4"/>
-        <rect x="64" y="56" width="12" height="16" rx="4" fill="#fef08a" stroke="#b45309" stroke-width="2.5"/>
-      </svg>`,
-    scissors: `
-      <svg viewBox="0 0 140 140" xmlns="http://www.w3.org/2000/svg">
-        <line x1="46" y1="92" x2="104" y2="26" stroke="#cbd5e1" stroke-width="10" stroke-linecap="round"/>
-        <line x1="94" y1="92" x2="36" y2="26" stroke="#94a3b8" stroke-width="10" stroke-linecap="round"/>
-        <circle cx="70" cy="64" r="5" fill="#475569"/>
-        <circle cx="44" cy="98" r="20" fill="none" stroke="#f97316" stroke-width="10"/>
-        <circle cx="96" cy="98" r="20" fill="none" stroke="#f97316" stroke-width="10"/>
-      </svg>`,
-    sharpener: `
-      <svg viewBox="0 0 140 140" xmlns="http://www.w3.org/2000/svg">
-        <rect x="34" y="32" width="72" height="78" rx="18" fill="#06b6d4" stroke="#ffffff" stroke-width="5"/>
-        <rect x="50" y="48" width="40" height="46" rx="8" fill="#e2e8f0" stroke="#0891b2" stroke-width="3"/>
-        <circle cx="70" cy="70" r="7" fill="#475569"/>
-        <path d="M58 110 A12 10 0 0 1 82 110" fill="#0f172a"/>
-      </svg>`,
-    pencilcase: `
-      <svg viewBox="0 0 140 140" xmlns="http://www.w3.org/2000/svg">
-        <rect x="18" y="44" width="104" height="56" rx="26" fill="#f43f5e" stroke="#ffffff" stroke-width="5"/>
-        <line x1="26" y1="64" x2="114" y2="64" stroke="#fde047" stroke-width="5" stroke-dasharray="8 5"/>
-        <circle cx="96" cy="64" r="8" fill="#facc15" stroke="#ffffff" stroke-width="3"/>
-        <polygon points="70,76 74,84 82,85 76,90 78,98 70,94 62,98 64,90 58,85 66,84" fill="#fef08a"/>
-      </svg>`
+    pencil: iconImg("assets/images/stationery/pencil.png", "Pencil"),
+    pen: iconImg("assets/images/stationery/pen.png", "Pen"),
+    book: iconImg("assets/images/stationery/book.png", "Book"),
+    notebook: iconImg("assets/images/stationery/notebook.png", "Notebook"),
+    eraser: iconImg("assets/images/stationery/eraser.png", "Eraser"),
+    ruler: iconImg("assets/images/stationery/ruler.png", "Ruler"),
+    schoolbag: iconImg("assets/images/fennygo/school-bag-3d.png", "School Bag"),
+    scissors: iconImg("assets/images/stationery/scissors.png", "Scissors"),
+    sharpener: iconImg("assets/images/stationery/sharpener.png", "Sharpener"),
+    pencilcase: iconImg("assets/images/stationery/pencilcase.png", "Pencil Case")
   };
 
   const THEMES = [
@@ -217,6 +132,31 @@
     document.getElementById("modalTitle").textContent = item.label;
     document.getElementById("modalPhrase").textContent = item.phrase;
 
+    // Render Multi-Sensory Grapheme-Phoneme letter tiles
+    const tilesBox = document.getElementById("modalLetterTiles");
+    if (tilesBox) {
+      tilesBox.innerHTML = "";
+      Array.from(item.label.toUpperCase()).forEach((ch) => {
+        if (ch === " ") {
+          const sp = document.createElement("span");
+          sp.style.width = "10px";
+          tilesBox.appendChild(sp);
+          return;
+        }
+        const tile = document.createElement("button");
+        tile.type = "button";
+        tile.className = "stationery-grapheme-tile";
+        tile.style.cssText = "min-width:34px;height:38px;padding:0 6px;border-radius:10px;background:#fef3c7;border:2px solid #f59e0b;border-bottom:4px solid #d97706;font-weight:900;font-size:18px;color:#78350f;cursor:pointer;transition:transform 0.18s ease,background 0.18s ease;";
+        tile.textContent = ch;
+        tile.addEventListener("click", () => {
+          tile.style.transform = "scale(1.22)";
+          setTimeout(() => { tile.style.transform = "scale(1)"; }, 350);
+          if (window.AppLang) window.AppLang.speak(ch.toLowerCase());
+        });
+        tilesBox.appendChild(tile);
+      });
+    }
+
     const modal = document.getElementById("topicModal");
     modal.classList.add("show");
     modal.setAttribute("aria-hidden", "false");
@@ -241,6 +181,42 @@
       const d = getLangData();
       const item = d.items[currentIndex];
       if (item && window.AppLang) window.AppLang.speak(item.speech);
+    });
+
+    document.getElementById("modalReadBtn")?.addEventListener("click", () => {
+      const d = getLangData();
+      const item = d.items[currentIndex];
+      const tiles = document.querySelectorAll(".stationery-grapheme-tile");
+      tiles.forEach((t, i) => {
+        setTimeout(() => {
+          tiles.forEach(el => { el.style.background = "#fef3c7"; el.style.color = "#78350f"; el.style.transform = "scale(1)"; });
+          t.style.background = "#2563eb";
+          t.style.color = "#ffffff";
+          t.style.transform = "scale(1.25)";
+          if (i === tiles.length - 1) {
+            setTimeout(() => {
+              t.style.background = "#fef3c7";
+              t.style.color = "#78350f";
+              t.style.transform = "scale(1)";
+            }, 450);
+          }
+        }, i * 220);
+      });
+      if (item && window.AppLang) window.AppLang.speak(item.label);
+    });
+
+    document.getElementById("modalSpeakBtn")?.addEventListener("click", () => {
+      const d = getLangData();
+      const item = d.items[currentIndex];
+      const phraseEl = document.getElementById("modalPhrase");
+      if (phraseEl) phraseEl.textContent = `🎙️ Repeat: "${item.label}"...`;
+      setTimeout(() => {
+        if (phraseEl) phraseEl.textContent = `🎉 Great pronunciation! "${item.label}" (+5 ⭐)`;
+        if (window.FennyGo) {
+          window.FennyGo.addStars(5);
+          window.FennyGo.celebrate(`Awesome job saying ${item.label}!`);
+        }
+      }, 1200);
     });
 
     document.getElementById("topicModal").addEventListener("click", (e) => {
