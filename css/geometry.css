@@ -1125,13 +1125,58 @@ body:is(.mobile-portrait-rotate, .mobile-landscape-layout) .object-image {
   .shape-card {
     min-height: 120px !important;
   }
+  .detail-screen {
+    overflow-y: auto !important;
+    -webkit-overflow-scrolling: touch !important;
+    overscroll-behavior-y: contain !important;
+    touch-action: pan-y !important;
+    padding: 14px 10px 24px !important;
+  }
   .detail-shell {
+    display: flex !important;
     flex-direction: column !important;
+    width: 100% !important;
+    gap: 12px !important;
   }
   .detail-mascot {
     display: none !important;
   }
   .detail-center {
     width: 100% !important;
+  }
+  .detail-infographic {
+    max-height: clamp(120px, 22vh, 180px) !important;
+    width: auto !important;
+    margin: 0 auto !important;
+  }
+  .objects-panel {
+    width: 100% !important;
+  }
+  .objects-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+    gap: 8px !important;
+  }
+  .object-card {
+    min-height: 85px !important;
+    padding: 6px 4px !important;
+    border-radius: 14px !important;
+  }
+  .object-image {
+    width: 36px !important;
+    height: 36px !important;
+  }
+  .object-label {
+    font-size: 11px !important;
+  }
+}
+
+@media screen and (min-width: 601px) and (max-width: 960px) {
+  .detail-shell {
+    display: grid !important;
+    grid-template-columns: minmax(0, 1.2fr) minmax(220px, 0.8fr) !important;
+    gap: 16px !important;
+  }
+  .detail-mascot {
+    display: none !important;
   }
 }

@@ -436,18 +436,58 @@ body.topic-page {
   }
 
   .topic-modal {
-    padding: 12px !important;
+    padding: 10px !important;
+    align-items: center !important;
+    justify-content: center !important;
   }
 
   .topic-modal-card,
   .topic-detail {
-    width: min(94vw, 480px) !important;
-    max-height: 92dvh !important;
+    width: min(94vw, 440px) !important;
+    max-height: 94dvh !important;
     overflow-y: auto !important;
     -webkit-overflow-scrolling: touch !important;
     overscroll-behavior-y: contain !important;
     touch-action: pan-y !important;
-    padding: 24px 16px 20px !important;
+    padding: 22px 14px 16px !important;
+    border-radius: 24px !important;
+  }
+
+  .modal-avatar-stage {
+    width: clamp(90px, 16vh, 130px) !important;
+    height: clamp(90px, 16vh, 130px) !important;
+    margin: 4px 0 6px !important;
+    padding: 8px !important;
+  }
+
+  .modal-title {
+    font-size: clamp(20px, 3.8vh, 26px) !important;
+    margin: 2px 0 !important;
+  }
+
+  .modal-phrase {
+    font-size: clamp(12px, 1.8vh, 14px) !important;
+    padding: 4px 12px !important;
+    margin: 3px 0 8px !important;
+  }
+
+  .modal-sound-btn {
+    padding: 6px 16px !important;
+    font-size: 13px !important;
+  }
+
+  .modal-close-btn {
+    top: 8px !important;
+    right: 10px !important;
+    width: 32px !important;
+    height: 32px !important;
+    font-size: 20px !important;
+  }
+
+  .modal-nav-btn {
+    width: 34px !important;
+    height: 34px !important;
+    font-size: 20px !important;
   }
 }
 

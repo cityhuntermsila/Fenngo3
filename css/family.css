@@ -469,18 +469,57 @@ html[dir="rtl"] .card-sound-mini {
   }
 
   .family-modal {
-    padding: 12px !important;
+    padding: 10px !important;
+    align-items: center !important;
+    justify-content: center !important;
   }
 
   .family-modal-card,
   .family-detail {
-    width: min(94vw, 460px) !important;
-    max-height: 92dvh !important;
+    width: min(94vw, 440px) !important;
+    max-height: 94dvh !important;
     overflow-y: auto !important;
     -webkit-overflow-scrolling: touch !important;
     overscroll-behavior-y: contain !important;
     touch-action: pan-y !important;
-    padding: 24px 16px 20px !important;
+    padding: 24px 14px 16px !important;
+    border-radius: 24px !important;
+  }
+
+  .modal-avatar-stage {
+    width: clamp(95px, 18vh, 135px) !important;
+    height: clamp(95px, 18vh, 135px) !important;
+    margin: 4px 0 6px !important;
+  }
+
+  .modal-title {
+    font-size: clamp(22px, 4vh, 28px) !important;
+    margin: 2px 0 !important;
+  }
+
+  .modal-phrase {
+    font-size: clamp(12px, 1.8vh, 14px) !important;
+    margin: 4px 0 10px !important;
+    padding: 4px 12px !important;
+  }
+
+  .modal-sound-btn {
+    padding: 6px 16px !important;
+    font-size: 13px !important;
+  }
+
+  .modal-close-btn {
+    top: 8px !important;
+    right: 10px !important;
+    width: 34px !important;
+    height: 34px !important;
+    font-size: 20px !important;
+  }
+
+  .modal-nav-btn {
+    width: 36px !important;
+    height: 36px !important;
+    font-size: 22px !important;
   }
 }
 

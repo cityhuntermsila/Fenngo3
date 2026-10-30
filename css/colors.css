@@ -4599,13 +4599,108 @@ body:is(.mobile-portrait-rotate, .mobile-landscape-layout) .color-mobile-flex-ro
        screen and (max-width: 480px) {
   .color-detail {
     width: min(96vw, 440px) !important;
-    padding: 40px 12px 14px !important;
+    padding: 38px 10px 12px !important;
   }
 
   .modal-content-grid {
     display: flex !important;
     flex-direction: column !important;
-    gap: 10px !important;
+    gap: 8px !important;
+  }
+
+  .selected-color-panel {
+    min-height: 0 !important;
+    padding: 10px 8px !important;
+    border-radius: 18px !important;
+  }
+
+  .big-splash-wrap {
+    width: 85px !important;
+    height: 85px !important;
+  }
+
+  .big-splash-image {
+    width: 80px !important;
+    height: 80px !important;
+  }
+
+  .big-splash-fallback {
+    width: 75px !important;
+    height: 75px !important;
+  }
+
+  .detail-color-name {
+    font-size: 24px !important;
+    margin-top: 2px !important;
+  }
+
+  .say-color-message {
+    font-size: 12px !important;
+    padding: 3px 10px !important;
+    margin-top: 4px !important;
+  }
+
+  .sound-btn {
+    min-width: 110px !important;
+    padding: 6px 14px !important;
+    font-size: 13px !important;
+    margin-top: 6px !important;
+  }
+
+  .learning-panel {
+    min-height: 0 !important;
+    padding: 8px !important;
+    gap: 8px !important;
+    border-radius: 18px !important;
+  }
+
+  .examples-section,
+  .quiz-section {
+    padding: 8px 6px !important;
+    border-radius: 16px !important;
+  }
+
+  .section-heading,
+  .quiz-heading {
+    font-size: 14px !important;
+  }
+
+  .section-instruction {
+    font-size: 11px !important;
+    margin: 4px 0 8px !important;
+  }
+
+  .examples-grid {
+    gap: 6px !important;
+  }
+
+  .example-card {
+    min-height: 80px !important;
+    padding: 4px 3px !important;
+    border-radius: 12px !important;
+  }
+
+  .example-card img {
+    max-height: 42px !important;
+    max-width: 42px !important;
+  }
+
+  .example-label {
+    font-size: 10px !important;
+  }
+
+  .color-quiz-options {
+    gap: 6px !important;
+  }
+
+  .quiz-card {
+    min-height: 70px !important;
+    padding: 4px !important;
+    border-radius: 12px !important;
+  }
+
+  .quiz-card img {
+    max-height: 40px !important;
   }
 
   .modal-nav {
