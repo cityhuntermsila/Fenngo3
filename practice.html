@@ -9,8 +9,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@600;700;800;900&family=Nunito:wght@600;700;800;900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/common.css?v=62">
-  <link rel="stylesheet" href="css/fennygo.css?v=62">
+  <link rel="stylesheet" href="css/common.css?v=63">
+  <link rel="stylesheet" href="css/fennygo.css?v=63">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
   <style>
     /* Reset & Base */
@@ -261,12 +261,12 @@
       80% { transform: translateX(4px); }
     }
 
-    /* 3D Flip Memory Cards (Strict 3 Columns x 3 Rows = 9 Cards) */
+    /* 3D Flip Memory Cards (Strict 3 Columns x 4 Rows = 12 Cards / 6 Pairs) */
     .memory-grid {
       display: grid !important;
       grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
       gap: clamp(6px, 1.8vw, 10px) !important;
-      max-width: 310px !important;
+      max-width: 330px !important;
       margin: 0 auto !important;
       perspective: 1000px !important;
       -webkit-perspective: 1000px !important;
@@ -604,8 +604,8 @@
   <audio id="audioCheering" src="assets/images/music/cheering.mp3" preload="auto"></audio>
   <audio id="audioWrong" src="assets/images/music/wrong- sound.mp3" preload="auto"></audio>
 
-  <script src="js/app-lang.js?v=62"></script>
-  <script src="js/fenny-companion.js?v=62"></script>
+  <script src="js/app-lang.js?v=63"></script>
+  <script src="js/fenny-companion.js?v=63"></script>
   <script>
     (() => {
       "use strict";
@@ -1187,22 +1187,12 @@
         const allItems = [...DATASET[selectedCatId]];
         shuffleArray(allItems);
 
-        // 4 pairs (8 cards) + 1 Lucky Star Card = 9 cards (3x3 grid)
-        const selectedPairs = allItems.slice(0, 4);
+        // 6 pairs = 12 cards (3 columns x 4 rows)
+        const selectedPairs = allItems.slice(0, 6);
         let deck = [];
         selectedPairs.forEach(item => {
           deck.push({ id: item.id, item: item, type: "img" });
           deck.push({ id: item.id, item: item, type: "img2" });
-        });
-
-        // 9th Card: Lucky Star Bonus Card
-        deck.push({
-          id: "lucky_star",
-          isLucky: true,
-          item: {
-            word: currentLang === "Arabic" ? "نجمة الحظ ⭐" : (currentLang === "French" ? "Étoile Chance ⭐" : "Lucky Star ⭐"),
-            img: "assets/images/games/star.png"
-          }
         });
 
         shuffleArray(deck);
@@ -1211,8 +1201,8 @@
         container.className = "w-full max-w-xs mx-auto space-y-2 text-center";
         container.innerHTML = `
           <div class="text-xs font-black text-slate-700 flex items-center justify-between px-2">
-            <span>${t.pairsFound} : <strong id="memoryPairsFound" class="text-sky-700 text-sm">0</strong> / 4</span>
-            <span class="px-2 py-0.5 rounded-full bg-amber-100 text-amber-900 text-[10px] font-black border border-amber-300">⭐ 3x3 Grille</span>
+            <span>${t.pairsFound} : <strong id="memoryPairsFound" class="text-sky-700 text-sm">0</strong> / 6</span>
+            <span class="px-2 py-0.5 rounded-full bg-sky-100 text-sky-900 text-[10px] font-black border border-sky-300">3x4 (6 Paires)</span>
           </div>
           <div class="memory-grid" id="memoryCardsDeck"></div>
         `;
@@ -1244,33 +1234,6 @@
             if (isLocked || cardEl.classList.contains("flipped") || cardEl.classList.contains("matched")) return;
 
             cardEl.classList.add("flipped");
-
-            // Lucky Card: stays permanently apparent and awards bonus
-            if (cardData.isLucky) {
-              playSound(cheeringAudio);
-              speak("Lucky Star!");
-              cardEl.classList.add("matched");
-              cardEl.style.pointerEvents = "none";
-
-              const back = cardEl.querySelector(".memory-back");
-              if (back) back.style.display = "none";
-
-              const front = cardEl.querySelector(".memory-front");
-              if (front) {
-                front.style.borderColor = "#facc15";
-                front.style.boxShadow = "0 0 14px rgba(250, 204, 21, 0.7)";
-                front.style.background = "#fefce8";
-              }
-
-              starsCount += 5;
-              updateStatsDisplay();
-
-              const feedback = document.getElementById("arenaFeedback");
-              feedback.textContent = currentLang === "Arabic" ? "⭐ بطاقة الحظ السحرية! +5 نجوم" : (currentLang === "French" ? "⭐ Carte Chance Magique ! +5 Étoiles" : "⭐ Lucky Magic Star! +5 Stars");
-              feedback.className = "min-h-[24px] text-center text-xs sm:text-sm font-black text-amber-600 animate-bounce";
-              return;
-            }
-
             speak(cardData.item.word);
             flippedCards.push({ el: cardEl, data: cardData });
 
@@ -1279,7 +1242,7 @@
               const [c1, c2] = flippedCards;
 
               if (c1.data.id === c2.data.id) {
-                // MATCH! Leaves the pair permanently apparent & open!
+                // MATCH! The pair stays permanently apparent and open!
                 playSound(cheeringAudio);
                 c1.el.classList.add("matched");
                 c2.el.classList.add("matched");
@@ -1288,7 +1251,6 @@
                 c1.el.style.pointerEvents = "none";
                 c2.el.style.pointerEvents = "none";
 
-                // Ensure back is removed and front is locked green & visible
                 const b1 = c1.el.querySelector(".memory-back");
                 const b2 = c2.el.querySelector(".memory-back");
                 if (b1) b1.style.display = "none";
@@ -1309,22 +1271,22 @@
 
                 matchedPairs++;
                 document.getElementById("memoryPairsFound").textContent = matchedPairs;
-                gameScore += 25;
+                gameScore += 20;
                 document.getElementById("arenaScoreVal").textContent = gameScore;
 
                 setTimeout(() => {
                   flippedCards = [];
                   isLocked = false;
 
-                  if (matchedPairs === 4) {
-                    starsCount += 10;
-                    diamondsCount += 5;
+                  if (matchedPairs === 6) {
+                    starsCount += 12;
+                    diamondsCount += 6;
                     updateStatsDisplay();
                     triggerVictory();
                   }
                 }, 300);
               } else {
-                // NO MATCH: only flip back the unmatched cards
+                // NO MATCH: only flip back the unmatched pair
                 playSound(wrongAudio);
                 setTimeout(() => {
                   if (!c1.el.classList.contains("matched")) {
