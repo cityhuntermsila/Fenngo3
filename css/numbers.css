@@ -2210,6 +2210,11 @@ body.modal-open {
     min-height: 130px !important;
     padding: 12px 8px !important;
     border-radius: 20px !important;
+    touch-action: pan-y !important;
+  }
+
+  .number-card * {
+    pointer-events: none;
   }
 
   .number-img {

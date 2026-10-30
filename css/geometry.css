@@ -1124,6 +1124,10 @@ body:is(.mobile-portrait-rotate, .mobile-landscape-layout) .object-image {
   }
   .shape-card {
     min-height: 120px !important;
+    touch-action: pan-y !important;
+  }
+  .shape-card * {
+    pointer-events: none;
   }
   .detail-screen {
     overflow-y: auto !important;

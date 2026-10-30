@@ -481,6 +481,11 @@ body.alphabet {
     width: clamp(62px, 19vw, 84px) !important;
     height: clamp(62px, 19vw, 84px) !important;
     border-radius: 16px !important;
+    touch-action: pan-y !important;
+  }
+
+  .letter-card * {
+    pointer-events: none;
   }
 
   .letter-card span {

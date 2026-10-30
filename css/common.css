@@ -12,11 +12,35 @@ button { font-family: inherit; }
 
 /* Responsive base rules: allow natural scrolling on smaller screens */
 @media (max-width: 960px), (max-height: 600px) {
-  html, body {
+  html {
     height: auto !important;
     min-height: 100% !important;
     overflow-x: hidden !important;
     overflow-y: auto !important;
+    -webkit-overflow-scrolling: touch !important;
+    touch-action: pan-y !important;
+  }
+  body {
+    height: auto !important;
+    min-height: 100% !important;
+    overflow-x: hidden !important;
+    overflow-y: visible !important;
+    -webkit-overflow-scrolling: touch !important;
+    touch-action: pan-y !important;
+  }
+  .page-scroll {
+    -webkit-overflow-scrolling: touch !important;
+    touch-action: pan-y !important;
+  }
+  button,
+  a,
+  .family-card,
+  .topic-card,
+  .letter-card,
+  .number-card,
+  .shape-card,
+  .category-card {
+    touch-action: pan-y !important;
   }
 }
 
@@ -529,11 +553,21 @@ body.geometry-page .geometry-screen {
    UNIVERSAL MOBILE RESPONSIVE ADAPTATIONS (< 900px)
    ========================================================= */
 @media (max-width: 900px) {
-  html, body {
+  html {
     height: auto !important;
     min-height: 100% !important;
     overflow-x: hidden !important;
     overflow-y: auto !important;
+    -webkit-overflow-scrolling: touch !important;
+    touch-action: pan-y !important;
+  }
+  body {
+    height: auto !important;
+    min-height: 100% !important;
+    overflow-x: hidden !important;
+    overflow-y: visible !important;
+    -webkit-overflow-scrolling: touch !important;
+    touch-action: pan-y !important;
   }
 
   /* Modals fit neatly on mobile */
