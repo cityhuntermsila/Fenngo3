@@ -1042,7 +1042,7 @@
   }
 
   /* =========================================================
-     JEU 2 : LE LABYRINTHE DES MOTS (JARDIN FLEURI & POUSSIN 3D)
+     JEU 2 : LE LABYRINTHE DES MOTS (3D PERSPECTIVE & POUSSIN EXPLORATEUR)
      ========================================================= */
   function startMazeGame() {
     const db = getDB();
@@ -1051,11 +1051,39 @@
     let currentWordObj = null;
     let letterStep = 0;
     let gateChoices = [];
-    let chickLane = 1;
-    let chickYOffset = 0;
-    let gateOpenLane = -1;
-    let transitioning = false;
+
+    // Navigation & positionnement 3D
+    let chickLane = 1;              // 0: Gauche, 1: Centre, 2: Droite
+    let chickLaneSmooth = 1;        // Interpolation fluide entre couloirs
+    let chickZ = 0.82;              // Profondeur du poussin (0 = horizon, 1 = premier plan)
+    let chickLean = 0;              // Inclinaison lors des déplacements latéraux
     let animTick = 0;
+
+    // Défilement continu et sensation de marche ("se déplacer dans le labyrinthe")
+    let mazeScrollZ = 0;            // Défilement continu du sol pavé
+    let transitioning = false;      // En cours de franchissement de la porte
+    let gateTransitionProg = 0;     // 0 -> 1 progression de passage de porte
+    let gateOpenLane = -1;          // Porte qui s'ouvre
+    let gateDoorAngle = 0;          // Angle d'ouverture des battants en bois (0 -> PI*0.48)
+    let shakeLane = -1;             // Porte qui tremble en cas d'erreur
+    let shakeTimer = 0;
+    let mouseHoverLane = -1;        // Couloir survolé à la souris
+
+    // Particules & effets
+    let particles = [];
+    let ambientLeaves = [];
+    for (let i = 0; i < 18; i++) {
+      ambientLeaves.push({
+        x: Math.random(),
+        y: Math.random(),
+        size: 3 + Math.random() * 5,
+        speedY: 0.001 + Math.random() * 0.002,
+        speedX: (Math.random() - 0.5) * 0.0015,
+        rot: Math.random() * Math.PI * 2,
+        rotSpeed: (Math.random() - 0.5) * 0.05,
+        color: ["#4ade80", "#86efac", "#fbbf24", "#f472b6"][Math.floor(Math.random() * 4)]
+      });
+    }
 
     overlayUI.innerHTML = `
       <div class="word-maze-banner interactive-el" id="wordMazeBanner" dir="${db.dir}"></div>
@@ -1093,8 +1121,10 @@
 
     function setupLetterStep() {
       transitioning = false;
+      gateTransitionProg = 0;
       gateOpenLane = -1;
-      chickYOffset = 0;
+      gateDoorAngle = 0;
+      chickZ = 0.82;
       const targetLetter = currentWordObj.letters[letterStep];
 
       const pool = db.letters.map((x) => x.base).filter((b) => b !== targetLetter);
@@ -1117,6 +1147,39 @@
       });
     }
 
+    function spawnDust(x, y, count = 5) {
+      for (let i = 0; i < count; i++) {
+        particles.push({
+          x,
+          y,
+          vx: (Math.random() - 0.5) * 3,
+          vy: -Math.random() * 2 - 0.5,
+          life: 1,
+          decay: 0.04 + Math.random() * 0.04,
+          radius: 4 + Math.random() * 5,
+          color: "rgba(254, 243, 199, 0.8)"
+        });
+      }
+    }
+
+    function spawnVictorySparkles(x, y, count = 22) {
+      for (let i = 0; i < count; i++) {
+        const angle = Math.random() * Math.PI * 2;
+        const speed = 2 + Math.random() * 5.5;
+        particles.push({
+          x,
+          y,
+          vx: Math.cos(angle) * speed,
+          vy: Math.sin(angle) * speed - 2,
+          life: 1,
+          decay: 0.025 + Math.random() * 0.03,
+          radius: 3 + Math.random() * 4,
+          isStar: true,
+          color: ["#fde047", "#f59e0b", "#4ade80", "#38bdf8", "#ec4899"][Math.floor(Math.random() * 5)]
+        });
+      }
+    }
+
     function handleGateClick(laneIdx, btnEl) {
       if (transitioning) return;
       const targetLetter = currentWordObj.letters[letterStep];
@@ -1127,8 +1190,9 @@
         transitioning = true;
         gateOpenLane = laneIdx;
         SFX.success();
-        btnEl.classList.add("correct-flash");
+        if (btnEl) btnEl.classList.add("correct-flash");
 
+        // Déclenchement de la marche en avant vers la porte ouverte
         setTimeout(() => {
           letterStep++;
           if (letterStep >= currentWordObj.letters.length) {
@@ -1138,121 +1202,709 @@
           } else {
             setupLetterStep();
           }
-        }, 650);
+        }, 850);
       } else {
         SFX.error();
-        btnEl.classList.add("shake-error");
-        setTimeout(() => btnEl.classList.remove("shake-error"), 450);
+        shakeLane = laneIdx;
+        shakeTimer = 0.5;
+        if (btnEl) {
+          btnEl.classList.add("shake-error");
+          setTimeout(() => btnEl.classList.remove("shake-error"), 450);
+        }
       }
+    }
+
+    // Calcul de la voie 3D depuis une coordonnée écran
+    function getLaneFromScreenCoord(clientX, clientY) {
+      const rect = canvas.getBoundingClientRect();
+      const x = clientX - rect.left;
+      const y = clientY - rect.top;
+      const W = canvas.width;
+      const H = canvas.height;
+      const horizonY = H * 0.28;
+
+      if (y < horizonY) return -1;
+      const p = Math.pow((y - horizonY) / (H - horizonY), 1 / 1.45);
+      const topMazeW = Math.max(70, W * 0.16);
+      const botMazeW = Math.min(W * 0.98, Math.max(W * 0.88, 760));
+      const curW = topMazeW + (botMazeW - topMazeW) * Math.pow(p, 1.45);
+      const leftEdge = W * 0.5 - curW * 0.5;
+      const relX = x - leftEdge;
+      if (relX < 0 || relX > curW) return -1;
+      return Math.min(2, Math.max(0, Math.floor((relX / curW) * 3)));
     }
 
     function onCanvasClick(e) {
-      const rect = canvas.getBoundingClientRect();
-      const x = e.clientX - rect.left;
-      const laneIdx = Math.floor((x / canvas.width) * 3);
-      const btns = gatesBarEl.querySelectorAll(".choice-card-btn");
-      if (btns[laneIdx]) handleGateClick(laneIdx, btns[laneIdx]);
+      const laneIdx = getLaneFromScreenCoord(e.clientX, e.clientY);
+      if (laneIdx >= 0) {
+        const btns = gatesBarEl.querySelectorAll(".choice-card-btn");
+        handleGateClick(laneIdx, btns[laneIdx]);
+      }
     }
+
+    function onPointerMove(e) {
+      mouseHoverLane = getLaneFromScreenCoord(e.clientX, e.clientY);
+    }
+
+    function onKeyDown(e) {
+      if (transitioning) return;
+      if (e.key === "ArrowLeft") {
+        chickLane = Math.max(0, chickLane - 1);
+      } else if (e.key === "ArrowRight") {
+        chickLane = Math.min(2, chickLane + 1);
+      } else if (e.key === "Enter" || e.key === " " || e.key === "ArrowUp") {
+        const btns = gatesBarEl.querySelectorAll(".choice-card-btn");
+        handleGateClick(chickLane, btns[chickLane]);
+      } else if (e.key === "1" || e.key === "2" || e.key === "3") {
+        const lane = parseInt(e.key, 10) - 1;
+        const btns = gatesBarEl.querySelectorAll(".choice-card-btn");
+        handleGateClick(lane, btns[lane]);
+      }
+    }
+
     canvas.addEventListener("click", onCanvasClick);
+    canvas.addEventListener("pointermove", onPointerMove);
+    window.addEventListener("keydown", onKeyDown);
 
     pickNewWord();
 
+    // =========================================================
+    // BOUCLE DE RENDU 3D : LE LABYRINTHE VOLUMÉTRIQUE IMMERSIF
+    // =========================================================
     function renderMaze() {
       if (!running) return;
-      animTick += 0.08;
+      animTick += 0.055;
       const W = canvas.width;
       const H = canvas.height;
+      const horizonY = H * 0.28;
+      const vpX = W * 0.5;
 
-      // Pelouse de jardin luxuriante
-      ctx.fillStyle = "#4ade80";
-      ctx.fillRect(0, 0, W, H);
-
-      const corridorW = Math.min(W * 0.86, 820);
-      const startX = (W - corridorW) / 2;
-      const colW = corridorW / 3;
-
-      for (let i = 0; i < 3; i++) {
-        const cx = startX + i * colW;
-        // Sentier pavé doré
-        ctx.fillStyle = "#fef3c7";
-        ctx.fillRect(cx + 16, 0, colW - 32, H);
-
-        // Pierres décoratives sur le chemin
-        ctx.fillStyle = "#fde68a";
-        for (let py = 30; py < H; py += 75) {
-          ctx.beginPath();
-          ctx.ellipse(cx + colW * 0.5, py, 24, 10, 0, 0, Math.PI * 2);
-          ctx.fill();
-        }
-
-        // Haies végétales 3D avec petites fleurs
-        ctx.fillStyle = "#15803d";
-        ctx.fillRect(cx, 0, 18, H);
-        ctx.fillRect(cx + colW - 18, 0, 18, H);
-        ctx.fillStyle = "#22c55e";
-        for (let hy = 20; hy < H; hy += 45) {
-          ctx.beginPath();
-          ctx.arc(cx + 9, hy, 12, 0, Math.PI * 2);
-          ctx.arc(cx + colW - 9, hy, 12, 0, Math.PI * 2);
-          ctx.fill();
-        }
-
-        // Porte en bois massif
-        const gateY = H * 0.45;
-        const isOpen = gateOpenLane === i;
-
-        if (!isOpen) {
-          ctx.fillStyle = "#b45309";
-          ctx.strokeStyle = "#78350f";
-          ctx.lineWidth = 4;
-          ctx.beginPath();
-          ctx.roundRect(cx + 20, gateY, colW - 40, 26, 6);
-          ctx.fill();
-          ctx.stroke();
-        }
-
-        // Pancarte royale au-dessus de chaque porte
-        const signW = Math.min(100, colW * 0.68);
-        const signH = 68;
-        ctx.fillStyle = isOpen ? "#dcfce7" : "#ffffff";
-        ctx.strokeStyle = isOpen ? "#22c55e" : "#f59e0b";
-        ctx.lineWidth = 5;
-        ctx.beginPath();
-        ctx.roundRect(cx + colW / 2 - signW / 2, gateY - 76, signW, signH, 18);
-        ctx.fill();
-        ctx.stroke();
-
-        ctx.fillStyle = "#0f172a";
-        ctx.font = "900 38px Cairo, sans-serif";
-        ctx.textAlign = "center";
-        ctx.textBaseline = "middle";
-        ctx.fillText(gateChoices[i] || "", cx + colW / 2, gateY - 42);
+      // Projection 3D perspective : profondeur z [0..1.3], couloir [-1.5..1.5]
+      // laneOffset: -1.5 (mur gauche), -1 (couloir 0), -0.5 (séparateur 1),
+      // 0 (couloir 1), 0.5 (séparateur 2), 1 (couloir 2), 1.5 (mur droit)
+      function proj(z, laneOffset) {
+        const p = Math.pow(Math.max(0, z), 1.45);
+        const curY = horizonY + (H - horizonY) * p;
+        const topMazeW = Math.max(70, W * 0.16);
+        const botMazeW = Math.min(W * 0.98, Math.max(W * 0.88, 760));
+        const curW = topMazeW + (botMazeW - topMazeW) * p;
+        const laneW = curW / 3;
+        const curX = vpX + laneOffset * laneW;
+        return { x: curX, y: curY, p, laneW, curW };
       }
 
-      if (transitioning && chickYOffset < H * 0.24) {
-        chickYOffset += 5.5;
-      }
-      const chickX = startX + chickLane * colW + colW / 2;
-      const bounce = Math.abs(Math.sin(animTick)) * 6;
-      const chickY = H * 0.72 - chickYOffset - bounce;
+      // Vitesse de défilement : sensation de marche permanente + accélération en franchissement
+      const travelSpeed = transitioning ? 0.038 : 0.003;
+      mazeScrollZ = (mazeScrollZ + travelSpeed) % 1;
 
-      // Petit poussin jaune 3D mignon (Sprite 3D Pixar)
+      if (transitioning) {
+        gateTransitionProg = Math.min(1, gateTransitionProg + 0.042);
+        gateDoorAngle = Math.min(Math.PI * 0.48, gateDoorAngle + 0.085);
+        chickZ = Math.max(0.62, chickZ - 0.008);
+      } else {
+        chickZ += (0.82 - chickZ) * 0.1;
+      }
+
+      if (shakeTimer > 0) {
+        shakeTimer -= 0.03;
+        if (shakeTimer <= 0) shakeLane = -1;
+      }
+
+      // Interpolation fluide du déplacement latéral du poussin
+      const laneDelta = chickLane - chickLaneSmooth;
+      chickLaneSmooth += laneDelta * 0.18;
+      chickLean = laneDelta * 0.28;
+
+      // ---------------------------------------------------------
+      // 1. CIEL FÉÉRIQUE, SOLEIL RADIEUX & ARRIÈRE-PLAN DU LABYRINTHE
+      // ---------------------------------------------------------
+      const skyGrad = ctx.createLinearGradient(0, 0, 0, horizonY);
+      skyGrad.addColorStop(0, "#0284c7");
+      skyGrad.addColorStop(0.55, "#38bdf8");
+      skyGrad.addColorStop(0.85, "#bae6fd");
+      skyGrad.addColorStop(1, "#fef08a");
+      ctx.fillStyle = skyGrad;
+      ctx.fillRect(0, 0, W, horizonY);
+
+      // Soleil radieux et doux halo
       ctx.save();
-      ctx.translate(chickX, chickY);
-      ctx.fillStyle = "rgba(0,0,0,0.18)";
+      const sunX = W * 0.82;
+      const sunY = horizonY * 0.4;
+      const sunGlow = ctx.createRadialGradient(sunX, sunY, 10, sunX, sunY, 70);
+      sunGlow.addColorStop(0, "rgba(254, 240, 138, 0.9)");
+      sunGlow.addColorStop(0.4, "rgba(253, 224, 71, 0.45)");
+      sunGlow.addColorStop(1, "rgba(253, 224, 71, 0)");
+      ctx.fillStyle = sunGlow;
       ctx.beginPath();
-      ctx.ellipse(0, 34 + bounce, 26, 9, 0, 0, Math.PI * 2);
+      ctx.arc(sunX, sunY, 70, 0, Math.PI * 2);
       ctx.fill();
 
+      ctx.fillStyle = "#fde047";
+      ctx.beginPath();
+      ctx.arc(sunX, sunY, 26, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.restore();
+
+      // Nuages flottants
+      drawCloud(ctx, ((animTick * 18) % (W + 200)) - 100, horizonY * 0.32, 0.75);
+      drawCloud(ctx, (((animTick * 12) + W * 0.45) % (W + 200)) - 100, horizonY * 0.52, 0.6);
+
+      // Collines verdoyantes lointaines
+      ctx.fillStyle = "#22c55e";
+      ctx.beginPath();
+      ctx.arc(W * 0.25, horizonY + 35, W * 0.32, Math.PI, 0);
+      ctx.arc(W * 0.75, horizonY + 35, W * 0.32, Math.PI, 0);
+      ctx.fill();
+
+      // Tourelles de château enchanté au loin derrière le labyrinthe
+      const castles = [
+        { x: W * 0.2, w: 26, h: 42, roof: "#8b5cf6" },
+        { x: W * 0.28, w: 32, h: 56, roof: "#ec4899" },
+        { x: W * 0.72, w: 30, h: 50, roof: "#f59e0b" },
+        { x: W * 0.8, w: 24, h: 38, roof: "#3b82f6" }
+      ];
+      castles.forEach((c) => {
+        ctx.fillStyle = "#cbd5e1";
+        ctx.fillRect(c.x, horizonY - c.h, c.w, c.h);
+        // Toit conique
+        ctx.fillStyle = c.roof;
+        ctx.beginPath();
+        ctx.moveTo(c.x - 3, horizonY - c.h);
+        ctx.lineTo(c.x + c.w / 2, horizonY - c.h - 22);
+        ctx.lineTo(c.x + c.w + 3, horizonY - c.h);
+        ctx.closePath();
+        ctx.fill();
+        // Petite bannière qui ondule
+        ctx.strokeStyle = "#e2e8f0";
+        ctx.lineWidth = 1.5;
+        ctx.beginPath();
+        ctx.moveTo(c.x + c.w / 2, horizonY - c.h - 22);
+        ctx.lineTo(c.x + c.w / 2, horizonY - c.h - 30);
+        ctx.stroke();
+        ctx.fillStyle = c.roof;
+        ctx.beginPath();
+        ctx.moveTo(c.x + c.w / 2, horizonY - c.h - 30);
+        ctx.lineTo(c.x + c.w / 2 + 10, horizonY - c.h - 26);
+        ctx.lineTo(c.x + c.w / 2, horizonY - c.h - 22);
+        ctx.closePath();
+        ctx.fill();
+      });
+
+      // Labyrinthe brumeux à l'horizon (profondeur atmosphérique)
+      ctx.fillStyle = "#15803d";
+      ctx.fillRect(0, horizonY - 6, W, 8);
+
+      // ---------------------------------------------------------
+      // 2. SOL PAVÉ DU LABYRINTHE EN PERSPECTIVE (AVEC DÉFILEMENT)
+      // ---------------------------------------------------------
+      // Pelouse de base sous les dalles
+      ctx.fillStyle = "#16a34a";
+      ctx.fillRect(0, horizonY, W, H - horizonY);
+
+      // Rendu des bandes de pavés défilantes
+      const numBands = 16;
+      for (let s = 0; s < numBands; s++) {
+        const z1 = ((s / numBands) + mazeScrollZ) % 1;
+        const z2 = Math.min(1.2, z1 + 1 / numBands);
+        if (z2 <= z1) continue;
+
+        const pLeft1 = proj(z1, -1.5);
+        const pRight1 = proj(z1, 1.5);
+        const pLeft2 = proj(z2, -1.5);
+        const pRight2 = proj(z2, 1.5);
+
+        // Pavage doré texturé qui alterne doucement
+        ctx.fillStyle = s % 2 === 0 ? "#fef3c7" : "#fde68a";
+        ctx.beginPath();
+        ctx.moveTo(pLeft1.x, pLeft1.y);
+        ctx.lineTo(pRight1.x, pRight1.y);
+        ctx.lineTo(pRight2.x, pRight2.y);
+        ctx.lineTo(pLeft2.x, pLeft2.y);
+        ctx.closePath();
+        ctx.fill();
+
+        // Jointures de pavés en brique
+        ctx.strokeStyle = "rgba(180, 83, 9, 0.15)";
+        ctx.lineWidth = 1 + pLeft1.p * 1.5;
+        ctx.beginPath();
+        ctx.moveTo(pLeft1.x, pLeft1.y);
+        ctx.lineTo(pRight1.x, pRight1.y);
+        ctx.stroke();
+
+        // Pas de pierre décoratifs centraux le long de chaque couloir
+        for (let l = 0; l < 3; l++) {
+          const lOffset = l - 1;
+          const cp = proj((z1 + z2) * 0.5, lOffset);
+          ctx.fillStyle = "rgba(251, 191, 36, 0.35)";
+          ctx.beginPath();
+          ctx.ellipse(cp.x, cp.y, cp.laneW * 0.28, 4 + cp.p * 8, 0, 0, Math.PI * 2);
+          ctx.fill();
+        }
+      }
+
+      // Halo de soleil sur le couloir actif / survolé
+      const activeHighlightLane = mouseHoverLane >= 0 ? mouseHoverLane : chickLane;
+      if (activeHighlightLane >= 0 && activeHighlightLane <= 2) {
+        const hOffset = activeHighlightLane - 1;
+        const hTopL = proj(0.04, hOffset - 0.5);
+        const hTopR = proj(0.04, hOffset + 0.5);
+        const hBotL = proj(1.15, hOffset - 0.5);
+        const hBotR = proj(1.15, hOffset + 0.5);
+
+        const laneGlow = ctx.createLinearGradient(0, horizonY, 0, H);
+        laneGlow.addColorStop(0, "rgba(254, 240, 138, 0.05)");
+        laneGlow.addColorStop(0.7, "rgba(254, 240, 138, 0.28)");
+        laneGlow.addColorStop(1, "rgba(251, 191, 36, 0.38)");
+        ctx.fillStyle = laneGlow;
+        ctx.beginPath();
+        ctx.moveTo(hTopL.x, hTopL.y);
+        ctx.lineTo(hTopR.x, hTopR.y);
+        ctx.lineTo(hBotR.x, hBotR.y);
+        ctx.lineTo(hBotL.x, hBotL.y);
+        ctx.closePath();
+        ctx.fill();
+      }
+
+      // ---------------------------------------------------------
+      // 3. MURS VOLUMÉTRIQUES EN 3D DU LABYRINTHE (HAIES & SÉPARATEURS)
+      // ---------------------------------------------------------
+      // SÉPARATEURS CENTRAUX (séparant les 3 voies : laneOffsets -0.5 et +0.5)
+      [-0.5, 0.5].forEach((divOffset) => {
+        const steps = 14;
+        for (let s = 0; s < steps; s++) {
+          const zA = s / steps;
+          const zB = (s + 1) / steps;
+          const ptA = proj(zA, divOffset);
+          const ptB = proj(zB, divOffset);
+
+          const hA = 12 + 62 * ptA.p;
+          const hB = 12 + 62 * ptB.p;
+          const thA = 5 + 18 * ptA.p;
+          const thB = 5 + 18 * ptB.p;
+
+          // Face latérale gauche du séparateur
+          ctx.fillStyle = "#15803d";
+          ctx.beginPath();
+          ctx.moveTo(ptA.x - thA * 0.5, ptA.y);
+          ctx.lineTo(ptA.x - thA * 0.5, ptA.y - hA);
+          ctx.lineTo(ptB.x - thB * 0.5, ptB.y - hB);
+          ctx.lineTo(ptB.x - thB * 0.5, ptB.y);
+          ctx.closePath();
+          ctx.fill();
+
+          // Face latérale droite du séparateur
+          ctx.fillStyle = "#166534";
+          ctx.beginPath();
+          ctx.moveTo(ptA.x + thA * 0.5, ptA.y);
+          ctx.lineTo(ptA.x + thA * 0.5, ptA.y - hA);
+          ctx.lineTo(ptB.x + thB * 0.5, ptB.y - hB);
+          ctx.lineTo(ptB.x + thB * 0.5, ptB.y);
+          ctx.closePath();
+          ctx.fill();
+
+          // Dessus ensoleillé de la haie séparatrice
+          ctx.fillStyle = "#4ade80";
+          ctx.beginPath();
+          ctx.moveTo(ptA.x - thA * 0.5, ptA.y - hA);
+          ctx.lineTo(ptA.x + thA * 0.5, ptA.y - hA);
+          ctx.lineTo(ptB.x + thB * 0.5, ptB.y - hB);
+          ctx.lineTo(ptB.x - thB * 0.5, ptB.y - hB);
+          ctx.closePath();
+          ctx.fill();
+        }
+      });
+
+      // MURS GÉANTS EXTÉRIEURS DU LABYRINTHE (Gauche à -1.5, Droite à +1.5)
+      // Mur Gauche
+      const wallSteps = 16;
+      for (let s = 0; s < wallSteps; s++) {
+        const zA = s / wallSteps;
+        const zB = (s + 1) / wallSteps;
+        const ptA = proj(zA, -1.5);
+        const ptB = proj(zB, -1.5);
+
+        const hA = 35 + 210 * ptA.p;
+        const hB = 35 + 210 * ptB.p;
+        const thickA = 18 + 70 * ptA.p;
+        const thickB = 18 + 70 * ptB.p;
+
+        // Ombre portée au sol au pied du mur
+        ctx.fillStyle = "rgba(10, 40, 15, 0.18)";
+        ctx.beginPath();
+        ctx.moveTo(ptA.x, ptA.y);
+        ctx.lineTo(ptA.x + thickA * 0.35, ptA.y);
+        ctx.lineTo(ptB.x + thickB * 0.35, ptB.y);
+        ctx.lineTo(ptB.x, ptB.y);
+        ctx.closePath();
+        ctx.fill();
+
+        // Face interne verticale du mur gauche (verdure luxuriante et feuillage)
+        const wallGradL = ctx.createLinearGradient(ptA.x, ptA.y, ptA.x, ptA.y - hA);
+        wallGradL.addColorStop(0, "#14532d");
+        wallGradL.addColorStop(0.5, "#15803d");
+        wallGradL.addColorStop(1, "#16a34a");
+        ctx.fillStyle = wallGradL;
+        ctx.beginPath();
+        ctx.moveTo(ptA.x, ptA.y);
+        ctx.lineTo(ptA.x, ptA.y - hA);
+        ctx.lineTo(ptB.x, ptB.y - hB);
+        ctx.lineTo(ptB.x, ptB.y);
+        ctx.closePath();
+        ctx.fill();
+
+        // Crête / Dessus du mur végétal (vert lime ensoleillé)
+        ctx.fillStyle = "#86efac";
+        ctx.beginPath();
+        ctx.moveTo(ptA.x, ptA.y - hA);
+        ctx.lineTo(ptA.x - thickA, ptA.y - hA * 0.95);
+        ctx.lineTo(ptB.x - thickB, ptB.y - hB * 0.95);
+        ctx.lineTo(ptB.x, ptB.y - hB);
+        ctx.closePath();
+        ctx.fill();
+
+        // Petites fleurs sauvages décoratives le long du mur
+        if (s % 2 === 0) {
+          const flX = ptB.x + 8;
+          const flY = ptB.y - 4;
+          ctx.fillStyle = ["#ef4444", "#f43f5e", "#fbbf24", "#60a5fa"][s % 4];
+          ctx.beginPath();
+          ctx.arc(flX, flY, 2.5 + ptB.p * 3, 0, Math.PI * 2);
+          ctx.fill();
+        }
+      }
+
+      // Mur Droit
+      for (let s = 0; s < wallSteps; s++) {
+        const zA = s / wallSteps;
+        const zB = (s + 1) / wallSteps;
+        const ptA = proj(zA, 1.5);
+        const ptB = proj(zB, 1.5);
+
+        const hA = 35 + 210 * ptA.p;
+        const hB = 35 + 210 * ptB.p;
+        const thickA = 18 + 70 * ptA.p;
+        const thickB = 18 + 70 * ptB.p;
+
+        // Ombre portée au sol
+        ctx.fillStyle = "rgba(10, 40, 15, 0.18)";
+        ctx.beginPath();
+        ctx.moveTo(ptA.x, ptA.y);
+        ctx.lineTo(ptA.x - thickA * 0.35, ptA.y);
+        ctx.lineTo(ptB.x - thickB * 0.35, ptB.y);
+        ctx.lineTo(ptB.x, ptB.y);
+        ctx.closePath();
+        ctx.fill();
+
+        // Face interne verticale du mur droit
+        const wallGradR = ctx.createLinearGradient(ptA.x, ptA.y, ptA.x, ptA.y - hA);
+        wallGradR.addColorStop(0, "#0f3d20");
+        wallGradR.addColorStop(0.5, "#14532d");
+        wallGradR.addColorStop(1, "#15803d");
+        ctx.fillStyle = wallGradR;
+        ctx.beginPath();
+        ctx.moveTo(ptA.x, ptA.y);
+        ctx.lineTo(ptA.x, ptA.y - hA);
+        ctx.lineTo(ptB.x, ptB.y - hB);
+        ctx.lineTo(ptB.x, ptB.y);
+        ctx.closePath();
+        ctx.fill();
+
+        // Crête / Dessus du mur végétal droit
+        ctx.fillStyle = "#86efac";
+        ctx.beginPath();
+        ctx.moveTo(ptA.x, ptA.y - hA);
+        ctx.lineTo(ptA.x + thickA, ptA.y - hA * 0.95);
+        ctx.lineTo(ptB.x + thickB, ptB.y - hB * 0.95);
+        ctx.lineTo(ptB.x, ptB.y - hB);
+        ctx.closePath();
+        ctx.fill();
+
+        // Fleurs
+        if (s % 2 === 1) {
+          const flX = ptB.x - 8;
+          const flY = ptB.y - 4;
+          ctx.fillStyle = ["#ec4899", "#f59e0b", "#38bdf8", "#a855f7"][s % 4];
+          ctx.beginPath();
+          ctx.arc(flX, flY, 2.5 + ptB.p * 3, 0, Math.PI * 2);
+          ctx.fill();
+        }
+      }
+
+      // ---------------------------------------------------------
+      // 4. PORTES DU LABYRINTHE & ARCHES EN PIERRE 3D
+      // ---------------------------------------------------------
+      // Position Z de la porte courante (s'approche et zoome pendant la transition)
+      const currentGateZ = 0.58 + gateTransitionProg * 0.65;
+
+      // Fonction utilitaire pour dessiner un ensemble de 3 portes à une profondeur Z donnée
+      function drawGateSet(gateZ, isCurrentGate) {
+        if (gateZ > 1.25 || gateZ < 0.05) return;
+
+        for (let i = 0; i < 3; i++) {
+          const laneOffset = i - 1;
+          const ptL = proj(gateZ, laneOffset - 0.5);
+          const ptR = proj(gateZ, laneOffset + 0.5);
+          const ptC = proj(gateZ, laneOffset);
+
+          const archH = (32 + 115 * ptC.p) * 1.1;
+          const pillarW = 8 + 26 * ptC.p;
+          const isOpening = isCurrentGate && gateOpenLane === i;
+          const isShaking = isCurrentGate && shakeLane === i;
+          const shakeOffX = isShaking ? Math.sin(animTick * 32) * (5 + ptC.p * 4) : 0;
+
+          // Piliers en pierre taillée 3D de l'arche
+          ctx.save();
+          ctx.translate(shakeOffX, 0);
+
+          // Pilier gauche
+          ctx.fillStyle = "#64748b";
+          ctx.fillRect(ptL.x, ptL.y - archH, pillarW, archH);
+          ctx.fillStyle = "#94a3b8";
+          ctx.fillRect(ptL.x + 2, ptL.y - archH, pillarW * 0.45, archH);
+
+          // Pilier droit
+          ctx.fillStyle = "#475569";
+          ctx.fillRect(ptR.x - pillarW, ptR.y - archH, pillarW, archH);
+          ctx.fillStyle = "#94a3b8";
+          ctx.fillRect(ptR.x - pillarW + 2, ptR.y - archH, pillarW * 0.45, archH);
+
+          // Linteau supérieur cintré de l'arche
+          const lintelH = 12 + 28 * ptC.p;
+          ctx.fillStyle = "#475569";
+          ctx.beginPath();
+          ctx.roundRect(ptL.x - 2, ptL.y - archH - lintelH * 0.6, (ptR.x - ptL.x) + 4, lintelH, 6);
+          ctx.fill();
+          ctx.strokeStyle = "#cbd5e1";
+          ctx.lineWidth = 1.5;
+          ctx.stroke();
+
+          // Clé de voûte au sommet
+          ctx.fillStyle = "#f59e0b";
+          ctx.beginPath();
+          ctx.moveTo(ptC.x - 6 * ptC.p, ptL.y - archH - lintelH * 0.6 - 2);
+          ctx.lineTo(ptC.x + 6 * ptC.p, ptL.y - archH - lintelH * 0.6 - 2);
+          ctx.lineTo(ptC.x + 4 * ptC.p, ptL.y - archH + lintelH * 0.4);
+          ctx.lineTo(ptC.x - 4 * ptC.p, ptL.y - archH + lintelH * 0.4);
+          ctx.closePath();
+          ctx.fill();
+
+          // Lanternes dorées suspendues aux piliers
+          const lanY = ptL.y - archH * 0.65;
+          const lanSize = 4 + 10 * ptC.p;
+          // Lueur de lanterne
+          const lanGlow = ctx.createRadialGradient(ptL.x + pillarW * 0.5, lanY, 1, ptL.x + pillarW * 0.5, lanY, lanSize * 3);
+          lanGlow.addColorStop(0, "rgba(253, 224, 71, 0.8)");
+          lanGlow.addColorStop(1, "rgba(253, 224, 71, 0)");
+          ctx.fillStyle = lanGlow;
+          ctx.beginPath();
+          ctx.arc(ptL.x + pillarW * 0.5, lanY, lanSize * 3, 0, Math.PI * 2);
+          ctx.fill();
+
+          // BATTANTS DE PORTE EN BOIS MASSIF (OUVERTURE 3D EN PERSPECTIVE)
+          const doorW = (ptR.x - ptL.x - pillarW * 2) * 0.5;
+          const doorH = archH * 0.82;
+          const doorY = ptC.y - doorH;
+
+          if (isOpening) {
+            // Battant gauche ouvert vers la gauche
+            const openScale = Math.max(0.12, Math.cos(gateDoorAngle));
+            ctx.fillStyle = "#78350f";
+            ctx.beginPath();
+            ctx.moveTo(ptL.x + pillarW, ptL.y);
+            ctx.lineTo(ptL.x + pillarW, doorY);
+            ctx.lineTo(ptL.x + pillarW + doorW * openScale, doorY + 6 * ptC.p);
+            ctx.lineTo(ptL.x + pillarW + doorW * openScale, ptL.y);
+            ctx.closePath();
+            ctx.fill();
+
+            // Battant droit ouvert vers la droite
+            ctx.fillStyle = "#92400e";
+            ctx.beginPath();
+            ctx.moveTo(ptR.x - pillarW, ptR.y);
+            ctx.lineTo(ptR.x - pillarW, doorY);
+            ctx.lineTo(ptR.x - pillarW - doorW * openScale, doorY + 6 * ptC.p);
+            ctx.lineTo(ptR.x - pillarW - doorW * openScale, ptR.y);
+            ctx.closePath();
+            ctx.fill();
+
+            // Soleil resplendissant traversant la porte ouverte
+            const passageGlow = ctx.createRadialGradient(ptC.x, ptC.y - doorH * 0.5, 5, ptC.x, ptC.y - doorH * 0.5, doorW * 1.5);
+            passageGlow.addColorStop(0, "rgba(254, 240, 138, 0.7)");
+            passageGlow.addColorStop(1, "rgba(254, 240, 138, 0)");
+            ctx.fillStyle = passageGlow;
+            ctx.beginPath();
+            ctx.ellipse(ptC.x, ptC.y - doorH * 0.5, doorW * 1.2, doorH * 0.6, 0, 0, Math.PI * 2);
+            ctx.fill();
+          } else {
+            // Portes fermées en chêne sculpté avec ferrures
+            // Battant gauche
+            ctx.fillStyle = "#92400e";
+            ctx.fillRect(ptL.x + pillarW, doorY, doorW - 1, doorH);
+            // Battant droit
+            ctx.fillStyle = "#78350f";
+            ctx.fillRect(ptC.x, doorY, doorW - 1, doorH);
+
+            // Barres de fer forgé horizontales
+            ctx.fillStyle = "#334155";
+            const barH = 3 + 4 * ptC.p;
+            ctx.fillRect(ptL.x + pillarW + 2, doorY + doorH * 0.25, (ptR.x - ptL.x - pillarW * 2) - 4, barH);
+            ctx.fillRect(ptL.x + pillarW + 2, doorY + doorH * 0.72, (ptR.x - ptL.x - pillarW * 2) - 4, barH);
+
+            // Anneau de heurtoir
+            ctx.fillStyle = "#f59e0b";
+            ctx.beginPath();
+            ctx.arc(ptC.x, doorY + doorH * 0.5, 3 + 5 * ptC.p, 0, Math.PI * 2);
+            ctx.fill();
+          }
+
+          // ÉCUSSON ROYAL / BLASON DE LA LETTRE SUSPENDU À L'ARCHE
+          const bob = isOpening ? -12 : Math.sin(animTick * 3 + i * 1.4) * (3 + ptC.p * 3);
+          const signW = Math.min(108, ptC.laneW * 0.65);
+          const signH = signW * 0.78;
+          const signX = ptC.x - signW / 2;
+          const signY = ptL.y - archH - lintelH * 0.8 + bob;
+
+          // Chaînettes dorées de suspension
+          ctx.strokeStyle = "#d97706";
+          ctx.lineWidth = 1.5 + ptC.p * 1.5;
+          ctx.beginPath();
+          ctx.moveTo(signX + signW * 0.22, signY + 6);
+          ctx.lineTo(signX + signW * 0.22, ptL.y - archH - lintelH * 0.5);
+          ctx.moveTo(signX + signW * 0.78, signY + 6);
+          ctx.lineTo(signX + signW * 0.78, ptL.y - archH - lintelH * 0.5);
+          ctx.stroke();
+
+          // Lueur si la porte est la bonne ou survolée
+          if (isOpening) {
+            ctx.shadowColor = "#22c55e";
+            ctx.shadowBlur = 18;
+          } else if (mouseHoverLane === i) {
+            ctx.shadowColor = "#f59e0b";
+            ctx.shadowBlur = 14;
+          }
+
+          // Écusson 3D (forme d'écu royal avec bordure dorée)
+          ctx.fillStyle = isOpening ? "#dcfce7" : "#fffbeb";
+          ctx.strokeStyle = isOpening ? "#16a34a" : (mouseHoverLane === i ? "#f59e0b" : "#d97706");
+          ctx.lineWidth = 3.5 + ptC.p * 2.5;
+
+          ctx.beginPath();
+          ctx.roundRect(signX, signY, signW, signH, 14);
+          ctx.fill();
+          ctx.stroke();
+          ctx.shadowBlur = 0;
+
+          // Lettre capitale imposante et nette
+          ctx.fillStyle = isOpening ? "#15803d" : "#0f172a";
+          const fontSize = Math.max(18, Math.round(signH * 0.62));
+          ctx.font = `900 ${fontSize}px Cairo, sans-serif`;
+          ctx.textAlign = "center";
+          ctx.textBaseline = "middle";
+          const letterChar = isCurrentGate ? (gateChoices[i] || "") : "";
+          ctx.fillText(letterChar, ptC.x, signY + signH * 0.52);
+
+          ctx.restore();
+        }
+      }
+
+      // Dessin des portes actuelles
+      drawGateSet(currentGateZ, true);
+
+      // Si transition en cours, on dessine la prochaine porte au loin qui s'approche
+      if (transitioning) {
+        const nextGateZ = 0.12 + gateTransitionProg * 0.46;
+        drawGateSet(nextGateZ, false);
+      }
+
+      // ---------------------------------------------------------
+      // 5. POUSSIN MASCOTTE 3D (ANIMATION DE MARCHE & SAUT DE GLOIRE)
+      // ---------------------------------------------------------
+      const chickPt = proj(chickZ, chickLaneSmooth - 1);
+      const hopSpeed = transitioning ? 8.5 : 4.5;
+      const hopMax = transitioning ? 22 : 9;
+      const hop = -Math.abs(Math.sin(animTick * hopSpeed)) * hopMax;
+
+      // Émission de poussière lors de la course
+      if (transitioning && Math.random() < 0.45) {
+        spawnDust(chickPt.x + (Math.random() - 0.5) * 20, chickPt.y + 10, 2);
+      }
+      if (transitioning && gateTransitionProg > 0.45 && gateTransitionProg < 0.8 && Math.random() < 0.35) {
+        spawnVictorySparkles(chickPt.x, chickPt.y - 20, 3);
+      }
+
+      ctx.save();
+      ctx.translate(chickPt.x, chickPt.y + hop);
+      ctx.rotate(chickLean);
+
+      // Ombre portée au sol en 3D (s'écrase et grandit au sol)
+      const shadowScale = (1 - Math.abs(hop) / (hopMax * 2.2)) * (0.6 + chickPt.p * 0.55);
+      ctx.fillStyle = "rgba(0, 0, 0, 0.22)";
+      ctx.beginPath();
+      ctx.ellipse(0, 34 - hop, 30 * shadowScale, 10 * shadowScale, 0, 0, Math.PI * 2);
+      ctx.fill();
+
+      // Dessin du Sprite 3D Pixar mignon
+      const chickW = Math.round(84 * (0.65 + chickPt.p * 0.55));
+      const chickH = chickW;
+
       if (SPRITES.chick && SPRITES.chick.complete && SPRITES.chick.naturalWidth > 0) {
-        ctx.drawImage(SPRITES.chick, -42, -44, 84, 84);
+        ctx.drawImage(SPRITES.chick, -chickW * 0.5, -chickH * 0.55, chickW, chickH);
       } else {
+        // Fallback vectoriel dynamique si le sprite charge
         ctx.fillStyle = "#facc15";
         ctx.beginPath();
-        ctx.arc(0, 0, 29, 0, Math.PI * 2);
+        ctx.arc(0, 0, 28 * (0.65 + chickPt.p * 0.55), 0, Math.PI * 2);
         ctx.fill();
       }
       ctx.restore();
+
+      // ---------------------------------------------------------
+      // 6. PARTICULES FLOTTANTES & FEUILLES DE LABYRINTHE
+      // ---------------------------------------------------------
+      // Particules dynamiques (étincelles, poussière, étoiles)
+      particles = particles.filter((p) => p.life > 0);
+      particles.forEach((p) => {
+        p.x += p.vx;
+        p.y += p.vy;
+        p.life -= p.decay;
+
+        ctx.save();
+        ctx.globalAlpha = Math.max(0, p.life);
+        ctx.fillStyle = p.color;
+        if (p.isStar) {
+          ctx.beginPath();
+          ctx.arc(p.x, p.y, p.radius * p.life, 0, Math.PI * 2);
+          ctx.fill();
+        } else {
+          ctx.beginPath();
+          ctx.arc(p.x, p.y, p.radius * (1 - p.life * 0.3), 0, Math.PI * 2);
+          ctx.fill();
+        }
+        ctx.restore();
+      });
+
+      // Feuilles de jardin flottantes dans la brise
+      ambientLeaves.forEach((leaf) => {
+        leaf.y += leaf.speedY;
+        leaf.x += leaf.speedX;
+        leaf.rot += leaf.rotSpeed;
+        if (leaf.y > 1) { leaf.y = 0.2; leaf.x = Math.random(); }
+        if (leaf.x < 0) leaf.x = 1;
+        if (leaf.x > 1) leaf.x = 0;
+
+        const lx = leaf.x * W;
+        const ly = horizonY + leaf.y * (H - horizonY);
+
+        ctx.save();
+        ctx.translate(lx, ly);
+        ctx.rotate(leaf.rot);
+        ctx.fillStyle = leaf.color;
+        ctx.globalAlpha = 0.45;
+        ctx.beginPath();
+        ctx.ellipse(0, 0, leaf.size, leaf.size * 0.5, 0, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.restore();
+      });
 
       rafId = requestAnimationFrame(renderMaze);
     }
@@ -1263,6 +1915,8 @@
       running = false;
       if (rafId) cancelAnimationFrame(rafId);
       canvas.removeEventListener("click", onCanvasClick);
+      canvas.removeEventListener("pointermove", onPointerMove);
+      window.removeEventListener("keydown", onKeyDown);
     };
   }
 
