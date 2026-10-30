@@ -440,29 +440,41 @@ body.topic-page {
 
   .topic-card {
     height: auto !important;
-    min-height: 88px !important;
-    padding: 6px 5px !important;
+    min-height: 0 !important;
+    justify-content: center !important;
+    gap: 3px !important;
+    padding: 6px 5px 5px !important;
     border-radius: 16px !important;
     touch-action: pan-y !important;
   }
 
+  .topic-card-icon {
+    flex: 0 0 auto !important;
+    height: auto !important;
+    width: 100% !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+  }
+
   .topic-grid-10 .topic-card-icon svg,
   .topic-grid-10 .topic-card-icon img {
-    max-height: clamp(42px, 8.5vh, 54px) !important;
+    max-height: clamp(44px, 9vh, 56px) !important;
     width: auto !important;
     object-fit: contain !important;
   }
 
   .topic-grid-20 .topic-card-icon svg,
   .topic-grid-20 .topic-card-icon img {
-    max-height: clamp(30px, 7vh, 40px) !important;
+    max-height: clamp(32px, 7.5vh, 42px) !important;
     width: auto !important;
     object-fit: contain !important;
   }
 
   .topic-card-label {
-    font-size: clamp(11px, 3.2vw, 13px) !important;
-    padding: 2.5px 6px !important;
+    flex: 0 0 auto !important;
+    font-size: clamp(10.5px, 3vw, 12px) !important;
+    padding: 2px 6px !important;
   }
 
   .topic-modal {
