@@ -184,14 +184,24 @@ body.category {
   object-fit: contain;
 }
 
-/* 3x3 Grid for the 9 Courses on cours.html */
+/* =========================================================
+   3x3 Grid for the 9 Courses on cours.html
+   Rigorously identical dimensions for all 9 course cards
+   ========================================================= */
 .category-grid.cours-grid {
+  display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: clamp(8px, 1.4vh, 16px) clamp(10px, 1.6vw, 20px);
-  width: min(96%, 920px);
+  gap: clamp(10px, 1.8vh, 18px) clamp(12px, 1.8vw, 22px);
+  width: min(96vw, 880px);
+  max-width: 880px;
+  margin: 0 auto;
+  align-items: center;
+  justify-items: center;
 }
 
+/* Base category card */
 .category-card {
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -203,6 +213,31 @@ body.category {
   transition: transform 220ms ease, filter 220ms ease;
 }
 
+/* Strict identical sizing for all 9 course cards on desktop/tablet */
+.cours-grid .category-card {
+  position: relative;
+  width: 100%;
+  max-width: 250px;
+  aspect-ratio: 420 / 300;
+  height: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+  overflow: hidden;
+}
+
+.cours-grid .category-card img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
 .category-card img {
   display: block;
   width: 100%;
@@ -211,10 +246,6 @@ body.category {
   object-fit: contain;
   user-select: none;
   -webkit-user-drag: none;
-}
-
-.cours-grid .category-card img {
-  max-height: min(21.5vh, 175px);
 }
 
 .category-card:hover,
@@ -310,21 +341,32 @@ body.category {
     grid-column: auto !important;
   }
 
-  /* Stories (7th card) centered across columns */
+  /* Stories (7th card) centered across columns with identical dimension */
   .main-category-grid .card-stories {
     grid-row: auto !important;
     grid-column: 1 / span 2 !important;
-    max-width: 210px !important;
+    justify-self: center !important;
+    width: calc((100% - 10px) / 2) !important;
+    max-width: 195px !important;
+    aspect-ratio: 420 / 300 !important;
     margin: 0 auto !important;
   }
 
   .main-category-grid .category-card {
-    max-width: 100% !important;
+    position: relative !important;
     width: 100% !important;
+    max-width: 195px !important;
+    aspect-ratio: 420 / 300 !important;
+    height: auto !important;
+    margin: 0 auto !important;
   }
 
   .main-category-grid .category-card img {
-    max-height: 120px !important;
+    width: 100% !important;
+    height: 100% !important;
+    max-width: 100% !important;
+    max-height: 100% !important;
+    object-fit: contain !important;
   }
 
   /* Cours Grid (cours.html - 9 courses): 2 columns on phone portrait */
@@ -332,35 +374,45 @@ body.category {
     display: grid !important;
     grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
     grid-template-rows: auto !important;
-    gap: 14px 12px !important;
+    gap: 12px 10px !important;
     width: 100% !important;
     max-width: 440px !important;
     margin: 0 auto !important;
     padding: 0 4px !important;
   }
 
+  /* Strict identical sizing on all course cards */
   .cours-grid .category-card {
     position: relative !important;
     display: flex !important;
     align-items: center !important;
     justify-content: center !important;
-    min-height: 96px !important;
     width: 100% !important;
+    max-width: 195px !important;
+    aspect-ratio: 420 / 300 !important;
+    height: auto !important;
+    min-height: 0 !important;
+    margin: 0 auto !important;
+    overflow: hidden !important;
   }
 
   .cours-grid .category-card img {
-    max-height: 110px !important;
-    width: auto !important;
+    width: 100% !important;
+    height: 100% !important;
     max-width: 100% !important;
+    max-height: 100% !important;
     object-fit: contain !important;
   }
 
-  /* 9th course card (Common Orders) centered spanning 2 columns */
+  /* 9th course card (Common Orders) centered spanning 2 columns with RIGOROUSLY IDENTICAL dimension */
   .cours-grid .category-card:last-child {
     grid-column: 1 / span 2 !important;
-    max-width: 210px !important;
+    justify-self: center !important;
+    width: calc((100% - 10px) / 2) !important;
+    max-width: 195px !important;
+    aspect-ratio: 420 / 300 !important;
+    height: auto !important;
     margin: 0 auto !important;
-    width: 100% !important;
   }
 }
 
@@ -373,14 +425,27 @@ body.category {
     gap: 12px 14px !important;
   }
 
+  .cours-grid .category-card {
+    width: 100% !important;
+    max-width: 230px !important;
+    aspect-ratio: 420 / 300 !important;
+    height: auto !important;
+    margin: 0 auto !important;
+  }
+
   .cours-grid .category-card:last-child {
     grid-column: auto !important;
-    max-width: none !important;
-    margin: 0 !important;
+    width: 100% !important;
+    max-width: 230px !important;
+    aspect-ratio: 420 / 300 !important;
+    margin: 0 auto !important;
   }
 
   .cours-grid .category-card img {
-    max-height: clamp(80px, 17vh, 125px) !important;
+    width: 100% !important;
+    height: 100% !important;
+    max-height: 100% !important;
+    object-fit: contain !important;
   }
 
   .category-grid.main-category-grid {
