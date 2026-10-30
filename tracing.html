@@ -1,16 +1,16 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, viewport-fit=cover">
   <script src="https://cdn.tailwindcss.com"></script>
-  <title>Kids Learner - Traçage & Écriture</title>
+  <title>Kids Learner - TraÃ§age & Ã‰criture</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@600;700;800;900&family=Nunito:wght@600;700;800;900&family=Tajawal:wght@700;800;900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/common.css?v=64">
-  <link rel="stylesheet" href="css/games.css?v=64">
+  <link rel="stylesheet" href="css/common.css?v=65">
+  <link rel="stylesheet" href="css/games.css?v=65">
   <style>
     .tracing-workspace {
       width: min(96vw, 1280px);
@@ -63,7 +63,7 @@
       }
     }
 
-    /* Carte latérale d'aperçu (Mot/Lettre + Image + Outils) */
+    /* Carte latÃ©rale d'aperÃ§u (Mot/Lettre + Image + Outils) */
     .tracing-side-card {
       background: #fffcf6;
       border: 2.5px solid #dec28f;
@@ -104,7 +104,7 @@
       color: #8c3821;
     }
 
-    /* Palette de crayons colorés */
+    /* Palette de crayons colorÃ©s */
     .color-swatches {
       display: flex;
       flex-wrap: wrap;
@@ -127,7 +127,7 @@
       box-shadow: 0 0 0 3px #5a82c4, 0 4px 10px rgba(90, 130, 196, 0.4);
     }
 
-    /* Zone d'écriture Ardoise / Cahier Tablette */
+    /* Zone d'Ã©criture Ardoise / Cahier Tablette */
     .tracing-canvas-card {
       position: relative;
       background: #ffffff;
@@ -168,7 +168,7 @@
       touch-action: none;
     }
 
-    /* Barre inférieure de sélection rapide des lettres / mots */
+    /* Barre infÃ©rieure de sÃ©lection rapide des lettres / mots */
     .tracing-bottom-bar {
       background: #fffcf6;
       border: 2px solid #dec28f;
@@ -226,17 +226,17 @@
 <body class="games-page">
   <div id="tracingApp" class="games-app">
     <main class="games-hub page-scroll">
-      <!-- En-tête Novakid avec 3 onglets : Majuscules | Mots | Minuscules -->
+      <!-- En-tÃªte Novakid avec 3 onglets : Majuscules | Mots | Minuscules -->
       <header class="nk-hero">
         <div class="nk-hero-top">
           <div class="nk-hero-text">
-            <h1 id="tracingTitle" class="nk-hero-title">✏️ Traçage & Écriture</h1>
-            <p id="tracingSubtitle" class="nk-hero-subtitle">Suis les pointillés avec ton doigt ou ta souris pour écrire les lettres et les mots !</p>
+            <h1 id="tracingTitle" class="nk-hero-title">âœï¸ TraÃ§age & Ã‰criture</h1>
+            <p id="tracingSubtitle" class="nk-hero-subtitle">Suis les pointillÃ©s avec ton doigt ou ta souris pour Ã©crire les lettres et les mots !</p>
           </div>
 
           <div class="nk-counters">
             <div class="nk-stat-pill" title="Stars">
-              <span class="nk-stat-icon">⭐</span>
+              <span class="nk-stat-icon">â­</span>
               <span id="tracingStarsCount">0</span>
             </div>
           </div>
@@ -246,16 +246,16 @@
           <span id="tracingModeLabel" class="nk-quiz-label">Choisis un mode :</span>
           <div class="nk-skills-pills">
             <button type="button" id="modeLettersBtn" class="nk-skill-pill active">
-              🔤 <span id="modeLettersText">Tracer les lettres (A-Z)</span>
+              ðŸ”¤ <span id="modeLettersText">Tracer les lettres (A-Z)</span>
             </button>
             <button type="button" id="modeWordsBtn" class="nk-skill-pill">
-              📝 <span id="modeWordsText">Tracer des mots</span>
+              ðŸ“ <span id="modeWordsText">Tracer des mots</span>
             </button>
             <button type="button" id="modeLowerBtn" class="nk-skill-pill">
-              🔡 <span id="modeLowerText">Lettres minuscules (a-z)</span>
+              ðŸ”¡ <span id="modeLowerText">Lettres minuscules (a-z)</span>
             </button>
             <button type="button" id="modeVisionBtn" class="nk-skill-pill" style="background:linear-gradient(135deg,#fef08a,#f59e0b);color:#78350f;border-color:#d97706;">
-              📷 <span id="modeVisionText">Scan Tactile IA (b, h, k, m)</span>
+              ðŸ“· <span id="modeVisionText">Scan Tactile IA (b, h, k, m)</span>
             </button>
           </div>
         </div>
@@ -263,30 +263,30 @@
 
       <!-- =========================================================
            MODE VISION PAR ORDINATEUR : TACTILE LEARNING MEETS COMPUTER VISION
-           (Basé sur le visuel 1 : 1. Tactile Input -> 2. Camera Scan -> 3. Digital Reward)
+           (BasÃ© sur le visuel 1 : 1. Tactile Input -> 2. Camera Scan -> 3. Digital Reward)
            ========================================================= -->
       <section id="visionWorkspace" class="tracing-workspace hidden" style="overflow-y:auto;">
         <div class="bg-gradient-to-br from-amber-200 via-amber-100 to-yellow-50 border-4 border-white rounded-3xl p-4 sm:p-5 shadow-xl flex-1 flex flex-col justify-between gap-4">
           <div class="flex flex-wrap items-center justify-between gap-2">
             <div>
               <h2 id="visionMainHeading" class="text-xl sm:text-2xl font-black text-amber-950">
-                📷 Tactile Learning Meets Computer Vision
+                ðŸ“· Tactile Learning Meets Computer Vision
               </h2>
               <p id="visionSubHeading" class="text-xs sm:text-sm font-bold text-amber-900">
-                Écris la lettre sur papier (ou choisis une carte), scanne-la avec la caméra et découvre ta récompense numérique !
+                Ã‰cris la lettre sur papier (ou choisis une carte), scanne-la avec la camÃ©ra et dÃ©couvre ta rÃ©compense numÃ©rique !
               </p>
             </div>
             <button type="button" id="toggleVisionSlideBtn" class="px-3 py-1.5 rounded-full bg-white border-2 border-amber-400 text-amber-900 font-black text-xs shadow-sm hover:bg-amber-50">
-              🖼️ Voir le schéma "Tactile Learning"
+              ðŸ–¼ï¸ Voir le schÃ©ma "Tactile Learning"
             </button>
           </div>
 
-          <!-- Aperçu optionnel de l'image originale -->
+          <!-- AperÃ§u optionnel de l'image originale -->
           <div id="visionSlideModalBox" class="hidden bg-white p-3 rounded-2xl border-2 border-amber-300 text-center">
             <img src="assets/images/fennygo/tactile-vision.jpg" alt="Tactile Learning Meets Computer Vision" class="max-h-64 mx-auto rounded-xl object-contain">
           </div>
 
-          <!-- Grille des 3 étapes : 1. The Tactile Input | 2. The Camera Scan | 3. The Digital Reward -->
+          <!-- Grille des 3 Ã©tapes : 1. The Tactile Input | 2. The Camera Scan | 3. The Digital Reward -->
           <div class="grid grid-cols-1 lg:grid-cols-3 gap-4 items-stretch flex-1">
 
             <!-- CARD 1: 1. The Tactile Input -->
@@ -298,11 +298,11 @@
                   <span id="tactileCardLetter" class="text-7xl font-black text-slate-900" style="font-family:'Comic Sans MS',cursive;">b</span>
                 </div>
                 <div class="mt-3 flex flex-wrap justify-center gap-1.5">
-                  <button type="button" class="tactile-letter-btn px-3 py-1 rounded-xl font-black text-sm bg-blue-600 text-white shadow" data-tletter="b" data-tword="bag" data-tsuffix="_ag" data-temoji="🎒">b</button>
-                  <button type="button" class="tactile-letter-btn px-3 py-1 rounded-xl font-black text-sm bg-white text-slate-800 border border-amber-400" data-tletter="h" data-tword="hat" data-tsuffix="_at" data-temoji="🎩">h</button>
-                  <button type="button" class="tactile-letter-btn px-3 py-1 rounded-xl font-black text-sm bg-white text-slate-800 border border-amber-400" data-tletter="k" data-tword="kite" data-tsuffix="_ite" data-temoji="🪁">k</button>
-                  <button type="button" class="tactile-letter-btn px-3 py-1 rounded-xl font-black text-sm bg-white text-slate-800 border border-amber-400" data-tletter="m" data-tword="milk" data-tsuffix="_ilk" data-temoji="🥛">m</button>
-                  <button type="button" class="tactile-letter-btn px-3 py-1 rounded-xl font-black text-sm bg-white text-slate-800 border border-amber-400" data-tletter="p" data-tword="pen" data-tsuffix="_en" data-temoji="🖊️">p</button>
+                  <button type="button" class="tactile-letter-btn px-3 py-1 rounded-xl font-black text-sm bg-blue-600 text-white shadow" data-tletter="b" data-tword="bag" data-tsuffix="_ag" data-temoji="ðŸŽ’">b</button>
+                  <button type="button" class="tactile-letter-btn px-3 py-1 rounded-xl font-black text-sm bg-white text-slate-800 border border-amber-400" data-tletter="h" data-tword="hat" data-tsuffix="_at" data-temoji="ðŸŽ©">h</button>
+                  <button type="button" class="tactile-letter-btn px-3 py-1 rounded-xl font-black text-sm bg-white text-slate-800 border border-amber-400" data-tletter="k" data-tword="kite" data-tsuffix="_ite" data-temoji="ðŸª">k</button>
+                  <button type="button" class="tactile-letter-btn px-3 py-1 rounded-xl font-black text-sm bg-white text-slate-800 border border-amber-400" data-tletter="m" data-tword="milk" data-tsuffix="_ilk" data-temoji="ðŸ¥›">m</button>
+                  <button type="button" class="tactile-letter-btn px-3 py-1 rounded-xl font-black text-sm bg-white text-slate-800 border border-amber-400" data-tletter="p" data-tword="pen" data-tsuffix="_en" data-temoji="ðŸ–Šï¸">p</button>
                 </div>
               </div>
 
@@ -320,8 +320,8 @@
                 <div class="relative w-full max-w-[240px] h-36 bg-slate-900 rounded-2xl border-4 border-blue-400 shadow-inner overflow-hidden flex items-center justify-center">
                   <video id="tactileCameraVideo" autoplay playsinline muted class="w-full h-full object-cover hidden"></video>
                   <div id="tactileCameraPlaceholder" class="flex flex-col items-center justify-center text-cyan-300 p-2">
-                    <div class="text-4xl mb-1">📷✨</div>
-                    <span id="scanStatusLabel" class="text-xs font-black">Prêt à scanner la lettre « b »</span>
+                    <div class="text-4xl mb-1">ðŸ“·âœ¨</div>
+                    <span id="scanStatusLabel" class="text-xs font-black">PrÃªt Ã  scanner la lettre Â« b Â»</span>
                   </div>
                   <!-- Animated Cyan Laser Beam -->
                   <div id="laserScanBeam" class="hidden absolute inset-x-0 h-1.5 bg-cyan-300 shadow-[0_0_16px_#22d3ee] animate-bounce" style="top:45%;"></div>
@@ -337,10 +337,10 @@
 
               <div class="flex flex-wrap justify-center gap-2">
                 <button type="button" id="startWebcamBtn" class="px-3 py-1.5 rounded-xl bg-slate-800 hover:bg-slate-900 text-white font-black text-xs">
-                  🎥 Caméra Réelle
+                  ðŸŽ¥ CamÃ©ra RÃ©elle
                 </button>
                 <button type="button" id="triggerAiScanBtn" class="px-4 py-1.5 rounded-xl bg-gradient-to-r from-blue-600 to-cyan-500 hover:from-blue-700 hover:to-cyan-600 text-white font-black text-xs shadow-md">
-                  🔍 Scanner &amp; Analyser
+                  ðŸ” Scanner &amp; Analyser
                 </button>
               </div>
             </div>
@@ -351,14 +351,14 @@
 
               <div class="my-2 bg-amber-200/70 rounded-2xl p-3 flex flex-col items-center justify-center min-h-[165px]">
                 <div id="digitalRewardTablet" class="w-full max-w-[250px] h-36 rounded-2xl bg-gradient-to-br from-blue-600 via-blue-500 to-indigo-700 border-4 border-blue-300 shadow-lg flex flex-col items-center justify-center p-3 text-white relative overflow-hidden">
-                  <div class="text-xs font-black text-amber-200 mb-1">✨ WORD COMPLETED ✨</div>
+                  <div class="text-xs font-black text-amber-200 mb-1">âœ¨ WORD COMPLETED âœ¨</div>
                   <div class="flex items-center justify-center gap-1 text-4xl sm:text-5xl font-black tracking-wider">
                     <span id="rewardFirstLetter" class="px-2.5 py-0.5 rounded-xl bg-amber-400 text-blue-950 shadow-md transform scale-100 transition-transform">?</span>
                     <span id="rewardWordSuffix" class="text-white">_ag</span>
-                    <span id="rewardWordEmoji" class="text-3xl ml-1">🎒</span>
+                    <span id="rewardWordEmoji" class="text-3xl ml-1">ðŸŽ’</span>
                   </div>
                   <button type="button" id="rewardSpeakWordBtn" class="mt-2 px-3 py-1 rounded-full bg-white/20 hover:bg-white/30 text-white font-black text-xs">
-                    🔊 Prononcer le mot
+                    ðŸ”Š Prononcer le mot
                   </button>
                 </div>
               </div>
@@ -375,23 +375,23 @@
       <!-- Espace de travail principal -->
       <section class="tracing-workspace">
         <div class="tracing-board-wrap">
-          <!-- Colonne gauche : Modèle illustré + Couleurs du crayon + Boutons -->
+          <!-- Colonne gauche : ModÃ¨le illustrÃ© + Couleurs du crayon + Boutons -->
           <aside class="tracing-side-card">
             <div class="tracing-preview-box">
               <img id="previewImg" class="w-16 h-16 object-contain rounded-xl drop-shadow-md mb-1 hidden" alt="Illustration">
-              <div id="previewEmoji" class="tracing-emoji">✈️</div>
+              <div id="previewEmoji" class="tracing-emoji">âœˆï¸</div>
               <h2 id="previewWord" class="tracing-word-label">A - Avion</h2>
             </div>
 
-            <!-- Mascotte Fenny avec conseils d'écriture dynamiques -->
+            <!-- Mascotte Fenny avec conseils d'Ã©criture dynamiques -->
             <div class="fenny-interactive-bubble w-full">
               <img src="assets/images/fennygo/fenny-avatar.png" class="fenny-interactive-avatar" alt="Fenny">
-              <span id="fennyTracingTip" class="text-xs font-black text-amber-900 leading-tight">Suis bien les pointillés ! ✍️</span>
+              <span id="fennyTracingTip" class="text-xs font-black text-amber-900 leading-tight">Suis bien les pointillÃ©s ! âœï¸</span>
             </div>
 
             <button type="button" id="speakTargetBtn" class="speaker-btn w-full justify-center">
               <i class="fa-solid fa-volume-high"></i>
-              <span id="listenTargetText">Écouter</span>
+              <span id="listenTargetText">Ã‰couter</span>
             </button>
 
             <div class="w-full">
@@ -411,10 +411,10 @@
             </div>
           </aside>
 
-          <!-- Zone centrale : Cahier d'écriture à pointillés -->
+          <!-- Zone centrale : Cahier d'Ã©criture Ã  pointillÃ©s -->
           <div class="tracing-canvas-card">
             <div class="tracing-canvas-topbar" dir="ltr">
-              <span id="traceInstructionBadge" class="nk-tag" style="font-size: 12px; padding: 4px 12px;">Suis les pointillés</span>
+              <span id="traceInstructionBadge" class="nk-tag" style="font-size: 12px; padding: 4px 12px;">Suis les pointillÃ©s</span>
               <div class="flex items-center gap-3 flex-1 max-w-xs">
                 <div class="progress-track">
                   <div id="traceProgressFill" class="progress-fill" style="width: 0%"></div>
@@ -430,11 +430,11 @@
           </div>
         </div>
 
-        <!-- Barre inférieure : Navigation rapide entre toutes les lettres ou tous les mots -->
+        <!-- Barre infÃ©rieure : Navigation rapide entre toutes les lettres ou tous les mots -->
         <div class="tracing-bottom-bar" dir="ltr">
-          <button type="button" id="prevTraceBtn" class="exit-game-btn" style="width:38px;height:38px;" aria-label="Previous">◀</button>
+          <button type="button" id="prevTraceBtn" class="exit-game-btn" style="width:38px;height:38px;" aria-label="Previous">â—€</button>
           <div id="tracingItemsStrip" class="tracing-items-strip"></div>
-          <button type="button" id="nextTraceBtn" class="exit-game-btn" style="width:38px;height:38px;" aria-label="Next">▶</button>
+          <button type="button" id="nextTraceBtn" class="exit-game-btn" style="width:38px;height:38px;" aria-label="Next">â–¶</button>
         </div>
       </section>
     </main>
@@ -442,8 +442,8 @@
     <canvas id="confettiCanvas" class="confetti-canvas"></canvas>
   </div>
 
-  <script src="js/app-lang.js?v=64"></script>
-  <script src="js/tracing.js?v=64"></script>
+  <script src="js/app-lang.js?v=65"></script>
+  <script src="js/tracing.js?v=65"></script>
   <script>
     (() => {
       const modeVisionBtn = document.getElementById("modeVisionBtn");
@@ -455,7 +455,7 @@
       const visionWorkspace = document.getElementById("visionWorkspace");
       const standardWorkspaces = Array.from(document.querySelectorAll(".tracing-workspace")).filter(el => el.id !== "visionWorkspace");
 
-      let currentTarget = { letter: "b", word: "bag", suffix: "_ag", emoji: "🎒" };
+      let currentTarget = { letter: "b", word: "bag", suffix: "_ag", emoji: "ðŸŽ’" };
       let mediaStream = null;
 
       function stopWebcam() {
@@ -504,11 +504,11 @@
             letter: btn.getAttribute("data-tletter") || "b",
             word: btn.getAttribute("data-tword") || "bag",
             suffix: btn.getAttribute("data-tsuffix") || "_ag",
-            emoji: btn.getAttribute("data-temoji") || "🎒"
+            emoji: btn.getAttribute("data-temoji") || "ðŸŽ’"
           };
 
           document.getElementById("tactileCardLetter").textContent = currentTarget.letter;
-          document.getElementById("scanStatusLabel").textContent = `Prêt à scanner la lettre « ${currentTarget.letter} »`;
+          document.getElementById("scanStatusLabel").textContent = `PrÃªt Ã  scanner la lettre Â« ${currentTarget.letter} Â»`;
           document.getElementById("rewardFirstLetter").textContent = "?";
           document.getElementById("rewardWordSuffix").textContent = currentTarget.suffix;
           document.getElementById("rewardWordEmoji").textContent = currentTarget.emoji;
@@ -525,7 +525,7 @@
       // Webcam activation
       document.getElementById("startWebcamBtn")?.addEventListener("click", async () => {
         if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
-          document.getElementById("scanStatusLabel").textContent = "Mode Simulation IA actif (Caméra non détectée)";
+          document.getElementById("scanStatusLabel").textContent = "Mode Simulation IA actif (CamÃ©ra non dÃ©tectÃ©e)";
           return;
         }
         try {
@@ -538,7 +538,7 @@
           }
           if (ph) ph.classList.add("hidden");
         } catch (_) {
-          document.getElementById("scanStatusLabel").textContent = "Mode Simulation IA prêt ! Clique sur Scanner.";
+          document.getElementById("scanStatusLabel").textContent = "Mode Simulation IA prÃªt ! Clique sur Scanner.";
         }
       });
 
@@ -547,7 +547,7 @@
         const beam = document.getElementById("laserScanBeam");
         const status = document.getElementById("scanStatusLabel");
         beam?.classList.remove("hidden");
-        if (status) status.textContent = `Analyse IA de « ${currentTarget.letter} » en cours...`;
+        if (status) status.textContent = `Analyse IA de Â« ${currentTarget.letter} Â» en cours...`;
 
         setTimeout(() => {
           document.getElementById("metricShape").textContent = "96%";
@@ -557,7 +557,7 @@
 
         setTimeout(() => {
           beam?.classList.add("hidden");
-          if (status) status.textContent = `✅ Lettre « ${currentTarget.letter} » validée avec succès !`;
+          if (status) status.textContent = `âœ… Lettre Â« ${currentTarget.letter} Â» validÃ©e avec succÃ¨s !`;
 
           const firstEl = document.getElementById("rewardFirstLetter");
           if (firstEl) {
