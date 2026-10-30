@@ -65,7 +65,7 @@ body.category {
   width: 100%;
   min-width: 0;
   min-height: 0;
-  padding: clamp(6px, 1.4vh, 16px) clamp(12px, 2vw, 24px);
+  padding: clamp(5px, 1.25vh, 14px) clamp(10px, 1.8vw, 21px);
 }
 
 /* Desktop-only zero-scroll full viewport presentation */
@@ -92,7 +92,7 @@ body.category {
   display: block;
   width: min(84%, 440px);
   max-height: clamp(48px, 9.5vh, 88px);
-  margin: 0 0 clamp(6px, 1.2vh, 12px);
+  margin: 0 0 clamp(5px, 1.1vh, 10px);
   object-fit: contain;
   user-select: none;
   -webkit-user-drag: none;
@@ -101,14 +101,14 @@ body.category {
 
 .cours-logo {
   max-height: min(13vh, 125px);
-  margin: 0 0 clamp(6px, 1.2vh, 12px);
+  margin: 0 0 clamp(5px, 1.1vh, 10px);
 }
 
 /* Base Category Grid for cours.html (and fallback) */
 .category-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: clamp(12px, 2vw, 24px);
+  gap: clamp(10px, 1.8vw, 21px);
   width: min(100%, 740px);
   margin: 0 auto;
 }
@@ -123,7 +123,7 @@ body.category {
   display: grid;
   grid-template-columns: repeat(10, minmax(0, 1fr));
   grid-template-rows: auto auto;
-  gap: clamp(8px, 1.8vh, 18px) clamp(8px, 1.4vw, 20px);
+  gap: clamp(7px, 1.6vh, 16px) clamp(7px, 1.25vw, 18px);
   width: min(96vw, 1280px);
   max-width: 1280px;
   margin: 0 auto;
@@ -191,7 +191,7 @@ body.category {
 .category-grid.cours-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: clamp(10px, 1.8vh, 18px) clamp(12px, 1.8vw, 22px);
+  gap: clamp(9px, 1.6vh, 16px) clamp(10px, 1.6vw, 19px);
   width: min(96vw, 880px);
   max-width: 880px;
   margin: 0 auto;

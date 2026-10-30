@@ -235,7 +235,7 @@ button {
   display: grid;
   grid-template-columns: repeat(5, minmax(0, 1fr));
   grid-template-rows: repeat(2, minmax(0, 1fr));
-  gap: clamp(6px, 1vw, 15px);
+  gap: clamp(5px, 0.9vw, 13.5px);
   width: 100%;
   min-height: 0;
   max-height: 100%;
@@ -1118,12 +1118,12 @@ body:is(.mobile-portrait-rotate, .mobile-landscape-layout) .object-image {
   }
   .shape-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
-    gap: 12px 10px !important;
+    gap: 10px 8px !important;
     width: 100% !important;
     max-width: 440px !important;
   }
   .shape-card {
-    min-height: 120px !important;
+    min-height: 108px !important;
     touch-action: pan-y !important;
   }
   .shape-card * {

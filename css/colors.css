@@ -4507,12 +4507,12 @@ body:is(.mobile-portrait-rotate, .mobile-landscape-layout) .color-mobile-flex-ro
   }
 
   .colors-hero {
-    padding: clamp(54px, 8.5vh, 70px) 12px 36px !important;
+    padding: clamp(48px, 7.5vh, 62px) 10px 80px !important;
     height: auto !important;
     min-height: 100dvh !important;
     overflow: visible !important;
     justify-content: flex-start !important;
-    gap: 12px !important;
+    gap: 10px !important;
   }
 
   .page-title {
@@ -4528,7 +4528,7 @@ body:is(.mobile-portrait-rotate, .mobile-landscape-layout) .color-mobile-flex-ro
     grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
     grid-template-rows: auto !important;
     height: auto !important;
-    gap: 12px 10px !important;
+    gap: 10px 8px !important;
     width: 100% !important;
     max-width: 440px !important;
     margin: 0 auto !important;
@@ -4536,9 +4536,10 @@ body:is(.mobile-portrait-rotate, .mobile-landscape-layout) .color-mobile-flex-ro
 
   .color-card {
     height: auto !important;
-    min-height: 130px !important;
-    padding: 10px 8px 36px !important;
-    border-radius: 20px !important;
+    min-height: 118px !important;
+    padding: 8px 7px 32px !important;
+    border-radius: 18px !important;
+    touch-action: pan-y !important;
   }
 
   .paint-blob-wrap {

@@ -32,7 +32,7 @@ body.alphabet {
   display: flex;
   flex: 1 1 auto;
   min-height: 0;
-  padding: clamp(10px, 2.2vw, 32px);
+  padding: clamp(9px, 2vw, 28px);
 }
 
 /* Desktop-only zero-scroll presentation */
@@ -56,7 +56,7 @@ body.alphabet {
 .alphabet-grid {
   display: grid;
   grid-template-columns: repeat(7, minmax(0, 1fr));
-  gap: clamp(10px, 1.5vw, 26px);
+  gap: clamp(9px, 1.35vw, 23px);
   width: min(100%, 1050px);
   justify-items: center;
   align-items: center;
@@ -462,7 +462,7 @@ body.alphabet {
   }
 
   .alphabet-main {
-    padding: clamp(54px, 8.5vh, 70px) 12px 36px !important;
+    padding: clamp(46px, 7.5vh, 62px) 10px 80px !important;
     height: auto !important;
     min-height: 100dvh !important;
     overflow: visible !important;
@@ -472,7 +472,7 @@ body.alphabet {
 
   .alphabet-grid {
     grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
-    gap: 10px 8px !important;
+    gap: 9px 7px !important;
     width: 100% !important;
     max-width: 420px !important;
   }
