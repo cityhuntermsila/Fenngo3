@@ -9,8 +9,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@600;700;800;900&family=Nunito:wght@600;700;800;900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/common.css?v=60">
-  <link rel="stylesheet" href="css/fennygo.css?v=60">
+  <link rel="stylesheet" href="css/common.css?v=61">
+  <link rel="stylesheet" href="css/fennygo.css?v=61">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
   <style>
     /* Reset & Base */
@@ -261,23 +261,23 @@
       80% { transform: translateX(4px); }
     }
 
-    /* 3D Flip Memory Cards (Strict 4 Columns x 4 Rows = 16 Cards) */
+    /* 3D Flip Memory Cards (Strict 3 Columns x 3 Rows = 9 Cards) */
     .memory-grid {
       display: grid !important;
-      grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
-      gap: clamp(5px, 1.4vw, 8px) !important;
-      max-width: 350px !important;
+      grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+      gap: clamp(6px, 1.8vw, 10px) !important;
+      max-width: 310px !important;
       margin: 0 auto !important;
       perspective: 1000px !important;
       width: 100% !important;
     }
 
     .memory-card {
-      aspect-ratio: 1 / 1.18;
+      aspect-ratio: 1 / 1.15;
       position: relative;
       cursor: pointer;
       transform-style: preserve-3d;
-      transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+      transition: transform 0.38s cubic-bezier(0.34, 1.56, 0.64, 1);
     }
 
     .memory-card.flipped {
@@ -296,7 +296,7 @@
       width: 100%;
       height: 100%;
       backface-visibility: hidden;
-      border-radius: 12px;
+      border-radius: 14px;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -329,13 +329,13 @@
     .memory-front img {
       width: 100%;
       height: 100%;
-      max-height: 60%;
+      max-height: 62%;
       object-fit: contain;
       filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
     }
 
     .memory-front span {
-      font-size: clamp(8px, 2.2vw, 10px);
+      font-size: clamp(8px, 2.4vw, 11px);
       font-weight: 900;
       color: #0f172a;
       line-height: 1;
@@ -584,8 +584,8 @@
   <audio id="audioCheering" src="assets/images/music/cheering.mp3" preload="auto"></audio>
   <audio id="audioWrong" src="assets/images/music/wrong- sound.mp3" preload="auto"></audio>
 
-  <script src="js/app-lang.js?v=60"></script>
-  <script src="js/fenny-companion.js?v=60"></script>
+  <script src="js/app-lang.js?v=61"></script>
+  <script src="js/fenny-companion.js?v=61"></script>
   <script>
     (() => {
       "use strict";
@@ -1167,20 +1167,32 @@
         const allItems = [...DATASET[selectedCatId]];
         shuffleArray(allItems);
 
-        // 8 pairs = 16 cards (4 columns x 4 rows)
-        const selectedPairs = allItems.slice(0, 8);
+        // 4 pairs (8 cards) + 1 Lucky Star Card = 9 cards (3x3 grid)
+        const selectedPairs = allItems.slice(0, 4);
         let deck = [];
         selectedPairs.forEach(item => {
           deck.push({ id: item.id, item: item, type: "img" });
           deck.push({ id: item.id, item: item, type: "img2" });
         });
+
+        // 9th Card: Lucky Star Bonus Card
+        deck.push({
+          id: "lucky_star",
+          isLucky: true,
+          item: {
+            word: currentLang === "Arabic" ? "نجمة الحظ ⭐" : (currentLang === "French" ? "Étoile Chance ⭐" : "Lucky Star ⭐"),
+            img: "assets/images/games/star.png"
+          }
+        });
+
         shuffleArray(deck);
 
         const container = document.createElement("div");
-        container.className = "w-full max-w-sm mx-auto space-y-2 text-center";
+        container.className = "w-full max-w-xs mx-auto space-y-2 text-center";
         container.innerHTML = `
-          <div class="text-xs font-black text-slate-700">
-            ${t.pairsFound} : <strong id="memoryPairsFound" class="text-sky-700 text-sm">0</strong> / 8
+          <div class="text-xs font-black text-slate-700 flex items-center justify-between px-2">
+            <span>${t.pairsFound} : <strong id="memoryPairsFound" class="text-sky-700 text-sm">0</strong> / 4</span>
+            <span class="px-2 py-0.5 rounded-full bg-amber-100 text-amber-900 text-[10px] font-black border border-amber-300">⭐ 3x3 Grille</span>
           </div>
           <div class="memory-grid" id="memoryCardsDeck"></div>
         `;
@@ -1212,6 +1224,23 @@
             if (isLocked || cardEl.classList.contains("flipped") || cardEl.classList.contains("matched")) return;
 
             cardEl.classList.add("flipped");
+
+            // Lucky Card special handling
+            if (cardData.isLucky) {
+              playSound(cheeringAudio);
+              speak("Lucky Star!");
+              cardEl.classList.add("matched");
+              cardEl.style.borderColor = "#facc15";
+              cardEl.style.boxShadow = "0 0 12px rgba(250, 204, 21, 0.7)";
+              starsCount += 5;
+              updateStatsDisplay();
+
+              const feedback = document.getElementById("arenaFeedback");
+              feedback.textContent = currentLang === "Arabic" ? "⭐ بطاقة الحظ السحرية! +5 نجوم" : (currentLang === "French" ? "⭐ Carte Chance Magique ! +5 Étoiles" : "⭐ Lucky Magic Star! +5 Stars");
+              feedback.className = "min-h-[24px] text-center text-xs sm:text-sm font-black text-amber-600 animate-bounce";
+              return;
+            }
+
             speak(cardData.item.word);
             flippedCards.push({ el: cardEl, data: cardData });
 
@@ -1228,12 +1257,12 @@
                   isLocked = false;
                   matchedPairs++;
                   document.getElementById("memoryPairsFound").textContent = matchedPairs;
-                  gameScore += 15;
+                  gameScore += 25;
                   document.getElementById("arenaScoreVal").textContent = gameScore;
 
-                  if (matchedPairs === 8) {
-                    starsCount += 15;
-                    diamondsCount += 10;
+                  if (matchedPairs === 4) {
+                    starsCount += 10;
+                    diamondsCount += 5;
                     updateStatsDisplay();
                     triggerVictory();
                   }
