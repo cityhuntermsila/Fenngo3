@@ -9,8 +9,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@600;700;800;900&family=Nunito:wght@600;700;800;900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/common.css?v=81">
-  <link rel="stylesheet" href="css/fennygo.css?v=81">
+  <link rel="stylesheet" href="css/common.css?v=82">
+  <link rel="stylesheet" href="css/fennygo.css?v=82">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
   <style>
     /* Reset & Base */
@@ -604,8 +604,8 @@
   <audio id="audioCheering" src="assets/images/music/cheering.mp3" preload="auto"></audio>
   <audio id="audioWrong" src="assets/images/music/wrong- sound.mp3" preload="auto"></audio>
 
-  <script src="js/app-lang.js?v=81"></script>
-  <script src="js/fenny-companion.js?v=81"></script>
+  <script src="js/app-lang.js?v=82"></script>
+  <script src="js/fenny-companion.js?v=82"></script>
   <script>
     (() => {
       "use strict";
@@ -616,7 +616,7 @@
           headerTitle: "Practice 3AP",
           playBtn: "Jouer",
           backToHub: "Thèmes",
-          vocabTitle: "🖼️ Tous les éléments 3D (10) :",
+          vocabTitle: "🖼️ Tous les éléments 3D :",
           backToGames: "Jeux",
           step: "Question",
           pairsFound: "Paires",
@@ -639,7 +639,7 @@
             speed: { title: "Vrai ou Faux", badge: "⚡ Vrai/Faux" }
           },
           categories: {
-            alphabet: { title: "Alphabet", sub: "A - Z" },
+            alphabet: { title: "Alphabet", sub: "A - Z (26 Lettres)" },
             numbers: { title: "Nombres", sub: "1 - 10" },
             colors: { title: "Couleurs", sub: "Couleurs 3D" },
             geometry: { title: "Géométrie", sub: "Formes" },
@@ -654,7 +654,7 @@
           headerTitle: "Practice 3AP",
           playBtn: "Play",
           backToHub: "Topics",
-          vocabTitle: "🖼️ All 3D Items (10):",
+          vocabTitle: "🖼️ All 3D Items:",
           backToGames: "Games",
           step: "Question",
           pairsFound: "Pairs",
@@ -677,7 +677,7 @@
             speed: { title: "True or False", badge: "⚡ True/False" }
           },
           categories: {
-            alphabet: { title: "Alphabet", sub: "A - Z" },
+            alphabet: { title: "Alphabet", sub: "A - Z (26 Lettres)" },
             numbers: { title: "Numbers", sub: "1 - 10" },
             colors: { title: "Colors", sub: "3D Colors" },
             geometry: { title: "Geometry", sub: "Shapes" },
@@ -693,16 +693,32 @@
       // 2. Verified 10-Item Dataset per Category with verified local 3D images
       const DATASET = {
         alphabet: [
-          { id: "astronaut", word: "Astronaut", fr: "Astronaute", img: "assets/images/alphabet/A/astronaut.png" },
-          { id: "ball", word: "Ball", fr: "Ballon", img: "assets/images/alphabet/B/ball.png" },
-          { id: "cat", word: "Cat", fr: "Chat", img: "assets/images/alphabet/C/cat.png" },
-          { id: "dolphin", word: "Dolphin", fr: "Dauphin", img: "assets/images/alphabet/D/Dolphin.png" },
-          { id: "elephant", word: "Elephant", fr: "Éléphant", img: "assets/images/alphabet/E/elephant.png" },
-          { id: "fraise", word: "Strawberry", fr: "Fraise", img: "assets/images/alphabet/F/fraise.png" },
-          { id: "cake", word: "Cake", fr: "Gâteau", img: "assets/images/alphabet/C/Cake.png" },
-          { id: "hibou", word: "Owl", fr: "Hibou", img: "assets/images/alphabet/H/hibou.png" },
-          { id: "lion", word: "Lion", fr: "Lion", img: "assets/images/language-images/lion.png" },
-          { id: "mango", word: "Mango", fr: "Mangue", img: "assets/images/alphabet/M/mango.png" }
+          { letter: "A", id: "astronaut", word: "Astronaut", fr: "Astronaute", img: "assets/images/alphabet/A/astronaut.png" },
+          { letter: "B", id: "ball", word: "Ball", fr: "Ballon", img: "assets/images/alphabet/B/ball.png" },
+          { letter: "C", id: "cat", word: "Cat", fr: "Chat", img: "assets/images/alphabet/C/cat.png" },
+          { letter: "D", id: "dolphin", word: "Dolphin", fr: "Dauphin", img: "assets/images/alphabet/D/Dolphin.png" },
+          { letter: "E", id: "elephant", word: "Elephant", fr: "Éléphant", img: "assets/images/alphabet/E/elephant.png" },
+          { letter: "F", id: "fraise", word: "Strawberry", fr: "Fraise", img: "assets/images/alphabet/F/fraise.png" },
+          { letter: "G", id: "cake", word: "Cake", fr: "Gâteau", img: "assets/images/alphabet/G/gateau.png" },
+          { letter: "H", id: "hibou", word: "Owl", fr: "Hibou", img: "assets/images/alphabet/H/hibou.png" },
+          { letter: "I", id: "igloo", word: "Igloo", fr: "Igloo", img: "assets/images/alphabet/I/igloo.png" },
+          { letter: "J", id: "jus", word: "Juice", fr: "Jus", img: "assets/images/alphabet/J/jus.png" },
+          { letter: "K", id: "koala", word: "Koala", fr: "Koala", img: "assets/images/alphabet/K/koala.png" },
+          { letter: "L", id: "lion", word: "Lion", fr: "Lion", img: "assets/images/alphabet/L/lion.png" },
+          { letter: "M", id: "mango", word: "Mango", fr: "Mangue", img: "assets/images/alphabet/M/mango.png" },
+          { letter: "N", id: "nest", word: "Nest", fr: "Nid", img: "assets/images/alphabet/N/nest.png" },
+          { letter: "O", id: "orange", word: "Orange", fr: "Orange", img: "assets/images/alphabet/O/orange.png" },
+          { letter: "P", id: "papillon", word: "Butterfly", fr: "Papillon", img: "assets/images/alphabet/P/papillon.png" },
+          { letter: "Q", id: "quatre", word: "Four", fr: "Quatre", img: "assets/images/alphabet/Q/quatre.png" },
+          { letter: "R", id: "rose", word: "Rose", fr: "Rose", img: "assets/images/alphabet/R/rose.png" },
+          { letter: "S", id: "soleil", word: "Sun", fr: "Soleil", img: "assets/images/alphabet/S/soleil.png" },
+          { letter: "T", id: "train", word: "Train", fr: "Train", img: "assets/images/alphabet/T/train.png" },
+          { letter: "U", id: "un", word: "One", fr: "Un", img: "assets/images/alphabet/U/un.png" },
+          { letter: "V", id: "volcano", word: "Volcano", fr: "Volcan", img: "assets/images/alphabet/V/volcano.png" },
+          { letter: "W", id: "wagon", word: "Wagon", fr: "Wagon", img: "assets/images/alphabet/W/wagon.png" },
+          { letter: "X", id: "xylophone", word: "Xylophone", fr: "Xylophone", img: "assets/images/alphabet/X/xylophone.png" },
+          { letter: "Y", id: "yoyo", word: "Yo-Yo", fr: "Yo-Yo", img: "assets/images/alphabet/Y/yo-yo.png" },
+          { letter: "Z", id: "zebra", word: "Zebra", fr: "Zèbre", img: "assets/images/alphabet/Z/zebra.png" }
         ],
         numbers: [
           { id: "one", word: "One", fr: "Un", img: "assets/images/number/one.png" },
@@ -870,6 +886,10 @@
       }
 
       function getItemSpeech(item) {
+        if (!item) return "";
+        if (item.letter) {
+          return `${item.letter}, ${getItemWord(item)}`;
+        }
         return getItemWord(item);
       }
 
@@ -1038,17 +1058,20 @@
           gamesGrid.appendChild(gCard);
         });
 
-        // Render ALL 10 Visual Elements in 2 Columns
+        // Render ALL Visual Elements in 2 Columns
         const vocabGrid = document.getElementById("catVocabGrid");
         vocabGrid.innerHTML = "";
         const items = DATASET[catId];
+        document.getElementById("vocabSectionTitle").textContent = `${t.vocabTitle} (${items.length})`;
 
         items.forEach(it => {
           const vCard = document.createElement("div");
           vCard.className = "vocab-card-2col";
           const subText = currentLang === "French" ? it.fr : "";
+          const letterBadge = it.letter ? `<span class="w-6 h-6 rounded-full bg-gradient-to-br from-amber-400 to-amber-500 text-white font-black text-xs flex items-center justify-center shadow-sm flex-shrink-0 mr-1.5">${it.letter}</span>` : "";
 
           vCard.innerHTML = `
+            ${letterBadge}
             <div class="vocab-thumb-sm">
               <img src="${it.img}" alt="${it.word}">
             </div>
@@ -1060,7 +1083,7 @@
           `;
 
           vCard.addEventListener("click", () => {
-            speak(it.word);
+            speak(getItemSpeech(it));
           });
 
           vocabGrid.appendChild(vCard);
@@ -1143,13 +1166,15 @@
         const container = document.createElement("div");
         container.className = "w-full max-w-md mx-auto space-y-3 text-center";
 
+        const targetBadge = target.letter ? `<span class="w-7 h-7 rounded-full bg-gradient-to-br from-amber-400 to-amber-500 text-white font-black text-xs inline-flex items-center justify-center shadow-sm mr-1.5 align-middle">${target.letter}</span>` : "";
+
         container.innerHTML = `
           <div class="flex items-center justify-center gap-2">
             <button type="button" id="replaySoundBtn" class="clay-btn px-4 py-1.5 bg-gradient-to-b from-sky-400 to-sky-600 text-white text-xs font-black shadow-sm">
               <i class="fa-solid fa-volume-high"></i>
               <span>${t.replayAudio}</span>
             </button>
-            <span class="text-xs font-black text-slate-800">"${target.word}"</span>
+            <span class="text-xs font-black text-slate-800 flex items-center">${targetBadge}"${getItemWord(target)}"</span>
           </div>
 
           <!-- 2 Columns Grid for 4 Choices -->
@@ -1158,24 +1183,26 @@
 
         stage.appendChild(container);
 
-        setTimeout(() => speak(target.word), 250);
-        container.querySelector("#replaySoundBtn").addEventListener("click", () => speak(target.word));
+        setTimeout(() => speak(getItemSpeech(target)), 250);
+        container.querySelector("#replaySoundBtn").addEventListener("click", () => speak(getItemSpeech(target)));
 
         const grid = container.querySelector("#soundChoicesGrid");
         choices.forEach(ch => {
           const card = document.createElement("div");
-          card.className = "sound-choice-2col";
+          const chBadge = ch.letter ? `<span class="absolute top-1.5 left-1.5 w-6 h-6 rounded-full bg-gradient-to-br from-amber-400 to-amber-500 text-white font-black text-xs flex items-center justify-center shadow-md ring-1 ring-white">${ch.letter}</span>` : "";
+          card.className = "sound-choice-2col relative";
           card.innerHTML = `
+            ${chBadge}
             <div class="w-16 h-16 sm:w-20 sm:h-20 flex items-center justify-center mb-1">
               <img src="${ch.img}" alt="${ch.word}" class="w-full h-full object-contain filter drop-shadow">
             </div>
-            <span class="text-xs font-black text-slate-800 truncate">${ch.word}</span>
+            <span class="text-xs font-black text-slate-800 truncate">${getItemWord(ch)}</span>
           `;
 
           card.addEventListener("click", () => {
             if (card.classList.contains("correct") || card.classList.contains("wrong")) return;
 
-            speak(ch.word);
+            speak(getItemSpeech(ch));
 
             if (ch.id === target.id) {
               card.classList.add("correct");
@@ -1239,7 +1266,7 @@
             </div>
             <div class="memory-face memory-front">
               <img src="${cardData.item.img}" alt="${cardData.item.word}" onerror="this.onerror=null; this.src='assets/images/fennygo/fenny-avatar.png';">
-              <span>${getItemWord(cardData.item)}</span>
+              <span class="flex items-center justify-center gap-1">${cardData.item.letter ? `<span class="w-4 h-4 rounded-full bg-amber-400 text-white text-[10px] font-black inline-flex items-center justify-center shadow-sm">${cardData.item.letter}</span>` : ""}${getItemWord(cardData.item)}</span>
             </div>
           `;
 
@@ -1337,7 +1364,15 @@
         const container = document.createElement("div");
         container.className = "w-full max-w-sm mx-auto space-y-3 text-center";
 
+        const letterHeader = target.letter ? `
+          <div class="inline-flex items-center gap-1 px-3 py-0.5 rounded-full bg-amber-100 text-amber-900 border border-amber-300 shadow-sm mb-1">
+            <span class="w-6 h-6 rounded-full bg-amber-500 text-white font-black text-xs flex items-center justify-center shadow-sm">${target.letter}</span>
+            <span class="text-xs font-black">Lettre ${target.letter}</span>
+          </div>
+        ` : "";
+
         container.innerHTML = `
+          ${letterHeader}
           <div class="w-20 h-20 sm:w-24 sm:h-24 mx-auto p-1.5 bg-white rounded-2xl border-2 border-sky-200 shadow-sm flex items-center justify-center">
             <img src="${target.img}" alt="${target.word}" class="w-full h-full object-contain filter drop-shadow">
           </div>
@@ -1347,7 +1382,7 @@
         `;
 
         stage.appendChild(container);
-        setTimeout(() => speak(target.word), 250);
+        setTimeout(() => speak(getItemSpeech(target)), 250);
 
         const slotsContainer = container.querySelector("#spellingSlots");
         const bubblesContainer = container.querySelector("#spellingBubbles");
@@ -1433,17 +1468,21 @@
         const container = document.createElement("div");
         container.className = "w-full max-w-sm mx-auto space-y-3 text-center";
 
+        const dispBadge = displayedItem.letter ? `<span class="absolute -top-2 -left-2 w-7 h-7 rounded-full bg-gradient-to-br from-amber-400 to-amber-500 text-white font-black text-xs flex items-center justify-center shadow-md ring-2 ring-white">${displayedItem.letter}</span>` : "";
+        const targetBadge = target.letter ? `<span class="w-7 h-7 rounded-full bg-gradient-to-br from-amber-400 to-amber-500 text-white font-black text-xs inline-flex items-center justify-center shadow-sm mr-1 align-middle">${target.letter}</span>` : "";
+
         container.innerHTML = `
           <div class="w-full bg-slate-200 h-2 rounded-full overflow-hidden border border-slate-300">
             <div id="speedTimerFill" class="h-full bg-gradient-to-r from-emerald-400 via-amber-400 to-rose-500 w-full transition-all duration-100 linear"></div>
           </div>
 
-          <div class="w-24 h-24 mx-auto p-1.5 bg-white rounded-2xl border-2 border-sky-200 shadow-sm flex items-center justify-center">
+          <div class="w-24 h-24 mx-auto p-1.5 bg-white rounded-2xl border-2 border-sky-200 shadow-sm flex items-center justify-center relative">
+            ${dispBadge}
             <img src="${displayedItem.img}" alt="${displayedItem.word}" class="w-full h-full object-contain filter drop-shadow">
           </div>
 
-          <span class="text-sm sm:text-base font-black text-slate-900 block">
-            "${target.word}" ?
+          <span class="text-sm sm:text-base font-black text-slate-900 block flex items-center justify-center">
+            ${targetBadge}"${getItemWord(target)}" ?
           </span>
 
           <!-- 2 Columns Grid for Yes / No Buttons -->
