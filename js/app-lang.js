@@ -307,7 +307,7 @@
    */
   function setupBackButton() {
     const path = (window.location.pathname || "").toLowerCase();
-    if (path.endsWith("index.html") || path === "/" || path === "") {
+    if (path.endsWith("index.html") || path.endsWith("progression.html") || path === "/" || path === "") {
       const existing = document.getElementById("globalBackBtn");
       if (existing) existing.remove();
       return;

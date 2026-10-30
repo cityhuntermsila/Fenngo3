@@ -9,8 +9,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@600;700;800;900&family=Nunito:wght@600;700;800;900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/common.css?v=54">
-  <link rel="stylesheet" href="css/fennygo.css?v=54">
+  <link rel="stylesheet" href="css/common.css?v=55">
+  <link rel="stylesheet" href="css/fennygo.css?v=55">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
   <style>
     html, body {
@@ -22,6 +22,12 @@
       background: radial-gradient(circle at 50% 20%, #fdeebc 0%, #f7cf68 50%, #f1bb3d 100%);
       color: #2b241f;
       -webkit-tap-highlight-color: transparent;
+    }
+
+    /* Suppress duplicate floating back button */
+    #globalBackBtn,
+    .global-back-btn {
+      display: none !important;
     }
 
     /* Top Studio Card */
@@ -646,8 +652,8 @@
     </div>
   </div>
 
-  <script src="js/app-lang.js?v=54"></script>
-  <script src="js/fenny-companion.js?v=54"></script>
+  <script src="js/app-lang.js?v=55"></script>
+  <script src="js/fenny-companion.js?v=55"></script>
   <script>
     (() => {
       "use strict";
@@ -877,6 +883,8 @@
 
       // Init on load
       window.addEventListener("DOMContentLoaded", () => {
+        const floatingBtn = document.getElementById("globalBackBtn");
+        if (floatingBtn) floatingBtn.remove();
         syncStars();
         applyTranslations(activeLang);
       });
