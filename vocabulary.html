@@ -10,8 +10,8 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@600;700;800;900&family=Nunito:wght@600;700;800;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-  <link rel="stylesheet" href="css/common.css?v=52">
-  <link rel="stylesheet" href="css/fennygo.css?v=52">
+  <link rel="stylesheet" href="css/common.css?v=53">
+  <link rel="stylesheet" href="css/fennygo.css?v=53">
   <style>
     :root {
       --voc-amber-glow: #fdeebc;
@@ -1194,7 +1194,7 @@
       // =========================================================
       // RENDER STUDIO (MODE 1)
       // =========================================================
-      function renderStudioWord() {
+      function renderStudioWord(autoPlay = true) {
         const item = getCurrentWord();
         const list = getWordList();
 
@@ -1264,6 +1264,15 @@
 
         // Clear tracing canvas for new word
         clearCanvas();
+
+        // Automatically pronounce element name and animate 3D showcase
+        if (autoPlay) {
+          setTimeout(() => {
+            if (activeMode === "studio") {
+              triggerListen();
+            }
+          }, 200);
+        }
       }
 
       // =========================================================
@@ -1624,8 +1633,24 @@
       // =========================================================
       document.addEventListener("DOMContentLoaded", () => {
         updateStarsDisplay();
-        renderStudioWord();
+        renderStudioWord(true);
         initCanvas();
+
+        // Autoplay policy unlock: if browser held back unprompted audio, unlock on first interaction
+        let autoSpeechTriggered = false;
+        const unlockAudioOnTouch = () => {
+          if (autoSpeechTriggered) return;
+          autoSpeechTriggered = true;
+          if (activeMode === "studio") {
+            triggerListen();
+          }
+          window.removeEventListener("pointerdown", unlockAudioOnTouch);
+          window.removeEventListener("touchstart", unlockAudioOnTouch);
+          window.removeEventListener("click", unlockAudioOnTouch);
+        };
+        window.addEventListener("pointerdown", unlockAudioOnTouch, { once: true });
+        window.addEventListener("touchstart", unlockAudioOnTouch, { once: true });
+        window.addEventListener("click", unlockAudioOnTouch, { once: true });
 
         // Mode Switching
         document.querySelectorAll("[data-mode]").forEach(btn => {
@@ -1682,14 +1707,12 @@
           const list = getWordList();
           currentWordIndex = (currentWordIndex - 1 + list.length) % list.length;
           renderStudioWord();
-          triggerListen();
         });
 
         document.getElementById("nextWordBtn")?.addEventListener("click", () => {
           const list = getWordList();
           currentWordIndex = (currentWordIndex + 1) % list.length;
           renderStudioWord();
-          triggerListen();
         });
 
         // 3 Core Sensory Triggers
