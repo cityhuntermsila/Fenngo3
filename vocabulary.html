@@ -65,8 +65,32 @@
         height: auto !important;
         max-height: none !important;
         min-height: 100dvh !important;
-        padding: 8px 6px 24px !important;
+        padding: 4px 6px 16px !important;
+        gap: 4px !important;
         overflow-y: visible !important;
+      }
+      .studio-card {
+        padding: 6px 10px !important;
+        gap: 4px !important;
+        border-radius: 16px !important;
+      }
+      #pageTitle {
+        font-size: 13px !important;
+      }
+      #pageSub {
+        font-size: 9.5px !important;
+      }
+      .mode-tab-btn {
+        padding: 3px 8px !important;
+        font-size: 10.5px !important;
+      }
+      .theme-chip {
+        padding: 3px 8px !important;
+        font-size: 10.5px !important;
+      }
+      #themeRibbon {
+        padding-top: 1px !important;
+        padding-bottom: 1px !important;
       }
       .tablet-stage {
         height: auto !important;
@@ -75,23 +99,64 @@
         -webkit-overflow-scrolling: touch !important;
         overscroll-behavior-y: contain !important;
         touch-action: pan-y !important;
-        padding: 12px 10px !important;
-        border-radius: 24px !important;
+        padding: 8px 8px 10px !important;
+        border-width: 5px !important;
+        border-radius: 22px !important;
+      }
+      #prevWordBtn, #nextWordBtn {
+        width: 32px !important;
+        height: 32px !important;
+        font-size: 13px !important;
+      }
+      #themeTitle {
+        font-size: 11px !important;
+      }
+      #wordTranslationPill {
+        font-size: 11px !important;
+        margin-top: 1px !important;
+      }
+      #hintTileClick {
+        font-size: 9.5px !important;
+      }
+      .voc-letter-tile {
+        width: clamp(23px, 5.2vw, 34px) !important;
+        height: clamp(28px, 4.2vh, 38px) !important;
+        font-size: clamp(13px, 3.2vw, 18px) !important;
+        border-radius: 8px !important;
+        border-width: 2px !important;
+        border-bottom-width: 3px !important;
+      }
+      .word-tile-group {
+        gap: 2px !important;
+      }
+      #letterTilesRow {
+        gap: 4px !important;
+        flex-wrap: nowrap !important;
+        overflow-x: auto !important;
+        padding: 2px 4px !important;
       }
       .sensory-circle-btn {
-        width: 46px !important;
-        height: 46px !important;
+        width: 38px !important;
+        height: 38px !important;
       }
       .sensory-inner-disc {
-        width: 30px !important;
-        height: 30px !important;
+        width: 26px !important;
+        height: 26px !important;
+      }
+      .sensory-inner-disc span {
+        font-size: 14px !important;
       }
       .sensory-btn-label {
-        font-size: 8px !important;
+        font-size: 7.5px !important;
       }
       #currentObjectImg {
-        max-height: clamp(90px, 18vh, 130px) !important;
+        max-height: clamp(75px, 13vh, 105px) !important;
         width: auto !important;
+      }
+      #liveStatusBanner {
+        margin-top: 3px !important;
+        padding: 2px 8px !important;
+        font-size: 10.5px !important;
       }
     }
 
@@ -1151,36 +1216,41 @@
 
         const words = item.word.split(" ");
         const isMultiWord = words.length > 1;
-        let currentWordIdx = 0;
 
-        Array.from(item.word).forEach((ch, idx) => {
-          if (ch === " ") {
-            currentWordIdx++;
-            const spacer = document.createElement("span");
-            spacer.className = "w-3 sm:w-4 inline-block";
-            row.appendChild(spacer);
-            return;
-          }
-          const tile = document.createElement("button");
-          tile.type = "button";
-          tile.dataset.tileIdx = String(idx);
-          const isVowel = VOWELS.has(ch.toUpperCase());
-          let tileClass = "";
-          if (isMultiWord) {
-            tileClass = (currentWordIdx % 2 === 0) ? "voc-tile-peach" : "voc-tile-blue";
-          } else {
-            tileClass = isVowel ? "voc-tile-blue" : "voc-tile-peach";
-          }
-          tile.className = `voc-letter-tile ${tileClass}`;
-          tile.textContent = ch;
+        words.forEach((wStr, wIdx) => {
+          const group = document.createElement("div");
+          group.className = "word-tile-group flex items-center gap-1 shrink-0";
 
-          // Clicking a tile pronounces that letter/phoneme!
-          tile.addEventListener("click", () => {
-            tile.classList.add("highlight");
-            setTimeout(() => tile.classList.remove("highlight"), 500);
-            speakEn(ch.toLowerCase(), 0.8);
+          Array.from(wStr).forEach((ch, chIdx) => {
+            const tile = document.createElement("button");
+            tile.type = "button";
+            tile.dataset.tileIdx = `${wIdx}-${chIdx}`;
+            const isVowel = VOWELS.has(ch.toUpperCase());
+            let tileClass = "";
+            if (isMultiWord) {
+              tileClass = (wIdx % 2 === 0) ? "voc-tile-peach" : "voc-tile-blue";
+            } else {
+              tileClass = isVowel ? "voc-tile-blue" : "voc-tile-peach";
+            }
+            tile.className = `voc-letter-tile ${tileClass}`;
+            tile.textContent = ch;
+
+            // Clicking a tile pronounces that letter/phoneme!
+            tile.addEventListener("click", () => {
+              tile.classList.add("highlight");
+              setTimeout(() => tile.classList.remove("highlight"), 500);
+              speakEn(ch.toLowerCase(), 0.8);
+            });
+            group.appendChild(tile);
           });
-          row.appendChild(tile);
+
+          row.appendChild(group);
+
+          if (wIdx < words.length - 1) {
+            const spacer = document.createElement("span");
+            spacer.className = "w-2 sm:w-3 inline-block shrink-0";
+            row.appendChild(spacer);
+          }
         });
 
         // Clear tracing canvas for new word
