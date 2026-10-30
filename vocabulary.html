@@ -1,17 +1,17 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="fr">
 
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, viewport-fit=cover">
   <script src="https://cdn.tailwindcss.com"></script>
-  <title>Kids Learner Ã¢â‚¬â€ Vocabulaire Multisensoriel 3D</title>
+  <title>Kids Learner â€” Vocabulaire Multisensoriel 3D</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@600;700;800;900&family=Nunito:wght@600;700;800;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-  <link rel="stylesheet" href="css/common.css?v=69">
-  <link rel="stylesheet" href="css/fennygo.css?v=69">
+  <link rel="stylesheet" href="css/common.css?v=68">
+  <link rel="stylesheet" href="css/fennygo.css?v=68">
   <style>
     :root {
       --voc-amber-glow: #fdeebc;
@@ -426,14 +426,14 @@
         </a>
         <div class="flex items-center gap-2">
           <span class="w-9 h-9 rounded-xl bg-gradient-to-br from-[#F7945D] to-[#E87A3E] text-white flex items-center justify-center text-lg shadow border border-[#C96128]">
-            Ã°Å¸Â§Â 
+            ðŸ§ 
           </span>
           <div>
             <h1 id="pageTitle" class="text-base sm:text-lg font-black text-slate-900 leading-tight">
               Vocabulaire Multisensoriel 3D
             </h1>
             <span id="pageSub" class="text-[11px] font-bold text-[#8C3D1E] block">
-              Listen Ã¢â‚¬Â¢ Read Ã¢â‚¬Â¢ Speak Ã¢â‚¬Â¢ Write (Programme 3AP)
+              Listen â€¢ Read â€¢ Speak â€¢ Write (Programme 3AP)
             </span>
           </div>
         </div>
@@ -442,16 +442,16 @@
       <!-- 3 Studio Modes -->
       <div class="flex items-center gap-1.5 bg-[#FBF1DD] p-1 rounded-full border border-[#E3CCA3]">
         <button type="button" class="mode-tab-btn active" data-mode="studio">
-          <span>Ã°Å¸Å½Â§Ã°Å¸â€˜ÂÃ¯Â¸ÂÃ°Å¸Å½â„¢Ã¯Â¸Â</span>
+          <span>ðŸŽ§ðŸ‘ï¸ðŸŽ™ï¸</span>
           <span id="modeStudioLabel">Studio 4D</span>
         </button>
         <button type="button" class="mode-tab-btn" data-mode="spelling">
-          <span>Ã°Å¸Â§Â©</span>
-          <span id="modeSpellingLabel">DÃƒÂ©fi Ãƒâ€°pellation</span>
+          <span>ðŸ§©</span>
+          <span id="modeSpellingLabel">DÃ©fi Ã‰pellation</span>
         </button>
         <button type="button" class="mode-tab-btn" data-mode="quiz">
-          <span>Ã°Å¸Å½Â¯</span>
-          <span id="modeQuizLabel">Quiz Ãƒâ€°coute</span>
+          <span>ðŸŽ¯</span>
+          <span id="modeQuizLabel">Quiz Ã‰coute</span>
         </button>
       </div>
 
@@ -459,32 +459,33 @@
       <div class="flex items-center gap-2">
         <!-- Speed toggle (Normal 1.0x / Phonics Slow 0.7x) -->
         <button type="button" id="speedToggleBtn" class="px-2.5 py-1 rounded-full bg-white border-2 border-[#DEC28F] text-xs font-black text-[#4A3728] hover:border-[#6E94D1] transition flex items-center gap-1" title="Vitesse audio (Normal / Lent)">
-          <span>Ã¢Å¡Â¡</span>
+          <span>âš¡</span>
           <span id="speedLabel">1.0x</span>
         </button>
 
         <!-- Stars Counter -->
         <div class="px-3 py-1 rounded-full bg-amber-100 border-2 border-amber-400 font-black text-amber-950 text-xs sm:text-sm flex items-center gap-1 shadow-sm">
-          <span>Ã¢Â­Â</span>
+          <span>â­</span>
           <span id="studioStarsCount">12</span>
         </div>
 
-        <!-- Bilingual Switcher -->
+        <!-- Trilingual Switcher -->
         <div class="flex items-center gap-0.5 bg-[#F5E6CC] p-0.5 rounded-full border border-[#E0CEB0]">
-          <button type="button" class="lang-pill-btn active" data-set-lang="English">EN</button>
-          <button type="button" class="lang-pill-btn" data-set-lang="French">FR</button>
+          <button type="button" class="lang-pill-btn active" data-set-lang="French">FR</button>
+          <button type="button" class="lang-pill-btn" data-set-lang="English">EN</button>
+          <button type="button" class="lang-pill-btn" data-set-lang="Arabic">Ø¹Ø±Ø¨ÙŠ</button>
         </div>
       </div>
     </header>
 
     <!-- Thematic Units Ribbon (Scrollable) -->
     <div class="flex items-center gap-2 overflow-x-auto py-1 px-1 shrink-0 no-scrollbar" id="themeRibbon">
-      <button type="button" class="theme-chip active" data-theme="stationery">Ã°Å¸Å½â€™ School Stationery</button>
-      <button type="button" class="theme-chip" data-theme="family">Ã°Å¸â€˜Â¨Ã¢â‚¬ÂÃ°Å¸â€˜Â©Ã¢â‚¬ÂÃ°Å¸â€˜Â§ Family & Friends</button>
-      <button type="button" class="theme-chip" data-theme="colors">Ã°Å¸Å½Â¨ Colors & Shapes</button>
-      <button type="button" class="theme-chip" data-theme="numbers">Ã°Å¸â€Â¢ Numbers</button>
-      <button type="button" class="theme-chip" data-theme="body">Ã°Å¸â€˜Æ’ Body Parts</button>
-      <button type="button" class="theme-chip" data-theme="food">Ã°Å¸ÂÅ½ Fruits & Food</button>
+      <button type="button" class="theme-chip active" data-theme="stationery">ðŸŽ’ School Stationery</button>
+      <button type="button" class="theme-chip" data-theme="family">ðŸ‘¨â€ðŸ‘©â€ðŸ‘§ Family & Friends</button>
+      <button type="button" class="theme-chip" data-theme="colors">ðŸŽ¨ Colors & Shapes</button>
+      <button type="button" class="theme-chip" data-theme="numbers">ðŸ”¢ Numbers</button>
+      <button type="button" class="theme-chip" data-theme="body">ðŸ‘ƒ Body Parts</button>
+      <button type="button" class="theme-chip" data-theme="food">ðŸŽ Fruits & Food</button>
     </div>
 
     <!-- =========================================================
@@ -494,22 +495,22 @@
 
       <!-- Top Row: Word Navigation + Translation Badges -->
       <div class="flex items-center justify-between gap-3 shrink-0">
-        <button type="button" id="prevWordBtn" class="w-10 h-10 rounded-full bg-gradient-to-b from-[#8FAFE0] to-[#6E94D1] border-2 border-[#577FB8] shadow-[0_3px_0_#4A6E9F] flex items-center justify-center text-[#1A2F50] font-black hover:scale-105 active:scale-95 transition" title="Mot prÃƒÂ©cÃƒÂ©dent">
+        <button type="button" id="prevWordBtn" class="w-10 h-10 rounded-full bg-gradient-to-b from-[#8FAFE0] to-[#6E94D1] border-2 border-[#577FB8] shadow-[0_3px_0_#4A6E9F] flex items-center justify-center text-[#1A2F50] font-black hover:scale-105 active:scale-95 transition" title="Mot prÃ©cÃ©dent">
           <i class="fa-solid fa-arrow-left"></i>
         </button>
 
         <div class="text-center flex-1">
           <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#FFF8EE]/90 border border-[#E5CFA6] text-xs font-black text-[#4A3628] shadow-sm">
-            <span id="themeTitle">Ã°Å¸Å½â€™ School Stationery</span>
-            <span>Ã¢â‚¬Â¢</span>
+            <span id="themeTitle">ðŸŽ’ School Stationery</span>
+            <span>â€¢</span>
             <span id="wordCounter">1 / 8</span>
           </div>
           <!-- Bilingue Hint (French / Arabic translation) -->
           <div id="wordTranslationPill" class="mt-1 text-xs sm:text-sm font-black text-[#5B4537] flex items-center justify-center gap-2">
-            <span id="transFr">Ã°Å¸â€¡Â«Ã°Å¸â€¡Â· Cartable scolaire</span>
+            <span id="transFr">ðŸ‡«ðŸ‡· Cartable scolaire</span>
             <span class="text-[#D3BCA0]">|</span>
-            <span id="transAr" dir="rtl">Ã°Å¸â€¡Â©Ã°Å¸â€¡Â¿ Ã™â€¦Ã˜Â­Ã™ÂÃ˜Â¸Ã˜Â© Ã™â€¦Ã˜Â¯Ã˜Â±Ã˜Â³Ã™Å Ã˜Â©</span>
-            <button type="button" id="speakTransBtn" class="text-[#4E76C4] hover:text-[#284988] ml-1 transition" title="Ãƒâ€°couter la traduction">
+            <span id="transAr" dir="rtl">ðŸ‡©ðŸ‡¿ Ù…Ø­ÙØ¸Ø© Ù…Ø¯Ø±Ø³ÙŠØ©</span>
+            <button type="button" id="speakTransBtn" class="text-[#4E76C4] hover:text-[#284988] ml-1 transition" title="Ã‰couter la traduction">
               <i class="fa-solid fa-volume-low"></i>
             </button>
           </div>
@@ -524,7 +525,7 @@
       <div class="my-1 text-center shrink-0">
         <div id="letterTilesRow" class="flex flex-wrap items-center justify-center gap-1.5 sm:gap-2" dir="ltr"></div>
         <div class="text-[11px] font-extrabold text-[#8C5528] mt-0.5">
-          Ã°Å¸â€™Â¡ <span id="hintTileClick">Astuce : Touche chaque lettre pour ÃƒÂ©couter son phonÃƒÂ¨me individuel !</span>
+          ðŸ’¡ <span id="hintTileClick">Astuce : Touche chaque lettre pour Ã©couter son phonÃ¨me individuel !</span>
         </div>
       </div>
 
@@ -536,7 +537,7 @@
           <!-- 1. LISTEN -->
           <button type="button" id="btnListen" class="sensory-circle-btn" title="Listen: Native Audio Modeling">
             <div class="sensory-inner-disc">
-              <span class="text-base sm:text-xl">Ã°Å¸â€˜â€š</span>
+              <span class="text-base sm:text-xl">ðŸ‘‚</span>
             </div>
             <span class="sensory-btn-label">LISTEN</span>
           </button>
@@ -544,7 +545,7 @@
           <!-- 2. READ (Karaoke Syllable Sync) -->
           <button type="button" id="btnRead" class="sensory-circle-btn" title="Read: Grapheme-Phoneme Syllable Sync">
             <div class="sensory-inner-disc">
-              <span class="text-base sm:text-xl">Ã°Å¸â€˜ÂÃ¯Â¸Â</span>
+              <span class="text-base sm:text-xl">ðŸ‘ï¸</span>
             </div>
             <span class="sensory-btn-label">READ</span>
           </button>
@@ -552,7 +553,7 @@
           <!-- 3. SPEAK (Voice Recognition Challenge) -->
           <button type="button" id="btnSpeak" class="sensory-circle-btn" title="Speak: Voice Recognition Challenge">
             <div class="sensory-inner-disc">
-              <span class="text-base sm:text-xl">Ã°Å¸Å½â„¢Ã¯Â¸Â</span>
+              <span class="text-base sm:text-xl">ðŸŽ™ï¸</span>
             </div>
             <span class="sensory-btn-label">SPEAK</span>
           </button>
@@ -563,14 +564,14 @@
           <div class="relative group cursor-pointer" id="objectClickArea">
             <img id="currentObjectImg" src="assets/images/fennygo/school-bag-3d.png" alt="3D Vocabulary Object" class="w-36 h-36 sm:w-48 sm:h-48 md:w-56 md:h-56 object-contain drop-shadow-[0_14px_28px_rgba(0,0,0,0.25)] transition-transform duration-300 group-hover:scale-105 active:scale-95">
             <span class="absolute bottom-1 right-1 bg-slate-900/80 text-white text-[10px] font-black px-2 py-0.5 rounded-full border border-white">
-              Ã°Å¸â€Å  3D
+              ðŸ”Š 3D
             </span>
           </div>
 
           <!-- Dynamic Live Status Banner -->
           <div id="liveStatusBanner" class="mt-1 px-3.5 py-1 rounded-full bg-white/95 border-2 border-[#DEB979] text-xs sm:text-sm font-black text-[#3E2D22] shadow flex items-center gap-2">
-            <span id="statusIco">Ã°Å¸â€˜â€°</span>
-            <span id="statusMsg">Clique sur Ã°Å¸â€˜â€š Listen, Ã°Å¸â€˜ÂÃ¯Â¸Â Read ou Ã°Å¸Å½â„¢Ã¯Â¸Â Speak !</span>
+            <span id="statusIco">ðŸ‘‰</span>
+            <span id="statusMsg">Clique sur ðŸ‘‚ Listen, ðŸ‘ï¸ Read ou ðŸŽ™ï¸ Speak !</span>
           </div>
 
           <!-- Active Speech Soundwave Animation (hidden when idle) -->
@@ -582,14 +583,14 @@
         <!-- Right Column: Fenny Virtual Companion with Musical Notes -->
         <div class="col-span-3 flex flex-col items-center justify-center h-full py-0.5 relative">
           <!-- Ambient musical notes & sparkles from reference image -->
-          <div class="absolute -top-1 right-2 text-sm opacity-80 animate-bounce select-none pointer-events-none">Ã°Å¸Å½Âµ</div>
-          <div class="absolute top-8 left-2 text-xs opacity-75 select-none pointer-events-none" style="animation: pulse 1.5s infinite alternate;">Ã°Å¸Å½Â¶</div>
-          <div class="absolute bottom-2 right-4 text-xs opacity-75 select-none pointer-events-none">Ã¢Å“Â¨</div>
+          <div class="absolute -top-1 right-2 text-sm opacity-80 animate-bounce select-none pointer-events-none">ðŸŽµ</div>
+          <div class="absolute top-8 left-2 text-xs opacity-75 select-none pointer-events-none" style="animation: pulse 1.5s infinite alternate;">ðŸŽ¶</div>
+          <div class="absolute bottom-2 right-4 text-xs opacity-75 select-none pointer-events-none">âœ¨</div>
 
           <!-- Fenny Mascot Celebrator -->
           <div class="flex flex-col items-center text-center">
             <div id="fennySpeechBubble" class="text-[10px] sm:text-[11px] font-black bg-white/95 border-2 border-[#F3A96C] text-[#5A3821] rounded-2xl px-2.5 py-1 mb-1 shadow-sm leading-tight max-w-[130px]">
-              "Let's practice!" Ã°Å¸Â¦Å 
+              "Let's practice!" ðŸ¦Š
             </div>
             <img id="fennyStudioMascot" src="assets/images/fennygo/fenny-mascot.png" alt="Fenny Mascot" class="w-18 h-18 sm:w-24 sm:h-24 object-contain drop-shadow-md cursor-pointer transition-transform duration-200 hover:scale-105">
           </div>
@@ -605,13 +606,13 @@
     <section id="spellingStage" class="tablet-stage p-2 sm:p-3 flex-1 min-h-0 hidden flex-col justify-between text-center">
       <div class="shrink-0">
         <span class="px-2.5 py-0.5 rounded-full bg-[#FFF0DF] text-[#8C3D1E] border border-[#F0BE9A] font-black text-[10px] sm:text-xs">
-          Ã°Å¸Â§Â© DÃƒâ€°FI Ãƒâ€°PELLATION 3AP
+          ðŸ§© DÃ‰FI Ã‰PELLATION 3AP
         </span>
         <h2 id="spellHeading" class="text-sm sm:text-base font-black text-slate-900 mt-0.5">
           Remets les lettres dans le bon ordre !
         </h2>
         <p class="text-[10.5px] sm:text-xs font-bold text-[#5C4537]">
-          Ãƒâ€°coute Fenny et clique sur les tuiles pour reconstituer le mot.
+          Ã‰coute Fenny et clique sur les tuiles pour reconstituer le mot.
         </p>
       </div>
 
@@ -629,10 +630,10 @@
 
       <div class="flex items-center justify-center gap-2.5 shrink-0">
         <button type="button" id="spellHearAgainBtn" class="px-3.5 py-1 rounded-full bg-gradient-to-b from-[#8FAFE0] to-[#6E94D1] border-2 border-[#577FB8] text-[#1A2F50] font-black text-xs shadow hover:brightness-105 active:scale-95 transition">
-          Ã°Å¸â€Å  RÃƒÂ©ÃƒÂ©couter le mot
+          ðŸ”Š RÃ©Ã©couter le mot
         </button>
         <button type="button" id="spellNextWordBtn" class="px-3.5 py-1 rounded-full bg-gradient-to-b from-[#F89B66] to-[#E8783A] text-white font-black text-xs shadow hover:brightness-105 active:scale-95 transition border border-[#CF6326]">
-          Mot Suivant Ã¢â€ â€™
+          Mot Suivant â†’
         </button>
       </div>
     </section>
@@ -644,24 +645,24 @@
       <div class="shrink-0">
         <div class="flex items-center justify-center gap-2">
           <span class="px-2.5 py-0.5 rounded-full bg-[#FFF0DF] text-[#8C3D1E] border border-[#F0BE9A] font-black text-[10px] sm:text-xs">
-            Ã°Å¸Å½Â¯ GRAND QUIZ MULTISENSORIEL 3AP
+            ðŸŽ¯ GRAND QUIZ MULTISENSORIEL 3AP
           </span>
           <span id="quizScorePill" class="px-2.5 py-0.5 rounded-full bg-amber-100 border border-amber-400 text-amber-950 font-black text-[10px] sm:text-xs">
-            Ã¢Â­Â Score: <span id="quizScoreCount">0</span>
+            â­ Score: <span id="quizScoreCount">0</span>
           </span>
         </div>
         <h2 id="quizHeading" class="text-sm sm:text-base font-black text-slate-900 mt-0.5">
-          Ãƒâ€°coute attentivement et touche la bonne image !
+          Ã‰coute attentivement et touche la bonne image !
         </h2>
         <p id="quizPromptSub" class="text-[10px] sm:text-[11px] font-bold text-[#5C4537]">
-          Question <span id="quizQuestionNum">1</span> / 10 Ã¢â‚¬Â¢ Trouve l'image correspondante
+          Question <span id="quizQuestionNum">1</span> / 10 â€¢ Trouve l'image correspondante
         </p>
       </div>
 
       <div class="my-auto flex flex-col items-center gap-2 sm:gap-3">
         <button type="button" id="quizPlaySoundBtn" class="px-4 py-1.5 rounded-full bg-gradient-to-b from-[#8FAFE0] to-[#6E94D1] hover:brightness-105 text-[#1A2F50] border-2 border-[#577FB8] font-black text-xs sm:text-sm shadow flex items-center gap-2 hover:scale-105 active:scale-95 transition">
           <i class="fa-solid fa-volume-high text-[#1A2F50] text-sm"></i>
-          <span id="quizListenBtnText">Ã°Å¸â€Å  Ãƒâ€°couter le Mot MystÃƒÂ¨re</span>
+          <span id="quizListenBtnText">ðŸ”Š Ã‰couter le Mot MystÃ¨re</span>
         </button>
 
         <div id="quizCardsGrid" class="grid grid-cols-3 gap-2 sm:gap-3 w-full max-w-xl"></div>
@@ -671,7 +672,7 @@
 
       <div class="flex items-center justify-center gap-2.5 shrink-0">
         <button type="button" id="quizNextBtn" class="px-4 py-1 rounded-full bg-gradient-to-b from-[#F89B66] to-[#E8783A] text-white border border-[#CF6326] hover:brightness-105 font-black text-xs shadow active:scale-95 transition">
-          Question Suivante Ã¢â€ â€™
+          Question Suivante â†’
         </button>
       </div>
     </section>
@@ -697,15 +698,15 @@
             word: "SCHOOL BAG",
             phonetics: ["s", "k", "h", "oo", "o", "l", " ", "b", "a", "g"],
             transFr: "Cartable scolaire",
-            transAr: "Ã™â€¦Ã˜Â­Ã™ÂÃ˜Â¸Ã˜Â© Ã™â€¦Ã˜Â¯Ã˜Â±Ã˜Â³Ã™Å Ã˜Â©",
+            transAr: "Ù…Ø­ÙØ¸Ø© Ù…Ø¯Ø±Ø³ÙŠØ©",
             speechEn: "School bag! This is a school bag.",
             img: "assets/images/fennygo/school-bag-3d.png"
           },
           {
             word: "PENCIL CASE",
             phonetics: ["p", "e", "n", "c", "i", "l", " ", "c", "a", "s", "e"],
-            transFr: "Trousse ÃƒÂ  crayons",
-            transAr: "Ã™â€¦Ã™â€šÃ™â€žÃ™â€¦Ã˜Â©",
+            transFr: "Trousse Ã  crayons",
+            transAr: "Ù…Ù‚Ù„Ù…Ø©",
             speechEn: "Pencil case! A pencil case.",
             img: "assets/images/stationery/pencilcase.png"
           },
@@ -713,7 +714,7 @@
             word: "BOOK",
             phonetics: ["b", "oo", "k"],
             transFr: "Livre scolaire",
-            transAr: "Ã™Æ’Ã˜ÂªÃ˜Â§Ã˜Â¨",
+            transAr: "ÙƒØªØ§Ø¨",
             speechEn: "Book! Open your book.",
             img: "assets/images/stationery/book.png"
           },
@@ -721,15 +722,15 @@
             word: "ERASER",
             phonetics: ["e", "r", "a", "s", "e", "r"],
             transFr: "Gomme",
-            transAr: "Ã™â€¦Ã™â€¦Ã˜Â­Ã˜Â§Ã˜Â©",
+            transAr: "Ù…Ù…Ø­Ø§Ø©",
             speechEn: "Eraser! A soft eraser.",
             img: "assets/images/stationery/eraser.png"
           },
           {
             word: "RULER",
             phonetics: ["r", "u", "l", "e", "r"],
-            transFr: "RÃƒÂ¨gle",
-            transAr: "Ã™â€¦Ã˜Â³Ã˜Â·Ã˜Â±Ã˜Â©",
+            transFr: "RÃ¨gle",
+            transAr: "Ù…Ø³Ø·Ø±Ø©",
             speechEn: "Ruler! A straight ruler.",
             img: "assets/images/stationery/ruler.png"
           },
@@ -737,7 +738,7 @@
             word: "SCISSORS",
             phonetics: ["s", "c", "i", "s", "s", "o", "r", "s"],
             transFr: "Ciseaux",
-            transAr: "Ã™â€¦Ã™â€šÃ˜Âµ",
+            transAr: "Ù…Ù‚Øµ",
             speechEn: "Scissors! Be careful with scissors.",
             img: "assets/images/stationery/scissors.png"
           },
@@ -745,7 +746,7 @@
             word: "PEN",
             phonetics: ["p", "e", "n"],
             transFr: "Stylo",
-            transAr: "Ã™â€šÃ™â€žÃ™â€¦ Ã˜Â¬Ã˜Â§Ã™Â",
+            transAr: "Ù‚Ù„Ù… Ø¬Ø§Ù",
             speechEn: "Pen! Write with your blue pen.",
             img: "assets/images/stationery/pen.png"
           },
@@ -753,7 +754,7 @@
             word: "PENCIL",
             phonetics: ["p", "e", "n", "c", "i", "l"],
             transFr: "Crayon",
-            transAr: "Ã™â€šÃ™â€žÃ™â€¦ Ã˜Â±Ã˜ÂµÃ˜Â§Ã˜Âµ",
+            transAr: "Ù‚Ù„Ù… Ø±ØµØ§Øµ",
             speechEn: "Pencil! Draw with your pencil.",
             img: "assets/images/stationery/pencil.png"
           },
@@ -761,7 +762,7 @@
             word: "NOTEBOOK",
             phonetics: ["n", "o", "t", "e", "b", "oo", "k"],
             transFr: "Cahier",
-            transAr: "Ã™Æ’Ã˜Â±Ã˜Â§Ã˜Â³",
+            transAr: "ÙƒØ±Ø§Ø³",
             speechEn: "Notebook! Write in your notebook.",
             img: "assets/images/stationery/notebook.png"
           },
@@ -769,7 +770,7 @@
             word: "SHARPENER",
             phonetics: ["s", "h", "a", "r", "p", "e", "n", "e", "r"],
             transFr: "Taille-crayon",
-            transAr: "Ã™â€¦Ã˜Â¨Ã˜Â±Ã˜Â§Ã˜Â©",
+            transAr: "Ù…Ø¨Ø±Ø§Ø©",
             speechEn: "Sharpener! Sharpen your pencil.",
             img: "assets/images/stationery/sharpener.png"
           }
@@ -778,56 +779,56 @@
           {
             word: "FATHER",
             phonetics: ["f", "a", "t", "h", "e", "r"],
-            transFr: "Le pÃƒÂ¨re / Papa",
-            transAr: "Ã˜Â§Ã™â€žÃ˜Â£Ã˜Â¨",
+            transFr: "Le pÃ¨re / Papa",
+            transAr: "Ø§Ù„Ø£Ø¨",
             speechEn: "Father! This is my father.",
             img: "assets/images/family/father.png"
           },
           {
             word: "MOTHER",
             phonetics: ["m", "o", "t", "h", "e", "r"],
-            transFr: "La mÃƒÂ¨re / Maman",
-            transAr: "Ã˜Â§Ã™â€žÃ˜Â£Ã™â€¦",
+            transFr: "La mÃ¨re / Maman",
+            transAr: "Ø§Ù„Ø£Ù…",
             speechEn: "Mother! I love my mother.",
             img: "assets/images/family/mother.png"
           },
           {
             word: "BROTHER",
             phonetics: ["b", "r", "o", "t", "h", "e", "r"],
-            transFr: "Le frÃƒÂ¨re",
-            transAr: "Ã˜Â§Ã™â€žÃ˜Â£Ã˜Â®",
+            transFr: "Le frÃ¨re",
+            transAr: "Ø§Ù„Ø£Ø®",
             speechEn: "Brother! My little brother.",
             img: "assets/images/family/myBrother.png"
           },
           {
             word: "SISTER",
             phonetics: ["s", "i", "s", "t", "e", "r"],
-            transFr: "La sÃ…â€œur",
-            transAr: "Ã˜Â§Ã™â€žÃ˜Â£Ã˜Â®Ã˜Âª",
+            transFr: "La sÅ“ur",
+            transAr: "Ø§Ù„Ø£Ø®Øª",
             speechEn: "Sister! My big sister.",
             img: "assets/images/family/mySister.png"
           },
           {
             word: "GRANDFATHER",
             phonetics: ["g", "r", "a", "n", "d", "f", "a", "t", "h", "e", "r"],
-            transFr: "Le grand-pÃƒÂ¨re",
-            transAr: "Ã˜Â§Ã™â€žÃ˜Â¬Ã˜Â¯",
+            transFr: "Le grand-pÃ¨re",
+            transAr: "Ø§Ù„Ø¬Ø¯",
             speechEn: "Grandfather! My kind grandfather.",
             img: "assets/images/family/grandfather.png"
           },
           {
             word: "GRANDMOTHER",
             phonetics: ["g", "r", "a", "n", "d", "m", "o", "t", "h", "e", "r"],
-            transFr: "La grand-mÃƒÂ¨re",
-            transAr: "Ã˜Â§Ã™â€žÃ˜Â¬Ã˜Â¯Ã˜Â©",
+            transFr: "La grand-mÃ¨re",
+            transAr: "Ø§Ù„Ø¬Ø¯Ø©",
             speechEn: "Grandmother! My sweet grandmother.",
             img: "assets/images/family/grandmother.png"
           },
           {
             word: "BABY",
             phonetics: ["b", "a", "b", "y"],
-            transFr: "Le bÃƒÂ©bÃƒÂ©",
-            transAr: "Ã˜Â§Ã™â€žÃ˜Â±Ã˜Â¶Ã™Å Ã˜Â¹",
+            transFr: "Le bÃ©bÃ©",
+            transAr: "Ø§Ù„Ø±Ø¶ÙŠØ¹",
             speechEn: "Baby! A cute smiling baby.",
             img: "assets/images/family/son.png"
           }
@@ -837,7 +838,7 @@
             word: "RED",
             phonetics: ["r", "e", "d"],
             transFr: "Rouge",
-            transAr: "Ã˜Â£Ã˜Â­Ã™â€¦Ã˜Â±",
+            transAr: "Ø£Ø­Ù…Ø±",
             speechEn: "Red! The color red.",
             img: "assets/images/color/red/strawberry.png"
           },
@@ -845,7 +846,7 @@
             word: "BLUE",
             phonetics: ["b", "l", "u", "e"],
             transFr: "Bleu",
-            transAr: "Ã˜Â£Ã˜Â²Ã˜Â±Ã™â€š",
+            transAr: "Ø£Ø²Ø±Ù‚",
             speechEn: "Blue! The sky is blue.",
             img: "assets/images/color/blue/butterfly.png"
           },
@@ -853,7 +854,7 @@
             word: "YELLOW",
             phonetics: ["y", "e", "l", "l", "o", "w"],
             transFr: "Jaune",
-            transAr: "Ã˜Â£Ã˜ÂµÃ™ÂÃ˜Â±",
+            transAr: "Ø£ØµÙØ±",
             speechEn: "Yellow! A bright yellow sun.",
             img: "assets/images/color/yellow/sun.png"
           },
@@ -861,7 +862,7 @@
             word: "GREEN",
             phonetics: ["g", "r", "e", "e", "n"],
             transFr: "Vert",
-            transAr: "Ã˜Â£Ã˜Â®Ã˜Â¶Ã˜Â±",
+            transAr: "Ø£Ø®Ø¶Ø±",
             speechEn: "Green! Green leaves.",
             img: "assets/images/color/green/leaf.png"
           },
@@ -869,7 +870,7 @@
             word: "ORANGE",
             phonetics: ["o", "r", "a", "n", "g", "e"],
             transFr: "Orange",
-            transAr: "Ã˜Â¨Ã˜Â±Ã˜ÂªÃ™â€šÃ˜Â§Ã™â€žÃ™Å ",
+            transAr: "Ø¨Ø±ØªÙ‚Ø§Ù„ÙŠ",
             speechEn: "Orange! The color orange.",
             img: "assets/images/color/orange/orange.png"
           },
@@ -877,7 +878,7 @@
             word: "PURPLE",
             phonetics: ["p", "u", "r", "p", "l", "e"],
             transFr: "Violet",
-            transAr: "Ã˜Â¨Ã™â€ Ã™ÂÃ˜Â³Ã˜Â¬Ã™Å ",
+            transAr: "Ø¨Ù†ÙØ³Ø¬ÙŠ",
             speechEn: "Purple! The color purple.",
             img: "assets/images/color/purple/flower.png"
           },
@@ -885,7 +886,7 @@
             word: "CIRCLE",
             phonetics: ["c", "i", "r", "c", "l", "e"],
             transFr: "Cercle / Rond",
-            transAr: "Ã˜Â¯Ã˜Â§Ã˜Â¦Ã˜Â±Ã˜Â©",
+            transAr: "Ø¯Ø§Ø¦Ø±Ø©",
             speechEn: "Circle! A round circle.",
             img: "assets/images/geometry/circle.png"
           },
@@ -893,15 +894,15 @@
             word: "TRIANGLE",
             phonetics: ["t", "r", "i", "a", "n", "g", "l", "e"],
             transFr: "Triangle",
-            transAr: "Ã™â€¦Ã˜Â«Ã™â€žÃ˜Â«",
+            transAr: "Ù…Ø«Ù„Ø«",
             speechEn: "Triangle! Three sharp angles.",
             img: "assets/images/geometry/triangle.png"
           },
           {
             word: "SQUARE",
             phonetics: ["s", "q", "u", "a", "r", "e"],
-            transFr: "CarrÃƒÂ©",
-            transAr: "Ã™â€¦Ã˜Â±Ã˜Â¨Ã˜Â¹",
+            transFr: "CarrÃ©",
+            transAr: "Ù…Ø±Ø¨Ø¹",
             speechEn: "Square! Four equal sides.",
             img: "assets/images/geometry/square.png"
           }
@@ -911,7 +912,7 @@
             word: "ONE",
             phonetics: ["o", "n", "e"],
             transFr: "Un (1)",
-            transAr: "Ã™Ë†Ã˜Â§Ã˜Â­Ã˜Â¯ (Ã™Â¡)",
+            transAr: "ÙˆØ§Ø­Ø¯ (Ù¡)",
             speechEn: "One! Number one.",
             img: "assets/images/number/one.png"
           },
@@ -919,7 +920,7 @@
             word: "TWO",
             phonetics: ["t", "w", "o"],
             transFr: "Deux (2)",
-            transAr: "Ã˜Â§Ã˜Â«Ã™â€ Ã˜Â§Ã™â€  (Ã™Â¢)",
+            transAr: "Ø§Ø«Ù†Ø§Ù† (Ù¢)",
             speechEn: "Two! Number two.",
             img: "assets/images/number/two.png"
           },
@@ -927,7 +928,7 @@
             word: "THREE",
             phonetics: ["t", "h", "r", "e", "e"],
             transFr: "Trois (3)",
-            transAr: "Ã˜Â«Ã™â€žÃ˜Â§Ã˜Â«Ã˜Â© (Ã™Â£)",
+            transAr: "Ø«Ù„Ø§Ø«Ø© (Ù£)",
             speechEn: "Three! Number three.",
             img: "assets/images/number/three.png"
           },
@@ -935,7 +936,7 @@
             word: "FOUR",
             phonetics: ["f", "o", "u", "r"],
             transFr: "Quatre (4)",
-            transAr: "Ã˜Â£Ã˜Â±Ã˜Â¨Ã˜Â¹Ã˜Â© (Ã™Â¤)",
+            transAr: "Ø£Ø±Ø¨Ø¹Ø© (Ù¤)",
             speechEn: "Four! Number four.",
             img: "assets/images/number/four.png"
           },
@@ -943,7 +944,7 @@
             word: "FIVE",
             phonetics: ["f", "i", "v", "e"],
             transFr: "Cinq (5)",
-            transAr: "Ã˜Â®Ã™â€¦Ã˜Â³Ã˜Â© (Ã™Â¥)",
+            transAr: "Ø®Ù…Ø³Ø© (Ù¥)",
             speechEn: "Five! High five!",
             img: "assets/images/number/five.png"
           },
@@ -951,7 +952,7 @@
             word: "SIX",
             phonetics: ["s", "i", "x"],
             transFr: "Six (6)",
-            transAr: "Ã˜Â³Ã˜ÂªÃ˜Â© (Ã™Â¦)",
+            transAr: "Ø³ØªØ© (Ù¦)",
             speechEn: "Six! Number six.",
             img: "assets/images/number/six.png"
           },
@@ -959,7 +960,7 @@
             word: "SEVEN",
             phonetics: ["s", "e", "v", "e", "n"],
             transFr: "Sept (7)",
-            transAr: "Ã˜Â³Ã˜Â¨Ã˜Â¹Ã˜Â© (Ã™Â§)",
+            transAr: "Ø³Ø¨Ø¹Ø© (Ù§)",
             speechEn: "Seven! Seven days in a week.",
             img: "assets/images/number/seven.png"
           },
@@ -967,7 +968,7 @@
             word: "EIGHT",
             phonetics: ["e", "i", "g", "h", "t"],
             transFr: "Huit (8)",
-            transAr: "Ã˜Â«Ã™â€¦Ã˜Â§Ã™â€ Ã™Å Ã˜Â© (Ã™Â¨)",
+            transAr: "Ø«Ù…Ø§Ù†ÙŠØ© (Ù¨)",
             speechEn: "Eight! Number eight.",
             img: "assets/images/number/eight.png"
           },
@@ -975,7 +976,7 @@
             word: "NINE",
             phonetics: ["n", "i", "n", "e"],
             transFr: "Neuf (9)",
-            transAr: "Ã˜ÂªÃ˜Â³Ã˜Â¹Ã˜Â© (Ã™Â©)",
+            transAr: "ØªØ³Ø¹Ø© (Ù©)",
             speechEn: "Nine! Number nine.",
             img: "assets/images/number/nine.png"
           },
@@ -983,7 +984,7 @@
             word: "TEN",
             phonetics: ["t", "e", "n"],
             transFr: "Dix (10)",
-            transAr: "Ã˜Â¹Ã˜Â´Ã˜Â±Ã˜Â© (Ã™Â¡Ã™Â )",
+            transAr: "Ø¹Ø´Ø±Ø© (Ù¡Ù )",
             speechEn: "Ten! Ten shining stars.",
             img: "assets/images/number/ten.png"
           }
@@ -992,8 +993,8 @@
           {
             word: "HEAD",
             phonetics: ["h", "e", "a", "d"],
-            transFr: "La tÃƒÂªte",
-            transAr: "Ã˜Â§Ã™â€žÃ˜Â±Ã˜Â£Ã˜Â³",
+            transFr: "La tÃªte",
+            transAr: "Ø§Ù„Ø±Ø£Ø³",
             speechEn: "Head! Touch your head.",
             img: "assets/images/body-parts/head.png"
           },
@@ -1001,7 +1002,7 @@
             word: "NOSE",
             phonetics: ["n", "o", "s", "e"],
             transFr: "Le nez",
-            transAr: "Ã˜Â§Ã™â€žÃ˜Â£Ã™â€ Ã™Â",
+            transAr: "Ø§Ù„Ø£Ù†Ù",
             speechEn: "Nose! Point to your nose.",
             img: "assets/images/body-parts/nose.png"
           },
@@ -1009,15 +1010,15 @@
             word: "HAND",
             phonetics: ["h", "a", "n", "d"],
             transFr: "La main",
-            transAr: "Ã˜Â§Ã™â€žÃ™Å Ã˜Â¯",
+            transAr: "Ø§Ù„ÙŠØ¯",
             speechEn: "Hand! Clap your hands.",
             img: "assets/images/body-parts/hand.png"
           },
           {
             word: "EYE",
             phonetics: ["e", "y", "e"],
-            transFr: "L'Ã…â€œil",
-            transAr: "Ã˜Â§Ã™â€žÃ˜Â¹Ã™Å Ã™â€ ",
+            transFr: "L'Å“il",
+            transAr: "Ø§Ù„Ø¹ÙŠÙ†",
             speechEn: "Eye! Look with your eyes.",
             img: "assets/images/body-parts/eye.png"
           },
@@ -1025,7 +1026,7 @@
             word: "EAR",
             phonetics: ["e", "a", "r"],
             transFr: "L'oreille",
-            transAr: "Ã˜Â§Ã™â€žÃ˜Â£Ã˜Â°Ã™â€ ",
+            transAr: "Ø§Ù„Ø£Ø°Ù†",
             speechEn: "Ear! Listen with your ears.",
             img: "assets/images/body-parts/ear.png"
           },
@@ -1033,7 +1034,7 @@
             word: "MOUTH",
             phonetics: ["m", "o", "u", "t", "h"],
             transFr: "La bouche",
-            transAr: "Ã˜Â§Ã™â€žÃ™ÂÃ™â€¦",
+            transAr: "Ø§Ù„ÙÙ…",
             speechEn: "Mouth! Smile with your mouth.",
             img: "assets/images/body-parts/mouth.png"
           },
@@ -1041,7 +1042,7 @@
             word: "ARM",
             phonetics: ["a", "r", "m"],
             transFr: "Le bras",
-            transAr: "Ã˜Â§Ã™â€žÃ˜Â°Ã˜Â±Ã˜Â§Ã˜Â¹",
+            transAr: "Ø§Ù„Ø°Ø±Ø§Ø¹",
             speechEn: "Arm! Raise your arm.",
             img: "assets/images/body-parts/arm.png"
           },
@@ -1049,7 +1050,7 @@
             word: "FOOT",
             phonetics: ["f", "oo", "t"],
             transFr: "Le pied",
-            transAr: "Ã˜Â§Ã™â€žÃ™â€šÃ˜Â¯Ã™â€¦",
+            transAr: "Ø§Ù„Ù‚Ø¯Ù…",
             speechEn: "Foot! Stamp your feet.",
             img: "assets/images/body-parts/foot.png"
           },
@@ -1057,7 +1058,7 @@
             word: "LEG",
             phonetics: ["l", "e", "g"],
             transFr: "La jambe",
-            transAr: "Ã˜Â§Ã™â€žÃ˜Â³Ã˜Â§Ã™â€š",
+            transAr: "Ø§Ù„Ø³Ø§Ù‚",
             speechEn: "Leg! Run with your legs.",
             img: "assets/images/body-parts/leg.png"
           }
@@ -1067,7 +1068,7 @@
             word: "APPLE",
             phonetics: ["a", "p", "p", "l", "e"],
             transFr: "Pomme rouge",
-            transAr: "Ã˜ÂªÃ™ÂÃ˜Â§Ã˜Â­Ã˜Â©",
+            transAr: "ØªÙØ§Ø­Ø©",
             speechEn: "Apple! A delicious red apple.",
             img: "assets/images/alphabet/A/apple.png"
           },
@@ -1075,7 +1076,7 @@
             word: "BANANA",
             phonetics: ["b", "a", "n", "a", "n", "a"],
             transFr: "Banane jaune",
-            transAr: "Ã™â€¦Ã™Ë†Ã˜Â²",
+            transAr: "Ù…ÙˆØ²",
             speechEn: "Banana! A sweet yellow banana.",
             img: "assets/images/alphabet/B/banana.png"
           },
@@ -1083,15 +1084,15 @@
             word: "CARROT",
             phonetics: ["c", "a", "r", "r", "o", "t"],
             transFr: "Carotte",
-            transAr: "Ã˜Â¬Ã˜Â²Ã˜Â±",
+            transAr: "Ø¬Ø²Ø±",
             speechEn: "Carrot! Fresh orange carrot.",
             img: "assets/images/alphabet/C/Carrot.png"
           },
           {
             word: "EGG",
             phonetics: ["e", "g", "g"],
-            transFr: "Ã…â€™uf",
-            transAr: "Ã˜Â¨Ã™Å Ã˜Â¶Ã˜Â©",
+            transFr: "Å’uf",
+            transAr: "Ø¨ÙŠØ¶Ø©",
             speechEn: "Egg! A fresh white egg.",
             img: "assets/images/alphabet/E/egg.png"
           },
@@ -1099,15 +1100,15 @@
             word: "FISH",
             phonetics: ["f", "i", "s", "h"],
             transFr: "Poisson",
-            transAr: "Ã˜Â³Ã™â€¦Ã™Æ’Ã˜Â©",
+            transAr: "Ø³Ù…ÙƒØ©",
             speechEn: "Fish! Fresh fish.",
             img: "assets/images/alphabet/F/fish.png"
           },
           {
             word: "CAKE",
             phonetics: ["c", "a", "k", "e"],
-            transFr: "GÃƒÂ¢teau",
-            transAr: "Ã™Æ’Ã˜Â¹Ã™Æ’Ã˜Â©",
+            transFr: "GÃ¢teau",
+            transAr: "ÙƒØ¹ÙƒØ©",
             speechEn: "Cake! A sweet birthday cake.",
             img: "assets/images/number/cake.png"
           }
@@ -1183,9 +1184,9 @@
           fenny.classList.add("celebrating");
         }
         if (bubble) {
-          bubble.textContent = `Ã°Å¸Å½â€° Bravo ! +${amount} Ã¢Â­Â ${reason || ""}`;
+          bubble.textContent = `ðŸŽ‰ Bravo ! +${amount} â­ ${reason || ""}`;
           setTimeout(() => {
-            bubble.textContent = `"Let's practice!" Ã°Å¸Â¦Å `;
+            bubble.textContent = `"Let's practice!" ðŸ¦Š`;
           }, 3500);
         }
       }
@@ -1203,8 +1204,8 @@
 
         const transFrEl = document.getElementById("transFr");
         const transArEl = document.getElementById("transAr");
-        if (transFrEl) transFrEl.textContent = `Ã°Å¸â€¡Â«Ã°Å¸â€¡Â· ${item.transFr}`;
-        if (transArEl) transArEl.textContent = `Ã°Å¸â€¡Â©Ã°Å¸â€¡Â¿ ${item.transAr}`;
+        if (transFrEl) transFrEl.textContent = `ðŸ‡«ðŸ‡· ${item.transFr}`;
+        if (transArEl) transArEl.textContent = `ðŸ‡©ðŸ‡¿ ${item.transAr}`;
 
         // Image
         const imgEl = document.getElementById("currentObjectImg");
@@ -1275,7 +1276,7 @@
       }
 
       // =========================================================
-      // 1. Ã°Å¸â€˜â€š LISTEN ACTION
+      // 1. ðŸ‘‚ LISTEN ACTION
       // =========================================================
       function triggerListen() {
         const item = getCurrentWord();
@@ -1284,7 +1285,7 @@
         const wave = document.getElementById("activeSoundwave");
         const img = document.getElementById("currentObjectImg");
 
-        if (statusMsg) statusMsg.textContent = `Ã°Å¸â€˜â€š Listen : "${item.word}" (Native English)`;
+        if (statusMsg) statusMsg.textContent = `ðŸ‘‚ Listen : "${item.word}" (Native English)`;
         if (wave) wave.classList.remove("hidden");
         if (img) {
           img.classList.add("scale-110");
@@ -1293,18 +1294,18 @@
 
         speakEn(item.speechEn, audioSpeed, () => {
           if (wave) wave.classList.add("hidden");
-          if (statusMsg) statusMsg.textContent = `Ã¢Å“Â¨ "${item.word}" Ã¢â‚¬â€ Parfait ! Clique sur Ã°Å¸â€˜ÂÃ¯Â¸Â Read ou Ã°Å¸Å½â„¢Ã¯Â¸Â Speak.`;
+          if (statusMsg) statusMsg.textContent = `âœ¨ "${item.word}" â€” Parfait ! Clique sur ðŸ‘ï¸ Read ou ðŸŽ™ï¸ Speak.`;
         });
       }
 
       // =========================================================
-      // 2. Ã°Å¸â€˜ÂÃ¯Â¸Â READ (KARAOKE SYLLABLE-BY-SYLLABLE SYNCHRONIZATION)
+      // 2. ðŸ‘ï¸ READ (KARAOKE SYLLABLE-BY-SYLLABLE SYNCHRONIZATION)
       // =========================================================
       function triggerRead() {
         const item = getCurrentWord();
         const statusMsg = document.getElementById("statusMsg");
         const tiles = Array.from(document.querySelectorAll("#letterTilesRow .voc-letter-tile"));
-        if (statusMsg) statusMsg.textContent = `Ã°Å¸â€˜ÂÃ¯Â¸Â Read : Synchronisation GraphÃƒÂ¨me-PhonÃƒÂ¨me...`;
+        if (statusMsg) statusMsg.textContent = `ðŸ‘ï¸ Read : Synchronisation GraphÃ¨me-PhonÃ¨me...`;
 
         // Sequential illumination matching phonics
         tiles.forEach((tile, i) => {
@@ -1314,7 +1315,7 @@
             if (i === tiles.length - 1) {
               setTimeout(() => {
                 tile.classList.remove("highlight");
-                if (statusMsg) statusMsg.textContent = `Ã°Å¸Å’Å¸ "${item.word}" Ã¢â‚¬â€ Lecture phonÃƒÂ©tique terminÃƒÂ©e !`;
+                if (statusMsg) statusMsg.textContent = `ðŸŒŸ "${item.word}" â€” Lecture phonÃ©tique terminÃ©e !`;
               }, 450);
             }
           }, i * 220);
@@ -1324,21 +1325,21 @@
       }
 
       // =========================================================
-      // 3. Ã°Å¸Å½â„¢Ã¯Â¸Â SPEAK (VOICE RECOGNITION CHALLENGE + CELEBRATION)
+      // 3. ðŸŽ™ï¸ SPEAK (VOICE RECOGNITION CHALLENGE + CELEBRATION)
       // =========================================================
       function triggerSpeak() {
         const item = getCurrentWord();
         const statusMsg = document.getElementById("statusMsg");
         const wave = document.getElementById("activeSoundwave");
-        if (statusMsg) statusMsg.textContent = `Ã°Å¸Å½â„¢Ã¯Â¸Â Parle maintenant : RÃƒÂ©pÃƒÂ¨te "${item.word}"...`;
+        if (statusMsg) statusMsg.textContent = `ðŸŽ™ï¸ Parle maintenant : RÃ©pÃ¨te "${item.word}"...`;
         if (wave) wave.classList.remove("hidden");
 
         const finalizeSuccess = (saidText) => {
           if (wave) wave.classList.add("hidden");
           if (statusMsg) {
-            statusMsg.textContent = `Ã°Å¸Å½â€° Superbe prononciation : "${saidText || item.word}" ! (+5 Ã¢Â­Â)`;
+            statusMsg.textContent = `ðŸŽ‰ Superbe prononciation : "${saidText || item.word}" ! (+5 â­)`;
           }
-          rewardStars(5, "Prononciation rÃƒÂ©ussie !");
+          rewardStars(5, "Prononciation rÃ©ussie !");
         };
 
         const SpeechRec = window.SpeechRecognition || window.webkitSpeechRecognition;
@@ -1381,7 +1382,7 @@
       }
 
       // =========================================================
-      // 4. Ã¢Å“ÂÃ¯Â¸Â TACTILE CANVAS TRACING (ENHANCED MODALITY 4)
+      // 4. âœï¸ TACTILE CANVAS TRACING (ENHANCED MODALITY 4)
       // =========================================================
       let canvas, ctx, drawing = false, strokeColor = "#7c3aed";
 
@@ -1509,11 +1510,11 @@
                 if (spellCurrentAnswer.length === spellTarget.length) {
                   const formed = spellCurrentAnswer.join("");
                   if (formed === spellTarget) {
-                    if (feedback) feedback.textContent = `Ã°Å¸Å½â€° Bravo champion ! "${item.word}" est correctement ÃƒÂ©pelÃƒÂ© ! (+5 Ã¢Â­Â)`;
-                    rewardStars(5, "Ãƒâ€°pellation parfaite !");
+                    if (feedback) feedback.textContent = `ðŸŽ‰ Bravo champion ! "${item.word}" est correctement Ã©pelÃ© ! (+5 â­)`;
+                    rewardStars(5, "Ã‰pellation parfaite !");
                     speakEn(item.word);
                   } else {
-                    if (feedback) feedback.textContent = `Ã¢ÂÅ’ Oups ! RÃƒÂ©essaie encore !`;
+                    if (feedback) feedback.textContent = `âŒ Oups ! RÃ©essaie encore !`;
                     setTimeout(startSpellingGame, 1400);
                   }
                 }
@@ -1568,25 +1569,25 @@
 
         // Customize heading & prompt according to Quiz Type
         if (currentQuizType === "listen") {
-          if (headingEl) headingEl.textContent = "Ã°Å¸Å½Â§ Ãƒâ€°coute attentivement et touche la bonne image !";
-          if (subPrompt) subPrompt.textContent = `Question ${quizQuestionCount} / 10 Ã¢â‚¬Â¢ DÃƒÂ©fi Ãƒâ€°coute MystÃƒÂ¨re`;
+          if (headingEl) headingEl.textContent = "ðŸŽ§ Ã‰coute attentivement et touche la bonne image !";
+          if (subPrompt) subPrompt.textContent = `Question ${quizQuestionCount} / 10 â€¢ DÃ©fi Ã‰coute MystÃ¨re`;
           if (listenBtn) {
             listenBtn.classList.remove("hidden");
-            if (listenBtnText) listenBtnText.textContent = "Ã°Å¸â€Å  RÃƒÂ©ÃƒÂ©couter le Mot MystÃƒÂ¨re";
+            if (listenBtnText) listenBtnText.textContent = "ðŸ”Š RÃ©Ã©couter le Mot MystÃ¨re";
           }
         } else if (currentQuizType === "word") {
-          if (headingEl) headingEl.textContent = `Ã°Å¸â€Â¤ Quel objet correspond au mot : "${target.word}" ?`;
-          if (subPrompt) subPrompt.textContent = `Question ${quizQuestionCount} / 10 Ã¢â‚¬Â¢ DÃƒÂ©fi Lecture & Association`;
+          if (headingEl) headingEl.textContent = `ðŸ”¤ Quel objet correspond au mot : "${target.word}" ?`;
+          if (subPrompt) subPrompt.textContent = `Question ${quizQuestionCount} / 10 â€¢ DÃ©fi Lecture & Association`;
           if (listenBtn) {
             listenBtn.classList.remove("hidden");
-            if (listenBtnText) listenBtnText.textContent = `Ã°Å¸â€Å  Prononcer "${target.word}"`;
+            if (listenBtnText) listenBtnText.textContent = `ðŸ”Š Prononcer "${target.word}"`;
           }
         } else {
-          if (headingEl) headingEl.textContent = `Ã°Å¸Å’Â Trouve l'image pour : ${target.transFr} (Ã°Å¸â€¡Â©Ã°Å¸â€¡Â¿ ${target.transAr})`;
-          if (subPrompt) subPrompt.textContent = `Question ${quizQuestionCount} / 10 Ã¢â‚¬Â¢ DÃƒÂ©fi Traduction Bilingue`;
+          if (headingEl) headingEl.textContent = `ðŸŒ Trouve l'image pour : ${target.transFr} (ðŸ‡©ðŸ‡¿ ${target.transAr})`;
+          if (subPrompt) subPrompt.textContent = `Question ${quizQuestionCount} / 10 â€¢ DÃ©fi Traduction Bilingue`;
           if (listenBtn) {
             listenBtn.classList.remove("hidden");
-            if (listenBtnText) listenBtnText.textContent = "Ã°Å¸â€Å  Indice vocal en anglais";
+            if (listenBtnText) listenBtnText.textContent = "ðŸ”Š Indice vocal en anglais";
           }
         }
 
@@ -1611,12 +1612,12 @@
               card.classList.add("bg-emerald-100", "!border-emerald-600", "ring-4", "ring-emerald-400");
               quizScore += 5;
               if (scoreEl) scoreEl.textContent = String(quizScore);
-              if (feedback) feedback.textContent = `Ã°Å¸Å½â€° Bravo champion ! C'est bien "${target.word}" ! (+5 Ã¢Â­Â)`;
-              rewardStars(5, "Bonne rÃƒÂ©ponse au quiz !");
+              if (feedback) feedback.textContent = `ðŸŽ‰ Bravo champion ! C'est bien "${target.word}" ! (+5 â­)`;
+              rewardStars(5, "Bonne rÃ©ponse au quiz !");
               speakEn("Excellent! " + target.word);
             } else {
               card.classList.add("bg-rose-100", "!border-rose-500");
-              if (feedback) feedback.textContent = `Ã¢ÂÅ’ Ce n'ÃƒÂ©tait pas ÃƒÂ§a ! La bonne rÃƒÂ©ponse ÃƒÂ©tait "${target.word}".`;
+              if (feedback) feedback.textContent = `âŒ Ce n'Ã©tait pas Ã§a ! La bonne rÃ©ponse Ã©tait "${target.word}".`;
               speakEn("The answer is " + target.word);
             }
           });
@@ -1681,12 +1682,12 @@
             currentWordIndex = 0;
 
             const themeTitles = {
-              stationery: "Ã°Å¸Å½â€™ School Stationery",
-              family: "Ã°Å¸â€˜Â¨Ã¢â‚¬ÂÃ°Å¸â€˜Â©Ã¢â‚¬ÂÃ°Å¸â€˜Â§ Family & Friends",
-              colors: "Ã°Å¸Å½Â¨ Colors & Shapes",
-              numbers: "Ã°Å¸â€Â¢ Numbers",
-              body: "Ã°Å¸â€˜Æ’ Body Parts",
-              food: "Ã°Å¸ÂÅ½ Fruits & Food"
+              stationery: "ðŸŽ’ School Stationery",
+              family: "ðŸ‘¨â€ðŸ‘©â€ðŸ‘§ Family & Friends",
+              colors: "ðŸŽ¨ Colors & Shapes",
+              numbers: "ðŸ”¢ Numbers",
+              body: "ðŸ‘ƒ Body Parts",
+              food: "ðŸŽ Fruits & Food"
             };
             const themeTitleEl = document.getElementById("themeTitle");
             if (themeTitleEl) themeTitleEl.textContent = themeTitles[currentTheme] || currentTheme;
@@ -1758,7 +1759,7 @@
 
         document.getElementById("clearCanvasBtn")?.addEventListener("click", clearCanvas);
         document.getElementById("validateTracingBtn")?.addEventListener("click", () => {
-          rewardStars(3, "Superbe ÃƒÂ©criture !");
+          rewardStars(3, "Superbe Ã©criture !");
         });
 
         // Spelling Mode Buttons

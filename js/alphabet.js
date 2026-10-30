@@ -30,29 +30,29 @@ const alphabetDataEnglish = {
 };
 
 const alphabetDataFrench = {
-    A: { word: "Astronaute", phrase: "A comme Astronaute", capital: "A", small: "a", frontImage: "assets/images/alphabet/A/astronaut.png" },
+    A: { word: "Avion", phrase: "A comme Avion", capital: "A", small: "a", frontImage: "assets/images/alphabet/A/astronaut.png" },
     B: { word: "Ballon", phrase: "B comme Ballon", capital: "B", small: "b", frontImage: "assets/images/alphabet/B/ball.png" },
     C: { word: "Chat", phrase: "C comme Chat", capital: "C", small: "c", frontImage: "assets/images/alphabet/C/cat.png" },
     D: { word: "Dauphin", phrase: "D comme Dauphin", capital: "D", small: "d", frontImage: "assets/images/alphabet/D/Dolphin.png" },
     E: { word: "Éléphant", phrase: "E comme Éléphant", capital: "E", small: "e", frontImage: "assets/images/alphabet/E/elephant.png" },
-    F: { word: "Fraise", phrase: "F comme Fraise", capital: "F", small: "f", frontImage: "assets/images/alphabet/F/fraise.png" },
+    F: { word: "Poisson", phrase: "F comme Poisson", capital: "F", small: "f", frontImage: "assets/images/alphabet/F/fish.png" },
     G: { word: "Gâteau", phrase: "G comme Gâteau", capital: "G", small: "g", frontImage: "assets/images/alphabet/C/Cake.png" },
-    H: { word: "Hibou", phrase: "H comme Hibou", capital: "H", small: "h", frontImage: "assets/images/alphabet/H/hibou.png" },
-    I: { word: "Igloo", phrase: "I comme Igloo", capital: "I", small: "i", frontImage: "assets/images/alphabet/I/igloo.png" },
-    J: { word: "Jus", phrase: "J comme Jus", capital: "J", small: "j", frontImage: "assets/images/alphabet/J/jus.png" },
-    K: { word: "Koala", phrase: "K comme Koala", capital: "K", small: "k", frontImage: "assets/images/alphabet/K/koala.png" },
+    H: { word: "Maison", phrase: "H comme Maison", capital: "H", small: "h", frontImage: "assets/images/alphabet/H/house.png" },
+    I: { word: "Glaçon", phrase: "I comme Glaçon", capital: "I", small: "i", frontImage: "assets/images/geometry/cube/ice-cube.png" },
+    J: { word: "Méduse", phrase: "J comme Méduse", capital: "J", small: "j", frontImage: "assets/images/alphabet/J/jellyfish.png" },
+    K: { word: "Cerf-volant", phrase: "K comme Cerf-volant", capital: "K", small: "k", frontImage: "assets/images/geometry/diamond/kite.png" },
     L: { word: "Lion", phrase: "L comme Lion", capital: "L", small: "l", frontImage: "assets/images/language-images/lion.png" },
     M: { word: "Mangue", phrase: "M comme Mangue", capital: "M", small: "m", frontImage: "assets/images/alphabet/M/mango.png" },
     N: { word: "Nid", phrase: "N comme Nid", capital: "N", small: "n", frontImage: "assets/images/alphabet/N/nest.png" },
     O: { word: "Orange", phrase: "O comme Orange", capital: "O", small: "o", frontImage: "assets/images/color/orange/orange.png" },
     P: { word: "Papillon", phrase: "P comme Papillon", capital: "P", small: "p", frontImage: "assets/images/number/butterflies.png" },
-    Q: { word: "Quatre", phrase: "Q comme Quatre", capital: "Q", small: "q", frontImage: "assets/images/alphabet/Q/quatre.png" },
-    R: { word: "Rose", phrase: "R comme Rose", capital: "R", small: "r", frontImage: "assets/images/alphabet/R/rose.png" },
+    Q: { word: "Reine", phrase: "Q comme Reine", capital: "Q", small: "q", frontImage: "assets/images/alphabet/Q/queen.png" },
+    R: { word: "Arc-en-ciel", phrase: "R comme Arc-en-ciel", capital: "R", small: "r", frontImage: "assets/images/alphabet/R/rainbow.png" },
     S: { word: "Soleil", phrase: "S comme Soleil", capital: "S", small: "s", frontImage: "assets/images/color/yellow/sun.png" },
-    T: { word: "Train", phrase: "T comme Train", capital: "T", small: "t", frontImage: "assets/images/alphabet/T/train.png" },
-    U: { word: "Un", phrase: "U comme Un", capital: "U", small: "u", frontImage: "assets/images/alphabet/U/un.png" },
+    T: { word: "Arbre", phrase: "T comme Arbre", capital: "T", small: "t", frontImage: "assets/images/alphabet/T/tree.png" },
+    U: { word: "Parapluie", phrase: "U comme Parapluie", capital: "U", small: "u", frontImage: "assets/images/alphabet/U/umbrella.png" },
     V: { word: "Volcan", phrase: "V comme Volcan", capital: "V", small: "v", frontImage: "assets/images/alphabet/V/volcano.png" },
-    W: { word: "Wagon", phrase: "W comme Wagon", capital: "W", small: "w", frontImage: "assets/images/alphabet/W/wagon.png" },
+    W: { word: "Pastèque", phrase: "W comme Pastèque", capital: "W", small: "w", frontImage: "assets/images/geometry/oval/watermelon.png" },
     X: { word: "Xylophone", phrase: "X comme Xylophone", capital: "X", small: "x", frontImage: "assets/images/alphabet/X/xylophone.png" },
     Y: { word: "Yo-Yo", phrase: "Y comme Yo-Yo", capital: "Y", small: "y", frontImage: "assets/images/alphabet/Y/yo-yo.png" },
     Z: { word: "Zèbre", phrase: "Z comme Zèbre", capital: "Z", small: "z", frontImage: "assets/images/alphabet/Z/zebra.png" }
@@ -115,9 +115,11 @@ let currentLangId = "English";
 
 function getActiveDataset() {
     const langId = window.AppLang ? window.AppLang.getCurrentLangId() : (localStorage.getItem("selectedLanguage") || "English");
-    currentLangId = langId === "French" ? "French" : "English";
+    currentLangId = langId;
 
-    if (currentLangId === "French") {
+    if (langId === "Arabic") {
+        return alphabetDataArabic;
+    } else if (langId === "French") {
         return alphabetDataFrench;
     }
     return alphabetDataEnglish;
@@ -125,12 +127,12 @@ function getActiveDataset() {
 
 function updateNavLabels() {
     if (prevLetterBtn) {
-        prevLetterBtn.innerHTML = "&#10094;";
-        prevLetterBtn.setAttribute("aria-label", currentLangId === "French" ? "Précédent" : "Previous");
+        prevLetterBtn.innerHTML = currentLangId === "Arabic" ? "&#10095;" : "&#10094;";
+        prevLetterBtn.setAttribute("aria-label", currentLangId === "Arabic" ? "التالي" : (currentLangId === "French" ? "Précédent" : "Previous"));
     }
     if (nextLetterBtn) {
-        nextLetterBtn.innerHTML = "&#10095;";
-        nextLetterBtn.setAttribute("aria-label", currentLangId === "French" ? "Suivant" : "Next");
+        nextLetterBtn.innerHTML = currentLangId === "Arabic" ? "&#10094;" : "&#10095;";
+        nextLetterBtn.setAttribute("aria-label", currentLangId === "Arabic" ? "السابق" : (currentLangId === "French" ? "Suivant" : "Next"));
     }
 }
 
@@ -185,12 +187,9 @@ function openCube(letter) {
     frontLetter.innerText = data.capital;
     backLetter.innerText = data.small;
 
-    const playVoice = () => speakCurrentLetter(data);
-    soundBtn.onclick = playVoice;
-    frontLetter.onclick = playVoice;
-    backLetter.onclick = playVoice;
-    cubeHeading.onclick = playVoice;
-    frontImage.onclick = playVoice;
+    soundBtn.onclick = function () {
+        speakCurrentLetter(data);
+    };
 
     cubeModal.classList.add("show");
     speakCurrentLetter(data);
@@ -220,20 +219,16 @@ function navigateLetter(direction) {
 }
 
 prevLetterBtn.addEventListener("click", () => {
-    navigateLetter("prev");
+    navigateLetter(currentLangId === "Arabic" ? "next" : "prev");
 });
 
 nextLetterBtn.addEventListener("click", () => {
-    navigateLetter("next");
+    navigateLetter(currentLangId === "Arabic" ? "prev" : "next");
 });
 
 function closeCube() {
     cubeModal.classList.remove("show");
-    if (window.AppLang && typeof window.AppLang.stopSpeech === "function") {
-        window.AppLang.stopSpeech();
-    } else {
-        window.speechSynthesis?.cancel?.();
-    }
+    window.speechSynthesis?.cancel?.();
 }
 
 closeBtn.addEventListener("click", closeCube);
@@ -246,7 +241,7 @@ cubeModal.addEventListener("click", function (e) {
 
 function speakCurrentLetter(data) {
     const text = data.phrase || `${data.capital} for ${data.word}`;
-    const langCode = currentLangId === "French" ? "fr-FR" : "en-US";
+    const langCode = currentLangId === "Arabic" ? "ar-SA" : (currentLangId === "French" ? "fr-FR" : "en-US");
 
     if (window.AppLang) {
         window.AppLang.speak(text, langCode);

@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -9,8 +9,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@600;700;800;900&family=Nunito:wght@600;700;800;900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/common.css?v=69">
-  <link rel="stylesheet" href="css/games.css?v=69">
+  <link rel="stylesheet" href="css/common.css?v=68">
+  <link rel="stylesheet" href="css/games.css?v=68">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
   <style>
     .test-container {
@@ -88,13 +88,13 @@
         <div class="nk-hero-top">
           <div class="nk-hero-text">
             <h1 id="testTitle" class="nk-hero-title">Test des connaissances 3AP</h1>
-            <p id="testSubtitle" class="nk-hero-subtitle">Ãƒâ€°coute Fenny et choisis la bonne illustration !</p>
+            <p id="testSubtitle" class="nk-hero-subtitle">Ã‰coute Fenny et choisis la bonne illustration !</p>
           </div>
 
           <div class="nk-counters">
             <div id="streakBadge" class="streak-badge hidden">
-              <span>Ã°Å¸â€Â¥</span>
-              <span id="streakCount">SÃƒÂ©rie 0</span>
+              <span>ðŸ”¥</span>
+              <span id="streakCount">SÃ©rie 0</span>
             </div>
             <div class="hidden sm:flex items-center gap-1.5 bg-amber-50 border-2 border-amber-300 rounded-full px-3 py-1">
               <img src="assets/images/fennygo/badge-phonics.png" alt="Phonics Master" class="w-6 h-6 object-contain" title="Phonics Master">
@@ -118,28 +118,28 @@
           </div>
         </div>
 
-        <!-- Carte de la consigne avec Fenny et bouton ÃƒÂ©coute -->
+        <!-- Carte de la consigne avec Fenny et bouton Ã©coute -->
         <div class="test-question-card">
           <div class="flex items-center gap-3 text-start">
             <img src="assets/images/fennygo/fenny-avatar.png" id="fennyQuizAvatar" class="w-12 h-12 sm:w-14 sm:h-14 object-contain" alt="Fenny">
             <div>
-              <span class="text-xs font-black text-amber-900 uppercase tracking-wide">Ã°Å¸Â¦Å  Fenny te demande :</span>
-              <h2 id="questionPrompt" class="text-base sm:text-xl font-black text-amber-950 leading-tight">Ãƒâ€°coute bien...</h2>
+              <span class="text-xs font-black text-amber-900 uppercase tracking-wide">ðŸ¦Š Fenny te demande :</span>
+              <h2 id="questionPrompt" class="text-base sm:text-xl font-black text-amber-950 leading-tight">Ã‰coute bien...</h2>
             </div>
           </div>
 
-          <button type="button" id="listenQuestionBtn" class="nk-btn-purple flex items-center gap-2 px-4 py-2.5 text-sm sm:text-base font-black shadow-md hover:scale-105 transition" title="Ãƒâ€°couter ÃƒÂ  nouveau">
+          <button type="button" id="listenQuestionBtn" class="nk-btn-purple flex items-center gap-2 px-4 py-2.5 text-sm sm:text-base font-black shadow-md hover:scale-105 transition" title="Ã‰couter Ã  nouveau">
             <i class="fa-solid fa-volume-high"></i>
-            <span id="listenBtnLabel">Ãƒâ€°couter</span>
+            <span id="listenBtnLabel">Ã‰couter</span>
           </button>
         </div>
 
-        <!-- 4 Choix illustrÃƒÂ©s interactifs -->
-        <div class="test-options-grid" id="testOptionsGrid" role="group" aria-label="RÃƒÂ©ponses possibles"></div>
+        <!-- 4 Choix illustrÃ©s interactifs -->
+        <div class="test-options-grid" id="testOptionsGrid" role="group" aria-label="RÃ©ponses possibles"></div>
 
         <!-- Bas de carte : Astuce interactive -->
         <div class="w-full flex items-center justify-between text-xs font-bold text-amber-800/80 px-2">
-          <span>Ã°Å¸â€™Â¡ Astuce : Clique sur le haut-parleur si tu veux rÃƒÂ©ÃƒÂ©couter.</span>
+          <span>ðŸ’¡ Astuce : Clique sur le haut-parleur si tu veux rÃ©Ã©couter.</span>
           <span id="currentCategoryTag" class="nk-tag">Programme 3AP</span>
         </div>
       </section>
@@ -149,58 +149,58 @@
     <canvas id="testConfettiCanvas" style="position:fixed;inset:0;pointer-events:none;z-index:9999;width:100%;height:100%;"></canvas>
   </div>
 
-  <script src="js/app-lang.js?v=69"></script>
+  <script src="js/app-lang.js?v=68"></script>
   <script>
     (() => {
       const QUIZ_ITEMS = {
         French: {
           title: "Test des connaissances 3AP",
-          subtitle: "Ãƒâ€°coute Fenny et choisis la bonne illustration !",
-          listen: "Ãƒâ€°couter",
+          subtitle: "Ã‰coute Fenny et choisis la bonne illustration !",
+          listen: "Ã‰couter",
           questionWord: "Question",
-          promptPrefix: "OÃƒÂ¹ est : ",
-          doneTitle: "FÃƒÂ©licitations ! Score : ",
+          promptPrefix: "OÃ¹ est : ",
+          doneTitle: "FÃ©licitations ! Score : ",
           restart: "Recommencer le test",
           speechLang: "fr-FR",
           items: [
-            { speech: "Le chat", label: "Le Chat", emoji: "Ã°Å¸ÂÂ±", img: "assets/images/games/words/cat.png" },
-            { speech: "Le lion", label: "Le Lion", emoji: "Ã°Å¸Â¦Â", img: "assets/images/games/words/lion.png" },
-            { speech: "La pomme", label: "La Pomme", emoji: "Ã°Å¸ÂÅ½", img: "assets/images/games/words/apple.png" },
-            { speech: "Le livre", label: "Le Livre", emoji: "Ã°Å¸â€œâ€“", img: "assets/images/stationery/book.png" },
-            { speech: "Le crayon", label: "Le Crayon", emoji: "Ã¢Å“ÂÃ¯Â¸Â", img: "assets/images/stationery/pencil.png" },
-            { speech: "Le canard", label: "Le Canard", emoji: "Ã°Å¸Â¦â€ ", img: "assets/images/games/words/duck.png" },
-            { speech: "L'ours", label: "L'Ours", emoji: "Ã°Å¸ÂÂ»", img: "assets/images/games/words/bear.png" },
-            { speech: "Le poisson", label: "Le Poisson", emoji: "Ã°Å¸ÂÅ¸", img: "assets/images/games/words/fish.png" },
-            { speech: "Le soleil", label: "Le Soleil", emoji: "Ã¢Ëœâ‚¬Ã¯Â¸Â", img: "assets/images/games/words/sun.png" },
-            { speech: "Le train", label: "Le Train", emoji: "Ã°Å¸Å¡â€š", img: "assets/images/games/words/train.png" },
-            { speech: "Le pÃƒÂ¨re", label: "Le PÃƒÂ¨re", emoji: "Ã°Å¸â€˜Â¨", img: "assets/images/family/father.png" },
-            { speech: "La mÃƒÂ¨re", label: "La MÃƒÂ¨re", emoji: "Ã°Å¸â€˜Â©", img: "assets/images/family/mother.png" },
-            { speech: "Le vÃƒÂ©lo", label: "Le VÃƒÂ©lo", emoji: "Ã°Å¸Å¡Â²", img: "assets/images/games/words/bike.png" },
-            { speech: "La fleur", label: "La Fleur", emoji: "Ã°Å¸Å’Â¸", img: "assets/images/games/words/flower.png" }
+            { speech: "Le chat", label: "Le Chat", emoji: "ðŸ±", img: "assets/images/games/words/cat.png" },
+            { speech: "Le lion", label: "Le Lion", emoji: "ðŸ¦", img: "assets/images/games/words/lion.png" },
+            { speech: "La pomme", label: "La Pomme", emoji: "ðŸŽ", img: "assets/images/games/words/apple.png" },
+            { speech: "Le livre", label: "Le Livre", emoji: "ðŸ“–", img: "assets/images/stationery/book.png" },
+            { speech: "Le crayon", label: "Le Crayon", emoji: "âœï¸", img: "assets/images/stationery/pencil.png" },
+            { speech: "Le canard", label: "Le Canard", emoji: "ðŸ¦†", img: "assets/images/games/words/duck.png" },
+            { speech: "L'ours", label: "L'Ours", emoji: "ðŸ»", img: "assets/images/games/words/bear.png" },
+            { speech: "Le poisson", label: "Le Poisson", emoji: "ðŸŸ", img: "assets/images/games/words/fish.png" },
+            { speech: "Le soleil", label: "Le Soleil", emoji: "â˜€ï¸", img: "assets/images/games/words/sun.png" },
+            { speech: "Le train", label: "Le Train", emoji: "ðŸš‚", img: "assets/images/games/words/train.png" },
+            { speech: "Le pÃ¨re", label: "Le PÃ¨re", emoji: "ðŸ‘¨", img: "assets/images/family/father.png" },
+            { speech: "La mÃ¨re", label: "La MÃ¨re", emoji: "ðŸ‘©", img: "assets/images/family/mother.png" },
+            { speech: "Le vÃ©lo", label: "Le VÃ©lo", emoji: "ðŸš²", img: "assets/images/games/words/bike.png" },
+            { speech: "La fleur", label: "La Fleur", emoji: "ðŸŒ¸", img: "assets/images/games/words/flower.png" }
           ]
         },
         Arabic: {
-          title: "Ã˜Â§Ã˜Â®Ã™â€™Ã˜ÂªÃ™ÂÃ˜Â¨Ã™Å½Ã˜Â§Ã˜Â±Ã™Â Ã˜Â§Ã™â€žÃ™â€¦Ã™Å½Ã˜Â¹Ã™â€™Ã™â€žÃ™ÂÃ™Ë†Ã™â€¦Ã™Å½Ã˜Â§Ã˜ÂªÃ™Â Ã™Â£AP",
-          subtitle: "Ã˜Â§Ã˜Â³Ã™â€™Ã˜ÂªÃ™Å½Ã™â€¦Ã™ÂÃ˜Â¹Ã™â€™ Ã˜Â¥Ã™ÂÃ™â€žÃ™Å½Ã™â€° Ã™ÂÃ™ÂÃ™Å Ã™â€ Ã™ÂÃ™Å  Ã™Ë†Ã™Å½Ã˜Â§Ã˜Â®Ã™â€™Ã˜ÂªÃ™Å½Ã˜Â±Ã™Â Ã˜Â§Ã™â€žÃ˜ÂµÃ™ÂÃ™â€˜Ã™Ë†Ã˜Â±Ã™Å½Ã˜Â©Ã™Å½ Ã˜Â§Ã™â€žÃ˜ÂµÃ™Å½Ã™â€˜Ã˜Â­Ã™ÂÃ™Å Ã˜Â­Ã™Å½Ã˜Â©Ã™Å½!",
-          listen: "Ã˜Â§Ã˜Â³Ã™â€™Ã˜ÂªÃ™Å½Ã™â€¦Ã™ÂÃ˜Â¹Ã™â€™",
-          questionWord: "Ã˜Â§Ã™â€žÃ˜Â³Ã™ÂÃ™â€˜Ã˜Â¤Ã™Å½Ã˜Â§Ã™â€žÃ™Â",
-          promptPrefix: "Ã˜Â£Ã™Å½Ã™Å Ã™â€™Ã™â€ Ã™Å½ : ",
-          doneTitle: "Ã™â€¦Ã™ÂÃ™â€¦Ã™â€™Ã˜ÂªÃ™Å½Ã˜Â§Ã˜Â²Ã™Å’! Ã˜Â§Ã™â€žÃ™â€ Ã™Å½Ã™â€˜Ã˜ÂªÃ™ÂÃ™Å Ã˜Â¬Ã™Å½Ã˜Â©Ã™Â : ",
-          restart: "Ã˜Â¥Ã™ÂÃ˜Â¹Ã™Å½Ã˜Â§Ã˜Â¯Ã™Å½Ã˜Â©Ã™Â Ã˜Â§Ã™â€žÃ˜Â§Ã˜Â®Ã™â€™Ã˜ÂªÃ™ÂÃ˜Â¨Ã™Å½Ã˜Â§Ã˜Â±Ã™Â",
+          title: "Ø§Ø®Ù’ØªÙØ¨ÙŽØ§Ø±Ù Ø§Ù„Ù…ÙŽØ¹Ù’Ù„ÙÙˆÙ…ÙŽØ§ØªÙ Ù£AP",
+          subtitle: "Ø§Ø³Ù’ØªÙŽÙ…ÙØ¹Ù’ Ø¥ÙÙ„ÙŽÙ‰ ÙÙÙŠÙ†ÙÙŠ ÙˆÙŽØ§Ø®Ù’ØªÙŽØ±Ù Ø§Ù„ØµÙÙ‘ÙˆØ±ÙŽØ©ÙŽ Ø§Ù„ØµÙŽÙ‘Ø­ÙÙŠØ­ÙŽØ©ÙŽ!",
+          listen: "Ø§Ø³Ù’ØªÙŽÙ…ÙØ¹Ù’",
+          questionWord: "Ø§Ù„Ø³ÙÙ‘Ø¤ÙŽØ§Ù„Ù",
+          promptPrefix: "Ø£ÙŽÙŠÙ’Ù†ÙŽ : ",
+          doneTitle: "Ù…ÙÙ…Ù’ØªÙŽØ§Ø²ÙŒ! Ø§Ù„Ù†ÙŽÙ‘ØªÙÙŠØ¬ÙŽØ©Ù : ",
+          restart: "Ø¥ÙØ¹ÙŽØ§Ø¯ÙŽØ©Ù Ø§Ù„Ø§Ø®Ù’ØªÙØ¨ÙŽØ§Ø±Ù",
           speechLang: "ar-SA",
           items: [
-            { speech: "Ã™â€šÃ™ÂÃ˜Â·Ã™â€˜", label: "Ã™â€šÃ™ÂÃ˜Â·Ã™â€˜", emoji: "Ã°Å¸ÂÂ±", img: "assets/images/games/words/cat.png" },
-            { speech: "Ã˜Â£Ã™Å½Ã˜Â³Ã™Å½Ã˜Â¯", label: "Ã˜Â£Ã™Å½Ã˜Â³Ã™Å½Ã˜Â¯", emoji: "Ã°Å¸Â¦Â", img: "assets/images/games/words/lion.png" },
-            { speech: "Ã˜ÂªÃ™ÂÃ™ÂÃ™Å½Ã™â€˜Ã˜Â§Ã˜Â­Ã™Å½Ã˜Â©", label: "Ã˜ÂªÃ™ÂÃ™ÂÃ™Å½Ã™â€˜Ã˜Â§Ã˜Â­Ã™Å½Ã˜Â©", emoji: "Ã°Å¸ÂÅ½", img: "assets/images/games/words/apple.png" },
-            { speech: "Ã™Æ’Ã™ÂÃ˜ÂªÃ™Å½Ã˜Â§Ã˜Â¨", label: "Ã™Æ’Ã™ÂÃ˜ÂªÃ™Å½Ã˜Â§Ã˜Â¨", emoji: "Ã°Å¸â€œâ€“", img: "assets/images/stationery/book.png" },
-            { speech: "Ã™â€šÃ™Å½Ã™â€žÃ™Å½Ã™â€¦", label: "Ã™â€šÃ™Å½Ã™â€žÃ™Å½Ã™â€¦", emoji: "Ã¢Å“ÂÃ¯Â¸Â", img: "assets/images/stationery/pencil.png" },
-            { speech: "Ã˜Â¨Ã™Å½Ã˜Â·Ã™Å½Ã™â€˜Ã˜Â©", label: "Ã˜Â¨Ã™Å½Ã˜Â·Ã™Å½Ã™â€˜Ã˜Â©", emoji: "Ã°Å¸Â¦â€ ", img: "assets/images/games/words/duck.png" },
-            { speech: "Ã˜Â¯Ã™ÂÃ˜Â¨Ã™â€˜", label: "Ã˜Â¯Ã™ÂÃ˜Â¨Ã™â€˜", emoji: "Ã°Å¸ÂÂ»", img: "assets/images/games/words/bear.png" },
-            { speech: "Ã˜Â³Ã™Å½Ã™â€¦Ã™Å½Ã™Æ’Ã™Å½Ã˜Â©", label: "Ã˜Â³Ã™Å½Ã™â€¦Ã™Å½Ã™Æ’Ã™Å½Ã˜Â©", emoji: "Ã°Å¸ÂÅ¸", img: "assets/images/games/words/fish.png" },
-            { speech: "Ã˜Â´Ã™Å½Ã™â€¦Ã™â€™Ã˜Â³", label: "Ã˜Â´Ã™Å½Ã™â€¦Ã™â€™Ã˜Â³", emoji: "Ã¢Ëœâ‚¬Ã¯Â¸Â", img: "assets/images/games/words/sun.png" },
-            { speech: "Ã™â€šÃ™ÂÃ˜Â·Ã™Å½Ã˜Â§Ã˜Â±", label: "Ã™â€šÃ™ÂÃ˜Â·Ã™Å½Ã˜Â§Ã˜Â±", emoji: "Ã°Å¸Å¡â€š", img: "assets/images/games/words/train.png" },
-            { speech: "Ã˜Â£Ã™Å½Ã˜Â¨", label: "Ã˜Â£Ã™Å½Ã˜Â¨", emoji: "Ã°Å¸â€˜Â¨", img: "assets/images/family/father.png" },
-            { speech: "Ã˜Â£Ã™ÂÃ™â€¦Ã™â€˜", label: "Ã˜Â£Ã™ÂÃ™â€¦Ã™â€˜", emoji: "Ã°Å¸â€˜Â©", img: "assets/images/family/mother.png" }
+            { speech: "Ù‚ÙØ·Ù‘", label: "Ù‚ÙØ·Ù‘", emoji: "ðŸ±", img: "assets/images/games/words/cat.png" },
+            { speech: "Ø£ÙŽØ³ÙŽØ¯", label: "Ø£ÙŽØ³ÙŽØ¯", emoji: "ðŸ¦", img: "assets/images/games/words/lion.png" },
+            { speech: "ØªÙÙÙŽÙ‘Ø§Ø­ÙŽØ©", label: "ØªÙÙÙŽÙ‘Ø§Ø­ÙŽØ©", emoji: "ðŸŽ", img: "assets/images/games/words/apple.png" },
+            { speech: "ÙƒÙØªÙŽØ§Ø¨", label: "ÙƒÙØªÙŽØ§Ø¨", emoji: "ðŸ“–", img: "assets/images/stationery/book.png" },
+            { speech: "Ù‚ÙŽÙ„ÙŽÙ…", label: "Ù‚ÙŽÙ„ÙŽÙ…", emoji: "âœï¸", img: "assets/images/stationery/pencil.png" },
+            { speech: "Ø¨ÙŽØ·ÙŽÙ‘Ø©", label: "Ø¨ÙŽØ·ÙŽÙ‘Ø©", emoji: "ðŸ¦†", img: "assets/images/games/words/duck.png" },
+            { speech: "Ø¯ÙØ¨Ù‘", label: "Ø¯ÙØ¨Ù‘", emoji: "ðŸ»", img: "assets/images/games/words/bear.png" },
+            { speech: "Ø³ÙŽÙ…ÙŽÙƒÙŽØ©", label: "Ø³ÙŽÙ…ÙŽÙƒÙŽØ©", emoji: "ðŸŸ", img: "assets/images/games/words/fish.png" },
+            { speech: "Ø´ÙŽÙ…Ù’Ø³", label: "Ø´ÙŽÙ…Ù’Ø³", emoji: "â˜€ï¸", img: "assets/images/games/words/sun.png" },
+            { speech: "Ù‚ÙØ·ÙŽØ§Ø±", label: "Ù‚ÙØ·ÙŽØ§Ø±", emoji: "ðŸš‚", img: "assets/images/games/words/train.png" },
+            { speech: "Ø£ÙŽØ¨", label: "Ø£ÙŽØ¨", emoji: "ðŸ‘¨", img: "assets/images/family/father.png" },
+            { speech: "Ø£ÙÙ…Ù‘", label: "Ø£ÙÙ…Ù‘", emoji: "ðŸ‘©", img: "assets/images/family/mother.png" }
           ]
         },
         English: {
@@ -213,23 +213,23 @@
           restart: "Restart Test",
           speechLang: "en-US",
           items: [
-            { speech: "The cat", label: "The Cat", emoji: "Ã°Å¸ÂÂ±", img: "assets/images/games/words/cat.png" },
-            { speech: "The lion", label: "The Lion", emoji: "Ã°Å¸Â¦Â", img: "assets/images/games/words/lion.png" },
-            { speech: "The apple", label: "The Apple", emoji: "Ã°Å¸ÂÅ½", img: "assets/images/games/words/apple.png" },
-            { speech: "The book", label: "The Book", emoji: "Ã°Å¸â€œâ€“", img: "assets/images/stationery/book.png" },
-            { speech: "The pencil", label: "The Pencil", emoji: "Ã¢Å“ÂÃ¯Â¸Â", img: "assets/images/stationery/pencil.png" },
-            { speech: "The duck", label: "The Duck", emoji: "Ã°Å¸Â¦â€ ", img: "assets/images/games/words/duck.png" },
-            { speech: "The bear", label: "The Bear", emoji: "Ã°Å¸ÂÂ»", img: "assets/images/games/words/bear.png" },
-            { speech: "The fish", label: "The Fish", emoji: "Ã°Å¸ÂÅ¸", img: "assets/images/games/words/fish.png" },
-            { speech: "The sun", label: "The Sun", emoji: "Ã¢Ëœâ‚¬Ã¯Â¸Â", img: "assets/images/games/words/sun.png" },
-            { speech: "The train", label: "The Train", emoji: "Ã°Å¸Å¡â€š", img: "assets/images/games/words/train.png" },
-            { speech: "Father", label: "Father", emoji: "Ã°Å¸â€˜Â¨", img: "assets/images/family/father.png" },
-            { speech: "Mother", label: "Mother", emoji: "Ã°Å¸â€˜Â©", img: "assets/images/family/mother.png" }
+            { speech: "The cat", label: "The Cat", emoji: "ðŸ±", img: "assets/images/games/words/cat.png" },
+            { speech: "The lion", label: "The Lion", emoji: "ðŸ¦", img: "assets/images/games/words/lion.png" },
+            { speech: "The apple", label: "The Apple", emoji: "ðŸŽ", img: "assets/images/games/words/apple.png" },
+            { speech: "The book", label: "The Book", emoji: "ðŸ“–", img: "assets/images/stationery/book.png" },
+            { speech: "The pencil", label: "The Pencil", emoji: "âœï¸", img: "assets/images/stationery/pencil.png" },
+            { speech: "The duck", label: "The Duck", emoji: "ðŸ¦†", img: "assets/images/games/words/duck.png" },
+            { speech: "The bear", label: "The Bear", emoji: "ðŸ»", img: "assets/images/games/words/bear.png" },
+            { speech: "The fish", label: "The Fish", emoji: "ðŸŸ", img: "assets/images/games/words/fish.png" },
+            { speech: "The sun", label: "The Sun", emoji: "â˜€ï¸", img: "assets/images/games/words/sun.png" },
+            { speech: "The train", label: "The Train", emoji: "ðŸš‚", img: "assets/images/games/words/train.png" },
+            { speech: "Father", label: "Father", emoji: "ðŸ‘¨", img: "assets/images/family/father.png" },
+            { speech: "Mother", label: "Mother", emoji: "ðŸ‘©", img: "assets/images/family/mother.png" }
           ]
         }
       };
 
-      // SynthÃƒÂ¨se audio Web Audio pour bruitages immÃƒÂ©diats
+      // SynthÃ¨se audio Web Audio pour bruitages immÃ©diats
       let audioCtx = null;
       function playTone(freq, duration, type) {
         try {
@@ -319,8 +319,8 @@
       let currentTarget = null;
 
       function getLangData() {
-        const langId = window.AppLang ? window.AppLang.getCurrentLangId() : (localStorage.getItem("selectedLanguage") || "English");
-        return QUIZ_ITEMS[langId] || QUIZ_ITEMS.English;
+        const langId = window.AppLang ? window.AppLang.getCurrentLangId() : (localStorage.getItem("selectedLanguage") || "French");
+        return QUIZ_ITEMS[langId] || QUIZ_ITEMS.French;
       }
 
       function shuffle(arr) {
@@ -334,7 +334,7 @@
 
       function startQuiz() {
         const data = getLangData();
-        document.documentElement.dir = "ltr";
+        document.documentElement.dir = (window.AppLang && window.AppLang.getCurrentLangId() === "Arabic") ? "rtl" : "ltr";
         document.getElementById("testTitle").textContent = data.title;
         document.getElementById("testSubtitle").textContent = data.subtitle;
         document.getElementById("listenBtnLabel").textContent = data.listen;
@@ -350,7 +350,7 @@
         const badge = document.getElementById("streakBadge");
         if (streak >= 2) {
           badge.classList.remove("hidden");
-          document.getElementById("streakCount").textContent = "Ã°Å¸â€Â¥ SÃƒÂ©rie x" + streak;
+          document.getElementById("streakCount").textContent = "ðŸ”¥ SÃ©rie x" + streak;
         } else {
           badge.classList.add("hidden");
         }
@@ -361,10 +361,10 @@
         document.getElementById("testScoreLabel").textContent = score + " / 10";
 
         if (qIndex >= questions.length) {
-          // Ãƒâ€°cran de victoire festif
-          document.getElementById("qCounterBadge").textContent = "Test ComplÃƒÂ©tÃƒÂ© ! Ã°Å¸Å½â€°";
+          // Ã‰cran de victoire festif
+          document.getElementById("qCounterBadge").textContent = "Test ComplÃ©tÃ© ! ðŸŽ‰";
           document.getElementById("testProgressFill").style.width = "100%";
-          document.getElementById("questionPrompt").textContent = data.doneTitle + score + " / 10 ÃƒÂ©toiles !";
+          document.getElementById("questionPrompt").textContent = data.doneTitle + score + " / 10 Ã©toiles !";
           document.getElementById("fennyQuizAvatar").src = "assets/images/fennygo/badge-phonics.png";
 
           spawnConfetti(70);

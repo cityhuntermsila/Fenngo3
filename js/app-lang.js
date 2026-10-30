@@ -1,6 +1,6 @@
 /**
  * AppLang - Central Language Manager for Fenncky
- * Supports: English (Main) and French (Français)
+ * Supports: English, French (Français), Arabic (العربية)
  */
 (function (global) {
   "use strict";
@@ -65,6 +65,36 @@
         exploreAlt: "Explorer",
         cardAria: "Ouvrir les catégories d'apprentissage"
       }
+    },
+    Arabic: {
+      id: "Arabic",
+      code: "ar",
+      name: "العربية",
+      nativeName: "العربية",
+      flag: "assets/images/flags/saudi-arabia.png",
+      speechLang: "ar-SA",
+      dir: "rtl",
+      nav: {
+        apps: "التطبيقات",
+        store: "المتجر",
+        parents: "الآباء والمعلمون",
+        join: "كيفية الانضمام",
+        signIn: "تسجيل الدخول",
+        back: "رجوع",
+        home: "الرئيسية",
+        changeLanguage: "تغيير اللغة"
+      },
+      categoryPage: {
+        title: "تعليم الأطفال",
+        alphabet: "الحروف الأبجدية",
+        numbers: "الأرقام",
+        colors: "الألوان",
+        geometry: "الأشكال الهندسية"
+      },
+      kindergartenPage: {
+        exploreAlt: "استكشف",
+        cardAria: "فتح أقسام تعليم الروضة"
+      }
     }
   };
 
@@ -72,10 +102,13 @@
 
   function getCurrentLangId() {
     const saved = localStorage.getItem(STORAGE_KEY);
-    if (saved && (saved === "French" || saved === "fr" || saved === "francais" || saved === "français")) {
-      return "French";
+    if (saved && LANGUAGES[saved]) {
+      return saved;
     }
-    // English is the main/default language
+    // Normalize aliases
+    if (saved === "fr" || saved === "francais" || saved === "français") return "French";
+    if (saved === "ar" || saved === "arabic" || saved === "arabe") return "Arabic";
+    if (saved === "en" || saved === "english" || saved === "anglais") return "English";
     return "English";
   }
 
@@ -84,7 +117,7 @@
   }
 
   function setLang(langId, reload = false) {
-    if (!LANGUAGES[langId]) langId = "English";
+    if (!LANGUAGES[langId]) return;
     localStorage.setItem(STORAGE_KEY, langId);
     applyPageDirection();
     updateBackButtonLabel();
@@ -97,9 +130,13 @@
 
   function applyPageDirection() {
     const lang = getCurrentLang();
-    document.documentElement.dir = lang.dir || "ltr";
+    document.documentElement.dir = lang.dir;
     document.documentElement.lang = lang.code;
-    document.body.classList.remove("lang-arabic");
+    if (lang.dir === "rtl") {
+      document.body.classList.add("lang-arabic");
+    } else {
+      document.body.classList.remove("lang-arabic");
+    }
   }
 
   // Shared audio element for local MP3 / TTS playback
@@ -133,40 +170,13 @@
   }
 
   /**
-   * Fallback using Web Speech API if local MP3 is missing or fails.
-   */
-  function _speakWithSpeechSynthesis(text, langPrefix, onEnded) {
-    if (!("speechSynthesis" in window)) {
-      if (typeof onEnded === "function") onEnded();
-      return;
-    }
-    try {
-      window.speechSynthesis.cancel();
-      const targetLang = langPrefix === "fr" ? "fr-FR" : "en-US";
-      const utterance = new SpeechSynthesisUtterance(text);
-      utterance.lang = targetLang;
-      utterance.rate = 0.85;
-      utterance.pitch = 1.1;
-      const voices = window.speechSynthesis.getVoices();
-      const match = voices.find(v => v.lang.toLowerCase() === targetLang.toLowerCase())
-        || voices.find(v => v.lang.toLowerCase().startsWith(langPrefix));
-      if (match) utterance.voice = match;
-      if (typeof onEnded === "function") {
-        utterance.onend = onEnded;
-        utterance.onerror = onEnded;
-      }
-      window.speechSynthesis.speak(utterance);
-    } catch (e) {
-      if (typeof onEnded === "function") onEnded();
-    }
-  }
-
-  /**
    * Play local pre-downloaded MP3 file in assets/audio/<langPrefix>/<hash>.mp3,
-   * with seamless fallback to SpeechSynthesis if the local file is not found or fails.
+   * with fallback to Google TTS or SpeechSynthesis if the local file is not found.
    */
   function _playLocalOrRemoteTTS(text, langPrefix, onEnded) {
     const localUrl = getLocalAudioPath(text, langPrefix);
+    const encoded = encodeURIComponent(text.trim());
+    const remoteUrl = `https://translate.google.com/translate_tts?ie=UTF-8&tl=${langPrefix}&client=tw-ob&q=${encoded}`;
 
     if (!_ttsAudio) {
       _ttsAudio = new Audio();
@@ -180,25 +190,22 @@
       if (typeof onEnded === "function") onEnded();
     };
 
-    const fallback = () => {
-      if (finished) return;
-      _ttsAudio.onerror = null;
-      _ttsAudio.onended = null;
-      _speakWithSpeechSynthesis(text, langPrefix, done);
-    };
-
     _ttsAudio.onended = done;
     _ttsAudio.onerror = () => {
-      fallback();
+      // If local file failed, try remote URL once
+      if (_ttsAudio.src && !_ttsAudio.src.includes("translate.google.com")) {
+        _ttsAudio.onerror = done;
+        _ttsAudio.src = remoteUrl;
+        _ttsAudio.play().catch(done);
+      } else {
+        done();
+      }
     };
 
     _ttsAudio.src = localUrl;
-    const playPromise = _ttsAudio.play();
-    if (playPromise !== undefined) {
-      playPromise.catch(() => {
-        fallback();
-      });
-    }
+    _ttsAudio.play().catch(() => {
+      done();
+    });
   }
 
   /**
@@ -215,8 +222,8 @@
     const targetLangCode = langCode || getCurrentLang().speechLang;
     const langPrefix = targetLangCode.slice(0, 2).toLowerCase();
 
-    // Always prefer pre-downloaded local MP3s for French
-    if (langPrefix === "fr" || !_hasVoiceForLang(langPrefix)) {
+    // Always prefer pre-downloaded local MP3s for Arabic and French
+    if (langPrefix === "ar" || langPrefix === "fr" || !_hasVoiceForLang(langPrefix)) {
       window.speechSynthesis?.cancel?.();
       _playLocalOrRemoteTTS(text, langPrefix, onEnded);
       return;
