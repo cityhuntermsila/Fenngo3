@@ -170,13 +170,40 @@
   }
 
   /**
+   * Fallback using Web Speech API if local MP3 is missing or fails.
+   */
+  function _speakWithSpeechSynthesis(text, langPrefix, onEnded) {
+    if (!("speechSynthesis" in window)) {
+      if (typeof onEnded === "function") onEnded();
+      return;
+    }
+    try {
+      window.speechSynthesis.cancel();
+      const targetLang = langPrefix === "ar" ? "ar-SA" : (langPrefix === "fr" ? "fr-FR" : "en-US");
+      const utterance = new SpeechSynthesisUtterance(text);
+      utterance.lang = targetLang;
+      utterance.rate = 0.85;
+      utterance.pitch = 1.1;
+      const voices = window.speechSynthesis.getVoices();
+      const match = voices.find(v => v.lang.toLowerCase() === targetLang.toLowerCase())
+        || voices.find(v => v.lang.toLowerCase().startsWith(langPrefix));
+      if (match) utterance.voice = match;
+      if (typeof onEnded === "function") {
+        utterance.onend = onEnded;
+        utterance.onerror = onEnded;
+      }
+      window.speechSynthesis.speak(utterance);
+    } catch (e) {
+      if (typeof onEnded === "function") onEnded();
+    }
+  }
+
+  /**
    * Play local pre-downloaded MP3 file in assets/audio/<langPrefix>/<hash>.mp3,
-   * with fallback to Google TTS or SpeechSynthesis if the local file is not found.
+   * with seamless fallback to SpeechSynthesis if the local file is not found or fails.
    */
   function _playLocalOrRemoteTTS(text, langPrefix, onEnded) {
     const localUrl = getLocalAudioPath(text, langPrefix);
-    const encoded = encodeURIComponent(text.trim());
-    const remoteUrl = `https://translate.google.com/translate_tts?ie=UTF-8&tl=${langPrefix}&client=tw-ob&q=${encoded}`;
 
     if (!_ttsAudio) {
       _ttsAudio = new Audio();
@@ -190,22 +217,25 @@
       if (typeof onEnded === "function") onEnded();
     };
 
+    const fallback = () => {
+      if (finished) return;
+      _ttsAudio.onerror = null;
+      _ttsAudio.onended = null;
+      _speakWithSpeechSynthesis(text, langPrefix, done);
+    };
+
     _ttsAudio.onended = done;
     _ttsAudio.onerror = () => {
-      // If local file failed, try remote URL once
-      if (_ttsAudio.src && !_ttsAudio.src.includes("translate.google.com")) {
-        _ttsAudio.onerror = done;
-        _ttsAudio.src = remoteUrl;
-        _ttsAudio.play().catch(done);
-      } else {
-        done();
-      }
+      fallback();
     };
 
     _ttsAudio.src = localUrl;
-    _ttsAudio.play().catch(() => {
-      done();
-    });
+    const playPromise = _ttsAudio.play();
+    if (playPromise !== undefined) {
+      playPromise.catch(() => {
+        fallback();
+      });
+    }
   }
 
   /**

@@ -187,9 +187,12 @@ function openCube(letter) {
     frontLetter.innerText = data.capital;
     backLetter.innerText = data.small;
 
-    soundBtn.onclick = function () {
-        speakCurrentLetter(data);
-    };
+    const playVoice = () => speakCurrentLetter(data);
+    soundBtn.onclick = playVoice;
+    frontLetter.onclick = playVoice;
+    backLetter.onclick = playVoice;
+    cubeHeading.onclick = playVoice;
+    frontImage.onclick = playVoice;
 
     cubeModal.classList.add("show");
     speakCurrentLetter(data);
@@ -228,7 +231,11 @@ nextLetterBtn.addEventListener("click", () => {
 
 function closeCube() {
     cubeModal.classList.remove("show");
-    window.speechSynthesis?.cancel?.();
+    if (window.AppLang && typeof window.AppLang.stopSpeech === "function") {
+        window.AppLang.stopSpeech();
+    } else {
+        window.speechSynthesis?.cancel?.();
+    }
 }
 
 closeBtn.addEventListener("click", closeCube);

@@ -1402,6 +1402,10 @@
     }
   },
   "fr": {
+    "16175217": {
+      "text": "Q comme Quatre",
+      "file": "assets/audio/fr/16175217.mp3"
+    },
     "22001965": {
       "text": "Réessaie. Trouve l'objet Jaune.",
       "file": "assets/audio/fr/22001965.mp3"
@@ -1442,6 +1446,10 @@
       "text": "Français ! Apprenons le français !",
       "file": "assets/audio/fr/f2f0e76a.mp3"
     },
+    "d4557467": {
+      "text": "A comme Astronaute",
+      "file": "assets/audio/fr/d4557467.mp3"
+    },
     "900eaf6c": {
       "text": "A comme Avion",
       "file": "assets/audio/fr/900eaf6c.mp3"
@@ -1462,6 +1470,10 @@
       "text": "E comme Éléphant",
       "file": "assets/audio/fr/e9677efc.mp3"
     },
+    "59525d24": {
+      "text": "F comme Fraise",
+      "file": "assets/audio/fr/59525d24.mp3"
+    },
     "cfe07635": {
       "text": "F comme Poisson",
       "file": "assets/audio/fr/cfe07635.mp3"
@@ -1470,6 +1482,10 @@
       "text": "G comme Gâteau",
       "file": "assets/audio/fr/c059123f.mp3"
     },
+    "7099e927": {
+      "text": "H comme Hibou",
+      "file": "assets/audio/fr/7099e927.mp3"
+    },
     "4632b603": {
       "text": "H comme Maison",
       "file": "assets/audio/fr/4632b603.mp3"
@@ -1477,6 +1493,10 @@
     "9be350a3": {
       "text": "I comme Glaçon",
       "file": "assets/audio/fr/9be350a3.mp3"
+    },
+    "54b27860": {
+      "text": "J comme Jus",
+      "file": "assets/audio/fr/54b27860.mp3"
     },
     "63ce001f": {
       "text": "J comme Méduse",
@@ -1510,6 +1530,10 @@
       "text": "Q comme Reine",
       "file": "assets/audio/fr/9ea5e0da.mp3"
     },
+    "97ebaf69": {
+      "text": "R comme Rose",
+      "file": "assets/audio/fr/97ebaf69.mp3"
+    },
     "94ea54b0": {
       "text": "R comme Arc-en-ciel",
       "file": "assets/audio/fr/94ea54b0.mp3"
@@ -1517,6 +1541,10 @@
     "5be22eb7": {
       "text": "S comme Soleil",
       "file": "assets/audio/fr/5be22eb7.mp3"
+    },
+    "e294aea2": {
+      "text": "T comme Train",
+      "file": "assets/audio/fr/e294aea2.mp3"
     },
     "9c6ab3a0": {
       "text": "U comme Parapluie",

@@ -239,6 +239,19 @@ body.alphabet {
   align-items: center;
   justify-content: center;
   box-shadow: 0 8px 0 #321080;
+  cursor: pointer;
+  transition: transform 0.15s ease;
+  user-select: none;
+}
+.detail-letters span:active {
+  transform: scale(0.93);
+}
+.detail-title {
+  cursor: pointer;
+  user-select: none;
+}
+.detail-image-box {
+  cursor: pointer;
 }
 .sound-btn {
   border: 0;
