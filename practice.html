@@ -5,12 +5,12 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, viewport-fit=cover">
   <script src="https://cdn.tailwindcss.com"></script>
-  <title>Kids Learner — Practice & Learning Games 3AP</title>
+  <title>Kids Learner — Practice & Games 3AP</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@600;700;800;900&family=Nunito:wght@600;700;800;900&family=Fredoka:wght@600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/common.css?v=57">
-  <link rel="stylesheet" href="css/fennygo.css?v=57">
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@600;700;800;900&family=Nunito:wght@600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/common.css?v=58">
+  <link rel="stylesheet" href="css/fennygo.css?v=58">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
   <style>
     /* Reset & Base */
@@ -20,211 +20,228 @@
       overflow-x: hidden !important;
       overflow-y: auto !important;
       font-family: "Nunito", "Cairo", sans-serif;
-      background: radial-gradient(circle at 50% 12%, #e0f2fe 0%, #bae6fd 45%, #7dd3fc 100%);
+      background: radial-gradient(circle at 50% 10%, #e0f2fe 0%, #bae6fd 45%, #7dd3fc 100%);
       color: #0f172a;
       -webkit-tap-highlight-color: transparent;
       user-select: none;
     }
 
-    /* Suppress duplicate floating back button */
     #globalBackBtn,
     .global-back-btn {
       display: none !important;
     }
 
-    /* Top Studio Card */
-    .studio-card {
+    /* Top Compact Header */
+    .compact-header {
       background: #ffffff;
       border: 2.5px solid #7dd3fc;
-      border-bottom: 5px solid #0284c7;
-      border-radius: 24px;
-      box-shadow: 0 8px 24px rgba(2, 132, 199, 0.14);
+      border-bottom: 4.5px solid #0284c7;
+      border-radius: 20px;
+      box-shadow: 0 6px 18px rgba(2, 132, 199, 0.12);
     }
 
     /* Claymorphic 3D Card */
     .clay-card {
       background: #ffffff;
-      border: 3px solid #e0f2fe;
-      border-bottom: 6px solid #38bdf8;
-      border-radius: 24px;
-      box-shadow: 0 10px 24px rgba(2, 132, 199, 0.12);
-      transition: transform 0.22s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.22s ease, border-color 0.22s ease;
+      border: 2.5px solid #e0f2fe;
+      border-bottom: 5px solid #38bdf8;
+      border-radius: 20px;
+      box-shadow: 0 6px 18px rgba(2, 132, 199, 0.1);
+      transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease;
     }
 
     .clay-card:hover {
-      transform: translateY(-4px) scale(1.015);
-      box-shadow: 0 16px 30px rgba(2, 132, 199, 0.2);
-      border-color: #7dd3fc;
+      transform: translateY(-3px) scale(1.01);
+      box-shadow: 0 12px 24px rgba(2, 132, 199, 0.18);
+      border-color: #0284c7;
     }
 
     .clay-btn {
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      gap: 0.5rem;
+      gap: 0.4rem;
       font-weight: 900;
       border-radius: 9999px;
       border: 2px solid rgba(255, 255, 255, 0.7);
-      box-shadow: 0 5px 14px rgba(2, 132, 199, 0.22), inset 0 2px 2px rgba(255, 255, 255, 0.6);
-      transition: all 0.18s ease;
+      box-shadow: 0 4px 10px rgba(2, 132, 199, 0.2), inset 0 2px 2px rgba(255, 255, 255, 0.5);
+      transition: all 0.15s ease;
       cursor: pointer;
     }
 
     .clay-btn:active {
       transform: scale(0.96) translateY(2px);
-      box-shadow: 0 2px 6px rgba(2, 132, 199, 0.3);
+      box-shadow: 0 2px 5px rgba(2, 132, 199, 0.25);
     }
 
-    /* Category Card */
-    .practice-cat-card {
+    /* 2-Column Category Card */
+    .cat-card-2col {
       position: relative;
       background: #ffffff;
-      border: 3px solid #e0f2fe;
-      border-bottom: 6px solid #38bdf8;
-      border-radius: 24px;
-      padding: clamp(12px, 2vh, 18px);
+      border: 2.5px solid #e0f2fe;
+      border-bottom: 5px solid #38bdf8;
+      border-radius: 20px;
+      padding: clamp(10px, 1.8vh, 14px);
       display: flex;
       flex-direction: column;
       align-items: center;
       text-align: center;
       cursor: pointer;
-      box-shadow: 0 8px 20px rgba(2, 132, 199, 0.12);
-      transition: transform 0.22s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.22s ease, border-color 0.22s ease;
+      box-shadow: 0 6px 16px rgba(2, 132, 199, 0.1);
+      transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease;
       overflow: hidden;
     }
 
-    .practice-cat-card:hover {
-      transform: translateY(-5px) scale(1.02);
-      box-shadow: 0 16px 28px rgba(2, 132, 199, 0.22);
+    .cat-card-2col:hover {
+      transform: translateY(-4px) scale(1.015);
+      box-shadow: 0 12px 24px rgba(2, 132, 199, 0.2);
       border-color: #0284c7;
     }
 
-    .practice-cat-card:active {
+    .cat-card-2col:active {
       transform: scale(0.97);
     }
 
-    .cat-thumb-wrap {
-      width: clamp(76px, 14vw, 105px);
-      height: clamp(76px, 14vw, 105px);
+    /* Category Main 3D Icon */
+    .cat-icon-wrap {
+      width: clamp(68px, 16vw, 92px);
+      height: clamp(68px, 16vw, 92px);
       display: flex;
       align-items: center;
       justify-content: center;
-      margin-bottom: 0.6rem;
-      position: relative;
+      margin-bottom: 6px;
     }
 
-    .cat-thumb-wrap img {
+    .cat-icon-wrap img {
       width: 100%;
       height: 100%;
       object-fit: contain;
-      filter: drop-shadow(0 6px 10px rgba(0, 0, 0, 0.12));
-      transition: transform 0.25s ease;
+      filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.12));
+      transition: transform 0.22s ease;
     }
 
-    .practice-cat-card:hover .cat-thumb-wrap img {
-      transform: scale(1.1) rotate(2deg);
+    .cat-card-2col:hover .cat-icon-wrap img {
+      transform: scale(1.08) rotate(2deg);
     }
 
-    /* Game Mode Badges on Category Card */
-    .mode-dots {
+    /* Mini Preview Strip of 3 real item images */
+    .item-preview-strip {
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 4px;
-      margin: 8px 0;
-      flex-wrap: wrap;
-    }
-
-    .mode-pill {
-      font-size: 10px;
-      font-weight: 800;
-      padding: 2px 7px;
-      border-radius: 9999px;
+      gap: 6px;
+      margin: 6px 0;
       background: #f0f9ff;
-      border: 1px solid #bae6fd;
-      color: #0369a1;
-      display: inline-flex;
-      align-items: center;
-      gap: 3px;
+      border-radius: 12px;
+      padding: 4px 8px;
+      width: 100%;
     }
 
-    /* Mode Selection Cards inside Category View */
-    .game-mode-card {
-      position: relative;
-      background: #ffffff;
-      border: 3px solid #e0f2fe;
-      border-bottom: 6px solid #38bdf8;
-      border-radius: 22px;
-      padding: clamp(14px, 2vh, 20px);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      text-align: center;
-      cursor: pointer;
-      box-shadow: 0 8px 20px rgba(2, 132, 199, 0.12);
-      transition: all 0.22s ease;
-    }
-
-    .game-mode-card:hover {
-      transform: translateY(-4px) scale(1.02);
-      box-shadow: 0 14px 26px rgba(2, 132, 199, 0.22);
-      border-color: #0284c7;
-    }
-
-    .mode-icon-circle {
-      width: 64px;
-      height: 64px;
-      border-radius: 20px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-bottom: 10px;
-      box-shadow: 0 6px 14px rgba(0, 0, 0, 0.08);
-      position: relative;
-    }
-
-    .mode-icon-circle img {
-      width: 52px;
-      height: 52px;
+    .mini-item-thumb {
+      width: 28px;
+      height: 28px;
       object-fit: contain;
+      filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
     }
 
-    /* 3D Interactive Choice Cards (Game 1 - Sound Match) */
-    .sound-choice-card {
+    /* 2-Column Game Mode Card */
+    .game-mode-2col {
       background: #ffffff;
-      border: 3px solid #e2e8f0;
-      border-bottom: 6px solid #cbd5e1;
-      border-radius: 20px;
-      padding: 12px;
+      border: 2.5px solid #e0f2fe;
+      border-bottom: 5px solid #38bdf8;
+      border-radius: 18px;
+      padding: 10px 12px;
       display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: center;
       text-align: center;
       cursor: pointer;
-      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.07);
+      box-shadow: 0 5px 14px rgba(2, 132, 199, 0.1);
       transition: all 0.18s ease;
     }
 
-    .sound-choice-card:hover {
+    .game-mode-2col:hover {
+      transform: translateY(-3px) scale(1.02);
+      border-color: #0284c7;
+      box-shadow: 0 10px 20px rgba(2, 132, 199, 0.18);
+    }
+
+    .mode-icon-sm {
+      width: 48px;
+      height: 48px;
+      object-fit: contain;
+      margin-bottom: 4px;
+    }
+
+    /* Visual Vocabulary Card (2 Columns) */
+    .vocab-card-2col {
+      background: #ffffff;
+      border: 2px solid #e2e8f0;
+      border-bottom: 4px solid #cbd5e1;
+      border-radius: 16px;
+      padding: 8px 10px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      cursor: pointer;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+      transition: all 0.18s ease;
+    }
+
+    .vocab-card-2col:hover {
+      transform: translateY(-2px);
+      border-color: #38bdf8;
+      border-bottom-color: #0284c7;
+      box-shadow: 0 6px 14px rgba(2, 132, 199, 0.15);
+    }
+
+    .vocab-thumb-sm {
+      width: 44px;
+      height: 44px;
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .vocab-thumb-sm img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
+    }
+
+    /* Game 1 Sound Choice Card (2 Columns) */
+    .sound-choice-2col {
+      background: #ffffff;
+      border: 2.5px solid #e2e8f0;
+      border-bottom: 5px solid #cbd5e1;
+      border-radius: 18px;
+      padding: 10px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      cursor: pointer;
+      box-shadow: 0 5px 14px rgba(0,0,0,0.06);
+      transition: all 0.18s ease;
+    }
+
+    .sound-choice-2col:hover {
       transform: translateY(-3px) scale(1.02);
       border-color: #38bdf8;
       border-bottom-color: #0284c7;
-      box-shadow: 0 10px 22px rgba(2, 132, 199, 0.18);
     }
 
-    .sound-choice-card:active {
-      transform: scale(0.97);
-    }
-
-    .sound-choice-card.correct {
+    .sound-choice-2col.correct {
       border-color: #22c55e !important;
       border-bottom-color: #15803d !important;
       background: #f0fdf4 !important;
       animation: pulseGreen 0.4s ease;
     }
 
-    .sound-choice-card.wrong {
+    .sound-choice-2col.wrong {
       border-color: #ef4444 !important;
       border-bottom-color: #b91c1c !important;
       background: #fef2f2 !important;
@@ -233,29 +250,29 @@
 
     @keyframes pulseGreen {
       0%, 100% { transform: scale(1); }
-      50% { transform: scale(1.06); }
+      50% { transform: scale(1.05); }
     }
 
     @keyframes wobbleWrong {
       0%, 100% { transform: translateX(0); }
-      20% { transform: translateX(-8px); }
-      40% { transform: translateX(8px); }
-      60% { transform: translateX(-6px); }
-      80% { transform: translateX(6px); }
+      20% { transform: translateX(-6px); }
+      40% { transform: translateX(6px); }
+      60% { transform: translateX(-4px); }
+      80% { transform: translateX(4px); }
     }
 
-    /* 3D Flip Memory Cards (Game 2 - Memory Match) */
+    /* 3D Flip Memory Cards */
     .memory-grid {
       display: grid;
       grid-template-columns: repeat(4, minmax(0, 1fr));
-      gap: clamp(8px, 1.5vw, 14px);
+      gap: 8px;
       perspective: 1000px;
     }
 
     @media (max-width: 640px) {
       .memory-grid {
         grid-template-columns: repeat(3, minmax(0, 1fr));
-        gap: 8px;
+        gap: 6px;
       }
     }
 
@@ -264,7 +281,7 @@
       position: relative;
       cursor: pointer;
       transform-style: preserve-3d;
-      transition: transform 0.45s cubic-bezier(0.34, 1.56, 0.64, 1);
+      transition: transform 0.42s cubic-bezier(0.34, 1.56, 0.64, 1);
     }
 
     .memory-card.flipped {
@@ -274,7 +291,7 @@
     .memory-card.matched {
       transform: rotateY(180deg) scale(0.96);
       pointer-events: none;
-      filter: drop-shadow(0 0 12px rgba(34, 197, 94, 0.5));
+      filter: drop-shadow(0 0 10px rgba(34, 197, 94, 0.45));
     }
 
     .memory-face {
@@ -283,14 +300,14 @@
       width: 100%;
       height: 100%;
       backface-visibility: hidden;
-      border-radius: 18px;
+      border-radius: 16px;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      box-shadow: 0 6px 14px rgba(2, 132, 199, 0.15);
-      border: 3px solid #bae6fd;
-      border-bottom: 5px solid #0284c7;
+      box-shadow: 0 4px 10px rgba(2, 132, 199, 0.12);
+      border: 2.5px solid #bae6fd;
+      border-bottom: 4px solid #0284c7;
       overflow: hidden;
     }
 
@@ -312,55 +329,54 @@
     }
 
     .memory-front img {
-      width: 68%;
-      height: 68%;
+      width: 70%;
+      height: 70%;
       object-fit: contain;
-      filter: drop-shadow(0 4px 6px rgba(0,0,0,0.1));
+      filter: drop-shadow(0 3px 5px rgba(0,0,0,0.1));
     }
 
-    /* Word Builder (Game 3 - Spelling Phonics) */
+    /* Word Builder */
     .word-slot {
-      width: clamp(38px, 8vw, 54px);
-      height: clamp(44px, 9vw, 60px);
-      border: 3px dashed #94a3b8;
-      border-radius: 14px;
+      width: clamp(36px, 8vw, 48px);
+      height: clamp(42px, 9vw, 54px);
+      border: 2.5px dashed #94a3b8;
+      border-radius: 12px;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: clamp(20px, 4.5vw, 28px);
+      font-size: clamp(18px, 4.5vw, 24px);
       font-weight: 900;
       background: #f8fafc;
       color: #0369a1;
       cursor: pointer;
-      transition: all 0.2s ease;
     }
 
     .word-slot.filled {
-      border: 3px solid #38bdf8;
-      border-bottom: 5px solid #0284c7;
+      border: 2.5px solid #38bdf8;
+      border-bottom: 4px solid #0284c7;
       background: #ffffff;
-      box-shadow: 0 4px 10px rgba(2, 132, 199, 0.16);
+      box-shadow: 0 4px 8px rgba(2, 132, 199, 0.15);
     }
 
     .letter-bubble {
-      width: clamp(42px, 8.5vw, 56px);
-      height: clamp(42px, 8.5vw, 56px);
-      border-radius: 16px;
+      width: clamp(40px, 8.5vw, 50px);
+      height: clamp(40px, 8.5vw, 50px);
+      border-radius: 14px;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: clamp(20px, 4.5vw, 28px);
+      font-size: clamp(18px, 4.5vw, 24px);
       font-weight: 900;
       color: #ffffff;
       cursor: pointer;
-      box-shadow: 0 6px 14px rgba(0, 0, 0, 0.15), inset 0 2px 2px rgba(255, 255, 255, 0.5);
+      box-shadow: 0 5px 12px rgba(0, 0, 0, 0.14), inset 0 2px 2px rgba(255, 255, 255, 0.5);
       border: 2px solid rgba(255, 255, 255, 0.6);
-      transition: all 0.18s ease;
+      transition: all 0.16s ease;
       touch-action: manipulation;
     }
 
     .letter-bubble:hover {
-      transform: translateY(-3px) scale(1.08);
+      transform: translateY(-2px) scale(1.06);
     }
 
     .letter-bubble:active {
@@ -374,22 +390,21 @@
       box-shadow: none;
     }
 
-    /* Speed Quiz True/False (Game 4) */
+    /* Speed Quiz */
     .speed-btn-yes {
       background: linear-gradient(180deg, #4ade80 0%, #16a34a 100%);
       border-color: #86efac;
       color: #ffffff;
-      border-bottom: 6px solid #14532d;
+      border-bottom: 5px solid #14532d;
     }
 
     .speed-btn-no {
       background: linear-gradient(180deg, #f87171 0%, #dc2626 100%);
       border-color: #fca5a5;
       color: #ffffff;
-      border-bottom: 6px solid #7f1d1d;
+      border-bottom: 5px solid #7f1d1d;
     }
 
-    /* Confetti Canvas */
     #confettiCanvas {
       position: fixed;
       inset: 0;
@@ -401,368 +416,288 @@
   </style>
 </head>
 
-<body class="p-2 sm:p-4 min-h-screen">
+<body class="p-2 sm:p-3 min-h-screen">
   <canvas id="confettiCanvas"></canvas>
 
-  <div class="max-w-5xl mx-auto space-y-3 sm:space-y-4">
+  <div class="max-w-2xl mx-auto space-y-2.5 sm:space-y-3">
 
     <!-- =========================================================
-         TOP STUDIO CARD (STUDIO HEADER + NAV + STATS)
+         TOP COMPACT HEADER (Clean, unencumbered, fast)
          ========================================================= -->
-    <header class="studio-card p-3 sm:p-4 flex flex-wrap items-center justify-between gap-2.5">
-      <!-- Left: Back Button & Project Identity -->
-      <div class="flex items-center gap-2 sm:gap-3">
-        <a href="category.html" id="topNavBackBtn" class="w-10 h-10 rounded-full bg-slate-100 border-2 border-slate-300 flex items-center justify-center text-slate-700 hover:bg-slate-200 active:scale-95 transition shadow-sm" aria-label="Retour au menu principal">
-          <i class="fa-solid fa-arrow-left text-base"></i>
+    <header class="compact-header px-3 py-2 sm:px-4 sm:py-2.5 flex items-center justify-between gap-2">
+      <!-- Back + Compact Title -->
+      <div class="flex items-center gap-2">
+        <a href="category.html" class="w-9 h-9 rounded-full bg-slate-100 border-2 border-slate-300 flex items-center justify-center text-slate-700 hover:bg-slate-200 active:scale-95 transition" aria-label="Retour au menu principal">
+          <i class="fa-solid fa-arrow-left text-sm"></i>
         </a>
-        <div class="flex items-center gap-2">
-          <img src="assets/images/fennygo/fenny-avatar.png" alt="Fenny" class="w-9 h-9 sm:w-10 sm:h-10 object-contain drop-shadow">
-          <div>
-            <span class="text-[10px] sm:text-xs font-black text-cyan-800 tracking-wider uppercase block" id="headerHubBadge">
-              🎮 FennyGO • Practice 3AP
-            </span>
-            <h1 class="text-sm sm:text-lg font-black text-slate-900 leading-tight" id="headerHubTitle">
-              Entraînement &amp; Jeux d'Apprentissage
-            </h1>
-          </div>
+        <div class="flex items-center gap-1.5">
+          <img src="assets/images/fennygo/fenny-avatar.png" alt="Fenny" class="w-7 h-7 sm:w-8 sm:h-8 object-contain">
+          <span class="text-sm sm:text-base font-black text-slate-900" id="headerTitle">Practice 3AP</span>
         </div>
       </div>
 
-      <!-- Right: Counters & Language Switcher -->
-      <div class="flex items-center gap-2 sm:gap-3 ml-auto">
-        <!-- Streak -->
-        <div class="flex items-center gap-1.5 px-3 py-1 rounded-full bg-amber-50 border-2 border-amber-300 text-amber-900 font-black text-xs shadow-sm">
-          <span>🔥</span>
-          <span id="statStreak">0</span>
-        </div>
-        <!-- Stars -->
-        <div class="flex items-center gap-1.5 px-3 py-1 rounded-full bg-amber-100 border-2 border-amber-400 text-amber-950 font-black text-xs shadow-sm">
-          <img src="assets/images/games/star.png" alt="Stars" class="w-4 h-4 object-contain">
+      <!-- Stats + Lang Switcher -->
+      <div class="flex items-center gap-1.5 sm:gap-2">
+        <div class="flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-amber-100 border border-amber-400 text-amber-950 font-black text-xs">
+          <span>⭐</span>
           <span id="statStars">0</span>
         </div>
-        <!-- Diamonds -->
-        <div class="flex items-center gap-1.5 px-3 py-1 rounded-full bg-cyan-100 border-2 border-cyan-400 text-cyan-950 font-black text-xs shadow-sm">
-          <img src="assets/images/games/gems.png" alt="Diamonds" class="w-4 h-4 object-contain">
+        <div class="flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-cyan-100 border border-cyan-400 text-cyan-950 font-black text-xs">
+          <span>💎</span>
           <span id="statDiamonds">0</span>
         </div>
-
-        <!-- Trilingual Switcher -->
-        <div class="flex items-center bg-slate-100 p-0.5 rounded-full border-2 border-slate-300 text-[11px] font-black">
-          <button type="button" class="lang-btn px-2.5 py-1 rounded-full transition" data-lang="French">FR</button>
-          <button type="button" class="lang-btn px-2.5 py-1 rounded-full transition" data-lang="English">EN</button>
-          <button type="button" class="lang-btn px-2.5 py-1 rounded-full transition" data-lang="Arabic">عربي</button>
+        <!-- Language Switcher -->
+        <div class="flex items-center bg-slate-100 p-0.5 rounded-full border border-slate-300 text-[10px] sm:text-[11px] font-black">
+          <button type="button" class="lang-btn px-2 py-0.5 rounded-full transition" data-lang="French">FR</button>
+          <button type="button" class="lang-btn px-2 py-0.5 rounded-full transition" data-lang="English">EN</button>
+          <button type="button" class="lang-btn px-2 py-0.5 rounded-full transition" data-lang="Arabic">عربي</button>
         </div>
       </div>
     </header>
 
     <!-- =========================================================
-         VIEW 1 : PRACTICE HUB (9 CATEGORIES GRID)
+         VIEW 1 : 2-COLUMN HUB (DISTRIBUTED IN TWO COLUMNS)
          ========================================================= -->
-    <main id="hubView" class="space-y-4">
-      <!-- Welcome Hero Banner -->
-      <section class="clay-card p-4 sm:p-5 flex flex-col sm:flex-row items-center gap-4 bg-gradient-to-r from-sky-400 via-sky-300 to-amber-200 border-sky-300 border-b-sky-500 text-slate-900">
-        <div class="w-20 h-20 sm:w-24 sm:h-24 flex-shrink-0">
-          <img src="assets/images/category-images/practice.svg" alt="Practice Hub" class="w-full h-full object-contain filter drop-shadow-md">
-        </div>
-        <div class="flex-1 text-center sm:text-left">
-          <span class="inline-block px-3 py-0.5 rounded-full bg-white/80 text-sky-950 text-xs font-black shadow-sm mb-1" id="heroBadge">
-            ⭐ 9 Thèmes Officiels • 4 Mini-Jeux par Thème
-          </span>
-          <h2 class="text-base sm:text-xl font-black text-slate-950 leading-tight" id="heroTitle">
-            Bienvenue dans ton Studio d'Entraînement 3AP !
-          </h2>
-          <p class="text-xs sm:text-sm font-bold text-slate-800 mt-1" id="heroDesc">
-            Choisis un thème de cours pour t'entraîner avec 4 jeux captivants : Écoute 🎧, Mémoire 🃏, Épellation 🔠 et Vrai/Faux ⚡ !
-          </p>
-        </div>
-      </section>
-
-      <!-- 9 Categories Grid -->
-      <section class="grid grid-cols-2 sm:grid-cols-3 gap-3 sm:gap-4" id="categoriesGrid"></section>
+    <main id="hubView" class="space-y-2.5">
+      <!-- 2 Columns Grid for Categories -->
+      <section class="grid grid-cols-2 gap-2.5 sm:gap-3.5" id="categoriesGrid"></section>
     </main>
 
     <!-- =========================================================
-         VIEW 2 : CATEGORY DETAIL PORTAL (CHOOSING AMONG 4 GAMES)
+         VIEW 2 : CATEGORY DETAIL (4 GAMES IN 2 COLUMNS + ALL 10 ITEMS)
          ========================================================= -->
-    <section id="categoryDetailView" class="clay-card p-4 sm:p-6 hidden space-y-4">
-      <!-- Breadcrumb Bar -->
-      <div class="flex items-center justify-between border-b-2 border-sky-100 pb-3">
-        <button type="button" id="backToHubBtn" class="px-3.5 py-1.5 rounded-full bg-slate-100 border-2 border-slate-300 text-slate-700 font-black text-xs hover:bg-slate-200 active:scale-95 transition flex items-center gap-2">
+    <section id="categoryDetailView" class="clay-card p-3 sm:p-4 hidden space-y-3">
+      <!-- Top Action Bar -->
+      <div class="flex items-center justify-between border-b border-sky-100 pb-2">
+        <button type="button" id="backToHubBtn" class="px-3 py-1 rounded-full bg-slate-100 border border-slate-300 text-slate-700 font-black text-xs hover:bg-slate-200 active:scale-95 transition flex items-center gap-1.5">
           <i class="fa-solid fa-arrow-left"></i>
-          <span id="backToHubText">Tous les thèmes</span>
+          <span id="backToHubText">Thèmes</span>
         </button>
-        <span id="catDetailBadge" class="px-3 py-1 rounded-full bg-sky-100 text-sky-900 font-black text-xs border border-sky-300">
-          Thème 3AP
-        </span>
-      </div>
 
-      <!-- Category Hero Banner -->
-      <div class="flex flex-col sm:flex-row items-center gap-4 bg-sky-50 rounded-2xl p-4 border-2 border-sky-200">
-        <div class="w-20 h-20 sm:w-24 sm:h-24 flex-shrink-0">
-          <img id="catDetailImg" src="" alt="Category" class="w-full h-full object-contain filter drop-shadow">
-        </div>
-        <div class="flex-1 text-center sm:text-left">
-          <h2 id="catDetailTitle" class="text-lg sm:text-2xl font-black text-slate-900 leading-tight"></h2>
-          <p id="catDetailDesc" class="text-xs sm:text-sm font-bold text-slate-600 mt-1"></p>
-          <div class="flex flex-wrap items-center justify-center sm:justify-start gap-2 mt-2">
-            <span class="px-2.5 py-0.5 rounded-full bg-emerald-100 border border-emerald-300 text-emerald-900 text-xs font-black">
-              ✓ 10 Éléments &amp; Sons Disponibles
-            </span>
-            <button type="button" id="catDetailPronounceBtn" class="px-3 py-1 rounded-full bg-sky-500 hover:bg-sky-600 text-white text-xs font-black flex items-center gap-1.5 active:scale-95 transition shadow-sm">
-              <i class="fa-solid fa-volume-high"></i>
-              <span id="catDetailPronounceText">Écouter le thème</span>
-            </button>
-          </div>
+        <div class="flex items-center gap-2">
+          <h2 id="catDetailTitle" class="text-sm sm:text-base font-black text-slate-900"></h2>
+          <button type="button" id="catDetailPronounceBtn" class="w-7 h-7 rounded-full bg-sky-500 hover:bg-sky-600 text-white flex items-center justify-center text-xs active:scale-95 transition shadow-sm" title="Écouter">
+            <i class="fa-solid fa-volume-high"></i>
+          </button>
         </div>
       </div>
 
-      <!-- 4 Game Modes Grid -->
+      <!-- 4 Games in 2 Columns -->
       <div>
-        <h3 class="text-sm sm:text-base font-black text-slate-800 mb-3" id="chooseGameModeHeading">
-          🎮 Choisis un mini-jeu pour ce thème :
-        </h3>
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4" id="gameModesGrid"></div>
+        <div class="grid grid-cols-2 gap-2 sm:gap-2.5" id="gameModesGrid"></div>
+      </div>
+
+      <!-- All 10 Elements in 2 Columns -->
+      <div class="border-t border-sky-100 pt-2.5">
+        <div class="flex items-center justify-between mb-2">
+          <span class="text-xs font-black text-slate-700" id="vocabSectionTitle">
+            🖼️ Éléments 3D du thème (10) :
+          </span>
+          <span class="text-[10px] font-bold text-sky-700">Touche pour écouter 🔊</span>
+        </div>
+        <div class="grid grid-cols-2 gap-2" id="catVocabGrid"></div>
       </div>
     </section>
 
     <!-- =========================================================
          VIEW 3 : ACTIVE INTERACTIVE GAME ARENA
          ========================================================= -->
-    <section id="arenaView" class="clay-card p-4 sm:p-6 hidden space-y-4">
+    <section id="arenaView" class="clay-card p-3 sm:p-4 hidden space-y-3">
       <!-- Arena Top Bar -->
-      <div class="flex items-center justify-between border-b-2 border-sky-100 pb-3 gap-2">
-        <button type="button" id="backToCatDetailBtn" class="px-3.5 py-1.5 rounded-full bg-slate-100 border-2 border-slate-300 text-slate-700 font-black text-xs hover:bg-slate-200 active:scale-95 transition flex items-center gap-1.5">
+      <div class="flex items-center justify-between border-b border-sky-100 pb-2 gap-2">
+        <button type="button" id="backToCatDetailBtn" class="px-2.5 py-1 rounded-full bg-slate-100 border border-slate-300 text-slate-700 font-black text-xs hover:bg-slate-200 active:scale-95 transition flex items-center gap-1">
           <i class="fa-solid fa-arrow-left"></i>
           <span id="backToCatDetailText">Jeux</span>
         </button>
 
-        <div class="text-center">
-          <span id="arenaActiveModePill" class="px-3 py-1 rounded-full bg-sky-100 text-sky-900 font-black text-xs border border-sky-300">
-            Jeu en cours
-          </span>
-          <div class="text-[11px] font-bold text-slate-500 mt-0.5">
-            <span id="arenaProgressLabel">Étape 1 / 5</span>
-          </div>
-        </div>
+        <span id="arenaActiveModePill" class="text-xs font-black text-sky-900 bg-sky-100 px-2.5 py-0.5 rounded-full border border-sky-300">
+          Jeu
+        </span>
 
-        <div class="flex items-center gap-2">
-          <span id="arenaStreakBadge" class="hidden px-2.5 py-0.5 rounded-full bg-amber-100 text-amber-900 border border-amber-300 font-black text-xs">
-            🔥 x<span id="arenaStreakNum">2</span>
-          </span>
-          <div class="px-3 py-1 rounded-full bg-sky-50 border border-sky-300 font-black text-xs text-sky-950">
+        <div class="flex items-center gap-1.5">
+          <span id="arenaProgressLabel" class="text-xs font-black text-slate-600">1 / 5</span>
+          <div class="px-2 py-0.5 rounded-full bg-sky-50 border border-sky-300 font-black text-xs text-sky-950">
             Score: <span id="arenaScoreVal">0</span>
           </div>
         </div>
       </div>
 
-      <!-- Game Stage Container (Dynamic content injected by current game) -->
-      <div id="gameStage" class="min-h-[300px] flex flex-col items-center justify-center"></div>
+      <!-- Dynamic Stage Container -->
+      <div id="gameStage" class="min-h-[260px] flex flex-col items-center justify-center"></div>
 
-      <!-- Arena Bottom Feedback -->
-      <div id="arenaFeedback" class="min-h-[28px] text-center text-sm font-black text-slate-700 transition"></div>
+      <!-- Feedback -->
+      <div id="arenaFeedback" class="min-h-[24px] text-center text-xs sm:text-sm font-black text-slate-700 transition"></div>
     </section>
 
     <!-- =========================================================
          VIEW 4 : VICTORY & REWARD SCREEN
          ========================================================= -->
-    <section id="victoryView" class="clay-card p-6 sm:p-8 hidden text-center space-y-4">
-      <div class="w-24 h-24 sm:w-28 sm:h-28 mx-auto">
-        <img src="assets/images/practice/trophy-champion.svg" alt="Trophy" class="w-full h-full object-contain filter drop-shadow-lg animate-bounce">
+    <section id="victoryView" class="clay-card p-4 sm:p-6 hidden text-center space-y-3">
+      <div class="w-20 h-20 mx-auto">
+        <img src="assets/images/practice/trophy-champion.svg" alt="Trophy" class="w-full h-full object-contain filter drop-shadow animate-bounce">
       </div>
 
-      <h2 id="victoryHeading" class="text-xl sm:text-3xl font-black text-slate-900">
-        Super Champion ! Défi Réussi !
+      <h2 id="victoryHeading" class="text-lg sm:text-2xl font-black text-slate-900">
+        Super Champion !
       </h2>
-      <p id="victoryDesc" class="text-xs sm:text-sm font-bold text-slate-600 max-w-md mx-auto">
-        Tu as terminé la session d'entraînement avec brio !
-      </p>
 
-      <div class="flex items-center justify-center gap-3 sm:gap-4 py-2">
-        <div class="p-3 sm:p-4 rounded-2xl bg-amber-50 border-2 border-amber-300 min-w-[100px]">
-          <div class="text-2xl">⭐</div>
-          <div class="font-black text-sm text-amber-950">+<span id="victoryStarsNum">10</span> Étoiles</div>
+      <div class="flex items-center justify-center gap-2.5 py-1">
+        <div class="p-2 sm:p-3 rounded-xl bg-amber-50 border border-amber-300 min-w-[80px]">
+          <div class="text-xl">⭐</div>
+          <div class="font-black text-xs text-amber-950">+<span id="victoryStarsNum">10</span> Étoiles</div>
         </div>
-        <div class="p-3 sm:p-4 rounded-2xl bg-cyan-50 border-2 border-cyan-300 min-w-[100px]">
-          <div class="text-2xl">💎</div>
-          <div class="font-black text-sm text-cyan-950">+<span id="victoryGemsNum">5</span> Diamants</div>
-        </div>
-        <div class="p-3 sm:p-4 rounded-2xl bg-emerald-50 border-2 border-emerald-300 min-w-[100px]">
-          <div class="text-2xl">🎯</div>
-          <div class="font-black text-sm text-emerald-950"><span id="victoryAccuracyNum">100%</span> Précision</div>
+        <div class="p-2 sm:p-3 rounded-xl bg-cyan-50 border border-cyan-300 min-w-[80px]">
+          <div class="text-xl">💎</div>
+          <div class="font-black text-xs text-cyan-950">+<span id="victoryGemsNum">5</span> Diamants</div>
         </div>
       </div>
 
-      <div class="flex flex-wrap items-center justify-center gap-3 pt-3">
-        <button type="button" id="replayCurrentGameBtn" class="clay-btn px-5 py-2.5 bg-gradient-to-b from-sky-400 to-sky-600 text-white text-sm shadow">
+      <div class="flex flex-wrap items-center justify-center gap-2 pt-2">
+        <button type="button" id="replayCurrentGameBtn" class="clay-btn px-4 py-2 bg-gradient-to-b from-sky-400 to-sky-600 text-white text-xs sm:text-sm shadow">
           <i class="fa-solid fa-rotate-right"></i>
-          <span id="replayBtnText">Rejouer ce jeu</span>
+          <span id="replayBtnText">Rejouer</span>
         </button>
-        <button type="button" id="switchGameInCatBtn" class="clay-btn px-5 py-2.5 bg-gradient-to-b from-amber-400 to-amber-500 text-amber-950 text-sm shadow">
+        <button type="button" id="switchGameInCatBtn" class="clay-btn px-4 py-2 bg-gradient-to-b from-amber-400 to-amber-500 text-amber-950 text-xs sm:text-sm shadow">
           <i class="fa-solid fa-gamepad"></i>
-          <span id="switchGameText">Autre jeu du thème</span>
+          <span id="switchGameText">Autre jeu</span>
         </button>
-        <button type="button" id="victoryAllThemesBtn" class="clay-btn px-5 py-2.5 bg-slate-100 border-slate-300 text-slate-800 text-sm shadow hover:bg-slate-200">
+        <button type="button" id="victoryAllThemesBtn" class="clay-btn px-4 py-2 bg-slate-100 border-slate-300 text-slate-800 text-xs sm:text-sm shadow hover:bg-slate-200">
           <i class="fa-solid fa-grid-2"></i>
-          <span id="victoryAllThemesText">Tous les thèmes</span>
+          <span id="victoryAllThemesText">Thèmes</span>
         </button>
       </div>
     </section>
 
   </div>
 
-  <!-- Audio Sound Effects -->
   <audio id="audioCheering" src="assets/images/music/cheering.mp3" preload="auto"></audio>
   <audio id="audioWrong" src="assets/images/music/wrong- sound.mp3" preload="auto"></audio>
 
-  <script src="js/app-lang.js?v=57"></script>
-  <script src="js/fenny-companion.js?v=57"></script>
+  <script src="js/app-lang.js?v=58"></script>
+  <script src="js/fenny-companion.js?v=58"></script>
   <script>
     (() => {
       "use strict";
 
-      // 1. Trilingual Dictionary
+      // 1. Sleek, Unencumbered Trilingual Dictionary
       const I18N = {
         French: {
-          hubBadge: "🎮 FennyGO • Practice 3AP",
-          hubTitle: "Entraînement & Jeux d'Apprentissage",
-          heroBadge: "⭐ 9 Thèmes Officiels • 4 Mini-Jeux par Thème",
-          heroTitle: "Bienvenue dans ton Studio d'Entraînement 3AP !",
-          heroDesc: "Choisis un thème de cours pour t'entraîner avec 4 jeux captivants : Écoute 🎧, Mémoire 🃏, Épellation 🔠 et Vrai/Faux ⚡ !",
-          playAllGames: "Jouer aux 4 jeux",
-          availableItems: "10 Éléments & Sons",
-          backToHub: "Tous les thèmes",
-          catDetailBadge: "Thème 3AP",
-          catDetailPronounce: "Écouter le thème",
-          chooseGameMode: "🎮 Choisis un mini-jeu pour ce thème :",
+          headerTitle: "Practice 3AP",
+          playBtn: "Jouer",
+          backToHub: "Thèmes",
+          vocabTitle: "🖼️ Tous les éléments 3D (10) :",
           backToGames: "Jeux",
-          step: "Étape",
-          pairsFound: "Paires trouvées",
-          listenPrompt: "Écoute attentivement et touche la bonne image 3D !",
-          replayAudio: "Réécouter",
-          spellingPrompt: "Remets les lettres dans le bon ordre pour écrire :",
+          step: "Question",
+          pairsFound: "Paires",
+          listenPrompt: "Écoute et touche la bonne image :",
+          replayAudio: "Écouter",
+          spellingPrompt: "Écris le mot :",
           speedPrompt: "Est-ce bien cet élément ?",
           yes: "VRAI 👍",
           no: "FAUX 👎",
-          correctMsg: "🎉 Bravo ! Excellente réponse !",
-          wrongMsg: "❌ Oups ! Réessaie encore !",
-          victoryTitle: "Super Champion ! Défi Réussi !",
-          victoryDesc: "Tu as terminé la session d'entraînement avec brio ! Continue comme ça !",
-          replayGame: "Rejouer ce jeu",
-          switchGame: "Autre jeu du thème",
-          allThemes: "Tous les thèmes",
+          correctMsg: "🎉 Bravo !",
+          wrongMsg: "❌ Oups, réessaie !",
+          victoryTitle: "Super Champion !",
+          replayGame: "Rejouer",
+          switchGame: "Autre jeu",
+          allThemes: "Thèmes",
           modes: {
-            listen: { title: "Écoute & Trouve", desc: "Écoute le mot en anglais et touche la bonne image 3D !" },
-            memory: { title: "Cartes Mémoire 3D", desc: "Retourne les cartes et retrouve toutes les paires cachées !" },
-            spelling: { title: "Épellation Magique", desc: "Regarde l'objet 3D et place les bulles de lettres dans l'ordre !" },
-            speed: { title: "Vrai ou Faux ? ⚡", desc: "Réponds le plus vite possible avant la fin du sablier !" }
+            listen: { title: "Écoute & Trouve", badge: "🎧 Écoute" },
+            memory: { title: "Mémoire 3D", badge: "🃏 Mémoire" },
+            spelling: { title: "Épellation", badge: "🔠 Épellation" },
+            speed: { title: "Vrai ou Faux", badge: "⚡ Vrai/Faux" }
           },
           categories: {
-            alphabet: { title: "Alphabet & Sons", desc: "Lettres, sons phoniques et mots de base A à Z" },
-            numbers: { title: "Nombres & Calcul", desc: "Les chiffres 1 à 10 et le comptage d'objets 3D" },
-            colors: { title: "Couleurs Magiques", desc: "Toutes les couleurs vives du programme scolaire" },
-            geometry: { title: "Formes Géométriques", desc: "Cercle, carré, triangle et formes du quotidien" },
-            family: { title: "Famille & Amis", desc: "Les membres de la famille : père, mère, enfants..." },
-            stationery: { title: "Fournitures Scolaires", desc: "Cartable, livre, cahier, crayons et outils" },
-            bodyParts: { title: "Parties du Corps", desc: "Visage, mains, pieds et membres du corps" },
-            dailyRoutine: { title: "Routine Quotidienne", desc: "Du réveil jusqu'au coucher, étape par étape" },
-            commonOrders: { title: "Ordres & Actions", desc: "Consignes de classe : levez-vous, écoutez..." }
+            alphabet: { title: "Alphabet", sub: "A - Z" },
+            numbers: { title: "Nombres", sub: "1 - 10" },
+            colors: { title: "Couleurs", sub: "Couleurs 3D" },
+            geometry: { title: "Géométrie", sub: "Formes" },
+            family: { title: "Famille", sub: "Membres" },
+            stationery: { title: "Fournitures", sub: "Classe" },
+            bodyParts: { title: "Corps Humain", sub: "Visage & Corps" },
+            dailyRoutine: { title: "Routine", sub: "Journée" },
+            commonOrders: { title: "Ordres", sub: "Consignes" }
           }
         },
         English: {
-          hubBadge: "🎮 FennyGO • Practice 3AP",
-          hubTitle: "Practice & Learning Games Hub",
-          heroBadge: "⭐ 9 Syllabus Topics • 4 Mini-Games per Topic",
-          heroTitle: "Welcome to your 3AP Practice Studio!",
-          heroDesc: "Choose a course topic to practice with 4 fun interactive games: Sound Match 🎧, 3D Memory 🃏, Word Builder 🔠 and True/False ⚡!",
-          playAllGames: "Play 4 Games",
-          availableItems: "10 Items & Sounds",
-          backToHub: "All Topics",
-          catDetailBadge: "3AP Syllabus Topic",
-          catDetailPronounce: "Listen to Topic",
-          chooseGameMode: "🎮 Choose a mini-game for this topic:",
+          headerTitle: "Practice 3AP",
+          playBtn: "Play",
+          backToHub: "Topics",
+          vocabTitle: "🖼️ All 3D Items (10):",
           backToGames: "Games",
-          step: "Step",
-          pairsFound: "Pairs Found",
-          listenPrompt: "Listen carefully and touch the matching 3D picture!",
-          replayAudio: "Listen Again",
-          spellingPrompt: "Arrange the letter bubbles in order to spell:",
+          step: "Question",
+          pairsFound: "Pairs",
+          listenPrompt: "Listen and touch the right picture:",
+          replayAudio: "Listen",
+          spellingPrompt: "Spell the word:",
           speedPrompt: "Is this the correct item?",
           yes: "TRUE 👍",
           no: "FALSE 👎",
-          correctMsg: "🎉 Awesome! Great job!",
-          wrongMsg: "❌ Oops! Try again!",
-          victoryTitle: "Super Champion! Mission Complete!",
-          victoryDesc: "You completed this practice session with flying colors! Keep practicing!",
-          replayGame: "Replay this game",
-          switchGame: "Choose another game",
-          allThemes: "All Topics",
+          correctMsg: "🎉 Great Job!",
+          wrongMsg: "❌ Try again!",
+          victoryTitle: "Super Champion!",
+          replayGame: "Replay",
+          switchGame: "Other game",
+          allThemes: "Topics",
           modes: {
-            listen: { title: "Sound Match", desc: "Listen to the English word and tap the matching 3D image!" },
-            memory: { title: "3D Memory Match", desc: "Flip cards and find all hidden pairs!" },
-            spelling: { title: "Word Builder", desc: "Look at the 3D object and arrange letter bubbles in order!" },
-            speed: { title: "True or False ? ⚡", desc: "Answer as fast as possible before the timer runs out!" }
+            listen: { title: "Sound Match", badge: "🎧 Listen" },
+            memory: { title: "3D Memory", badge: "🃏 Memory" },
+            spelling: { title: "Spelling", badge: "🔠 Spelling" },
+            speed: { title: "True or False", badge: "⚡ True/False" }
           },
           categories: {
-            alphabet: { title: "Alphabet & Phonics", desc: "Letters, phonetic sounds and core words A to Z" },
-            numbers: { title: "Numbers & Counting", desc: "Numbers 1 to 10 and 3D object counting" },
-            colors: { title: "Magic Colors", desc: "Vibrant colors from the 3AP curriculum" },
-            geometry: { title: "Geometric Shapes", desc: "Circle, square, triangle and everyday shapes" },
-            family: { title: "Family & Friends", desc: "Family members: father, mother, brother, sister" },
-            stationery: { title: "School Stationery", desc: "School bag, book, pencil, eraser and tools" },
-            bodyParts: { title: "Body Parts", desc: "Face, limbs and anatomy words" },
-            dailyRoutine: { title: "Daily Routine", desc: "From waking up to sleeping, step by step" },
-            commonOrders: { title: "Classroom Orders", desc: "Commands: stand up, sit down, listen, look" }
+            alphabet: { title: "Alphabet", sub: "A - Z" },
+            numbers: { title: "Numbers", sub: "1 - 10" },
+            colors: { title: "Colors", sub: "3D Colors" },
+            geometry: { title: "Geometry", sub: "Shapes" },
+            family: { title: "Family", sub: "Members" },
+            stationery: { title: "Stationery", sub: "School Items" },
+            bodyParts: { title: "Body Parts", sub: "Face & Limbs" },
+            dailyRoutine: { title: "Daily Routine", sub: "Everyday" },
+            commonOrders: { title: "Orders", sub: "Actions" }
           }
         },
         Arabic: {
-          hubBadge: "🎮 فينيغو • تدريب السنة 3 ابتدائي",
-          hubTitle: "فضاء التدريب والألعاب التعليمية",
-          heroBadge: "⭐ 9 دروس مقررة • 4 ألعاب تفاعلية لكل درس",
-          heroTitle: "مرحباً بك في استوديو التدريب 3AP !",
-          heroDesc: "اختر درساً للتدريب والتسلية مع 4 ألعاب شيقة: استمع واختر 🎧، بطاقات الذاكرة 🃏، تركيب الكلمات 🔠 وصح أم خطأ ⚡!",
-          playAllGames: "العب الألعاب الـ 4",
-          availableItems: "10 عناصر ونطق صوتي",
-          backToHub: "جميع الدروس",
-          catDetailBadge: "برنامج 3AP",
-          catDetailPronounce: "استمع إلى اسم الدرس",
-          chooseGameMode: "🎮 اختر لعبة تعليمية لهذا الدرس:",
+          headerTitle: "تدريب 3AP",
+          playBtn: "العب",
+          backToHub: "الدروس",
+          vocabTitle: "🖼️ جميع عناصر الدرس ثلاثية الأبعاد (10):",
           backToGames: "الألعاب",
           step: "السؤال",
-          pairsFound: "الأزواج المكتشفة",
-          listenPrompt: "استمع جيداً والمس الصورة ثلاثية الأبعاد المطابقة!",
-          replayAudio: "إعادة الاستماع",
-          spellingPrompt: "رتب فقاعات الحروف لكتابة الكلمة:",
-          speedPrompt: "هل هذا العنصر مطابق للكلمة؟",
+          pairsFound: "الأزواج",
+          listenPrompt: "استمع والمس الصورة المطابقة:",
+          replayAudio: "استماع",
+          spellingPrompt: "رتب حروف الكلمة:",
+          speedPrompt: "هل هذا العنصر مطابق؟",
           yes: "صحيح 👍",
           no: "خطأ 👎",
-          correctMsg: "🎉 ممتاز يا بطل! إجابة صحيحة!",
-          wrongMsg: "❌ أوبس! حاول مرة أخرى!",
-          victoryTitle: "بطل ممتاز! أحسنت صنعاً!",
-          victoryDesc: "لقد أتممت جلسة التدريب بنجاح باهر! واصل التقدم لكسب المزيد من النجوم!",
-          replayGame: "إعادة هذه اللعبة",
-          switchGame: "لعبة أخرى من نفس الدرس",
-          allThemes: "جميع الدروس",
+          correctMsg: "🎉 أحسنت يا بطل!",
+          wrongMsg: "❌ حاول مرة أخرى!",
+          victoryTitle: "بطل ممتاز!",
+          replayGame: "إعادة",
+          switchGame: "لعبة أخرى",
+          allThemes: "الدروس",
           modes: {
-            listen: { title: "استمع واختر", desc: "استمع إلى النطق بالإنجليزية والمس الصورة الصحيحة!" },
-            memory: { title: "بطاقات الذاكرة 3D", desc: "اقلب البطاقات واعثر على جميع الأزواج المتطابقة!" },
-            spelling: { title: "تركيب الكلمات", desc: "انظر إلى العنصر 3D ورتب فقاعات الحروف!" },
-            speed: { title: "صح أم خطأ ؟ ⚡", desc: "أجب بسرعة قبل انتهاء مؤقت الوقت الممتع!" }
+            listen: { title: "استمع واختر", badge: "🎧 استماع" },
+            memory: { title: "الذاكرة 3D", badge: "🃏 ذاكرة" },
+            spelling: { title: "التهجئة", badge: "🔠 كتابة" },
+            speed: { title: "صح أم خطأ", badge: "⚡ سريع" }
           },
           categories: {
-            alphabet: { title: "الحروف والأصوات", desc: "الحروف الأبجدية، الأصوات والكلمات الأولى" },
-            numbers: { title: "الأرقام والعد", desc: "الأرقام من 1 إلى 10 وعد المجسمات" },
-            colors: { title: "الألوان السحرية", desc: "الألوان الزاهية المقررة في المنهج" },
-            geometry: { title: "الأشكال الهندسية", desc: "الدائرة والمربع والمثلث وأشكال الحياة" },
-            family: { title: "العائلة والأصدقاء", desc: "أفراد الأسرة: الأب، الأم، الأخ، الأخت" },
-            stationery: { title: "الأدوات المدرسية", desc: "المحفظة، الكتاب، القلم، المسطرة والممحاة" },
-            bodyParts: { title: "أعضاء الجسم", desc: "الرأس، اليدان، العينان، والقدمان" },
-            dailyRoutine: { title: "الروتين اليومي", desc: "الاستيقاظ، تنظيف الأسنان والذهاب للمدرسة" },
-            commonOrders: { title: "الأوامر والتعليمات", desc: "أوامر القسم: قف، اجلس، استمع، اكتب" }
+            alphabet: { title: "الحروف", sub: "الأبجدية A-Z" },
+            numbers: { title: "الأرقام", sub: "العد 1-10" },
+            colors: { title: "الألوان", sub: "الألوان 3D" },
+            geometry: { title: "الأشكال", sub: "الهندسة" },
+            family: { title: "العائلة", sub: "أفراد الأسرة" },
+            stationery: { title: "الأدوات", sub: "المحفظة والقسم" },
+            bodyParts: { title: "الجسم", sub: "أعضاء الجسم" },
+            dailyRoutine: { title: "الروتين", sub: "أنشطة اليوم" },
+            commonOrders: { title: "الأوامر", sub: "التعليمات" }
           }
         }
       };
 
-      // 2. Comprehensive 9-Topic Dataset with verified local 3D images
+      // 2. Verified 10-Item Dataset per Category with verified local 3D images
       const DATASET = {
         alphabet: [
           { id: "apple", word: "Apple", fr: "Pomme", ar: "تفاحة", img: "assets/images/alphabet/A/apple.png" },
@@ -777,16 +712,16 @@
           { id: "mango", word: "Mango", fr: "Mangue", ar: "مانجو", img: "assets/images/alphabet/M/mango.png" }
         ],
         numbers: [
-          { id: "one", word: "One", fr: "Un", ar: "واحد", img: "assets/images/number/one.png", sub: "1 Apple" },
-          { id: "two", word: "Two", fr: "Deux", ar: "اثنان", img: "assets/images/number/two.png", sub: "2 Birds" },
-          { id: "three", word: "Three", fr: "Trois", ar: "ثلاثة", img: "assets/images/number/three.png", sub: "3 Cars" },
-          { id: "four", word: "Four", fr: "Quatre", ar: "أربعة", img: "assets/images/number/four.png", sub: "4 Balls" },
-          { id: "five", word: "Five", fr: "Cinq", ar: "خمسة", img: "assets/images/number/five.png", sub: "5 Cakes" },
-          { id: "six", word: "Six", fr: "Six", ar: "ستة", img: "assets/images/number/six.png", sub: "6 Butterflies" },
-          { id: "seven", word: "Seven", fr: "Sept", ar: "سبعة", img: "assets/images/number/seven.png", sub: "7 Pencils" },
-          { id: "eight", word: "Eight", fr: "Huit", ar: "ثمانية", img: "assets/images/number/eight.png", sub: "8 Sunflowers" },
-          { id: "nine", word: "Nine", fr: "Neuf", ar: "تسعة", img: "assets/images/number/nine.png", sub: "9 Balloons" },
-          { id: "ten", word: "Ten", fr: "Dix", ar: "عشرة", img: "assets/images/number/ten.png", sub: "10 Stars" }
+          { id: "one", word: "One", fr: "Un", ar: "واحد", img: "assets/images/number/one.png" },
+          { id: "two", word: "Two", fr: "Deux", ar: "اثنان", img: "assets/images/number/two.png" },
+          { id: "three", word: "Three", fr: "Trois", ar: "ثلاثة", img: "assets/images/number/three.png" },
+          { id: "four", word: "Four", fr: "Quatre", ar: "أربعة", img: "assets/images/number/four.png" },
+          { id: "five", word: "Five", fr: "Cinq", ar: "خمسة", img: "assets/images/number/five.png" },
+          { id: "six", word: "Six", fr: "Six", ar: "ستة", img: "assets/images/number/six.png" },
+          { id: "seven", word: "Seven", fr: "Sept", ar: "سبعة", img: "assets/images/number/seven.png" },
+          { id: "eight", word: "Eight", fr: "Huit", ar: "ثمانية", img: "assets/images/number/eight.png" },
+          { id: "nine", word: "Nine", fr: "Neuf", ar: "تسعة", img: "assets/images/number/nine.png" },
+          { id: "ten", word: "Ten", fr: "Dix", ar: "عشرة", img: "assets/images/number/ten.png" }
         ],
         colors: [
           { id: "red", word: "Red", fr: "Rouge", ar: "أحمر", img: "assets/images/color/red/apple.png" },
@@ -808,7 +743,9 @@
           { id: "diamond", word: "Diamond", fr: "Losange", ar: "معين", img: "assets/images/geometry/diamond.png" },
           { id: "oval", word: "Oval", fr: "Ovale", ar: "بيضاوي", img: "assets/images/geometry/oval.png" },
           { id: "star", word: "Star", fr: "Étoile", ar: "نجمة", img: "assets/images/geometry/star.png" },
-          { id: "heart", word: "Heart", fr: "Cœur", ar: "قلب", img: "assets/images/geometry/heart.png" }
+          { id: "heart", word: "Heart", fr: "Cœur", ar: "قلب", img: "assets/images/geometry/heart.png" },
+          { id: "cube", word: "Cube", fr: "Cube", ar: "مكعب", img: "assets/images/geometry/cube.png" },
+          { id: "hexagon", word: "Hexagon", fr: "Hexagone", ar: "سداسي", img: "assets/images/geometry/hexagon.png" }
         ],
         family: [
           { id: "father", word: "Father", fr: "Père", ar: "أب", img: "assets/images/family/father.png" },
@@ -818,7 +755,9 @@
           { id: "brother", word: "Brother", fr: "Frère", ar: "أخ", img: "assets/images/family/myBrother.png" },
           { id: "sister", word: "Sister", fr: "Sœur", ar: "أخت", img: "assets/images/family/mySister.png" },
           { id: "son", word: "Son", fr: "Fils", ar: "ابن", img: "assets/images/family/son.png" },
-          { id: "daughter", word: "Daughter", fr: "Fille", ar: "ابنة", img: "assets/images/family/daughter.png" }
+          { id: "daughter", word: "Daughter", fr: "Fille", ar: "ابنة", img: "assets/images/family/daughter.png" },
+          { id: "myfather", word: "My Dad", fr: "Mon Papa", ar: "أبي", img: "assets/images/family/myFather.png" },
+          { id: "mymother", word: "My Mom", fr: "Ma Maman", ar: "أمي", img: "assets/images/family/myMother.png" }
         ],
         stationery: [
           { id: "schoolbag", word: "School bag", fr: "Cartable", ar: "محفظة", img: "assets/images/stationery/schoolbag.png" },
@@ -849,11 +788,11 @@
           { id: "washface", word: "Wash face", fr: "Se laver le visage", ar: "يغسل وجهه", img: "assets/images/daily-routine/washface.png" },
           { id: "brushteeth", word: "Brush teeth", fr: "Se brosser les dents", ar: "ينظف أسنانه", img: "assets/images/daily-routine/brushteeth.png" },
           { id: "getdressed", word: "Get dressed", fr: "S'habiller", ar: "يرتدي ملابسه", img: "assets/images/daily-routine/getdressed.png" },
-          { id: "breakfast", word: "Breakfast", fr: "Prendre le petit déjeuner", ar: "يتناول الفطور", img: "assets/images/daily-routine/breakfast.png" },
+          { id: "breakfast", word: "Breakfast", fr: "Petit déjeuner", ar: "يتناول الفطور", img: "assets/images/daily-routine/breakfast.png" },
           { id: "goschool", word: "Go to school", fr: "Aller à l'école", ar: "يذهب إلى المدرسة", img: "assets/images/daily-routine/goschool.png" },
-          { id: "study", word: "Study", fr: "Étudier en classe", ar: "يدرس", img: "assets/images/daily-routine/study.png" },
-          { id: "play", word: "Play", fr: "Jouer avec ses amis", ar: "يلعب", img: "assets/images/daily-routine/play.png" },
-          { id: "homework", word: "Homework", fr: "Faire ses devoirs", ar: "يحل واجباته", img: "assets/images/daily-routine/homework.png" },
+          { id: "study", word: "Study", fr: "Étudier", ar: "يدرس", img: "assets/images/daily-routine/study.png" },
+          { id: "play", word: "Play", fr: "Jouer", ar: "يلعب", img: "assets/images/daily-routine/play.png" },
+          { id: "homework", word: "Homework", fr: "Devoirs", ar: "يحل واجباته", img: "assets/images/daily-routine/homework.png" },
           { id: "sleep", word: "Sleep", fr: "Dormir", ar: "ينام", img: "assets/images/daily-routine/sleep.png" }
         ],
         commonOrders: [
@@ -863,32 +802,40 @@
           { id: "listen", word: "Listen", fr: "Écoutez", ar: "استمع", img: "assets/images/common-orders/listen.png" },
           { id: "look", word: "Look", fr: "Regardez", ar: "انظر", img: "assets/images/common-orders/look.png" },
           { id: "erase", word: "Erase", fr: "Effacez", ar: "امسح", img: "assets/images/common-orders/erase.png" },
-          { id: "showpoint", word: "Show and point", fr: "Montrez du doigt", ar: "أشر", img: "assets/images/common-orders/showpoint.png" },
+          { id: "showpoint", word: "Show and point", fr: "Montrez", ar: "أشر", img: "assets/images/common-orders/showpoint.png" },
           { id: "match", word: "Match", fr: "Reliez", ar: "صل / طابق", img: "assets/images/common-orders/match.png" },
           { id: "read", word: "Read", fr: "Lisez", ar: "اقرأ", img: "assets/images/common-orders/read.png" },
           { id: "write", word: "Write", fr: "Écrivez", ar: "اكتب", img: "assets/images/common-orders/write.png" }
         ]
       };
 
-      // State Management
+      const CATEGORY_ICONS = {
+        alphabet: "assets/images/category-images/alphabet.png",
+        numbers: "assets/images/category-images/numbers.png",
+        colors: "assets/images/category-images/colors.png",
+        geometry: "assets/images/category-images/geometry.png",
+        family: "assets/images/category-images/family.png",
+        stationery: "assets/images/category-images/stationery.png",
+        bodyParts: "assets/images/category-images/body-parts.png",
+        dailyRoutine: "assets/images/category-images/daily-routine.png",
+        commonOrders: "assets/images/category-images/common-orders.png"
+      };
+
+      // State
       let currentLang = localStorage.getItem("selectedLanguage") || "French";
       if (!I18N[currentLang]) currentLang = "French";
 
       let starsCount = parseInt(localStorage.getItem("kidsLearner_stars") || "18", 10);
       let diamondsCount = parseInt(localStorage.getItem("kidsLearner_diamonds") || "12", 10);
-      let streakCount = 0;
-
       let selectedCatId = null;
-      let activeGameMode = null; // 'listen' | 'memory' | 'spelling' | 'speed'
+      let activeGameMode = null;
 
-      // Arena Runtime State
       let gameQuestions = [];
       let currentQIndex = 0;
       let gameScore = 0;
       let correctAnswersCount = 0;
       let totalQuestions = 5;
 
-      // Audio Elements
       const cheeringAudio = document.getElementById("audioCheering");
       const wrongAudio = document.getElementById("audioWrong");
 
@@ -913,7 +860,6 @@
       function updateStatsDisplay() {
         document.getElementById("statStars").textContent = starsCount;
         document.getElementById("statDiamonds").textContent = diamondsCount;
-        document.getElementById("statStreak").textContent = streakCount;
         localStorage.setItem("kidsLearner_stars", starsCount);
         localStorage.setItem("kidsLearner_diamonds", diamondsCount);
       }
@@ -923,31 +869,22 @@
         localStorage.setItem("selectedLanguage", lang);
         const t = I18N[lang];
 
-        // RTL adjustment
         document.documentElement.dir = lang === "Arabic" ? "rtl" : "ltr";
         document.documentElement.lang = lang === "Arabic" ? "ar" : (lang === "French" ? "fr" : "en");
 
-        // Header
-        document.getElementById("headerHubBadge").textContent = t.hubBadge;
-        document.getElementById("headerHubTitle").textContent = t.hubTitle;
-        document.getElementById("heroBadge").textContent = t.heroBadge;
-        document.getElementById("heroTitle").textContent = t.heroTitle;
-        document.getElementById("heroDesc").textContent = t.heroDesc;
+        document.getElementById("headerTitle").textContent = t.headerTitle;
         document.getElementById("backToHubText").textContent = t.backToHub;
-        document.getElementById("catDetailBadge").textContent = t.catDetailBadge;
-        document.getElementById("catDetailPronounceText").textContent = t.catDetailPronounce;
-        document.getElementById("chooseGameModeHeading").textContent = t.chooseGameMode;
+        document.getElementById("vocabSectionTitle").textContent = t.vocabTitle;
         document.getElementById("backToCatDetailText").textContent = t.backToGames;
         document.getElementById("replayBtnText").textContent = t.replayGame;
         document.getElementById("switchGameText").textContent = t.switchGame;
         document.getElementById("victoryAllThemesText").textContent = t.allThemes;
 
-        // Language Pills Active State
         document.querySelectorAll(".lang-btn").forEach(btn => {
           if (btn.dataset.lang === lang) {
-            btn.className = "lang-btn px-2.5 py-1 rounded-full transition bg-sky-500 text-white shadow-sm";
+            btn.className = "lang-btn px-2 py-0.5 rounded-full transition bg-sky-500 text-white shadow-sm";
           } else {
-            btn.className = "lang-btn px-2.5 py-1 rounded-full transition text-slate-600 hover:text-slate-900";
+            btn.className = "lang-btn px-2 py-0.5 rounded-full transition text-slate-600 hover:text-slate-900";
           }
         });
 
@@ -958,48 +895,41 @@
       }
 
       // =========================================================
-      // VIEW 1 : RENDER CATEGORIES HUB (9 TOPICS)
+      // 1. RENDER 2-COLUMN HUB (9 TOPICS WITH 3D PREVIEWS)
       // =========================================================
-      const CATEGORY_ICONS = {
-        alphabet: "assets/images/category-images/alphabet.png",
-        numbers: "assets/images/category-images/numbers.png",
-        colors: "assets/images/category-images/colors.png",
-        geometry: "assets/images/category-images/geometry.png",
-        family: "assets/images/category-images/family.png",
-        stationery: "assets/images/category-images/stationery.png",
-        bodyParts: "assets/images/category-images/body-parts.png",
-        dailyRoutine: "assets/images/category-images/daily-routine.png",
-        commonOrders: "assets/images/category-images/common-orders.png"
-      };
-
       function renderCategoriesHub() {
         const grid = document.getElementById("categoriesGrid");
         grid.innerHTML = "";
         const t = I18N[currentLang];
 
-        Object.keys(DATASET).forEach(catId => {
+        const catKeys = Object.keys(DATASET);
+        catKeys.forEach((catId, idx) => {
           const catInfo = t.categories[catId];
           const iconSrc = CATEGORY_ICONS[catId];
+          const items = DATASET[catId];
+          const previewThumbs = items.slice(0, 3);
 
           const card = document.createElement("div");
-          card.className = "practice-cat-card";
+          // 9th card spans 2 columns neatly
+          card.className = idx === catKeys.length - 1 ? "cat-card-2col col-span-2 sm:col-span-1 max-w-sm mx-auto w-full" : "cat-card-2col";
+
+          let thumbsHtml = "";
+          previewThumbs.forEach(it => {
+            thumbsHtml += `<img src="${it.img}" alt="${it.word}" class="mini-item-thumb">`;
+          });
+
           card.innerHTML = `
-            <div class="cat-thumb-wrap">
+            <div class="cat-icon-wrap">
               <img src="${iconSrc}" alt="${catInfo.title}">
             </div>
-            <h3 class="text-xs sm:text-base font-black text-slate-800 leading-snug">${catInfo.title}</h3>
-            <p class="text-[10px] sm:text-xs font-bold text-slate-500 line-clamp-1 mt-0.5">${catInfo.desc}</p>
+            <h3 class="text-xs sm:text-sm font-black text-slate-900 leading-tight">${catInfo.title}</h3>
             
-            <div class="mode-dots">
-              <span class="mode-pill"><span>🎧</span> ${t.modes.listen.title}</span>
-              <span class="mode-pill"><span>🃏</span> ${t.modes.memory.title}</span>
-              <span class="mode-pill"><span>🔠</span> ${t.modes.spelling.title}</span>
-              <span class="mode-pill"><span>⚡</span> ${t.modes.speed.title}</span>
+            <div class="item-preview-strip" title="${items.length} 3D Items">
+              ${thumbsHtml}
             </div>
 
-            <button type="button" class="clay-btn w-full mt-2 py-1.5 px-3 bg-gradient-to-b from-sky-400 to-sky-600 text-white text-xs font-black shadow-sm">
-              <span>🎮</span>
-              <span>${t.playAllGames}</span>
+            <button type="button" class="clay-btn w-full mt-1 py-1 px-2.5 bg-gradient-to-b from-sky-400 to-sky-600 text-white text-[11px] font-black shadow-sm">
+              <span>🎮 ${t.playBtn}</span>
             </button>
           `;
 
@@ -1012,7 +942,7 @@
       }
 
       // =========================================================
-      // VIEW 2 : CATEGORY DETAIL PORTAL
+      // 2. CATEGORY DETAIL (4 GAMES IN 2 COLUMNS + ALL 10 ITEMS)
       // =========================================================
       function openCategoryDetail(catId) {
         selectedCatId = catId;
@@ -1027,77 +957,89 @@
       function renderCategoryDetail(catId) {
         const t = I18N[currentLang];
         const catInfo = t.categories[catId];
-        const iconSrc = CATEGORY_ICONS[catId];
 
-        document.getElementById("catDetailImg").src = iconSrc;
         document.getElementById("catDetailTitle").textContent = catInfo.title;
-        document.getElementById("catDetailDesc").textContent = catInfo.desc;
-
         document.getElementById("catDetailPronounceBtn").onclick = () => {
           speak(catInfo.title);
         };
 
-        const grid = document.getElementById("gameModesGrid");
-        grid.innerHTML = "";
+        // Render 4 Games in 2 Columns
+        const gamesGrid = document.getElementById("gameModesGrid");
+        gamesGrid.innerHTML = "";
 
         const modesConfig = [
           {
             id: "listen",
             icon: "assets/images/practice/mode-listen.svg",
-            bg: "bg-sky-50 border-sky-300",
-            badge: "🎧 Phonics & Sound Match",
             color: "from-sky-400 to-sky-600"
           },
           {
             id: "memory",
             icon: "assets/images/practice/mode-memory.svg",
-            bg: "bg-purple-50 border-purple-300",
-            badge: "🃏 3D Memory Cards Match",
             color: "from-purple-500 to-indigo-600"
           },
           {
             id: "spelling",
             icon: "assets/images/practice/mode-spelling.svg",
-            bg: "bg-emerald-50 border-emerald-300",
-            badge: "🔠 Word Builder & Phonics",
             color: "from-emerald-400 to-teal-600"
           },
           {
             id: "speed",
             icon: "assets/images/practice/mode-speed.svg",
-            bg: "bg-rose-50 border-rose-300",
-            badge: "⚡ Speed Quiz • True or False",
             color: "from-rose-400 to-red-600"
           }
         ];
 
         modesConfig.forEach(m => {
           const modeInfo = t.modes[m.id];
-          const card = document.createElement("div");
-          card.className = "game-mode-card";
-          card.innerHTML = `
-            <div class="mode-icon-circle ${m.bg}">
-              <img src="${m.icon}" alt="${modeInfo.title}">
-            </div>
-            <span class="text-[10px] font-black uppercase tracking-wider text-sky-800 mb-0.5">${m.badge}</span>
-            <h4 class="text-sm sm:text-base font-black text-slate-900 mb-1">${modeInfo.title}</h4>
-            <p class="text-xs font-bold text-slate-500 max-w-xs mb-3">${modeInfo.desc}</p>
-            <button type="button" class="clay-btn w-full py-2 px-4 bg-gradient-to-b ${m.color} text-white text-xs sm:text-sm font-black shadow">
-              <span>▶</span>
-              <span>Lancer le jeu</span>
+          const gCard = document.createElement("div");
+          gCard.className = "game-mode-2col";
+          gCard.innerHTML = `
+            <img src="${m.icon}" alt="${modeInfo.title}" class="mode-icon-sm">
+            <h4 class="text-xs sm:text-sm font-black text-slate-900 leading-tight mb-1.5">${modeInfo.title}</h4>
+            <button type="button" class="clay-btn w-full py-1 px-2.5 bg-gradient-to-b ${m.color} text-white text-[11px] font-black shadow-sm">
+              <span>▶ ${t.playBtn}</span>
             </button>
           `;
 
-          card.addEventListener("click", () => {
+          gCard.addEventListener("click", () => {
             startGame(m.id);
           });
 
-          grid.appendChild(card);
+          gamesGrid.appendChild(gCard);
+        });
+
+        // Render ALL 10 Visual Elements in 2 Columns
+        const vocabGrid = document.getElementById("catVocabGrid");
+        vocabGrid.innerHTML = "";
+        const items = DATASET[catId];
+
+        items.forEach(it => {
+          const vCard = document.createElement("div");
+          vCard.className = "vocab-card-2col";
+          const subText = currentLang === "Arabic" ? it.ar : (currentLang === "French" ? it.fr : "");
+
+          vCard.innerHTML = `
+            <div class="vocab-thumb-sm">
+              <img src="${it.img}" alt="${it.word}">
+            </div>
+            <div class="flex-1 min-w-0">
+              <span class="block text-xs font-black text-slate-900 truncate">${it.word}</span>
+              <span class="block text-[10px] font-bold text-slate-500 truncate">${subText}</span>
+            </div>
+            <i class="fa-solid fa-volume-high text-xs text-sky-500"></i>
+          `;
+
+          vCard.addEventListener("click", () => {
+            speak(it.word);
+          });
+
+          vocabGrid.appendChild(vCard);
         });
       }
 
       // =========================================================
-      // VIEW 3 : GAME ARENA ENGINE
+      // 3. GAME ARENA ENGINE
       // =========================================================
       function startGame(modeId) {
         activeGameMode = modeId;
@@ -1108,7 +1050,7 @@
         currentQIndex = 0;
         gameScore = 0;
         correctAnswersCount = 0;
-        totalQuestions = Math.min(items.length, 6);
+        totalQuestions = Math.min(items.length, 5);
 
         document.getElementById("categoryDetailView").classList.add("hidden");
         document.getElementById("victoryView").classList.add("hidden");
@@ -1116,7 +1058,7 @@
         document.getElementById("arenaScoreVal").textContent = "0";
 
         const t = I18N[currentLang];
-        document.getElementById("arenaActiveModePill").textContent = `${t.categories[selectedCatId].title} • ${t.modes[modeId].title}`;
+        document.getElementById("arenaActiveModePill").textContent = `${t.categories[selectedCatId].title} • ${t.modes[modeId].badge}`;
 
         loadCurrentStage();
         window.scrollTo({ top: 0, behavior: "smooth" });
@@ -1142,54 +1084,48 @@
       }
 
       // ---------------------------------------------------------
-      // GAME 1: SOUND MATCH (ÉCOUTE & TROUVE)
+      // GAME 1: SOUND MATCH (2 COLUMNS)
       // ---------------------------------------------------------
       function renderSoundMatchQuestion(stage) {
         const t = I18N[currentLang];
         const target = gameQuestions[currentQIndex];
         const allItems = [...DATASET[selectedCatId]];
 
-        // Choose 3 distractors
         const others = allItems.filter(it => it.id !== target.id);
         shuffleArray(others);
         const choices = [target, others[0], others[1], others[2]].filter(Boolean);
         shuffleArray(choices);
 
         const container = document.createElement("div");
-        container.className = "w-full max-w-xl mx-auto space-y-4 text-center";
+        container.className = "w-full max-w-md mx-auto space-y-3 text-center";
 
         container.innerHTML = `
-          <div class="space-y-1">
-            <button type="button" id="replaySoundBtn" class="clay-btn px-5 py-2.5 bg-gradient-to-b from-sky-400 to-sky-600 text-white text-sm font-black shadow-md mx-auto">
-              <i class="fa-solid fa-volume-high text-base"></i>
+          <div class="flex items-center justify-center gap-2">
+            <button type="button" id="replaySoundBtn" class="clay-btn px-4 py-1.5 bg-gradient-to-b from-sky-400 to-sky-600 text-white text-xs font-black shadow-sm">
+              <i class="fa-solid fa-volume-high"></i>
               <span>${t.replayAudio}</span>
             </button>
-            <h3 class="text-base sm:text-xl font-black text-slate-900 mt-2">
-              ${t.listenPrompt}
-            </h3>
-            <p class="text-xs sm:text-sm font-bold text-sky-800">
-              "${target.word}" (${target.fr} • ${target.ar})
-            </p>
+            <span class="text-xs font-black text-slate-800">"${target.word}"</span>
           </div>
 
-          <div class="grid grid-cols-2 gap-3 sm:gap-4 mt-3" id="soundChoicesGrid"></div>
+          <!-- 2 Columns Grid for 4 Choices -->
+          <div class="grid grid-cols-2 gap-2.5" id="soundChoicesGrid"></div>
         `;
 
         stage.appendChild(container);
 
-        // Auto-play audio prompt
-        setTimeout(() => speak(target.word), 350);
+        setTimeout(() => speak(target.word), 250);
         container.querySelector("#replaySoundBtn").addEventListener("click", () => speak(target.word));
 
         const grid = container.querySelector("#soundChoicesGrid");
         choices.forEach(ch => {
           const card = document.createElement("div");
-          card.className = "sound-choice-card";
+          card.className = "sound-choice-2col";
           card.innerHTML = `
-            <div class="w-20 h-20 sm:w-24 sm:h-24 flex items-center justify-center mb-1">
+            <div class="w-16 h-16 sm:w-20 sm:h-20 flex items-center justify-center mb-1">
               <img src="${ch.img}" alt="${ch.word}" class="w-full h-full object-contain filter drop-shadow">
             </div>
-            <span class="text-xs sm:text-sm font-black text-slate-800">${ch.word}</span>
+            <span class="text-xs font-black text-slate-800 truncate">${ch.word}</span>
           `;
 
           card.addEventListener("click", () => {
@@ -1213,30 +1149,26 @@
       }
 
       // ---------------------------------------------------------
-      // GAME 2: 3D MEMORY MATCH (CARTES MÉMOIRE)
+      // GAME 2: MEMORY MATCH
       // ---------------------------------------------------------
       function renderMemoryMatchGame(stage) {
         const t = I18N[currentLang];
         const allItems = [...DATASET[selectedCatId]];
         shuffleArray(allItems);
 
-        // Select 3 or 4 pairs (total 6 or 8 cards)
         const selectedPairs = allItems.slice(0, 4);
         let deck = [];
         selectedPairs.forEach(item => {
-          // Card A: Image + Word
           deck.push({ id: item.id, item: item, type: "img" });
-          // Card B: Word text + Mini icon
-          deck.push({ id: item.id, item: item, type: "text" });
+          deck.push({ id: item.id, item: item, type: "img2" });
         });
         shuffleArray(deck);
 
         const container = document.createElement("div");
-        container.className = "w-full max-w-lg mx-auto space-y-3 text-center";
+        container.className = "w-full max-w-sm mx-auto space-y-2 text-center";
         container.innerHTML = `
-          <div class="flex items-center justify-between px-2 text-xs font-black text-slate-700">
-            <span>${t.modes.memory.title}</span>
-            <span>${t.pairsFound} : <strong id="memoryPairsFound">0</strong> / 4</span>
+          <div class="text-xs font-black text-slate-700">
+            ${t.pairsFound} : <strong id="memoryPairsFound">0</strong> / 4
           </div>
           <div class="memory-grid" id="memoryCardsDeck"></div>
         `;
@@ -1256,11 +1188,11 @@
 
           cardEl.innerHTML = `
             <div class="memory-face memory-back">
-              <img src="assets/images/practice/card-back.svg" alt="Card Back">
+              <img src="assets/images/practice/card-back.svg" alt="Card">
             </div>
             <div class="memory-face memory-front">
               <img src="${cardData.item.img}" alt="${cardData.item.word}">
-              <span class="text-xs sm:text-sm font-black text-slate-900 mt-1 line-clamp-1">${cardData.item.word}</span>
+              <span class="text-[10px] font-black text-slate-900 line-clamp-1 mt-0.5">${cardData.item.word}</span>
             </div>
           `;
 
@@ -1276,7 +1208,6 @@
               const [c1, c2] = flippedCards;
 
               if (c1.data.id === c2.data.id) {
-                // MATCH!
                 playSound(cheeringAudio);
                 setTimeout(() => {
                   c1.el.classList.add("matched");
@@ -1294,16 +1225,15 @@
                     updateStatsDisplay();
                     triggerVictory();
                   }
-                }, 400);
+                }, 350);
               } else {
-                // NO MATCH
                 playSound(wrongAudio);
                 setTimeout(() => {
                   c1.el.classList.remove("flipped");
                   c2.el.classList.remove("flipped");
                   flippedCards = [];
                   isLocked = false;
-                }, 850);
+                }, 750);
               }
             }
           });
@@ -1313,7 +1243,7 @@
       }
 
       // ---------------------------------------------------------
-      // GAME 3: WORD BUILDER / SPELLING PHONICS
+      // GAME 3: WORD BUILDER
       // ---------------------------------------------------------
       function renderWordBuilderQuestion(stage) {
         const t = I18N[currentLang];
@@ -1323,40 +1253,30 @@
 
         let scrambled = [...letters];
         shuffleArray(scrambled);
-        // Avoid initial solved order if word length > 2
         if (scrambled.join("") === letters.join("") && letters.length > 2) {
           scrambled.reverse();
         }
 
         const container = document.createElement("div");
-        container.className = "w-full max-w-lg mx-auto space-y-4 text-center";
+        container.className = "w-full max-w-sm mx-auto space-y-3 text-center";
 
         container.innerHTML = `
-          <div class="w-24 h-24 sm:w-28 sm:h-28 mx-auto p-2 bg-white rounded-2xl border-2 border-sky-200 shadow-sm flex items-center justify-center">
+          <div class="w-20 h-20 sm:w-24 sm:h-24 mx-auto p-1.5 bg-white rounded-2xl border-2 border-sky-200 shadow-sm flex items-center justify-center">
             <img src="${target.img}" alt="${target.word}" class="w-full h-full object-contain filter drop-shadow">
           </div>
 
-          <div class="space-y-1">
-            <h3 class="text-base sm:text-xl font-black text-slate-900">${t.spellingPrompt} "${target.word}"</h3>
-            <p class="text-xs font-bold text-slate-500">${target.fr} • ${target.ar}</p>
-          </div>
-
-          <!-- Slots -->
-          <div class="flex items-center justify-center gap-1.5 sm:gap-2" id="spellingSlots"></div>
-
-          <!-- Letter Bubbles -->
-          <div class="flex items-center justify-center gap-2 sm:gap-3 flex-wrap pt-2" id="spellingBubbles"></div>
+          <div class="flex items-center justify-center gap-1.5" id="spellingSlots"></div>
+          <div class="flex items-center justify-center gap-2 flex-wrap pt-1" id="spellingBubbles"></div>
         `;
 
         stage.appendChild(container);
-        setTimeout(() => speak(target.word), 350);
+        setTimeout(() => speak(target.word), 250);
 
         const slotsContainer = container.querySelector("#spellingSlots");
         const bubblesContainer = container.querySelector("#spellingBubbles");
 
         let placedLetters = new Array(letters.length).fill(null);
 
-        // Render Empty Slots
         letters.forEach((_, idx) => {
           const slot = document.createElement("div");
           slot.className = "word-slot";
@@ -1373,18 +1293,14 @@
           slotsContainer.appendChild(slot);
         });
 
-        // Bubble Pastel Gradients
         const BUBBLE_COLORS = [
           "linear-gradient(135deg, #f87171, #ef4444)",
           "linear-gradient(135deg, #60a5fa, #3b82f6)",
           "linear-gradient(135deg, #34d399, #10b981)",
           "linear-gradient(135deg, #fbbf24, #f59e0b)",
-          "linear-gradient(135deg, #a78bfa, #8b5cf6)",
-          "linear-gradient(135deg, #f472b6, #ec4899)",
-          "linear-gradient(135deg, #38bdf8, #0ea5e9)"
+          "linear-gradient(135deg, #a78bfa, #8b5cf6)"
         ];
 
-        // Render Letter Bubbles
         scrambled.forEach((char, bIdx) => {
           const bubble = document.createElement("button");
           bubble.type = "button";
@@ -1404,7 +1320,6 @@
             slotEl.textContent = char;
             slotEl.classList.add("filled");
 
-            // Check if full
             if (placedLetters.every(p => p !== null)) {
               const userWord = placedLetters.map(p => p.char).join("");
               if (userWord === wordClean) {
@@ -1422,14 +1337,13 @@
       }
 
       // ---------------------------------------------------------
-      // GAME 4: SPEED QUIZ (VRAI OU FAUX ?)
+      // GAME 4: SPEED QUIZ (2 COLUMNS: VRAI / FAUX)
       // ---------------------------------------------------------
       function renderSpeedQuizQuestion(stage) {
         const t = I18N[currentLang];
         const target = gameQuestions[currentQIndex];
         const allItems = [...DATASET[selectedCatId]];
 
-        // 50% chance of being True or False
         const isTrue = Math.random() >= 0.5;
         let displayedItem = target;
 
@@ -1440,44 +1354,40 @@
         }
 
         const container = document.createElement("div");
-        container.className = "w-full max-w-md mx-auto space-y-4 text-center";
+        container.className = "w-full max-w-sm mx-auto space-y-3 text-center";
 
         container.innerHTML = `
-          <!-- Timer Bar -->
-          <div class="w-full bg-slate-200 h-2.5 rounded-full overflow-hidden border border-slate-300">
+          <div class="w-full bg-slate-200 h-2 rounded-full overflow-hidden border border-slate-300">
             <div id="speedTimerFill" class="h-full bg-gradient-to-r from-emerald-400 via-amber-400 to-rose-500 w-full transition-all duration-100 linear"></div>
           </div>
 
-          <div class="w-28 h-28 sm:w-32 sm:h-32 mx-auto p-2 bg-white rounded-2xl border-2 border-sky-200 shadow-sm flex items-center justify-center">
+          <div class="w-24 h-24 mx-auto p-1.5 bg-white rounded-2xl border-2 border-sky-200 shadow-sm flex items-center justify-center">
             <img src="${displayedItem.img}" alt="${displayedItem.word}" class="w-full h-full object-contain filter drop-shadow">
           </div>
 
-          <div class="space-y-1">
-            <p class="text-xs font-bold text-slate-500">${t.speedPrompt}</p>
-            <h3 class="text-lg sm:text-2xl font-black text-slate-900">
-              "${target.word}" ?
-            </h3>
-            <p class="text-xs font-bold text-sky-800">(${target.fr} • ${target.ar})</p>
-          </div>
+          <span class="text-sm sm:text-base font-black text-slate-900 block">
+            "${target.word}" ?
+          </span>
 
-          <div class="grid grid-cols-2 gap-4 pt-2">
-            <button type="button" id="speedYesBtn" class="clay-btn speed-btn-yes py-3 px-4 text-base sm:text-lg font-black shadow-lg">
+          <!-- 2 Columns Grid for Yes / No Buttons -->
+          <div class="grid grid-cols-2 gap-3 pt-1">
+            <button type="button" id="speedYesBtn" class="clay-btn speed-btn-yes py-2.5 px-3 text-sm font-black shadow-md">
               <span>${t.yes}</span>
             </button>
-            <button type="button" id="speedNoBtn" class="clay-btn speed-btn-no py-3 px-4 text-base sm:text-lg font-black shadow-lg">
+            <button type="button" id="speedNoBtn" class="clay-btn speed-btn-no py-2.5 px-3 text-sm font-black shadow-md">
               <span>${t.no}</span>
             </button>
           </div>
         `;
 
         stage.appendChild(container);
-        setTimeout(() => speak(target.word), 350);
+        setTimeout(() => speak(target.word), 250);
 
-        let timeLeft = 80;
+        let timeLeft = 75;
         const timerFill = container.querySelector("#speedTimerFill");
         const timerInterval = setInterval(() => {
           timeLeft--;
-          if (timerFill) timerFill.style.width = `${(timeLeft / 80) * 100}%`;
+          if (timerFill) timerFill.style.width = `${(timeLeft / 75) * 100}%`;
 
           if (timeLeft <= 0) {
             clearInterval(timerInterval);
@@ -1508,22 +1418,15 @@
       function handleCorrectAnswer() {
         const feedback = document.getElementById("arenaFeedback");
         feedback.textContent = I18N[currentLang].correctMsg;
-        feedback.className = "min-h-[28px] text-center text-sm font-black text-emerald-600 animate-bounce";
+        feedback.className = "min-h-[24px] text-center text-xs sm:text-sm font-black text-emerald-600 animate-bounce";
 
         correctAnswersCount++;
-        streakCount++;
-        gameScore += 20 + (streakCount * 5);
+        gameScore += 20;
         starsCount += 2;
 
         document.getElementById("arenaScoreVal").textContent = gameScore;
         updateStatsDisplay();
 
-        const streakBadge = document.getElementById("arenaStreakBadge");
-        if (streakCount > 1) {
-          streakBadge.classList.remove("hidden");
-          document.getElementById("arenaStreakNum").textContent = streakCount;
-        }
-
         setTimeout(() => {
           currentQIndex++;
           if (currentQIndex < totalQuestions) {
@@ -1531,17 +1434,13 @@
           } else {
             triggerVictory();
           }
-        }, 1200);
+        }, 1000);
       }
 
       function handleWrongAnswer() {
         const feedback = document.getElementById("arenaFeedback");
         feedback.textContent = I18N[currentLang].wrongMsg;
-        feedback.className = "min-h-[28px] text-center text-sm font-black text-rose-600";
-
-        streakCount = 0;
-        document.getElementById("arenaStreakBadge").classList.add("hidden");
-        updateStatsDisplay();
+        feedback.className = "min-h-[24px] text-center text-xs sm:text-sm font-black text-rose-600";
 
         setTimeout(() => {
           currentQIndex++;
@@ -1550,11 +1449,11 @@
           } else {
             triggerVictory();
           }
-        }, 1300);
+        }, 1100);
       }
 
       // =========================================================
-      // VIEW 4 : VICTORY & REWARDS
+      // VICTORY & CONFETTI
       // =========================================================
       function triggerVictory() {
         document.getElementById("arenaView").classList.add("hidden");
@@ -1567,14 +1466,10 @@
         document.getElementById("victoryStarsNum").textContent = "10";
         document.getElementById("victoryGemsNum").textContent = "5";
 
-        const pct = Math.round((correctAnswersCount / Math.max(totalQuestions, 1)) * 100);
-        document.getElementById("victoryAccuracyNum").textContent = `${pct}%`;
-
         launchConfetti();
         playSound(cheeringAudio);
       }
 
-      // Lightweight Confetti Particle Engine
       function launchConfetti() {
         const canvas = document.getElementById("confettiCanvas");
         const ctx = canvas.getContext("2d");
@@ -1584,15 +1479,14 @@
         const pieces = [];
         const colors = ["#f87171", "#60a5fa", "#34d399", "#fbbf24", "#f472b6", "#a78bfa", "#38bdf8"];
 
-        for (let i = 0; i < 90; i++) {
+        for (let i = 0; i < 70; i++) {
           pieces.push({
             x: canvas.width / 2,
             y: canvas.height / 2,
-            r: Math.random() * 6 + 4,
-            d: Math.random() * 90,
+            r: Math.random() * 5 + 3,
             color: colors[Math.floor(Math.random() * colors.length)],
-            vx: (Math.random() - 0.5) * 16,
-            vy: (Math.random() - 0.7) * 18,
+            vx: (Math.random() - 0.5) * 14,
+            vy: (Math.random() - 0.7) * 16,
             gravity: 0.35
           });
         }
@@ -1614,7 +1508,7 @@
           });
 
           count++;
-          if (count < 95) {
+          if (count < 85) {
             animationFrame = requestAnimationFrame(draw);
           } else {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -1625,7 +1519,6 @@
         draw();
       }
 
-      // Utility: Shuffle Array
       function shuffleArray(arr) {
         for (let i = arr.length - 1; i > 0; i--) {
           const j = Math.floor(Math.random() * (i + 1));
@@ -1669,7 +1562,7 @@
         document.getElementById("hubView").classList.remove("hidden");
       });
 
-      // Initialize
+      // Init
       updateStatsDisplay();
       applyLanguage(currentLang);
     })();
