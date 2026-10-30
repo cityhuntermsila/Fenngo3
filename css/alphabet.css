@@ -429,138 +429,77 @@ body.alphabet {
   }
 }
 
-body.mobile-portrait-rotate {
-  width: var(--visible-height);
-  height: var(--visible-width);
-  overflow: hidden;
-  transform-origin: center center;
-  transform: translate(
-      calc((var(--visible-width) - var(--visible-height)) / 2),
-      calc((var(--visible-height) - var(--visible-width)) / 2)
-    )
-    rotate(90deg);
-  position: fixed;
-  top: 0;
-  left: 0;
+/* =========================================================
+   RESPONSIVE LAYOUT FOR MOBILE & TABLETS (< 768px)
+   ========================================================= */
+@media screen and (max-width: 767px) {
+  html,
+  body.alphabet {
+    height: auto !important;
+    min-height: 100% !important;
+    overflow-x: hidden !important;
+    overflow-y: auto !important;
+  }
+
+  .alphabet-app {
+    width: 100% !important;
+    height: auto !important;
+    min-height: 100dvh !important;
+    overflow: visible !important;
+  }
+
+  .alphabet-main {
+    padding: 58px 12px 32px !important;
+    height: auto !important;
+    min-height: 100dvh !important;
+    overflow: visible !important;
+  }
+
+  .alphabet-grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+    gap: 10px 8px !important;
+    width: 100% !important;
+    max-width: 420px !important;
+  }
+
+  .letter-card {
+    width: clamp(62px, 19vw, 84px) !important;
+    height: clamp(62px, 19vw, 84px) !important;
+    border-radius: 16px !important;
+  }
+
+  .letter-card span {
+    font-size: clamp(34px, 10vw, 48px) !important;
+  }
+
+  .cube-modal {
+    padding: 12px !important;
+  }
+
+  .alphabet-detail-card {
+    width: min(94vw, 420px) !important;
+    max-height: 90dvh !important;
+    overflow-y: auto !important;
+    padding: 24px 14px 18px !important;
+  }
+
+  .detail-image-box {
+    width: 150px !important;
+    height: 150px !important;
+  }
 }
 
-body.mobile-landscape-layout:not(.mobile-portrait-rotate) {
-  position: fixed;
-  inset: 0;
-  width: 100vw;
-  height: 100dvh;
-  overflow: hidden;
-  transform: none;
+@media screen and (max-width: 360px) {
+  .alphabet-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+  }
 }
-body:is(.mobile-portrait-rotate, .mobile-landscape-layout) .alphabet-app {
-  width: var(--visible-height);
-  height: var(--visible-width);
-}
-body:is(.mobile-portrait-rotate, .mobile-landscape-layout) .alphabet-main {
-  align-items: center;
-  padding: 8px 12px;
-}
-body:is(.mobile-portrait-rotate, .mobile-landscape-layout) .alphabet-grid {
-  grid-template-columns: repeat(9, minmax(0, 1fr));
-  gap: clamp(6px, 1.6vh, 12px);
-  width: min(100%, 1120px);
-}
-body:is(.mobile-portrait-rotate, .mobile-landscape-layout) .letter-card {
-  width: clamp(44px, 12.2vh, 76px);
-  height: clamp(44px, 12.2vh, 76px);
-  border-width: 3px;
-  border-radius: 14px;
-  box-shadow: 0 5px 0 rgba(0, 0, 0, 0.25);
-}
-body:is(.mobile-portrait-rotate, .mobile-landscape-layout) .letter-card:before {
-  inset: 7px;
-  border-width: 2px;
-  border-radius: 9px;
-}
-body:is(.mobile-portrait-rotate, .mobile-landscape-layout) .letter-card span {
-  font-size: clamp(28px, 7.5vh, 48px);
-  -webkit-text-stroke: 1px rgba(0, 0, 0, 0.25);
-}
-body:is(.mobile-portrait-rotate, .mobile-landscape-layout) .cube-modal {
-  width: var(--visible-height);
-  height: var(--visible-width);
-  padding: 8px;
-}
-body:is(.mobile-portrait-rotate, .mobile-landscape-layout) .alphabet-detail-card {
-  width: min(92vw, 650px);
-  min-height: 0;
-  padding: 8px 72px 10px;
-}
-body:is(.mobile-portrait-rotate, .mobile-landscape-layout) .detail-title {
-  margin-bottom: 6px;
-  font-size: clamp(24px, 7vh, 40px);
-}
-body:is(.mobile-portrait-rotate, .mobile-landscape-layout) .detail-image-box {
-  width: min(190px, 27vw);
-  min-height: clamp(96px, 28vh, 155px);
-  margin-bottom: 8px;
-}
-body:is(.mobile-portrait-rotate, .mobile-landscape-layout) .alphabet-image-fallback {
-  width: min(180px, 26vw);
-  min-height: clamp(96px, 28vh, 145px);
-  border-width: 4px;
-  border-radius: 22px;
-}
-body:is(.mobile-portrait-rotate, .mobile-landscape-layout) .fallback-letter {
-  font-size: clamp(56px, 14vh, 84px);
-}
-body:is(.mobile-portrait-rotate, .mobile-landscape-layout) .fallback-word {
-  font-size: clamp(16px, 4vh, 24px);
-}
-body:is(.mobile-portrait-rotate, .mobile-landscape-layout) .detail-letters {
-  gap: 10px;
-  margin-bottom: 7px;
-}
-body:is(.mobile-portrait-rotate, .mobile-landscape-layout) .detail-letters span {
-  width: clamp(42px, 10vh, 58px);
-  height: clamp(42px, 10vh, 58px);
-  border-width: 3px;
-  border-radius: 15px;
-  font-size: clamp(27px, 6.8vh, 39px);
-  box-shadow: 0 4px 0 #321080;
-}
-body:is(.mobile-portrait-rotate, .mobile-landscape-layout) .sound-btn {
-  min-width: clamp(44px, 10vh, 58px);
-  min-height: clamp(34px, 7.5vh, 44px);
-  padding: 6px 11px;
-  font-size: clamp(15px, 4vh, 21px);
-  box-shadow: 0 4px 0 #c62828;
-}
-body:is(.mobile-portrait-rotate, .mobile-landscape-layout) .close-btn {
-  top: 8px;
-  right: 10px;
-  width: clamp(36px, 8vh, 48px);
-  height: clamp(36px, 8vh, 48px);
-  font-size: clamp(24px, 5.5vh, 32px);
-}
-body:is(.mobile-portrait-rotate, .mobile-landscape-layout) .cube-navigation {
-  top: 52%;
-}
-body:is(.mobile-portrait-rotate, .mobile-landscape-layout) .nav-btn {
-  width: clamp(38px, 9vh, 52px);
-  height: clamp(38px, 9vh, 52px);
-  padding: 0;
-  border-width: 4px;
-  font-size: 0;
-}
-body:is(.mobile-portrait-rotate, .mobile-landscape-layout) #prevLetterBtn {
-  left: 12px;
-}
-body:is(.mobile-portrait-rotate, .mobile-landscape-layout) #nextLetterBtn {
-  right: 12px;
-}
-body:is(.mobile-portrait-rotate, .mobile-landscape-layout) #prevLetterBtn:before {
-  content: "\25C0";
-  font-size: clamp(16px, 4vh, 22px);
-}
-body:is(.mobile-portrait-rotate, .mobile-landscape-layout) #nextLetterBtn:before {
-  content: "\25B6";
-  font-size: clamp(16px, 4vh, 22px);
+
+@media screen and (min-width: 480px) and (max-width: 767px) {
+  .alphabet-grid {
+    grid-template-columns: repeat(5, minmax(0, 1fr)) !important;
+    max-width: 540px !important;
+  }
 }
 
 @keyframes alphabetFrontImageWiggle {

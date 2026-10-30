@@ -16,22 +16,9 @@
 
   function updateMobileLayout() {
     const { width, height } = getViewportSize();
-    const shortSide = Math.min(width, height);
-    const longSide = Math.max(width, height);
-    const isMobileLandscapeLayout = shortSide <= 767 && longSide <= 1024;
-    const visibleWidth = isMobileLandscapeLayout ? shortSide : width;
-    const visibleHeight = isMobileLandscapeLayout ? longSide : height;
-
-    root.style.setProperty("--visible-width", `${visibleWidth}px`);
-    root.style.setProperty("--visible-height", `${visibleHeight}px`);
-
-    /*
-      The phone itself is not physically rotated. The complete page rotates
-      whenever the visible viewport is portrait and 767px or narrower.
-    */
-    const shouldRotate = isMobileLandscapeLayout && height > width;
-    body.classList.toggle("mobile-landscape-layout", isMobileLandscapeLayout);
-    body.classList.toggle("mobile-portrait-rotate", shouldRotate);
+    root.style.setProperty("--visible-width", `${width}px`);
+    root.style.setProperty("--visible-height", `${height}px`);
+    body.classList.remove("mobile-portrait-rotate");
   }
 
   function initialiseCard() {

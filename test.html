@@ -51,9 +51,26 @@
     }
 
     @media (max-width: 640px) {
+      .test-container {
+        height: auto !important;
+        min-height: min(84dvh, 600px);
+        padding: 14px 10px !important;
+        border-radius: 24px !important;
+        gap: 12px;
+      }
       .test-options-grid {
         grid-template-columns: 1fr 1fr;
         gap: 8px;
+      }
+      .test-choice-card {
+        padding: 8px 6px !important;
+      }
+      .test-choice-img {
+        width: 48px !important;
+        height: 48px !important;
+      }
+      .test-choice-title {
+        font-size: 14px !important;
       }
     }
   </style>

@@ -274,149 +274,115 @@ body.category {
   }
 }
 
-/*
-  Primary CSS-only portrait rule.
-  The JavaScript also adds .mobile-portrait-rotate as a fallback,
-  which makes Chrome DevTools responsive mode reliable.
-*/
-@media screen and (max-width: 767px) and (orientation: portrait) {
-  body.category .category-app {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    width: var(--visible-height);
-    height: var(--visible-width);
-    min-width: 0;
-    min-height: 0;
-    transform: translate(-50%, -50%) rotate(90deg);
-    transform-origin: center center;
+/* =========================================================
+   RESPONSIVE LAYOUT FOR MOBILE PORTRAIT & LANDSCAPE (< 768px)
+   Normal vertical flow with clean 2-column touch cards
+   ========================================================= */
+@media screen and (max-width: 767px) {
+  html,
+  body.category {
+    height: auto !important;
+    min-height: 100% !important;
+    overflow-x: hidden !important;
+    overflow-y: auto !important;
   }
-}
 
-/* JS fallback: applies even when DevTools reports orientation incorrectly. */
-body.mobile-portrait-rotate {
-  width: var(--visible-width);
-  height: var(--visible-height);
-  overflow: hidden;
-}
+  .category-app {
+    position: relative !important;
+    inset: auto !important;
+    width: 100% !important;
+    height: auto !important;
+    min-height: 100dvh !important;
+    transform: none !important;
+    overflow-y: auto !important;
+    overflow-x: hidden !important;
+  }
 
-body.mobile-landscape-layout:not(.mobile-portrait-rotate) {
-  width: 100vw;
-  height: 100dvh;
-  overflow: hidden;
-}
-
-body.mobile-portrait-rotate .category-app {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  width: var(--visible-height);
-  height: var(--visible-width);
-  min-width: 0;
-  min-height: 0;
-  overflow: hidden;
-  transform: translate(-50%, -50%) rotate(90deg);
-  transform-origin: center center;
-}
-
-body.mobile-landscape-layout:not(.mobile-portrait-rotate) .category-app {
-  position: fixed;
-  inset: 0;
-  width: var(--visible-height);
-  height: var(--visible-width);
-  min-width: 0;
-  min-height: 0;
-  overflow: hidden;
-  transform: none;
-}
-
-/* Layout inside the rotated app. */
-@media screen and (max-width: 767px) and (orientation: portrait) {
   .category-main {
-    justify-content: center;
-    padding: 4px 14px;
+    justify-content: flex-start !important;
+    padding: 18px 12px 32px !important;
+    min-height: 100dvh !important;
+    height: auto !important;
+    overflow: visible !important;
   }
 
   .category-logo {
-    width: min(46%, 360px);
-    max-height: 14vw;
-    margin-bottom: 2px;
+    width: min(84%, 300px) !important;
+    max-height: 72px !important;
+    margin: 4px auto 14px !important;
     animation-name: bounceLogoMobile;
   }
 
-  .category-grid {
-    width: min(74vh, 660px);
-    gap: 6px 12px;
+  /* Main Category Hub: 2-column clean responsive layout */
+  .category-grid.main-category-grid {
+    display: grid !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    grid-template-rows: auto !important;
+    gap: 12px 10px !important;
+    width: 100% !important;
+    max-width: 440px !important;
+    margin: 0 auto !important;
   }
 
+  .main-category-grid .card-cours {
+    grid-row: auto !important;
+    grid-column: 1 / span 1 !important;
+  }
+
+  .main-category-grid .card-progression {
+    grid-row: auto !important;
+    grid-column: 2 / span 1 !important;
+  }
+
+  .main-category-grid .card-vocab,
+  .main-category-grid .card-games,
+  .main-category-grid .card-tracing,
+  .main-category-grid .card-test {
+    grid-row: auto !important;
+    grid-column: auto !important;
+  }
+
+  /* Stories (7th card) centered across columns */
+  .main-category-grid .card-stories {
+    grid-row: auto !important;
+    grid-column: 1 / span 2 !important;
+    max-width: 210px !important;
+    margin: 0 auto !important;
+  }
+
+  .main-category-grid .category-card {
+    max-width: 100% !important;
+    width: 100% !important;
+  }
+
+  .main-category-grid .category-card img {
+    max-height: 120px !important;
+  }
+
+  /* Cours Grid (9 courses on cours.html): 2 columns */
   .category-grid.cours-grid {
-    width: min(88vh, 780px);
-    gap: 4px 10px;
-  }
-
-  .category-card img {
-    max-height: 28vw;
+    display: grid !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    grid-template-rows: auto !important;
+    gap: 12px 10px !important;
+    width: 100% !important;
+    max-width: 440px !important;
+    margin: 0 auto !important;
   }
 
   .cours-grid .category-card img {
-    max-height: 20vw;
+    max-height: 115px !important;
   }
 }
 
-/* Same layout when JS fallback class is active. */
-body:is(.mobile-portrait-rotate, .mobile-landscape-layout) .category-main {
-  justify-content: center;
-  padding: 4px 14px;
-}
-
-body:is(.mobile-portrait-rotate, .mobile-landscape-layout) .category-logo {
-  width: min(34%, 270px);
-  max-height: calc(var(--visible-width) * 0.10);
-  margin-bottom: 2px;
-  animation-name: bounceLogoMobile;
-}
-
-body:is(.mobile-portrait-rotate, .mobile-landscape-layout) .category-grid {
-  width: min(calc(var(--visible-height) * 0.74), 660px);
-  gap: 6px 12px;
-}
-
-body:is(.mobile-portrait-rotate, .mobile-landscape-layout) .category-grid.main-category-grid {
-  width: min(calc(var(--visible-height) * 0.96), 920px);
-  gap: 4px;
-}
-
-body:is(.mobile-portrait-rotate, .mobile-landscape-layout) .category-row {
-  gap: 6px 10px;
-}
-
-body:is(.mobile-portrait-rotate, .mobile-landscape-layout) .category-row-top .category-card {
-  width: clamp(100px, calc(var(--visible-height) * 0.16), 145px);
-}
-
-body:is(.mobile-portrait-rotate, .mobile-landscape-layout) .category-row-top .category-card img {
-  max-height: calc(var(--visible-width) * 0.24);
-}
-
-body:is(.mobile-portrait-rotate, .mobile-landscape-layout) .category-row-bottom .category-card {
-  width: clamp(80px, calc(var(--visible-height) * 0.13), 120px);
-}
-
-body:is(.mobile-portrait-rotate, .mobile-landscape-layout) .category-row-bottom .category-card img {
-  max-height: calc(var(--visible-width) * 0.20);
-}
-
-body:is(.mobile-portrait-rotate, .mobile-landscape-layout) .category-grid.cours-grid {
-  width: min(calc(var(--visible-height) * 0.88), 780px);
-  gap: 4px 10px;
-}
-
-body:is(.mobile-portrait-rotate, .mobile-landscape-layout) .category-card img {
-  max-height: calc(var(--visible-width) * 0.28);
-}
-
-body:is(.mobile-portrait-rotate, .mobile-landscape-layout) .cours-grid .category-card img {
-  max-height: calc(var(--visible-width) * 0.2);
+@media screen and (min-width: 480px) and (max-width: 767px) {
+  .category-grid.cours-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+    max-width: 620px !important;
+  }
+  .category-grid.main-category-grid {
+    max-width: 520px !important;
+  }
 }
 
 @keyframes bounceLogoMobile {

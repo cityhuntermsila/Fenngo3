@@ -451,7 +451,7 @@ html[dir="rtl"] .fenny-companion-glass {
     height: 66px;
   }
   .fenny-speech-card {
-    max-width: 220px;
+    max-width: min(240px, calc(100vw - 86px));
     padding: 8px 10px;
   }
 }

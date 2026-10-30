@@ -392,12 +392,83 @@ html[dir="rtl"] .card-sound-mini {
 
 /* Responsive adjustments for smaller screens */
 @media (max-width: 768px) {
-  .members-grid {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    height: clamp(190px, 42dvh, 290px);
+  html,
+  body.family-page {
+    height: auto !important;
+    min-height: 100% !important;
+    overflow-x: hidden !important;
+    overflow-y: auto !important;
   }
+
+  .family-app {
+    height: auto !important;
+    min-height: 100dvh !important;
+    overflow: visible !important;
+  }
+
+  .family-main {
+    height: auto !important;
+    min-height: 100dvh !important;
+    overflow: visible !important;
+    padding: 58px 12px 32px !important;
+    justify-content: flex-start !important;
+    gap: 16px !important;
+  }
+
+  .page-title {
+    font-size: clamp(24px, 6vw, 32px) !important;
+  }
+
+  .family-section {
+    width: 100% !important;
+    max-width: 480px !important;
+    margin-bottom: 12px !important;
+  }
+
+  .members-grid {
+    display: grid !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    height: auto !important;
+    gap: 12px 10px !important;
+  }
+
   .relations-grid {
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-    height: clamp(105px, 24dvh, 170px);
+    display: grid !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    height: auto !important;
+    gap: 12px 10px !important;
+  }
+
+  .family-card {
+    height: auto !important;
+    min-height: 125px !important;
+    padding: 12px 8px !important;
+    border-radius: 20px !important;
+  }
+
+  .family-card-avatar svg {
+    max-height: 72px !important;
+  }
+
+  .family-card-label {
+    font-size: 13px !important;
+    padding: 3px 8px !important;
+  }
+
+  .family-modal {
+    padding: 14px !important;
+  }
+
+  .family-detail {
+    width: min(94vw, 420px) !important;
+    max-height: 90dvh !important;
+    overflow-y: auto !important;
+    padding: 24px 16px 20px !important;
+  }
+}
+
+@media (min-width: 480px) and (max-width: 768px) {
+  .members-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
   }
 }

@@ -31,9 +31,35 @@
     }
 
     @media (max-width: 820px) {
+      html, body.games-page {
+        overflow-y: auto !important;
+        height: auto !important;
+      }
+      .games-app {
+        height: auto !important;
+        min-height: 100dvh !important;
+      }
+      .games-hub {
+        height: auto !important;
+        min-height: 100dvh !important;
+        overflow-y: visible !important;
+        padding: 10px 8px 24px !important;
+      }
       .tracing-board-wrap {
         grid-template-columns: 1fr;
         grid-template-rows: auto 1fr;
+        gap: 12px;
+      }
+      .tracing-canvas-card {
+        min-height: 340px !important;
+        border-radius: 20px !important;
+      }
+      .tracing-side-card {
+        border-radius: 20px !important;
+      }
+      .tracing-bottom-bar {
+        border-radius: 18px !important;
+        padding: 6px 8px !important;
       }
     }
 

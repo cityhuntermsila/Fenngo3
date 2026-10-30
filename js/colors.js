@@ -878,43 +878,12 @@ function getViewportSize() {
 }
 
 function updateMobileLayout() {
-  const { width, height } =
-    getViewportSize();
-  const shortSide = Math.min(width, height);
-  const longSide = Math.max(width, height);
-  const isMobileLandscapeLayout =
-    shortSide <= 767 && longSide <= 1024;
-  const visibleWidth =
-    isMobileLandscapeLayout ? shortSide : width;
-  const visibleHeight =
-    isMobileLandscapeLayout ? longSide : height;
-
-  document.documentElement.style.setProperty(
-    "--visible-width",
-    `${visibleWidth}px`
-  );
-
-  document.documentElement.style.setProperty(
-    "--visible-height",
-    `${visibleHeight}px`
-  );
-
-  const shouldRotate =
-    isMobileLandscapeLayout && height > width;
-
-  document.body.classList.toggle(
-    "mobile-landscape-layout",
-    isMobileLandscapeLayout
-  );
-
-  document.body.classList.toggle(
-    "mobile-portrait-rotate",
-    shouldRotate
-  );
-
+  const { width, height } = getViewportSize();
+  document.documentElement.style.setProperty("--visible-width", `${width}px`);
+  document.documentElement.style.setProperty("--visible-height", `${height}px`);
+  document.body.classList.remove("mobile-portrait-rotate");
   if (colorsApp) {
-    colorsApp.style.height =
-      shouldRotate ? `${visibleWidth}px` : "";
+    colorsApp.style.height = "";
   }
 }
 

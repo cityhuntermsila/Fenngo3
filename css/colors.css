@@ -4473,3 +4473,107 @@ body:is(.mobile-portrait-rotate, .mobile-landscape-layout) .color-mobile-flex-ro
   background: transparent !important;
   box-shadow: none !important;
 }
+
+/* =========================================
+   RESPONSIVE LAYOUT FOR MOBILE (< 768px)
+========================================= */
+@media screen and (max-width: 768px) {
+  html,
+  body.colors-page {
+    height: auto !important;
+    min-height: 100% !important;
+    overflow-x: hidden !important;
+    overflow-y: auto !important;
+  }
+
+  .colors-app {
+    width: 100% !important;
+    height: auto !important;
+    min-height: 100dvh !important;
+    overflow: visible !important;
+  }
+
+  .colors-hero {
+    padding: 58px 12px 32px !important;
+    height: auto !important;
+    min-height: 100dvh !important;
+    overflow: visible !important;
+    gap: 12px !important;
+  }
+
+  .page-title {
+    font-size: clamp(24px, 6vw, 34px) !important;
+  }
+
+  .page-subtitle {
+    font-size: 13px !important;
+  }
+
+  .colors-grid {
+    display: grid !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    grid-template-rows: auto !important;
+    height: auto !important;
+    gap: 12px 10px !important;
+    width: 100% !important;
+    max-width: 440px !important;
+    margin: 0 auto !important;
+  }
+
+  .color-card {
+    height: auto !important;
+    min-height: 130px !important;
+    padding: 10px 8px 36px !important;
+    border-radius: 20px !important;
+  }
+
+  .paint-blob-wrap {
+    width: 75px !important;
+    height: 75px !important;
+  }
+
+  .paint-blob {
+    width: 65px !important;
+    height: 65px !important;
+  }
+
+  .color-name {
+    font-size: 12px !important;
+    min-width: 75px !important;
+  }
+
+  /* Modal responsive */
+  .color-modal {
+    padding: 12px !important;
+  }
+
+  .color-detail {
+    width: min(94vw, 440px) !important;
+    max-height: 90dvh !important;
+    overflow-y: auto !important;
+    padding: 24px 14px 18px !important;
+  }
+
+  .modal-content-grid {
+    flex-direction: column !important;
+    gap: 12px !important;
+  }
+
+  .selected-color-panel,
+  .learning-panel {
+    width: 100% !important;
+    height: auto !important;
+    min-height: 200px !important;
+  }
+
+  .modal-nav {
+    display: none !important;
+  }
+}
+
+@media screen and (min-width: 480px) and (max-width: 768px) {
+  .colors-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+    max-width: 600px !important;
+  }
+}

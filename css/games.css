@@ -999,3 +999,126 @@ body.games-page.in-active-game #globalBackBtn {
   font-weight: 900;
   color: #1e1b4b;
 }
+
+/* =========================================================
+   RESPONSIVE DESIGN SYSTEM FOR MOBILE & TABLETS (< 860px)
+   ========================================================= */
+@media screen and (max-width: 860px) {
+  html,
+  body.games-page {
+    height: auto !important;
+    min-height: 100% !important;
+    overflow-x: hidden !important;
+    overflow-y: auto !important;
+  }
+
+  .games-app {
+    height: auto !important;
+    min-height: 100dvh !important;
+    overflow: visible !important;
+  }
+
+  .games-hub {
+    height: auto !important;
+    min-height: 100dvh !important;
+    overflow: visible !important;
+    padding: 14px 10px 32px !important;
+    gap: 12px !important;
+  }
+
+  .nk-hero {
+    width: 100% !important;
+    padding: 12px 14px !important;
+    padding-inline-start: 14px !important;
+    border-radius: 24px !important;
+  }
+
+  .nk-hero-top {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 10px !important;
+  }
+
+  .nk-counters {
+    width: 100% !important;
+    justify-content: flex-start !important;
+    flex-wrap: wrap !important;
+    gap: 6px !important;
+  }
+
+  .nk-stat-pill {
+    padding: 4px 10px !important;
+    font-size: 13px !important;
+  }
+
+  .nk-skills-pills {
+    gap: 6px !important;
+  }
+
+  .nk-skill-pill {
+    padding: 4px 10px !important;
+    font-size: 11px !important;
+  }
+
+  .hub-grid {
+    display: grid !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    width: 100% !important;
+    max-width: 580px !important;
+    height: auto !important;
+    gap: 12px 10px !important;
+  }
+
+  .hub-game-card {
+    width: 100% !important;
+    height: auto !important;
+    min-width: 0 !important;
+    min-height: 230px !important;
+    border-radius: 22px !important;
+  }
+
+  .nk-card-visual {
+    height: 115px !important;
+  }
+
+  /* Game screen adjustments */
+  .game-topbar {
+    height: auto !important;
+    padding: 8px 10px !important;
+    gap: 8px !important;
+  }
+
+  .active-game-title {
+    font-size: 13px !important;
+  }
+
+  .speaker-btn {
+    padding: 5px 10px !important;
+    font-size: 12px !important;
+  }
+
+  .target-prompt-badge {
+    font-size: 14px !important;
+    padding: 1px 8px !important;
+  }
+
+  .bottom-cards-bar {
+    padding: 6px 10px !important;
+    gap: 8px !important;
+    border-radius: 24px !important;
+  }
+
+  .choice-card-btn {
+    min-width: 68px !important;
+    height: 58px !important;
+    font-size: 24px !important;
+    padding: 4px 10px !important;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .hub-grid {
+    grid-template-columns: 1fr !important;
+    max-width: 340px !important;
+  }
+}

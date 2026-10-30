@@ -2,13 +2,23 @@
 @import url("https://fonts.googleapis.com/css2?family=Cairo:wght@600;700;800;900&family=Poppins:wght@600;700;800;900&display=swap");
 
 * { box-sizing: border-box; }
-html, body { height: 100%; margin: 0; overflow: hidden; }
+html, body { min-height: 100%; margin: 0; }
 body { font-family: "Comic Sans MS", "Poppins", "Trebuchet MS", Arial, sans-serif; }
-img { max-width: 100%; display: block; }
+img { max-width: 100%; height: auto; display: block; }
 button { font-family: inherit; }
 .mobile-menu-open { display: block !important; }
-.page-scroll { -webkit-overflow-scrolling: touch; overflow: hidden !important; }
+.page-scroll { -webkit-overflow-scrolling: touch; overflow-y: auto !important; }
 .show { display: flex !important; }
+
+/* Responsive base rules: allow natural scrolling on smaller screens */
+@media (max-width: 900px), (max-height: 600px) {
+  html, body {
+    height: auto !important;
+    min-height: 100% !important;
+    overflow-x: hidden !important;
+    overflow-y: auto !important;
+  }
+}
 
 /* Hide any legacy #header and #footer containers so the full screen is dedicated to content */
 #header,
@@ -133,8 +143,9 @@ html[dir="rtl"] .global-back-btn i {
 }
 
 /* =========================================================
-   NO-SCROLL FULL-VIEWPORT ADAPTATIONS FOR ALL PAGES
+   DESKTOP ZERO-SCROLL FULL-VIEWPORT OPTIMIZATIONS (Large screens only)
    ========================================================= */
+@media (min-width: 901px) and (min-height: 560px) {
 
 /* 1. Language Page */
 body.language-page #languageScreen {
@@ -164,38 +175,7 @@ body.language-page .card-animal {
   height: clamp(95px, 18vh, 145px) !important;
 }
 
-/* 2. Category Page (10 cards in 5x2 grid on 1 screen without scrolling) */
-body.category .category-main {
-  overflow: hidden !important;
-  padding: clamp(6px, 1.2vh, 14px) clamp(10px, 2vw, 24px) !important;
-  justify-content: center !important;
-}
-body.category .category-logo {
-  max-height: min(14vh, 120px) !important;
-  margin-bottom: clamp(6px, 1.4vh, 14px) !important;
-}
-body.category .category-grid {
-  display: grid !important;
-  grid-template-columns: repeat(5, minmax(0, 1fr)) !important;
-  grid-template-rows: repeat(2, minmax(0, 1fr)) !important;
-  gap: clamp(8px, 1.6vh, 18px) clamp(8px, 1.4vw, 20px) !important;
-  width: min(96vw, 1220px) !important;
-  height: min(74dvh, 500px) !important;
-  margin: 0 auto !important;
-}
-body.category .category-card {
-  width: 100% !important;
-  max-width: 100% !important;
-  min-width: 0 !important;
-  height: 100% !important;
-}
-body.category .category-card img {
-  max-height: min(32dvh, 210px) !important;
-  height: 100% !important;
-  width: auto !important;
-}
-
-/* 3. Alphabet Page (26 or 28 letters in 7x4 grid) */
+/* 2. Alphabet Page (26 or 28 letters in 7x4 grid) */
 body.alphabet .alphabet-main {
   overflow: hidden !important;
   padding: clamp(46px, 7vh, 62px) clamp(10px, 2vw, 28px) clamp(10px, 2vh, 20px) !important;
@@ -541,4 +521,38 @@ body.colors-page .quiz-feedback {
 body.geometry-page .geometry-main,
 body.geometry-page .geometry-screen {
   overflow: hidden !important;
+}
+
+} /* End desktop @media */
+
+/* =========================================================
+   UNIVERSAL MOBILE RESPONSIVE ADAPTATIONS (< 900px)
+   ========================================================= */
+@media (max-width: 900px) {
+  html, body {
+    height: auto !important;
+    min-height: 100% !important;
+    overflow-x: hidden !important;
+    overflow-y: auto !important;
+  }
+
+  /* Modals fit neatly on mobile */
+  .number-modal,
+  .color-modal,
+  .shape-modal,
+  .topic-modal {
+    padding: 12px !important;
+    align-items: center !important;
+    justify-content: center !important;
+  }
+
+  .number-detail,
+  .color-detail,
+  .shape-detail,
+  .topic-detail {
+    width: min(95vw, 500px) !important;
+    max-height: 90dvh !important;
+    overflow-y: auto !important;
+    padding: 24px 14px 16px !important;
+  }
 }
