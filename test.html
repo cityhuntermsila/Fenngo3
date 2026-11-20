@@ -295,8 +295,8 @@
       let currentTarget = null;
 
       function getLangData() {
-        const langId = window.AppLang ? window.AppLang.getCurrentLangId() : (localStorage.getItem("selectedLanguage") || "French");
-        return QUIZ_ITEMS[langId] || QUIZ_ITEMS.French;
+        const langId = window.AppLang ? window.AppLang.getCurrentLangId() : (localStorage.getItem("selectedLanguage") || "English");
+        return QUIZ_ITEMS[langId] || QUIZ_ITEMS.English;
       }
 
       function shuffle(arr) {

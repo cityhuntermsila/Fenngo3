@@ -1402,17 +1402,29 @@
     }
   },
   "fr": {
-    "16175217": {
-      "text": "Q comme Quatre",
-      "file": "assets/audio/fr/16175217.mp3"
-    },
     "22001965": {
       "text": "Réessaie. Trouve l'objet Jaune.",
       "file": "assets/audio/fr/22001965.mp3"
     },
+    "22476508": {
+      "text": "Touche la lettre W ! W, comme Wagon.",
+      "file": "assets/audio/fr/22476508.mp3"
+    },
+    "41830078": {
+      "text": "Gomme",
+      "file": "assets/audio/fr/41830078.mp3"
+    },
+    "45450602": {
+      "text": "Présente la lettre J ! J, comme Jus.",
+      "file": "assets/audio/fr/45450602.mp3"
+    },
     "46336066": {
       "text": "La lettre B",
       "file": "assets/audio/fr/46336066.mp3"
+    },
+    "46908515": {
+      "text": "Touche la lettre R ! R, comme Rose.",
+      "file": "assets/audio/fr/46908515.mp3"
     },
     "50261242": {
       "text": "T comme Arbre",
@@ -1421,6 +1433,10 @@
     "50337024": {
       "text": "La lettre L",
       "file": "assets/audio/fr/50337024.mp3"
+    },
+    "51707928": {
+      "text": "Main",
+      "file": "assets/audio/fr/51707928.mp3"
     },
     "54337670": {
       "text": "La lettre P",
@@ -1438,6 +1454,10 @@
       "text": "Vert",
       "file": "assets/audio/fr/68618762.mp3"
     },
+    "68901945": {
+      "text": "Lettre R ! Bravo, c'est correct !",
+      "file": "assets/audio/fr/68901945.mp3"
+    },
     "78739184": {
       "text": "Aubergine est Violet",
       "file": "assets/audio/fr/78739184.mp3"
@@ -1445,10 +1465,6 @@
     "f2f0e76a": {
       "text": "Français ! Apprenons le français !",
       "file": "assets/audio/fr/f2f0e76a.mp3"
-    },
-    "d4557467": {
-      "text": "A comme Astronaute",
-      "file": "assets/audio/fr/d4557467.mp3"
     },
     "900eaf6c": {
       "text": "A comme Avion",
@@ -1470,10 +1486,6 @@
       "text": "E comme Éléphant",
       "file": "assets/audio/fr/e9677efc.mp3"
     },
-    "59525d24": {
-      "text": "F comme Fraise",
-      "file": "assets/audio/fr/59525d24.mp3"
-    },
     "cfe07635": {
       "text": "F comme Poisson",
       "file": "assets/audio/fr/cfe07635.mp3"
@@ -1482,33 +1494,17 @@
       "text": "G comme Gâteau",
       "file": "assets/audio/fr/c059123f.mp3"
     },
-    "7099e927": {
-      "text": "H comme Hibou",
-      "file": "assets/audio/fr/7099e927.mp3"
-    },
     "4632b603": {
       "text": "H comme Maison",
       "file": "assets/audio/fr/4632b603.mp3"
-    },
-    "b3e868d9": {
-      "text": "I comme Igloo",
-      "file": "assets/audio/fr/b3e868d9.mp3"
     },
     "9be350a3": {
       "text": "I comme Glaçon",
       "file": "assets/audio/fr/9be350a3.mp3"
     },
-    "54b27860": {
-      "text": "J comme Jus",
-      "file": "assets/audio/fr/54b27860.mp3"
-    },
     "63ce001f": {
       "text": "J comme Méduse",
       "file": "assets/audio/fr/63ce001f.mp3"
-    },
-    "48e62c3b": {
-      "text": "K comme Koala",
-      "file": "assets/audio/fr/48e62c3b.mp3"
     },
     "31fb4778": {
       "text": "K comme Cerf-volant",
@@ -1538,10 +1534,6 @@
       "text": "Q comme Reine",
       "file": "assets/audio/fr/9ea5e0da.mp3"
     },
-    "97ebaf69": {
-      "text": "R comme Rose",
-      "file": "assets/audio/fr/97ebaf69.mp3"
-    },
     "94ea54b0": {
       "text": "R comme Arc-en-ciel",
       "file": "assets/audio/fr/94ea54b0.mp3"
@@ -1550,14 +1542,6 @@
       "text": "S comme Soleil",
       "file": "assets/audio/fr/5be22eb7.mp3"
     },
-    "e294aea2": {
-      "text": "T comme Train",
-      "file": "assets/audio/fr/e294aea2.mp3"
-    },
-    "ec6241f2": {
-      "text": "U comme Un",
-      "file": "assets/audio/fr/ec6241f2.mp3"
-    },
     "9c6ab3a0": {
       "text": "U comme Parapluie",
       "file": "assets/audio/fr/9c6ab3a0.mp3"
@@ -1565,10 +1549,6 @@
     "606c290b": {
       "text": "V comme Volcan",
       "file": "assets/audio/fr/606c290b.mp3"
-    },
-    "badfd8bd": {
-      "text": "W comme Wagon",
-      "file": "assets/audio/fr/badfd8bd.mp3"
     },
     "e78141fe": {
       "text": "W comme Pastèque",
@@ -2513,6 +2493,1350 @@
     "e90f9602": {
       "text": "Bravo champion ! Tu as terminé la manche avec succès !",
       "file": "assets/audio/fr/e90f9602.mp3"
+    },
+    "c40bf6cc": {
+      "text": "A",
+      "file": "assets/audio/fr/c40bf6cc.mp3"
+    },
+    "c70bfb85": {
+      "text": "B",
+      "file": "assets/audio/fr/c70bfb85.mp3"
+    },
+    "c60bf9f2": {
+      "text": "C",
+      "file": "assets/audio/fr/c60bf9f2.mp3"
+    },
+    "c10bf213": {
+      "text": "D",
+      "file": "assets/audio/fr/c10bf213.mp3"
+    },
+    "c00bf080": {
+      "text": "E",
+      "file": "assets/audio/fr/c00bf080.mp3"
+    },
+    "c30bf539": {
+      "text": "F",
+      "file": "assets/audio/fr/c30bf539.mp3"
+    },
+    "c20bf3a6": {
+      "text": "G",
+      "file": "assets/audio/fr/c20bf3a6.mp3"
+    },
+    "cd0c04f7": {
+      "text": "H",
+      "file": "assets/audio/fr/cd0c04f7.mp3"
+    },
+    "cc0c0364": {
+      "text": "I",
+      "file": "assets/audio/fr/cc0c0364.mp3"
+    },
+    "cf0c081d": {
+      "text": "J",
+      "file": "assets/audio/fr/cf0c081d.mp3"
+    },
+    "ce0c068a": {
+      "text": "K",
+      "file": "assets/audio/fr/ce0c068a.mp3"
+    },
+    "c90bfeab": {
+      "text": "L",
+      "file": "assets/audio/fr/c90bfeab.mp3"
+    },
+    "c80bfd18": {
+      "text": "M",
+      "file": "assets/audio/fr/c80bfd18.mp3"
+    },
+    "cb0c01d1": {
+      "text": "N",
+      "file": "assets/audio/fr/cb0c01d1.mp3"
+    },
+    "ca0c003e": {
+      "text": "O",
+      "file": "assets/audio/fr/ca0c003e.mp3"
+    },
+    "d50c118f": {
+      "text": "P",
+      "file": "assets/audio/fr/d50c118f.mp3"
+    },
+    "d40c0ffc": {
+      "text": "Q",
+      "file": "assets/audio/fr/d40c0ffc.mp3"
+    },
+    "d70c14b5": {
+      "text": "R",
+      "file": "assets/audio/fr/d70c14b5.mp3"
+    },
+    "d60c1322": {
+      "text": "S",
+      "file": "assets/audio/fr/d60c1322.mp3"
+    },
+    "d10c0b43": {
+      "text": "T",
+      "file": "assets/audio/fr/d10c0b43.mp3"
+    },
+    "d00c09b0": {
+      "text": "U",
+      "file": "assets/audio/fr/d00c09b0.mp3"
+    },
+    "d30c0e69": {
+      "text": "V",
+      "file": "assets/audio/fr/d30c0e69.mp3"
+    },
+    "d20c0cd6": {
+      "text": "W",
+      "file": "assets/audio/fr/d20c0cd6.mp3"
+    },
+    "dd0c1e27": {
+      "text": "X",
+      "file": "assets/audio/fr/dd0c1e27.mp3"
+    },
+    "dc0c1c94": {
+      "text": "Y",
+      "file": "assets/audio/fr/dc0c1c94.mp3"
+    },
+    "df0c214d": {
+      "text": "Z",
+      "file": "assets/audio/fr/df0c214d.mp3"
+    },
+    "03d7c57a": {
+      "text": "Alphabet",
+      "file": "assets/audio/fr/03d7c57a.mp3"
+    },
+    "112ff449": {
+      "text": "Nombres",
+      "file": "assets/audio/fr/112ff449.mp3"
+    },
+    "cf1234cb": {
+      "text": "Couleurs",
+      "file": "assets/audio/fr/cf1234cb.mp3"
+    },
+    "4750fe1c": {
+      "text": "Géométrie",
+      "file": "assets/audio/fr/4750fe1c.mp3"
+    },
+    "7b7e2e15": {
+      "text": "Famille",
+      "file": "assets/audio/fr/7b7e2e15.mp3"
+    },
+    "4fe22303": {
+      "text": "Fournitures",
+      "file": "assets/audio/fr/4fe22303.mp3"
+    },
+    "2f6be168": {
+      "text": "Corps Humain",
+      "file": "assets/audio/fr/2f6be168.mp3"
+    },
+    "cc212fe3": {
+      "text": "Routine",
+      "file": "assets/audio/fr/cc212fe3.mp3"
+    },
+    "084e90ae": {
+      "text": "Ordres",
+      "file": "assets/audio/fr/084e90ae.mp3"
+    },
+    "d3bd35eb": {
+      "text": "Astronaute",
+      "file": "assets/audio/fr/d3bd35eb.mp3"
+    },
+    "0f648d06": {
+      "text": "A, Astronaute",
+      "file": "assets/audio/fr/0f648d06.mp3"
+    },
+    "90729e56": {
+      "text": "Touche la lettre A ! A, comme Astronaute.",
+      "file": "assets/audio/fr/90729e56.mp3"
+    },
+    "9f672516": {
+      "text": "Présente la lettre A ! A, comme Astronaute.",
+      "file": "assets/audio/fr/9f672516.mp3"
+    },
+    "73de8a3c": {
+      "text": "Lettre A",
+      "file": "assets/audio/fr/73de8a3c.mp3"
+    },
+    "32bbe9fa": {
+      "text": "Lettre A ! Bravo, c'est correct !",
+      "file": "assets/audio/fr/32bbe9fa.mp3"
+    },
+    "0b4eb05e": {
+      "text": "Lettre A. Non, ce n'est pas correct, réessaie !",
+      "file": "assets/audio/fr/0b4eb05e.mp3"
+    },
+    "4a60e24d": {
+      "text": "Ballon",
+      "file": "assets/audio/fr/4a60e24d.mp3"
+    },
+    "29f54119": {
+      "text": "B, Ballon",
+      "file": "assets/audio/fr/29f54119.mp3"
+    },
+    "608d23ec": {
+      "text": "Touche la lettre B ! B, comme Ballon.",
+      "file": "assets/audio/fr/608d23ec.mp3"
+    },
+    "0da6f0ac": {
+      "text": "Présente la lettre B ! B, comme Ballon.",
+      "file": "assets/audio/fr/0da6f0ac.mp3"
+    },
+    "76de8ef5": {
+      "text": "Lettre B",
+      "file": "assets/audio/fr/76de8ef5.mp3"
+    },
+    "bb7922b5": {
+      "text": "Lettre B ! Bravo, c'est correct !",
+      "file": "assets/audio/fr/bb7922b5.mp3"
+    },
+    "19bb4d25": {
+      "text": "Lettre B. Non, ce n'est pas correct, réessaie !",
+      "file": "assets/audio/fr/19bb4d25.mp3"
+    },
+    "2279d8cb": {
+      "text": "Chat",
+      "file": "assets/audio/fr/2279d8cb.mp3"
+    },
+    "6733b830": {
+      "text": "C, Chat",
+      "file": "assets/audio/fr/6733b830.mp3"
+    },
+    "a587ac2a": {
+      "text": "Touche la lettre C ! C, comme Chat.",
+      "file": "assets/audio/fr/a587ac2a.mp3"
+    },
+    "f13999ea": {
+      "text": "Présente la lettre C ! C, comme Chat.",
+      "file": "assets/audio/fr/f13999ea.mp3"
+    },
+    "75de8d62": {
+      "text": "Lettre C",
+      "file": "assets/audio/fr/75de8d62.mp3"
+    },
+    "ac3d0f2c": {
+      "text": "Lettre C ! Bravo, c'est correct !",
+      "file": "assets/audio/fr/ac3d0f2c.mp3"
+    },
+    "c92fdecc": {
+      "text": "Lettre C. Non, ce n'est pas correct, réessaie !",
+      "file": "assets/audio/fr/c92fdecc.mp3"
+    },
+    "d3832b3a": {
+      "text": "Dauphin",
+      "file": "assets/audio/fr/d3832b3a.mp3"
+    },
+    "7241e8dc": {
+      "text": "D, Dauphin",
+      "file": "assets/audio/fr/7241e8dc.mp3"
+    },
+    "76ad6b13": {
+      "text": "Touche la lettre D ! D, comme Dauphin.",
+      "file": "assets/audio/fr/76ad6b13.mp3"
+    },
+    "6b5055d3": {
+      "text": "Présente la lettre D ! D, comme Dauphin.",
+      "file": "assets/audio/fr/6b5055d3.mp3"
+    },
+    "70de8583": {
+      "text": "Lettre D",
+      "file": "assets/audio/fr/70de8583.mp3"
+    },
+    "60c487af": {
+      "text": "Lettre D ! Bravo, c'est correct !",
+      "file": "assets/audio/fr/60c487af.mp3"
+    },
+    "cafd46e3": {
+      "text": "Lettre D. Non, ce n'est pas correct, réessaie !",
+      "file": "assets/audio/fr/cafd46e3.mp3"
+    },
+    "e728f1f4": {
+      "text": "Éléphant",
+      "file": "assets/audio/fr/e728f1f4.mp3"
+    },
+    "cfb0ae71": {
+      "text": "E, Éléphant",
+      "file": "assets/audio/fr/cfb0ae71.mp3"
+    },
+    "651727eb": {
+      "text": "Touche la lettre E ! E, comme Éléphant.",
+      "file": "assets/audio/fr/651727eb.mp3"
+    },
+    "a470e4ab": {
+      "text": "Présente la lettre E ! E, comme Éléphant.",
+      "file": "assets/audio/fr/a470e4ab.mp3"
+    },
+    "6fde83f0": {
+      "text": "Lettre E",
+      "file": "assets/audio/fr/6fde83f0.mp3"
+    },
+    "9b4c18ee": {
+      "text": "Lettre E ! Bravo, c'est correct !",
+      "file": "assets/audio/fr/9b4c18ee.mp3"
+    },
+    "2b259b6a": {
+      "text": "Lettre E. Non, ce n'est pas correct, réessaie !",
+      "file": "assets/audio/fr/2b259b6a.mp3"
+    },
+    "55e1fd87": {
+      "text": "Fraise",
+      "file": "assets/audio/fr/55e1fd87.mp3"
+    },
+    "579f304f": {
+      "text": "F, Fraise",
+      "file": "assets/audio/fr/579f304f.mp3"
+    },
+    "850f2272": {
+      "text": "Touche la lettre F ! F, comme Fraise.",
+      "file": "assets/audio/fr/850f2272.mp3"
+    },
+    "efc2bc32": {
+      "text": "Présente la lettre F ! F, comme Fraise.",
+      "file": "assets/audio/fr/efc2bc32.mp3"
+    },
+    "72de88a9": {
+      "text": "Lettre F",
+      "file": "assets/audio/fr/72de88a9.mp3"
+    },
+    "bd7b3c69": {
+      "text": "Lettre F ! Bravo, c'est correct !",
+      "file": "assets/audio/fr/bd7b3c69.mp3"
+    },
+    "6d012701": {
+      "text": "Lettre F. Non, ce n'est pas correct, réessaie !",
+      "file": "assets/audio/fr/6d012701.mp3"
+    },
+    "ada6f9f5": {
+      "text": "Gâteau",
+      "file": "assets/audio/fr/ada6f9f5.mp3"
+    },
+    "0d6803b6": {
+      "text": "G, Gâteau",
+      "file": "assets/audio/fr/0d6803b6.mp3"
+    },
+    "78bfb9bc": {
+      "text": "Touche la lettre G ! G, comme Gâteau.",
+      "file": "assets/audio/fr/78bfb9bc.mp3"
+    },
+    "6ef3f87c": {
+      "text": "Présente la lettre G ! G, comme Gâteau.",
+      "file": "assets/audio/fr/6ef3f87c.mp3"
+    },
+    "71de8716": {
+      "text": "Lettre G",
+      "file": "assets/audio/fr/71de8716.mp3"
+    },
+    "d5630720": {
+      "text": "Lettre G ! Bravo, c'est correct !",
+      "file": "assets/audio/fr/d5630720.mp3"
+    },
+    "43e07ea8": {
+      "text": "Lettre G. Non, ce n'est pas correct, réessaie !",
+      "file": "assets/audio/fr/43e07ea8.mp3"
+    },
+    "630be3f0": {
+      "text": "Hibou",
+      "file": "assets/audio/fr/630be3f0.mp3"
+    },
+    "9b4e0d72": {
+      "text": "H, Hibou",
+      "file": "assets/audio/fr/9b4e0d72.mp3"
+    },
+    "c4e00201": {
+      "text": "Touche la lettre H ! H, comme Hibou.",
+      "file": "assets/audio/fr/c4e00201.mp3"
+    },
+    "c9dd38c1": {
+      "text": "Présente la lettre H ! H, comme Hibou.",
+      "file": "assets/audio/fr/c9dd38c1.mp3"
+    },
+    "7cde9867": {
+      "text": "Lettre H",
+      "file": "assets/audio/fr/7cde9867.mp3"
+    },
+    "c7514bc3": {
+      "text": "Lettre H ! Bravo, c'est correct !",
+      "file": "assets/audio/fr/c7514bc3.mp3"
+    },
+    "03e4778f": {
+      "text": "Lettre H. Non, ce n'est pas correct, réessaie !",
+      "file": "assets/audio/fr/03e4778f.mp3"
+    },
+    "8bd4939d": {
+      "text": "Igloo",
+      "file": "assets/audio/fr/8bd4939d.mp3"
+    },
+    "0fed23c6": {
+      "text": "I, Igloo",
+      "file": "assets/audio/fr/0fed23c6.mp3"
+    },
+    "cee8f85e": {
+      "text": "Touche la lettre I ! I, comme Igloo.",
+      "file": "assets/audio/fr/cee8f85e.mp3"
+    },
+    "8e5a691e": {
+      "text": "Présente la lettre I ! I, comme Igloo.",
+      "file": "assets/audio/fr/8e5a691e.mp3"
+    },
+    "7bde96d4": {
+      "text": "Lettre I",
+      "file": "assets/audio/fr/7bde96d4.mp3"
+    },
+    "25123e92": {
+      "text": "Lettre I ! Bravo, c'est correct !",
+      "file": "assets/audio/fr/25123e92.mp3"
+    },
+    "339111a6": {
+      "text": "Lettre I. Non, ce n'est pas correct, réessaie !",
+      "file": "assets/audio/fr/339111a6.mp3"
+    },
+    "3bc12091": {
+      "text": "Jus",
+      "file": "assets/audio/fr/3bc12091.mp3"
+    },
+    "2b40ac45": {
+      "text": "J, Jus",
+      "file": "assets/audio/fr/2b40ac45.mp3"
+    },
+    "e0a62942": {
+      "text": "Touche la lettre J ! J, comme Jus.",
+      "file": "assets/audio/fr/e0a62942.mp3"
+    },
+    "7ede9b8d": {
+      "text": "Lettre J",
+      "file": "assets/audio/fr/7ede9b8d.mp3"
+    },
+    "6f74010d": {
+      "text": "Lettre J ! Bravo, c'est correct !",
+      "file": "assets/audio/fr/6f74010d.mp3"
+    },
+    "dbf24c4d": {
+      "text": "Lettre J. Non, ce n'est pas correct, réessaie !",
+      "file": "assets/audio/fr/dbf24c4d.mp3"
+    },
+    "57b5aeb9": {
+      "text": "Koala",
+      "file": "assets/audio/fr/57b5aeb9.mp3"
+    },
+    "1930fd5c": {
+      "text": "K, Koala",
+      "file": "assets/audio/fr/1930fd5c.mp3"
+    },
+    "e80f7d2e": {
+      "text": "Touche la lettre K ! K, comme Koala.",
+      "file": "assets/audio/fr/e80f7d2e.mp3"
+    },
+    "06af4dee": {
+      "text": "Présente la lettre K ! K, comme Koala.",
+      "file": "assets/audio/fr/06af4dee.mp3"
+    },
+    "7dde99fa": {
+      "text": "Lettre K",
+      "file": "assets/audio/fr/7dde99fa.mp3"
+    },
+    "7d40a6a4": {
+      "text": "Lettre K ! Bravo, c'est correct !",
+      "file": "assets/audio/fr/7d40a6a4.mp3"
+    },
+    "2eaefb94": {
+      "text": "Lettre K. Non, ce n'est pas correct, réessaie !",
+      "file": "assets/audio/fr/2eaefb94.mp3"
+    },
+    "730af99f": {
+      "text": "Lion",
+      "file": "assets/audio/fr/730af99f.mp3"
+    },
+    "d4d2bfc9": {
+      "text": "L, Lion",
+      "file": "assets/audio/fr/d4d2bfc9.mp3"
+    },
+    "ea97fdb2": {
+      "text": "Touche la lettre L ! L, comme Lion.",
+      "file": "assets/audio/fr/ea97fdb2.mp3"
+    },
+    "bc7ffe72": {
+      "text": "Présente la lettre L ! L, comme Lion.",
+      "file": "assets/audio/fr/bc7ffe72.mp3"
+    },
+    "78de921b": {
+      "text": "Lettre L",
+      "file": "assets/audio/fr/78de921b.mp3"
+    },
+    "e4d5b967": {
+      "text": "Lettre L ! Bravo, c'est correct !",
+      "file": "assets/audio/fr/e4d5b967.mp3"
+    },
+    "c3c2e5eb": {
+      "text": "Lettre L. Non, ce n'est pas correct, réessaie !",
+      "file": "assets/audio/fr/c3c2e5eb.mp3"
+    },
+    "4a250b96": {
+      "text": "Mangue",
+      "file": "assets/audio/fr/4a250b96.mp3"
+    },
+    "bce43e8f": {
+      "text": "M, Mangue",
+      "file": "assets/audio/fr/bce43e8f.mp3"
+    },
+    "5d2bed4d": {
+      "text": "Touche la lettre M ! M, comme Mangue.",
+      "file": "assets/audio/fr/5d2bed4d.mp3"
+    },
+    "cff8920d": {
+      "text": "Présente la lettre M ! M, comme Mangue.",
+      "file": "assets/audio/fr/cff8920d.mp3"
+    },
+    "77de9088": {
+      "text": "Lettre M",
+      "file": "assets/audio/fr/77de9088.mp3"
+    },
+    "ffa03ea6": {
+      "text": "Lettre M ! Bravo, c'est correct !",
+      "file": "assets/audio/fr/ffa03ea6.mp3"
+    },
+    "4a768632": {
+      "text": "Lettre M. Non, ce n'est pas correct, réessaie !",
+      "file": "assets/audio/fr/4a768632.mp3"
+    },
+    "782e9d24": {
+      "text": "Nid",
+      "file": "assets/audio/fr/782e9d24.mp3"
+    },
+    "5e7ddcc4": {
+      "text": "N, Nid",
+      "file": "assets/audio/fr/5e7ddcc4.mp3"
+    },
+    "efe25529": {
+      "text": "Touche la lettre N ! N, comme Nid.",
+      "file": "assets/audio/fr/efe25529.mp3"
+    },
+    "70484fe9": {
+      "text": "Présente la lettre N ! N, comme Nid.",
+      "file": "assets/audio/fr/70484fe9.mp3"
+    },
+    "7ade9541": {
+      "text": "Lettre N",
+      "file": "assets/audio/fr/7ade9541.mp3"
+    },
+    "75505d21": {
+      "text": "Lettre N ! Bravo, c'est correct !",
+      "file": "assets/audio/fr/75505d21.mp3"
+    },
+    "6b5ca549": {
+      "text": "Lettre N. Non, ce n'est pas correct, réessaie !",
+      "file": "assets/audio/fr/6b5ca549.mp3"
+    },
+    "ec188f8c": {
+      "text": "O, Orange",
+      "file": "assets/audio/fr/ec188f8c.mp3"
+    },
+    "574d1932": {
+      "text": "Touche la lettre O ! O, comme Orange.",
+      "file": "assets/audio/fr/574d1932.mp3"
+    },
+    "c0b6f4f2": {
+      "text": "Présente la lettre O ! O, comme Orange.",
+      "file": "assets/audio/fr/c0b6f4f2.mp3"
+    },
+    "79de93ae": {
+      "text": "Lettre O",
+      "file": "assets/audio/fr/79de93ae.mp3"
+    },
+    "d2532178": {
+      "text": "Lettre O ! Bravo, c'est correct !",
+      "file": "assets/audio/fr/d2532178.mp3"
+    },
+    "6518e470": {
+      "text": "Lettre O. Non, ce n'est pas correct, réessaie !",
+      "file": "assets/audio/fr/6518e470.mp3"
+    },
+    "a22e2a30": {
+      "text": "Papillon",
+      "file": "assets/audio/fr/a22e2a30.mp3"
+    },
+    "c4338f06": {
+      "text": "P, Papillon",
+      "file": "assets/audio/fr/c4338f06.mp3"
+    },
+    "23d93e3b": {
+      "text": "Touche la lettre P ! P, comme Papillon.",
+      "file": "assets/audio/fr/23d93e3b.mp3"
+    },
+    "2e12eafb": {
+      "text": "Présente la lettre P ! P, comme Papillon.",
+      "file": "assets/audio/fr/2e12eafb.mp3"
+    },
+    "64de729f": {
+      "text": "Lettre P",
+      "file": "assets/audio/fr/64de729f.mp3"
+    },
+    "9f123bbb": {
+      "text": "Lettre P ! Bravo, c'est correct !",
+      "file": "assets/audio/fr/9f123bbb.mp3"
+    },
+    "5e2b3637": {
+      "text": "Lettre P. Non, ce n'est pas correct, réessaie !",
+      "file": "assets/audio/fr/5e2b3637.mp3"
+    },
+    "2158a99e": {
+      "text": "Q, Quatre",
+      "file": "assets/audio/fr/2158a99e.mp3"
+    },
+    "0673e812": {
+      "text": "Touche la lettre Q ! Q, comme Quatre.",
+      "file": "assets/audio/fr/0673e812.mp3"
+    },
+    "35f6eed2": {
+      "text": "Présente la lettre Q ! Q, comme Quatre.",
+      "file": "assets/audio/fr/35f6eed2.mp3"
+    },
+    "63de710c": {
+      "text": "Lettre Q",
+      "file": "assets/audio/fr/63de710c.mp3"
+    },
+    "5509abca": {
+      "text": "Lettre Q ! Bravo, c'est correct !",
+      "file": "assets/audio/fr/5509abca.mp3"
+    },
+    "92e85f4e": {
+      "text": "Lettre Q. Non, ce n'est pas correct, réessaie !",
+      "file": "assets/audio/fr/92e85f4e.mp3"
+    },
+    "8014f362": {
+      "text": "R, Rose",
+      "file": "assets/audio/fr/8014f362.mp3"
+    },
+    "687dcad5": {
+      "text": "Présente la lettre R ! R, comme Rose.",
+      "file": "assets/audio/fr/687dcad5.mp3"
+    },
+    "66de75c5": {
+      "text": "Lettre R",
+      "file": "assets/audio/fr/66de75c5.mp3"
+    },
+    "73efcd55": {
+      "text": "Lettre R. Non, ce n'est pas correct, réessaie !",
+      "file": "assets/audio/fr/73efcd55.mp3"
+    },
+    "3a1d1609": {
+      "text": "Soleil",
+      "file": "assets/audio/fr/3a1d1609.mp3"
+    },
+    "e5dacfbe": {
+      "text": "S, Soleil",
+      "file": "assets/audio/fr/e5dacfbe.mp3"
+    },
+    "358d64b0": {
+      "text": "Touche la lettre S ! S, comme Soleil.",
+      "file": "assets/audio/fr/358d64b0.mp3"
+    },
+    "cc800f70": {
+      "text": "Présente la lettre S ! S, comme Soleil.",
+      "file": "assets/audio/fr/cc800f70.mp3"
+    },
+    "65de7432": {
+      "text": "Lettre S",
+      "file": "assets/audio/fr/65de7432.mp3"
+    },
+    "f3d8f5fc": {
+      "text": "Lettre S ! Bravo, c'est correct !",
+      "file": "assets/audio/fr/f3d8f5fc.mp3"
+    },
+    "3669db3c": {
+      "text": "Lettre S. Non, ce n'est pas correct, réessaie !",
+      "file": "assets/audio/fr/3669db3c.mp3"
+    },
+    "1e127109": {
+      "text": "Train",
+      "file": "assets/audio/fr/1e127109.mp3"
+    },
+    "531bc27f": {
+      "text": "T, Train",
+      "file": "assets/audio/fr/531bc27f.mp3"
+    },
+    "d4eaa2be": {
+      "text": "Touche la lettre T ! T, comme Train.",
+      "file": "assets/audio/fr/d4eaa2be.mp3"
+    },
+    "031bdf7e": {
+      "text": "Présente la lettre T ! T, comme Train.",
+      "file": "assets/audio/fr/031bdf7e.mp3"
+    },
+    "60de6c53": {
+      "text": "Lettre T",
+      "file": "assets/audio/fr/60de6c53.mp3"
+    },
+    "4da8617f": {
+      "text": "Lettre T ! Bravo, c'est correct !",
+      "file": "assets/audio/fr/4da8617f.mp3"
+    },
+    "fc56fdd3": {
+      "text": "Lettre T. Non, ce n'est pas correct, réessaie !",
+      "file": "assets/audio/fr/fc56fdd3.mp3"
+    },
+    "d202e99f": {
+      "text": "U, Un",
+      "file": "assets/audio/fr/d202e99f.mp3"
+    },
+    "3eaf3799": {
+      "text": "Touche la lettre U ! U, comme Un.",
+      "file": "assets/audio/fr/3eaf3799.mp3"
+    },
+    "74b34c59": {
+      "text": "Présente la lettre U ! U, comme Un.",
+      "file": "assets/audio/fr/74b34c59.mp3"
+    },
+    "5fde6ac0": {
+      "text": "Lettre U",
+      "file": "assets/audio/fr/5fde6ac0.mp3"
+    },
+    "91ad4f7e": {
+      "text": "Lettre U ! Bravo, c'est correct !",
+      "file": "assets/audio/fr/91ad4f7e.mp3"
+    },
+    "51fe3dda": {
+      "text": "Lettre U. Non, ce n'est pas correct, réessaie !",
+      "file": "assets/audio/fr/51fe3dda.mp3"
+    },
+    "a0534b20": {
+      "text": "Volcan",
+      "file": "assets/audio/fr/a0534b20.mp3"
+    },
+    "d9998018": {
+      "text": "V, Volcan",
+      "file": "assets/audio/fr/d9998018.mp3"
+    },
+    "392684c3": {
+      "text": "Touche la lettre V ! V, comme Volcan.",
+      "file": "assets/audio/fr/392684c3.mp3"
+    },
+    "63c36c83": {
+      "text": "Présente la lettre V ! V, comme Volcan.",
+      "file": "assets/audio/fr/63c36c83.mp3"
+    },
+    "62de6f79": {
+      "text": "Lettre V",
+      "file": "assets/audio/fr/62de6f79.mp3"
+    },
+    "19613ab9": {
+      "text": "Lettre V ! Bravo, c'est correct !",
+      "file": "assets/audio/fr/19613ab9.mp3"
+    },
+    "95c8fd71": {
+      "text": "Lettre V. Non, ce n'est pas correct, réessaie !",
+      "file": "assets/audio/fr/95c8fd71.mp3"
+    },
+    "2e4a4f6f": {
+      "text": "Wagon",
+      "file": "assets/audio/fr/2e4a4f6f.mp3"
+    },
+    "04a0b4ea": {
+      "text": "W, Wagon",
+      "file": "assets/audio/fr/04a0b4ea.mp3"
+    },
+    "0a2375c8": {
+      "text": "Présente la lettre W ! W, comme Wagon.",
+      "file": "assets/audio/fr/0a2375c8.mp3"
+    },
+    "61de6de6": {
+      "text": "Lettre W",
+      "file": "assets/audio/fr/61de6de6.mp3"
+    },
+    "8c0076b0": {
+      "text": "Lettre W ! Bravo, c'est correct !",
+      "file": "assets/audio/fr/8c0076b0.mp3"
+    },
+    "1686f8d8": {
+      "text": "Lettre W. Non, ce n'est pas correct, réessaie !",
+      "file": "assets/audio/fr/1686f8d8.mp3"
+    },
+    "78348ff5": {
+      "text": "Xylophone",
+      "file": "assets/audio/fr/78348ff5.mp3"
+    },
+    "c6a59c53": {
+      "text": "X, Xylophone",
+      "file": "assets/audio/fr/c6a59c53.mp3"
+    },
+    "e7fa719e": {
+      "text": "Touche la lettre X ! X, comme Xylophone.",
+      "file": "assets/audio/fr/e7fa719e.mp3"
+    },
+    "0284f05e": {
+      "text": "Présente la lettre X ! X, comme Xylophone.",
+      "file": "assets/audio/fr/0284f05e.mp3"
+    },
+    "6cde7f37": {
+      "text": "Lettre X",
+      "file": "assets/audio/fr/6cde7f37.mp3"
+    },
+    "c6956a93": {
+      "text": "Lettre X ! Bravo, c'est correct !",
+      "file": "assets/audio/fr/c6956a93.mp3"
+    },
+    "6ed168ff": {
+      "text": "Lettre X. Non, ce n'est pas correct, réessaie !",
+      "file": "assets/audio/fr/6ed168ff.mp3"
+    },
+    "70c6ef38": {
+      "text": "Yo-Yo",
+      "file": "assets/audio/fr/70c6ef38.mp3"
+    },
+    "606747ab": {
+      "text": "Y, Yo-Yo",
+      "file": "assets/audio/fr/606747ab.mp3"
+    },
+    "47a57389": {
+      "text": "Touche la lettre Y ! Y, comme Yo-Yo.",
+      "file": "assets/audio/fr/47a57389.mp3"
+    },
+    "75c269c9": {
+      "text": "Présente la lettre Y ! Y, comme Yo-Yo.",
+      "file": "assets/audio/fr/75c269c9.mp3"
+    },
+    "6bde7da4": {
+      "text": "Lettre Y",
+      "file": "assets/audio/fr/6bde7da4.mp3"
+    },
+    "8f6323e2": {
+      "text": "Lettre Y ! Bravo, c'est correct !",
+      "file": "assets/audio/fr/8f6323e2.mp3"
+    },
+    "315a3f96": {
+      "text": "Lettre Y. Non, ce n'est pas correct, réessaie !",
+      "file": "assets/audio/fr/315a3f96.mp3"
+    },
+    "b1b0335e": {
+      "text": "Zèbre",
+      "file": "assets/audio/fr/b1b0335e.mp3"
+    },
+    "55c91ab2": {
+      "text": "Z, Zèbre",
+      "file": "assets/audio/fr/55c91ab2.mp3"
+    },
+    "aa29552b": {
+      "text": "Touche la lettre Z ! Z, comme Zèbre.",
+      "file": "assets/audio/fr/aa29552b.mp3"
+    },
+    "6c3ed3eb": {
+      "text": "Présente la lettre Z ! Z, comme Zèbre.",
+      "file": "assets/audio/fr/6c3ed3eb.mp3"
+    },
+    "6ede825d": {
+      "text": "Lettre Z",
+      "file": "assets/audio/fr/6ede825d.mp3"
+    },
+    "6c778a1d": {
+      "text": "Lettre Z ! Bravo, c'est correct !",
+      "file": "assets/audio/fr/6c778a1d.mp3"
+    },
+    "d039b73d": {
+      "text": "Lettre Z. Non, ce n'est pas correct, réessaie !",
+      "file": "assets/audio/fr/d039b73d.mp3"
+    },
+    "2c50468e": {
+      "text": "Trouve les paires identiques !",
+      "file": "assets/audio/fr/2c50468e.mp3"
+    },
+    "6017ba7b": {
+      "text": "Chiffre 1",
+      "file": "assets/audio/fr/6017ba7b.mp3"
+    },
+    "9f0c5687": {
+      "text": "Chiffre 1 ! Bravo, c'est correct !",
+      "file": "assets/audio/fr/9f0c5687.mp3"
+    },
+    "f92b690b": {
+      "text": "Chiffre 1. Non, ce n'est pas correct, réessaie !",
+      "file": "assets/audio/fr/f92b690b.mp3"
+    },
+    "f6019a36": {
+      "text": "Présente le chiffre 1 ! Un.",
+      "file": "assets/audio/fr/f6019a36.mp3"
+    },
+    "6ab0cb76": {
+      "text": "Touche le chiffre 1 ! Un.",
+      "file": "assets/audio/fr/6ab0cb76.mp3"
+    },
+    "6117bc0e": {
+      "text": "Chiffre 2",
+      "file": "assets/audio/fr/6117bc0e.mp3"
+    },
+    "41e5d598": {
+      "text": "Chiffre 2 ! Bravo, c'est correct !",
+      "file": "assets/audio/fr/41e5d598.mp3"
+    },
+    "ff99d610": {
+      "text": "Chiffre 2. Non, ce n'est pas correct, réessaie !",
+      "file": "assets/audio/fr/ff99d610.mp3"
+    },
+    "86d53d90": {
+      "text": "Présente le chiffre 2 ! Deux.",
+      "file": "assets/audio/fr/86d53d90.mp3"
+    },
+    "8ff807d0": {
+      "text": "Touche le chiffre 2 ! Deux.",
+      "file": "assets/audio/fr/8ff807d0.mp3"
+    },
+    "6217bda1": {
+      "text": "Chiffre 3",
+      "file": "assets/audio/fr/6217bda1.mp3"
+    },
+    "3d689f41": {
+      "text": "Chiffre 3 ! Bravo, c'est correct !",
+      "file": "assets/audio/fr/3d689f41.mp3"
+    },
+    "da12eae9": {
+      "text": "Chiffre 3. Non, ce n'est pas correct, réessaie !",
+      "file": "assets/audio/fr/da12eae9.mp3"
+    },
+    "2ff95652": {
+      "text": "Présente le chiffre 3 ! Trois.",
+      "file": "assets/audio/fr/2ff95652.mp3"
+    },
+    "26787d92": {
+      "text": "Touche le chiffre 3 ! Trois.",
+      "file": "assets/audio/fr/26787d92.mp3"
+    },
+    "6317bf34": {
+      "text": "Chiffre 4",
+      "file": "assets/audio/fr/6317bf34.mp3"
+    },
+    "7dbadeb2": {
+      "text": "Chiffre 4 ! Bravo, c'est correct !",
+      "file": "assets/audio/fr/7dbadeb2.mp3"
+    },
+    "73aa3046": {
+      "text": "Chiffre 4. Non, ce n'est pas correct, réessaie !",
+      "file": "assets/audio/fr/73aa3046.mp3"
+    },
+    "a92cd162": {
+      "text": "Présente le chiffre 4 ! Quatre.",
+      "file": "assets/audio/fr/a92cd162.mp3"
+    },
+    "afa407a2": {
+      "text": "Touche le chiffre 4 ! Quatre.",
+      "file": "assets/audio/fr/afa407a2.mp3"
+    },
+    "6417c0c7": {
+      "text": "Chiffre 5",
+      "file": "assets/audio/fr/6417c0c7.mp3"
+    },
+    "e485f0e3": {
+      "text": "Chiffre 5 ! Bravo, c'est correct !",
+      "file": "assets/audio/fr/e485f0e3.mp3"
+    },
+    "9cc9912f": {
+      "text": "Chiffre 5. Non, ce n'est pas correct, réessaie !",
+      "file": "assets/audio/fr/9cc9912f.mp3"
+    },
+    "3dca8f30": {
+      "text": "Présente le chiffre 5 ! Cinq.",
+      "file": "assets/audio/fr/3dca8f30.mp3"
+    },
+    "603a0e70": {
+      "text": "Touche le chiffre 5 ! Cinq.",
+      "file": "assets/audio/fr/603a0e70.mp3"
+    },
+    "6517c25a": {
+      "text": "Chiffre 6",
+      "file": "assets/audio/fr/6517c25a.mp3"
+    },
+    "dcb6cc44": {
+      "text": "Chiffre 6 ! Bravo, c'est correct !",
+      "file": "assets/audio/fr/dcb6cc44.mp3"
+    },
+    "0a497434": {
+      "text": "Chiffre 6. Non, ce n'est pas correct, réessaie !",
+      "file": "assets/audio/fr/0a497434.mp3"
+    },
+    "89afc296": {
+      "text": "Présente le chiffre 6 ! Six.",
+      "file": "assets/audio/fr/89afc296.mp3"
+    },
+    "4e786dd6": {
+      "text": "Touche le chiffre 6 ! Six.",
+      "file": "assets/audio/fr/4e786dd6.mp3"
+    },
+    "6617c3ed": {
+      "text": "Chiffre 7",
+      "file": "assets/audio/fr/6617c3ed.mp3"
+    },
+    "59109fad": {
+      "text": "Chiffre 7 ! Bravo, c'est correct !",
+      "file": "assets/audio/fr/59109fad.mp3"
+    },
+    "380bf16d": {
+      "text": "Chiffre 7. Non, ce n'est pas correct, réessaie !",
+      "file": "assets/audio/fr/380bf16d.mp3"
+    },
+    "7aac7665": {
+      "text": "Présente le chiffre 7 ! Sept.",
+      "file": "assets/audio/fr/7aac7665.mp3"
+    },
+    "ad93e8a5": {
+      "text": "Touche le chiffre 7 ! Sept.",
+      "file": "assets/audio/fr/ad93e8a5.mp3"
+    },
+    "5717ac50": {
+      "text": "Chiffre 8",
+      "file": "assets/audio/fr/5717ac50.mp3"
+    },
+    "f9acb28e": {
+      "text": "Chiffre 8 ! Bravo, c'est correct !",
+      "file": "assets/audio/fr/f9acb28e.mp3"
+    },
+    "2e5b0e0a": {
+      "text": "Chiffre 8. Non, ce n'est pas correct, réessaie !",
+      "file": "assets/audio/fr/2e5b0e0a.mp3"
+    },
+    "2a8f8c1e": {
+      "text": "Présente le chiffre 8 ! Huit.",
+      "file": "assets/audio/fr/2a8f8c1e.mp3"
+    },
+    "04bec15e": {
+      "text": "Touche le chiffre 8 ! Huit.",
+      "file": "assets/audio/fr/04bec15e.mp3"
+    },
+    "5817ade3": {
+      "text": "Chiffre 9",
+      "file": "assets/audio/fr/5817ade3.mp3"
+    },
+    "c143f24f": {
+      "text": "Chiffre 9 ! Bravo, c'est correct !",
+      "file": "assets/audio/fr/c143f24f.mp3"
+    },
+    "cb8ea803": {
+      "text": "Chiffre 9. Non, ce n'est pas correct, réessaie !",
+      "file": "assets/audio/fr/cb8ea803.mp3"
+    },
+    "6f888669": {
+      "text": "Présente le chiffre 9 ! Neuf.",
+      "file": "assets/audio/fr/6f888669.mp3"
+    },
+    "bbbcada9": {
+      "text": "Touche le chiffre 9 ! Neuf.",
+      "file": "assets/audio/fr/bbbcada9.mp3"
+    },
+    "aa109f89": {
+      "text": "Nombre 10",
+      "file": "assets/audio/fr/aa109f89.mp3"
+    },
+    "33a82689": {
+      "text": "Nombre 10 ! Bravo, c'est correct !",
+      "file": "assets/audio/fr/33a82689.mp3"
+    },
+    "a4e3a2a1": {
+      "text": "Nombre 10. Non, ce n'est pas correct, réessaie !",
+      "file": "assets/audio/fr/a4e3a2a1.mp3"
+    },
+    "5a0d6e58": {
+      "text": "Présente le nombre 10 ! Dix.",
+      "file": "assets/audio/fr/5a0d6e58.mp3"
+    },
+    "736a0418": {
+      "text": "Touche le nombre 10 ! Dix.",
+      "file": "assets/audio/fr/736a0418.mp3"
+    },
+    "5f17b8e8": {
+      "text": "Chiffre 0",
+      "file": "assets/audio/fr/5f17b8e8.mp3"
+    },
+    "dcc69fc6": {
+      "text": "Chiffre 0 ! Bravo, c'est correct !",
+      "file": "assets/audio/fr/dcc69fc6.mp3"
+    },
+    "9936e052": {
+      "text": "Chiffre 0. Non, ce n'est pas correct, réessaie !",
+      "file": "assets/audio/fr/9936e052.mp3"
+    },
+    "bad4c6ed": {
+      "text": "Cercle",
+      "file": "assets/audio/fr/bad4c6ed.mp3"
+    },
+    "884a6120": {
+      "text": "Carré",
+      "file": "assets/audio/fr/884a6120.mp3"
+    },
+    "e58886a5": {
+      "text": "Triangle",
+      "file": "assets/audio/fr/e58886a5.mp3"
+    },
+    "16fd5a2e": {
+      "text": "Rectangle",
+      "file": "assets/audio/fr/16fd5a2e.mp3"
+    },
+    "4b17bc5a": {
+      "text": "Losange",
+      "file": "assets/audio/fr/4b17bc5a.mp3"
+    },
+    "1092cb30": {
+      "text": "Ovale",
+      "file": "assets/audio/fr/1092cb30.mp3"
+    },
+    "6aef45ff": {
+      "text": "Étoile",
+      "file": "assets/audio/fr/6aef45ff.mp3"
+    },
+    "21f19800": {
+      "text": "Cœur",
+      "file": "assets/audio/fr/21f19800.mp3"
+    },
+    "ee388640": {
+      "text": "Cube",
+      "file": "assets/audio/fr/ee388640.mp3"
+    },
+    "e919263a": {
+      "text": "Hexagone",
+      "file": "assets/audio/fr/e919263a.mp3"
+    },
+    "76b967b0": {
+      "text": "Père",
+      "file": "assets/audio/fr/76b967b0.mp3"
+    },
+    "cc40c8d9": {
+      "text": "Mère",
+      "file": "assets/audio/fr/cc40c8d9.mp3"
+    },
+    "8b65a7e1": {
+      "text": "Grand-père",
+      "file": "assets/audio/fr/8b65a7e1.mp3"
+    },
+    "4ad0a7a8": {
+      "text": "Grand-mère",
+      "file": "assets/audio/fr/4ad0a7a8.mp3"
+    },
+    "b504ef4a": {
+      "text": "Frère",
+      "file": "assets/audio/fr/b504ef4a.mp3"
+    },
+    "d535e0f0": {
+      "text": "Sœur",
+      "file": "assets/audio/fr/d535e0f0.mp3"
+    },
+    "211826a5": {
+      "text": "Fils",
+      "file": "assets/audio/fr/211826a5.mp3"
+    },
+    "e92e6777": {
+      "text": "Fille",
+      "file": "assets/audio/fr/e92e6777.mp3"
+    },
+    "23e8192b": {
+      "text": "Mon Papa",
+      "file": "assets/audio/fr/23e8192b.mp3"
+    },
+    "c1fd7581": {
+      "text": "Ma Maman",
+      "file": "assets/audio/fr/c1fd7581.mp3"
+    },
+    "7597e3db": {
+      "text": "Cartable",
+      "file": "assets/audio/fr/7597e3db.mp3"
+    },
+    "de816d39": {
+      "text": "Livre",
+      "file": "assets/audio/fr/de816d39.mp3"
+    },
+    "4bfa2f39": {
+      "text": "Cahier",
+      "file": "assets/audio/fr/4bfa2f39.mp3"
+    },
+    "b2414c57": {
+      "text": "Crayon",
+      "file": "assets/audio/fr/b2414c57.mp3"
+    },
+    "5a67f5e8": {
+      "text": "Stylo",
+      "file": "assets/audio/fr/5a67f5e8.mp3"
+    },
+    "e80650b3": {
+      "text": "Règle",
+      "file": "assets/audio/fr/e80650b3.mp3"
+    },
+    "f414de3d": {
+      "text": "Ciseaux",
+      "file": "assets/audio/fr/f414de3d.mp3"
+    },
+    "da727439": {
+      "text": "Taille-crayon",
+      "file": "assets/audio/fr/da727439.mp3"
+    },
+    "cc252c34": {
+      "text": "Trousse",
+      "file": "assets/audio/fr/cc252c34.mp3"
+    },
+    "e6a36e18": {
+      "text": "Tête",
+      "file": "assets/audio/fr/e6a36e18.mp3"
+    },
+    "e3c5b7f5": {
+      "text": "Cheveux",
+      "file": "assets/audio/fr/e3c5b7f5.mp3"
+    },
+    "c4e9ef28": {
+      "text": "Œil",
+      "file": "assets/audio/fr/c4e9ef28.mp3"
+    },
+    "16235f61": {
+      "text": "Oreille",
+      "file": "assets/audio/fr/16235f61.mp3"
+    },
+    "862425d2": {
+      "text": "Nez",
+      "file": "assets/audio/fr/862425d2.mp3"
+    },
+    "bb92e5ad": {
+      "text": "Bouche",
+      "file": "assets/audio/fr/bb92e5ad.mp3"
+    },
+    "d04877fd": {
+      "text": "Bras",
+      "file": "assets/audio/fr/d04877fd.mp3"
+    },
+    "9a735e3a": {
+      "text": "Jambe",
+      "file": "assets/audio/fr/9a735e3a.mp3"
+    },
+    "7eab2323": {
+      "text": "Pied",
+      "file": "assets/audio/fr/7eab2323.mp3"
+    },
+    "8301b469": {
+      "text": "Se réveiller",
+      "file": "assets/audio/fr/8301b469.mp3"
+    },
+    "b4a8c4e5": {
+      "text": "Se laver le visage",
+      "file": "assets/audio/fr/b4a8c4e5.mp3"
+    },
+    "b08b1b63": {
+      "text": "Se brosser les dents",
+      "file": "assets/audio/fr/b08b1b63.mp3"
+    },
+    "ec299ee2": {
+      "text": "S'habiller",
+      "file": "assets/audio/fr/ec299ee2.mp3"
+    },
+    "b43be1d7": {
+      "text": "Petit déjeuner",
+      "file": "assets/audio/fr/b43be1d7.mp3"
+    },
+    "3265b43a": {
+      "text": "Aller à l'école",
+      "file": "assets/audio/fr/3265b43a.mp3"
+    },
+    "44c78eaf": {
+      "text": "Étudier",
+      "file": "assets/audio/fr/44c78eaf.mp3"
+    },
+    "8c2c86d2": {
+      "text": "Jouer",
+      "file": "assets/audio/fr/8c2c86d2.mp3"
+    },
+    "67cc583f": {
+      "text": "Devoirs",
+      "file": "assets/audio/fr/67cc583f.mp3"
+    },
+    "c1bf2aba": {
+      "text": "Dormir",
+      "file": "assets/audio/fr/c1bf2aba.mp3"
+    },
+    "586aaee5": {
+      "text": "Levez-vous",
+      "file": "assets/audio/fr/586aaee5.mp3"
+    },
+    "cc5a52ed": {
+      "text": "Asseyez-vous",
+      "file": "assets/audio/fr/cc5a52ed.mp3"
+    },
+    "af7f02ef": {
+      "text": "Levez la main",
+      "file": "assets/audio/fr/af7f02ef.mp3"
+    },
+    "83561a9c": {
+      "text": "Écoutez",
+      "file": "assets/audio/fr/83561a9c.mp3"
+    },
+    "b6c16725": {
+      "text": "Regardez",
+      "file": "assets/audio/fr/b6c16725.mp3"
+    },
+    "7cf364c3": {
+      "text": "Effacez",
+      "file": "assets/audio/fr/7cf364c3.mp3"
+    },
+    "766069b4": {
+      "text": "Montrez",
+      "file": "assets/audio/fr/766069b4.mp3"
+    },
+    "11696b34": {
+      "text": "Reliez",
+      "file": "assets/audio/fr/11696b34.mp3"
+    },
+    "18b8162c": {
+      "text": "Lisez",
+      "file": "assets/audio/fr/18b8162c.mp3"
+    },
+    "40f64e39": {
+      "text": "Écrivez",
+      "file": "assets/audio/fr/40f64e39.mp3"
+    },
+    "f523c6e0": {
+      "text": "Le chat",
+      "file": "assets/audio/fr/f523c6e0.mp3"
+    },
+    "22fce678": {
+      "text": "Le lion",
+      "file": "assets/audio/fr/22fce678.mp3"
+    },
+    "027445e0": {
+      "text": "La pomme",
+      "file": "assets/audio/fr/027445e0.mp3"
+    },
+    "b46cc924": {
+      "text": "Le livre",
+      "file": "assets/audio/fr/b46cc924.mp3"
+    },
+    "e5ea70f4": {
+      "text": "Le crayon",
+      "file": "assets/audio/fr/e5ea70f4.mp3"
+    },
+    "f9b5c359": {
+      "text": "Le canard",
+      "file": "assets/audio/fr/f9b5c359.mp3"
+    },
+    "da9b7e2b": {
+      "text": "L'ours",
+      "file": "assets/audio/fr/da9b7e2b.mp3"
+    },
+    "b9bab6d9": {
+      "text": "Le poisson",
+      "file": "assets/audio/fr/b9bab6d9.mp3"
+    },
+    "5c5ecd5e": {
+      "text": "Le soleil",
+      "file": "assets/audio/fr/5c5ecd5e.mp3"
+    },
+    "e7607b24": {
+      "text": "Le train",
+      "file": "assets/audio/fr/e7607b24.mp3"
+    },
+    "3ee66e1b": {
+      "text": "Le père",
+      "file": "assets/audio/fr/3ee66e1b.mp3"
+    },
+    "30275f5e": {
+      "text": "La mère",
+      "file": "assets/audio/fr/30275f5e.mp3"
+    },
+    "2ed28cd6": {
+      "text": "Le vélo",
+      "file": "assets/audio/fr/2ed28cd6.mp3"
+    },
+    "575f4cbc": {
+      "text": "La fleur",
+      "file": "assets/audio/fr/575f4cbc.mp3"
+    },
+    "483e8d47": {
+      "text": "Bravo ! Bonne réponse !",
+      "file": "assets/audio/fr/483e8d47.mp3"
     }
   }
 }

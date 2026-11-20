@@ -102,11 +102,11 @@
     if (global.AppLang && typeof global.AppLang.getCurrentLangId === "function") {
       return global.AppLang.getCurrentLangId();
     }
-    return localStorage.getItem("selectedLanguage") || "English";
+    return window.AppLang ? window.AppLang.getCurrentLangId() : (localStorage.getItem("selectedLanguage") || "English");
   }
 
   function getCopy() {
-    return I18N[getLangId()] || I18N.English;
+    return I18N[getLangId()] || I18N.French;
   }
 
   function ensureStylesheet() {

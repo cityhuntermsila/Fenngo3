@@ -531,17 +531,6 @@
       <div>
         <div class="grid grid-cols-2 gap-2 sm:gap-2.5" id="gameModesGrid"></div>
       </div>
-
-      <!-- All 10 Elements in 2 Columns -->
-      <div class="border-t border-[#ebd09e] pt-2.5">
-        <div class="flex items-center justify-between mb-2">
-          <span class="text-xs font-black text-slate-700" id="vocabSectionTitle">
-            🖼️ Éléments 3D du thème (10) :
-          </span>
-          <span class="text-[10px] font-bold text-[#554133]">Touche pour écouter 🔊</span>
-        </div>
-        <div class="grid grid-cols-2 gap-2" id="catVocabGrid"></div>
-      </div>
     </section>
 
     <!-- =========================================================
@@ -632,6 +621,7 @@
   <audio id="audioWrong" src="assets/images/music/wrong- sound.mp3" preload="auto"></audio>
 
   <script src="js/app-lang.js?v=85"></script>
+  <script src="js/ocr-system.js?v=85"></script>
   <script src="js/fenny-companion.js?v=85"></script>
   <script>
     (() => {
@@ -858,8 +848,8 @@
       };
 
       // State
-      let currentLang = localStorage.getItem("selectedLanguage") || "French";
-      if (!I18N[currentLang]) currentLang = "French";
+      let currentLang = window.AppLang ? window.AppLang.getCurrentLangId() : (localStorage.getItem("selectedLanguage") || "English");
+      if (!I18N[currentLang]) currentLang = "English";
 
       let starsCount = parseInt(localStorage.getItem("kidsLearner_stars") || "18", 10);
       let diamondsCount = parseInt(localStorage.getItem("kidsLearner_diamonds") || "12", 10);
@@ -881,10 +871,67 @@
       let correctAnswersCount = 0;
       let totalQuestions = 5;
 
+      // État actif pour la lecture & validation Caméra OCR dans practice.html?system=ocr
+      let isOcrQuestionLocked = false;
+      let activeSpellingState = null;
+      let activeSpeedState = null;
+      let activeMemoryState = null;
+      let stageStartTime = Date.now();
+      let lastApprovedOcrChar = "";
+      const announcedWrongCharsOnStage = new Set();
+
+      function isOcrModeActive() {
+        const params = new URLSearchParams(window.location.search);
+        if (params.get("system") === "ocr") return true;
+        if (window.FennckyOCR && typeof window.FennckyOCR.getSystemMode === "function") {
+          return window.FennckyOCR.getSystemMode() === "ocr";
+        }
+        return localStorage.getItem("fenncky_system_mode") === "ocr";
+      }
+
       const cheeringAudio = document.getElementById("audioCheering");
       const wrongAudio = document.getElementById("audioWrong");
+      let practiceAudioCtx = null;
+
+      function playSynthesizedEffect(isSuccess) {
+        try {
+          const Ctx = window.AudioContext || window.webkitAudioContext;
+          if (!Ctx) return;
+          if (!practiceAudioCtx) practiceAudioCtx = new Ctx();
+          if (practiceAudioCtx.state === "suspended") practiceAudioCtx.resume();
+          const now = practiceAudioCtx.currentTime;
+          if (isSuccess) {
+            [523.25, 659.25, 783.99].forEach((freq, i) => {
+              const osc = practiceAudioCtx.createOscillator();
+              const gain = practiceAudioCtx.createGain();
+              osc.type = "triangle";
+              osc.frequency.setValueAtTime(freq, now + i * 0.08);
+              gain.gain.setValueAtTime(0.18, now + i * 0.08);
+              gain.gain.exponentialRampToValueAtTime(0.001, now + i * 0.08 + 0.22);
+              osc.connect(gain);
+              gain.connect(practiceAudioCtx.destination);
+              osc.start(now + i * 0.08);
+              osc.stop(now + i * 0.08 + 0.22);
+            });
+          } else {
+            const osc = practiceAudioCtx.createOscillator();
+            const gain = practiceAudioCtx.createGain();
+            osc.type = "sawtooth";
+            osc.frequency.setValueAtTime(210, now);
+            osc.frequency.linearRampToValueAtTime(150, now + 0.22);
+            gain.gain.setValueAtTime(0.15, now);
+            gain.gain.exponentialRampToValueAtTime(0.001, now + 0.25);
+            osc.connect(gain);
+            gain.connect(practiceAudioCtx.destination);
+            osc.start(now);
+            osc.stop(now + 0.25);
+          }
+        } catch (_) {}
+      }
 
       function playSound(audioEl) {
+        const isSuccess = audioEl === cheeringAudio;
+        playSynthesizedEffect(isSuccess);
         if (!audioEl) return;
         audioEl.currentTime = 0;
         audioEl.play().catch(() => {});
@@ -894,7 +941,9 @@
       let activeNextStageTimeout = null;
 
       function stopAllAudio() {
-        if ("speechSynthesis" in window) {
+        if (window.AppLang && typeof window.AppLang.stopSpeech === "function") {
+          window.AppLang.stopSpeech();
+        } else if ("speechSynthesis" in window) {
           window.speechSynthesis.cancel();
         }
         if (cheeringAudio) {
@@ -915,10 +964,30 @@
         }
       }
 
+      const NUMBER_ID_TO_DIGIT = {
+        one: "1", two: "2", three: "3", four: "4", five: "5",
+        six: "6", seven: "7", eight: "8", nine: "9", ten: "10"
+      };
+
+      function stripAccentsUpper(str) {
+        return String(str || "")
+          .normalize("NFD")
+          .replace(/[\u0300-\u036f]/g, "")
+          .toUpperCase();
+      }
+
+      function getItemOcrSymbol(item) {
+        if (!item) return "";
+        if (item.letter) return item.letter.toUpperCase();
+        if (NUMBER_ID_TO_DIGIT[item.id]) return NUMBER_ID_TO_DIGIT[item.id];
+        const w = stripAccentsUpper(getItemWord(item)).replace(/[^A-Z0-9]/g, "");
+        return w.charAt(0) || "";
+      }
+
       function getItemWord(item) {
         if (!item) return "";
         if (currentLang === "French" && item.fr) return item.fr;
-                return item.word;
+        return item.word;
       }
 
       function getItemSpeech(item) {
@@ -959,7 +1028,6 @@
 
         document.getElementById("headerTitle").textContent = t.headerTitle;
         document.getElementById("backToHubText").textContent = t.backToHub;
-        document.getElementById("vocabSectionTitle").textContent = t.vocabTitle;
         document.getElementById("backToCatDetailText").textContent = t.backToGames;
         document.getElementById("replayBtnText").textContent = t.replayGame;
         document.getElementById("switchGameText").textContent = t.switchGame;
@@ -1037,6 +1105,7 @@
         document.getElementById("victoryView").classList.add("hidden");
         document.getElementById("categoryDetailView").classList.remove("hidden");
         window.scrollTo({ top: 0, behavior: "smooth" });
+        updatePracticeOcrExpectedDisplay();
       }
 
       function renderCategoryDetail(catId) {
@@ -1075,11 +1144,17 @@
           }
         ];
 
+        const ocrActive = isOcrModeActive();
         modesConfig.forEach(m => {
           const modeInfo = t.modes[m.id];
+          const isOcrSupportedMode = m.id === "listen" || m.id === "spelling" || m.id === "speed";
+          const ocrBadgeHtml = (ocrActive && isOcrSupportedMode)
+            ? `<span class="px-2 py-0.5 mb-1 rounded-full bg-emerald-100 border border-emerald-500 text-emerald-800 text-[10px] font-black">📷 Caméra OCR</span>`
+            : "";
           const gCard = document.createElement("div");
-          gCard.className = "game-mode-2col";
+          gCard.className = "game-mode-2col relative";
           gCard.innerHTML = `
+            ${ocrBadgeHtml}
             <img src="${m.icon}" alt="${modeInfo.title}" class="mode-icon-sm">
             <h4 class="text-xs sm:text-sm font-black text-slate-900 leading-tight mb-1.5">${modeInfo.title}</h4>
             <button type="button" class="clay-btn w-full py-1 px-2.5 bg-gradient-to-b ${m.color} text-white text-[11px] font-black shadow-sm">
@@ -1092,37 +1167,6 @@
           });
 
           gamesGrid.appendChild(gCard);
-        });
-
-        // Render ALL Visual Elements in 2 Columns
-        const vocabGrid = document.getElementById("catVocabGrid");
-        vocabGrid.innerHTML = "";
-        const items = DATASET[catId];
-        document.getElementById("vocabSectionTitle").textContent = `${t.vocabTitle} (${items.length})`;
-
-        items.forEach(it => {
-          const vCard = document.createElement("div");
-          vCard.className = "vocab-card-2col";
-          const subText = currentLang === "French" ? it.fr : "";
-          const letterBadge = it.letter ? `<span class="w-6 h-6 rounded-full bg-gradient-to-br from-amber-400 to-amber-500 text-white font-black text-xs flex items-center justify-center shadow-sm flex-shrink-0 mr-1.5">${it.letter}</span>` : "";
-
-          vCard.innerHTML = `
-            ${letterBadge}
-            <div class="vocab-thumb-sm">
-              <img src="${it.img}" alt="${it.word}">
-            </div>
-            <div class="flex-1 min-w-0">
-              <span class="block text-xs font-black text-slate-900 truncate">${it.word}</span>
-              <span class="block text-[10px] font-bold text-slate-500 truncate">${subText}</span>
-            </div>
-            <i class="fa-solid fa-volume-high text-xs text-[#5a82c4]"></i>
-          `;
-
-          vCard.addEventListener("click", () => {
-            speak(getItemSpeech(it));
-          });
-
-          vocabGrid.appendChild(vCard);
         });
       }
 
@@ -1203,6 +1247,7 @@
         gameScore = 0;
         correctAnswersCount = 0;
 
+        document.getElementById("hubView")?.classList.add("hidden");
         document.getElementById("categoryDetailView").classList.add("hidden");
         document.getElementById("victoryView").classList.add("hidden");
         document.getElementById("arenaView").classList.remove("hidden");
@@ -1222,6 +1267,16 @@
         stage.innerHTML = "";
         document.getElementById("arenaFeedback").textContent = "";
 
+        isOcrQuestionLocked = false;
+        activeSpellingState = null;
+        activeSpeedState = null;
+        activeMemoryState = null;
+        stageStartTime = Date.now();
+        announcedWrongCharsOnStage.clear();
+        if (window.FennckyOCR && typeof window.FennckyOCR.resetLastDetectedToken === "function") {
+          window.FennckyOCR.resetLastDetectedToken();
+        }
+
         const t = I18N[currentLang];
         const progressPrefix = activeGameMode === "listen" ? `Niv. ${currentLevel} • ` : "";
         document.getElementById("arenaProgressLabel").textContent = `${progressPrefix}${currentQIndex + 1} / ${totalQuestions}`;
@@ -1235,6 +1290,8 @@
         } else if (activeGameMode === "speed") {
           renderSpeedQuizQuestion(stage);
         }
+
+        updatePracticeOcrExpectedDisplay();
       }
 
       // ---------------------------------------------------------
@@ -1270,18 +1327,63 @@
         container.className = "w-full max-w-md mx-auto space-y-3 text-center";
 
         const isAlphabet = Boolean(target.letter);
+        const isNumbers = selectedCatId === "numbers" && Boolean(NUMBER_ID_TO_DIGIT[target.id]);
+        const ocrActive = isOcrModeActive();
+        const targetOcrSym = getItemOcrSymbol(target);
+        const numNounFr = targetOcrSym === "10" ? "nombre" : "chiffre";
+
         const promptSpeech = isAlphabet
-          ? (currentLang === "French" ? `Touche la lettre ${target.letter} ! ${target.letter}, comme ${getItemWord(target)}.` : `Touch letter ${target.letter}! ${target.letter}, for ${getItemWord(target)}.`)
+          ? (currentLang === "French"
+              ? (ocrActive
+                  ? `Présente la lettre ${target.letter} ! ${target.letter}, comme ${getItemWord(target)}.`
+                  : `Touche la lettre ${target.letter} ! ${target.letter}, comme ${getItemWord(target)}.`)
+              : (ocrActive
+                  ? `Show letter ${target.letter}! ${target.letter}, for ${getItemWord(target)}.`
+                  : `Touch letter ${target.letter}! ${target.letter}, for ${getItemWord(target)}.`))
+          : isNumbers
+          ? (currentLang === "French"
+              ? (ocrActive
+                  ? `Présente le ${numNounFr} ${targetOcrSym} ! ${getItemWord(target)}.`
+                  : `Touche le ${numNounFr} ${targetOcrSym} ! ${getItemWord(target)}.`)
+              : (ocrActive
+                  ? `Show number ${targetOcrSym}! ${getItemWord(target)}.`
+                  : `Touch number ${targetOcrSym}! ${getItemWord(target)}.`))
           : getItemSpeech(target);
 
-        const targetPill = target.letter
+        const instructionText = isAlphabet
+          ? (currentLang === "French"
+              ? (ocrActive
+                  ? `📷 Présente la lettre « ${target.letter} » devant la caméra (ou touche la carte) :`
+                  : `🎧 Touche la lettre « ${target.letter} » (${getItemWord(target)}) :`)
+              : (ocrActive
+                  ? `📷 Show letter "${target.letter}" to the camera (or touch the card):`
+                  : `🎧 Touch letter "${target.letter}" (${getItemWord(target)}):`))
+          : isNumbers
+          ? (currentLang === "French"
+              ? (ocrActive
+                  ? `📷 Présente le ${numNounFr} « ${targetOcrSym} » (${getItemWord(target)}) devant la caméra (ou touche la carte) :`
+                  : `🎧 Touche le ${numNounFr} « ${targetOcrSym} » (${getItemWord(target)}) :`)
+              : (ocrActive
+                  ? `📷 Show number "${targetOcrSym}" (${getItemWord(target)}) to the camera (or touch the card):`
+                  : `🎧 Touch number "${targetOcrSym}" (${getItemWord(target)}):`))
+          : (ocrActive
+              ? (currentLang === "French"
+                  ? `📷 Présente la lettre « ${targetOcrSym} » pour « ${getItemWord(target)} » devant la caméra (ou touche l'image) :`
+                  : `📷 Show letter "${targetOcrSym}" for "${getItemWord(target)}" to the camera (or touch the card):`)
+              : `🎧 ${t.listenPrompt}`);
+
+        const targetPill = (target.letter || ocrActive)
           ? `<div class="inline-flex items-center gap-1.5 px-3 py-1 bg-white rounded-full border-2 border-[#dec28f] shadow-sm">
-               <span class="w-7 h-7 rounded-full bg-gradient-to-br from-amber-400 via-amber-500 to-orange-500 text-white font-black text-sm flex items-center justify-center shadow-sm">${target.letter}</span>
-               <span class="text-xs sm:text-sm font-black text-slate-800">${target.letter} • ${getItemWord(target)}</span>
+               <span class="w-7 h-7 rounded-full bg-gradient-to-br from-amber-400 via-amber-500 to-orange-500 text-white font-black text-sm flex items-center justify-center shadow-sm">${targetOcrSym}</span>
+               <span class="text-xs sm:text-sm font-black text-slate-800">${targetOcrSym} • ${getItemWord(target)}</span>
              </div>`
           : `<span class="text-xs sm:text-sm font-black text-slate-800">"${getItemWord(target)}"</span>`;
 
         container.innerHTML = `
+          <div class="px-3 py-1.5 rounded-xl bg-[#fdf4e1] border border-[#dec28f] text-xs sm:text-sm font-black text-[#1e355b]">
+            ${instructionText}
+          </div>
+
           <div class="flex items-center justify-center gap-2 flex-wrap">
             <button type="button" id="replaySoundBtn" class="clay-btn px-4 py-1.5 bg-gradient-to-b from-[#7ea2df] to-[#5e86cf] text-white text-xs font-black shadow-sm flex items-center gap-1.5">
               <i class="fa-solid fa-volume-high"></i>
@@ -1296,20 +1398,24 @@
 
         stage.appendChild(container);
 
-        setTimeout(() => speak(promptSpeech), 250);
+        speak(promptSpeech);
         container.querySelector("#replaySoundBtn").addEventListener("click", () => speak(promptSpeech));
 
         const grid = container.querySelector("#soundChoicesGrid");
         choices.forEach(ch => {
           const card = document.createElement("div");
+          const cardLetter = getItemOcrSymbol(ch);
+          card.dataset.itemId = ch.id;
+          card.dataset.letter = cardLetter;
+          card.dataset.isTarget = ch.id === target.id ? "true" : "false";
 
-          if (ch.letter) {
-            // Carte avec lettre mise en valeur pour l'alphabet
+          if (ch.letter || ocrActive) {
+            // Carte avec badge lettre/symbole OCR visible
             card.className = "sound-choice-2col relative flex flex-col items-center justify-between p-2.5";
             card.innerHTML = `
-              <!-- Grande lettre 3D visible -->
-              <div class="w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-gradient-to-br from-amber-400 via-amber-500 to-orange-500 text-white font-black text-2xl sm:text-3xl flex items-center justify-center shadow-md mb-1.5 ring-2 ring-amber-200">
-                ${ch.letter}
+              <!-- Grande lettre / symbole 3D visible pour l'OCR -->
+              <div class="w-11 h-11 sm:w-13 sm:h-13 rounded-2xl bg-gradient-to-br from-amber-400 via-amber-500 to-orange-500 text-white font-black text-xl sm:text-2xl flex items-center justify-center shadow-md mb-1.5 ring-2 ring-amber-200">
+                ${cardLetter}
               </div>
 
               <!-- Illustration 3D -->
@@ -1371,7 +1477,13 @@
 
         const container = document.createElement("div");
         container.className = "w-full max-w-xs mx-auto space-y-2 text-center";
+        const memoryInstruction = currentLang === "French"
+          ? "🃏 Retourne les cartes 2 par 2 pour trouver les 6 paires identiques !"
+          : "🃏 Flip the cards 2 by 2 to find all 6 matching pairs!";
         container.innerHTML = `
+          <div class="px-2.5 py-1.5 rounded-xl bg-[#fdf4e1] border border-[#dec28f] text-[11px] sm:text-xs font-black text-[#1e355b]">
+            ${memoryInstruction}
+          </div>
           <div class="text-xs font-black text-slate-700 flex items-center justify-between px-2">
             <span>${t.pairsFound} : <strong id="memoryPairsFound" class="text-[#554133] text-sm">0</strong> / 6</span>
             <span class="px-2 py-0.5 rounded-full bg-[#fdf4e1] text-[#1e355b] text-[10px] font-black border border-[#c59f5f]">3x4 (6 Paires)</span>
@@ -1379,6 +1491,7 @@
           <div class="memory-grid" id="memoryCardsDeck"></div>
         `;
         stage.appendChild(container);
+        speak(currentLang === "French" ? "Trouve les paires identiques !" : "Find the matching pairs!");
 
         let flippedCards = [];
         let matchedPairs = 0;
@@ -1476,16 +1589,42 @@
 
           deckContainer.appendChild(cardEl);
         });
+
+        activeMemoryState = {
+          deck,
+          deckContainer,
+          matchPairByLetter(charUpper) {
+            const unmatched = Array.from(deckContainer.querySelectorAll(".memory-card:not(.matched)"));
+            const matchingCards = unmatched.filter(el => {
+              const idx = parseInt(el.dataset.index, 10);
+              const d = deck[idx];
+              if (!d || !d.item) return false;
+              const l = (d.item.letter || getItemWord(d.item).charAt(0) || d.item.word.charAt(0)).toUpperCase();
+              return l === charUpper;
+            });
+            if (matchingCards.length >= 2) {
+              if (!matchingCards[0].classList.contains("flipped")) matchingCards[0].click();
+              setTimeout(() => {
+                if (!matchingCards[1].classList.contains("matched")) matchingCards[1].click();
+              }, 180);
+              return true;
+            }
+            return false;
+          }
+        };
       }
 
       // ---------------------------------------------------------
-      // GAME 3: WORD BUILDER
+      // GAME 3: WORD BUILDER (ÉPELLATION - FONCTIONNE AVEC CAMÉRA OCR)
       // ---------------------------------------------------------
       function renderWordBuilderQuestion(stage) {
         const t = I18N[currentLang];
         const target = gameQuestions[currentQIndex];
-        const wordClean = target.word.replace(/[^a-zA-Z]/g, "").toUpperCase();
+        // Utiliser le mot dans la langue active (FR ou EN) sans accents pour que l'épellation corresponde au mot affiché !
+        const displayedWord = getItemWord(target);
+        const wordClean = stripAccentsUpper(displayedWord).replace(/[^A-Z]/g, "") || stripAccentsUpper(target.word).replace(/[^A-Z]/g, "");
         const letters = wordClean.split("");
+        const ocrActive = isOcrModeActive();
 
         let scrambled = [...letters];
         shuffleArray(scrambled);
@@ -1494,32 +1633,81 @@
         }
 
         const container = document.createElement("div");
-        container.className = "w-full max-w-sm mx-auto space-y-3 text-center";
+        container.className = "w-full max-w-sm mx-auto space-y-2.5 text-center";
 
         const letterHeader = target.letter ? `
-          <div class="inline-flex items-center gap-1 px-3 py-0.5 rounded-full bg-amber-100 text-amber-900 border border-amber-300 shadow-sm mb-1">
+          <div class="inline-flex items-center gap-1 px-3 py-0.5 rounded-full bg-amber-100 text-amber-900 border border-amber-300 shadow-sm">
             <span class="w-6 h-6 rounded-full bg-amber-500 text-white font-black text-xs flex items-center justify-center shadow-sm">${target.letter}</span>
-            <span class="text-xs font-black">Lettre ${target.letter}</span>
+            <span class="text-xs font-black">${displayedWord}</span>
           </div>
-        ` : "";
+        ` : `
+          <div class="inline-flex items-center gap-1 px-3 py-0.5 rounded-full bg-amber-100 text-amber-900 border border-amber-300 shadow-sm">
+            <span class="text-xs font-black">${displayedWord}</span>
+          </div>
+        `;
+
+        const spellingInstruction = ocrActive
+          ? (currentLang === "French"
+              ? `📷 Épellation OCR : présente chaque lettre de « ${wordClean} » devant la caméra !`
+              : `📷 OCR Spelling: show each letter of "${wordClean}" to the camera!`)
+          : `🔠 ${t.spellingPrompt} « ${displayedWord} »`;
+
+        const ocrStepHint = ocrActive
+          ? `<div id="spellingOcrNextBadge" class="px-3 py-1 rounded-full bg-emerald-100 border border-emerald-500 text-emerald-950 text-xs font-black inline-flex items-center gap-1.5 shadow-2xs">
+               <span>📷 Lettre à présenter (1/${letters.length}) :</span>
+               <strong id="spellingOcrNextChar" class="w-6 h-6 rounded-full bg-emerald-600 text-white inline-flex items-center justify-center text-sm">${letters[0] || ""}</strong>
+             </div>`
+          : "";
 
         container.innerHTML = `
-          ${letterHeader}
+          <div class="px-3 py-1.5 rounded-xl bg-[#fdf4e1] border border-[#dec28f] text-xs font-black text-[#1e355b]">
+            ${spellingInstruction}
+          </div>
+          <div class="flex items-center justify-center gap-2 flex-wrap">
+            ${letterHeader}
+            ${ocrStepHint}
+          </div>
           <div class="w-20 h-20 sm:w-24 sm:h-24 mx-auto p-1.5 bg-white rounded-2xl border-2 border-[#dec28f] shadow-sm flex items-center justify-center">
             <img src="${target.img}" alt="${target.word}" class="w-full h-full object-contain filter drop-shadow">
           </div>
 
-          <div class="flex items-center justify-center gap-1.5" id="spellingSlots"></div>
+          <div class="flex items-center justify-center gap-1.5 flex-wrap" id="spellingSlots"></div>
           <div class="flex items-center justify-center gap-2 flex-wrap pt-1" id="spellingBubbles"></div>
         `;
 
         stage.appendChild(container);
-        setTimeout(() => speak(getItemSpeech(target)), 250);
+        speak(getItemSpeech(target));
 
         const slotsContainer = container.querySelector("#spellingSlots");
         const bubblesContainer = container.querySelector("#spellingBubbles");
 
         let placedLetters = new Array(letters.length).fill(null);
+
+        function refreshActiveSlotHighlight() {
+          const nextIdx = placedLetters.findIndex(p => p === null);
+          Array.from(slotsContainer.children).forEach((s, idx) => {
+            if (idx === nextIdx) {
+              s.style.borderColor = "#10b981";
+              s.style.boxShadow = "0 0 0 3px rgba(16, 185, 129, 0.28)";
+            } else {
+              s.style.borderColor = "";
+              s.style.boxShadow = "";
+            }
+          });
+          const nextBadge = container.querySelector("#spellingOcrNextBadge");
+          const nextCharEl = container.querySelector("#spellingOcrNextChar");
+          if (nextBadge && nextCharEl) {
+            if (nextIdx !== -1) {
+              nextBadge.innerHTML = `
+                <span>📷 Lettre à présenter (${nextIdx + 1}/${letters.length}) :</span>
+                <strong id="spellingOcrNextChar" class="w-6 h-6 rounded-full bg-emerald-600 text-white inline-flex items-center justify-center text-sm">${letters[nextIdx]}</strong>
+              `;
+            } else {
+              nextBadge.innerHTML = `<span class="text-emerald-800">✅ Mot « ${wordClean} » complet !</span>`;
+            }
+          }
+          updatePracticeOcrExpectedDisplay();
+        }
 
         letters.forEach((_, idx) => {
           const slot = document.createElement("div");
@@ -1532,6 +1720,7 @@
               placedLetters[idx] = null;
               slot.textContent = "";
               slot.classList.remove("filled");
+              refreshActiveSlotHighlight();
             }
           });
           slotsContainer.appendChild(slot);
@@ -1563,6 +1752,7 @@
             const slotEl = slotsContainer.children[nextSlotIdx];
             slotEl.textContent = char;
             slotEl.classList.add("filled");
+            refreshActiveSlotHighlight();
 
             if (placedLetters.every(p => p !== null)) {
               const userWord = placedLetters.map(p => p.char).join("");
@@ -1578,15 +1768,27 @@
 
           bubblesContainer.appendChild(bubble);
         });
+
+        activeSpellingState = {
+          target,
+          wordClean,
+          letters,
+          placedLetters,
+          slotsContainer,
+          bubblesContainer,
+          refreshActiveSlotHighlight
+        };
+        refreshActiveSlotHighlight();
       }
 
       // ---------------------------------------------------------
-      // GAME 4: SPEED QUIZ (2 COLUMNS: VRAI / FAUX)
+      // GAME 4: SPEED QUIZ (2 COLUMNS: VRAI / FAUX — FONCTIONNE AVEC CAMÉRA OCR)
       // ---------------------------------------------------------
       function renderSpeedQuizQuestion(stage) {
         const t = I18N[currentLang];
         const target = gameQuestions[currentQIndex];
         const allItems = [...DATASET[selectedCatId]];
+        const ocrActive = isOcrModeActive();
 
         const isTrue = Math.random() >= 0.5;
         let displayedItem = target;
@@ -1598,12 +1800,30 @@
         }
 
         const container = document.createElement("div");
-        container.className = "w-full max-w-sm mx-auto space-y-3 text-center";
+        container.className = "w-full max-w-sm mx-auto space-y-2.5 text-center";
 
-        const dispBadge = displayedItem.letter ? `<span class="absolute -top-2 -left-2 w-7 h-7 rounded-full bg-gradient-to-br from-amber-400 to-amber-500 text-white font-black text-xs flex items-center justify-center shadow-md ring-2 ring-white">${displayedItem.letter}</span>` : "";
-        const targetBadge = target.letter ? `<span class="w-7 h-7 rounded-full bg-gradient-to-br from-amber-400 to-amber-500 text-white font-black text-xs inline-flex items-center justify-center shadow-sm mr-1 align-middle">${target.letter}</span>` : "";
+        const dispSym = getItemOcrSymbol(displayedItem);
+        const targetSym = getItemOcrSymbol(target);
+        const dispBadge = dispSym ? `<span class="absolute -top-2 -left-2 w-7 h-7 rounded-full bg-gradient-to-br from-amber-400 to-amber-500 text-white font-black text-xs flex items-center justify-center shadow-md ring-2 ring-white">${dispSym}</span>` : "";
+        const targetBadge = targetSym ? `<span class="w-7 h-7 rounded-full bg-gradient-to-br from-amber-400 to-amber-500 text-white font-black text-xs inline-flex items-center justify-center shadow-sm mr-1 align-middle">${targetSym}</span>` : "";
+
+        const speedInstruction = ocrActive
+          ? (currentLang === "French"
+              ? `📷 Vrai ou Faux OCR : présente la lettre « V » (Vrai) ou « F » (Faux) devant la caméra !`
+              : `📷 OCR True/False: show letter "V" (True) or "F" (False) to the camera!`)
+          : `⚡ ${t.speedPrompt}`;
+
+        const yesLabel = ocrActive
+          ? (currentLang === "French" ? "VRAI 👍 (Lettre V)" : "TRUE 👍 (Letter V)")
+          : t.yes;
+        const noLabel = ocrActive
+          ? (currentLang === "French" ? "FAUX 👎 (Lettre F)" : "FALSE 👎 (Letter F)")
+          : t.no;
 
         container.innerHTML = `
+          <div class="px-3 py-1.5 rounded-xl bg-[#fdf4e1] border border-[#dec28f] text-xs font-black text-[#1e355b]">
+            ${speedInstruction}
+          </div>
           <div class="w-full bg-slate-200 h-2 rounded-full overflow-hidden border border-slate-300">
             <div id="speedTimerFill" class="h-full bg-gradient-to-r from-emerald-400 via-amber-400 to-rose-500 w-full transition-all duration-100 linear"></div>
           </div>
@@ -1619,31 +1839,34 @@
 
           <!-- 2 Columns Grid for Yes / No Buttons -->
           <div class="grid grid-cols-2 gap-3 pt-1">
-            <button type="button" id="speedYesBtn" class="clay-btn speed-btn-yes py-2.5 px-3 text-sm font-black shadow-md">
-              <span>${t.yes}</span>
+            <button type="button" id="speedYesBtn" class="clay-btn speed-btn-yes py-2.5 px-3 text-xs sm:text-sm font-black shadow-md">
+              <span>${yesLabel}</span>
             </button>
-            <button type="button" id="speedNoBtn" class="clay-btn speed-btn-no py-2.5 px-3 text-sm font-black shadow-md">
-              <span>${t.no}</span>
+            <button type="button" id="speedNoBtn" class="clay-btn speed-btn-no py-2.5 px-3 text-xs sm:text-sm font-black shadow-md">
+              <span>${noLabel}</span>
             </button>
           </div>
         `;
 
         stage.appendChild(container);
-        setTimeout(() => speak(target.word), 250);
+        speak(getItemSpeech(target));
 
-        let timeLeft = 75;
-        const timerFill = container.querySelector("#speedTimerFill");
         if (activeTimerInterval) { clearInterval(activeTimerInterval); activeTimerInterval = null; }
-        activeTimerInterval = setInterval(() => {
-          timeLeft--;
-          if (timerFill) timerFill.style.width = `${(timeLeft / 75) * 100}%`;
+        // En mode OCR, désactiver l'expiration automatique rapide (7.5s) pour laisser le temps à l'enfant de présenter la lettre devant la caméra !
+        if (!ocrActive) {
+          let timeLeft = 75;
+          const timerFill = container.querySelector("#speedTimerFill");
+          activeTimerInterval = setInterval(() => {
+            timeLeft--;
+            if (timerFill) timerFill.style.width = `${(timeLeft / 75) * 100}%`;
 
-          if (timeLeft <= 0) {
-            if (activeTimerInterval) { clearInterval(activeTimerInterval); activeTimerInterval = null; }
-            playSound(wrongAudio);
-            handleWrongAnswer();
-          }
-        }, 100);
+            if (timeLeft <= 0) {
+              if (activeTimerInterval) { clearInterval(activeTimerInterval); activeTimerInterval = null; }
+              playSound(wrongAudio);
+              handleWrongAnswer();
+            }
+          }, 100);
+        }
 
         function handleAnswer(userChoseYes) {
           if (activeTimerInterval) { clearInterval(activeTimerInterval); activeTimerInterval = null; }
@@ -1659,14 +1882,23 @@
 
         container.querySelector("#speedYesBtn").addEventListener("click", () => handleAnswer(true));
         container.querySelector("#speedNoBtn").addEventListener("click", () => handleAnswer(false));
+
+        activeSpeedState = {
+          target,
+          displayedItem,
+          isTrue,
+          handleAnswer
+        };
       }
 
       // =========================================================
       // COMMON ANSWER RESOLUTION LOGIC
       // =========================================================
-      function handleCorrectAnswer() {
+      function handleCorrectAnswer(delayMs = 1000) {
         const feedback = document.getElementById("arenaFeedback");
-        feedback.textContent = I18N[currentLang].correctMsg;
+        if (!feedback.textContent) {
+          feedback.textContent = I18N[currentLang].correctMsg;
+        }
         feedback.className = "min-h-[24px] text-center text-xs sm:text-sm font-black text-emerald-600 animate-bounce";
 
         correctAnswersCount++;
@@ -1676,6 +1908,7 @@
         document.getElementById("arenaScoreVal").textContent = gameScore;
         updateStatsDisplay();
 
+        if (activeNextStageTimeout) clearTimeout(activeNextStageTimeout);
         activeNextStageTimeout = setTimeout(() => {
           activeNextStageTimeout = null;
           currentQIndex++;
@@ -1684,7 +1917,7 @@
           } else {
             triggerVictory();
           }
-        }, 1000);
+        }, delayMs);
       }
 
       function handleWrongAnswer() {
@@ -1805,12 +2038,418 @@
         return arr;
       }
 
+      function getExpectedLetterInfo() {
+        const arenaEl = document.getElementById("arenaView");
+        const isArenaOpen = arenaEl && !arenaEl.classList.contains("hidden");
+        if (!isArenaOpen) {
+          return { active: false, primary: "A-Z", accepted: [] };
+        }
+
+        const target = gameQuestions[currentQIndex];
+        if (!target) {
+          return { active: false, primary: "—", accepted: [] };
+        }
+
+        if (activeGameMode === "listen") {
+          const primary = getItemOcrSymbol(target);
+          const accepted = new Set([
+            primary,
+            stripAccentsUpper(target.word).charAt(0),
+            stripAccentsUpper(target.fr).charAt(0)
+          ]);
+          if (NUMBER_ID_TO_DIGIT[target.id]) {
+            accepted.add(NUMBER_ID_TO_DIGIT[target.id]);
+            accepted.add(NUMBER_ID_TO_DIGIT[target.id].charAt(0));
+          }
+          return {
+            active: true,
+            mode: "listen",
+            primary,
+            accepted: Array.from(accepted).filter(Boolean),
+            target
+          };
+        }
+
+        if (activeGameMode === "spelling" && activeSpellingState) {
+          const nextIdx = activeSpellingState.placedLetters.findIndex(p => p === null);
+          const primary = nextIdx !== -1 ? activeSpellingState.letters[nextIdx] : "✓";
+          return {
+            active: nextIdx !== -1,
+            mode: "spelling",
+            primary,
+            accepted: nextIdx !== -1 ? [primary] : [],
+            target: activeSpellingState.target,
+            nextIdx
+          };
+        }
+
+        if (activeGameMode === "speed" && activeSpeedState) {
+          const tLetter = getItemOcrSymbol(activeSpeedState.target);
+          const dLetter = getItemOcrSymbol(activeSpeedState.displayedItem);
+          const primary = activeSpeedState.isTrue ? "V" : "F";
+          const accepted = activeSpeedState.isTrue
+            ? ["V", "O", "Y", "T", tLetter]
+            : ["F", "N", dLetter !== tLetter ? dLetter : "F"];
+          return {
+            active: true,
+            mode: "speed",
+            primary,
+            accepted: Array.from(new Set(accepted)).filter(Boolean),
+            target: activeSpeedState.target
+          };
+        }
+
+        if (activeGameMode === "memory" && activeMemoryState) {
+          const unmatched = Array.from(activeMemoryState.deckContainer.querySelectorAll(".memory-card:not(.matched)"));
+          const letters = new Set();
+          unmatched.forEach(el => {
+            const idx = parseInt(el.dataset.index, 10);
+            const d = activeMemoryState.deck[idx];
+            if (d && d.item) {
+              letters.add((d.item.letter || getItemWord(d.item).charAt(0) || d.item.word.charAt(0)).toUpperCase());
+            }
+          });
+          const arr = Array.from(letters);
+          return {
+            active: arr.length > 0,
+            mode: "memory",
+            primary: arr.join("/"),
+            accepted: arr,
+            target
+          };
+        }
+
+        return { active: false, primary: "—", accepted: [] };
+      }
+
+      function updatePracticeOcrExpectedDisplay() {
+        const panel = document.getElementById("practiceOcrPanel");
+        if (!panel) return;
+        if (!isOcrModeActive()) {
+          panel.classList.add("hidden");
+          return;
+        }
+        panel.classList.remove("hidden");
+
+        const expectedEl = document.getElementById("practiceOcrExpectedVal");
+        const quickBtn = document.getElementById("practiceOcrQuickStartBtn");
+        const arenaEl = document.getElementById("arenaView");
+        const isArenaOpen = arenaEl && !arenaEl.classList.contains("hidden");
+
+        if (quickBtn) {
+          if (isArenaOpen && selectedCatId === "alphabet") {
+            quickBtn.classList.add("hidden");
+          } else {
+            quickBtn.classList.remove("hidden");
+          }
+        }
+
+        const info = getExpectedLetterInfo();
+        if (expectedEl) {
+          expectedEl.textContent = info.active ? info.primary : (selectedCatId === "numbers" ? "1-10" : "A-Z");
+        }
+
+        const isNumListen = selectedCatId === "numbers" && (!isArenaOpen || activeGameMode === "listen");
+        const isFr = currentLang === "French";
+        const readLabelEl = document.getElementById("practiceOcrReadLabel");
+        const scanTextEl = document.getElementById("practiceOcrScanNowText");
+        if (readLabelEl) {
+          readLabelEl.textContent = isNumListen
+            ? (isFr ? "👁️ Chiffre lu :" : "👁️ Number read:")
+            : (isFr ? "👁️ Lettre lue :" : "👁️ Letter read:");
+        }
+        if (scanTextEl) {
+          scanTextEl.textContent = isNumListen
+            ? (isFr ? "Lire le chiffre" : "Read number")
+            : (isFr ? "Lire la lettre" : "Read letter");
+        }
+      }
+
+      function setPracticeOcrVerdictUI(state, readChar, messageText, badgeText) {
+        const panel = document.getElementById("practiceOcrPanel");
+        const readVal = document.getElementById("practiceOcrReadVal");
+        const verdictBar = document.getElementById("practiceOcrVerdictBar");
+        const verdictText = document.getElementById("practiceOcrVerdictText");
+        const verdictBadge = document.getElementById("practiceOcrVerdictBadge");
+        if (!panel || !verdictBar) return;
+
+        if (readVal && readChar) {
+          readVal.textContent = readChar;
+        }
+        if (verdictText && messageText) {
+          verdictText.textContent = messageText;
+        }
+        if (verdictBadge && badgeText) {
+          verdictBadge.textContent = badgeText;
+        }
+
+        if (state === "approved") {
+          verdictBar.className = "flex-1 min-h-[64px] px-3 py-1.5 rounded-xl bg-emerald-100 border-2 border-emerald-500 text-emerald-950 text-xs sm:text-sm font-black flex items-center justify-between gap-2 transition-all duration-200 shadow-xs";
+          if (verdictBadge) {
+            verdictBadge.className = "px-2.5 py-0.5 rounded-full bg-emerald-600 text-white text-[10px] sm:text-xs font-black whitespace-nowrap";
+          }
+        } else if (state === "rejected") {
+          verdictBar.className = "flex-1 min-h-[64px] px-3 py-1.5 rounded-xl bg-rose-100 border-2 border-rose-500 text-rose-950 text-xs sm:text-sm font-black flex items-center justify-between gap-2 transition-all duration-200 shadow-xs";
+          if (verdictBadge) {
+            verdictBadge.className = "px-2.5 py-0.5 rounded-full bg-rose-600 text-white text-[10px] sm:text-xs font-black whitespace-nowrap";
+          }
+        } else {
+          verdictBar.className = "flex-1 min-h-[64px] px-3 py-1.5 rounded-xl bg-white/90 border border-emerald-300 text-emerald-900 text-xs sm:text-sm font-black flex items-center justify-between gap-2 transition-all duration-200";
+          if (verdictBadge) {
+            verdictBadge.className = "px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-800 text-[10px] sm:text-xs font-black whitespace-nowrap";
+          }
+        }
+      }
+
+      /**
+       * Appelé dès qu'une lettre (ou un chiffre) est présentée devant la caméra dans practice.html?system=ocr.
+       * Le système lit la lettre à voix haute et approuve (✅) ou non (❌) si elle est correcte.
+       */
+      function handleCameraLetterDetected(rawDetected, options = {}) {
+        if (!isOcrModeActive()) return false;
+        const isAutoBackground = Boolean(options.isAutoBackground);
+        const clean = String(rawDetected || "").replace(/[^a-zA-Z0-9]/g, "").trim().toUpperCase();
+        if (!clean) return false;
+        const detected = clean === "10" ? "10" : clean.charAt(0);
+        const isNumericToken = /^[0-9]+$/.test(detected);
+        const isFr = currentLang === "French";
+        const tokenNounFrCap = isNumericToken ? (detected === "10" ? "Nombre" : "Chiffre") : "Lettre";
+        const tokenNounEnCap = isNumericToken ? "Number" : "Letter";
+        const readParticipleFr = isNumericToken ? "lu" : "lue";
+
+        const arenaEl = document.getElementById("arenaView");
+        const isArenaOpen = arenaEl && !arenaEl.classList.contains("hidden");
+
+        // Si aucun jeu n'est ouvert (#hubView ou #categoryDetailView) et que c'est un scan automatique
+        // d'arrière-plan, ne déclencher AUCUNE voix automatiquement !
+        if (!isArenaOpen && isAutoBackground) {
+          return false;
+        }
+
+        // Si une question vient déjà d'être validée et est en cours de transition vers la suivante
+        if (isArenaOpen && isOcrQuestionLocked) return false;
+
+        // Cas 1 : L'utilisateur est dans l'arène de jeu (#arenaView)
+        if (isArenaOpen) {
+          const info = getExpectedLetterInfo();
+          if (!info.active) return false;
+
+          const isCorrect = info.accepted.includes(detected) || info.accepted.includes(clean);
+          const feedback = document.getElementById("arenaFeedback");
+
+          if (isCorrect) {
+            // APPROUVÉ (LETTRE OU CHIFFRE CORRECT)
+            lastApprovedOcrChar = detected;
+            announcedWrongCharsOnStage.clear();
+            stageStartTime = Date.now();
+
+            const approveMsg = isFr
+              ? `✅ ${tokenNounFrCap} « ${detected} » ${readParticipleFr} par la caméra — APPROUVÉ ! C'est correct !`
+              : `✅ ${tokenNounEnCap} "${detected}" read by camera — APPROVED! That is correct!`;
+            const approveVoice = isFr
+              ? `${tokenNounFrCap} ${detected} ! Bravo, c'est correct !`
+              : `${tokenNounEnCap} ${detected}! Great job, that is correct!`;
+
+            setPracticeOcrVerdictUI("approved", detected, approveMsg, isFr ? "✅ APPROUVÉ" : "✅ APPROVED");
+            if (feedback) {
+              feedback.textContent = approveMsg;
+              feedback.className = "min-h-[24px] text-center text-xs sm:text-sm font-black text-emerald-600 animate-bounce";
+            }
+
+            if (info.mode === "listen") {
+              isOcrQuestionLocked = true;
+              const targetCard = document.querySelector('#soundChoicesGrid .sound-choice-2col[data-is-target="true"]');
+              if (targetCard) targetCard.classList.add("correct");
+              playSound(cheeringAudio);
+              speak(approveVoice);
+              handleCorrectAnswer(2300);
+              return approveMsg;
+            }
+
+            if (info.mode === "spelling" && activeSpellingState) {
+              const { letters, placedLetters, slotsContainer, bubblesContainer, wordClean } = activeSpellingState;
+              const nextSlotIdx = placedLetters.findIndex(p => p === null);
+              if (nextSlotIdx === -1) return false;
+
+              const matchBubble = Array.from(bubblesContainer.querySelectorAll(".letter-bubble:not(.used)")).find(
+                b => b.textContent.trim().toUpperCase() === detected
+              );
+              if (matchBubble) {
+                matchBubble.classList.add("used");
+                placedLetters[nextSlotIdx] = { char: detected, bubble: matchBubble };
+              } else {
+                placedLetters[nextSlotIdx] = { char: detected, bubble: { classList: { remove() {} } } };
+              }
+
+              const slotEl = slotsContainer.children[nextSlotIdx];
+              if (slotEl) {
+                slotEl.textContent = detected;
+                slotEl.classList.add("filled");
+              }
+
+              if (typeof activeSpellingState.refreshActiveSlotHighlight === "function") {
+                activeSpellingState.refreshActiveSlotHighlight();
+              } else {
+                updatePracticeOcrExpectedDisplay();
+              }
+              if (window.FennckyOCR && typeof window.FennckyOCR.resetLastDetectedToken === "function") {
+                setTimeout(() => window.FennckyOCR.resetLastDetectedToken(), 1400);
+              }
+
+              if (placedLetters.every(p => p !== null)) {
+                isOcrQuestionLocked = true;
+                const userWord = placedLetters.map(p => p.char).join("");
+                if (userWord === wordClean) {
+                  playSound(cheeringAudio);
+                  speak(approveVoice);
+                  handleCorrectAnswer(2300);
+                } else {
+                  playSound(wrongAudio);
+                  handleWrongAnswer();
+                }
+              } else {
+                playSynthesizedEffect(true);
+                speak(approveVoice);
+              }
+              return approveMsg;
+            }
+
+            if (info.mode === "speed" && activeSpeedState) {
+              isOcrQuestionLocked = true;
+              if (activeTimerInterval) {
+                clearInterval(activeTimerInterval);
+                activeTimerInterval = null;
+              }
+              const btnToHighlight = activeSpeedState.isTrue
+                ? document.getElementById("speedYesBtn")
+                : document.getElementById("speedNoBtn");
+              if (btnToHighlight) {
+                btnToHighlight.style.boxShadow = "0 0 0 4px #10b981";
+                btnToHighlight.style.transform = "scale(1.05)";
+              }
+              playSound(cheeringAudio);
+              speak(approveVoice);
+              handleCorrectAnswer(2300);
+              return approveMsg;
+            }
+
+            if (info.mode === "memory" && activeMemoryState) {
+              activeMemoryState.matchPairByLetter(detected);
+              speak(approveVoice);
+              return approveMsg;
+            }
+          } else {
+            // MODE BIENVEILLANT SANS ERREURS EN BOUCLE :
+            // 1. Si c'est encore l'ancienne lettre/chiffre de la question précédente qui n'a pas encore été retirée, l'ignorer !
+            if (isAutoBackground && detected === lastApprovedOcrChar) {
+              return false;
+            }
+            // 2. Laisser 4,5 secondes au début de chaque question pour écouter la consigne et changer de carte sans erreur
+            if (isAutoBackground && Date.now() - stageStartTime < 4500) {
+              return false;
+            }
+            // 3. En scan continu, n'annoncer une erreur que si une nouvelle carte blanche est maintenue bien fixe avec haute confiance
+            if (isAutoBackground && !options.isHighConfidenceNewCard) {
+              return false;
+            }
+            // 4. Ne jamais répéter en boucle un message d'erreur pour la même lettre sur la question en cours
+            if (isAutoBackground && announcedWrongCharsOnStage.has(detected)) {
+              return false;
+            }
+            announcedWrongCharsOnStage.add(detected);
+
+            // NON APPROUVÉ (NOUVELLE CARTE PRÉSENTÉE MAIS INCORRECTE)
+            const rejectMsg = isFr
+              ? `❌ ${tokenNounFrCap} « ${detected} » ${readParticipleFr} par la caméra — NON APPROUVÉ ! (Attendu : « ${info.primary} »)`
+              : `❌ ${tokenNounEnCap} "${detected}" read by camera — NOT APPROVED! (Expected: "${info.primary}")`;
+            const rejectVoice = isFr
+              ? `${tokenNounFrCap} ${detected}. Non, ce n'est pas correct, réessaie !`
+              : `${tokenNounEnCap} ${detected}. No, that is not correct, try again!`;
+
+            setPracticeOcrVerdictUI("rejected", detected, rejectMsg, isFr ? "❌ NON APPROUVÉ" : "❌ NOT APPROVED");
+            if (feedback) {
+              feedback.textContent = rejectMsg;
+              feedback.className = "min-h-[24px] text-center text-xs sm:text-sm font-black text-rose-600";
+            }
+
+            if (info.mode === "listen") {
+              const wrongCard = Array.from(document.querySelectorAll('#soundChoicesGrid .sound-choice-2col[data-is-target="false"]')).find(
+                c => c.dataset.letter === detected
+              );
+              if (wrongCard) {
+                wrongCard.classList.add("wrong");
+                setTimeout(() => wrongCard.classList.remove("wrong"), 1200);
+              }
+            }
+
+            playSound(wrongAudio);
+            speak(rejectVoice);
+            return rejectMsg;
+          }
+        }
+
+        // Cas 2 : L'utilisateur est sur la vue détail (#categoryDetailView) ou sur le hub (#hubView) sans jeu actif.
+        // Le système lit simplement la lettre ou le chiffre présenté devant la caméra et l'approuve sans lancer de jeu automatiquement.
+        const msg = isFr
+          ? `✅ ${tokenNounFrCap} « ${detected} » détecté et ${readParticipleFr} par la caméra !`
+          : `✅ ${tokenNounEnCap} "${detected}" detected and read by camera!`;
+        setPracticeOcrVerdictUI("approved", detected, msg, isFr ? `✅ ${tokenNounFrCap} ${detected}` : `✅ ${tokenNounEnCap} ${detected}`);
+        speak(isFr ? `${tokenNounFrCap} ${detected}` : `${tokenNounEnCap} ${detected}`);
+        return msg;
+      }
+
       // Event Listeners
       document.querySelectorAll(".lang-btn").forEach(btn => {
         btn.addEventListener("click", () => {
           applyLanguage(btn.dataset.lang);
+          updatePracticeOcrExpectedDisplay();
         });
       });
+
+      document.getElementById("practiceOcrQuickStartBtn")?.addEventListener("click", () => {
+        stopAllAudio();
+        selectedCatId = "alphabet";
+        renderCategoryDetail("alphabet");
+        startGame("listen", 1);
+      });
+
+      document.getElementById("practiceOcrScanNowBtn")?.addEventListener("click", () => {
+        if (window.FennckyOCR && typeof window.FennckyOCR.scanCameraNow === "function") {
+          window.FennckyOCR.scanCameraNow();
+        }
+      });
+
+      document.getElementById("practiceOcrCalibBtn")?.addEventListener("click", () => {
+        if (window.FennckyOCR && typeof window.FennckyOCR.openCameraCalibrationModal === "function") {
+          window.FennckyOCR.openCameraCalibrationModal("practice.html?system=ocr", false);
+        }
+      });
+
+      // Permet aussi de tester/simuler la présentation d'une lettre au clavier (A-Z) en mode OCR
+      document.addEventListener("keydown", (e) => {
+        if (!isOcrModeActive()) return;
+        if (e.ctrlKey || e.altKey || e.metaKey) return;
+        const tag = (e.target?.tagName || "").toLowerCase();
+        if (tag === "input" || tag === "textarea") return;
+        const key = (e.key || "").toUpperCase();
+        if (/^[A-Z0-9]$/.test(key)) {
+          handleCameraLetterDetected(key);
+        }
+      });
+
+      function notifyCardRemovedFromCamera() {
+        lastApprovedOcrChar = "";
+        announcedWrongCharsOnStage.clear();
+      }
+
+      window.PracticeOCR = {
+        isOcrModeActive,
+        getExpectedLetterInfo,
+        isNumbersCategory: () => selectedCatId === "numbers",
+        handleCameraLetter: handleCameraLetterDetected,
+        notifyCardRemoved: notifyCardRemovedFromCamera,
+        updateExpectedDisplay: updatePracticeOcrExpectedDisplay
+      };
 
       document.getElementById("topNavBackBtn")?.addEventListener("click", () => {
         stopAllAudio();
@@ -1865,6 +2504,7 @@
       // Init
       updateStatsDisplay();
       applyLanguage(currentLang);
+      updatePracticeOcrExpectedDisplay();
     })();
   </script>
 </body>

@@ -693,7 +693,7 @@ async function finishCounting(
   }
 
   let praiseText = "";
-   else if (lang === "French") {
+  if (lang === "French") {
     const label = item.count === 1 ? item.objects.French.singular : item.objects.French.plural;
     praiseText = `Bravo ! Tu as compté ${word} ${label}.`;
   } else {
@@ -1334,7 +1334,7 @@ async function playNumberLesson() {
   const word = item.words[lang] || item.words.English;
 
   let phrase = "";
-   else if (lang === "French") {
+  if (lang === "French") {
     const label = item.count === 1 ? item.objects.French.singular : item.objects.French.plural;
     phrase = `${word}. ${word} ${label}.`;
   } else {

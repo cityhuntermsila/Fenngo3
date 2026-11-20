@@ -725,7 +725,7 @@
         }
       };
 
-      let activeLang = localStorage.getItem("selectedLanguage") || "French";
+      let activeLang = window.AppLang ? window.AppLang.getCurrentLangId() : (localStorage.getItem("selectedLanguage") || "English");
 
       function applyTranslations(lang) {
         activeLang = lang;
@@ -856,7 +856,7 @@
       });
 
       window.addEventListener("appLanguageChanged", () => {
-        const lang = localStorage.getItem("selectedLanguage") || "French";
+        const lang = window.AppLang ? window.AppLang.getCurrentLangId() : (localStorage.getItem("selectedLanguage") || "English");
         applyTranslations(lang);
       });
 

@@ -522,18 +522,25 @@
         });
       });
 
-      // Webcam activation
+      // Webcam activation (honoring FennckyOCR calibration: front, back, or fenncky mirror-inverted)
       document.getElementById("startWebcamBtn")?.addEventListener("click", async () => {
         if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
           document.getElementById("scanStatusLabel").textContent = "Mode Simulation IA actif (Caméra non détectée)";
           return;
         }
         try {
-          mediaStream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: "environment" } });
+          const ocrCfg = window.FennckyOCR ? window.FennckyOCR.getOcrConfig() : { cameraType: "fenncky", mirrorY: true, mirrorX: true };
+          const facing = ocrCfg.cameraType === "back" ? "environment" : "user";
+          mediaStream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: { ideal: facing } } });
           const vid = document.getElementById("tactileCameraVideo");
           const ph = document.getElementById("tactileCameraPlaceholder");
           if (vid) {
             vid.srcObject = mediaStream;
+            if (ocrCfg.cameraType === "fenncky") {
+              vid.style.transform = `scale(${ocrCfg.mirrorX !== false ? -1 : 1}, ${ocrCfg.mirrorY !== false ? -1 : 1})`;
+            } else {
+              vid.style.transform = "none";
+            }
             vid.classList.remove("hidden");
           }
           if (ph) ph.classList.add("hidden");

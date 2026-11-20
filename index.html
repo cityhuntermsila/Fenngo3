@@ -1274,8 +1274,9 @@
     </div>
   </div>
 
-  <script src="js/app-lang.js?v=85"></script>
-  <script src="js/fenny-companion.js?v=85"></script>
+  <script src="js/app-lang.js?v=86"></script>
+  <script src="js/fenny-companion.js?v=86"></script>
+  <script src="js/ocr-system.js?v=86"></script>
   <script>
     (() => {
       /* ---------------- i18n (FR = HTML default) ---------------- */
@@ -1402,7 +1403,7 @@
       });
 
       function currentLang() {
-        return window.AppLang ? window.AppLang.getCurrentLangId() : (localStorage.getItem("selectedLanguage") || "French");
+        return window.AppLang ? window.AppLang.getCurrentLangId() : (localStorage.getItem("selectedLanguage") || "English");
       }
 
       function applyLang() {

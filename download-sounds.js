@@ -498,6 +498,98 @@ function collectPhrases() {
     "Combien y en a-t-il ?", "Compte les points rouges", "Bravo champion ! Tu as terminé la manche avec succès !"
   ].forEach((p) => fr.add(p));
 
+  // 12. Practice 3AP (practice.html), Test (test.html) & Stories (stories.html)
+  "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("").forEach((l) => {
+    fr.add(l);
+  });
+
+  [
+    "Alphabet", "Nombres", "Couleurs", "Géométrie", "Famille", "Fournitures", "Corps Humain", "Routine", "Ordres"
+  ].forEach((p) => fr.add(p));
+
+  const practiceAlphabet = [
+    { letter: "A", fr: "Astronaute" },
+    { letter: "B", fr: "Ballon" },
+    { letter: "C", fr: "Chat" },
+    { letter: "D", fr: "Dauphin" },
+    { letter: "E", fr: "Éléphant" },
+    { letter: "F", fr: "Fraise" },
+    { letter: "G", fr: "Gâteau" },
+    { letter: "H", fr: "Hibou" },
+    { letter: "I", fr: "Igloo" },
+    { letter: "J", fr: "Jus" },
+    { letter: "K", fr: "Koala" },
+    { letter: "L", fr: "Lion" },
+    { letter: "M", fr: "Mangue" },
+    { letter: "N", fr: "Nid" },
+    { letter: "O", fr: "Orange" },
+    { letter: "P", fr: "Papillon" },
+    { letter: "Q", fr: "Quatre" },
+    { letter: "R", fr: "Rose" },
+    { letter: "S", fr: "Soleil" },
+    { letter: "T", fr: "Train" },
+    { letter: "U", fr: "Un" },
+    { letter: "V", fr: "Volcan" },
+    { letter: "W", fr: "Wagon" },
+    { letter: "X", fr: "Xylophone" },
+    { letter: "Y", fr: "Yo-Yo" },
+    { letter: "Z", fr: "Zèbre" }
+  ];
+
+  practiceAlphabet.forEach((it) => {
+    fr.add(it.fr);
+    fr.add(`${it.letter}, ${it.fr}`);
+    fr.add(`Touche la lettre ${it.letter} ! ${it.letter}, comme ${it.fr}.`);
+    fr.add(`Présente la lettre ${it.letter} ! ${it.letter}, comme ${it.fr}.`);
+    fr.add(`Lettre ${it.letter}`);
+    fr.add(`Lettre ${it.letter} ! Bravo, c'est correct !`);
+    fr.add(`Lettre ${it.letter}. Non, ce n'est pas correct, réessaie !`);
+  });
+
+  fr.add("Trouve les paires identiques !");
+
+  const practiceNumbers = [
+    { num: "1", fr: "Un", label: "chiffre" },
+    { num: "2", fr: "Deux", label: "chiffre" },
+    { num: "3", fr: "Trois", label: "chiffre" },
+    { num: "4", fr: "Quatre", label: "chiffre" },
+    { num: "5", fr: "Cinq", label: "chiffre" },
+    { num: "6", fr: "Six", label: "chiffre" },
+    { num: "7", fr: "Sept", label: "chiffre" },
+    { num: "8", fr: "Huit", label: "chiffre" },
+    { num: "9", fr: "Neuf", label: "chiffre" },
+    { num: "10", fr: "Dix", label: "nombre" }
+  ];
+
+  practiceNumbers.forEach((it) => {
+    const cap = it.label === "nombre" ? "Nombre" : "Chiffre";
+    fr.add(`${cap} ${it.num}`);
+    fr.add(`${cap} ${it.num} ! Bravo, c'est correct !`);
+    fr.add(`${cap} ${it.num}. Non, ce n'est pas correct, réessaie !`);
+    fr.add(`Présente le ${it.label} ${it.num} ! ${it.fr}.`);
+    fr.add(`Touche le ${it.label} ${it.num} ! ${it.fr}.`);
+  });
+
+  "0123456789".split("").forEach((d) => {
+    fr.add(`Chiffre ${d}`);
+    fr.add(`Chiffre ${d} ! Bravo, c'est correct !`);
+    fr.add(`Chiffre ${d}. Non, ce n'est pas correct, réessaie !`);
+  });
+
+  [
+    // Geometry, Family, Stationery, Body Parts, Daily Routine, Common Orders in practice.html
+    "Cercle", "Carré", "Triangle", "Rectangle", "Losange", "Ovale", "Étoile", "Cœur", "Cube", "Hexagone",
+    "Père", "Mère", "Grand-père", "Grand-mère", "Frère", "Sœur", "Fils", "Fille", "Mon Papa", "Ma Maman",
+    "Cartable", "Livre", "Cahier", "Crayon", "Stylo", "Gomme", "Règle", "Ciseaux", "Taille-crayon", "Trousse",
+    "Tête", "Cheveux", "Œil", "Oreille", "Nez", "Bouche", "Main", "Bras", "Jambe", "Pied",
+    "Se réveiller", "Se laver le visage", "Se brosser les dents", "S'habiller", "Petit déjeuner", "Aller à l'école", "Étudier", "Jouer", "Devoirs", "Dormir",
+    "Levez-vous", "Asseyez-vous", "Levez la main", "Écoutez", "Regardez", "Effacez", "Montrez", "Reliez", "Lisez", "Écrivez",
+    // Test.html phrases
+    "Le chat", "Le lion", "La pomme", "Le livre", "Le crayon", "Le canard", "L'ours", "Le poisson", "Le soleil", "Le train", "Le père", "La mère", "Le vélo", "La fleur",
+    // Stories.html phrases
+    "Bravo ! Bonne réponse !"
+  ].forEach((p) => fr.add(p));
+
   return {
     ar: Array.from(ar),
     fr: Array.from(fr)

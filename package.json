@@ -1,0 +1,9 @@
+{
+  "name": "fenncky-kids-learner",
+  "version": "1.0.0",
+  "description": "Fenncky & FennyGo3 Interactive Kids Learner",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js 8080"
+  }
+}

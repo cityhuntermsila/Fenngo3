@@ -503,8 +503,8 @@
       let pageIdx = 0;
 
       function getLangData() {
-        const langId = window.AppLang ? window.AppLang.getCurrentLangId() : (localStorage.getItem("selectedLanguage") || "French");
-        return STORIES_DATA[langId] || STORIES_DATA.French;
+        const langId = window.AppLang ? window.AppLang.getCurrentLangId() : (localStorage.getItem("selectedLanguage") || "English");
+        return STORIES_DATA[langId] || STORIES_DATA.English;
       }
 
       function renderStoriesHub() {

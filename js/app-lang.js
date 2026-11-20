@@ -69,11 +69,23 @@
   };
 
   const STORAGE_KEY = "selectedLanguage";
+  const DEFAULT_EN_MIGRATION_KEY = "fenncky_default_en_v1";
+
+  // Assurer que le site démarre par défaut en Anglais
+  try {
+    if (!localStorage.getItem(DEFAULT_EN_MIGRATION_KEY)) {
+      localStorage.setItem(DEFAULT_EN_MIGRATION_KEY, "1");
+      localStorage.setItem(STORAGE_KEY, "English");
+    }
+  } catch (_) {}
 
   function getCurrentLangId() {
-    const saved = localStorage.getItem(STORAGE_KEY);
-    if (saved && (saved === "French" || saved === "fr" || saved === "francais" || saved === "français")) {
+    const saved = (localStorage.getItem(STORAGE_KEY) || "").toLowerCase();
+    if (saved === "french" || saved === "fr") {
       return "French";
+    }
+    if (!localStorage.getItem(STORAGE_KEY)) {
+      try { localStorage.setItem(STORAGE_KEY, "English"); } catch (_) {}
     }
     return "English";
   }
@@ -132,48 +144,80 @@
   }
 
   /**
-   * Play local pre-downloaded MP3 file in assets/audio/<langPrefix>/<hash>.mp3,
-   * with fallback to Google TTS or SpeechSynthesis if the local file is not found.
+   * Native Web Speech API helper with fallback to default system voice if specific locale voice isn't installed.
    */
-  function _playLocalOrRemoteTTS(text, langPrefix, onEnded) {
+  function _speakWithWebSpeech(text, targetLangCode, rate = 0.85, pitch = 1.1, onEnded = null) {
+    if (!("speechSynthesis" in window)) {
+      if (typeof onEnded === "function") onEnded();
+      return false;
+    }
+
+    const langPrefix = (targetLangCode || "en-US").slice(0, 2).toLowerCase();
+    window.speechSynthesis.cancel();
+
+    const utterance = new SpeechSynthesisUtterance(text);
+    utterance.lang = targetLangCode;
+    utterance.rate = rate;
+    utterance.pitch = pitch;
+
+    const voices = window.speechSynthesis.getVoices();
+    const match =
+      voices.find((v) => v.lang.toLowerCase() === targetLangCode.toLowerCase()) ||
+      voices.find((v) => v.lang.toLowerCase().startsWith(langPrefix)) ||
+      voices[0];
+    if (match) utterance.voice = match;
+
+    let ended = false;
+    const finish = () => {
+      if (ended) return;
+      ended = true;
+      if (typeof onEnded === "function") onEnded();
+    };
+
+    utterance.onend = finish;
+    utterance.onerror = finish;
+
+    window.speechSynthesis.speak(utterance);
+    return true;
+  }
+
+  /**
+   * Play local pre-downloaded MP3 file in assets/audio/<langPrefix>/<hash>.mp3,
+   * with immediate fallback to Web Speech API (SpeechSynthesis) if the local file is not found.
+   */
+  function _playLocalOrRemoteTTS(text, langPrefix, targetLangCode, rate, pitch, onEnded) {
     const localUrl = getLocalAudioPath(text, langPrefix);
-    const encoded = encodeURIComponent(text.trim());
-    const remoteUrl = `https://translate.google.com/translate_tts?ie=UTF-8&tl=${langPrefix}&client=tw-ob&q=${encoded}`;
 
     if (!_ttsAudio) {
       _ttsAudio = new Audio();
     }
     _ttsAudio.pause();
 
-    let finished = false;
-    const done = () => {
-      if (finished) return;
-      finished = true;
+    let handledFallback = false;
+    const fallbackToSpeech = () => {
+      if (handledFallback) return;
+      handledFallback = true;
+      _speakWithWebSpeech(text, targetLangCode || (langPrefix === "fr" ? "fr-FR" : "en-US"), rate, pitch, onEnded);
+    };
+
+    _ttsAudio.onended = () => {
+      if (handledFallback) return;
+      handledFallback = true;
       if (typeof onEnded === "function") onEnded();
     };
 
-    _ttsAudio.onended = done;
-    _ttsAudio.onerror = () => {
-      // If local file failed, try remote URL once
-      if (_ttsAudio.src && !_ttsAudio.src.includes("translate.google.com")) {
-        _ttsAudio.onerror = done;
-        _ttsAudio.src = remoteUrl;
-        _ttsAudio.play().catch(done);
-      } else {
-        done();
-      }
-    };
+    _ttsAudio.onerror = fallbackToSpeech;
 
     _ttsAudio.src = localUrl;
-    _ttsAudio.play().catch(() => {
-      done();
-    });
+    const playPromise = _ttsAudio.play();
+    if (playPromise && typeof playPromise.catch === "function") {
+      playPromise.catch(fallbackToSpeech);
+    }
   }
 
   /**
    * Voice speech synthesis helper.
-   * For French ("fr"), plays pre-downloaded local MP3 files first
-   * so that voice works reliably offline and without browser certificate blocks.
+   * Tries pre-downloaded local MP3 first for French ("fr"), then falls back seamlessly to Web Speech API.
    */
   function speak(text, langCode = null, rate = 0.85, pitch = 1.1, onEnded = null) {
     if (!text) {
@@ -184,40 +228,16 @@
     const targetLangCode = langCode || getCurrentLang().speechLang;
     const langPrefix = targetLangCode.slice(0, 2).toLowerCase();
 
-    // Always prefer pre-downloaded local MP3s for French
     if (langPrefix === "fr" || !_hasVoiceForLang(langPrefix)) {
       window.speechSynthesis?.cancel?.();
-      _playLocalOrRemoteTTS(text, langPrefix, onEnded);
-      return;
-    }
-
-    // Native SpeechSynthesis path (English)
-    if (!("speechSynthesis" in window)) {
-      if (typeof onEnded === "function") onEnded();
+      _playLocalOrRemoteTTS(text, langPrefix, targetLangCode, rate, pitch, onEnded);
       return;
     }
 
     if (_ttsAudio) {
       _ttsAudio.pause();
     }
-    window.speechSynthesis.cancel();
-
-    const utterance = new SpeechSynthesisUtterance(text);
-    utterance.lang = targetLangCode;
-    utterance.rate = rate;
-    utterance.pitch = pitch;
-
-    const voices = window.speechSynthesis.getVoices();
-    const match = voices.find(v => v.lang.toLowerCase() === targetLangCode.toLowerCase())
-      || voices.find(v => v.lang.toLowerCase().startsWith(langPrefix));
-    if (match) utterance.voice = match;
-
-    if (typeof onEnded === "function") {
-      utterance.onend = onEnded;
-      utterance.onerror = onEnded;
-    }
-
-    window.speechSynthesis.speak(utterance);
+    _speakWithWebSpeech(text, targetLangCode, rate, pitch, onEnded);
   }
 
   function stopSpeech() {
@@ -229,13 +249,29 @@
   }
 
   /**
-   * Determine the back navigation target based on current page.
+   * Determine the back navigation target based on current page and active system mode (category.html vs category-ocr.html).
    */
   function getBackTargetUrl() {
     const path = (window.location.pathname || "").toLowerCase();
-    if (path.endsWith("category.html") || path.endsWith("kindergarten.html")) {
+    const params = new URLSearchParams(window.location.search);
+    const urlSys = params.get("system");
+    if (urlSys === "ocr" || urlSys === "simple") {
+      localStorage.setItem("fenncky_system_mode", urlSys);
+    }
+    if (path.endsWith("category.html")) {
+      localStorage.setItem("fenncky_system_mode", "simple");
       return "index.html";
     }
+    if (path.endsWith("category-ocr.html") || path.endsWith("kindergarten.html")) {
+      if (path.endsWith("category-ocr.html")) {
+        localStorage.setItem("fenncky_system_mode", "ocr");
+      }
+      return "index.html";
+    }
+
+    const isOcrMode = localStorage.getItem("fenncky_system_mode") === "ocr";
+    const categoryTarget = isOcrMode ? "category-ocr.html" : "category.html";
+
     if (
       path.endsWith("alphabet.html") ||
       path.endsWith("numbers.html") ||
@@ -248,7 +284,7 @@
       path.endsWith("daily-routine.html") ||
       path.endsWith("common-orders.html")
     ) {
-      return "cours.html";
+      return isOcrMode ? "cours.html?system=ocr" : "cours.html";
     }
     if (
       path.endsWith("cours.html") ||
@@ -260,9 +296,9 @@
       path.endsWith("stories.html") ||
       path.endsWith("progression.html")
     ) {
-      return "category.html";
+      return categoryTarget;
     }
-    return "category.html";
+    return categoryTarget;
   }
 
   /**
@@ -325,8 +361,15 @@
     // Auto-load Fenny Virtual Companion on all pages
     if (!window.FennyGo && !document.querySelector('script[src*="fenny-companion.js"]')) {
       const s = document.createElement("script");
-      s.src = "js/fenny-companion.js?v=3";
+      s.src = "js/fenny-companion.js?v=86";
       document.body.appendChild(s);
+    }
+
+    // Auto-load Fenncky OCR & System Selector (1. Système Simple | 2. Système OCR) on all pages
+    if (!window.FennckyOCR && !document.querySelector('script[src*="ocr-system.js"]')) {
+      const ocrScript = document.createElement("script");
+      ocrScript.src = "js/ocr-system.js?v=86";
+      document.body.appendChild(ocrScript);
     }
   });
 

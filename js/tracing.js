@@ -86,11 +86,81 @@
         { text: "VERT", label: "Vert", emoji: "🟢", speech: "Vert" },
         { text: "JAUNE", label: "Jaune", emoji: "🟡", speech: "Jaune" }
       ]
+    },
+    English: {
+      dir: "ltr",
+      speechLang: "en-US",
+      ui: {
+        title: "✏️ Tracing & Writing",
+        subtitle: "Follow the dotted lines with your finger or mouse to write letters and words!",
+        modeLabel: "Choose mode:",
+        modeLetters: "Uppercase Letters (A-Z)",
+        modeWords: "Trace Words",
+        modeLower: "Lowercase Letters (a-z)",
+        listen: "Listen",
+        colorLabel: "Pencil Color:",
+        clear: "Clear",
+        next: "Next",
+        instruction: "Follow the dotted lines ✨",
+        completedMsg: "Awesome! Great handwriting! 🎉"
+      },
+      letters: [
+        { text: "A", label: "A - Apple", emoji: "🍎", speech: "A is for Apple" },
+        { text: "B", label: "B - Ball", emoji: "🎈", speech: "B is for Ball" },
+        { text: "C", label: "C - Cat", emoji: "🐱", speech: "C is for Cat" },
+        { text: "D", label: "D - Dolphin", emoji: "🐬", speech: "D is for Dolphin" },
+        { text: "E", label: "E - Elephant", emoji: "🐘", speech: "E is for Elephant" },
+        { text: "F", label: "F - Fish", emoji: "🐟", speech: "F is for Fish" },
+        { text: "G", label: "G - Gift", emoji: "🎁", speech: "G is for Gift" },
+        { text: "H", label: "H - House", emoji: "🏠", speech: "H is for House" },
+        { text: "I", label: "I - Ice cream", emoji: "🍦", speech: "I is for Ice cream" },
+        { text: "J", label: "J - Juice", emoji: "🧃", speech: "J is for Juice" },
+        { text: "K", label: "K - Kite", emoji: "🪁", speech: "K is for Kite" },
+        { text: "L", label: "L - Lion", emoji: "🦁", speech: "L is for Lion" },
+        { text: "M", label: "M - Mango", emoji: "🥭", speech: "M is for Mango" },
+        { text: "N", label: "N - Nest", emoji: "🪺", speech: "N is for Nest" },
+        { text: "O", label: "O - Orange", emoji: "🍊", speech: "O is for Orange" },
+        { text: "P", label: "P - Pencil", emoji: "✏️", speech: "P is for Pencil" },
+        { text: "Q", label: "Q - Queen", emoji: "👑", speech: "Q is for Queen" },
+        { text: "R", label: "R - Rainbow", emoji: "🌈", speech: "R is for Rainbow" },
+        { text: "S", label: "S - Sun", emoji: "☀️", speech: "S is for Sun" },
+        { text: "T", label: "T - Tree", emoji: "🌳", speech: "T is for Tree" },
+        { text: "U", label: "U - Umbrella", emoji: "☂️", speech: "U is for Umbrella" },
+        { text: "V", label: "V - Volcano", emoji: "🌋", speech: "V is for Volcano" },
+        { text: "W", label: "W - Watermelon", emoji: "🍉", speech: "W is for Watermelon" },
+        { text: "X", label: "X - Xylophone", emoji: "🎼", speech: "X is for Xylophone" },
+        { text: "Y", label: "Y - Yo-Yo", emoji: "🪀", speech: "Y is for Yo-Yo" },
+        { text: "Z", label: "Z - Zebra", emoji: "🦓", speech: "Z is for Zebra" }
+      ],
+      words: [
+        { text: "APPLE", label: "Apple", emoji: "🍎", speech: "Apple" },
+        { text: "BALL", label: "Ball", emoji: "🎈", speech: "Ball" },
+        { text: "CAT", label: "Cat", emoji: "🐱", speech: "Cat" },
+        { text: "FISH", label: "Fish", emoji: "🐟", speech: "Fish" },
+        { text: "LION", label: "Lion", emoji: "🦁", speech: "Lion" },
+        { text: "SUN", label: "Sun", emoji: "☀️", speech: "Sun" },
+        { text: "TREE", label: "Tree", emoji: "🌳", speech: "Tree" },
+        { text: "BOOK", label: "Book", emoji: "📖", speech: "Book" },
+        { text: "DUCK", label: "Duck", emoji: "🦆", speech: "Duck" },
+        { text: "BEAR", label: "Bear", emoji: "🐻", speech: "Bear" },
+        { text: "STAR", label: "Star", emoji: "⭐", speech: "Star" },
+        { text: "LEMON", label: "Lemon", emoji: "🍋", speech: "Lemon" },
+        { text: "FATHER", label: "Father", emoji: "👨", speech: "Father" },
+        { text: "MOTHER", label: "Mother", emoji: "👩", speech: "Mother" },
+        { text: "BROTHER", label: "Brother", emoji: "👦", speech: "Brother" },
+        { text: "SISTER", label: "Sister", emoji: "👧", speech: "Sister" },
+        { text: "PENCIL", label: "Pencil", emoji: "✏️", speech: "Pencil" },
+        { text: "RULER", label: "Ruler", emoji: "📏", speech: "Ruler" },
+        { text: "HEAD", label: "Head", emoji: "🧑", speech: "Head" },
+        { text: "HAND", label: "Hand", emoji: "✋", speech: "Hand" },
+        { text: "FOOT", label: "Foot", emoji: "🦶", speech: "Foot" }
+      ]
     }
   };
 
   // Génère automatiquement la liste des lettres minuscules (a-z) pour le Français et l'Anglais
   ["French", "English"].forEach((langKey) => {
+    if (!TRACING_DB[langKey]) return;
     TRACING_DB[langKey].lowercase = TRACING_DB[langKey].letters.map((item) => {
       const lowerChar = item.text.toLowerCase();
       return {
