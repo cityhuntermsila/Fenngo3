@@ -81,6 +81,12 @@
       }
       pill.textContent = label;
     });
+
+    if (document.body.classList.contains("cours-page")) {
+      document.title = `Kids Learner - ${labels.cours || "Courses"}`;
+    } else if (document.body.classList.contains("category-ocr-page")) {
+      document.title = `Kids Learner - ${langId === "French" ? "Catégorie OCR (Caméra IA)" : "OCR Category (AI Camera)"}`;
+    }
   }
 
   function initialiseCards() {

@@ -508,7 +508,10 @@
           };
 
           document.getElementById("tactileCardLetter").textContent = currentTarget.letter;
-          document.getElementById("scanStatusLabel").textContent = `Prêt à scanner la lettre « ${currentTarget.letter} »`;
+          const isFr = (window.AppLang ? window.AppLang.getCurrentLangId() : (localStorage.getItem("selectedLanguage") || "English")) === "French";
+          document.getElementById("scanStatusLabel").textContent = isFr
+            ? `Prêt à scanner la lettre « ${currentTarget.letter} »`
+            : `Ready to scan letter "${currentTarget.letter}"`;
           document.getElementById("rewardFirstLetter").textContent = "?";
           document.getElementById("rewardWordSuffix").textContent = currentTarget.suffix;
           document.getElementById("rewardWordEmoji").textContent = currentTarget.emoji;

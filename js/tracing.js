@@ -20,6 +20,7 @@
         clear: "Effacer",
         next: "Suivant",
         instruction: "Suis les pointillés ✨",
+        fennyTip: "Suis bien les pointillés ! ✍️",
         completedMsg: "Bravo ! Super écriture ! 🎉"
       },
       letters: [
@@ -102,6 +103,7 @@
         clear: "Clear",
         next: "Next",
         instruction: "Follow the dotted lines ✨",
+        fennyTip: "Follow the dots carefully! ✍️",
         completedMsg: "Awesome! Great handwriting! 🎉"
       },
       letters: [
@@ -961,6 +963,10 @@
     document.getElementById("colorPickerLabel").textContent = db.ui.colorLabel;
     document.getElementById("clearBtnText").textContent = db.ui.clear;
     document.getElementById("nextBtnText").textContent = db.ui.next;
+    const fennyTipEl = document.getElementById("fennyTracingTip");
+    if (fennyTipEl && db.ui.fennyTip) fennyTipEl.textContent = db.ui.fennyTip;
+    const instrBadge = document.getElementById("traceInstructionBadge");
+    if (instrBadge && db.ui.instruction) instrBadge.textContent = db.ui.instruction;
     document.getElementById("tracingStarsCount").textContent = totalStars;
 
     document.getElementById("modeLettersBtn").classList.toggle("active", currentMode === "letters");

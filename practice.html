@@ -587,11 +587,11 @@
       <div class="flex items-center justify-center gap-2.5 py-1">
         <div class="p-2 sm:p-3 rounded-xl bg-amber-50 border border-amber-300 min-w-[80px]">
           <div class="text-xl">⭐</div>
-          <div class="font-black text-xs text-amber-950">+<span id="victoryStarsNum">10</span> Étoiles</div>
+          <div class="font-black text-xs text-amber-950">+<span id="victoryStarsNum">10</span> <span id="victoryStarsWord">Étoiles</span></div>
         </div>
         <div class="p-2 sm:p-3 rounded-xl bg-cyan-50 border border-cyan-300 min-w-[80px]">
           <div class="text-xl">💎</div>
-          <div class="font-black text-xs text-cyan-950">+<span id="victoryGemsNum">5</span> Diamants</div>
+          <div class="font-black text-xs text-cyan-950">+<span id="victoryGemsNum">5</span> <span id="victoryGemsWord">Diamants</span></div>
         </div>
       </div>
 
@@ -649,6 +649,8 @@
           replayGame: "Rejouer",
           switchGame: "Autre jeu",
           allThemes: "Thèmes",
+          starsLabel: "Étoiles",
+          gemsLabel: "Diamants",
           modes: {
             listen: { title: "Écoute & Trouve", badge: "🎧 Écoute" },
             memory: { title: "Mémoire 3D", badge: "🃏 Mémoire" },
@@ -687,6 +689,8 @@
           replayGame: "Replay",
           switchGame: "Other game",
           allThemes: "Topics",
+          starsLabel: "Stars",
+          gemsLabel: "Diamonds",
           modes: {
             listen: { title: "Sound Match", badge: "🎧 Listen" },
             memory: { title: "3D Memory", badge: "🃏 Memory" },
@@ -694,7 +698,7 @@
             speed: { title: "True or False", badge: "⚡ True/False" }
           },
           categories: {
-            alphabet: { title: "Alphabet", sub: "A - Z (26 Lettres)" },
+            alphabet: { title: "Alphabet", sub: "A - Z (26 Letters)" },
             numbers: { title: "Numbers", sub: "1 - 10" },
             colors: { title: "Colors", sub: "3D Colors" },
             geometry: { title: "Geometry", sub: "Shapes" },
@@ -1032,6 +1036,10 @@
         document.getElementById("replayBtnText").textContent = t.replayGame;
         document.getElementById("switchGameText").textContent = t.switchGame;
         document.getElementById("victoryAllThemesText").textContent = t.allThemes;
+        const vStarsWord = document.getElementById("victoryStarsWord");
+        if (vStarsWord) vStarsWord.textContent = t.starsLabel;
+        const vGemsWord = document.getElementById("victoryGemsWord");
+        if (vGemsWord) vGemsWord.textContent = t.gemsLabel;
 
         document.querySelectorAll(".lang-btn").forEach(btn => {
           if (btn.dataset.lang === lang) {
@@ -1149,7 +1157,7 @@
           const modeInfo = t.modes[m.id];
           const isOcrSupportedMode = m.id === "listen" || m.id === "spelling" || m.id === "speed";
           const ocrBadgeHtml = (ocrActive && isOcrSupportedMode)
-            ? `<span class="px-2 py-0.5 mb-1 rounded-full bg-emerald-100 border border-emerald-500 text-emerald-800 text-[10px] font-black">📷 Caméra OCR</span>`
+            ? `<span class="px-2 py-0.5 mb-1 rounded-full bg-emerald-100 border border-emerald-500 text-emerald-800 text-[10px] font-black">${currentLang === "French" ? "📷 Caméra OCR" : "📷 OCR Camera"}</span>`
             : "";
           const gCard = document.createElement("div");
           gCard.className = "game-mode-2col relative";
@@ -1193,7 +1201,8 @@
           btn.type = "button";
           const isActive = (lvl === currentLevel);
 
-          let label = `Niv. ${lvl}`;
+          const lvlWord = currentLang === "French" ? "Niv." : "Lvl.";
+          let label = `${lvlWord} ${lvl}`;
           if (isAlphabet) {
             label = `${ALPHABET_LEVELS[lvl - 1].label}`;
           }
@@ -1254,7 +1263,8 @@
         document.getElementById("arenaScoreVal").textContent = "0";
 
         const t = I18N[currentLang];
-        const lvlSuffix = activeGameMode === "listen" && isAlphabet ? ` • Niv. ${currentLevel} (${ALPHABET_LEVELS[currentLevel - 1].label})` : (activeGameMode === "listen" ? ` • Niv. ${currentLevel}` : "");
+        const lvlWord = currentLang === "French" ? "Niv." : "Lvl.";
+        const lvlSuffix = activeGameMode === "listen" && isAlphabet ? ` • ${lvlWord} ${currentLevel} (${ALPHABET_LEVELS[currentLevel - 1].label})` : (activeGameMode === "listen" ? ` • ${lvlWord} ${currentLevel}` : "");
         document.getElementById("arenaActiveModePill").textContent = `${t.categories[selectedCatId].title}${lvlSuffix}`;
 
         renderLevelSelector();
@@ -1486,7 +1496,7 @@
           </div>
           <div class="text-xs font-black text-slate-700 flex items-center justify-between px-2">
             <span>${t.pairsFound} : <strong id="memoryPairsFound" class="text-[#554133] text-sm">0</strong> / 6</span>
-            <span class="px-2 py-0.5 rounded-full bg-[#fdf4e1] text-[#1e355b] text-[10px] font-black border border-[#c59f5f]">3x4 (6 Paires)</span>
+            <span class="px-2 py-0.5 rounded-full bg-[#fdf4e1] text-[#1e355b] text-[10px] font-black border border-[#c59f5f]">3x4 (6 ${t.pairsFound})</span>
           </div>
           <div class="memory-grid" id="memoryCardsDeck"></div>
         `;
@@ -1654,7 +1664,7 @@
 
         const ocrStepHint = ocrActive
           ? `<div id="spellingOcrNextBadge" class="px-3 py-1 rounded-full bg-emerald-100 border border-emerald-500 text-emerald-950 text-xs font-black inline-flex items-center gap-1.5 shadow-2xs">
-               <span>📷 Lettre à présenter (1/${letters.length}) :</span>
+               <span>📷 ${currentLang === "French" ? "Lettre à présenter" : "Letter to show"} (1/${letters.length}) :</span>
                <strong id="spellingOcrNextChar" class="w-6 h-6 rounded-full bg-emerald-600 text-white inline-flex items-center justify-center text-sm">${letters[0] || ""}</strong>
              </div>`
           : "";
@@ -1699,11 +1709,11 @@
           if (nextBadge && nextCharEl) {
             if (nextIdx !== -1) {
               nextBadge.innerHTML = `
-                <span>📷 Lettre à présenter (${nextIdx + 1}/${letters.length}) :</span>
+                <span>📷 ${currentLang === "French" ? "Lettre à présenter" : "Letter to show"} (${nextIdx + 1}/${letters.length}) :</span>
                 <strong id="spellingOcrNextChar" class="w-6 h-6 rounded-full bg-emerald-600 text-white inline-flex items-center justify-center text-sm">${letters[nextIdx]}</strong>
               `;
             } else {
-              nextBadge.innerHTML = `<span class="text-emerald-800">✅ Mot « ${wordClean} » complet !</span>`;
+              nextBadge.innerHTML = `<span class="text-emerald-800">✅ ${currentLang === "French" ? `Mot « ${wordClean} » complet !` : `Word "${wordClean}" complete!`}</span>`;
             }
           }
           updatePracticeOcrExpectedDisplay();

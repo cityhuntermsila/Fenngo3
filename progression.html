@@ -512,7 +512,7 @@
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-3.5 items-center">
           <div class="relative group cursor-pointer" id="chestImageClickArea">
             <img src="assets/images/fennygo/chest-and-badges.png" alt="Treasure Chest and Badges" class="w-full rounded-2xl border-2 border-amber-200 shadow-sm transition hover:scale-102">
-            <span class="absolute bottom-2 right-2 bg-amber-950/80 text-amber-100 text-[10px] font-black px-2 py-0.5 rounded-full">3 Badges 3PS</span>
+            <span id="badgesCountBadge" class="absolute bottom-2 right-2 bg-amber-950/80 text-amber-100 text-[10px] font-black px-2 py-0.5 rounded-full">3 Badges 3PS</span>
           </div>
 
           <div class="space-y-2">
@@ -520,7 +520,7 @@
               <img src="assets/images/fennygo/badge-phonics.png" alt="Phonics Master" class="w-10 h-10 object-contain drop-shadow-sm">
               <div>
                 <div class="font-black text-xs sm:text-sm text-blue-950">Phonics Master</div>
-                <div class="text-[11px] font-bold text-blue-700">Prononciation &amp; écoute active ✨</div>
+                <div id="badgePhonicsDesc" class="text-[11px] font-bold text-blue-700">Prononciation &amp; écoute active ✨</div>
               </div>
             </div>
 
@@ -528,7 +528,7 @@
               <img src="assets/images/fennygo/badge-spelling.png" alt="Spelling Star" class="w-10 h-10 object-contain drop-shadow-sm">
               <div>
                 <div class="font-black text-xs sm:text-sm text-emerald-950">Spelling Star</div>
-                <div class="text-[11px] font-bold text-emerald-700">Traçage &amp; Vision Tactile (b, h, k, m) ✨</div>
+                <div id="badgeSpellingDesc" class="text-[11px] font-bold text-emerald-700">Traçage &amp; Vision Tactile (b, h, k, m) ✨</div>
               </div>
             </div>
 
@@ -536,7 +536,7 @@
               <img src="assets/images/fennygo/badge-explorer.png" alt="World Explorer" class="w-10 h-10 object-contain drop-shadow-sm">
               <div>
                 <div class="font-black text-xs sm:text-sm text-amber-950">World Explorer</div>
-                <div class="text-[11px] font-bold text-amber-700">Exploration des 6 Unités 3PS 🌍</div>
+                <div id="badgeExplorerDesc" class="text-[11px] font-bold text-amber-700">Exploration des 6 Unités 3PS 🌍</div>
               </div>
             </div>
           </div>
@@ -556,26 +556,26 @@
         <div class="grid grid-cols-2 gap-2.5 my-3">
           <a href="cours.html" class="p-3 rounded-2xl bg-white/15 hover:bg-white/25 border-2 border-white/30 text-center transition">
             <div class="text-xl mb-0.5">📖 1</div>
-            <div class="font-black text-xs sm:text-sm leading-tight">Cours Interactifs</div>
-            <div class="text-[10px] text-blue-100 mt-1">9 Leçons illustrées</div>
+            <div id="cycleStep1Title" class="font-black text-xs sm:text-sm leading-tight">Cours Interactifs</div>
+            <div id="cycleStep1Sub" class="text-[10px] text-blue-100 mt-1">9 Leçons illustrées</div>
           </a>
 
           <a href="test.html" class="p-3 rounded-2xl bg-white/15 hover:bg-white/25 border-2 border-white/30 text-center transition">
             <div class="text-xl mb-0.5">⭐ 2</div>
-            <div class="font-black text-xs sm:text-sm leading-tight">Étoiles &amp; Badges</div>
-            <div class="text-[10px] text-blue-100 mt-1">Coffre &amp; Badges</div>
+            <div id="cycleStep2Title" class="font-black text-xs sm:text-sm leading-tight">Étoiles &amp; Badges</div>
+            <div id="cycleStep2Sub" class="text-[10px] text-blue-100 mt-1">Coffre &amp; Badges</div>
           </a>
 
           <a href="games.html" class="p-3 rounded-2xl bg-white/15 hover:bg-white/25 border-2 border-white/30 text-center transition">
             <div class="text-xl mb-0.5">🎮 3</div>
-            <div class="font-black text-xs sm:text-sm leading-tight">Mini-Jeux IA</div>
-            <div class="text-[10px] text-blue-100 mt-1">7 Jeux éducatifs</div>
+            <div id="cycleStep3Title" class="font-black text-xs sm:text-sm leading-tight">Mini-Jeux IA</div>
+            <div id="cycleStep3Sub" class="text-[10px] text-blue-100 mt-1">7 Jeux éducatifs</div>
           </a>
 
           <a href="tracing.html?mode=vision" class="p-3 rounded-2xl bg-white/15 hover:bg-white/25 border-2 border-white/30 text-center transition">
             <div class="text-xl mb-0.5">🇩🇿 4</div>
-            <div class="font-black text-xs sm:text-sm leading-tight">Programme 3AP</div>
-            <div class="text-[10px] text-blue-100 mt-1">Maîtrise totale</div>
+            <div id="cycleStep4Title" class="font-black text-xs sm:text-sm leading-tight">Programme 3AP</div>
+            <div id="cycleStep4Sub" class="text-[10px] text-blue-100 mt-1">Maîtrise totale</div>
           </a>
         </div>
 
@@ -622,22 +622,22 @@
     <div class="flex items-center justify-center gap-3 text-xs font-black text-amber-900 pt-2 pb-6">
       <a href="category.html" class="hover:underline flex items-center gap-1">
         <i class="fa-solid fa-house"></i>
-        <span>Menu Principal</span>
+        <span id="footerLinkHomeText">Menu Principal</span>
       </a>
       <span>•</span>
       <a href="cours.html" class="hover:underline flex items-center gap-1">
         <i class="fa-solid fa-graduation-cap"></i>
-        <span>Cours 3AP</span>
+        <span id="footerLinkLessonsText">Cours 3AP</span>
       </a>
       <span>•</span>
       <a href="games.html" class="hover:underline flex items-center gap-1">
         <i class="fa-solid fa-gamepad"></i>
-        <span>Jeux Éducatifs</span>
+        <span id="footerLinkGamesText">Jeux Éducatifs</span>
       </a>
       <span>•</span>
       <a href="test.html" class="hover:underline flex items-center gap-1">
         <i class="fa-solid fa-clipboard-check"></i>
-        <span>Tests</span>
+        <span id="footerLinkTestText">Tests</span>
       </a>
     </div>
 
@@ -678,6 +678,23 @@
           gamifiedTitle: "🎁 Évaluation Gamifiée & Badges",
           openChest: "🎁 Ouvrir le Coffre (+5 ⭐)",
           openedChest: "🎉 Coffre Ouvert (+5 ⭐) !",
+          badgesCount: "3 Badges 3PS",
+          badgePhonicsDesc: "Prononciation & écoute active ✨",
+          badgeSpellingDesc: "Traçage & Vision Tactile (b, h, k, m) ✨",
+          badgeExplorerDesc: "Exploration des 6 Unités 3PS 🌍",
+          cycle1Title: "Cours Interactifs",
+          cycle1Sub: "9 Leçons illustrées",
+          cycle2Title: "Étoiles & Badges",
+          cycle2Sub: "Coffre & Badges",
+          cycle3Title: "Mini-Jeux IA",
+          cycle3Sub: "7 Jeux éducatifs",
+          cycle4Title: "Programme 3AP",
+          cycle4Sub: "Maîtrise totale",
+          footerHome: "Menu Principal",
+          footerLessons: "Cours 3AP",
+          footerGames: "Jeux Éducatifs",
+          footerTest: "Tests",
+          celebrateMsg: "🎉 Coffre Débloqué ! +5 Étoiles ! Tu as obtenu les badges Phonics Master & Spelling Star !",
           quote: "« L'évaluation n'est plus un examen stressant ; c'est le résultat naturel et invisible du jeu éducatif. »",
           cycleTitle: "🔄 Cycle d'Apprentissage & Remédiation 3AP",
           cycleFooter: "Chaque étape renforce automatiquement les compétences de l'élève sans stress !",
@@ -710,6 +727,23 @@
           gamifiedTitle: "🎁 Gamified Assessment & Badges",
           openChest: "🎁 Open Treasure Chest (+5 ⭐)",
           openedChest: "🎉 Chest Opened (+5 ⭐)!",
+          badgesCount: "3 3PS Badges",
+          badgePhonicsDesc: "Pronunciation & Active Listening ✨",
+          badgeSpellingDesc: "Tracing & Tactile Vision (b, h, k, m) ✨",
+          badgeExplorerDesc: "Exploring the 6 3PS Units 🌍",
+          cycle1Title: "Interactive Lessons",
+          cycle1Sub: "9 Illustrated Lessons",
+          cycle2Title: "Stars & Badges",
+          cycle2Sub: "Chest & Badges",
+          cycle3Title: "AI Mini-Games",
+          cycle3Sub: "7 Educational Games",
+          cycle4Title: "3PS Curriculum",
+          cycle4Sub: "Full Mastery",
+          footerHome: "Main Menu",
+          footerLessons: "3PS Lessons",
+          footerGames: "Educational Games",
+          footerTest: "Tests",
+          celebrateMsg: "🎉 Chest Unlocked! +5 Stars! You earned Phonics Master & Spelling Star badges!",
           quote: '"Assessment is no longer a stressful exam; it is a natural, invisible byproduct of gameplay."',
           cycleTitle: "🔄 3PS Learning & Remediation Cycle",
           cycleFooter: "Each stage automatically reinforces student mastery without any stress!",
@@ -766,6 +800,25 @@
         setTxt("pieActiveBadge", dict.pieBadges[1]);
         setTxt("pieNewBadge", dict.pieBadges[2]);
 
+        setTxt("badgesCountBadge", dict.badgesCount);
+        setTxt("badgePhonicsDesc", dict.badgePhonicsDesc);
+        setTxt("badgeSpellingDesc", dict.badgeSpellingDesc);
+        setTxt("badgeExplorerDesc", dict.badgeExplorerDesc);
+
+        setTxt("cycleStep1Title", dict.cycle1Title);
+        setTxt("cycleStep1Sub", dict.cycle1Sub);
+        setTxt("cycleStep2Title", dict.cycle2Title);
+        setTxt("cycleStep2Sub", dict.cycle2Sub);
+        setTxt("cycleStep3Title", dict.cycle3Title);
+        setTxt("cycleStep3Sub", dict.cycle3Sub);
+        setTxt("cycleStep4Title", dict.cycle4Title);
+        setTxt("cycleStep4Sub", dict.cycle4Sub);
+
+        setTxt("footerLinkHomeText", dict.footerHome);
+        setTxt("footerLinkLessonsText", dict.footerLessons);
+        setTxt("footerLinkGamesText", dict.footerGames);
+        setTxt("footerLinkTestText", dict.footerTest);
+
         const chestBtn = document.getElementById("openChestRewardBtn");
         if (chestBtn && !chestBtn.dataset.opened) {
           chestBtn.textContent = dict.openChest;
@@ -815,17 +868,17 @@
         if (chestBtn.dataset.opened) return;
         chestBtn.dataset.opened = "true";
 
+        const dict = PROG_I18N[activeLang] || PROG_I18N.French;
         if (window.FennyGo && typeof window.FennyGo.addStars === "function") {
           const next = window.FennyGo.addStars(5);
           syncStars();
-          window.FennyGo.celebrate("🎉 Coffre Débloqué ! +5 Étoiles ! Tu as obtenu les badges Phonics Master & Spelling Star !");
+          window.FennyGo.celebrate(dict.celebrateMsg || "🎉 Chest Unlocked! +5 Stars!");
         } else {
           const curr = parseInt(localStorage.getItem("nk_stars") || "12", 10);
           localStorage.setItem("nk_stars", String(curr + 5));
           syncStars();
         }
 
-        const dict = PROG_I18N[activeLang] || PROG_I18N.French;
         chestBtn.textContent = dict.openedChest;
         chestBtn.classList.remove("from-[#f89b66]", "to-[#e8783a]");
         chestBtn.classList.add("from-emerald-500", "to-emerald-700", "!border-emerald-800");

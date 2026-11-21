@@ -123,7 +123,7 @@
           <div class="flex items-center gap-3 text-start">
             <img src="assets/images/fennygo/fenny-avatar.png" id="fennyQuizAvatar" class="w-12 h-12 sm:w-14 sm:h-14 object-contain" alt="Fenny">
             <div>
-              <span class="text-xs font-black text-amber-900 uppercase tracking-wide">🦊 Fenny te demande :</span>
+              <span id="fennyQuizPromptBadge" class="text-xs font-black text-amber-900 uppercase tracking-wide">🦊 Fenny te demande :</span>
               <h2 id="questionPrompt" class="text-base sm:text-xl font-black text-amber-950 leading-tight">Écoute bien...</h2>
             </div>
           </div>
@@ -139,7 +139,7 @@
 
         <!-- Bas de carte : Astuce interactive -->
         <div class="w-full flex items-center justify-between text-xs font-bold text-amber-800/80 px-2">
-          <span>💡 Astuce : Clique sur le haut-parleur si tu veux réécouter.</span>
+          <span id="testHintTip">💡 Astuce : Clique sur le haut-parleur si tu veux réécouter.</span>
           <span id="currentCategoryTag" class="nk-tag">Programme 3AP</span>
         </div>
       </section>
@@ -162,6 +162,13 @@
           doneTitle: "Félicitations ! Score : ",
           restart: "Recommencer le test",
           speechLang: "fr-FR",
+          fennyAsks: "🦊 Fenny te demande :",
+          streakWord: "Série",
+          hintTip: "💡 Astuce : Clique sur le haut-parleur si tu veux réécouter.",
+          tagProgram: "Programme 3AP",
+          starsWord: " étoiles !",
+          completedBadge: "Test Complété ! 🎉",
+          backToMenu: "Retour au Menu",
           items: [
             { speech: "Le chat", label: "Le Chat", emoji: "🐱", img: "assets/images/games/words/cat.png" },
             { speech: "Le lion", label: "Le Lion", emoji: "🦁", img: "assets/images/games/words/lion.png" },
@@ -188,6 +195,13 @@
           doneTitle: "Great Job! Score: ",
           restart: "Restart Test",
           speechLang: "en-US",
+          fennyAsks: "🦊 Fenny asks you:",
+          streakWord: "Streak",
+          hintTip: "💡 Tip: Click the speaker if you want to listen again.",
+          tagProgram: "3PS Program",
+          starsWord: " stars!",
+          completedBadge: "Test Completed! 🎉",
+          backToMenu: "Back to Menu",
           items: [
             { speech: "The cat", label: "The Cat", emoji: "🐱", img: "assets/images/games/words/cat.png" },
             { speech: "The lion", label: "The Lion", emoji: "🦁", img: "assets/images/games/words/lion.png" },
@@ -314,6 +328,12 @@
         document.getElementById("testTitle").textContent = data.title;
         document.getElementById("testSubtitle").textContent = data.subtitle;
         document.getElementById("listenBtnLabel").textContent = data.listen;
+        const asksEl = document.getElementById("fennyQuizPromptBadge");
+        if (asksEl && data.fennyAsks) asksEl.textContent = data.fennyAsks;
+        const hintEl = document.getElementById("testHintTip");
+        if (hintEl && data.hintTip) hintEl.textContent = data.hintTip;
+        const tagEl = document.getElementById("currentCategoryTag");
+        if (tagEl && data.tagProgram) tagEl.textContent = data.tagProgram;
         qIndex = 0;
         score = 0;
         streak = 0;
@@ -323,10 +343,11 @@
       }
 
       function updateStreak() {
+        const data = getLangData();
         const badge = document.getElementById("streakBadge");
         if (streak >= 2) {
           badge.classList.remove("hidden");
-          document.getElementById("streakCount").textContent = "🔥 Série x" + streak;
+          document.getElementById("streakCount").textContent = `🔥 ${data.streakWord || "Streak"} x` + streak;
         } else {
           badge.classList.add("hidden");
         }
@@ -338,16 +359,16 @@
 
         if (qIndex >= questions.length) {
           // Écran de victoire festif
-          document.getElementById("qCounterBadge").textContent = "Test Complété ! 🎉";
+          document.getElementById("qCounterBadge").textContent = data.completedBadge || "Test Completed! 🎉";
           document.getElementById("testProgressFill").style.width = "100%";
-          document.getElementById("questionPrompt").textContent = data.doneTitle + score + " / 10 étoiles !";
+          document.getElementById("questionPrompt").textContent = data.doneTitle + score + " / 10" + (data.starsWord || " stars!");
           document.getElementById("fennyQuizAvatar").src = "assets/images/fennygo/badge-phonics.png";
 
           spawnConfetti(70);
           playSuccessChime();
 
           const grid = document.getElementById("testOptionsGrid");
-          grid.innerHTML = '<button type="button" class="nk-btn-green flex items-center justify-center gap-2" style="grid-column: 1 / -1; padding: 14px; font-size: 18px;" id="restartTestBtn"><i class="fa-solid fa-rotate-right"></i><span>' + data.restart + '</span></button><a href="category.html" class="nk-btn-purple flex items-center justify-center gap-2" style="grid-column: 1 / -1; padding: 14px; font-size: 18px; text-decoration: none;"><i class="fa-solid fa-house"></i><span>Retour au Menu</span></a>';
+          grid.innerHTML = '<button type="button" class="nk-btn-green flex items-center justify-center gap-2" style="grid-column: 1 / -1; padding: 14px; font-size: 18px;" id="restartTestBtn"><i class="fa-solid fa-rotate-right"></i><span>' + data.restart + '</span></button><a href="category.html" class="nk-btn-purple flex items-center justify-center gap-2" style="grid-column: 1 / -1; padding: 14px; font-size: 18px; text-decoration: none;"><i class="fa-solid fa-house"></i><span>' + (data.backToMenu || "Back to Menu") + '</span></a>';
           document.getElementById("restartTestBtn").addEventListener("click", startQuiz);
           return;
         }

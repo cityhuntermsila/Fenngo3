@@ -604,14 +604,14 @@
          ========================================================= -->
     <section id="spellingStage" class="tablet-stage p-2 sm:p-3 flex-1 min-h-0 hidden flex-col justify-between text-center">
       <div class="shrink-0">
-        <span class="px-2.5 py-0.5 rounded-full bg-[#FFF0DF] text-[#8C3D1E] border border-[#F0BE9A] font-black text-[10px] sm:text-xs">
-          🧩 DÉFI ÉPELLATION 3AP
+        <span id="spellingBadgeText" class="px-2.5 py-0.5 rounded-full bg-[#FFF0DF] text-[#8C3D1E] border border-[#F0BE9A] font-black text-[10px] sm:text-xs">
+          🧩 3PS SPELLING CHALLENGE
         </span>
         <h2 id="spellHeading" class="text-sm sm:text-base font-black text-slate-900 mt-0.5">
-          Remets les lettres dans le bon ordre !
+          Put the letters in the correct order!
         </h2>
-        <p class="text-[10.5px] sm:text-xs font-bold text-[#5C4537]">
-          Écoute Fenny et clique sur les tuiles pour reconstituer le mot.
+        <p id="spellSubText" class="text-[10.5px] sm:text-xs font-bold text-[#5C4537]">
+          Listen to Fenny and click the tiles to spell the word.
         </p>
       </div>
 
@@ -643,25 +643,25 @@
     <section id="quizStage" class="tablet-stage p-2 sm:p-3 flex-1 min-h-0 hidden flex-col justify-between text-center">
       <div class="shrink-0">
         <div class="flex items-center justify-center gap-2">
-          <span class="px-2.5 py-0.5 rounded-full bg-[#FFF0DF] text-[#8C3D1E] border border-[#F0BE9A] font-black text-[10px] sm:text-xs">
-            🎯 GRAND QUIZ MULTISENSORIEL 3AP
+          <span id="quizBadgeText" class="px-2.5 py-0.5 rounded-full bg-[#FFF0DF] text-[#8C3D1E] border border-[#F0BE9A] font-black text-[10px] sm:text-xs">
+            🎯 3PS MULTISENSORY QUIZ
           </span>
           <span id="quizScorePill" class="px-2.5 py-0.5 rounded-full bg-amber-100 border border-amber-400 text-amber-950 font-black text-[10px] sm:text-xs">
-            ⭐ Score: <span id="quizScoreCount">0</span>
+            ⭐ <span id="quizScoreWord">Score:</span> <span id="quizScoreCount">0</span>
           </span>
         </div>
         <h2 id="quizHeading" class="text-sm sm:text-base font-black text-slate-900 mt-0.5">
-          Écoute attentivement et touche la bonne image !
+          Listen carefully and touch the right picture!
         </h2>
         <p id="quizPromptSub" class="text-[10px] sm:text-[11px] font-bold text-[#5C4537]">
-          Question <span id="quizQuestionNum">1</span> / 10 • Trouve l'image correspondante
+          Question <span id="quizQuestionNum">1</span> / 10 • Find the matching picture
         </p>
       </div>
 
       <div class="my-auto flex flex-col items-center gap-2 sm:gap-3">
         <button type="button" id="quizPlaySoundBtn" class="px-4 py-1.5 rounded-full bg-gradient-to-b from-[#8FAFE0] to-[#6E94D1] hover:brightness-105 text-[#1A2F50] border-2 border-[#577FB8] font-black text-xs sm:text-sm shadow flex items-center gap-2 hover:scale-105 active:scale-95 transition">
           <i class="fa-solid fa-volume-high text-[#1A2F50] text-sm"></i>
-          <span id="quizListenBtnText">🔊 Écouter le Mot Mystère</span>
+          <span id="quizListenBtnText">🔊 Listen to Mystery Word</span>
         </button>
 
         <div id="quizCardsGrid" class="grid grid-cols-3 gap-2 sm:gap-3 w-full max-w-xl"></div>
@@ -671,7 +671,7 @@
 
       <div class="flex items-center justify-center gap-2.5 shrink-0">
         <button type="button" id="quizNextBtn" class="px-4 py-1 rounded-full bg-gradient-to-b from-[#F89B66] to-[#E8783A] text-white border border-[#CF6326] hover:brightness-105 font-black text-xs shadow active:scale-95 transition">
-          Question Suivante →
+          Next Question →
         </button>
       </div>
     </section>
@@ -1064,6 +1064,102 @@
       };
 
       const VOWELS = new Set(["A", "E", "I", "O", "U", "Y"]);
+
+      const VOCAB_I18N = {
+        English: {
+          title: "Kids Learner — 3D Multisensory Vocabulary",
+          pageTitle: "3D Multisensory Vocabulary",
+          pageSub: "Listen • Read • Speak • Write (3PS Program)",
+          modeStudio: "Studio 4D",
+          modeSpelling: "Spelling Challenge",
+          modeQuiz: "Listening Quiz",
+          speedTitle: "Audio speed (Normal / Slow)",
+          hintTile: "Tip: Tap each letter to hear its individual sound!",
+          statusIdle: "Tap 👂 Listen, 👁️ Read or 🎙️ Speak!",
+          transTitle: "Listen to translation",
+          prevTitle: "Previous word",
+          nextTitle: "Next word",
+          spellingBadge: "🧩 3PS SPELLING CHALLENGE",
+          spellingHeading: "Put the letters in the correct order!",
+          spellingSub: "Listen to Fenny and click the tiles to spell the word.",
+          spellingReplay: "🔊 Replay word",
+          spellingNext: "Next Word →",
+          quizBadge: "🎯 3PS MULTISENSORY QUIZ",
+          quizHeading: "Listen carefully and touch the right picture!",
+          quizQuestionWord: "Question",
+          quizSubMatch: "Find the matching picture",
+          quizListen: "🔊 Listen to Mystery Word",
+          quizNext: "Next Question →",
+          scoreWord: "Score:"
+        },
+        French: {
+          title: "Kids Learner — Vocabulaire Multisensoriel 3D",
+          pageTitle: "Vocabulaire Multisensoriel 3D",
+          pageSub: "Listen • Read • Speak • Write (Programme 3AP)",
+          modeStudio: "Studio 4D",
+          modeSpelling: "Défi Épellation",
+          modeQuiz: "Quiz Écoute",
+          speedTitle: "Vitesse audio (Normal / Lent)",
+          hintTile: "Astuce : Touche chaque lettre pour écouter son phonème individuel !",
+          statusIdle: "Clique sur 👂 Listen, 👁️ Read ou 🎙️ Speak !",
+          transTitle: "Écouter la traduction",
+          prevTitle: "Mot précédent",
+          nextTitle: "Mot suivant",
+          spellingBadge: "🧩 DÉFI ÉPELLATION 3AP",
+          spellingHeading: "Remets les lettres dans le bon ordre !",
+          spellingSub: "Écoute Fenny et clique sur les tuiles pour reconstituer le mot.",
+          spellingReplay: "🔊 Réécouter le mot",
+          spellingNext: "Mot Suivant →",
+          quizBadge: "🎯 GRAND QUIZ MULTISENSORIEL 3AP",
+          quizHeading: "Écoute attentivement et touche la bonne image !",
+          quizQuestionWord: "Question",
+          quizSubMatch: "Trouve l'image correspondante",
+          quizListen: "🔊 Écouter le Mot Mystère",
+          quizNext: "Question Suivante →",
+          scoreWord: "Score :"
+        }
+      };
+
+      let currentVocabLang = window.AppLang ? window.AppLang.getCurrentLangId() : (localStorage.getItem("selectedLanguage") || "English");
+
+      function applyVocabLanguage(lang) {
+        currentVocabLang = lang === "French" ? "French" : "English";
+        const dict = VOCAB_I18N[currentVocabLang] || VOCAB_I18N.English;
+        document.documentElement.lang = currentVocabLang === "French" ? "fr" : "en";
+        document.title = dict.title;
+
+        const setTxt = (id, txt) => {
+          const el = document.getElementById(id);
+          if (el) el.textContent = txt;
+        };
+
+        setTxt("pageTitle", dict.pageTitle);
+        setTxt("pageSub", dict.pageSub);
+        setTxt("modeStudioLabel", dict.modeStudio);
+        setTxt("modeSpellingLabel", dict.modeSpelling);
+        setTxt("modeQuizLabel", dict.modeQuiz);
+        setTxt("hintTileClick", dict.hintTile);
+        setTxt("statusMsg", dict.statusIdle);
+        setTxt("spellingBadgeText", dict.spellingBadge);
+        setTxt("spellHeading", dict.spellingHeading);
+        setTxt("spellSubText", dict.spellingSub);
+        setTxt("spellHearAgainBtn", dict.spellingReplay);
+        setTxt("spellNextWordBtn", dict.spellingNext);
+        setTxt("quizBadgeText", dict.quizBadge);
+        setTxt("quizHeading", dict.quizHeading);
+        setTxt("quizListenBtnText", dict.quizListen);
+        setTxt("quizNextBtn", dict.quizNext);
+        setTxt("quizScoreWord", dict.scoreWord);
+
+        document.getElementById("speedToggleBtn")?.setAttribute("title", dict.speedTitle);
+        document.getElementById("speakTransBtn")?.setAttribute("title", dict.transTitle);
+        document.getElementById("prevWordBtn")?.setAttribute("title", dict.prevTitle);
+        document.getElementById("nextWordBtn")?.setAttribute("title", dict.nextTitle);
+
+        document.querySelectorAll("[data-set-lang]").forEach(b => {
+          b.classList.toggle("active", b.dataset.setLang === currentVocabLang);
+        });
+      }
 
       // State
       let currentTheme = "stationery";
@@ -1719,14 +1815,25 @@
           startSpellingGame();
         });
 
-        // Quiz Mode Buttons
-        document.getElementById("quizPlaySoundBtn")?.addEventListener("click", () => {
-          if (quizTargetWord) speakEn(quizTargetWord.word);
+        // Language Switcher Events
+        document.querySelectorAll("[data-set-lang]").forEach((btn) => {
+          btn.addEventListener("click", () => {
+            const lang = btn.dataset.setLang;
+            if (window.AppLang && typeof window.AppLang.setLang === "function") {
+              window.AppLang.setLang(lang);
+            } else {
+              localStorage.setItem("selectedLanguage", lang);
+              applyVocabLanguage(lang);
+            }
+          });
         });
-        document.getElementById("quizNextBtn")?.addEventListener("click", () => {
-          quizQuestionCount++;
-          startQuizQuestion();
+
+        window.addEventListener("appLanguageChanged", () => {
+          const l = window.AppLang ? window.AppLang.getCurrentLangId() : (localStorage.getItem("selectedLanguage") || "English");
+          applyVocabLanguage(l);
         });
+
+        applyVocabLanguage(currentVocabLang);
       });
     })();
   </script>

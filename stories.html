@@ -241,7 +241,7 @@
               <i class="fa-solid fa-volume-high"></i>
               <span id="listenStoryLabel">Lire avec Fenny</span>
             </button>
-            <span class="text-xs font-bold text-amber-900/70">👈 Touche n'importe quel mot pour l'écouter !</span>
+            <span id="storyHintTapText" class="text-xs font-bold text-amber-900/70">👈 Touche n'importe quel mot pour l'écouter !</span>
           </div>
 
           <div id="readerStoryMoral" class="story-moral-pill"></div>
@@ -249,7 +249,7 @@
 
         <!-- Mini Défi Compréhension interactif -->
         <div id="storyQuizBox" class="story-quiz-panel hidden">
-          <span class="text-xs font-black text-blue-900 uppercase">🦊 Énigme de Fenny :</span>
+          <span id="storyRiddleTitle" class="text-xs font-black text-blue-900 uppercase">🦊 Énigme de Fenny :</span>
           <p id="storyQuizQuestion" class="text-sm sm:text-base font-bold text-slate-900"></p>
           <div id="storyQuizOptions" class="flex flex-wrap justify-center gap-2 mt-1"></div>
         </div>
@@ -281,6 +281,14 @@
           listen: "Lire avec Fenny",
           prev: "Précédent",
           next: "Suivant",
+          countBadge: "3 Histoires",
+          hintTap: "👈 Touche n'importe quel mot pour l'écouter !",
+          riddleTitle: "🦊 Énigme de Fenny :",
+          closeAria: "Fermer l'histoire",
+          wordTapTitle: "Touche pour écouter : ",
+          quizBravoVoice: "Bravo ! Bonne réponse !",
+          quizBravoBtn: " ⭐ Bravo !",
+          pageWord: "Page",
           speechLang: "fr-FR",
           stories: [
             {
@@ -394,6 +402,14 @@
           listen: "Read with Fenny",
           prev: "Previous",
           next: "Next",
+          countBadge: "3 Stories",
+          hintTap: "👈 Tap any word to listen!",
+          riddleTitle: "🦊 Fenny's Riddle:",
+          closeAria: "Close story",
+          wordTapTitle: "Tap to listen: ",
+          quizBravoVoice: "Great job! Correct answer!",
+          quizBravoBtn: " ⭐ Correct!",
+          pageWord: "Page",
           speechLang: "en-US",
           stories: [
             {
@@ -515,6 +531,14 @@
         document.getElementById("listenStoryLabel").textContent = data.listen;
         document.getElementById("prevPageLabel").textContent = data.prev;
         document.getElementById("nextPageLabel").textContent = data.next;
+        const countBadge = document.getElementById("storiesCountBadge");
+        if (countBadge) countBadge.textContent = data.countBadge || "3 Stories";
+        const hintEl = document.getElementById("storyHintTapText");
+        if (hintEl) hintEl.textContent = data.hintTap || "";
+        const riddleTitleEl = document.getElementById("storyRiddleTitle");
+        if (riddleTitleEl) riddleTitleEl.textContent = data.riddleTitle || "";
+        const closeBtn = document.getElementById("closeStoryBtn");
+        if (closeBtn) closeBtn.setAttribute("aria-label", data.closeAria || "Close story");
 
         const grid = document.getElementById("storiesGrid");
         grid.innerHTML = "";
@@ -561,7 +585,7 @@
 
         document.getElementById("readerStoryTitle").textContent = activeStory.title;
         document.getElementById("readerStoryMoral").textContent = activeStory.moral;
-        document.getElementById("storyPageIndicator").textContent = (pageIdx + 1) + " / " + activeStory.pages.length;
+        document.getElementById("storyPageIndicator").textContent = (data.pageWord || "Page") + " " + (pageIdx + 1) + " / " + activeStory.pages.length;
 
         // Rendu des illustrations de la page
         const illusBox = document.getElementById("readerSceneIllustrations");
@@ -582,7 +606,7 @@
           const span = document.createElement("span");
           span.className = "story-word-tap";
           span.textContent = w;
-          span.title = "Touche pour écouter : " + w;
+          span.title = (data.wordTapTitle || "Tap to listen: ") + w;
           span.addEventListener("click", (e) => {
             e.stopPropagation();
             span.classList.add("speaking");
@@ -610,8 +634,8 @@
               if (opt.correct) {
                 btn.style.background = "#86efac";
                 btn.style.borderColor = "#16a34a";
-                btn.textContent = opt.text + " ⭐ Bravo !";
-                if (window.AppLang) window.AppLang.speak("Bravo ! Bonne réponse !", data.speechLang);
+                btn.textContent = opt.text + (data.quizBravoBtn || " ⭐ Correct!");
+                if (window.AppLang) window.AppLang.speak(data.quizBravoVoice || "Great job! Correct answer!", data.speechLang);
               } else {
                 btn.style.background = "#fca5a5";
                 setTimeout(() => { btn.style.background = ""; }, 500);

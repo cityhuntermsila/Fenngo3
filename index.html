@@ -1393,7 +1393,10 @@
           footDesc: "Learn languages by playing, with voice, camera and heart.",
           footApps: "Applications", footHub: "Kids Learner Hub", footDemo: "Interactive Demo", footVocab: "Multisensory Vocabulary", footProg: "Progression",
           footProject: "Project", footStart: "Get started",
-          footMade: "Made with ❤️ for Algerian students 🇩🇿"
+          footMade: "Made with ❤️ for Algerian students 🇩🇿",
+          pageTitle: "Fenncky & FennyGo3 — AI Interactive Learning",
+          fSubjectPlaceholder: "Family Pack / School Quote / Partnership",
+          fMsgPlaceholder: "Number of children or classes, region, questions…"
         }
       };
 
@@ -1411,6 +1414,20 @@
         const dict = I18N[lang] || {};
         document.documentElement.dir = "ltr";
         document.documentElement.lang = lang === "English" ? "en" : "fr";
+
+        if (lang === "English") {
+          document.title = dict.pageTitle || "Fenncky & FennyGo3 — AI Interactive Learning";
+          const subInput = document.getElementById("contactSubject");
+          if (subInput) subInput.placeholder = dict.fSubjectPlaceholder || "Family Pack / School Quote / Partnership";
+          const msgInput = document.getElementById("contactMessage");
+          if (msgInput) msgInput.placeholder = dict.fMsgPlaceholder || "Number of children or classes, region, questions…";
+        } else {
+          document.title = "Fenncky & FennyGo3 — Apprentissage Interactif par l'IA";
+          const subInput = document.getElementById("contactSubject");
+          if (subInput) subInput.placeholder = "Pack Famille / Devis école / Partenariat";
+          const msgInput = document.getElementById("contactMessage");
+          if (msgInput) msgInput.placeholder = "Nombre d'enfants ou de classes, wilaya, questions…";
+        }
 
         document.querySelectorAll("[data-i18n]").forEach((el) => {
           const key = el.dataset.i18n;

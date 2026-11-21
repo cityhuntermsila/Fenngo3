@@ -30,7 +30,10 @@
         victoryMsg: "Tu as terminé la manche avec succès !",
         victorySpeech: "Bravo champion ! Tu as terminé la manche avec succès !",
         playAgain: "Rejouer",
-        gamesMenu: "Menu des Jeux"
+        gamesMenu: "Menu des Jeux",
+        fennyTitle: "🦊 Fenny t'accompagne !",
+        fennySub: "Gagne des étoiles et diamants ⭐💎",
+        badgesText: "Badges & Progression"
       },
       gamesMeta: [
         { id: "runner", title: "La Course des Lettres", sub: "Franchis le bon portail avec ta voiture", category: "Lettres", skillKeys: ["letters", "listening"], tags: ["Niveau CP", "Compréhension orale", "Lettres"], rounds: 5 },
@@ -95,7 +98,10 @@
         victoryMsg: "You completed the round successfully!",
         victorySpeech: "Great job champion! You completed the round successfully!",
         playAgain: "Play Again",
-        gamesMenu: "Games Menu"
+        gamesMenu: "Games Menu",
+        fennyTitle: "🦊 Fenny is with you!",
+        fennySub: "Earn stars and diamonds ⭐💎",
+        badgesText: "Badges & Progress"
       },
       gamesMeta: [
         { id: "runner", title: "Letter Race", sub: "Drive through the right letter portal", category: "Letters", skillKeys: ["letters", "listening"], tags: ["Grade 1", "Listening", "Letters"], rounds: 5 },
@@ -441,6 +447,13 @@
     document.getElementById("hubMainSubtitle").textContent = db.ui.hubSubtitle;
     const filterLabelEl = document.getElementById("hubFilterLabel");
     if (filterLabelEl) filterLabelEl.textContent = db.ui.filterLabel;
+
+    const fTitle = document.getElementById("fennyCompanionBubbleTitle");
+    if (fTitle && db.ui.fennyTitle) fTitle.textContent = db.ui.fennyTitle;
+    const fSub = document.getElementById("fennyCompanionBubbleSub");
+    if (fSub && db.ui.fennySub) fSub.textContent = db.ui.fennySub;
+    const bText = document.getElementById("hubBadgesText");
+    if (bText && db.ui.badgesText) bText.textContent = db.ui.badgesText;
 
     document.getElementById("victoryTitle").textContent = db.ui.victoryTitle;
     document.getElementById("victoryMessage").textContent = db.ui.victoryMsg;

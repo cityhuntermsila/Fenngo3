@@ -106,7 +106,7 @@
   }
 
   function getCopy() {
-    return I18N[getLangId()] || I18N.French;
+    return I18N[getLangId()] || I18N.English;
   }
 
   function ensureStylesheet() {
