@@ -1076,12 +1076,12 @@
 
           let thumbsHtml = "";
           previewThumbs.forEach(it => {
-            thumbsHtml += `<img src="${it.img}" alt="${it.word}" class="mini-item-thumb">`;
+            thumbsHtml += `<img src="${it.img}" alt="${it.word}" class="mini-item-thumb" loading="lazy" decoding="async">`;
           });
 
           card.innerHTML = `
             <div class="cat-icon-wrap">
-              <img src="${iconSrc}" alt="${catInfo.title}">
+              <img src="${iconSrc}" alt="${catInfo.title}" decoding="async">
             </div>
             <h3 class="text-xs sm:text-sm font-black text-slate-900 leading-tight">${catInfo.title}</h3>
             
@@ -1105,8 +1105,21 @@
       // =========================================================
       // 2. CATEGORY DETAIL (4 GAMES IN 2 COLUMNS + ALL 10 ITEMS)
       // =========================================================
+      function preloadCategoryImages(catId) {
+        const items = DATASET[catId];
+        if (!items) return;
+        items.forEach(it => {
+          if (it.img) {
+            const img = new Image();
+            img.decoding = "async";
+            img.src = it.img;
+          }
+        });
+      }
+
       function openCategoryDetail(catId) {
         selectedCatId = catId;
+        preloadCategoryImages(catId);
         renderCategoryDetail(catId);
         document.getElementById("hubView").classList.add("hidden");
         document.getElementById("arenaView").classList.add("hidden");
@@ -1430,7 +1443,7 @@
 
               <!-- Illustration 3D -->
               <div class="w-12 h-12 sm:w-14 sm:h-14 flex items-center justify-center mb-1">
-                <img src="${ch.img}" alt="${ch.word}" class="w-full h-full object-contain filter drop-shadow">
+                <img src="${ch.img}" alt="${ch.word}" class="w-full h-full object-contain filter drop-shadow" decoding="async">
               </div>
 
               <!-- Nom -->
@@ -1441,7 +1454,7 @@
             card.className = "sound-choice-2col relative";
             card.innerHTML = `
               <div class="w-16 h-16 sm:w-20 sm:h-20 flex items-center justify-center mb-1">
-                <img src="${ch.img}" alt="${ch.word}" class="w-full h-full object-contain filter drop-shadow">
+                <img src="${ch.img}" alt="${ch.word}" class="w-full h-full object-contain filter drop-shadow" decoding="async">
               </div>
               <span class="text-xs font-black text-slate-800 truncate">${getItemWord(ch)}</span>
             `;
@@ -1517,10 +1530,10 @@
 
           cardEl.innerHTML = `
             <div class="memory-face memory-back">
-              <img src="assets/images/practice/card-back.svg" alt="Card">
+              <img src="assets/images/practice/card-back.svg" alt="Card" decoding="async">
             </div>
             <div class="memory-face memory-front">
-              <img src="${cardData.item.img}" alt="${cardData.item.word}" onerror="this.onerror=null; this.src='assets/images/fennygo/fenny-avatar.png';">
+              <img src="${cardData.item.img}" alt="${cardData.item.word}" decoding="async" onerror="this.onerror=null; this.src='assets/images/fennygo/fenny-avatar.png';">
               <span class="flex items-center justify-center gap-1">${cardData.item.letter ? `<span class="w-4 h-4 rounded-full bg-amber-400 text-white text-[10px] font-black inline-flex items-center justify-center shadow-sm">${cardData.item.letter}</span>` : ""}${getItemWord(cardData.item)}</span>
             </div>
           `;
@@ -1678,7 +1691,7 @@
             ${ocrStepHint}
           </div>
           <div class="w-20 h-20 sm:w-24 sm:h-24 mx-auto p-1.5 bg-white rounded-2xl border-2 border-[#dec28f] shadow-sm flex items-center justify-center">
-            <img src="${target.img}" alt="${target.word}" class="w-full h-full object-contain filter drop-shadow">
+            <img src="${target.img}" alt="${target.word}" class="w-full h-full object-contain filter drop-shadow" decoding="async">
           </div>
 
           <div class="flex items-center justify-center gap-1.5 flex-wrap" id="spellingSlots"></div>
@@ -1840,7 +1853,7 @@
 
           <div class="w-24 h-24 mx-auto p-1.5 bg-white rounded-2xl border-2 border-[#dec28f] shadow-sm flex items-center justify-center relative">
             ${dispBadge}
-            <img src="${displayedItem.img}" alt="${displayedItem.word}" class="w-full h-full object-contain filter drop-shadow">
+            <img src="${displayedItem.img}" alt="${displayedItem.word}" class="w-full h-full object-contain filter drop-shadow" decoding="async">
           </div>
 
           <span class="text-sm sm:text-base font-black text-slate-900 block flex items-center justify-center">

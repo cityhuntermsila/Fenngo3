@@ -97,12 +97,12 @@
               <span id="streakCount">Série 0</span>
             </div>
             <div class="hidden sm:flex items-center gap-1.5 bg-amber-50 border-2 border-amber-300 rounded-full px-3 py-1">
-              <img src="assets/images/fennygo/badge-phonics.png" alt="Phonics Master" class="w-6 h-6 object-contain" title="Phonics Master">
-              <img src="assets/images/fennygo/badge-spelling.png" alt="Spelling Star" class="w-6 h-6 object-contain" title="Spelling Star">
-              <img src="assets/images/fennygo/badge-explorer.png" alt="World Explorer" class="w-6 h-6 object-contain" title="World Explorer">
+              <img src="assets/images/fennygo/badge-phonics.png" alt="Phonics Master" class="w-6 h-6 object-contain" title="Phonics Master" decoding="async">
+              <img src="assets/images/fennygo/badge-spelling.png" alt="Spelling Star" class="w-6 h-6 object-contain" title="Spelling Star" decoding="async">
+              <img src="assets/images/fennygo/badge-explorer.png" alt="World Explorer" class="w-6 h-6 object-contain" title="World Explorer" decoding="async">
             </div>
             <div class="nk-stat-pill nk-star-pill">
-              <img src="assets/images/games/star.png" class="w-5 h-5 object-contain" alt="Star">
+              <img src="assets/images/games/star.png" class="w-5 h-5 object-contain" alt="Star" decoding="async">
               <span id="testScoreLabel">0 / 10</span>
             </div>
           </div>
@@ -121,7 +121,7 @@
         <!-- Carte de la consigne avec Fenny et bouton écoute -->
         <div class="test-question-card">
           <div class="flex items-center gap-3 text-start">
-            <img src="assets/images/fennygo/fenny-avatar.png" id="fennyQuizAvatar" class="w-12 h-12 sm:w-14 sm:h-14 object-contain" alt="Fenny">
+            <img src="assets/images/fennygo/fenny-avatar.png" id="fennyQuizAvatar" class="w-12 h-12 sm:w-14 sm:h-14 object-contain" alt="Fenny" decoding="async" fetchpriority="high">
             <div>
               <span id="fennyQuizPromptBadge" class="text-xs font-black text-amber-900 uppercase tracking-wide">🦊 Fenny te demande :</span>
               <h2 id="questionPrompt" class="text-base sm:text-xl font-black text-amber-950 leading-tight">Écoute bien...</h2>
@@ -390,7 +390,7 @@
           const card = document.createElement("button");
           card.type = "button";
           card.className = "test-choice-card";
-          card.innerHTML = `<img src="${ch.img}" alt="${ch.label}" class="test-choice-img" onerror="this.style.opacity=0;"><span style="font-size: 1.6em; line-height: 1;">${ch.emoji}</span><span class="test-choice-title">${ch.label}</span>`;
+          card.innerHTML = `<img src="${ch.img}" alt="${ch.label}" class="test-choice-img" decoding="async" onerror="this.style.opacity=0;"><span style="font-size: 1.6em; line-height: 1;">${ch.emoji}</span><span class="test-choice-title">${ch.label}</span>`;
 
           card.addEventListener("click", () => {
             if (answered) return;

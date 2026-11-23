@@ -268,7 +268,7 @@
       <!-- Brand -->
       <a href="#accueil" class="flex items-center gap-1.5 shrink-0">
         <span class="w-7 h-7 sm:w-8 sm:h-8 rounded-lg bg-emerald-600 grid place-items-center border-b-2 border-emerald-800 shadow-2xs">
-          <img src="assets/images/fennygo/fenny-mascot.png" alt="Fenny" class="w-6 h-6 sm:w-7 sm:h-7 object-contain">
+          <img src="assets/images/fennygo/fenny-mascot.png" alt="Fenny" class="w-6 h-6 sm:w-7 sm:h-7 object-contain" decoding="async" fetchpriority="high">
         </span>
         <span class="leading-none">
           <span class="block text-base font-black text-v9">Fenn<span class="text-purple-600">cky</span></span>
@@ -360,11 +360,11 @@
         <!-- Mascot Visual with Quick Check-in (10% smaller) -->
         <div class="relative">
           <div class="relative card !rounded-[16px] p-1.5 bg-[#082f23] !border-2 !border-emerald-600 shadow-md">
-            <img src="assets/images/fennygo/meet-fenny.jpg" alt="Fenny, le compagnon virtuel" class="w-full h-42 sm:h-48 object-cover object-top rounded-[12px]">
+            <img src="assets/images/fennygo/meet-fenny.jpg" alt="Fenny, le compagnon virtuel" class="w-full h-42 sm:h-48 object-cover object-top rounded-[12px]" decoding="async" fetchpriority="high">
           </div>
           <!-- floating interactive mascot chip -->
           <div class="absolute -bottom-2.5 start-2.5 card px-2 py-1 flex items-center gap-1.5 shadow-sm border border-emerald-200">
-            <img src="assets/images/fennygo/fenny-mascot.png" alt="Fenny" class="w-7 h-7 object-contain floaty">
+            <img src="assets/images/fennygo/fenny-mascot.png" alt="Fenny" class="w-7 h-7 object-contain floaty" loading="lazy" decoding="async">
             <div class="leading-tight">
               <div class="text-[9px] font-black text-emerald-700">Fenny</div>
               <div class="text-[10px] font-extrabold text-v9" data-i18n="chipHello">« Hello ! Prêt à jouer ? »</div>
@@ -406,7 +406,7 @@
 
       <!-- Mascot Check-in Bar (Tightened) -->
       <div class="card p-2 sm:p-2.5 bg-ow border border-v-2 flex items-center gap-2.5 mb-2.5 shadow-xs">
-        <img src="assets/images/fennygo/fenny-mascot.png" alt="Fenny" class="w-9 h-9 sm:w-10 sm:h-10 object-contain floaty shrink-0">
+        <img src="assets/images/fennygo/fenny-mascot.png" alt="Fenny" class="w-9 h-9 sm:w-10 sm:h-10 object-contain floaty shrink-0" loading="lazy" decoding="async">
         <div class="flex-1 min-w-0">
           <div class="flex items-center gap-1.5 mb-0.5">
             <span class="font-black text-v9 text-xs sm:text-sm" data-i18n="fgCompanionTitle">Fenny Companion : "Hello!"</span>
@@ -487,17 +487,17 @@
           <!-- Interactive Extracted Badges (Violet • Orange • Vert clair) -->
           <div class="grid grid-cols-3 gap-1.5 text-center">
             <button type="button" class="p-1.5 rounded-lg bg-purple-50 border border-purple-200 hover:border-purple-400 transition flex flex-col items-center" onclick="window.FennyGo?.speakWithWave('Phonics Master Badge! Great pronunciation!', 'en-US')">
-              <img src="assets/images/fennygo/badge-phonics.png" alt="Phonics Master" class="w-8 h-8 object-contain">
+              <img src="assets/images/fennygo/badge-phonics.png" alt="Phonics Master" class="w-8 h-8 object-contain" loading="lazy" decoding="async">
               <span class="mt-0.5 text-[9.5px] font-black text-purple-950" data-i18n="bPhonics">Phonics Master</span>
               <span class="text-[8.5px] font-bold text-purple-700" data-i18n="badgeListen">🔊 Écouter</span>
             </button>
             <button type="button" class="p-1.5 rounded-lg bg-orange-50 border border-orange-200 hover:border-orange-400 transition flex flex-col items-center" onclick="window.FennyGo?.speakWithWave('Spelling Star Badge! You write letters so well!', 'en-US')">
-              <img src="assets/images/fennygo/badge-spelling.png" alt="Spelling Star" class="w-8 h-8 object-contain">
+              <img src="assets/images/fennygo/badge-spelling.png" alt="Spelling Star" class="w-8 h-8 object-contain" loading="lazy" decoding="async">
               <span class="mt-0.5 text-[9.5px] font-black text-orange-950" data-i18n="bSpelling">Spelling Star</span>
               <span class="text-[8.5px] font-bold text-orange-600" data-i18n="badgeListen">🔊 Écouter</span>
             </button>
             <button type="button" class="p-1.5 rounded-lg bg-emerald-50 border border-emerald-200 hover:border-emerald-400 transition flex flex-col items-center" onclick="window.FennyGo?.speakWithWave('World Explorer Badge! Let us explore all six units!', 'en-US')">
-              <img src="assets/images/fennygo/badge-explorer.png" alt="World Explorer" class="w-8 h-8 object-contain">
+              <img src="assets/images/fennygo/badge-explorer.png" alt="World Explorer" class="w-8 h-8 object-contain" loading="lazy" decoding="async">
               <span class="mt-0.5 text-[9.5px] font-black text-emerald-950" data-i18n="bExplorer">World Explorer</span>
               <span class="text-[8.5px] font-bold text-emerald-700" data-i18n="badgeListen">🔊 Écouter</span>
             </button>
@@ -548,7 +548,7 @@
 
                 <!-- Center: 3D Object (10% smaller) -->
                 <div class="col-span-6 flex flex-col items-center justify-center text-center">
-                  <img id="fgObjectImg" src="assets/images/fennygo/school-bag-3d.png" alt="3D Vocabulary Object" class="w-[72px] h-[72px] sm:w-[84px] sm:h-[84px] object-contain drop-shadow-[0_6px_10px_rgba(8,47,35,0.18)] transition-transform duration-300 cursor-pointer hover:scale-105">
+                  <img id="fgObjectImg" src="assets/images/fennygo/school-bag-3d.png" alt="3D Vocabulary Object" class="w-[72px] h-[72px] sm:w-[84px] sm:h-[84px] object-contain drop-shadow-[0_6px_10px_rgba(8,47,35,0.18)] transition-transform duration-300 cursor-pointer hover:scale-105" loading="lazy" decoding="async">
                   <div id="fgStatusBanner" class="mt-1 px-2 py-0.5 rounded-full bg-[#082f23] border border-emerald-400 text-[9px] font-black text-yellow-300 shadow-xs" data-i18n="tabPrompt">
                     👆 Touche 👂 Listen, 👁️ Read ou 🎙️ Speak !
                   </div>
@@ -557,7 +557,7 @@
                 <!-- Right: Mascot Celebrator -->
                 <div class="col-span-3 flex flex-col items-center justify-end self-end">
                   <div id="fgFennyNotes" class="text-[11px] font-black text-emerald-800 animate-bounce mb-0.5">🎵 🎶</div>
-                  <img id="fgFennyMascot" src="assets/images/fennygo/fenny-mascot.png" alt="Fenny Celebrating" class="w-10 h-10 sm:w-12 sm:h-12 object-contain drop-shadow-sm transition-transform duration-300">
+                  <img id="fgFennyMascot" src="assets/images/fennygo/fenny-mascot.png" alt="Fenny Celebrating" class="w-10 h-10 sm:w-12 sm:h-12 object-contain drop-shadow-sm transition-transform duration-300" loading="lazy" decoding="async">
                 </div>
               </div>
 
@@ -579,23 +579,23 @@
         </div>
         <div class="grid grid-cols-2 sm:grid-cols-5 gap-1.5">
           <div class="slide-frame" data-lightbox-src="assets/images/fennygo/meet-fenny.jpg" data-lightbox-caption="Meet Fenny! — Compagnon virtuel &amp; check-in quotidien">
-            <img src="assets/images/fennygo/meet-fenny.jpg" alt="Meet Fenny" class="!max-h-[78px]">
+            <img src="assets/images/fennygo/meet-fenny.jpg" alt="Meet Fenny" class="!max-h-[78px]" loading="lazy" decoding="async">
             <span class="slide-zoom-pill"><i class="fa-solid fa-magnifying-glass-plus"></i></span>
           </div>
           <div class="slide-frame" data-lightbox-src="assets/images/fennygo/algerian-program.jpg" data-lightbox-caption="Donner vie au programme algérien 3AP">
-            <img src="assets/images/fennygo/algerian-program.jpg" alt="Programme Algérien" class="!max-h-[78px]">
+            <img src="assets/images/fennygo/algerian-program.jpg" alt="Programme Algérien" class="!max-h-[78px]" loading="lazy" decoding="async">
             <span class="slide-zoom-pill"><i class="fa-solid fa-magnifying-glass-plus"></i></span>
           </div>
           <div class="slide-frame" data-lightbox-src="assets/images/fennygo/multisensory-vocab.jpg" data-lightbox-caption="Multi-Sensory Vocabulary Building (Listen • Read • Speak)">
-            <img src="assets/images/fennygo/multisensory-vocab.jpg" alt="Vocabulaire multisensoriel" class="!max-h-[78px]">
+            <img src="assets/images/fennygo/multisensory-vocab.jpg" alt="Vocabulaire multisensoriel" class="!max-h-[78px]" loading="lazy" decoding="async">
             <span class="slide-zoom-pill"><i class="fa-solid fa-magnifying-glass-plus"></i></span>
           </div>
           <div class="slide-frame" data-lightbox-src="assets/images/fennygo/tactile-vision.jpg" data-lightbox-caption="Vision par ordinateur &amp; apprentissage tactile de l'écriture">
-            <img src="assets/images/fennygo/tactile-vision.jpg" alt="Vision Tactile" class="!max-h-[78px]">
+            <img src="assets/images/fennygo/tactile-vision.jpg" alt="Vision Tactile" class="!max-h-[78px]" loading="lazy" decoding="async">
             <span class="slide-zoom-pill"><i class="fa-solid fa-magnifying-glass-plus"></i></span>
           </div>
           <div class="slide-frame" data-lightbox-src="assets/images/fennygo/progression-analytics.jpg" data-lightbox-caption="Tableau de bord de progression &amp; alertes de remédiation">
-            <img src="assets/images/fennygo/progression-analytics.jpg" alt="Tableau de bord" class="!max-h-[78px]">
+            <img src="assets/images/fennygo/progression-analytics.jpg" alt="Tableau de bord" class="!max-h-[78px]" loading="lazy" decoding="async">
             <span class="slide-zoom-pill"><i class="fa-solid fa-magnifying-glass-plus"></i></span>
           </div>
         </div>
@@ -672,31 +672,31 @@
 
       <div class="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-7 gap-1.5">
         <a href="cours.html" class="card card-hover p-1.5 text-center bg-white border border-ow-line flex flex-col items-center gap-0.5" title="9 Cours">
-          <img src="assets/images/category-images/cours.png" alt="Cours" class="h-8 sm:h-9 object-contain">
+          <img src="assets/images/category-images/cours.png" alt="Cours" class="h-8 sm:h-9 object-contain" loading="lazy" decoding="async">
           <span class="text-[10px] font-black text-v9" data-i18n="hubC1">Cours (9 Unités)</span>
         </a>
         <a href="vocabulary.html" class="card card-hover p-1.5 text-center bg-white border border-ow-line flex flex-col items-center gap-0.5" title="Vocabulaire Multisensoriel">
-          <img src="assets/images/category-images/vocabulary.svg" alt="Vocabulaire" class="h-8 sm:h-9 object-contain">
+          <img src="assets/images/category-images/vocabulary.svg" alt="Vocabulaire" class="h-8 sm:h-9 object-contain" loading="lazy" decoding="async">
           <span class="text-[10px] font-black text-v9" data-i18n="hubC2">Vocabulaire 3D</span>
         </a>
         <a href="games.html" class="card card-hover p-1.5 text-center bg-white border border-ow-line flex flex-col items-center gap-0.5" title="Mini-Jeux 3D">
-          <img src="assets/images/category-images/games.png" alt="Jeux" class="h-8 sm:h-9 object-contain">
+          <img src="assets/images/category-images/games.png" alt="Jeux" class="h-8 sm:h-9 object-contain" loading="lazy" decoding="async">
           <span class="text-[10px] font-black text-v9" data-i18n="hubC3">7 Mini-Jeux</span>
         </a>
         <a href="tracing.html" class="card card-hover p-1.5 text-center bg-white border border-ow-line flex flex-col items-center gap-0.5" title="Traçage &amp; Écriture">
-          <img src="assets/images/category-images/tracing.png" alt="Traçage" class="h-8 sm:h-9 object-contain">
+          <img src="assets/images/category-images/tracing.png" alt="Traçage" class="h-8 sm:h-9 object-contain" loading="lazy" decoding="async">
           <span class="text-[10px] font-black text-v9" data-i18n="hubC4">Traçage &amp; IA</span>
         </a>
         <a href="test.html" class="card card-hover p-1.5 text-center bg-white border border-ow-line flex flex-col items-center gap-0.5" title="Quiz &amp; Tests">
-          <img src="assets/images/category-images/test.png" alt="Test" class="h-8 sm:h-9 object-contain">
+          <img src="assets/images/category-images/test.png" alt="Test" class="h-8 sm:h-9 object-contain" loading="lazy" decoding="async">
           <span class="text-[10px] font-black text-v9" data-i18n="hubC5">Quiz Ludique</span>
         </a>
         <a href="stories.html" class="card card-hover p-1.5 text-center bg-white border border-ow-line flex flex-col items-center gap-0.5" title="Histoires courtes">
-          <img src="assets/images/category-images/stories.png" alt="Histoires" class="h-8 sm:h-9 object-contain">
+          <img src="assets/images/category-images/stories.png" alt="Histoires" class="h-8 sm:h-9 object-contain" loading="lazy" decoding="async">
           <span class="text-[10px] font-black text-v9" data-i18n="hubC6">Histoires</span>
         </a>
         <a href="progression.html" class="card card-hover p-1.5 text-center bg-white border border-ow-line flex flex-col items-center gap-0.5" title="Suivi &amp; Progression">
-          <img src="assets/images/category-images/progression.png" alt="Progression" class="h-8 sm:h-9 object-contain">
+          <img src="assets/images/category-images/progression.png" alt="Progression" class="h-8 sm:h-9 object-contain" loading="lazy" decoding="async">
           <span class="text-[10px] font-black text-v9" data-i18n="hubC7">Progression</span>
         </a>
       </div>
@@ -729,7 +729,7 @@
         <div class="lg:col-span-2">
           <div class="card p-2.5 space-y-2 border border-v-2">
             <div class="flex items-center gap-2 pb-1.5 border-b border-ow-line">
-              <img src="assets/images/fennygo/fenny-avatar.png" alt="Équipe" class="w-8 h-8 rounded-full bg-y-s object-contain border border-y">
+              <img src="assets/images/fennygo/fenny-avatar.png" alt="Équipe" class="w-8 h-8 rounded-full bg-y-s object-contain border border-y" loading="lazy" decoding="async">
               <div>
                 <div class="font-black text-[11px] text-v9" data-i18n="teamT">Conçu en Algérie 🇩🇿</div>
                 <div class="text-[9px] font-bold text-v6" data-i18n="teamD">Pédagogues · Ingénieurs IA · Illustrateurs 3D · Orthophonistes</div>
@@ -891,7 +891,7 @@
             <div class="marquee-vertical">
               <!-- Partner 1 (Vert clair) -->
               <div class="card card-hover p-2 flex items-center gap-2 border border-emerald-100 bg-white cursor-pointer" data-lightbox-src="assets/images/partners/ecole-elamel.jpg" data-lightbox-caption="École Pilote Émir Abdelkader (3AP) — 14 Rue Didouche Mourad, Alger-Centre">
-                <img src="assets/images/partners/ecole-elamel.jpg" alt="École Pilote Émir Abdelkader" class="w-11 h-9 rounded-lg object-cover border border-emerald-200 shadow-2xs shrink-0">
+                <img src="assets/images/partners/ecole-elamel.jpg" alt="École Pilote Émir Abdelkader" class="w-11 h-9 rounded-lg object-cover border border-emerald-200 shadow-2xs shrink-0" loading="lazy" decoding="async">
                 <div class="flex-1 min-w-0 leading-tight">
                   <div class="flex items-center justify-between gap-1">
                     <h4 class="font-black text-[10.5px] text-v9 truncate" data-i18n="p1Name">École Pilote Émir Abdelkader</h4>
@@ -907,7 +907,7 @@
 
               <!-- Partner 2 (Bleu clair) -->
               <div class="card card-hover p-2 flex items-center gap-2 border border-sky-100 bg-white cursor-pointer" data-lightbox-src="assets/images/partners/institut-pedagogique.jpg" data-lightbox-caption="Institut Pédagogique National (IPN) — 05 Avenue de l'Indépendance, Kouba, Alger">
-                <img src="assets/images/partners/institut-pedagogique.jpg" alt="Institut Pédagogique National" class="w-11 h-9 rounded-lg object-cover border border-sky-200 shadow-2xs shrink-0">
+                <img src="assets/images/partners/institut-pedagogique.jpg" alt="Institut Pédagogique National" class="w-11 h-9 rounded-lg object-cover border border-sky-200 shadow-2xs shrink-0" loading="lazy" decoding="async">
                 <div class="flex-1 min-w-0 leading-tight">
                   <div class="flex items-center justify-between gap-1">
                     <h4 class="font-black text-[10.5px] text-v9 truncate" data-i18n="p2Name">Institut Pédagogique National (IPN)</h4>
@@ -923,7 +923,7 @@
 
               <!-- Partner 3 (Vert foncé / R&D) -->
               <div class="card card-hover p-2 flex items-center gap-2 border border-teal-100 bg-white cursor-pointer" data-lightbox-src="assets/images/partners/cyberparc-lab.jpg" data-lightbox-caption="Cyberparc EdTech Innovation Lab — Bâtiment B3, Sidi Abdellah, Alger">
-                <img src="assets/images/partners/cyberparc-lab.jpg" alt="Cyberparc EdTech Lab" class="w-11 h-9 rounded-lg object-cover border border-teal-200 shadow-2xs shrink-0">
+                <img src="assets/images/partners/cyberparc-lab.jpg" alt="Cyberparc EdTech Lab" class="w-11 h-9 rounded-lg object-cover border border-teal-200 shadow-2xs shrink-0" loading="lazy" decoding="async">
                 <div class="flex-1 min-w-0 leading-tight">
                   <div class="flex items-center justify-between gap-1">
                     <h4 class="font-black text-[10.5px] text-v9 truncate" data-i18n="p3Name">Cyberparc EdTech Innovation Lab</h4>
@@ -939,7 +939,7 @@
 
               <!-- Partner 4 (Un peu de violet) -->
               <div class="card card-hover p-2 flex items-center gap-2 border border-purple-100 bg-white cursor-pointer" data-lightbox-src="assets/images/partners/academy-langues.jpg" data-lightbox-caption="Cambridge Kids Language Academy — 28 Boulevard du 11 Décembre 1960, Val d'Hydra, Alger">
-                <img src="assets/images/partners/academy-langues.jpg" alt="Cambridge Kids Academy" class="w-11 h-9 rounded-lg object-cover border border-purple-200 shadow-2xs shrink-0">
+                <img src="assets/images/partners/academy-langues.jpg" alt="Cambridge Kids Academy" class="w-11 h-9 rounded-lg object-cover border border-purple-200 shadow-2xs shrink-0" loading="lazy" decoding="async">
                 <div class="flex-1 min-w-0 leading-tight">
                   <div class="flex items-center justify-between gap-1">
                     <h4 class="font-black text-[10.5px] text-v9 truncate" data-i18n="p4Name">Cambridge Kids Language Academy</h4>
@@ -955,7 +955,7 @@
 
               <!-- Partner 5 (Touche d'orange) -->
               <div class="card card-hover p-2 flex items-center gap-2 border border-orange-100 bg-white cursor-pointer" data-lightbox-src="assets/images/partners/federation-parents.jpg" data-lightbox-caption="Fédération Nationale des Parents d'Élèves (FNAPE) — 42 Rue Larbi Ben M'hidi, Oran">
-                <img src="assets/images/partners/federation-parents.jpg" alt="Fédération Parents" class="w-11 h-9 rounded-lg object-cover border border-orange-200 shadow-2xs shrink-0">
+                <img src="assets/images/partners/federation-parents.jpg" alt="Fédération Parents" class="w-11 h-9 rounded-lg object-cover border border-orange-200 shadow-2xs shrink-0" loading="lazy" decoding="async">
                 <div class="flex-1 min-w-0 leading-tight">
                   <div class="flex items-center justify-between gap-1">
                     <h4 class="font-black text-[10.5px] text-v9 truncate" data-i18n="p5Name">Fédération Nationale Parents (FNAPE)</h4>
@@ -971,7 +971,7 @@
 
               <!-- Partner 6 (Bleu foncé) -->
               <div class="card card-hover p-2 flex items-center gap-2 border border-blue-100 bg-white cursor-pointer" data-lightbox-src="assets/images/partners/hardware-tbi.jpg" data-lightbox-caption="Maghreb Interactive Solutions (MIS) — Zone d'Activité Amara, Lot 18, Chéraga, Alger">
-                <img src="assets/images/partners/hardware-tbi.jpg" alt="Maghreb Interactive Solutions" class="w-11 h-9 rounded-lg object-cover border border-blue-200 shadow-2xs shrink-0">
+                <img src="assets/images/partners/hardware-tbi.jpg" alt="Maghreb Interactive Solutions" class="w-11 h-9 rounded-lg object-cover border border-blue-200 shadow-2xs shrink-0" loading="lazy" decoding="async">
                 <div class="flex-1 min-w-0 leading-tight">
                   <div class="flex items-center justify-between gap-1">
                     <h4 class="font-black text-[10.5px] text-v9 truncate" data-i18n="p6Name">Maghreb Interactive Solutions (MIS)</h4>
@@ -987,7 +987,7 @@
 
               <!-- ================= DUPLICATED SET FOR SEAMLESS 100% INFINITE VERTICAL MARQUEE ================= -->
               <div class="card card-hover p-2 flex items-center gap-2 border border-emerald-100 bg-white cursor-pointer" aria-hidden="true" data-lightbox-src="assets/images/partners/ecole-elamel.jpg" data-lightbox-caption="École Pilote Émir Abdelkader (3AP) — 14 Rue Didouche Mourad, Alger-Centre">
-                <img src="assets/images/partners/ecole-elamel.jpg" alt="" class="w-11 h-9 rounded-lg object-cover border border-emerald-200 shadow-2xs shrink-0">
+                <img src="assets/images/partners/ecole-elamel.jpg" alt="" class="w-11 h-9 rounded-lg object-cover border border-emerald-200 shadow-2xs shrink-0" loading="lazy" decoding="async">
                 <div class="flex-1 min-w-0 leading-tight">
                   <div class="flex items-center justify-between gap-1">
                     <h4 class="font-black text-[10.5px] text-v9 truncate" data-i18n="p1Name">École Pilote Émir Abdelkader</h4>
@@ -1002,7 +1002,7 @@
               </div>
 
               <div class="card card-hover p-2 flex items-center gap-2 border border-sky-100 bg-white cursor-pointer" aria-hidden="true" data-lightbox-src="assets/images/partners/institut-pedagogique.jpg" data-lightbox-caption="Institut Pédagogique National (IPN) — 05 Avenue de l'Indépendance, Kouba, Alger">
-                <img src="assets/images/partners/institut-pedagogique.jpg" alt="" class="w-11 h-9 rounded-lg object-cover border border-sky-200 shadow-2xs shrink-0">
+                <img src="assets/images/partners/institut-pedagogique.jpg" alt="" class="w-11 h-9 rounded-lg object-cover border border-sky-200 shadow-2xs shrink-0" loading="lazy" decoding="async">
                 <div class="flex-1 min-w-0 leading-tight">
                   <div class="flex items-center justify-between gap-1">
                     <h4 class="font-black text-[10.5px] text-v9 truncate" data-i18n="p2Name">Institut Pédagogique National (IPN)</h4>
@@ -1017,7 +1017,7 @@
               </div>
 
               <div class="card card-hover p-2 flex items-center gap-2 border border-teal-100 bg-white cursor-pointer" aria-hidden="true" data-lightbox-src="assets/images/partners/cyberparc-lab.jpg" data-lightbox-caption="Cyberparc EdTech Innovation Lab — Bâtiment B3, Sidi Abdellah, Alger">
-                <img src="assets/images/partners/cyberparc-lab.jpg" alt="" class="w-11 h-9 rounded-lg object-cover border border-teal-200 shadow-2xs shrink-0">
+                <img src="assets/images/partners/cyberparc-lab.jpg" alt="" class="w-11 h-9 rounded-lg object-cover border border-teal-200 shadow-2xs shrink-0" loading="lazy" decoding="async">
                 <div class="flex-1 min-w-0 leading-tight">
                   <div class="flex items-center justify-between gap-1">
                     <h4 class="font-black text-[10.5px] text-v9 truncate" data-i18n="p3Name">Cyberparc EdTech Innovation Lab</h4>
@@ -1032,7 +1032,7 @@
               </div>
 
               <div class="card card-hover p-2 flex items-center gap-2 border border-purple-100 bg-white cursor-pointer" aria-hidden="true" data-lightbox-src="assets/images/partners/academy-langues.jpg" data-lightbox-caption="Cambridge Kids Language Academy — 28 Boulevard du 11 Décembre 1960, Val d'Hydra, Alger">
-                <img src="assets/images/partners/academy-langues.jpg" alt="" class="w-11 h-9 rounded-lg object-cover border border-purple-200 shadow-2xs shrink-0">
+                <img src="assets/images/partners/academy-langues.jpg" alt="" class="w-11 h-9 rounded-lg object-cover border border-purple-200 shadow-2xs shrink-0" loading="lazy" decoding="async">
                 <div class="flex-1 min-w-0 leading-tight">
                   <div class="flex items-center justify-between gap-1">
                     <h4 class="font-black text-[10.5px] text-v9 truncate" data-i18n="p4Name">Cambridge Kids Language Academy</h4>
@@ -1047,7 +1047,7 @@
               </div>
 
               <div class="card card-hover p-2 flex items-center gap-2 border border-orange-100 bg-white cursor-pointer" aria-hidden="true" data-lightbox-src="assets/images/partners/federation-parents.jpg" data-lightbox-caption="Fédération Nationale des Parents d'Élèves (FNAPE) — 42 Rue Larbi Ben M'hidi, Oran">
-                <img src="assets/images/partners/federation-parents.jpg" alt="" class="w-11 h-9 rounded-lg object-cover border border-orange-200 shadow-2xs shrink-0">
+                <img src="assets/images/partners/federation-parents.jpg" alt="" class="w-11 h-9 rounded-lg object-cover border border-orange-200 shadow-2xs shrink-0" loading="lazy" decoding="async">
                 <div class="flex-1 min-w-0 leading-tight">
                   <div class="flex items-center justify-between gap-1">
                     <h4 class="font-black text-[10.5px] text-v9 truncate" data-i18n="p5Name">Fédération Nationale Parents (FNAPE)</h4>
@@ -1062,7 +1062,7 @@
               </div>
 
               <div class="card card-hover p-2 flex items-center gap-2 border border-blue-100 bg-white cursor-pointer" aria-hidden="true" data-lightbox-src="assets/images/partners/hardware-tbi.jpg" data-lightbox-caption="Maghreb Interactive Solutions (MIS) — Zone d'Activité Amara, Lot 18, Chéraga, Alger">
-                <img src="assets/images/partners/hardware-tbi.jpg" alt="" class="w-11 h-9 rounded-lg object-cover border border-blue-200 shadow-2xs shrink-0">
+                <img src="assets/images/partners/hardware-tbi.jpg" alt="" class="w-11 h-9 rounded-lg object-cover border border-blue-200 shadow-2xs shrink-0" loading="lazy" decoding="async">
                 <div class="flex-1 min-w-0 leading-tight">
                   <div class="flex items-center justify-between gap-1">
                     <h4 class="font-black text-[10.5px] text-v9 truncate" data-i18n="p6Name">Maghreb Interactive Solutions (MIS)</h4>
@@ -1091,7 +1091,7 @@
         <div class="lg:col-span-5 flex flex-col gap-2">
           <!-- Field Deployment Photo Card with Lightbox trigger -->
           <div class="slide-frame group cursor-pointer overflow-hidden rounded-xl border border-v-2 bg-v9 relative shadow-xs" data-lightbox-src="assets/images/fennygo/algerian-program.jpg" data-lightbox-caption="Déploiement en classe pilote 3AP : élèves et enseignants en pleine séance interactive avec Fenncky &amp; FennyGo3.">
-            <img src="assets/images/fennygo/algerian-program.jpg" alt="Déploiement en classe pilote 3AP" class="w-full h-32 sm:h-36 object-cover object-center transition duration-300 group-hover:scale-105">
+            <img src="assets/images/fennygo/algerian-program.jpg" alt="Déploiement en classe pilote 3AP" class="w-full h-32 sm:h-36 object-cover object-center transition duration-300 group-hover:scale-105" loading="lazy" decoding="async">
             <span class="absolute top-2 left-2 bg-v9/85 text-y backdrop-blur-sm border border-y/40 text-[8.5px] font-black px-2 py-0.5 rounded-full flex items-center gap-1">
               <i class="fa-solid fa-camera"></i> <span data-i18n="partPhotoBadge">Déploiement en classe pilote 3AP</span>
             </span>
@@ -1226,7 +1226,7 @@
     <div class="max-w-6xl mx-auto px-3.5 py-3.5 grid sm:grid-cols-2 md:grid-cols-4 gap-3 text-[10.5px] font-bold">
       <div class="space-y-1">
         <div class="flex items-center gap-1.5">
-          <span class="w-6 h-6 rounded-md bg-y grid place-items-center"><img src="assets/images/fennygo/fenny-mascot.png" alt="" class="w-5 h-5 object-contain"></span>
+          <span class="w-6 h-6 rounded-md bg-y grid place-items-center"><img src="assets/images/fennygo/fenny-mascot.png" alt="" class="w-5 h-5 object-contain" loading="lazy" decoding="async"></span>
           <span class="text-xs font-black text-ow">Fenncky</span>
         </div>
         <p class="text-v-4 text-[10px] leading-snug" data-i18n="footDesc">Apprendre les langues en jouant, avec la voix, la caméra et le cœur.</p>
@@ -1269,7 +1269,7 @@
   <div id="slideLightbox" class="fenny-modal-backdrop hidden" role="dialog" aria-modal="true">
     <div class="relative max-w-5xl w-full bg-v9 border-2 border-y rounded-2xl p-3 shadow-2xl text-center">
       <button type="button" id="closeLightboxBtn" class="fenny-modal-close !bg-v5 !border-y !text-white" aria-label="Fermer">&times;</button>
-      <img id="lightboxImg" src="" alt="FennyGo3 Slide" class="w-full max-h-[75dvh] object-contain rounded-xl mx-auto">
+      <img id="lightboxImg" src="" alt="FennyGo3 Slide" class="w-full max-h-[75dvh] object-contain rounded-xl mx-auto" loading="lazy" decoding="async">
       <p id="lightboxCaption" class="mt-2 text-y font-black text-xs sm:text-sm"></p>
     </div>
   </div>

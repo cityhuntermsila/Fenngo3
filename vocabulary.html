@@ -561,7 +561,7 @@
         <!-- Center Column: 3D Object Image + Dynamic Status Banner -->
         <div class="col-span-6 flex flex-col items-center justify-center text-center">
           <div class="relative group cursor-pointer" id="objectClickArea">
-            <img id="currentObjectImg" src="assets/images/fennygo/school-bag-3d.png" alt="3D Vocabulary Object" class="w-36 h-36 sm:w-48 sm:h-48 md:w-56 md:h-56 object-contain drop-shadow-[0_14px_28px_rgba(0,0,0,0.25)] transition-transform duration-300 group-hover:scale-105 active:scale-95">
+            <img id="currentObjectImg" src="assets/images/fennygo/school-bag-3d.png" alt="3D Vocabulary Object" class="w-36 h-36 sm:w-48 sm:h-48 md:w-56 md:h-56 object-contain drop-shadow-[0_14px_28px_rgba(0,0,0,0.25)] transition-transform duration-300 group-hover:scale-105 active:scale-95" decoding="async">
             <span class="absolute bottom-1 right-1 bg-slate-900/80 text-white text-[10px] font-black px-2 py-0.5 rounded-full border border-white">
               🔊 3D
             </span>
@@ -591,7 +591,7 @@
             <div id="fennySpeechBubble" class="text-[10px] sm:text-[11px] font-black bg-white/95 border-2 border-[#F3A96C] text-[#5A3821] rounded-2xl px-2.5 py-1 mb-1 shadow-sm leading-tight max-w-[130px]">
               "Let's practice!" 🦊
             </div>
-            <img id="fennyStudioMascot" src="assets/images/fennygo/fenny-mascot.png" alt="Fenny Mascot" class="w-18 h-18 sm:w-24 sm:h-24 object-contain drop-shadow-md cursor-pointer transition-transform duration-200 hover:scale-105">
+            <img id="fennyStudioMascot" src="assets/images/fennygo/fenny-mascot.png" alt="Fenny Mascot" class="w-18 h-18 sm:w-24 sm:h-24 object-contain drop-shadow-md cursor-pointer transition-transform duration-200 hover:scale-105" decoding="async">
           </div>
         </div>
 
@@ -616,7 +616,7 @@
       </div>
 
       <div class="my-auto flex flex-col items-center gap-1.5 sm:gap-2">
-        <img id="spellObjectImg" src="assets/images/fennygo/school-bag-3d.png" alt="Quiz Object" class="w-24 h-24 sm:w-32 sm:h-32 md:w-36 md:h-36 object-contain drop-shadow-md">
+        <img id="spellObjectImg" src="assets/images/fennygo/school-bag-3d.png" alt="Quiz Object" class="w-24 h-24 sm:w-32 sm:h-32 md:w-36 md:h-36 object-contain drop-shadow-md" decoding="async">
 
         <!-- Target Solved Slots -->
         <div id="spellSlotsRow" class="flex flex-wrap items-center justify-center gap-1 sm:gap-1.5" dir="ltr"></div>
@@ -1644,7 +1644,7 @@
           card.type = "button";
           card.className = "p-2 sm:p-2.5 rounded-2xl bg-white/95 border-2 border-[#E7D1AE] hover:border-[#6E94D1] hover:shadow-[0_8px_20px_rgba(110,148,209,0.3)] shadow flex flex-col items-center gap-1 transition hover:scale-105 active:scale-95";
           card.innerHTML = `
-            <img src="${opt.img}" alt="${opt.word}" class="w-20 h-20 sm:w-24 sm:h-24 md:w-28 md:h-28 object-contain drop-shadow-sm">
+            <img src="${opt.img}" alt="${opt.word}" class="w-20 h-20 sm:w-24 sm:h-24 md:w-28 md:h-28 object-contain drop-shadow-sm" decoding="async">
             <span class="text-[10.5px] sm:text-xs font-black text-slate-800">${opt.word}</span>
           `;
           card.addEventListener("click", () => {

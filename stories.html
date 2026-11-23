@@ -553,7 +553,7 @@
           card.innerHTML = `
             <div class="nk-card-visual" style="position: relative;">
               <span class="nk-card-step">${idx + 1}</span>
-              <img src="${st.thumb}" alt="${st.title}" class="w-24 h-24 sm:w-28 sm:h-28 object-contain drop-shadow-xl hover:scale-110 transition duration-300">
+              <img src="${st.thumb}" alt="${st.title}" class="w-24 h-24 sm:w-28 sm:h-28 object-contain drop-shadow-xl hover:scale-110 transition duration-300" decoding="async">
             </div>
             <div class="nk-card-body">
               <ul class="nk-card-tags"><li class="nk-tag">${st.tag}</li></ul>
@@ -595,6 +595,7 @@
           img.src = src;
           img.className = "story-scene-img";
           img.alt = "Illustration";
+          img.decoding = "async";
           illusBox.appendChild(img);
         });
 

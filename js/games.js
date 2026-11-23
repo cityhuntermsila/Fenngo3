@@ -182,7 +182,7 @@
   function getGameIconSvg(gameId) {
     const validIds = ["runner", "maze", "ninja", "basketball", "whack", "tower", "castle"];
     const safeId = validIds.includes(gameId) ? gameId : "runner";
-    return `<img src="assets/images/games/${safeId}.png" alt="${safeId}" class="nk-game-3d-thumb" loading="lazy">`;
+    return `<img src="assets/images/games/${safeId}.png" alt="${safeId}" class="nk-game-3d-thumb" loading="lazy" decoding="async">`;
   }
 
   function getActiveLangId() {
@@ -1066,7 +1066,7 @@
         .join("");
 
       const iconHtml = currentWordObj.img
-        ? `<img src="${currentWordObj.img}" alt="${currentWordObj.word}" class="word-3d-icon">`
+        ? `<img src="${currentWordObj.img}" alt="${currentWordObj.word}" class="word-3d-icon" decoding="async">`
         : `<span class="word-emoji">${currentWordObj.emoji}</span>`;
 
       bannerEl.innerHTML = `

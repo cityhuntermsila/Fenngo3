@@ -283,7 +283,7 @@
 
           <!-- Aperçu optionnel de l'image originale -->
           <div id="visionSlideModalBox" class="hidden bg-white p-3 rounded-2xl border-2 border-amber-300 text-center">
-            <img src="assets/images/fennygo/tactile-vision.jpg" alt="Tactile Learning Meets Computer Vision" class="max-h-64 mx-auto rounded-xl object-contain">
+            <img src="assets/images/fennygo/tactile-vision.jpg" alt="Tactile Learning Meets Computer Vision" class="max-h-64 mx-auto rounded-xl object-contain" decoding="async" fetchpriority="high">
           </div>
 
           <!-- Grille des 3 étapes : 1. The Tactile Input | 2. The Camera Scan | 3. The Digital Reward -->
@@ -378,14 +378,14 @@
           <!-- Colonne gauche : Modèle illustré + Couleurs du crayon + Boutons -->
           <aside class="tracing-side-card">
             <div class="tracing-preview-box">
-              <img id="previewImg" class="w-16 h-16 object-contain rounded-xl drop-shadow-md mb-1 hidden" alt="Illustration">
+              <img id="previewImg" class="w-16 h-16 object-contain rounded-xl drop-shadow-md mb-1 hidden" alt="Illustration" decoding="async" fetchpriority="high">
               <div id="previewEmoji" class="tracing-emoji">✈️</div>
               <h2 id="previewWord" class="tracing-word-label">A - Avion</h2>
             </div>
 
             <!-- Mascotte Fenny avec conseils d'écriture dynamiques -->
             <div class="fenny-interactive-bubble w-full">
-              <img src="assets/images/fennygo/fenny-avatar.png" class="fenny-interactive-avatar" alt="Fenny">
+              <img src="assets/images/fennygo/fenny-avatar.png" class="fenny-interactive-avatar" alt="Fenny" loading="lazy" decoding="async">
               <span id="fennyTracingTip" class="text-xs font-black text-amber-900 leading-tight">Suis bien les pointillés ! ✍️</span>
             </div>
 
