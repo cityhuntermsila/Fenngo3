@@ -628,13 +628,60 @@
       throw new Error("MEDIA_DEVICES_UNAVAILABLE");
     }
 
-    const facingMode = cfg.cameraType === "back" ? "environment" : "user";
+    const isBack = cfg.cameraType === "back";
+    const facingMode = isBack ? "environment" : "user";
     const attempts = [];
 
-    // 1. Si l'utilisateur a choisi un périphérique précis (non virtuel), l'utiliser en priorité
+    // 1. SUR MOBILE : Priorité absolue à facingMode "environment" (arrière) ou "user" (avant)
+    // C'est le standard W3C sur Android/iOS pour activer la caméra dorsale sans dépendre d'un deviceId arbitraire.
+    if (isBack) {
+      attempts.push({
+        video: {
+          facingMode: { exact: "environment" },
+          width: { ideal: 1280, min: 640 },
+          height: { ideal: 720, min: 480 }
+        },
+        audio: false
+      });
+      attempts.push({
+        video: {
+          facingMode: { ideal: "environment" },
+          width: { ideal: 1280, min: 640 },
+          height: { ideal: 720, min: 480 }
+        },
+        audio: false
+      });
+      attempts.push({
+        video: { facingMode: "environment" },
+        audio: false
+      });
+    } else {
+      attempts.push({
+        video: {
+          facingMode: { exact: "user" },
+          width: { ideal: 1280, min: 640 },
+          height: { ideal: 720, min: 480 }
+        },
+        audio: false
+      });
+      attempts.push({
+        video: {
+          facingMode: { ideal: "user" },
+          width: { ideal: 1280, min: 640 },
+          height: { ideal: 720, min: 480 }
+        },
+        audio: false
+      });
+      attempts.push({
+        video: { facingMode: "user" },
+        audio: false
+      });
+    }
+
+    // 2. Si l'utilisateur a choisi un périphérique précis manuellement dans le menu déroulant
     if (cfg.deviceId) {
       attempts.push({
-        video: { deviceId: { exact: cfg.deviceId }, width: { ideal: 640 }, height: { ideal: 480 } },
+        video: { deviceId: { exact: cfg.deviceId }, width: { ideal: 1280, min: 640 }, height: { ideal: 720, min: 480 } },
         audio: false
       });
       attempts.push({
@@ -643,36 +690,48 @@
       });
     }
 
-    // 2. Énumérer les périphériques vidéo et placer les vraies webcams physiques AVANT les caméras virtuelles
+    // 3. Énumérer les périphériques physiques et placer en priorité ceux qui correspondent au type (Arrière vs Avant)
     try {
       const devices = await navigator.mediaDevices.enumerateDevices();
       const videoInputs = devices.filter((d) => d.kind === "videoinput" && d.deviceId);
       const realCams = videoInputs.filter((d) => d.label && !isVirtualCameraLabel(d.label));
       const unknownOrVirtualCams = videoInputs.filter((d) => !d.label || isVirtualCameraLabel(d.label));
 
-      realCams.forEach((d) => {
+      const isBackCam = (l) => /back|rear|environment|arri[eè]re|dorsale|camera2\s*0|facing\s*back/i.test(l || "");
+      const isFrontCam = (l) => /front|user|avant|selfie|camera2\s*1|facing\s*front/i.test(l || "");
+
+      const sortedCams = [...realCams].sort((a, b) => {
+        const aLabel = a.label || "";
+        const bLabel = b.label || "";
+        if (isBack) {
+          return (isBackCam(bLabel) ? 1 : 0) - (isBackCam(aLabel) ? 1 : 0);
+        } else {
+          return (isFrontCam(bLabel) ? 1 : 0) - (isFrontCam(aLabel) ? 1 : 0);
+        }
+      });
+
+      sortedCams.forEach((d) => {
         attempts.push({
-          video: { deviceId: { exact: d.deviceId }, width: { ideal: 640 }, height: { ideal: 480 } },
+          video: { deviceId: { exact: d.deviceId }, width: { ideal: 1280, min: 640 }, height: { ideal: 720, min: 480 } },
+          audio: false
+        });
+        attempts.push({
+          video: { deviceId: { exact: d.deviceId } },
           audio: false
         });
       });
 
-      attempts.push(
-        { video: { facingMode: { ideal: facingMode }, width: { ideal: 640 }, height: { ideal: 480 } }, audio: false },
-        { video: { facingMode: facingMode }, audio: false },
-        { video: true, audio: false }
-      );
-
       unknownOrVirtualCams.forEach((d) => {
         attempts.push({ video: { deviceId: { exact: d.deviceId } }, audio: false });
       });
-    } catch (_) {
-      attempts.push(
-        { video: { facingMode: { ideal: facingMode }, width: { ideal: 640 }, height: { ideal: 480 } }, audio: false },
-        { video: { facingMode: facingMode }, audio: false },
-        { video: true, audio: false }
-      );
-    }
+    } catch (_) {}
+
+    // 4. Derniers recours tolérants
+    attempts.push(
+      { video: { facingMode: { ideal: facingMode }, width: { ideal: 1280, min: 640 }, height: { ideal: 720, min: 480 } }, audio: false },
+      { video: { facingMode: facingMode }, audio: false },
+      { video: true, audio: false }
+    );
 
     let lastErr = null;
     for (const constraints of attempts) {
@@ -681,6 +740,31 @@
         if (stream && stream.getVideoTracks().length > 0) {
           const track = stream.getVideoTracks()[0];
           const trackLabel = track.label || "";
+          const settings = typeof track.getSettings === "function" ? track.getSettings() : {};
+          const trackFacing = settings.facingMode || "";
+          const isFrontLabel = /front|user|avant|selfie|camera2\s*1/i.test(trackLabel);
+          const isBackLabel = /back|rear|environment|arri[eè]re|dorsale|camera2\s*0/i.test(trackLabel);
+
+          // Si l'utilisateur a demandé la caméra arrière mais que le navigateur a ouvert la caméra frontale
+          if (isBack && (trackFacing === "user" || isFrontLabel) && !isBackLabel) {
+            try {
+              const allDevices = await navigator.mediaDevices.enumerateDevices();
+              const realBackCam = allDevices.find(
+                (d) => d.kind === "videoinput" && d.deviceId && isBackCam(d.label)
+              );
+              if (realBackCam && realBackCam.deviceId !== settings.deviceId) {
+                stream.getTracks().forEach((t) => t.stop());
+                const backStream = await navigator.mediaDevices.getUserMedia({
+                  video: { deviceId: { exact: realBackCam.deviceId }, width: { ideal: 1280, min: 640 }, height: { ideal: 720, min: 480 } },
+                  audio: false
+                });
+                if (backStream && backStream.getVideoTracks().length > 0) {
+                  cfg.deviceId = realBackCam.deviceId;
+                  return backStream;
+                }
+              }
+            } catch (_) {}
+          }
 
           // Si le navigateur a sélectionné par défaut une caméra virtuelle (ex: Animaze Virtual Camera),
           // basculer immédiatement vers la vraie caméra physique maintenant que les permissions sont débloquées !
@@ -1101,6 +1185,7 @@
         backdrop.querySelectorAll(".focr-cam-btn").forEach((b) => b.classList.remove("active"));
         btn.classList.add("active");
         cfg.cameraType = btn.getAttribute("data-cam-type") || "fenncky";
+        cfg.deviceId = "";
         if (cfg.cameraType === "fenncky") {
           cfg.mirrorY = true;
           cfg.mirrorX = true;
@@ -1108,6 +1193,7 @@
           cfg.mirrorY = false;
           cfg.mirrorX = false;
         }
+        saveOcrConfig(cfg);
         startSelectedCamera();
       });
     });
@@ -1195,11 +1281,11 @@
     }
   }
 
-  async function recognizeCanvasText(sourceCanvas, fallbackHint = "") {
+  async function recognizeCanvasText(sourceCanvas, fallbackHint = "", skipTesseract = false) {
     if (!sourceCanvas) return fallbackHint || "A";
 
-    // Si Tesseract est disponible globalement
-    if (global.Tesseract && typeof global.Tesseract.recognize === "function") {
+    // Si Tesseract est disponible globalement et qu'on ne souhaite pas l'ignorer
+    if (!skipTesseract && global.Tesseract && typeof global.Tesseract.recognize === "function") {
       try {
         const { data } = await global.Tesseract.recognize(sourceCanvas, "eng");
         const clean = (data?.text || "").replace(/[^a-zA-Z0-9À-ÿ]/g, "").trim();
@@ -1285,14 +1371,6 @@
       if (link.closest("#focrCategoryBanner")) return;
       link.setAttribute("href", mode === "ocr" ? "category-ocr.html" : "category.html");
     });
-
-    if (path.endsWith("cours.html")) {
-      document.querySelectorAll(".category-card[href]").forEach((card) => {
-        const rawHref = card.getAttribute("href") || "";
-        const baseHref = rawHref.split("?")[0];
-        card.setAttribute("href", mode === "ocr" ? `${baseHref}?system=ocr` : baseHref);
-      });
-    }
   }
 
   function renderCategoryOcrBanner() {
@@ -1300,23 +1378,14 @@
     syncOcrNavigationLinks();
     const path = (window.location.pathname || "").toLowerCase();
 
-    // category.html est l'Option Simple pure : aucun bandeau ni badge OCR
-    if (path.endsWith("category.html")) {
+    // category.html et cours.html sont des options simples pures : aucun bandeau ni badge OCR
+    if (path.endsWith("category.html") || path.endsWith("cours.html")) {
       document.getElementById("focrCategoryBanner")?.remove();
       document.querySelectorAll(".focr-card-badge").forEach((b) => b.remove());
       return;
     }
 
-    const isOcrCategoryOrCours = path.endsWith("category-ocr.html") || path.endsWith("cours.html");
-    if (!isOcrCategoryOrCours) return;
-
-    const mode = getSystemMode();
-    // Si on est sur cours.html en mode Simple, aucun bandeau ni badge OCR
-    if (mode !== "ocr" && !path.endsWith("category-ocr.html")) {
-      document.getElementById("focrCategoryBanner")?.remove();
-      document.querySelectorAll(".focr-card-badge").forEach((b) => b.remove());
-      return;
-    }
+    if (!path.endsWith("category-ocr.html")) return;
 
     const mainEl = document.querySelector(".category-main");
     if (!mainEl) return;
@@ -1367,9 +1436,27 @@
       </div>
     `;
 
-    // Ajouter le badge "📷 OCR" sur chaque carte de category-ocr.html / cours.html (en mode OCR)
+    // Ajouter le badge "📷 OCR" UNIQUEMENT sur les activités interactives OCR (Entraînement, Jeux, Test)
+    // Toutes les autres activités (Cours, Vocabulaire, Traçage, Progression, Histoires) n'ont PAS de badge OCR
+    const OCR_WHITELIST_KEYS = ["practice", "games", "test"];
     document.querySelectorAll(".category-card").forEach((card) => {
       card.style.position = "relative";
+      const key = (card.getAttribute("data-cat-key") || "").toLowerCase();
+      const href = (card.getAttribute("href") || "").toLowerCase();
+      const isOcr =
+        OCR_WHITELIST_KEYS.includes(key) ||
+        href.includes("practice.html") ||
+        href.includes("games.html") ||
+        href.includes("test.html") ||
+        card.classList.contains("card-practice") ||
+        card.classList.contains("card-games") ||
+        card.classList.contains("card-test");
+
+      if (!isOcr) {
+        card.querySelectorAll(".focr-card-badge").forEach((el) => el.remove());
+        return;
+      }
+
       if (!card.querySelector(".focr-card-badge")) {
         const b = document.createElement("span");
         b.className = "focr-card-badge";
@@ -1414,15 +1501,6 @@
         return cards.map((el) => el.textContent.trim());
       }
       return ["CHAT", "LION", "POMME", "LIVRE"];
-    }
-    if (path.endsWith("vocabulary.html")) {
-      const tiles = Array.from(document.querySelectorAll("#letterTilesRow .voc-letter-tile"));
-      if (tiles.length > 0) {
-        const word = tiles.map((t) => t.textContent.trim()).join("");
-        const letters = Array.from(new Set(tiles.map((t) => t.textContent.trim()))).slice(0, 6);
-        return [word, ...letters];
-      }
-      return ["BAG", "BOOK", "PEN", "B", "O", "K"];
     }
     if (path.endsWith("practice.html")) {
       const bubbles = Array.from(document.querySelectorAll(".letter-bubble:not(.used)"));
@@ -1515,31 +1593,7 @@
       return false;
     }
 
-    // 4. Page Vocabulaire Multisensoriel (vocabulary.html)
-    if (path.endsWith("vocabulary.html")) {
-      // Défi Épellation
-      const spellStage = document.getElementById("spellingStage");
-      if (spellStage && !spellStage.classList.contains("hidden")) {
-        const choiceTile = Array.from(document.querySelectorAll("#spellChoicesRow button")).find(
-          (b) => b.textContent.trim().toUpperCase() === upper.charAt(0) && !b.disabled
-        );
-        if (choiceTile) {
-          choiceTile.click();
-          return `Lettre « ${upper.charAt(0)} » placée par l'OCR !`;
-        }
-      }
-      // Studio 4D : touche la tuile correspondante
-      const tile = Array.from(document.querySelectorAll("#letterTilesRow .voc-letter-tile")).find(
-        (t) => t.textContent.trim().toUpperCase() === upper.charAt(0)
-      );
-      if (tile) {
-        tile.click();
-        return `Phonème « ${upper.charAt(0)} » activé par l'OCR !`;
-      }
-      return false;
-    }
-
-    // 5. Page Practice (practice.html) : uniquement quand une arène de jeu est ouverte
+    // 4. Page Practice (practice.html) : uniquement quand une arène de jeu est ouverte
     if (path.endsWith("practice.html")) {
       const arena = document.getElementById("arenaView");
       if (!arena || arena.classList.contains("hidden")) return false;
@@ -1685,8 +1739,8 @@
         // Détecter la peau / main pour ne jamais confondre les doigts avec une lettre
         if (r > 85 && g > 40 && b > 20 && r > g && g >= b - 8 && r - g > 14 && r - b > 24 && sat < 130) {
           skinMask[i] = 1;
-        } else if (lum >= 142 && sat <= 40) {
-          // Pixel de carte/feuille blanche neutre (exclut le clavier noir et la peau)
+        } else if (lum >= 85 && sat <= 55) {
+          // Pixel de carte/feuille blanche ou claire (adapté à l'éclairage intérieur de téléphone)
           whitePaperMask[i] = 1;
           whitePaperPixels++;
         }
@@ -1718,7 +1772,7 @@
 
     const whiteCardRatio = whitePaperPixels / (GW * GH);
     // S'il n'y a aucune carte/feuille blanche posée devant la caméra (seulement le clavier ou bureau vide)
-    if (whiteCardRatio < 0.065) {
+    if (whiteCardRatio < 0.025) {
       return {
         hasSalientContent: false,
         hasWhiteCard: false,
@@ -1772,13 +1826,13 @@
         const idx = gy * GW + gx;
         localBg[idx] = bgG;
 
-        // Ignorer la main/peau ainsi que toute zone qui n'est pas sur une carte blanche claire (bgG >= 138)
-        if (skinMask[idx] || bgG < 138) continue;
+        // Ignorer la main/peau ainsi que toute zone qui n'est pas sur une carte blanche claire (bgG >= 75)
+        if (skinMask[idx] || bgG < 75) continue;
 
         const diffInk = bgI - inkSignal[idx];
         const diffLum = bgG - gray[idx];
         const strength = Math.max(diffInk, diffLum);
-        if (strength > 26) {
+        if (strength > 16) {
           strokeMask[idx] = 1;
           strokeStrength[idx] = strength;
         }
@@ -1850,7 +1904,7 @@
         if (fill < 0.1 || fill > 0.82) continue;
 
         const avgStrength = strengthSum / area;
-        if (avgStrength < 30) continue;
+        if (avgStrength < 16) continue;
 
         const cxMid = (bx0 + bx1) / 2;
         const cyMid = (by0 + by1) / 2;
@@ -1898,9 +1952,9 @@
         if (eff < minEff) minEff = eff;
       }
 
-      // Vérifier que la lettre est bien entourée d'un fond de carte blanche (maxEff >= 145)
-      // et possède un vrai contraste d'encre (maxEff - minEff >= 45)
-      if (maxEff < 145 || maxEff - minEff < 45) {
+      // Vérifier que la lettre est bien entourée d'un fond de carte claire (maxEff >= 80)
+      // et possède un vrai contraste d'encre (maxEff - minEff >= 22)
+      if (maxEff < 80 || maxEff - minEff < 22) {
         chosenBlob = null;
       } else {
         // Seuil d'Otsu / point médian entre le papier clair (maxEff) et l'encre de la lettre (minEff)
@@ -1966,7 +2020,8 @@
       motionDiff,
       charCanvas,
       normCanvas,
-      invCanvas: null
+      invCanvas: null,
+      chosenBlob
     };
   }
 
@@ -2037,8 +2092,9 @@
         emptyCardStreak = 0;
       }
 
-      // Si l'utilisateur est en train de bouger la main pour poser ou retirer une carte, attendre que l'image soit stable
-      if (!forceImmediate && motionDiff > 8.5) {
+      // Si l'utilisateur est en train de bouger brusquement la main pour poser ou retirer une carte
+      // (tolère le léger tremblement naturel des mains sur smartphone jusqu'à 16.0)
+      if (!forceImmediate && motionDiff > 16.0) {
         stableCharStreak = 0;
         return null;
       }
@@ -2103,12 +2159,12 @@
         bestConf = data?.confidence ?? 0;
       }
 
-      // Secours par corrélation de glyphes sur le blob isolé si clic manuel
-      if (!bestText && charCanvas && forceImmediate) {
-        const fallbackChar = await recognizeCanvasText(charCanvas, "");
+      // Secours par corrélation de glyphes sur le blob isolé si Tesseract n'a rien trouvé ou hésite (bestConf < 55)
+      if ((!bestText || bestConf < 55) && charCanvas) {
+        const fallbackChar = await recognizeCanvasText(charCanvas, "", true);
         if (fallbackChar) {
           bestText = fallbackChar;
-          bestConf = 50;
+          bestConf = Math.max(bestConf, 58);
         }
       }
 
@@ -2136,11 +2192,11 @@
           : { active: false, accepted: [] };
         const isExpectedCorrect = expInfo.active && (expInfo.accepted.includes(candidateChar) || expInfo.accepted.includes(bestText));
 
-        // Pour la bonne réponse : validation réactive dès 2 frames stables (ou 1 frame à haute confiance >= 64)
-        // Pour une mauvaise réponse : exige 3 frames consécutives parfaitement immobiles et haute confiance >= 76
+        // Pour la bonne réponse : validation réactive dès 2 frames stables (ou 1 frame à confiance >= 54)
+        // Pour une mauvaise réponse : exige 3 frames consécutives stables et haute confiance >= 68
         const isStable = forceImmediate || (isExpectedCorrect
-          ? (stableCharStreak >= 2 || bestConf >= 64)
-          : (stableCharStreak >= 3 && bestConf >= 76 && motionDiff < 6.0));
+          ? (stableCharStreak >= 2 || bestConf >= 54)
+          : (stableCharStreak >= 3 && bestConf >= 68 && motionDiff < 14.0));
 
         if (!isStable) return null;
 
@@ -2153,13 +2209,13 @@
         lastDetectedTime = now;
         global.PracticeOCR.handleCameraLetter(candidateChar, {
           isAutoBackground: !forceImmediate,
-          isHighConfidenceNewCard: forceImmediate || (stableCharStreak >= 3 && bestConf >= 76 && motionDiff < 6.0)
+          isHighConfidenceNewCard: forceImmediate || (stableCharStreak >= 3 && bestConf >= 68 && motionDiff < 14.0)
         });
         return candidateChar;
       }
 
       // Sur les autres pages d'activité OCR
-      if (bestConf < (forceImmediate ? 45 : 65)) return null;
+      if (bestConf < (forceImmediate ? 38 : 52)) return null;
       const targets = collectPageSuggestions().map((s) => s.toUpperCase());
       const rawTokens = bestText.split(/[^A-Z0-9À-Ÿ]+/).filter(Boolean);
       const matchedTarget =
@@ -2199,6 +2255,9 @@
       path.endsWith("category-ocr.html") ||
       path.endsWith("cours.html") ||
       path.endsWith("progression.html") ||
+      path.endsWith("tracing.html") ||
+      path.endsWith("stories.html") ||
+      path.endsWith("vocabulary.html") ||
       path === "/" ||
       path === ""
     ) {
@@ -2307,11 +2366,134 @@
     prevCandidateChar = "";
   }
 
+  async function evaluateHandwritingFromSource(sourceEl, expectedLetter = "") {
+    if (!sourceEl) {
+      return { success: false, error: "NO_SOURCE" };
+    }
+
+    const rawCanvas = document.createElement("canvas");
+    rawCanvas.width = 640;
+    rawCanvas.height = 480;
+    const currentCfg = getOcrConfig();
+    drawRoiFromSourceToCanvas(sourceEl, true, currentCfg, rawCanvas);
+
+    const { hasSalientContent, hasWhiteCard, charCanvas } = prepareSalientLetterCanvases(rawCanvas);
+
+    if (!hasWhiteCard || !hasSalientContent || !charCanvas) {
+      return {
+        success: false,
+        error: "NO_LETTER_DETECTED",
+        hasWhiteCard: Boolean(hasWhiteCard),
+        hasSalientContent: Boolean(hasSalientContent),
+        shapeScore: 0,
+        sizeScore: 0,
+        alignScore: 0,
+        detectedLetter: ""
+      };
+    }
+
+    // 1. Essai OCR Tesseract si disponible
+    let detected = "";
+    let confidence = 0;
+    const worker = await getOrCreateOcrWorker();
+    if (worker) {
+      try {
+        await worker.setParameters({
+          tessedit_char_whitelist: "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789",
+          tessedit_pageseg_mode: "10"
+        });
+        const res = await worker.recognize(charCanvas);
+        detected = (res?.data?.text || "").replace(/[^a-zA-Z0-9]/g, "").trim().toUpperCase();
+        confidence = res?.data?.confidence || 0;
+      } catch (_) {}
+    }
+
+    // 2. Corrélation de templates de glyphes 24x24 (instantané)
+    buildGlyphTemplates();
+    const ctx = charCanvas.getContext("2d", { willReadFrequently: true });
+    const imgData = ctx.getImageData(0, 0, 160, 160).data;
+
+    let minX = 160, minY = 160, maxX = 0, maxY = 0;
+    for (let y = 0; y < 160; y++) {
+      for (let x = 0; x < 160; x++) {
+        const idx = (y * 160 + x) * 4;
+        if (imgData[idx] < 140) {
+          if (x < minX) minX = x;
+          if (x > maxX) maxX = x;
+          if (y < minY) minY = y;
+          if (y > maxY) maxY = y;
+        }
+      }
+    }
+
+    const norm = document.createElement("canvas");
+    norm.width = 24;
+    norm.height = 24;
+    const nCtx = norm.getContext("2d", { willReadFrequently: true });
+    nCtx.fillStyle = "#ffffff";
+    nCtx.fillRect(0, 0, 24, 24);
+
+    const bw = Math.max(1, maxX - minX + 1);
+    const bh = Math.max(1, maxY - minY + 1);
+    nCtx.drawImage(charCanvas, minX, minY, bw, bh, 2, 2, 20, 20);
+    const nData = nCtx.getImageData(0, 0, 24, 24).data;
+
+    let bestChar = "";
+    let bestScore = -Infinity;
+    let expectedTemplateScore = 0;
+    const expUpper = (expectedLetter || "").toUpperCase();
+
+    for (const ch of Object.keys(GLYPH_TEMPLATES)) {
+      const tpl = GLYPH_TEMPLATES[ch];
+      let score = 0;
+      for (let p = 0; p < 24 * 24; p++) {
+        const isDark = nData[p * 4] < 165 ? 1 : 0;
+        score += isDark === tpl[p] ? 1 : -1;
+      }
+      if (score > bestScore) {
+        bestScore = score;
+        bestChar = ch;
+      }
+      if (ch === expUpper) {
+        expectedTemplateScore = score;
+      }
+    }
+
+    if (!detected || confidence < 50) {
+      detected = bestChar;
+    }
+
+    // Calcul des métriques de calligraphie réelles
+    const shapeScore = Math.min(99, Math.max(48, Math.round(((expectedTemplateScore || bestScore) + 576) / (5.76 * 2) * 1.08)));
+    const targetAspect = 0.72;
+    const actualAspect = bw / bh;
+    const aspectDiff = Math.abs(actualAspect - targetAspect);
+    const sizeScore = Math.min(99, Math.max(55, Math.round(100 - aspectDiff * 38)));
+    const centerOffsetX = Math.abs((minX + maxX) / 2 - 80) / 80;
+    const centerOffsetY = Math.abs((minY + maxY) / 2 - 80) / 80;
+    const alignScore = Math.min(99, Math.max(60, Math.round(100 - (centerOffsetX * 20 + centerOffsetY * 20))));
+
+    const isMatch = expUpper ? (detected === expUpper || bestChar === expUpper) : true;
+
+    return {
+      success: true,
+      detectedLetter: detected || bestChar,
+      expectedLetter: expUpper,
+      isMatch,
+      shapeScore,
+      sizeScore,
+      alignScore,
+      charCanvas
+    };
+  }
+
   global.FennckyOCR = {
     getSystemMode,
     setSystemMode,
     getOcrConfig,
     saveOcrConfig,
+    acquireCameraStream,
+    evaluateHandwritingFromSource,
     openSystemChoiceModal,
     openCameraCalibrationModal,
     renderCategoryOcrBanner,

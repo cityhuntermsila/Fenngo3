@@ -77,7 +77,7 @@ const server = http.createServer((req, res) => {
       res.writeHead(304, {
         "ETag": etag,
         "Last-Modified": lastModified,
-        "Cache-Control": ext === ".html" ? "no-cache" : "public, max-age=86400, stale-while-revalidate=86400"
+        "Cache-Control": "no-cache"
       });
       res.end();
       return;
@@ -85,12 +85,9 @@ const server = http.createServer((req, res) => {
 
     // Set appropriate Cache-Control based on resource type
     let cacheControl;
-    if (ext === ".html") {
-      // HTML: always revalidate so edits show immediately, but allows 304
+    if (ext === ".html" || ext === ".js" || ext === ".css") {
+      // HTML, JS & CSS: always revalidate so live edits show immediately
       cacheControl = "no-cache";
-    } else if (ext === ".js" || ext === ".css") {
-      // Dev assets: revalidate with 304 if unchanged
-      cacheControl = "public, max-age=3600, stale-while-revalidate=86400";
     } else {
       // Images, sounds, fonts: cache in browser for 7 days
       cacheControl = "public, max-age=604800, stale-while-revalidate=86400";
