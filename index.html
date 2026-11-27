@@ -44,7 +44,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@600;700;800;900&family=Nunito:wght@600;700;800;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-  <link rel="stylesheet" href="css/fennygo.css?v=85">
+  <link rel="stylesheet" href="css/fennygo.css?v=91">
   <style>
     html {
       font-size: clamp(13px, 0.9vw, 15px);
@@ -280,6 +280,7 @@
       <nav class="hidden lg:flex items-center gap-0.5" id="mainNav">
         <a href="#accueil" class="nav-link" data-i18n="navHome">Accueil</a>
         <a href="category.html" class="nav-link" data-i18n="navHub">Kids Learner</a>
+        <a href="#telecharger" class="nav-link font-black !text-emerald-950 !bg-emerald-100 hover:!bg-emerald-200 border border-emerald-300" data-i18n="navDownload"><i class="fa-brands fa-android text-emerald-600 me-0.5"></i>Télécharger APK</a>
         <a href="#fennygo" class="nav-link" data-i18n="navFenny">Démo Interactive</a>
         <a href="#methode" class="nav-link" data-i18n="navMethod">Méthode 3AP</a>
         <a href="#hub" class="nav-link" data-i18n="navHubMenu">Espace Élève</a>
@@ -307,6 +308,7 @@
       <div class="grid grid-cols-2 gap-1 text-[11px]">
         <a href="#accueil" class="nav-link" data-i18n="navHome">Accueil</a>
         <a href="category.html" class="nav-link" data-i18n="navHub">Kids Learner</a>
+        <a href="#telecharger" class="nav-link font-black !text-emerald-950 !bg-emerald-100 border border-emerald-300 col-span-2 text-center" data-i18n="navDownload"><i class="fa-brands fa-android text-emerald-600 me-1"></i>Télécharger l'Application (.APK)</a>
         <a href="#fennygo" class="nav-link" data-i18n="navFenny">Démo Interactive</a>
         <a href="#methode" class="nav-link" data-i18n="navMethod">Méthode 3AP</a>
         <a href="#hub" class="nav-link" data-i18n="navHubMenu">Espace Élève</a>
@@ -386,6 +388,93 @@
     </section>
 
 
+
+<!-- ======================= ZONE TÉLÉCHARGEMENT APK ANDROID ======================= -->
+    <section id="telecharger" class="zone-card reveal border-2 border-emerald-400 bg-gradient-to-br from-emerald-50 via-white to-amber-50">
+      <div class="max-w-4xl mx-auto py-2 sm:py-3 space-y-3">
+        <div class="flex flex-wrap items-center justify-between gap-2 border-b border-emerald-200 pb-2">
+          <div class="flex items-center gap-2">
+            <span class="w-10 h-10 rounded-xl bg-gradient-to-br from-emerald-500 to-green-600 text-white grid place-items-center text-xl shadow-md">
+              <i class="fa-brands fa-android"></i>
+            </span>
+            <div>
+              <span class="eyebrow !bg-emerald-100 !border-emerald-300 !text-emerald-900" data-i18n="downloadEyebrow">Application Android Officielle</span>
+              <h2 class="sec-title !text-emerald-950 mt-0.5" data-i18n="downloadTitle">Télécharger Fenncky Kids Learner (.APK)</h2>
+            </div>
+          </div>
+          <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-100 border border-emerald-300 text-xs font-black text-emerald-900 shadow-xs">
+            <i class="fa-solid fa-file-shield text-emerald-600"></i> Fenncky-Kids-Learner.apk · 73.4 Mo
+          </span>
+        </div>
+
+        <p class="text-xs sm:text-sm font-bold text-emerald-950 leading-relaxed" data-i18n="downloadDesc">
+          Installez l'application native Android pour tablettes, smartphones et écrans interactifs (TBI). Profitez de toutes les activités de phonétique, jeux éducatifs 3D, reconnaissance d'objets (OCR) et histoires interactives en mode <b>100% autonome et hors-ligne</b>, sans connexion internet requise.
+        </p>
+
+        <!-- CTA Cards -->
+        <div class="grid sm:grid-cols-2 gap-3 items-stretch">
+          <div class="rounded-xl p-3 bg-white border-2 border-emerald-300 shadow-sm flex flex-col justify-between space-y-2">
+            <div>
+              <div class="flex items-center gap-1.5 text-xs font-black text-emerald-950">
+                <i class="fa-solid fa-download text-emerald-600"></i>
+                <span data-i18n="directDownloadT">Téléchargement direct</span>
+              </div>
+              <p class="text-[11px] font-bold text-emerald-800 mt-1" data-i18n="directDownloadD">
+                Téléchargez immédiatement le fichier APK sur votre appareil depuis ce site ou partagez-le.
+              </p>
+            </div>
+            <a href="Fenncky-Kids-Learner.apk" download="Fenncky-Kids-Learner.apk" class="btn btn-orange w-full !py-2 !text-xs shadow-md">
+              <i class="fa-solid fa-cloud-arrow-down text-sm"></i>
+              <span data-i18n="btnDownloadApk">Télécharger Fenncky-Kids-Learner.apk (73 Mo)</span>
+            </a>
+          </div>
+
+          <div class="rounded-xl p-3 bg-white border-2 border-sky-300 shadow-sm flex flex-col justify-between space-y-2">
+            <div>
+              <div class="flex items-center gap-1.5 text-xs font-black text-sky-950">
+                <i class="fa-solid fa-share-nodes text-sky-600"></i>
+                <span data-i18n="shareEmailT">Partager par e-mail ou lien direct</span>
+              </div>
+              <p class="text-[11px] font-bold text-sky-800 mt-1" data-i18n="shareEmailD">
+                Lien direct permanent GitHub hébergé pour faciliter le téléchargement direct depuis un email ou messagerie.
+              </p>
+            </div>
+            <div class="flex flex-col sm:flex-row gap-1.5">
+              <button type="button" id="copyApkLinkBtn" class="btn btn-blue flex-1 !py-2 !text-[11px]" onclick="copyApkLink()">
+                <i class="fa-solid fa-copy"></i>
+                <span id="copyApkBtnText" data-i18n="copyLinkBtn">Copier le lien direct</span>
+              </button>
+              <a href="mailto:?subject=Application%20Fenncky%20Kids%20Learner%20(APK)&body=Bonjour,%0A%0AVoici%20le%20lien%20direct%20pour%20t%C3%A9l%C3%A9charger%20l'application%20Android%20Fenncky%20Kids%20Learner%20(Fenncky-Kids-Learner.apk)%20:%0Ahttps://raw.githubusercontent.com/cityhuntermsila/Fenngo3/main/Fenncky-Kids-Learner.apk%0A%0ABonne%20utilisation%20!" class="btn btn-v flex-1 !py-2 !text-[11px]">
+                <i class="fa-solid fa-envelope"></i>
+                <span data-i18n="sendEmailBtn">Envoyer par e-mail</span>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- 3-step Installation Guide -->
+        <div class="rounded-xl bg-emerald-950 text-white p-3 space-y-1.5">
+          <div class="text-xs font-black text-amber-300 flex items-center gap-1.5">
+            <i class="fa-solid fa-circle-info"></i>
+            <span data-i18n="installStepsT">Guide d'installation rapide sur Android</span>
+          </div>
+          <div class="grid sm:grid-cols-3 gap-2 text-[11px] font-bold text-emerald-100">
+            <div class="flex items-start gap-2 bg-white/10 rounded-lg p-2">
+              <span class="w-5 h-5 rounded-full bg-amber-400 text-emerald-950 font-black grid place-items-center text-[10px] flex-shrink-0">1</span>
+              <span data-i18n="step1">Cliquez sur « Télécharger l'APK » sur votre tablette ou smartphone.</span>
+            </div>
+            <div class="flex items-start gap-2 bg-white/10 rounded-lg p-2">
+              <span class="w-5 h-5 rounded-full bg-amber-400 text-emerald-950 font-black grid place-items-center text-[10px] flex-shrink-0">2</span>
+              <span data-i18n="step2">Ouvrez le fichier téléchargé et autorisez l'installation (sources inconnues).</span>
+            </div>
+            <div class="flex items-start gap-2 bg-white/10 rounded-lg p-2">
+              <span class="w-5 h-5 rounded-full bg-amber-400 text-emerald-950 font-black grid place-items-center text-[10px] flex-shrink-0">3</span>
+              <span data-i18n="step3">Lancez Fenncky Kids Learner et commencez à apprendre hors-ligne !</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
 
     <!-- =========================================================
          ZONE 2: FENNYGO3 - VITRINE INTERACTIVE DU COMPAGNON VIRTUEL
@@ -742,6 +831,42 @@
               <li class="flex items-start gap-1"><i class="fa-solid fa-circle-check text-y-d text-[10px] mt-0.5"></i><span data-i18n="v4">Fonctionne hors-ligne sur tablettes et TBI</span></li>
             </ul>
             <a href="#contact" class="btn btn-ghost w-full !text-[10.5px] !py-1"><span data-i18n="joinBtn">Rejoindre l'aventure</span><i class="fa-solid fa-arrow-right rtl:rotate-180 text-[9px]"></i></a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Équipe de recherche & Créateurs -->
+      <div class="mt-4 pt-3 border-t border-emerald-200">
+        <div class="flex flex-wrap items-center justify-between gap-2 mb-2">
+          <h4 class="text-xs sm:text-sm font-black text-emerald-950 flex items-center gap-1.5">
+            <i class="fa-solid fa-graduation-cap text-emerald-600 text-base"></i>
+            <span data-i18n="creatorsT">Équipe de Recherche &amp; Créateurs · Université Mohamed Boudiaf M'sila</span>
+          </h4>
+          <span class="text-[10px] font-black text-emerald-800 bg-emerald-100 border border-emerald-300 rounded-full px-2.5 py-0.5">
+            🇩🇿 Université Mohamed Boudiaf M'sila
+          </span>
+        </div>
+        <div class="grid sm:grid-cols-3 gap-2.5">
+          <div class="rounded-xl p-3 bg-white border-2 border-emerald-200 shadow-xs space-y-1 hover:border-emerald-400 transition">
+            <div class="font-black text-xs sm:text-sm text-emerald-950">Hala Benziane</div>
+            <div class="text-[10px] font-extrabold text-emerald-700">Conception &amp; Pédagogie</div>
+            <a href="mailto:hala.ben20042022@gmail.com" class="inline-flex items-center gap-1 text-[10px] font-bold text-sky-700 hover:text-sky-900 break-all">
+              <i class="fa-solid fa-envelope text-[9px]"></i> hala.ben20042022@gmail.com
+            </a>
+          </div>
+          <div class="rounded-xl p-3 bg-white border-2 border-emerald-200 shadow-xs space-y-1 hover:border-emerald-400 transition">
+            <div class="font-black text-xs sm:text-sm text-emerald-950">Mostefa Tabbakh</div>
+            <div class="text-[10px] font-extrabold text-emerald-700">Recherche &amp; Développement</div>
+            <a href="mailto:mostefa.tabbakh@univ-msila.dz" class="inline-flex items-center gap-1 text-[10px] font-bold text-sky-700 hover:text-sky-900 break-all">
+              <i class="fa-solid fa-envelope text-[9px]"></i> mostefa.tabbakh@univ-msila.dz
+            </a>
+          </div>
+          <div class="rounded-xl p-3 bg-white border-2 border-emerald-200 shadow-xs space-y-1 hover:border-emerald-400 transition">
+            <div class="font-black text-xs sm:text-sm text-emerald-950">Aboubakr Hamoudi</div>
+            <div class="text-[10px] font-extrabold text-emerald-700">Recherche &amp; Technologies Éducatives</div>
+            <a href="mailto:aboubakr.hamoudi@univ-msila.dz" class="inline-flex items-center gap-1 text-[10px] font-bold text-sky-700 hover:text-sky-900 break-all">
+              <i class="fa-solid fa-envelope text-[9px]"></i> aboubakr.hamoudi@univ-msila.dz
+            </a>
           </div>
         </div>
       </div>
@@ -1170,10 +1295,12 @@
             <p class="text-[11px] font-bold text-v-2 mt-0.5" data-i18n="contactSub">Notre équipe vous répond sous 24h.</p>
           </div>
 
-          <ul class="space-y-1 text-[11px] font-bold">
-            <li class="flex items-center gap-1.5"><span class="w-6 h-6 rounded-md bg-y text-v9 grid place-items-center text-[10px]"><i class="fa-solid fa-location-dot"></i></span><span data-i18n="contactLoc">Cyberparc, Alger — Algérie</span></li>
-            <li class="flex items-center gap-1.5"><span class="w-6 h-6 rounded-md bg-y text-v9 grid place-items-center text-[10px]"><i class="fa-brands fa-whatsapp"></i></span><a href="tel:+213550123456" class="hover:text-y" dir="ltr">+213 550 12 34 56</a></li>
-            <li class="flex items-center gap-1.5"><span class="w-6 h-6 rounded-md bg-y text-v9 grid place-items-center text-[10px]"><i class="fa-solid fa-envelope"></i></span><a href="mailto:contact@fenncky-edtech.dz" class="hover:text-y">contact@fenncky-edtech.dz</a></li>
+          <ul class="space-y-1.5 text-[11px] font-bold">
+            <li class="flex items-center gap-1.5"><span class="w-6 h-6 rounded-md bg-y text-v9 grid place-items-center text-[10px]"><i class="fa-solid fa-building-columns"></i></span><span data-i18n="contactLoc">Université Mohamed Boudiaf M'sila — Algérie 🇩🇿</span></li>
+            <li class="flex items-center gap-1.5"><span class="w-6 h-6 rounded-md bg-y text-v9 grid place-items-center text-[10px]"><i class="fa-solid fa-envelope"></i></span><a href="mailto:hala.ben20042022@gmail.com" class="hover:text-y">Hala Benziane : hala.ben20042022@gmail.com</a></li>
+            <li class="flex items-center gap-1.5"><span class="w-6 h-6 rounded-md bg-y text-v9 grid place-items-center text-[10px]"><i class="fa-solid fa-envelope"></i></span><a href="mailto:mostefa.tabbakh@univ-msila.dz" class="hover:text-y">Mostefa Tabbakh : mostefa.tabbakh@univ-msila.dz</a></li>
+            <li class="flex items-center gap-1.5"><span class="w-6 h-6 rounded-md bg-y text-v9 grid place-items-center text-[10px]"><i class="fa-solid fa-envelope"></i></span><a href="mailto:aboubakr.hamoudi@univ-msila.dz" class="hover:text-y">Aboubakr Hamoudi : aboubakr.hamoudi@univ-msila.dz</a></li>
+            <li class="flex items-center gap-1.5"><span class="w-6 h-6 rounded-md bg-emerald-500 text-white grid place-items-center text-[10px]"><i class="fa-brands fa-android"></i></span><a href="Fenncky-Kids-Learner.apk" download class="hover:text-amber-300 font-black text-amber-300">Télécharger Fenncky-Kids-Learner.apk (73.4 Mo)</a></li>
           </ul>
 
           <div class="space-y-1 pt-0.5 border-t border-v7">
@@ -1243,7 +1370,8 @@
       <div>
         <h4 class="text-y font-black uppercase text-[10px] mb-1" data-i18n="footProject">Le projet</h4>
         <ul class="space-y-0.5 text-[10.5px]">
-          <li><a href="#qui-sommes-nous" class="hover:text-y" data-i18n="navAbout">Qui sommes-nous</a></li>
+          <li><a href="#telecharger" class="hover:text-amber-300 text-amber-300 font-black" data-i18n="navDownload"><i class="fa-brands fa-android me-1"></i>Télécharger l'APK</a></li>
+          <li><a href="#qui-sommes-nous" class="hover:text-y" data-i18n="navAbout">Créateurs &amp; Recherche</a></li>
           <li><a href="#offres" class="hover:text-y" data-i18n="navOffers">Offres</a></li>
           <li><a href="#partenaires" class="hover:text-y" data-i18n="navPartners">Partenaires</a></li>
         </ul>
@@ -1255,8 +1383,8 @@
     </div>
     <div class="border-t border-v8">
       <div class="max-w-6xl mx-auto px-3.5 py-2 flex flex-wrap justify-between gap-1.5 text-[9.5px] font-bold text-v-4">
-        <span>© 2026 Fenncky — Kids Learner &amp; FennyGo3</span>
-        <span data-i18n="footMade">Fait avec ❤️ pour les élèves d'Algérie 🇩🇿</span>
+        <span>© 2026 Fenncky — Conçu à l'Université Mohamed Boudiaf M'sila par Hala Benziane, Mostefa Tabbakh &amp; Aboubakr Hamoudi</span>
+        <span><a href="Fenncky-Kids-Learner.apk" download class="underline font-bold text-amber-300"><i class="fa-brands fa-android"></i> Fenncky-Kids-Learner.apk</a> · Fait avec ❤️ pour les élèves d'Algérie 🇩🇿</span>
       </div>
     </div>
   </footer>
@@ -1274,15 +1402,20 @@
     </div>
   </div>
 
-  <script src="js/app-lang.js?v=86"></script>
-  <script src="js/fenny-companion.js?v=86"></script>
-  <script src="js/ocr-system.js?v=86"></script>
+  <script src="js/app-lang.js?v=91"></script>
+  <script src="js/fenny-companion.js?v=91"></script>
+  <script src="js/ocr-system.js?v=91"></script>
   <script>
     (() => {
       /* ---------------- i18n (FR = HTML default) ---------------- */
       const I18N = {
         English: {
-          navHome: "Home", navFenny: "Interactive Demo", navMethod: "3PS Method", navHubMenu: "Student Space", navAbout: "About us", navOffers: "Pricing", navPartners: "Our Partners", navContact: "Contact", navHub: "Kids Learner",
+          navHome: "Home", navFenny: "Interactive Demo", navMethod: "3PS Method", navHubMenu: "Student Space", navAbout: "About us", navOffers: "Pricing", navPartners: "Our Partners", navContact: "Contact", navHub: "Kids Learner", navDownload: "Download APK",
+          downloadEyebrow: "Official Android Application", downloadTitle: "Download Fenncky Kids Learner (.APK)", downloadDesc: "Install the native Android application for tablets, smartphones, and interactive whiteboards (IWB). Enjoy all phonics activities, 3D educational games, object recognition (OCR), and interactive stories in 100% standalone offline mode, no internet connection required.",
+          directDownloadT: "Direct Download", directDownloadD: "Download the APK file immediately to your device from this site or share it.", btnDownloadApk: "Download Fenncky-Kids-Learner.apk (73 MB)",
+          shareEmailT: "Share via email or direct link", shareEmailD: "Permanent hosted GitHub raw link to easily share and download directly via email or messaging.", copyLinkBtn: "Copy direct link", sendEmailBtn: "Send via email",
+          installStepsT: "Quick Android installation guide", step1: "Click 'Download APK' on your tablet or smartphone.", step2: "Open the downloaded file and allow installation (unknown sources).", step3: "Launch Fenncky Kids Learner and start learning offline!",
+          creatorsT: "Research Team & Creators · Université Mohamed Boudiaf M'sila",
           vertMenuTitle: "Network Partners Continuous Feed", vertMenuSub: "Continuous vertical scrolling · Hover to pause", vertMenuLive: "Live",
           heroEyebrow: "Official 3PS curriculum · Trilingual EN / FR / AR",
           heroTitle: "Language learning that makes kids want to learn.",
@@ -1659,6 +1792,21 @@
         form.reset();
       });
     })();
+  </script>
+  <script>
+    function copyApkLink() {
+      const url = "https://raw.githubusercontent.com/cityhuntermsila/Fenngo3/main/Fenncky-Kids-Learner.apk";
+      navigator.clipboard.writeText(url).then(() => {
+        const btnText = document.getElementById("copyApkBtnText");
+        if (btnText) {
+          const prev = btnText.textContent;
+          btnText.textContent = "✓ Lien copié !";
+          setTimeout(() => { btnText.textContent = prev; }, 2500);
+        }
+      }).catch(() => {
+        prompt("Copiez le lien direct ci-dessous :", url);
+      });
+    }
   </script>
 </body>
 

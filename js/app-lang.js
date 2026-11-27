@@ -361,14 +361,14 @@
     // Auto-load Fenny Virtual Companion on all pages
     if (!window.FennyGo && !document.querySelector('script[src*="fenny-companion.js"]')) {
       const s = document.createElement("script");
-      s.src = "js/fenny-companion.js?v=86";
+      s.src = "js/fenny-companion.js?v=91";
       document.body.appendChild(s);
     }
 
     // Auto-load Fenncky OCR & System Selector (1. Système Simple | 2. Système OCR) on all pages
     if (!window.FennckyOCR && !document.querySelector('script[src*="ocr-system.js"]')) {
       const ocrScript = document.createElement("script");
-      ocrScript.src = "js/ocr-system.js?v=86";
+      ocrScript.src = "js/ocr-system.js?v=91";
       document.body.appendChild(ocrScript);
     }
   });

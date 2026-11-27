@@ -1076,19 +1076,21 @@
     }
 
     function generateChoicesFor(target, forbiddenLane = -1) {
-      const pool = db.letters.map((x) => x.base).filter((b) => b !== target);
+      const fallbackLetters = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'R', 'S', 'T', 'U'];
+      const rawPool = (db && db.letters && db.letters.length ? db.letters.map((x) => x.base) : fallbackLetters).filter((b) => b !== target);
+      const pool = rawPool.length >= 2 ? rawPool : fallbackLetters.filter(b => b !== target);
       const distractors = shuffle(pool).slice(0, 2);
 
       // Garantir que la bonne porte change de voie (lane) à chaque apparition
       const allowedLanes = [0, 1, 2].filter((l) => l !== forbiddenLane);
-      const targetLane = allowedLanes[Math.floor(Math.random() * allowedLanes.length)];
+      const targetLane = allowedLanes.length > 0 ? allowedLanes[Math.floor(Math.random() * allowedLanes.length)] : Math.floor(Math.random() * 3);
 
       const res = [null, null, null];
       res[targetLane] = target;
       let dIdx = 0;
       for (let i = 0; i < 3; i++) {
         if (res[i] === null) {
-          res[i] = distractors[dIdx++];
+          res[i] = distractors[dIdx++] || fallbackLetters[(i + 3) % fallbackLetters.length];
         }
       }
       return { choices: res, targetLane };
@@ -1101,8 +1103,8 @@
       gateDoorAngle = 0;
       const targetLetter = currentWordObj.letters[letterStep];
 
-      if (nextGateChoices && nextGateChoices.length === 3 && nextGateChoices.includes(targetLetter)) {
-        gateChoices = nextGateChoices;
+      if (nextGateChoices && nextGateChoices.length === 3 && nextGateChoices.includes(targetLetter) && nextGateChoices.every(Boolean)) {
+        gateChoices = [...nextGateChoices];
         lastGateLane = nextTargetLane;
       } else {
         const gen = generateChoicesFor(targetLetter, lastGateLane);
@@ -1644,6 +1646,7 @@
           const isOpening = isCurrentGate && gateOpenLane === i;
           const isShaking = isCurrentGate && shakeLane === i;
           const shakeOffX = isShaking ? Math.sin(animTick * 32) * (5 + ptC.p * 4) : 0;
+          const letterChar = (choices && choices[i]) || (gateChoices && gateChoices[i]) || "";
 
           // Piliers en pierre taillée 3D de l'arche
           ctx.save();
@@ -1750,6 +1753,25 @@
             ctx.fill();
           }
 
+          // Médaillon gravé sur la porte avec la lettre en grand
+          if (!isOpening && doorH > 18) {
+            const doorBadgeR = Math.max(12, Math.min(28, doorW * 0.32));
+            ctx.fillStyle = "#fbbf24";
+            ctx.beginPath();
+            ctx.arc(ptC.x, doorY + doorH * 0.48, doorBadgeR, 0, Math.PI * 2);
+            ctx.fill();
+            ctx.strokeStyle = "#b45309";
+            ctx.lineWidth = 2;
+            ctx.stroke();
+
+            // Lettre sur la porte
+            ctx.font = `900 ${Math.max(14, Math.round(doorBadgeR * 1.25))}px 'Cairo', 'Nunito', 'Segoe UI', Arial, sans-serif`;
+            ctx.textAlign = "center";
+            ctx.textBaseline = "middle";
+            ctx.fillStyle = "#78350f";
+            ctx.fillText(letterChar, ptC.x, doorY + doorH * 0.48);
+          }
+
           // ÉCUSSON ROYAL / BLASON DE LA LETTRE SUSPENDU À L'ARCHE
           const bob = isOpening ? -12 : Math.sin(animTick * 3 + i * 1.4) * (3 + ptC.p * 3);
           const signW = Math.min(108, ptC.laneW * 0.65);
@@ -1782,18 +1804,25 @@
           ctx.lineWidth = 3.5 + ptC.p * 2.5;
 
           ctx.beginPath();
-          ctx.roundRect(signX, signY, signW, signH, 14);
+          if (typeof ctx.roundRect === 'function') {
+            ctx.roundRect(signX, signY, signW, signH, Math.min(14, signH * 0.35));
+          } else {
+            ctx.rect(signX, signY, signW, signH);
+          }
           ctx.fill();
           ctx.stroke();
           ctx.shadowBlur = 0;
 
-          // Lettre capitale imposante et nette
-          ctx.fillStyle = isOpening ? "#15803d" : "#0f172a";
-          const fontSize = Math.max(18, Math.round(signH * 0.62));
-          ctx.font = `900 ${fontSize}px Cairo, sans-serif`;
+          // Lettre capitale imposante, ultra nette avec contour blanc
+          const fontSize = Math.max(22, Math.round(signH * 0.68));
+          ctx.font = `900 ${fontSize}px 'Cairo', 'Nunito', 'Segoe UI', Arial, sans-serif`;
           ctx.textAlign = "center";
           ctx.textBaseline = "middle";
-          const letterChar = (choices && choices[i]) || (isCurrentGate ? (gateChoices[i] || "") : "");
+          ctx.lineWidth = Math.max(3, Math.round(fontSize * 0.16));
+          ctx.strokeStyle = "#ffffff";
+          ctx.strokeText(letterChar, ptC.x, signY + signH * 0.52);
+
+          ctx.fillStyle = isOpening ? "#15803d" : "#0f172a";
           ctx.fillText(letterChar, ptC.x, signY + signH * 0.52);
 
           ctx.restore();
@@ -1810,32 +1839,42 @@
       }
 
       // ---------------------------------------------------------
-      // 5. POUSSIN MASCOTTE 3D (ANIMATION DE MARCHE PERMANENTE & SAUT DE GLOIRE)
+      // 5. POUSSIN MASCOTTE 3D (ANIMATION DE COURSE CONTINUE & PIEDS QUI S'AGITENT)
       // ---------------------------------------------------------
       const chickPt = proj(chickZ, chickLaneSmooth - 1);
-      const hopSpeed = transitioning ? 8.8 : 6.8;
-      const hopMax = transitioning ? 22 : 14;
+      const hopSpeed = transitioning ? 9.6 : 7.6;
+      const hopMax = transitioning ? 22 : 12;
       const hop = -Math.abs(Math.sin(animTick * hopSpeed)) * hopMax;
-      const walkWaddle = Math.sin(animTick * hopSpeed) * 0.07;
+      const walkWaddle = Math.sin(animTick * hopSpeed) * 0.08;
 
-      // Émission de poussière régulière lors de la marche et boost lors de la traversée
-      if ((transitioning && Math.random() < 0.45) || (!transitioning && Math.random() < 0.22)) {
-        spawnDust(chickPt.x + (Math.random() - 0.5) * 18, chickPt.y + 10, transitioning ? 2 : 1);
+      // Émission de poussière régulière sous les pattes
+      if ((transitioning && Math.random() < 0.45) || (!transitioning && Math.random() < 0.28)) {
+        spawnDust(chickPt.x + (Math.random() - 0.5) * 22, chickPt.y + 24, transitioning ? 2 : 1);
       }
-      if (transitioning && gateTransitionProg > 0.45 && gateTransitionProg < 0.8 && Math.random() < 0.35) {
+      if (transitioning && gateTransitionProg > 0.45 && gateTransitionProg < 0.85 && Math.random() < 0.35) {
         spawnVictorySparkles(chickPt.x, chickPt.y - 20, 3);
       }
-
-      ctx.save();
-      ctx.translate(chickPt.x, chickPt.y + hop);
-      ctx.rotate(chickLean + walkWaddle);
 
       // Ombre portée au sol en 3D (s'écrase et grandit au sol)
       const shadowScale = Math.max(0.05, (1 - Math.abs(hop) / (hopMax * 2.2)) * (0.6 + chickPt.p * 0.55));
       ctx.fillStyle = "rgba(0, 0, 0, 0.22)";
       ctx.beginPath();
-      ctx.ellipse(0, 34 - hop, Math.max(1, 30 * shadowScale), Math.max(1, 10 * shadowScale), 0, 0, Math.PI * 2);
+      ctx.ellipse(chickPt.x, chickPt.y + 34, Math.max(1, 30 * shadowScale), Math.max(1, 10 * shadowScale), 0, 0, Math.PI * 2);
       ctx.fill();
+
+      // Petites pattes oranges animées (qui courent constamment)
+      const footCycle = Math.sin(animTick * hopSpeed * 1.1);
+      const footL_Y = footCycle > 0 ? -6 : 2;
+      const footR_Y = footCycle <= 0 ? -6 : 2;
+      ctx.fillStyle = "#f97316";
+      ctx.beginPath();
+      ctx.ellipse(chickPt.x - 12 + chickLean * 8, chickPt.y + 28 + footL_Y, 7, 4, 0, 0, Math.PI * 2);
+      ctx.ellipse(chickPt.x + 12 + chickLean * 8, chickPt.y + 28 + footR_Y, 7, 4, 0, 0, Math.PI * 2);
+      ctx.fill();
+
+      ctx.save();
+      ctx.translate(chickPt.x, chickPt.y + hop);
+      ctx.rotate(chickLean + walkWaddle);
 
       // Dessin du Sprite 3D Pixar mignon
       const chickW = Math.round(84 * (0.65 + chickPt.p * 0.55));
