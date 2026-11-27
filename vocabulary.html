@@ -10,8 +10,8 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@600;700;800;900&family=Nunito:wght@600;700;800;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-  <link rel="stylesheet" href="css/common.css?v=91">
-  <link rel="stylesheet" href="css/fennygo.css?v=91">
+  <link rel="stylesheet" href="css/common.css?v=92">
+  <link rel="stylesheet" href="css/fennygo.css?v=92">
   <style>
     :root {
       --voc-amber-glow: #fdeebc;
@@ -682,8 +682,8 @@
   <audio id="audioCheer" src="assets/images/music/cheering.mp3" preload="auto"></audio>
 
   <!-- Core Scripts -->
-  <script src="js/app-lang.js?v=91"></script>
-  <script src="js/fenny-companion.js?v=91"></script>
+  <script src="js/app-lang.js?v=92"></script>
+  <script src="js/fenny-companion.js?v=92"></script>
   <script>
     (() => {
       "use strict";
@@ -1367,60 +1367,222 @@
       }
 
       // =========================================================
-      // 3. 🎙️ SPEAK (VOICE RECOGNITION CHALLENGE + CELEBRATION)
+      // 3. 🎙️ SPEAK (REAL SPEECH RECOGNITION + ACCURACY CHECK)
       // =========================================================
+      function levenshteinDist(a, b) {
+        const matrix = [];
+        for (let i = 0; i <= b.length; i++) matrix[i] = [i];
+        for (let j = 0; j <= a.length; j++) matrix[0][j] = j;
+        for (let i = 1; i <= b.length; i++) {
+          for (let j = 1; j <= a.length; j++) {
+            if (b.charAt(i - 1) === a.charAt(j - 1)) {
+              matrix[i][j] = matrix[i - 1][j - 1];
+            } else {
+              matrix[i][j] = Math.min(
+                matrix[i - 1][j - 1] + 1,
+                matrix[i][j - 1] + 1,
+                matrix[i - 1][j] + 1
+              );
+            }
+          }
+        }
+        return matrix[b.length][a.length];
+      }
+
+      function checkPronunciation(spokenText, targetWord) {
+        if (!spokenText || !targetWord) return false;
+        const normSpoken = spokenText.toLowerCase().replace(/[^a-z0-9]/g, "");
+        const normTarget = targetWord.toLowerCase().replace(/[^a-z0-9]/g, "");
+        if (!normSpoken || !normTarget) return false;
+
+        // Exact match
+        if (normSpoken === normTarget) return true;
+
+        // Spoken tokens (e.g. user said "the bag", "a pencil", "bag please")
+        const tokens = spokenText.toLowerCase().split(/[\s,.'"-]+/).filter(Boolean);
+        for (const t of tokens) {
+          const c = t.replace(/[^a-z0-9]/g, "");
+          if (c === normTarget) return true;
+        }
+
+        // Substring inclusion (length close)
+        if (normSpoken.includes(normTarget) && normSpoken.length <= normTarget.length + 4) return true;
+
+        // Levenshtein tolerance for kids & language learners
+        const maxDist = normTarget.length <= 4 ? 1 : 2;
+        if (levenshteinDist(normSpoken, normTarget) <= maxDist) return true;
+        for (const t of tokens) {
+          const c = t.replace(/[^a-z0-9]/g, "");
+          if (c.length >= normTarget.length - 1 && levenshteinDist(c, normTarget) <= maxDist) return true;
+        }
+
+        return false;
+      }
+
+      let activeVocabSpeechRec = null;
+
       function triggerSpeak() {
         const item = getCurrentWord();
         const statusMsg = document.getElementById("statusMsg");
+        const statusIco = document.getElementById("statusIco");
         const wave = document.getElementById("activeSoundwave");
-        if (statusMsg) statusMsg.textContent = `🎙️ Parle maintenant : Répète "${item.word}"...`;
-        if (wave) wave.classList.remove("hidden");
+        const btnSpeak = document.getElementById("btnSpeak");
+        const fennyBubble = document.getElementById("fennySpeechBubble");
+        const isFr = (currentVocabLang === "French");
 
-        const finalizeSuccess = (saidText) => {
-          if (wave) wave.classList.add("hidden");
-          if (statusMsg) {
-            statusMsg.textContent = `🎉 Superbe prononciation : "${saidText || item.word}" ! (+5 ⭐)`;
-          }
-          rewardStars(5, "Prononciation réussie !");
-        };
-
-        const SpeechRec = window.SpeechRecognition || window.webkitSpeechRecognition;
-        if (SpeechRec) {
-          try {
-            const rec = new SpeechRec();
-            rec.lang = "en-US";
-            rec.interimResults = false;
-            let captured = false;
-            rec.onresult = (e) => {
-              captured = true;
-              const result = e.results?.[0]?.[0]?.transcript || item.word;
-              finalizeSuccess(result.toUpperCase());
-            };
-            rec.onerror = () => {
-              if (!captured) {
-                captured = true;
-                finalizeSuccess(item.word);
-              }
-            };
-            rec.onend = () => {
-              if (!captured) {
-                captured = true;
-                finalizeSuccess(item.word);
-              }
-            };
-            rec.start();
-            setTimeout(() => {
-              if (!captured) {
-                try { rec.stop(); } catch (_) {}
-                finalizeSuccess(item.word);
-              }
-            }, 3400);
-            return;
-          } catch (_) {}
+        // If recognition already running, abort cleanly
+        if (activeVocabSpeechRec) {
+          try { activeVocabSpeechRec.abort(); } catch (_) {}
+          activeVocabSpeechRec = null;
         }
 
-        // Fallback simulation if browser speech recognition is not granted
-        setTimeout(() => finalizeSuccess(item.word), 1400);
+        const SpeechRec = window.SpeechRecognition || window.webkitSpeechRecognition;
+        if (!SpeechRec) {
+          if (wave) wave.classList.add("hidden");
+          if (statusIco) statusIco.textContent = "ℹ️";
+          if (statusMsg) {
+            statusMsg.textContent = isFr
+              ? "Reconnaissance vocale non supportée par ce navigateur (utilise Chrome ou Edge)."
+              : "Speech recognition not supported by this browser (use Chrome or Edge).";
+          }
+          if (fennyBubble) fennyBubble.textContent = isFr ? "Micro non disponible 🦊" : "Mic unavailable 🦊";
+          return;
+        }
+
+        let hasResult = false;
+        let hadError = false;
+
+        try {
+          const rec = new SpeechRec();
+          activeVocabSpeechRec = rec;
+          rec.lang = "en-US";
+          rec.continuous = false;
+          rec.interimResults = false;
+          rec.maxAlternatives = 3;
+
+          if (statusIco) statusIco.textContent = "🎙️";
+          if (statusMsg) {
+            statusMsg.textContent = isFr
+              ? `J'écoute... Prononce clairement : "${item.word}" !`
+              : `Listening... Say clearly: "${item.word}"!`;
+          }
+          if (wave) wave.classList.remove("hidden");
+          if (btnSpeak) btnSpeak.classList.add("ring-4", "ring-emerald-400", "animate-pulse");
+          if (fennyBubble) fennyBubble.textContent = isFr ? `À toi ! Dis "${item.word}" ! 🦊` : `Your turn! Say "${item.word}"! 🦊`;
+
+          rec.onresult = (e) => {
+            hasResult = true;
+            let spoken = "";
+            let matched = false;
+
+            if (e.results && e.results.length > 0) {
+              for (let i = 0; i < e.results.length; i++) {
+                for (let j = 0; j < e.results[i].length; j++) {
+                  const candidate = (e.results[i][j].transcript || "").trim();
+                  if (!spoken) spoken = candidate;
+                  if (checkPronunciation(candidate, item.word)) {
+                    matched = true;
+                    spoken = candidate;
+                    break;
+                  }
+                }
+                if (matched) break;
+              }
+            }
+
+            if (wave) wave.classList.add("hidden");
+            if (btnSpeak) btnSpeak.classList.remove("ring-4", "ring-emerald-400", "animate-pulse");
+
+            if (matched) {
+              // Real pronunciation match!
+              if (statusIco) statusIco.textContent = "🎉";
+              if (statusMsg) {
+                statusMsg.textContent = isFr
+                  ? `Bravo ! Excellente prononciation : "${item.word}" ! (+5 ⭐)`
+                  : `Bravo! Excellent pronunciation: "${item.word}"! (+5 ⭐)`;
+              }
+              if (fennyBubble) fennyBubble.textContent = `“Bravo! ${item.word}!” ⭐`;
+              rewardStars(5, "Prononciation réussie !");
+              speakEn("Bravo! " + item.word);
+            } else {
+              // User spoke, but word does NOT match
+              if (statusIco) statusIco.textContent = "❌";
+              if (statusMsg) {
+                statusMsg.textContent = isFr
+                  ? `J'ai entendu "${spoken}". Répète bien : "${item.word}" ! 🎙️`
+                  : `I heard "${spoken}". Try repeating: "${item.word}"! 🎙️`;
+              }
+              if (fennyBubble) fennyBubble.textContent = isFr ? `Réessaie : "${item.word}" 🦊` : `Try again: "${item.word}" 🦊`;
+              // NO STARS! NO BRAVO! Re-pronounce target word so child hears it
+              speakEn(item.word);
+            }
+          };
+
+          rec.onerror = (e) => {
+            hadError = true;
+            if (wave) wave.classList.add("hidden");
+            if (btnSpeak) btnSpeak.classList.remove("ring-4", "ring-emerald-400", "animate-pulse");
+
+            if (e.error === "no-speech") {
+              if (statusIco) statusIco.textContent = "🤫";
+              if (statusMsg) {
+                statusMsg.textContent = isFr
+                  ? `Aucun son détecté. Clique sur 🎙️ et prononce "${item.word}" dans le micro !`
+                  : `No speech detected. Click 🎙️ and say "${item.word}" into the mic!`;
+              }
+              if (fennyBubble) fennyBubble.textContent = isFr ? "Parle plus fort ! 🦊" : "Speak louder! 🦊";
+            } else if (e.error === "not-allowed" || e.error === "service-not-allowed") {
+              if (statusIco) statusIco.textContent = "🚫";
+              if (statusMsg) {
+                statusMsg.textContent = isFr
+                  ? "Micro non autorisé. Autorise le micro dans ton navigateur !"
+                  : "Microphone permission denied. Allow mic access in your browser!";
+              }
+              if (fennyBubble) fennyBubble.textContent = isFr ? "Autorise le micro 🎤" : "Allow mic access 🎤";
+            } else if (e.error === "network") {
+              if (statusIco) statusIco.textContent = "⚠️";
+              if (statusMsg) {
+                statusMsg.textContent = isFr
+                  ? "Service vocal inaccessible (vérifie la connexion)."
+                  : "Speech recognition service unreachable.";
+              }
+            } else {
+              if (statusIco) statusIco.textContent = "⚠️";
+              if (statusMsg) {
+                statusMsg.textContent = isFr
+                  ? `Réessaie de prononcer "${item.word}".`
+                  : `Try saying "${item.word}" again.`;
+              }
+            }
+          };
+
+          rec.onend = () => {
+            activeVocabSpeechRec = null;
+            if (wave) wave.classList.add("hidden");
+            if (btnSpeak) btnSpeak.classList.remove("ring-4", "ring-emerald-400", "animate-pulse");
+            if (!hasResult && !hadError) {
+              if (statusIco) statusIco.textContent = "⏱️";
+              if (statusMsg) {
+                statusMsg.textContent = isFr
+                  ? `Temps écoulé. Clique sur 🎙️ et dis "${item.word}" !`
+                  : `Time out. Click 🎙️ and say "${item.word}"!`;
+              }
+              if (fennyBubble) fennyBubble.textContent = isFr ? "À toi de parler ! 🦊" : "Your turn to speak! 🦊";
+            }
+          };
+
+          rec.start();
+        } catch (err) {
+          activeVocabSpeechRec = null;
+          if (wave) wave.classList.add("hidden");
+          if (btnSpeak) btnSpeak.classList.remove("ring-4", "ring-emerald-400", "animate-pulse");
+          if (statusIco) statusIco.textContent = "⚠️";
+          if (statusMsg) {
+            statusMsg.textContent = isFr
+              ? "Impossible de démarrer le micro. Vérifie tes paramètres."
+              : "Could not start microphone. Check browser settings.";
+          }
+        }
       }
 
       // =========================================================

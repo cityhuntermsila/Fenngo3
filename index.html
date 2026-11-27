@@ -44,7 +44,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@600;700;800;900&family=Nunito:wght@600;700;800;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-  <link rel="stylesheet" href="css/fennygo.css?v=91">
+  <link rel="stylesheet" href="css/fennygo.css?v=92">
   <style>
     html {
       font-size: clamp(13px, 0.9vw, 15px);
@@ -1402,9 +1402,9 @@
     </div>
   </div>
 
-  <script src="js/app-lang.js?v=91"></script>
-  <script src="js/fenny-companion.js?v=91"></script>
-  <script src="js/ocr-system.js?v=91"></script>
+  <script src="js/app-lang.js?v=92"></script>
+  <script src="js/fenny-companion.js?v=92"></script>
+  <script src="js/ocr-system.js?v=92"></script>
   <script>
     (() => {
       /* ---------------- i18n (FR = HTML default) ---------------- */
@@ -1700,47 +1700,154 @@
         window.FennyGo?.speakWithWave(`${item.word}!`, "en-US");
       }
 
+      function levenshteinDistIdx(a, b) {
+        const matrix = [];
+        for (let i = 0; i <= b.length; i++) matrix[i] = [i];
+        for (let j = 0; j <= a.length; j++) matrix[0][j] = j;
+        for (let i = 1; i <= b.length; i++) {
+          for (let j = 1; j <= a.length; j++) {
+            if (b.charAt(i - 1) === a.charAt(j - 1)) {
+              matrix[i][j] = matrix[i - 1][j - 1];
+            } else {
+              matrix[i][j] = Math.min(
+                matrix[i - 1][j - 1] + 1,
+                matrix[i][j - 1] + 1,
+                matrix[i - 1][j] + 1
+              );
+            }
+          }
+        }
+        return matrix[b.length][a.length];
+      }
+
+      function checkPronunciationIdx(spokenText, targetWord) {
+        if (!spokenText || !targetWord) return false;
+        const normSpoken = spokenText.toLowerCase().replace(/[^a-z0-9]/g, "");
+        const normTarget = targetWord.toLowerCase().replace(/[^a-z0-9]/g, "");
+        if (!normSpoken || !normTarget) return false;
+
+        if (normSpoken === normTarget) return true;
+
+        const tokens = spokenText.toLowerCase().split(/[\s,.'"-]+/).filter(Boolean);
+        for (const t of tokens) {
+          const c = t.replace(/[^a-z0-9]/g, "");
+          if (c === normTarget) return true;
+        }
+
+        if (normSpoken.includes(normTarget) && normSpoken.length <= normTarget.length + 4) return true;
+
+        const maxDist = normTarget.length <= 4 ? 1 : 2;
+        if (levenshteinDistIdx(normSpoken, normTarget) <= maxDist) return true;
+        for (const t of tokens) {
+          const c = t.replace(/[^a-z0-9]/g, "");
+          if (c.length >= normTarget.length - 1 && levenshteinDistIdx(c, normTarget) <= maxDist) return true;
+        }
+
+        return false;
+      }
+
+      let activeIndexSpeechRec = null;
+
       function triggerMsSpeak() {
         const item = MS_WORDS[msWordIdx % MS_WORDS.length];
         const status = document.getElementById("fgStatusBanner");
         const fenny = document.getElementById("fgFennyMascot");
         const notes = document.getElementById("fgFennyNotes");
-        if (status) status.textContent = `🎙️ Parle maintenant : Répète "${item.word}"...`;
+        const btnSpeak = document.getElementById("fgBtnSpeak");
 
-        const celebrateSpeak = (transcript) => {
-          if (status) status.textContent = `🎉 Bravo ! Prononciation : "${transcript || item.word}" (+5 ⭐)`;
-          if (fenny) {
-            fenny.classList.add("scale-125", "-translate-y-1");
-            setTimeout(() => fenny.classList.remove("scale-125", "-translate-y-1"), 800);
-          }
-          if (notes) notes.textContent = "🎵 🎶 ⭐ 🎉";
-          if (window.FennyGo) {
-            window.FennyGo.addStars(5);
-            window.FennyGo.unlockBadge("phonics");
-            window.FennyGo.celebrate(`Awesome pronunciation! ${item.word}! +5 Stars!`);
-          }
-        };
+        if (activeIndexSpeechRec) {
+          try { activeIndexSpeechRec.abort(); } catch (_) {}
+          activeIndexSpeechRec = null;
+        }
 
         const SpeechRec = window.SpeechRecognition || window.webkitSpeechRecognition;
-        if (SpeechRec) {
-          try {
-            const rec = new SpeechRec();
-            rec.lang = "en-US";
-            rec.interimResults = false;
-            let handled = false;
-            rec.onresult = (e) => {
-              handled = true;
-              celebrateSpeak((e.results?.[0]?.[0]?.transcript || item.word).toUpperCase());
-            };
-            rec.onerror = rec.onend = () => {
-              if (!handled) { handled = true; celebrateSpeak(item.word); }
-            };
-            rec.start();
-            setTimeout(() => { if (!handled) { try { rec.stop(); } catch (_) {} celebrateSpeak(item.word); } }, 3000);
-            return;
-          } catch (_) {}
+        if (!SpeechRec) {
+          if (status) status.textContent = "ℹ️ Reconnaissance vocale non supportée sur ce navigateur (utilise Chrome ou Edge).";
+          return;
         }
-        setTimeout(() => celebrateSpeak(item.word), 1200);
+
+        let hasResult = false;
+        let hadError = false;
+
+        try {
+          const rec = new SpeechRec();
+          activeIndexSpeechRec = rec;
+          rec.lang = "en-US";
+          rec.continuous = false;
+          rec.interimResults = false;
+          rec.maxAlternatives = 3;
+
+          if (status) status.textContent = `🎙️ J'écoute... Prononce clairement : "${item.word}" !`;
+          if (btnSpeak) btnSpeak.classList.add("ring-4", "ring-purple-400", "animate-pulse");
+
+          rec.onresult = (e) => {
+            hasResult = true;
+            if (btnSpeak) btnSpeak.classList.remove("ring-4", "ring-purple-400", "animate-pulse");
+
+            let spoken = "";
+            let matched = false;
+
+            if (e.results && e.results.length > 0) {
+              for (let i = 0; i < e.results.length; i++) {
+                for (let j = 0; j < e.results[i].length; j++) {
+                  const candidate = (e.results[i][j].transcript || "").trim();
+                  if (!spoken) spoken = candidate;
+                  if (checkPronunciationIdx(candidate, item.word)) {
+                    matched = true;
+                    spoken = candidate;
+                    break;
+                  }
+                }
+                if (matched) break;
+              }
+            }
+
+            if (matched) {
+              if (status) status.textContent = `🎉 Bravo ! Prononciation : "${item.word}" (+5 ⭐)`;
+              if (fenny) {
+                fenny.classList.add("scale-125", "-translate-y-1");
+                setTimeout(() => fenny.classList.remove("scale-125", "-translate-y-1"), 800);
+              }
+              if (notes) notes.textContent = "🎵 🎶 ⭐ 🎉";
+              if (window.FennyGo) {
+                window.FennyGo.addStars(5);
+                window.FennyGo.unlockBadge("phonics");
+                window.FennyGo.celebrate(`Awesome pronunciation! ${item.word}! +5 Stars!`);
+              }
+              window.FennyGo?.speakWithWave?.(`Bravo! ${item.word}!`, "en-US");
+            } else {
+              if (status) status.textContent = `❌ J'ai entendu "${spoken}". Répète bien : "${item.word}" ! 🎙️`;
+              if (notes) notes.textContent = "❓ 🔁";
+              window.FennyGo?.speakWithWave?.(item.word, "en-US");
+            }
+          };
+
+          rec.onerror = (e) => {
+            hadError = true;
+            if (btnSpeak) btnSpeak.classList.remove("ring-4", "ring-purple-400", "animate-pulse");
+            if (e.error === "no-speech") {
+              if (status) status.textContent = `🤫 Aucun son détecté. Clique sur 🎙️ et prononce "${item.word}" dans le micro !`;
+            } else if (e.error === "not-allowed" || e.error === "service-not-allowed") {
+              if (status) status.textContent = "🚫 Micro non autorisé. Autorise le micro dans ton navigateur !";
+            } else {
+              if (status) status.textContent = `⚠️ Réessaie de prononcer "${item.word}".`;
+            }
+          };
+
+          rec.onend = () => {
+            activeIndexSpeechRec = null;
+            if (btnSpeak) btnSpeak.classList.remove("ring-4", "ring-purple-400", "animate-pulse");
+            if (!hasResult && !hadError) {
+              if (status) status.textContent = `⏱️ Temps écoulé. Clique sur 🎙️ et dis "${item.word}" !`;
+            }
+          };
+
+          rec.start();
+        } catch (err) {
+          activeIndexSpeechRec = null;
+          if (btnSpeak) btnSpeak.classList.remove("ring-4", "ring-purple-400", "animate-pulse");
+          if (status) status.textContent = "⚠️ Impossible de démarrer le micro. Vérifie tes paramètres.";
+        }
       }
 
       document.getElementById("fgBtnListen")?.addEventListener("click", triggerMsListen);
